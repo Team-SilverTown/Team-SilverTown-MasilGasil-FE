@@ -66,7 +66,7 @@ export const BORDER_BASE_WIDTH: number = 1.5; // px
 
 // CONTAINER ------------------------------------------------------- //
 export const CONTAINER_PADDING_VERTICAL: number = 2; // rem
-export const CONTAINER_PADDING_HORIZONTAIL: number = 2.5; // rem
+export const CONTAINER_PADDING_HORIZONTAL: number = 2.5; // rem
 export const MOBILEABLE_CONTAINER_HORIZONTAL_SPACE: string = "w-[100%] sm:max-w-[420px]";
 export const MOBILEABLE_CONTAINER_VERTICAL_SPACE: string = "h-[100%] sm:h-screen";
 // ------------------------------------------------------- CONTAINER //
@@ -96,14 +96,14 @@ export const POSTER_DETAIL_CARD_WIDTH: number = 600; // 600px
 // -------------------------------------------------------- CARDS //
 
 // MODAL -------------------------------------------------------- //
-export const MODAL_VERTICAL_PADDIND: number = 3; // rem
+export const MODAL_VERTICAL_PADDING: number = 3; // rem
 export const MODAL_HORIZONTAL_PADDING: number = 2.5; // rem
 export const MODAL_HEADER_MARGIN: number = 1.5; // rem
 // -------------------------------------------------------- MODAL //
 
-// Zindex //
+// Z-Index //
 export const SEARCH_BAR = 30;
-export const NAVIGATER = 50;
+export const NAVIGATOR = 50;
 export const MODAL = 888;
 export const MODAL_BACKGROUND = 888;
 export const MODAL_LAYOUT = 999;

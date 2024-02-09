@@ -7,7 +7,7 @@ import {
   MODAL_HEADER_MARGIN,
   MODAL_HORIZONTAL_PADDING,
   MODAL_LAYOUT,
-  MODAL_VERTICAL_PADDIND,
+  MODAL_VERTICAL_PADDING,
 } from "@/styles/theme";
 
 export const ModalContainer = styled.div`
@@ -23,7 +23,7 @@ export const ModalBackground = styled.div<any>`
 
 export const ModalLayoutContainer = styled.div`
   background-color: ${(props) => props.theme.background_color};
-  padding-top: ${MODAL_VERTICAL_PADDIND}rem;
+  padding-top: ${MODAL_VERTICAL_PADDING}rem;
   padding-bottom: ${MODAL_HORIZONTAL_PADDING}rem;
   padding-left: ${MODAL_HORIZONTAL_PADDING}rem;
   padding-right: ${MODAL_HORIZONTAL_PADDING}rem;
@@ -45,6 +45,6 @@ export const ModalHeaderButton = styled.button`
   ${tw`transition ease-in-out duration-150 absolute right-0 top-0 m-6`}
 `;
 
-export const ModalContantWrapper = styled.section`
+export const ModalContentWrapper = styled.section`
   ${tw`outline-none h-full overflow-y-scroll scrollbar-hide`}
 `;

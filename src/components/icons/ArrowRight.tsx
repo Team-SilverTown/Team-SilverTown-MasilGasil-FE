@@ -10,7 +10,11 @@ const ArrowRight = ({ ...props }) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path d="M5 12H19" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M5 12H19"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       <path
         d="M12 5L19 12L12 19"
         strokeLinecap="round"

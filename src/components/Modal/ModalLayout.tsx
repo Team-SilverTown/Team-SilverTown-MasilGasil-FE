@@ -8,7 +8,7 @@ import {
   ModalLayoutContainer,
   ModalHeaderTitle,
   ModalHeaderButton,
-  ModalContantWrapper,
+  ModalContentWrapper,
 } from "./Modal.styles";
 import { Cross } from "../icons";
 
@@ -74,7 +74,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
       >
         <Cross className="h-6 w-6" />
       </ModalHeaderButton>
-      <ModalContantWrapper>{children}</ModalContantWrapper>
+      <ModalContentWrapper>{children}</ModalContentWrapper>
     </ModalLayoutContainer>
   );
 };

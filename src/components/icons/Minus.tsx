@@ -1,6 +1,12 @@
 const Minus = ({ ...props }) => {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      {...props}
+    >
       <path
         d="M5 12H19"
         stroke="currentColor"
@@ -9,7 +15,7 @@ const Minus = ({ ...props }) => {
         strokeLinejoin="round"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default Minus
+export default Minus;

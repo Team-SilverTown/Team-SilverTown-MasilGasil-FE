@@ -24,7 +24,8 @@
       "@utils/*": ["src/lib/utils/*"],
       "@components/*": ["src/components/*"],
       "@screens/*": ["src/screens/*"]
-    }
+    },
+    "types": ["kakao.maps.d.ts"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "d.types"],
   "exclude": ["node_modules"]

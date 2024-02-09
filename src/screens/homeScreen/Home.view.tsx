@@ -19,6 +19,7 @@ const HomeView = () => {
       <ObjectThree />
       <div className="z-10 flex flex-col items-center justify-center">
         <Hello>Hello SilverTown FE</Hello>
+
         <button
           type="button"
           onClick={clickHandler}
