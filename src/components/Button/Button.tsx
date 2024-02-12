@@ -91,4 +91,6 @@ const Button: React.FC<ButtonProps> = forwardRef(
   },
 );
 
+Button.displayName = "Button";
+
 export default Button;
