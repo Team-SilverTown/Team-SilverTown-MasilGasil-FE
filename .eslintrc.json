@@ -5,9 +5,11 @@
   },
   "extends": [
     "airbnb",
-    "prettier",
+    "airbnb/hooks",
+    "airbnb/typescript",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -15,35 +17,9 @@
     "sourceType": "module"
   },
   "ignorePatterns": ["dist", "node_modules/"],
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "react/prop-types": "off",
-    "react/no-unescaped-entities": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/function-component-definition": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/require-default-props": "off",
-    "consistent-return": "off",
-    "no-unused-expressions": "off",
-    "react/display-name": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "import/no-extraneous-dependencies": "off",
-    "import/prefer-default-export": "off",
-    "default-case": "off",
-    "arrow-body-style": "off",
-    "no-shadow": "off",
-    "no-use-before-define": "off",
-    "no-restricted-syntax": "off",
-    "import/extensions": "off",
-    "@typescript-eslint/no-confusing-void-expression": "off",
-    "@typescript-eslint/consistent-type-imports": "off",
-    "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "import/no-unresolved": "off",
-    "react/jsx-curly-brace-presence": ["off", { "props": "never", "children": "never" }],
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }]
   },
   "settings": {
     "react": { "version": "detect" },
