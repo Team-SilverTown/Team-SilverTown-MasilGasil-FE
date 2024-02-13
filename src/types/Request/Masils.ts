@@ -1,40 +1,17 @@
-export interface Position {
-  lat: number;
-  lng: number;
-}
+import { Address, Pin } from "../OriginDataType";
+import { GeoJSONLineString } from "../OriginDataType/GeoJSON";
 
-export interface LogType {
-  location1: string;
-  location2: string;
-  location3: string;
-
-  // 수정
-  path: Position[];
-
+export interface MasilRecordRequest {
+  address: Address;
+  path: GeoJSONLineString;
   title: string;
   content: string;
-
-  // M 단위 합의 보기
+  // M 단위
   distance: number;
-
+  // S 단위
   totalTime: number;
-
   startedAt: string;
-
-  // 추후 협의후 정의
-  pinPoints: PinPoint[];
-
-  // File 인가
-  thumbnail: File | null;
-  postId: string;
-}
-
-export interface PinPoint {
-  content: string;
-  // 네이밍 변경 제안 - position
-  location: {
-    lat: number;
-    lng: number;
-  };
-  pointImage: File | null;
+  pins: Pin[];
+  thumbnailUrl: string | null;
+  postId: string | null;
 }
