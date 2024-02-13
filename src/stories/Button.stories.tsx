@@ -10,7 +10,7 @@ export default {
     },
     buttonColor: { control: "color" },
     textColor: { control: "color" },
-    loading: { control: "boolean" },
+    isLoading: { control: "boolean" },
     disabled: { control: "boolean" },
     useRipple: { control: "boolean" },
     rippleColor: { control: "color" },

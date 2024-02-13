@@ -14,7 +14,7 @@ interface ButtonProps {
   style?: CSSProperties;
   children: ReactNode;
   width?: string | number;
-  loading?: boolean;
+  isLoading?: boolean;
   disabled?: boolean;
   useRipple?: boolean;
   rippleColor?: string;
@@ -38,7 +38,7 @@ const Button: React.FC<ButtonProps> = forwardRef(
       buttonColor,
       textColor,
       width,
-      loading = false,
+      isLoading = false,
       disabled,
       useRipple = false,
       rippleColor,
@@ -84,7 +84,7 @@ const Button: React.FC<ButtonProps> = forwardRef(
         $rippleColor={rippleColor}
         {...rest}
       >
-        {!loading ? <>{children}</> : <i className="pl-2 m-0 flex">{<LoadingDots />}</i>}
+        {!isLoading ? <>{children}</> : <i className="pl-2 m-0 flex">{<LoadingDots />}</i>}
         {useRipple && variant !== "neumorp" && !disabled && <RippleEffect ref={rippleRef} />}
       </ButtonWrapper>
     );
