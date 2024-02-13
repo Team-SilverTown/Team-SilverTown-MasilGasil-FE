@@ -12,34 +12,38 @@ const ButtonBaseWrapper = styled.button<any>`
   justify-content: center;
   align-items: center;
 
+  background-color: ${(props) =>
+    props.$buttonColor ? props.$buttonColor : props.theme.container_color};
+  color: ${(props) => (props.$textColor ? props.$textColor : "")};
+
   & .ripple > span {
     background-color: ${(props) =>
       props.$rippleColor ? props.$rippleColor : props.theme.transparent_30};
   }
 `;
 
-export const Flat = styled(ButtonBaseWrapper)<any>`
-  background-color: ${(props) =>
-    props.$buttonColor ? props.$buttonColor : props.theme.container_color};
-`;
+export const Flat = styled(ButtonBaseWrapper)<any>``;
 
 export const Neumorp = styled(ButtonBaseWrapper)<any>`
-  background-color: ${(props) =>
-    props.$buttonColor ? props.$buttonColor : props.theme.container_color};
   border-width: ${BORDER_TINE_WIDTH}px;
   border-color: ${(props) => props.theme.transparent_50};
   box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_50};
 `;
 
-export const Naked = styled(ButtonBaseWrapper)<any>``;
+export const Naked = styled(ButtonBaseWrapper)<any>`
+  background-color: transparent;
+`;
 
 export const OutLine = styled(ButtonBaseWrapper)<any>`
+  background-color: transparent;
   border-width: ${BORDER_TINE_WIDTH}px;
-  border-color: ${(props) => props.theme.black_900};
+  border-color: ${(props) => (props.$buttonColor ? props.$buttonColor : props.theme.black_900)};
 `;
 
 export const Disabled = styled(ButtonBaseWrapper)<any>`
   background-color: ${(props) => props.theme.gray_100};
+
+  &,
   & > span {
     color: ${(props) => props.theme.gray_500};
   }
