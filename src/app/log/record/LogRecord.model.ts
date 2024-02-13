@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LogPageStep } from "./LogCreate.types";
+import { LogPageStep } from "./LogRecord.types";
 import { LogType, Position } from "@/types/Request/Masils";
 
 const DEFAULT_LOG_DATA: LogType = {
@@ -17,7 +17,7 @@ const DEFAULT_LOG_DATA: LogType = {
   postId: "",
 };
 
-const useLogCreateModel = () => {
+const useLogRecordModel = () => {
   const [pageStep, setPageStep] = useState<LogPageStep>("LOG_RECORD_STANDBY");
 
   const [logData, setLogData] = useState<LogType>(DEFAULT_LOG_DATA);
@@ -39,4 +39,4 @@ const useLogCreateModel = () => {
   };
 };
 
-export default useLogCreateModel;
+export default useLogRecordModel;

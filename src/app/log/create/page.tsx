@@ -1,8 +1,7 @@
 import React from "react";
-import LogCreateController from "./LogCreate.controller";
 
 const LogCreate = () => {
-  return <LogCreateController />;
+  return <section>LogCreate</section>;
 };
 
 export default LogCreate;
