@@ -18,7 +18,15 @@ export const Default = (args: any) => {
   const Sub = <span>Sub</span>;
 
   return (
-    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        width: "100%",
+        height: 500,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <SlideButton
         subChildren={Sub}
         onButtonClickHandler={() => console.log("Button Click")}
