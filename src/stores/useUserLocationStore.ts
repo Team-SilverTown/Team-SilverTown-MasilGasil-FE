@@ -7,16 +7,16 @@ const DEFAULT_USER_LOCATION = {
   lng: 127.02761,
 };
 
-interface UseUserLocation {
+interface UseUserLocationStore {
   userLocation: Position;
 
   setUserLocation: (param: Position) => void;
 }
 
-const useUserLocation = create<UseUserLocation>((set) => ({
+const useUserLocationStore = create<UseUserLocationStore>((set) => ({
   userLocation: DEFAULT_USER_LOCATION,
 
   setUserLocation: ({ lat, lng }) => set(() => ({ userLocation: { lat, lng } })),
 }));
 
-export default useUserLocation;
+export default useUserLocationStore;
