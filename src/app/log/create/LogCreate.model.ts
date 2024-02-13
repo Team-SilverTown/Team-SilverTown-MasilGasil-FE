@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { LogCreateStep, LogType, Position } from "./LogCreate.types";
+import { LogPageStep } from "./LogCreate.types";
+import { LogType, Position } from "@/types/Request/Masils";
 
 const DEFAULT_LOG_DATA: LogType = {
   location1: "",
@@ -17,16 +18,18 @@ const DEFAULT_LOG_DATA: LogType = {
 };
 
 const useLogCreateModel = () => {
-  const [createStep, setCreateStep] = useState<LogCreateStep>("LOG_CREATE_STEP_1");
+  const [pageStep, setPageStep] = useState<LogPageStep>("LOG_RECORD_STANDBY");
+
   const [logData, setLogData] = useState<LogType>(DEFAULT_LOG_DATA);
 
   // 이후 Store 에서 가져와야함
   const [center, setCentner] = useState<Position>({ lat: 0, lng: 0 });
+
   const [watchCode, setWatchCode] = useState(0);
 
   return {
-    createStep,
-    setCreateStep,
+    pageStep,
+    setPageStep,
     logData,
     setLogData,
     center,
