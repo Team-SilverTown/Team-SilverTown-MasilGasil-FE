@@ -12,7 +12,7 @@ interface ButtonProps {
   textColor?: string;
   type?: "submit" | "reset" | "button";
   style?: CSSProperties;
-  children: ReactNode | string;
+  children: ReactNode;
   width?: string | number;
   loading?: boolean;
   disabled?: boolean;
@@ -60,7 +60,7 @@ const Button: React.FC<ButtonProps> = forwardRef(
 
     const handleClick = useCallback(
       (event: MouseEvent<HTMLButtonElement>) => {
-        rippleRef.current && rippleRef.current?.createRipple(event);
+        rippleRef.current && rippleRef.current.createRipple(event);
         setTimeout(() => {
           onClickHandler();
         }, handlerDelay);

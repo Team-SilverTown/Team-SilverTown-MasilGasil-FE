@@ -17,10 +17,12 @@ const RippleEffect = forwardRef((_, ref) => {
         const diameter = Math.max(button.clientWidth, button.clientHeight);
         const radius = diameter / 2;
 
+        const { left, top } = button.getBoundingClientRect();
+
         circle.style.width = `${diameter}px`;
         circle.style.height = `${diameter}px`;
-        circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-        circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+        circle.style.left = `${event.clientX - left - radius}px`;
+        circle.style.top = `${event.clientY - top - radius}px`;
 
         circle.classList.add(rippleStyle.ripple);
 
