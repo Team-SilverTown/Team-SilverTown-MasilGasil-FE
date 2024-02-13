@@ -15,13 +15,23 @@ const LogRecordController = () => {
     setLogData,
   } = useLogRecordModel();
 
-  console.log(pageStep, center, logData, watchCode);
+  const handleChangeCenter = ({ lat, lng }: { lat: number; lng: number }) => {
+    setCentner((prevCenter) => ({
+      ...prevCenter,
+      coordinates: [lat, lng],
+    }));
+  };
 
-  // 별도의 함수를 구현해 Switch 문으로 Step에 맞게 반환할 것인가?
-
-  
-
-  return <LogRecordView pageStep={pageStep} />;
+  return (
+    <LogRecordView
+      center={center}
+      pageStep={pageStep}
+      watchCode={watchCode}
+      onChangeStep={setPageStep}
+      onChangeCenter={handleChangeCenter}
+      setWatchCode={setWatchCode}
+    />
+  );
 };
 
 export default LogRecordController;
