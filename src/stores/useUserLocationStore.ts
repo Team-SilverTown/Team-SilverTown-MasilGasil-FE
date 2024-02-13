@@ -1,4 +1,4 @@
-import { Position } from "@/app/log/create/LogCreate.types";
+import { Position } from "@/types/Request/Masils";
 import { create } from "zustand";
 
 // 강남역
