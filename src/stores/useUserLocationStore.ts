@@ -1,22 +1,28 @@
-import { Position } from "@/types/Request/Masils";
+import { GeoJSONPoint } from "@/types/OriginDataType/GeoJSON";
 import { create } from "zustand";
 
 // 강남역
-const DEFAULT_USER_LOCATION = {
-  lat: 37.498095,
-  lng: 127.02761,
+const DEFAULT_USER_LOCATION: GeoJSONPoint = {
+  type: "Point",
+  coordinates: [37.498095, 127.02761],
 };
 
 interface UseUserLocationStore {
-  userLocation: Position;
+  userLocation: GeoJSONPoint;
 
-  setUserLocation: (param: Position) => void;
+  setUserLocation: (param: { lat: number; lng: number }) => void;
 }
 
 const useUserLocationStore = create<UseUserLocationStore>((set) => ({
   userLocation: DEFAULT_USER_LOCATION,
 
-  setUserLocation: ({ lat, lng }) => set(() => ({ userLocation: { lat, lng } })),
+  setUserLocation: ({ lat, lng }) =>
+    set((prevState) => ({
+      userLocation: {
+        ...prevState.userLocation,
+        coordinates: [lat, lng],
+      },
+    })),
 }));
 
 export default useUserLocationStore;
