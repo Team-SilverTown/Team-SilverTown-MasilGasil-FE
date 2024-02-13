@@ -17,7 +17,11 @@ const LogRecordController = () => {
 
   console.log(pageStep, center, logData, watchCode);
 
-  return <LogRecordView />;
+  // 별도의 함수를 구현해 Switch 문으로 Step에 맞게 반환할 것인가?
+
+  
+
+  return <LogRecordView pageStep={pageStep} />;
 };
 
 export default LogRecordController;
