@@ -1,32 +1,32 @@
 import { useState } from "react";
 import { LogPageStep } from "./LogRecord.types";
-import { LogType, Position } from "@/types/Request/Masils";
-import useUserLocationStore from "@/stores/useUserLocationStore";
 
-const DEFAULT_LOG_DATA: LogType = {
-  location1: "",
-  location2: "",
-  location3: "",
-  path: [],
+import useUserLocationStore from "@/stores/useUserLocationStore";
+import { MasilRecordRequest } from "@/types/Request/Masils";
+import { GeoJSONPoint } from "@/types/OriginDataType/GeoJSON";
+
+const DEFAULT_LOG_DATA: MasilRecordRequest = {
+  address: {
+    depth1: "",
+    depth2: "",
+    depth3: "",
+  },
+  path: { type: "LineString", coordinates: [] },
   title: "",
   content: "",
   distance: 0,
   totalTime: 0,
   startedAt: "",
-  pinPoints: [],
-  thumbnail: null,
-  postId: "",
+  pins: [],
+  thumbnailUrl: null,
+  postId: null,
 };
 
 const useLogRecordModel = () => {
   const { userLocation } = useUserLocationStore();
   const [pageStep, setPageStep] = useState<LogPageStep>("LOG_RECORD_STANDBY");
-
-  const [logData, setLogData] = useState<LogType>(DEFAULT_LOG_DATA);
-
-  // 이후 Store 에서 가져와야함
-  const [center, setCentner] = useState<Position>(userLocation);
-
+  const [logData, setLogData] = useState<MasilRecordRequest>(DEFAULT_LOG_DATA);
+  const [center, setCentner] = useState<GeoJSONPoint>(userLocation);
   const [watchCode, setWatchCode] = useState(0);
 
   return {
