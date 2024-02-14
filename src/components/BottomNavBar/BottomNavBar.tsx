@@ -39,7 +39,7 @@ const BottomNavBar = () => {
           href={path}
           key={path}
         >
-          <S.BottomNavItem>
+          <S.BottomNavItem active={isPathActive(path)}>
             {isProfile ? (
               <S.ProfileCircle active={isPathActive(path)} />
             ) : isPathActive(path) ? (
