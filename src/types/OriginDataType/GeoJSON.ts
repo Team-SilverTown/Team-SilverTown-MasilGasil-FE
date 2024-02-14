@@ -1,3 +1,8 @@
+export interface KakaoPosition {
+  lat: number;
+  lng: number;
+}
+
 export type Position = [number, number];
 
 export interface GeoJSONPoint {

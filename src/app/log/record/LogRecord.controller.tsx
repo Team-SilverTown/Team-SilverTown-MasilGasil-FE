@@ -1,5 +1,6 @@
 "use client";
 
+import { KakaoPosition } from "@/types/OriginDataType";
 import useLogRecordModel from "./LogRecord.model";
 import LogRecordView from "./LogRecord.view";
 
@@ -15,7 +16,7 @@ const LogRecordController = () => {
     setLogData,
   } = useLogRecordModel();
 
-  const handleChangeCenter = ({ lat, lng }: { lat: number; lng: number }) => {
+  const handleChangeCenter = ({ lat, lng }: KakaoPosition) => {
     setCentner((prevCenter) => ({
       ...prevCenter,
       coordinates: [lat, lng],

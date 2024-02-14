@@ -1,4 +1,6 @@
-import { GeoJSONPoint } from "@/types/OriginDataType/GeoJSON";
+import * as S from "./LogRecord.styles";
+
+import { GeoJSONPoint, KakaoPosition } from "@/types/OriginDataType";
 import { LogPageStep } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 
@@ -8,30 +10,32 @@ interface LogRecordViewProps {
   center: GeoJSONPoint;
 
   onChangeStep: (step: LogPageStep) => void;
-  onChangeCenter: (coords: { lat: number; lng: number }) => void;
+  onChangeCenter: (coords: KakaoPosition) => void;
   setWatchCode: (code: number) => void;
 }
 
 const LogRecordView = ({
   pageStep,
   watchCode,
+  center,
   onChangeStep,
   onChangeCenter,
   setWatchCode,
 }: LogRecordViewProps) => {
+  console.log(center);
+
   return (
-    <>
-      <ul>
-        <li>
-          <button onClick={() => onChangeStep("LOG_RECORD_STANDBY")}> Standby</button>
-        </li>
-        <li>
-          <button onClick={() => onChangeStep("LOG_RECORD_RECORDING")}> Recording</button>
-        </li>
-        <li>
-          <button onClick={() => onChangeStep("LOG_RECORD_EDITING")}> Edit</button>
-        </li>
-      </ul>
+    <S.LogRecordLayout>
+      {/* 테스트 이후 제거 예정 */}
+      <S.LogTestActionList>
+        <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_STANDBY")}>
+          Standby
+        </S.LogTestButton>
+        <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_RECORDING")}>
+          Recording
+        </S.LogTestButton>
+        <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_EDITING")}>Edit</S.LogTestButton>
+      </S.LogTestActionList>
 
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
@@ -44,7 +48,7 @@ const LogRecordView = ({
       {pageStep === "LOG_RECORD_RECORDING" && <LogRecordRecording />}
 
       {pageStep === "LOG_RECORD_EDITING" && <LogRecordEdit />}
-    </>
+    </S.LogRecordLayout>
   );
 };
 

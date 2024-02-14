@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
+import { KakaoPosition } from "@/types/OriginDataType";
 
 interface LogRecordStandbyControllerProps {
   watchCode: number;
   setWatchCode: (code: number) => void;
-  onChangeCenter: (coords: { lat: number; lng: number }) => void;
+  onChangeCenter: (coords: KakaoPosition) => void;
 }
 
 const LogRecordStandbyController = ({
@@ -29,6 +30,7 @@ const LogRecordStandbyController = ({
   useEffect(() => {
     return () => {
       navigator.geolocation.clearWatch(watchCode);
+      console.log("Standby Component cleanUp");
     };
   }, []);
 
