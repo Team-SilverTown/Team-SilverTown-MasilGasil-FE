@@ -29,6 +29,8 @@ export const LogTestActionList = styled.div`
 
   background-color: ${({ theme }) => theme.black_900};
   opacity: 0.5;
+
+  z-index: 10;
 `;
 
 export const LogTestButton = styled.button`

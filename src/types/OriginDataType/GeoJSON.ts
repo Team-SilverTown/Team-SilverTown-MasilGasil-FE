@@ -1,4 +1,4 @@
-export interface KakaoPosition {
+export interface KakaoFormatPosition {
   lat: number;
   lng: number;
 }

@@ -3,12 +3,7 @@ interface LogRecordStandbyViewProps {
 }
 
 const LogRecordStandbyView = ({ onClick }: LogRecordStandbyViewProps) => {
-  return (
-    <>
-      LogRecordStandby.view
-      <button onClick={onClick}> setWatchCode</button>
-    </>
-  );
+  return <></>;
 };
 
 export default LogRecordStandbyView;

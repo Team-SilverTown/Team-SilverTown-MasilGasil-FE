@@ -16,10 +16,10 @@ const useLogRecordModel = () => {
   return {
     pageStep,
     setPageStep,
-    logData,
-    setLogData,
     center,
     setCentner,
+    logData,
+    setLogData,
     watchCode,
     setWatchCode,
   };
