@@ -1,7 +1,11 @@
 "use client";
 
 import { CSSProperties } from "react";
-import { LogSimpleCardContainer, LogSimpleCardBotton } from "./LogSimpleCard.style";
+import {
+  LogSimpleCardContainer,
+  LogSimpleCardBottom,
+  LogSimpleCardInfo,
+} from "./LogSimpleCard.style";
 
 interface LogSimpleCardProps {
   width?: string;
@@ -18,8 +22,8 @@ interface LogSimpleCardProps {
 }
 
 const LogSimpleCard = ({
-  width = "120px",
-  height = "120px",
+  width = "160px",
+  height = "160px",
   radius = "8px",
   thumbnail,
   location_1,
@@ -39,18 +43,18 @@ const LogSimpleCard = ({
       style={style}
       onClick={onClick}
     >
-      <LogSimpleCardBotton>
+      <LogSimpleCardBottom>
         <strong>
           {location_1} {location_2}
         </strong>
-        <div className="simplelog-Info">
+        <LogSimpleCardInfo>
           <ul>
             <li>{total_time}</li>
             <li>{distance}</li>
           </ul>
           <strong>{created_at}</strong>
-        </div>
-      </LogSimpleCardBotton>
+        </LogSimpleCardInfo>
+      </LogSimpleCardBottom>
     </LogSimpleCardContainer>
   );
 };
