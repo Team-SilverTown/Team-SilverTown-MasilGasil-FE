@@ -61,10 +61,20 @@ const MasilMap = ({
 }: MasilMapProps) => {
   const [lat, lng] = center.coordinates;
 
+  /**
+   * @summary
+   * 기존 geoJSON 형식인 Position형태를 Kakao Api에서 사용 가능한 데이터 타입으로 변형합니다.
+   * ( geLocation.watchPosition으로 인해 많은 상태변화로 useMemo 사용 )
+   */
   const kakaoFormatPosition: KakaoFormatPosition[] = useMemo(() => {
     return path.coordinates.map(([lat, lng]) => ({ lat, lng }));
   }, [path]);
 
+  /**
+   * @summary
+   * 기존 geoJSON 형식인 PinList를 Kakao Api에서 사용 가능한 데이터 타입으로 변형합니다.
+   *    * ( geLocation.watchPosition으로 인해 많은 상태변화로 useMemo 사용 )
+   */
   const kakaoFormatPin: KakaoFormatPin[] = useMemo(() => {
     return pins.map((prevPoint) => {
       const [lat, lng] = prevPoint.point.coordinates;
