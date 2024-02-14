@@ -1,4 +1,4 @@
-import { GeoJSONPoint } from "@/types/OriginDataType/GeoJSON";
+import { GeoJSONPoint } from "@/types/OriginDataType";
 import { create } from "zustand";
 
 // 강남역

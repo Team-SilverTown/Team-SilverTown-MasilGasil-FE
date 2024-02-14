@@ -1,5 +1,4 @@
-import { Address, Pin } from "../OriginDataType";
-import { GeoJSONLineString } from "../OriginDataType/GeoJSON";
+import { Address, GeoJSONLineString, Pin } from "../OriginDataType";
 
 export interface MasilRecordRequest {
   address: Address;

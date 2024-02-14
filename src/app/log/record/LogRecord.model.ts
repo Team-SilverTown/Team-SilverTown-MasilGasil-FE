@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { LogPageStep } from "./LogRecord.types";
 
 import useUserLocationStore from "@/stores/useUserLocationStore";
-import { MasilRecordRequest } from "@/types/Request/Masils";
-import { GeoJSONPoint } from "@/types/OriginDataType/GeoJSON";
+import { LogPageStep } from "./LogRecord.types";
+import { MasilRecordRequest } from "@/types/Request";
+import { GeoJSONPoint } from "@/types/OriginDataType";
 
 const DEFAULT_LOG_DATA: MasilRecordRequest = {
   address: {
