@@ -27,7 +27,7 @@ export const MainButton = styled(motion.div)<any>`
 
   &,
   & > span {
-    color: ${(props) => (props.$textColor ? props.$textColor : props.theme.text_secondary_color)};
+    color: ${(props) => (props.$textColor ? props.$textColor : props.theme.text_primary_color)};
     font-weight: 600;
   }
 `;
