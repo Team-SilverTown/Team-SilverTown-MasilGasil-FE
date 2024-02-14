@@ -5,11 +5,18 @@ import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
 
 interface MasilMapProps {
-  isShowCenterMarker?: boolean;
   center: GeoJSONPoint;
+  isShowCenterMarker?: boolean;
+  centerMarkerSize?: number;
+  centerMarkerFill?: string;
 }
 
-const MasilMap = ({ center, isShowCenterMarker = true }: MasilMapProps) => {
+const MasilMap = ({
+  center,
+  isShowCenterMarker = true,
+  centerMarkerSize,
+  centerMarkerFill,
+}: MasilMapProps) => {
   const [lat, lng] = center.coordinates;
   return (
     <Map
@@ -19,8 +26,8 @@ const MasilMap = ({ center, isShowCenterMarker = true }: MasilMapProps) => {
       {isShowCenterMarker && (
         <CenterMarker
           position={{ lat, lng }}
-          size={100}
-          fill="orange"
+          size={centerMarkerSize}
+          fill={centerMarkerFill}
         />
       )}
     </Map>

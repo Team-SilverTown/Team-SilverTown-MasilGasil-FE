@@ -4,6 +4,7 @@ import { GeoJSONPoint, KakaoPosition } from "@/types/OriginDataType";
 import { LogPageStep } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
+import MasilMap from "@/components/MasilMap/MasilMap";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
@@ -38,10 +39,10 @@ const LogRecordView = ({
         <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_EDITING")}>Edit</S.LogTestButton>
       </S.LogTestActionList>
 
+      <MasilMap center={center} />
+
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
-          center={center}
-          logData={logData}
           watchCode={watchCode}
           onChangeCenter={onChangeCenter}
           setWatchCode={setWatchCode}
