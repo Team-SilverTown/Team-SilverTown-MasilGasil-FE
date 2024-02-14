@@ -3,11 +3,13 @@ import * as S from "./LogRecord.styles";
 import { GeoJSONPoint, KakaoPosition } from "@/types/OriginDataType";
 import { LogPageStep } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
+import { MasilRecordRequest } from "@/types/Request";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
-  watchCode: number;
   center: GeoJSONPoint;
+  logData: MasilRecordRequest;
+  watchCode: number;
 
   onChangeStep: (step: LogPageStep) => void;
   onChangeCenter: (coords: KakaoPosition) => void;
@@ -16,14 +18,13 @@ interface LogRecordViewProps {
 
 const LogRecordView = ({
   pageStep,
-  watchCode,
   center,
+  logData,
+  watchCode,
   onChangeStep,
   onChangeCenter,
   setWatchCode,
 }: LogRecordViewProps) => {
-  console.log(center);
-
   return (
     <S.LogRecordLayout>
       {/* 테스트 이후 제거 예정 */}
@@ -40,6 +41,7 @@ const LogRecordView = ({
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
           center={center}
+          logData={logData}
           watchCode={watchCode}
           onChangeCenter={onChangeCenter}
           setWatchCode={setWatchCode}

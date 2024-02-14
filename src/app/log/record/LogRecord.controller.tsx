@@ -10,10 +10,10 @@ const LogRecordController = () => {
     setPageStep,
     center,
     setCentner,
-    watchCode,
-    setWatchCode,
     logData,
     setLogData,
+    watchCode,
+    setWatchCode,
   } = useLogRecordModel();
 
   const handleChangeCenter = ({ lat, lng }: KakaoPosition) => {
@@ -25,8 +25,9 @@ const LogRecordController = () => {
 
   return (
     <LogRecordView
-      center={center}
       pageStep={pageStep}
+      center={center}
+      logData={logData}
       watchCode={watchCode}
       onChangeStep={setPageStep}
       onChangeCenter={handleChangeCenter}
