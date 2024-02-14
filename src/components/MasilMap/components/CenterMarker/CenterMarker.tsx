@@ -9,7 +9,7 @@ interface CenterMarkerProps {
   position: KakaoFormatPosition;
 }
 
-const CenterMarker = ({ position, size = 24, fill = "black" }: CenterMarkerProps) => {
+const CenterMarker = ({ position, size = 32, fill = "black" }: CenterMarkerProps) => {
   return (
     <CustomOverlayMap position={position}>
       <S.CenterMarkerLayout

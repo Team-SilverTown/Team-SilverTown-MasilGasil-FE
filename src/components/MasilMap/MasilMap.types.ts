@@ -1,4 +1,4 @@
-export type OnCreatePath = (param: kakao.maps.Polyline) => void;
+export type OnCreatePath = (polyline: kakao.maps.Polyline) => void;
 
 export type OnClickPin = () => void;
 

@@ -60,22 +60,25 @@ const MasilMap = ({
   pinSize,
 }: MasilMapProps) => {
   const [lat, lng] = center.coordinates;
+  const centerPosition = { lat, lng };
 
   /**
    * @summary
    * 기존 geoJSON 형식인 Position형태를 Kakao Api에서 사용 가능한 데이터 타입으로 변형합니다.
+   *
    * ( geLocation.watchPosition으로 인해 많은 상태변화로 useMemo 사용 )
    */
-  const kakaoFormatPosition: KakaoFormatPosition[] = useMemo(() => {
+  const kakaoFormatPath: KakaoFormatPosition[] = useMemo(() => {
     return path.coordinates.map(([lat, lng]) => ({ lat, lng }));
   }, [path]);
 
   /**
    * @summary
    * 기존 geoJSON 형식인 PinList를 Kakao Api에서 사용 가능한 데이터 타입으로 변형합니다.
-   *    * ( geLocation.watchPosition으로 인해 많은 상태변화로 useMemo 사용 )
+   *
+   * ( geLocation.watchPosition으로 인해 많은 상태변화로 useMemo 사용 )
    */
-  const kakaoFormatPin: KakaoFormatPin[] = useMemo(() => {
+  const kakaoFormatPins: KakaoFormatPin[] = useMemo(() => {
     return pins.map((prevPoint) => {
       const [lat, lng] = prevPoint.point.coordinates;
 
@@ -88,7 +91,7 @@ const MasilMap = ({
 
   return (
     <Map
-      center={{ lat, lng }}
+      center={centerPosition}
       className={style.masil__map}
       draggable={draggable}
       zoomable={zoomable}
@@ -97,22 +100,24 @@ const MasilMap = ({
     >
       {isShowCenterMarker && (
         <CenterMarker
-          position={{ lat, lng }}
+          position={centerPosition}
           size={centerMarkerSize}
           fill={centerMarkerFill}
         />
       )}
 
-      <PathLine
-        path={kakaoFormatPosition}
-        onCreatePath={onCreatePath}
-        pathColor={pathColor}
-        pathOpacity={pathOpacity}
-        pathWeight={pathWeight}
-      />
+      {kakaoFormatPath && (
+        <PathLine
+          path={kakaoFormatPath}
+          onCreatePath={onCreatePath}
+          pathColor={pathColor}
+          pathOpacity={pathOpacity}
+          pathWeight={pathWeight}
+        />
+      )}
 
-      {kakaoFormatPin &&
-        kakaoFormatPin.map(({ point }) => (
+      {kakaoFormatPins &&
+        kakaoFormatPins.map(({ point }) => (
           <CustomPin
             position={point}
             size={pinSize}
