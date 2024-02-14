@@ -29,9 +29,15 @@ export const LogSimpleCardBottom = styled.div`
   align-items: baseline;
   padding: 5px;
 
-  strong {
+  & > strong {
     font-size: 12px;
     color: #fff;
+    max-width: 70px;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 `;
 
@@ -64,5 +70,9 @@ export const LogSimpleCardInfo = styled.div`
       border-radius: 50%;
       background-color: #fff;
     }
+  }
+  strong {
+    font-size: 12px;
+    color: #fff;
   }
 `;
