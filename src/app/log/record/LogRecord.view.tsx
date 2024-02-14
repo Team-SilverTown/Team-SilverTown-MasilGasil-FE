@@ -1,6 +1,6 @@
 import * as S from "./LogRecord.styles";
 
-import { GeoJSONPoint, KakaoPosition } from "@/types/OriginDataType";
+import { GeoJSONPoint, KakaoFormatPosition } from "@/types/OriginDataType";
 import { LogPageStep } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
@@ -13,7 +13,7 @@ interface LogRecordViewProps {
   watchCode: number;
 
   onChangeStep: (step: LogPageStep) => void;
-  onChangeCenter: (coords: KakaoPosition) => void;
+  onChangeCenter: (coords: KakaoFormatPosition) => void;
   setWatchCode: (code: number) => void;
 }
 
