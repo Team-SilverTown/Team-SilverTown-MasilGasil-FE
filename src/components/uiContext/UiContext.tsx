@@ -113,7 +113,7 @@ const ModalView = ({
   return <Modal onClose={closeModal}>{modalView === "INIT_VIEW" && <TestModal />}</Modal>;
 };
 
-const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
+export const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
   const { displayModal, closeModal, modalView, modalProps } = useUI();
   return displayModal ? (
     <ModalView
@@ -136,10 +136,7 @@ export const ManagedUIContext = ({ children }: { children: any }) => {
 
   return (
     <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
-      <UIProvider>
-        {children}
-        <ModalUI />
-      </UIProvider>
+      <UIProvider>{children}</UIProvider>
     </ThemeProvider>
   );
 };
