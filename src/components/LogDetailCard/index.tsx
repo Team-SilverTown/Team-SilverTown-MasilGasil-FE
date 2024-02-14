@@ -10,7 +10,7 @@ import { Heart, KebabMenu } from "../icons";
 interface LogDetailCardProps {
   title: string;
   content: string;
-  thumbnail: string;
+  thumbnailURL: string;
   distance: string;
   total_time: string;
   like_cnt: number;
@@ -25,7 +25,7 @@ interface LogDetailCardProps {
 const LogDetailCard = ({
   title,
   content,
-  thumbnail,
+  thumbnailURL,
   distance,
   total_time,
   like_cnt,
@@ -68,7 +68,7 @@ const LogDetailCard = ({
       style={style}
       onClick={handleDetailViewClick}
     >
-      <LogDetailCardThumbnail thumbnail={thumbnail} />
+      <LogDetailCardThumbnail thumbnailURL={thumbnailURL} />
       <LogDetailCardInfo isSettingLayout={isSettingLayout}>
         <div className="infoTopSection">
           <div className="infoTitle">
