@@ -15,6 +15,10 @@ export const GlobalStyle = createGlobalStyle<any>`
       /* background-repeat: repeat; */
     }
 
+    html {
+      font-size: 62.5%;
+    }
+
     html,
     body {
       height: 100%;
@@ -34,5 +38,10 @@ export const GlobalStyle = createGlobalStyle<any>`
       max-width: 600px;
       min-height: 100%;
       margin: 0 auto;
+      font-family: 'MapleStory';
+    }
+
+    .commonConainer {
+      padding: 0 2rem;
     }
 `;
