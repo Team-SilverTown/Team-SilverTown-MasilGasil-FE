@@ -38,7 +38,7 @@ export const GlobalStyle = createGlobalStyle<any>`
       max-width: 600px;
       min-height: 100%;
       margin: 0 auto;
-      font-family: 'MapleStory';
+      font-family: 'Pretendard';
     }
 
     .commonConainer {
