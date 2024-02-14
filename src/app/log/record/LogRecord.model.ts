@@ -4,23 +4,7 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import { LogPageStep } from "./LogRecord.types";
 import { MasilRecordRequest } from "@/types/Request";
 import { GeoJSONPoint } from "@/types/OriginDataType";
-
-const DEFAULT_LOG_DATA: MasilRecordRequest = {
-  address: {
-    depth1: "",
-    depth2: "",
-    depth3: "",
-  },
-  path: { type: "LineString", coordinates: [] },
-  title: "",
-  content: "",
-  distance: 0,
-  totalTime: 0,
-  startedAt: "",
-  pins: [],
-  thumbnailUrl: null,
-  postId: null,
-};
+import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
 
 const useLogRecordModel = () => {
   const { userLocation } = useUserLocationStore();
