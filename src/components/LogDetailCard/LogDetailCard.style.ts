@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface LogDetailCardThumbnailProps {
-  thumbnail: string;
+  thumbnailURL: string;
 }
 
 interface LogDetailCardInfoProps {
@@ -10,21 +10,21 @@ interface LogDetailCardInfoProps {
 
 export const LogDetailCardContainer = styled.div`
   display: flex;
-  width: 300px;
-  height: 120px;
-  border-radius: 8px;
-  background-color: #fff;
+  width: 30rem;
+  height: 12rem;
+  border-radius: 0.8rem;
+  background-color: ${(props) => props.theme.white};
   cursor: pointer;
 `;
 
 export const LogDetailCardThumbnail = styled.div<LogDetailCardThumbnailProps>`
-  width: 120px;
-  height: 120px;
-  background-image: ${(props) => `url(${props.thumbnail})`};
+  width: 12rem;
+  height: 12rem;
+  background-image: ${(props) => `url(${props.thumbnailURL})`};
   background-position: center;
   background-size: cover;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-top-left-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
 `;
 
 export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
@@ -33,7 +33,7 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
   flex-direction: column;
   justify-content: space-between;
   width: calc(100% - 120px);
-  padding: 18px 10px 10px;
+  padding: 1.8rem 1rem 1rem;
 
   .infoTitle {
     display: flex;
@@ -41,8 +41,8 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
     align-items: center;
     h3 {
       width: ${(props) => (props.isSettingLayout ? "calc(100% - 15px)" : "100%")};
-      font-size: 16px;
-      font-weight: bold;
+      font-size: 1.6rem;
+      font-weight: 700;
       white-space: normal;
       display: -webkit-box;
       -webkit-line-clamp: 1;
@@ -50,20 +50,20 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
       overflow: hidden;
     }
     svg {
-      width: 10px;
+      width: 1rem;
       cursor: pointer;
       transition: background 0.2s;
       &:hover {
-        background-color: #eee;
+        background-color: ${(props) => props.theme.gray_100};
         border-radius: 50%;
       }
     }
   }
 
   p {
-    margin: 10px 0;
-    font-size: 10px;
-    line-height: 14px;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
     white-space: normal;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -74,44 +74,44 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
   .infoContent {
     display: flex;
     justify-content: space-between;
-    color: #a3a3a3;
+    color: ${(props) => props.theme.gray_500};
     ul.walkInfo {
       display: flex;
       align-items: center;
       li {
-        font-size: 8px;
+        font-size: 0.8rem;
       }
       li:not(:first-child) {
         position: relative;
-        margin-left: 5px;
+        margin-left: 0.5rem;
         &::before {
           position: absolute;
-          left: -3.5px;
+          left: -0.35rem;
           top: 50%;
           transform: translateY(-50%);
           content: "";
           display: inline-block;
-          width: 2px;
-          height: 2px;
+          width: 0.2rem;
+          height: 0.2rem;
           border-radius: 50%;
-          background-color: #a3a3a3;
+          background-color: ${(props) => props.theme.gray_500};
         }
       }
     }
 
     .likeInfo {
       display: flex;
-      font-size: 8px;
+      font-size: 0.8rem;
       svg {
-        margin-right: 2px;
+        margin-right: 0.2rem;
       }
       &:hover,
       &.liked {
         svg {
-          stroke: orange;
+          stroke: ${(props) => props.theme.yellow_500};
         }
         .like {
-          color: orange;
+          color: ${(props) => props.theme.yellow_500};
         }
       }
     }
@@ -120,26 +120,26 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
 
 export const LogDetailCardSettingModal = styled.div`
   position: absolute;
-  top: 18px;
-  right: 10px;
+  top: 1.8rem;
+  right: 1rem;
   content: "";
-  width: 110px;
-  background-color: #fff;
+  width: 11rem;
+  background-color: ${(props) => props.theme.white};
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   ul {
     li {
       text-align: center;
-      font-size: 12px;
+      font-size: 1.2rem;
       transition: background 0.2s;
       &:hover {
-        background-color: #eee;
+        background-color: ${(props) => props.theme.gray_100};
       }
     }
 
     li button {
       display: block;
       width: 100%;
-      padding: 10px 0;
+      padding: 1rem 0;
     }
   }
 `;
