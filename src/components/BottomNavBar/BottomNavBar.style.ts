@@ -1,0 +1,42 @@
+import styled from "styled-components";
+
+export const BottomNavContainer = styled.nav`
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background-color: ${(props: any) => props.theme.container_color};
+  align-items: center;
+`;
+
+export const BottomNavItem = styled.a<{ active: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: ${({ active, theme }) => (active ? theme.green_500 : theme.gray_300)};
+  font-size: 0.9rem;
+  cursor: pointer;
+
+  & > svg {
+    stroke: ${({ active, theme }) => (active ? "none" : theme.gray_300)};
+    fill: ${({ active, theme }) => (active ? theme.green_500 : "none")};
+    margin-bottom: 0.6rem;
+  }
+`;
+
+export const ProfileCircle = styled.div<{ active: boolean }>`
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: ${({ active, theme }) => (active ? theme.green_500 : theme.gray_300)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 0.6rem;
+`;
