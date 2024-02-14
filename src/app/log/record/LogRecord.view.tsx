@@ -42,6 +42,7 @@ const LogRecordView = ({
       <MasilMap
         center={center}
         path={logData.path}
+        pins={logData.pins}
       />
 
       {pageStep === "LOG_RECORD_STANDBY" && (

@@ -1,15 +1,23 @@
 import style from "./MasilMap.style.module.css";
 
-import { GeoJSONLineString, GeoJSONPoint, KakaoPosition } from "@/types/OriginDataType";
+import {
+  GeoJSONLineString,
+  GeoJSONPoint,
+  KakaoFormatPin,
+  KakaoPosition,
+  Pin,
+} from "@/types/OriginDataType";
 import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
 import PathLine from "./components/PathLine/PathLine";
 import { useMemo } from "react";
-import { OnCreatePath, PathLineWeight } from "./MasilMap.types";
+import { OnClickPin, OnCreatePath, PathLineWeight } from "./MasilMap.types";
+import CustomPin from "./components/CustomPin/CustomPin";
 
 interface MasilMapProps {
   center: GeoJSONPoint;
   path: GeoJSONLineString;
+  pins: Pin[];
 
   draggable?: boolean;
   zoomable?: boolean;
@@ -24,11 +32,15 @@ interface MasilMapProps {
   pathColor?: string;
   pathOpacity?: number;
   pathWeight?: PathLineWeight;
+
+  onClickPin?: OnClickPin;
+  pinSize?: number;
 }
 
 const MasilMap = ({
   center,
   path,
+  pins,
 
   draggable = true,
   zoomable = true,
@@ -43,12 +55,26 @@ const MasilMap = ({
   pathColor,
   pathOpacity,
   pathWeight,
+
+  onClickPin,
+  pinSize,
 }: MasilMapProps) => {
   const [lat, lng] = center.coordinates;
 
   const convertedPath: KakaoPosition[] = useMemo(() => {
     return path.coordinates.map(([lat, lng]) => ({ lat, lng }));
   }, [path]);
+
+  const kakaoFormatPin: KakaoFormatPin[] = useMemo(() => {
+    return pins.map((prevPoint) => {
+      const [lat, lng] = prevPoint.point.coordinates;
+
+      return {
+        ...prevPoint,
+        point: { lat, lng },
+      };
+    });
+  }, [pins]);
 
   return (
     <Map
@@ -74,6 +100,15 @@ const MasilMap = ({
         pathOpacity={pathOpacity}
         pathWeight={pathWeight}
       />
+
+      {kakaoFormatPin &&
+        kakaoFormatPin.map(({ point }) => (
+          <CustomPin
+            position={point}
+            size={pinSize}
+            onClickPin={onClickPin && onClickPin}
+          />
+        ))}
     </Map>
   );
 };
