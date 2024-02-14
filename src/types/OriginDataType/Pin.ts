@@ -1,4 +1,4 @@
-import { GeoJSONPoint, KakaoPosition } from "./GeoJSON";
+import { GeoJSONPoint, KakaoFormatPosition } from "./GeoJSON";
 
 export interface Pin {
   point: GeoJSONPoint;
@@ -7,7 +7,7 @@ export interface Pin {
 }
 
 export interface KakaoFormatPin {
-  point: KakaoPosition;
+  point: KakaoFormatPosition;
   content: string;
   thumbnailUrl: string | null;
 }

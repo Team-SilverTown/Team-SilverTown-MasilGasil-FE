@@ -1,9 +1,9 @@
-import { KakaoPosition } from "@/types/OriginDataType";
+import { KakaoFormatPosition } from "@/types/OriginDataType";
 import { Polyline } from "react-kakao-maps-sdk";
 import { OnCreatePath, PathLineWeight } from "../../MasilMap.types";
 
 interface PathLineProps {
-  path: KakaoPosition[];
+  path: KakaoFormatPosition[];
   onCreatePath?: OnCreatePath;
 
   // style

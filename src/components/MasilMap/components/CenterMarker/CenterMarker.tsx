@@ -1,12 +1,12 @@
 import * as S from "./CenterMarker.styles";
 
-import { KakaoPosition } from "@/types/OriginDataType";
+import { KakaoFormatPosition } from "@/types/OriginDataType";
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
 
 interface CenterMarkerProps {
   size?: number;
   fill?: string;
-  position: KakaoPosition;
+  position: KakaoFormatPosition;
 }
 
 const CenterMarker = ({ position, size = 24, fill = "black" }: CenterMarkerProps) => {

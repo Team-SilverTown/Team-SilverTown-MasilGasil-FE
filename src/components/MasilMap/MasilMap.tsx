@@ -4,7 +4,7 @@ import {
   GeoJSONLineString,
   GeoJSONPoint,
   KakaoFormatPin,
-  KakaoPosition,
+  KakaoFormatPosition,
   Pin,
 } from "@/types/OriginDataType";
 import { Map } from "react-kakao-maps-sdk";
@@ -61,7 +61,7 @@ const MasilMap = ({
 }: MasilMapProps) => {
   const [lat, lng] = center.coordinates;
 
-  const convertedPath: KakaoPosition[] = useMemo(() => {
+  const kakaoFormatPosition: KakaoFormatPosition[] = useMemo(() => {
     return path.coordinates.map(([lat, lng]) => ({ lat, lng }));
   }, [path]);
 
@@ -94,7 +94,7 @@ const MasilMap = ({
       )}
 
       <PathLine
-        path={convertedPath}
+        path={kakaoFormatPosition}
         onCreatePath={onCreatePath}
         pathColor={pathColor}
         pathOpacity={pathOpacity}

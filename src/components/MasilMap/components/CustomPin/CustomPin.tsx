@@ -1,11 +1,11 @@
 import * as S from "./CustomPin.styles";
 
-import { KakaoPosition } from "@/types/OriginDataType";
+import { KakaoFormatPosition } from "@/types/OriginDataType";
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
 import { OnClickPin } from "../../MasilMap.types";
 
 interface CustomPinProps {
-  position: KakaoPosition;
+  position: KakaoFormatPosition;
   size?: number;
 
   onClickPin?: OnClickPin;
