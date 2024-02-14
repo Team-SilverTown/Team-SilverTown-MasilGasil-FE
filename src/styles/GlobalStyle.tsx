@@ -7,12 +7,16 @@ export const GlobalStyle = createGlobalStyle<any>`
     ${normalize}
 
     *{
-      color: ${(props) => props.theme.text_primary_color};
+      color: ${(props: any) => props.theme.text_primary_color};
       /* font-family: sans-serif; */
     }
     body {
-      background-color: ${(props) => props.theme.background_color};
+      background-color: ${(props: any) => props.theme.background_color};
       /* background-repeat: repeat; */
+    }
+
+    html {
+      font-size: 62.5%;
     }
 
     html,
@@ -31,7 +35,13 @@ export const GlobalStyle = createGlobalStyle<any>`
 
     body {
       position: relative;
+      max-width: 600px;
       min-height: 100%;
-      margin: 0;
+      margin: 0 auto;
+      font-family: 'Pretendard';
+    }
+
+    .commonConainer {
+      padding: 0 2rem;
     }
 `;
