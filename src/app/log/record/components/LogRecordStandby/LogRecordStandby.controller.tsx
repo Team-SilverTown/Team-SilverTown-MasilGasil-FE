@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
-import { KakaoPosition } from "@/types/OriginDataType";
+import { GeoJSONPoint, KakaoPosition } from "@/types/OriginDataType";
 
 interface LogRecordStandbyControllerProps {
+  center: GeoJSONPoint;
   watchCode: number;
   setWatchCode: (code: number) => void;
   onChangeCenter: (coords: KakaoPosition) => void;
 }
 
 const LogRecordStandbyController = ({
+  center,
   watchCode,
   setWatchCode,
   onChangeCenter,
@@ -34,7 +36,12 @@ const LogRecordStandbyController = ({
     };
   }, []);
 
-  return <LogRecordStandbyView onClick={handleClick} />;
+  return (
+    <LogRecordStandbyView
+      onClick={handleClick}
+      center={center}
+    />
+  );
 };
 
 export default LogRecordStandbyController;

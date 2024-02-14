@@ -1,12 +1,17 @@
+import MasilMap from "@/components/MasilMap/MasilMap";
+import { GeoJSONPoint } from "@/types/OriginDataType";
+
 interface LogRecordStandbyViewProps {
+  center: GeoJSONPoint;
   onClick: () => void;
 }
 
-const LogRecordStandbyView = ({ onClick }: LogRecordStandbyViewProps) => {
+const LogRecordStandbyView = ({ onClick, center }: LogRecordStandbyViewProps) => {
+  const { coordinates } = center;
+  console.log(coordinates);
   return (
     <>
-      LogRecordStandby.view
-      <button onClick={onClick}> setWatchCode</button>
+      <MasilMap center={center} />
     </>
   );
 };

@@ -39,6 +39,7 @@ const LogRecordView = ({
 
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
+          center={center}
           watchCode={watchCode}
           onChangeCenter={onChangeCenter}
           setWatchCode={setWatchCode}
