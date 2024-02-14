@@ -10,10 +10,11 @@ export const LogRecordLayout = styled.section`
   justify-content: center;
 
   position: relative;
-  border: 1px solid red;
 `;
 
 /* TEST Component */
+// 작업 진행 후 제거 예정
+
 export const LogTestActionList = styled.div`
   width: 100%;
   height: 4rem;
@@ -26,12 +27,15 @@ export const LogTestActionList = styled.div`
   position: absolute;
   top: 1rem;
 
-  border: solid 1px blue;
+  background-color: ${({ theme }) => theme.black_900};
+  opacity: 0.5;
 `;
 
 export const LogTestButton = styled.button`
   width: 7rem;
   height: 3rem;
+
+  border-radius: 12px;
 
   background-color: ${({ theme }) => theme.green_300};
 `;
