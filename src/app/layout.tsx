@@ -4,7 +4,7 @@ import Script from "next/script";
 import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import "src/styles/globals.css";
-import { ManagedUIContext } from "@/components/uiContext/UiContext";
+import { ManagedUIContext, ModalUI } from "@/components/uiContext/UiContext";
 
 export const metadata: Metadata = {
   title: "마실가실",
@@ -31,6 +31,7 @@ export default function RootLayout({
             />
 
             {children}
+            <ModalUI />
           </body>
         </StyledComponentsRegistry>
       </ManagedUIContext>
