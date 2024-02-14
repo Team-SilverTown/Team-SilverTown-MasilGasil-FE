@@ -1,0 +1,8 @@
+.masil__map {
+  width: 100%;
+  flex-grow: 1;
+
+  position: relative;
+
+  z-index: 0;
+}
