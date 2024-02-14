@@ -11,7 +11,7 @@ export const ButtonWrapper = styled(motion.div)<any>`
   will-change: "transform";
 `;
 
-export const Button = styled(motion.div)<any>`
+export const MainButton = styled(motion.div)<any>`
   display: flex;
   width: 100%;
   min-width: 100%;
@@ -27,8 +27,7 @@ export const Button = styled(motion.div)<any>`
 
   &,
   & > span {
-    color: ${(props) =>
-      props.$textColor ? props.$textColor : props.theme.text_secondary_color};
+    color: ${(props) => (props.$textColor ? props.$textColor : props.theme.text_secondary_color)};
     font-weight: 600;
   }
 `;
@@ -42,7 +41,8 @@ export const SubButton = styled(motion.div)<any>`
   height: 100%;
   border-radius: 8px;
   z-index: 10;
-  background-color: ${(props) => (props.$subButtonColor ? props.$subButtonColor : props.theme.red_500)};
+  background-color: ${(props) =>
+    props.$subButtonColor ? props.$subButtonColor : props.theme.red_500};
   cursor: pointer;
 
   &,

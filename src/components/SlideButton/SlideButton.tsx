@@ -39,11 +39,11 @@ const SlideButton = ({
   const x = useMotionValue(0);
   const btnOpacity = useTransform(x, [-(subButtonWidth - 10), -15], [1, 0]);
 
-  const dragStarted = useRef(false);
+  const isDragging = useRef(false);
   const isSlideOpen = useRef(false);
 
   function handleDragStart() {
-    dragStarted.current = true;
+    isDragging.current = true;
   }
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const SlideButton = ({
       isSlideOpen.current = false;
     }
 
-    dragStarted.current = false;
+    isDragging.current = false;
   };
 
   const handleButtonClick = (event: React.MouseEvent) => {
@@ -87,7 +87,7 @@ const SlideButton = ({
       return;
     }
 
-    if (!dragStarted.current) onButtonClickHandler();
+    if (!isDragging.current) onButtonClickHandler();
   };
 
   const handleSubButtonClick = () => {
@@ -104,7 +104,7 @@ const SlideButton = ({
       whileTap={{ cursor: "grabbing" }}
       transition={{ type: "spring", stiffness: 600, damping: 30 }}
     >
-      <S.Button
+      <S.MainButton
         ref={scope}
         onClick={handleButtonClick}
         drag="x"
@@ -120,7 +120,7 @@ const SlideButton = ({
         $textColor={textColor}
       >
         {children}
-      </S.Button>
+      </S.MainButton>
       <S.SubButton
         style={{ opacity: btnOpacity }}
         onClick={handleSubButtonClick}
