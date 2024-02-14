@@ -39,7 +39,10 @@ const LogRecordView = ({
         <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_EDITING")}>Edit</S.LogTestButton>
       </S.LogTestActionList>
 
-      <MasilMap center={center} />
+      <MasilMap
+        center={center}
+        path={logData.path}
+      />
 
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
