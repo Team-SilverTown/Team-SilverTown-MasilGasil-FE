@@ -104,10 +104,15 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
       font-size: 8px;
       svg {
         margin-right: 2px;
-        stroke: orange;
       }
-      .like {
-        color: orange;
+      &:hover,
+      &.liked {
+        svg {
+          stroke: orange;
+        }
+        .like {
+          color: orange;
+        }
       }
     }
   }
@@ -124,12 +129,17 @@ export const LogDetailCardSettingModal = styled.div`
   ul {
     li {
       text-align: center;
-      padding: 10px 0;
       font-size: 12px;
       transition: background 0.2s;
       &:hover {
         background-color: #eee;
       }
+    }
+
+    li button {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
     }
   }
 `;

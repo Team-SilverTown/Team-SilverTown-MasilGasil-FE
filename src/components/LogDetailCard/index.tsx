@@ -14,6 +14,7 @@ interface LogDetailCardProps {
   distance: string;
   total_time: string;
   like_cnt: number;
+  isLiked: boolean;
   isLikeLayout: boolean;
   isSettingLayout: boolean;
   style?: CSSProperties;
@@ -28,6 +29,7 @@ const LogDetailCard = ({
   distance,
   total_time,
   like_cnt,
+  isLiked,
   isLikeLayout,
   isSettingLayout,
   style,
@@ -79,11 +81,11 @@ const LogDetailCard = ({
           <ul className="walkInfo">
             <li>{total_time}</li>
             <li>{distance}</li>
-            <li>244kacl</li>
+            <li>244kcal</li>
           </ul>
           {isLikeLayout && (
             <div
-              className="likeInfo"
+              className={`likeInfo ${isLiked ? "liked" : ""}`}
               onClick={onLikeClick}
             >
               <Heart
