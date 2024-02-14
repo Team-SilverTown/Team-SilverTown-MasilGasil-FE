@@ -7,7 +7,7 @@ import {
 } from "./LogDetailCard.style";
 import { Heart, KebabMenu } from "../icons";
 
-interface LogDetailCardProps {
+export interface LogDetailCardProps {
   title: string;
   content: string;
   thumbnailURL: string;
@@ -92,7 +92,7 @@ const LogDetailCard = ({
                 width={11}
                 height={10}
               />
-              <div className="like">{like_cnt < 999 ? <Heart /> : "+999"}</div>
+              <div className="like">{like_cnt < 999 ? like_cnt : "+999"}</div>
             </div>
           )}
         </div>
