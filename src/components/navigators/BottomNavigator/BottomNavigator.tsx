@@ -1,16 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Home,
-  HomeFill,
-  Exploration,
-  ExplorationFill,
-  Record,
-  RecordFill,
-} from "@/components/icons";
-import * as S from "./BottomNavigator.style";
 import { usePathname } from "next/navigation";
+
+import { Home, HomeFill, Exploration, ExplorationFill, Diary, DiaryFill } from "@/components/icons";
+import * as S from "./BottomNavigator.style";
+import { BOTTOM_NAV_INABLE } from "../navInablePath";
 
 interface BottomNavItemProps {
   path: string;
@@ -23,14 +18,18 @@ interface BottomNavItemProps {
 const BottomNavigator = () => {
   const currentPathName = usePathname();
 
+  const navAble = !BOTTOM_NAV_INABLE.includes(currentPathName);
+
   const isPathActive = (path: string) => currentPathName === path;
 
   const bottomNavItems: BottomNavItemProps[] = [
     { path: "/home", icon: <Home />, activeIcon: <HomeFill />, label: "홈" },
     { path: "/explore", icon: <Exploration />, activeIcon: <ExplorationFill />, label: "탐색" },
-    { path: "/user/id/diary", icon: <Record />, activeIcon: <RecordFill />, label: "내 기록" },
+    { path: "/user/id/diary", icon: <Diary />, activeIcon: <DiaryFill />, label: "내 기록" },
     { path: "/user/id", label: "마이페이지", isProfile: true },
   ];
+
+  if (!navAble) return null;
 
   return (
     <S.BottomNavContainer>
