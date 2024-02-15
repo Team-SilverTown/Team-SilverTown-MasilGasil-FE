@@ -1,52 +1,77 @@
 export const lightTheme: object = {
   theme_mode: "light",
-  background_color: "#FDFAF6",
-  container_color: "#FEFEFE",
-  text_primary_color: "#0F1118",
-  text_secondary_color: "#F0F0F0",
-  black: "#232323",
+
   white: "#FFFFFF",
   white_100: "#F8F8F8",
+
+  black: "#232323",
+
   gray_500: "#909090",
   gray_300: "#B3B3B3",
   gray_200: "#E3E3E3",
   gray_100: "#EFEFEF",
+
   transparent_10: "#B3B3B310",
   transparent_30: "#B3B3B330",
   transparent_50: "#B3B3B350",
   transparent_90: "#B3B3B390",
+
   red_100: "#FF6878",
   red_500: "#FF4141",
+
   pink_100: "#FEAF88",
+
   blue_300: "#3897F0",
+
   yellow_500: "#F7BC01",
+
   green_300: "#B9DB56",
   green_500: "#81BB26",
+
+  // 삭제 후보군
+
+  container_color: "#FEFEFE",
+
+  text_primary_color: "#0F1118",
+  text_secondary_color: "#F0F0F0",
 };
 
 export const darkTheme = {
   theme_mode: "dark",
-  background_color: "#FDFAF6",
-  container_color: "#FEFEFE",
-  text_primary_color: "#0F1118",
-  text_secondary_color: "#F0F0F0",
+
+  white: "#FFFFFF",
+  white_100: "#F8F8F8",
+
   black: "#232323",
-  white: "#F8F8F8",
+
   gray_500: "#909090",
   gray_300: "#B3B3B3",
   gray_200: "#E3E3E3",
   gray_100: "#EFEFEF",
+
   transparent_10: "#B3B3B310",
   transparent_30: "#B3B3B330",
   transparent_50: "#B3B3B350",
   transparent_90: "#B3B3B390",
+
   red_100: "#FF6878",
   red_500: "#FF4141",
+
   pink_100: "#FEAF88",
+
   blue_300: "#3897F0",
+
   yellow_500: "#F7BC01",
+
   green_300: "#B9DB56",
   green_500: "#81BB26",
+
+  // 삭제 후보군
+
+  container_color: "#FEFEFE",
+
+  text_primary_color: "#0F1118",
+  text_secondary_color: "#F0F0F0",
 };
 
 const Theme = {

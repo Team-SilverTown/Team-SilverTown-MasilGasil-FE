@@ -30,13 +30,14 @@ export const GlobalStyle = createGlobalStyle<any>`
 
 
     body {
-      position: relative;
       max-width: 600px;
       min-height: 100%;
       margin: 0 auto;
-
+      
       background-color: "#F8F8F8";
-
+      
+      position: relative;
+      
       font-size : 1.4rem;
       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     }

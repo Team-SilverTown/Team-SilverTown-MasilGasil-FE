@@ -15,7 +15,7 @@ export const ModalBackground = styled.div<any>`
 `;
 
 export const ModalLayoutContainer = styled.div`
-  background-color: ${(props) => props.theme.background_color};
+  background-color: ${(props) => props.theme.white_100};
   padding-top: ${MODAL.VERTICAL_PADDING}rem;
   padding-bottom: ${MODAL.HORIZONTAL_PADDING}rem;
   padding-left: ${MODAL.HORIZONTAL_PADDING}rem;
