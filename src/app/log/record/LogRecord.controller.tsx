@@ -7,7 +7,7 @@ import { throttle } from "lodash";
 import { useRef } from "react";
 
 const LogRecordController = () => {
-  const { setUserLocation } = useUserLocationStore();
+  const { userLocation, setUserLocation } = useUserLocationStore();
   const { pageStep, setPageStep, logData, setLogData, watchCode, setWatchCode } =
     useLogRecordModel();
 
@@ -40,6 +40,7 @@ const LogRecordController = () => {
       pageStep={pageStep}
       logData={logData}
       watchCode={watchCode}
+      userLocation={userLocation}
       setChangeStep={setPageStep}
       setWatchCode={setWatchCode}
       setLogData={setLogData}

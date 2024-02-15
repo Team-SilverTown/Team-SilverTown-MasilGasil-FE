@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
 import { LogPageStep, OnErrorWatcher, UpdateUserLocation } from "../../LogRecord.types";
-import { useRouter } from "next/navigation";
 
 interface LogRecordStandbyControllerProps {
   watchCode: number;

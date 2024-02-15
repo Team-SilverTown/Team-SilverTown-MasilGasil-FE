@@ -4,12 +4,13 @@ import { OnErrorWatcher, LogPageStep, UpdateUserLocation } from "./LogRecord.typ
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import { GeoJSONPoint } from "@/types/OriginDataType";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
   logData: MasilRecordRequest;
   watchCode: number;
+  userLocation: GeoJSONPoint;
 
   setChangeStep: (step: LogPageStep) => void;
   setWatchCode: (code: number) => void;
@@ -22,13 +23,12 @@ const LogRecordView = ({
   pageStep,
   logData,
   watchCode,
+  userLocation,
   setChangeStep,
   setWatchCode,
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordViewProps) => {
-  const { userLocation } = useUserLocationStore();
-
   return (
     <S.LogRecordLayout>
       {/* 테스트 이후 제거 예정 */}
