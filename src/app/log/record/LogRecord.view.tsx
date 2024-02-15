@@ -14,6 +14,7 @@ interface LogRecordViewProps {
 
   onChangeStep: (step: LogPageStep) => void;
   setWatchCode: (code: number) => void;
+  setLogData: (log: MasilRecordRequest) => void;
 }
 
 const LogRecordView = ({

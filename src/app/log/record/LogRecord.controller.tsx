@@ -14,6 +14,7 @@ const LogRecordController = () => {
       watchCode={watchCode}
       onChangeStep={setPageStep}
       setWatchCode={setWatchCode}
+      setLogData={setLogData}
     />
   );
 };
