@@ -35,9 +35,11 @@ const LogRecordStandbyController = ({
     };
   }, []);
 
-  const handleStartRecord = () => {};
+  const handleStartRecord = () => {
+    setChangeStep("LOG_RECORD_RECORDING");
+  };
 
-  return <LogRecordStandbyView onClick={() => {}} />;
+  return <LogRecordStandbyView onClick={handleStartRecord} />;
 };
 
 export default LogRecordStandbyController;

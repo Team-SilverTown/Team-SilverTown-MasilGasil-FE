@@ -1,4 +1,4 @@
-import Theme, { FONT_WEIGHT } from "@/styles/theme";
+import Theme, { BUTTON_FULL_WIDTH, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./LogRecordStandby.Styles";
 import { Button } from "@/components";
 
@@ -13,7 +13,8 @@ const LogRecordStandbyView = ({ onClick }: LogRecordStandbyViewProps) => {
         buttonColor={Theme.lightTheme.green_500}
         textColor={Theme.lightTheme.white}
         style={{ fontWeight: FONT_WEIGHT.BOLD }}
-        width={"100%"}
+        width={BUTTON_FULL_WIDTH}
+        onClickHandler={onClick}
       >
         마실 기록 시작
       </Button>
