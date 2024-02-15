@@ -9,7 +9,7 @@ import {
   Record,
   RecordFill,
 } from "@/components/icons";
-import * as S from "./BottomNavBar.style";
+import * as S from "./BottomNavigator.style";
 import { usePathname } from "next/navigation";
 
 interface BottomNavItemProps {
@@ -20,7 +20,7 @@ interface BottomNavItemProps {
   isProfile?: boolean;
 }
 
-const BottomNavBar = () => {
+const BottomNavigator = () => {
   const currentPathName = usePathname();
 
   const isPathActive = (path: string) => currentPathName === path;
@@ -28,8 +28,8 @@ const BottomNavBar = () => {
   const bottomNavItems: BottomNavItemProps[] = [
     { path: "/home", icon: <Home />, activeIcon: <HomeFill />, label: "홈" },
     { path: "/explore", icon: <Exploration />, activeIcon: <ExplorationFill />, label: "탐색" },
-    { path: "/record", icon: <Record />, activeIcon: <RecordFill />, label: "내 기록" },
-    { path: "/signin", label: "마이페이지", isProfile: true },
+    { path: "/user/id/diary", icon: <Record />, activeIcon: <RecordFill />, label: "내 기록" },
+    { path: "/user/id", label: "마이페이지", isProfile: true },
   ];
 
   return (
@@ -55,4 +55,4 @@ const BottomNavBar = () => {
   );
 };
 
-export default BottomNavBar;
+export default BottomNavigator;
