@@ -5,11 +5,14 @@ import useLogRecordModel from "./LogRecord.model";
 import LogRecordView from "./LogRecord.view";
 import { throttle } from "lodash";
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
+import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
 
 const LogRecordController = () => {
   const { userLocation, setUserLocation } = useUserLocationStore();
   const { pageStep, setPageStep, logData, setLogData, watchCode, setWatchCode } =
     useLogRecordModel();
+  const router = useRouter();
 
   /**
    * @summary watcher가 오류가 발생했을때 수행할 동작을 위한 함수입니다.
@@ -35,6 +38,17 @@ const LogRecordController = () => {
     }, 200),
   ).current;
 
+  const handleClickFallback = () => {
+    if (pageStep === "LOG_RECORD_STANDBY") {
+      router.back();
+      return;
+    }
+
+    // 경고 모달 동작과 데이터 초기화 작업 수행
+    setPageStep("LOG_RECORD_STANDBY");
+    setLogData(DEFAULT_LOG_DATA);
+  };
+
   return (
     <LogRecordView
       pageStep={pageStep}
@@ -46,6 +60,7 @@ const LogRecordController = () => {
       setLogData={setLogData}
       onErrorWatcher={handleWatchError}
       updateUserLocation={updateUserLocation}
+      handleClickFallback={handleClickFallback}
     />
   );
 };

@@ -14,7 +14,7 @@ import MasilMap from "@/components/MasilMap/MasilMap";
 import { GeoJSONPoint } from "@/types/OriginDataType";
 import { useEffect } from "react";
 import { Button } from "@/components";
-import { ArrowLeft, ChevronLeft } from "@/components/icons";
+import { ChevronLeft } from "@/components/icons";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
@@ -27,6 +27,7 @@ interface LogRecordViewProps {
   setLogData: SetLogData;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
+  handleClickFallback: () => void;
 }
 
 const LogRecordView = ({
@@ -39,6 +40,7 @@ const LogRecordView = ({
   setWatchCode,
   onErrorWatcher,
   updateUserLocation,
+  handleClickFallback,
 }: LogRecordViewProps) => {
   useEffect(() => {
     console.log(logData);
@@ -53,7 +55,10 @@ const LogRecordView = ({
       />
 
       <S.LogRecordTop>
-        <Button variant="naked">
+        <Button
+          variant="naked"
+          onClickHandler={handleClickFallback}
+        >
           <ChevronLeft
             strokeWidth={3}
             width={32}
