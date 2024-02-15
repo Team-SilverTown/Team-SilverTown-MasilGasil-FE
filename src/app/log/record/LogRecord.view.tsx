@@ -24,6 +24,7 @@ const LogRecordView = ({
   logData,
   watchCode,
   userLocation,
+  setLogData,
   setChangeStep,
   setWatchCode,
   onErrorWatcher,
@@ -59,7 +60,16 @@ const LogRecordView = ({
         />
       )}
 
-      {pageStep === "LOG_RECORD_RECORDING" && <LogRecordRecording />}
+      {pageStep === "LOG_RECORD_RECORDING" && (
+        <LogRecordRecording
+          setLogData={setLogData}
+          watchCode={watchCode}
+          setWatchCode={setWatchCode}
+          setChangeStep={setChangeStep}
+          onErrorWatcher={onErrorWatcher}
+          updateUserLocation={updateUserLocation}
+        />
+      )}
 
       {pageStep === "LOG_RECORD_EDITING" && <LogRecordEdit />}
     </S.LogRecordLayout>
