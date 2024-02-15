@@ -13,6 +13,8 @@ import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { GeoJSONPoint } from "@/types/OriginDataType";
 import { useEffect } from "react";
+import { Button } from "@/components";
+import { ArrowLeft, ChevronLeft } from "@/components/icons";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
@@ -43,21 +45,22 @@ const LogRecordView = ({
   }, [logData]);
   return (
     <S.LogRecordLayout>
-      {/* 테스트 이후 제거 예정 */}
-      <S.LogTestActionList>
-        <S.LogTestButton onClick={() => setPageStep("LOG_RECORD_STANDBY")}>Standby</S.LogTestButton>
-        <S.LogTestButton onClick={() => setPageStep("LOG_RECORD_RECORDING")}>
-          Recording
-        </S.LogTestButton>
-        <S.LogTestButton onClick={() => setPageStep("LOG_RECORD_EDITING")}>Edit</S.LogTestButton>
-      </S.LogTestActionList>
-
       <MasilMap
         center={userLocation}
         path={logData.path}
         pins={logData.pins}
         draggable={pageStep !== "LOG_RECORD_EDITING"}
       />
+
+      <S.LogRecordTop>
+        <Button variant="naked">
+          <ChevronLeft
+            strokeWidth={3}
+            width={32}
+            height={32}
+          />
+        </Button>
+      </S.LogRecordTop>
 
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
