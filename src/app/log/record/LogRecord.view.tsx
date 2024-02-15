@@ -12,6 +12,7 @@ import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./component
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { GeoJSONPoint } from "@/types/OriginDataType";
+import { useEffect } from "react";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
@@ -37,6 +38,9 @@ const LogRecordView = ({
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordViewProps) => {
+  useEffect(() => {
+    console.log(logData);
+  }, [logData]);
   return (
     <S.LogRecordLayout>
       {/* 테스트 이후 제거 예정 */}

@@ -26,9 +26,23 @@ const LogRecordRecordingController = ({
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordRecordingControllerProps) => {
+  /**
+   * @summary watch의 success 콜백에 들어가는 함수로 경로 값을 추가시켜줍니다.
+   *
+   * 단, throttle을 통해 5초에 한번 실행.
+   */
   const updatePath = useRef(
     throttle(({ coords }: GeolocationPosition) => {
-      console.log(coords);
+      const { latitude, longitude } = coords;
+      setLogData((prevData) => {
+        return {
+          ...prevData,
+          path: {
+            ...prevData.path,
+            coordinates: [...prevData.path.coordinates, [latitude, longitude]],
+          },
+        };
+      });
     }, 5000),
   ).current;
 
