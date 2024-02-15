@@ -37,7 +37,7 @@ export const Naked = styled(ButtonBaseWrapper)<any>`
 export const OutLine = styled(ButtonBaseWrapper)<any>`
   background-color: transparent;
   border-width: ${BORDER_TINE_WIDTH}px;
-  border-color: ${(props) => (props.$buttonColor ? props.$buttonColor : props.theme.black_900)};
+  border-color: ${(props) => (props.$buttonColor ? props.$buttonColor : props.theme.black)};
 `;
 
 export const Disabled = styled(ButtonBaseWrapper)<any>`
