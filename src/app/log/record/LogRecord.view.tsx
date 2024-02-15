@@ -1,7 +1,6 @@
 import * as S from "./LogRecord.styles";
 
-import { GeoJSONPoint, KakaoFormatPosition } from "@/types/OriginDataType";
-import { LogPageStep } from "./LogRecord.types";
+import { HandleWatchError, LogPageStep, UpdateUserLocation } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
@@ -15,6 +14,8 @@ interface LogRecordViewProps {
   onChangeStep: (step: LogPageStep) => void;
   setWatchCode: (code: number) => void;
   setLogData: (log: MasilRecordRequest) => void;
+  handleWatchError: HandleWatchError;
+  updateUserLocation: UpdateUserLocation;
 }
 
 const LogRecordView = ({
@@ -23,6 +24,8 @@ const LogRecordView = ({
   watchCode,
   onChangeStep,
   setWatchCode,
+  handleWatchError,
+  updateUserLocation,
 }: LogRecordViewProps) => {
   const { userLocation } = useUserLocationStore();
 
@@ -50,6 +53,8 @@ const LogRecordView = ({
         <LogRecordStandby
           watchCode={watchCode}
           setWatchCode={setWatchCode}
+          handleWatchError={handleWatchError}
+          updateUserLocation={updateUserLocation}
         />
       )}
 
