@@ -1,10 +1,5 @@
 import { CSSProperties, useState } from "react";
-import {
-  LogDetailCardContainer,
-  LogDetailCardThumbnail,
-  LogDetailCardInfo,
-  LogDetailCardSettingModal,
-} from "./LogDetailCard.style";
+import * as S from "./LogDetailCard.style";
 import { Heart, KebabMenu } from "../icons";
 
 export interface LogDetailCardProps {
@@ -64,12 +59,12 @@ const LogDetailCard = ({
   };
 
   return (
-    <LogDetailCardContainer
+    <S.LogDetailCardContainer
       style={style}
       onClick={handleDetailViewClick}
     >
-      <LogDetailCardThumbnail thumbnailURL={thumbnailURL} />
-      <LogDetailCardInfo isSettingLayout={isSettingLayout}>
+      <S.LogDetailCardThumbnail thumbnailURL={thumbnailURL} />
+      <S.LogDetailCardInfo isSettingLayout={isSettingLayout}>
         <div className="infoTopSection">
           <div className="infoTitle">
             <h3>{title}</h3>
@@ -97,7 +92,7 @@ const LogDetailCard = ({
           )}
         </div>
         {isSettingToggle && (
-          <LogDetailCardSettingModal>
+          <S.LogDetailCardSettingModal>
             <ul>
               <li>
                 <button
@@ -116,10 +111,10 @@ const LogDetailCard = ({
                 </button>
               </li>
             </ul>
-          </LogDetailCardSettingModal>
+          </S.LogDetailCardSettingModal>
         )}
-      </LogDetailCardInfo>
-    </LogDetailCardContainer>
+      </S.LogDetailCardInfo>
+    </S.LogDetailCardContainer>
   );
 };
 
