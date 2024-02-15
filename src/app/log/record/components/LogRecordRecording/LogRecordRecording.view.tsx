@@ -26,7 +26,7 @@ const LogRecordRecordingView = () => {
           style={{ fontWeight: FONT_WEIGHT.BOLD, opacity: 0.9 }}
           width={BUTTON_FULL_WIDTH}
         >
-          마실 기록 시작
+          마실 기록 완료
         </Button>
       </S.LogRecordActionContainer>
     </S.LogRecordActionLayout>
