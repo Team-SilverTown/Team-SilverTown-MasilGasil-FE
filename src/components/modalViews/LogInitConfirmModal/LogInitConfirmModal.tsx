@@ -36,8 +36,8 @@ const LogInitConfirmModal = ({ props }: ModalProp) => {
           <Button
             variant="neumorp"
             buttonColor={Theme.lightTheme.gray_200}
-            width={80}
-            style={{ fontSize: "1.4rem" }}
+            width={100}
+            style={{ fontSize: "1.6rem", fontWeight: 600 }}
             onClickHandler={closeModal}
           >
             취소
@@ -45,8 +45,8 @@ const LogInitConfirmModal = ({ props }: ModalProp) => {
           <Button
             variant="neumorp"
             buttonColor={Theme.lightTheme.green_500}
-            width={80}
-            style={{ fontSize: "1.4rem" }}
+            width={100}
+            style={{ fontSize: "1.6rem", fontWeight: 600 }}
             onClickHandler={onClickAccept}
           >
             확인

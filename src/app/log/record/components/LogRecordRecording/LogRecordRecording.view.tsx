@@ -23,7 +23,7 @@ const LogRecordRecordingView = () => {
           buttonColor={Theme.lightTheme.green_500}
           variant="neumorp"
           textColor={Theme.lightTheme.white}
-          style={{ fontWeight: FONT_WEIGHT.BOLD, opacity: 0.9 }}
+          style={{ fontWeight: FONT_WEIGHT.BOLD, opacity: 0.9, fontSize: "1.6rem" }}
           width={BUTTON_FULL_WIDTH}
         >
           마실 기록 완료
