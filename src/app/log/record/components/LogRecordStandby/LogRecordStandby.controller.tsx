@@ -1,18 +1,21 @@
 import { useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
-import { HandleWatchError, UpdateUserLocation } from "../../LogRecord.types";
+import { LogPageStep, OnErrorWatcher, UpdateUserLocation } from "../../LogRecord.types";
+import { useRouter } from "next/navigation";
 
 interface LogRecordStandbyControllerProps {
   watchCode: number;
+  setChangeStep: (step: LogPageStep) => void;
   setWatchCode: (code: number) => void;
-  handleWatchError: HandleWatchError;
+  onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
 }
 
 const LogRecordStandbyController = ({
   watchCode,
+  setChangeStep,
   setWatchCode,
-  handleWatchError,
+  onErrorWatcher,
   updateUserLocation,
 }: LogRecordStandbyControllerProps) => {
   useEffect(() => {
@@ -21,7 +24,7 @@ const LogRecordStandbyController = ({
      *
      * @summary enableHighAccuracy 옵션은 사용자의 기기에 배터리 소비를 증가시키지만 위치 정확도를 높여줍니다.
      */
-    const newWatchCode = navigator.geolocation.watchPosition(updateUserLocation, handleWatchError, {
+    const newWatchCode = navigator.geolocation.watchPosition(updateUserLocation, onErrorWatcher, {
       enableHighAccuracy: true,
     });
 
@@ -31,6 +34,8 @@ const LogRecordStandbyController = ({
       navigator.geolocation.clearWatch(watchCode);
     };
   }, []);
+
+  const handleStartRecord = () => {};
 
   return <LogRecordStandbyView onClick={() => {}} />;
 };

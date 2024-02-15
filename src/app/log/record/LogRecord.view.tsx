@@ -1,6 +1,6 @@
 import * as S from "./LogRecord.styles";
 
-import { HandleWatchError, LogPageStep, UpdateUserLocation } from "./LogRecord.types";
+import { OnErrorWatcher, LogPageStep, UpdateUserLocation } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
@@ -11,10 +11,10 @@ interface LogRecordViewProps {
   logData: MasilRecordRequest;
   watchCode: number;
 
-  onChangeStep: (step: LogPageStep) => void;
+  setChangeStep: (step: LogPageStep) => void;
   setWatchCode: (code: number) => void;
   setLogData: (log: MasilRecordRequest) => void;
-  handleWatchError: HandleWatchError;
+  onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
 }
 
@@ -22,9 +22,9 @@ const LogRecordView = ({
   pageStep,
   logData,
   watchCode,
-  onChangeStep,
+  setChangeStep,
   setWatchCode,
-  handleWatchError,
+  onErrorWatcher,
   updateUserLocation,
 }: LogRecordViewProps) => {
   const { userLocation } = useUserLocationStore();
@@ -33,13 +33,13 @@ const LogRecordView = ({
     <S.LogRecordLayout>
       {/* 테스트 이후 제거 예정 */}
       <S.LogTestActionList>
-        <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_STANDBY")}>
+        <S.LogTestButton onClick={() => setChangeStep("LOG_RECORD_STANDBY")}>
           Standby
         </S.LogTestButton>
-        <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_RECORDING")}>
+        <S.LogTestButton onClick={() => setChangeStep("LOG_RECORD_RECORDING")}>
           Recording
         </S.LogTestButton>
-        <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_EDITING")}>Edit</S.LogTestButton>
+        <S.LogTestButton onClick={() => setChangeStep("LOG_RECORD_EDITING")}>Edit</S.LogTestButton>
       </S.LogTestActionList>
 
       <MasilMap
@@ -52,8 +52,9 @@ const LogRecordView = ({
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
           watchCode={watchCode}
+          setChangeStep={setChangeStep}
           setWatchCode={setWatchCode}
-          handleWatchError={handleWatchError}
+          onErrorWatcher={onErrorWatcher}
           updateUserLocation={updateUserLocation}
         />
       )}
