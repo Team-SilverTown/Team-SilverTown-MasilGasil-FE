@@ -32,7 +32,7 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: calc(100% - 120px);
+  width: calc(100% - 12rem);
   padding: 1.8rem 1rem 1rem;
 
   .infoTitle {
@@ -125,7 +125,7 @@ export const LogDetailCardSettingModal = styled.div`
   content: "";
   width: 11rem;
   background-color: ${(props) => props.theme.white};
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0rem 0.2rem 0.8rem 0rem;
   ul {
     li {
       text-align: center;
