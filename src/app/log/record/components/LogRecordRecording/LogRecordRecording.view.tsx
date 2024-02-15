@@ -1,7 +1,7 @@
 import { Button } from "@/components";
 import * as S from "./LogRecordRecording.styles";
 import Theme, { BUTTON_FULL_WIDTH, FONT_WEIGHT } from "@/styles/theme";
-import { MapPin } from "@/components/icons";
+import { MapPin, Pin } from "@/components/icons";
 
 const LogRecordRecordingView = () => {
   return (
@@ -10,7 +10,7 @@ const LogRecordRecordingView = () => {
         style={{ marginBottom: "1rem" }}
         variant="neumorp"
       >
-        <MapPin fill={Theme.lightTheme.yellow_500} />
+        <Pin />
       </Button>
 
       <S.LogRecordActionContainer>
