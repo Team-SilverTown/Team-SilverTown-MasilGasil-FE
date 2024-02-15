@@ -5,7 +5,8 @@ export const lightTheme: object = {
   text_primary_color: "#0F1118",
   text_secondary_color: "#F0F0F0",
   black: "#232323",
-  white: "#F8F8F8",
+  white: "#FFFFFF",
+  white_100: "#F8F8F8",
   gray_500: "#909090",
   gray_300: "#B3B3B3",
   gray_200: "#E3E3E3",
@@ -115,4 +116,29 @@ export const Z_INDEX = {
   MODAL_BACKGROUND: 888,
   MODAL_LAYOUT: 999,
   SPINNER: 9999,
+};
+
+export const FONT_WEIGHT = {
+  LIGHT: 300,
+  REGULAR: 400,
+  MEDIUM: 500,
+  SEMIBOLD: 600,
+  BOLD: 700,
+  EXTRABOLD: 800,
+  BLACK: 900,
+};
+
+export const FONT_SIZE = {
+  H1: "5rem",
+  H2: "2.8rem",
+  H3: "2.5rem",
+  H4: "2.4rem",
+  H5: "2rem",
+  H6: "1.8rem",
+  LARGE: "1.6rem",
+  MEDIUM: "1.5rem",
+  BASIC: "1.4rem",
+  SMALL: "1.3rem",
+  MINI: "1.2rem",
+  MICRO: "1rem",
 };

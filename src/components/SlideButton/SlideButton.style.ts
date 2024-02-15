@@ -28,7 +28,7 @@ export const MainButton = styled(motion.div)<any>`
   &,
   & > span {
     color: ${(props) => (props.$textColor ? props.$textColor : props.theme.text_primary_color)};
-    font-weight: 600;
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.SEMIBOLD};
   }
 `;
 
@@ -49,6 +49,6 @@ export const SubButton = styled(motion.div)<any>`
   & > span {
     color: ${(props) =>
       props.$subTextColor ? props.$subTextColor : props.theme.text_secondary_color};
-    font-weight: 600;
+    font-weight: ${({ theme }) => theme.FONT_WEIGHT.SEMIBOLD};
   }
 `;
