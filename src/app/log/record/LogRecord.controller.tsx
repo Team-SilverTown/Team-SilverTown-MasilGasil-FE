@@ -7,8 +7,10 @@ import { throttle } from "lodash";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
+import { useUI } from "@/components/uiContext/UiContext";
 
 const LogRecordController = () => {
+  const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
   const { pageStep, setPageStep, logData, setLogData, watchCode, setWatchCode } =
     useLogRecordModel();
@@ -45,8 +47,14 @@ const LogRecordController = () => {
     }
 
     // 경고 모달 동작과 데이터 초기화 작업 수행
-    setPageStep("LOG_RECORD_STANDBY");
-    setLogData(DEFAULT_LOG_DATA);
+    setModalView("LOG_INIT_CONFIRM");
+    openModal({
+      onClickAccept: () => {
+        setPageStep("LOG_RECORD_STANDBY");
+        setLogData(DEFAULT_LOG_DATA);
+        closeModal();
+      },
+    });
   };
 
   return (
