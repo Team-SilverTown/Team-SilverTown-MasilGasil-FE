@@ -1,6 +1,6 @@
 "use client";
 
-import { BORDER_TINE_WIDTH } from "@/styles/theme";
+import { BORDER } from "@/styles/theme";
 import styled from "styled-components";
 
 const ButtonBaseWrapper = styled.button<any>`
@@ -25,7 +25,7 @@ const ButtonBaseWrapper = styled.button<any>`
 export const Flat = styled(ButtonBaseWrapper)<any>``;
 
 export const Neumorp = styled(ButtonBaseWrapper)<any>`
-  border-width: ${BORDER_TINE_WIDTH}px;
+  border-width: ${BORDER.TINE_WIDTH}px;
   border-color: ${(props) => props.theme.transparent_50};
   box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_50};
 `;
@@ -36,7 +36,7 @@ export const Naked = styled(ButtonBaseWrapper)<any>`
 
 export const OutLine = styled(ButtonBaseWrapper)<any>`
   background-color: transparent;
-  border-width: ${BORDER_TINE_WIDTH}px;
+  border-width: ${BORDER.TINE_WIDTH}px;
   border-color: ${(props) => (props.$buttonColor ? props.$buttonColor : props.theme.black)};
 `;
 

@@ -23,7 +23,7 @@ export const lightTheme: object = {
   green_500: "#81BB26",
 };
 
-export const darkTheme: object = {
+export const darkTheme = {
   theme_mode: "dark",
   background_color: "#FDFAF6",
   container_color: "#FEFEFE",
@@ -55,56 +55,64 @@ const Theme = {
 
 export default Theme;
 
-// APP SYMBOL -------------------------------------- //
-export const SYMBOL_TEXT: string = "";
-// -------------------------------------- APP SYMBOL //
+// 3px 이상 rem
 
-// BORDER ------------------------------------------ //
-export const BORDER_TINE_WIDTH: number = 1; // px
-export const BORDER_BASE_WIDTH: number = 1.5; // px
-// ------------------------------------------ BORDER //
+export const APP_SYMBOL = {
+  SYMBOL_TEXT: "",
+};
 
-// CONTAINER ------------------------------------------------------- //
-export const CONTAINER_PADDING_VERTICAL: number = 2; // rem
-export const CONTAINER_PADDING_HORIZONTAL: number = 2.5; // rem
-export const MOBILEABLE_CONTAINER_HORIZONTAL_SPACE: string = "w-[100%] sm:max-w-[420px]";
-export const MOBILEABLE_CONTAINER_VERTICAL_SPACE: string = "h-[100%] sm:h-screen";
-// ------------------------------------------------------- CONTAINER //
+export const BORDER = {
+  TINE_WIDTH: 1, // px
+  BASE_WIDTH: 1.5, // px
+};
 
-// SCREEN ------------------------------------------ //
-export const APP_MAX_WIDTH = 600; // px
+export const CONTAINER = {
+  PADDING_VERTICAL: 2, // rem
+  PADDING_HORIZONTAL: 2.5, // rem
 
-export const SCREEN_SIZE_MB = 450; // 450px
-export const SCREEN_SIZE_SM = 640; // 640px
-export const SCREEN_SIZE_MD = 768; // 768px
-export const SCREEN_SIZE_XMD = 940; // 940px
-export const SCREEN_SIZE_LG = 1024; // 1024px
-export const SCREEN_SIZE_XL = 1280; // 1280px
+  MOBILEABLE_HORIZONTAL_SPACE: "w-[100%] sm:max-w-[420px]",
+  MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen",
+};
 
-export const MOBILE_LIMIT = 768; // 768px
-export const TABLET_LIMIT = 1025; // 655 + 370px
-export const DESKTOP_VIEW_WIDTH = 655; // 655px
-// ------------------------------------------ SCREEN //
+/**
+ * @summary Screen 사이즈에 관한 값으로 px을 기준으로 합니다.
+ */
+export const SCREEN = {
+  APP_MAX_WIDTH: 600, // 600px
+
+  SIZE_MB: 450, // 450px
+  SIZE_SM: 640, // 640px
+  SIZE_MD: 768, // 768px
+  SIZE_XMD: 940, // 940px
+  SIZE_LG: 1024, // 1024px
+  SIZE_XL: 1280, // 1280px
+
+  MOBILE_LIMIT: 768, // 768px
+  TABLET_LIMIT: 1025, // 655 + 370px
+  DESKTOP_VIEW_WIDTH: 655, // 655px
+};
 
 export const NAV_HEIGHT: number = 3; // 3.75 rem
 
-// CARDS -------------------------------------------------------- //
-export const POSTER_SIMPLE_CARD_HEIGHT: number = 150; // 150px
-export const POSTER_SIMPLE_CARD_WIDTH: number = 150; // 150px
-export const POSTER_DETAIL_CARD_HEIGHT: number = 500; // 500px
-export const POSTER_DETAIL_CARD_WIDTH: number = 600; // 600px
-// -------------------------------------------------------- CARDS //
+export const POSTER = {
+  SIMPLE_CARD_WIDTH: 150, // 150px
+  SIMPLE_CARD_HEIGHT: 150, // 150px
+  DETAIL_CARD_WIDTH: 150, // 500px
+  DETAIL_CARD_HEIGHT: 150, // 600px
+};
 
-// MODAL -------------------------------------------------------- //
-export const MODAL_VERTICAL_PADDING: number = 3; // rem
-export const MODAL_HORIZONTAL_PADDING: number = 2.5; // rem
-export const MODAL_HEADER_MARGIN: number = 1.5; // rem
-// -------------------------------------------------------- MODAL //
+export const MODAL = {
+  VERTICAL_PADDING: 3, // rem
+  HORIZONTAL_PADDING: 2.5, // rem
+  HEADER_MARGIN: 1.5, // rem
+};
 
 // Z-Index //
-export const SEARCH_BAR = 30;
-export const NAVIGATOR = 50;
-export const MODAL = 888;
-export const MODAL_BACKGROUND = 888;
-export const MODAL_LAYOUT = 999;
-export const SPINNER = 9999;
+export const Z_INDEX = {
+  SEARCH_BAR: 30,
+  NAVIGATOR: 50,
+  MODAL: 888,
+  MODAL_BACKGROUND: 888,
+  MODAL_LAYOUT: 999,
+  SPINNER: 9999,
+};

@@ -6,42 +6,42 @@ import { normalize } from "styled-normalize";
 export const GlobalStyle = createGlobalStyle<any>`
     ${normalize}
 
-    *{
+    * {
       color: ${(props: any) => props.theme.text_primary_color};
-      /* font-family: sans-serif; */
-    }
-    body {
-      background-color: ${(props: any) => props.theme.background_color};
-      /* background-repeat: repeat; */
     }
 
-    html {
-      font-size: 62.5%;
+    body {
+      background-color: ${(props: any) => props.theme.background_color};
     }
+
 
     html,
     body {
       height: 100%;
       box-sizing: border-box;
       touch-action: manipulation;
-      /* font-family: var(--font-sans); */
+    
+
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      /* background-color: var(--primary); */
-      /* color: var(--text-primary); */
+
       overscroll-behavior-x: none;
     }
+
+    html {
+      font-size: 62.5%;
+    }
+
 
     body {
       position: relative;
       max-width: 600px;
       min-height: 100%;
       margin: 0 auto;
-      font-family: 'Pretendard';
+
+      font-size : 1.6rem;
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     }
 
-    .commonConainer {
-      padding: 0 2rem;
-    }
 `;
