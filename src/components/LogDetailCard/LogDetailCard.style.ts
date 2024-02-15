@@ -43,11 +43,9 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
       width: ${(props) => (props.isSettingLayout ? "calc(100% - 15px)" : "100%")};
       font-size: 1.6rem;
       font-weight: 700;
-      white-space: normal;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
       overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     svg {
       width: 1rem;
