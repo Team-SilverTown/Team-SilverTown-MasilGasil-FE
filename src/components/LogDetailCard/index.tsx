@@ -12,8 +12,8 @@ export interface LogDetailCardProps {
   content: string;
   thumbnailURL: string;
   distance: string;
-  total_time: string;
-  like_cnt: number;
+  totalTime: string;
+  likeCount: number;
   isLiked: boolean;
   isLikeLayout: boolean;
   isSettingLayout: boolean;
@@ -27,8 +27,8 @@ const LogDetailCard = ({
   content,
   thumbnailURL,
   distance,
-  total_time,
-  like_cnt,
+  totalTime,
+  likeCount,
   isLiked,
   isLikeLayout,
   isSettingLayout,
@@ -79,7 +79,7 @@ const LogDetailCard = ({
         </div>
         <div className="infoContent">
           <ul className="walkInfo">
-            <li>{total_time}</li>
+            <li>{totalTime}</li>
             <li>{distance}</li>
             <li>244kcal</li>
           </ul>
@@ -92,7 +92,7 @@ const LogDetailCard = ({
                 width={11}
                 height={10}
               />
-              <div className="like">{like_cnt < 999 ? like_cnt : "+999"}</div>
+              <div className="like">{likeCount < 999 ? likeCount : "+999"}</div>
             </div>
           )}
         </div>
