@@ -1,7 +1,7 @@
 import React from "react";
 
 const LogCreate = () => {
-  return <div>LogCreatePage</div>;
+  return <section>LogCreate</section>;
 };
 
 export default LogCreate;
