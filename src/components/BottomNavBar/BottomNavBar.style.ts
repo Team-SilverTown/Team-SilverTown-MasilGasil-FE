@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BottomNavContainer = styled.nav`
+export const BottomNavContainer = styled.div`
   display: flex;
   justify-content: space-around;
   position: fixed;
@@ -12,7 +12,7 @@ export const BottomNavContainer = styled.nav`
   align-items: center;
 `;
 
-export const BottomNavItem = styled.a<{ active: boolean }>`
+export const BottomNavItem = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
