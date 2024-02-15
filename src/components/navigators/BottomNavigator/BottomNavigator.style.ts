@@ -3,13 +3,15 @@ import styled from "styled-components";
 export const BottomNavContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
+  right: 0;
   width: 100%;
   padding: 1rem;
   background-color: ${(props: any) => props.theme.container_color};
   align-items: center;
+  z-index: 1000;
 `;
 
 export const BottomNavItem = styled.div<{ active: boolean }>`
@@ -27,6 +29,13 @@ export const BottomNavItem = styled.div<{ active: boolean }>`
     fill: ${({ active, theme }) => (active ? theme.green_500 : "none")};
     margin-bottom: 0.6rem;
   }
+
+  &:hover {
+    color: ${({ theme }) => theme.green_500};
+    & > svg {
+      stroke: ${({ theme }) => theme.green_500};
+    }
+  }
 `;
 
 export const ProfileCircle = styled.div<{ active: boolean }>`
@@ -39,4 +48,8 @@ export const ProfileCircle = styled.div<{ active: boolean }>`
   align-items: center;
   cursor: pointer;
   margin-bottom: 0.6rem;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.green_500};
+  }
 `;

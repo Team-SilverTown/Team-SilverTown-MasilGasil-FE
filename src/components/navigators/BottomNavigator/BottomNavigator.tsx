@@ -37,6 +37,7 @@ const BottomNavigator = () => {
         <Link
           href={path}
           key={path}
+          title={label}
         >
           <S.BottomNavItem active={isPathActive(path)}>
             {isProfile ? (
