@@ -7,6 +7,8 @@ export const LogRecordActionLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
+
+  opacity: 0.9;
 `;
 
 export const LogRecordActionContainer = styled.div`

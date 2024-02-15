@@ -15,15 +15,15 @@ const LogRecordRecordingView = () => {
 
       <S.LogRecordActionContainer>
         <S.LogRecordInfoContainer>
-          <S.LogRecordInfo></S.LogRecordInfo>
-          <S.LogRecordInfo></S.LogRecordInfo>
+          <S.LogRecordInfo>{"00 : 00 : 00"}</S.LogRecordInfo>
+          <S.LogRecordInfo>{"999 M"}</S.LogRecordInfo>
         </S.LogRecordInfoContainer>
 
         <Button
           buttonColor={Theme.lightTheme.green_500}
           variant="neumorp"
           textColor={Theme.lightTheme.white}
-          style={{ fontWeight: FONT_WEIGHT.BOLD, opacity: 0.8 }}
+          style={{ fontWeight: FONT_WEIGHT.BOLD, opacity: 0.9 }}
           width={BUTTON_FULL_WIDTH}
         >
           마실 기록 시작
