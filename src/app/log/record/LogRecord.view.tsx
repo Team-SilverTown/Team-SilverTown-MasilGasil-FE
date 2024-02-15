@@ -5,27 +5,26 @@ import { LogPageStep } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
+import useUserLocationStore from "@/stores/useUserLocationStore";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
-  center: GeoJSONPoint;
   logData: MasilRecordRequest;
   watchCode: number;
 
   onChangeStep: (step: LogPageStep) => void;
-  onChangeCenter: (coords: KakaoFormatPosition) => void;
   setWatchCode: (code: number) => void;
 }
 
 const LogRecordView = ({
   pageStep,
-  center,
   logData,
   watchCode,
   onChangeStep,
-  onChangeCenter,
   setWatchCode,
 }: LogRecordViewProps) => {
+  const { userLocation } = useUserLocationStore();
+
   return (
     <S.LogRecordLayout>
       {/* 테스트 이후 제거 예정 */}
@@ -40,15 +39,15 @@ const LogRecordView = ({
       </S.LogTestActionList>
 
       <MasilMap
-        center={center}
+        center={userLocation}
         path={logData.path}
         pins={logData.pins}
+        draggable={pageStep !== "LOG_RECORD_EDITING"}
       />
 
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
           watchCode={watchCode}
-          onChangeCenter={onChangeCenter}
           setWatchCode={setWatchCode}
         />
       )}
