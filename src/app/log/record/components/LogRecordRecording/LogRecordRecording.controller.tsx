@@ -1,14 +1,19 @@
 import { useEffect, useRef } from "react";
 import LogRecordRecordingView from "./LogRecordRecording.view";
-import { LogPageStep, OnErrorWatcher, UpdateUserLocation } from "../../LogRecord.types";
+import {
+  OnErrorWatcher,
+  SetLogData,
+  SetPageStep,
+  SetWatchCode,
+  UpdateUserLocation,
+} from "../../LogRecord.types";
 import { throttle } from "lodash";
-import { MasilRecordRequest } from "@/types/Request";
 
 interface LogRecordRecordingControllerProps {
   watchCode: number;
-  setLogData: (log: MasilRecordRequest) => void;
-  setChangeStep: (step: LogPageStep) => void;
-  setWatchCode: (code: number) => void;
+  setLogData: SetLogData;
+  setPageStep: SetPageStep;
+  setWatchCode: SetWatchCode;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
 }
@@ -17,7 +22,7 @@ const LogRecordRecordingController = ({
   setLogData,
   watchCode,
   setWatchCode,
-  setChangeStep,
+  setPageStep,
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordRecordingControllerProps) => {

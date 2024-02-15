@@ -1,6 +1,13 @@
 import * as S from "./LogRecord.styles";
 
-import { OnErrorWatcher, LogPageStep, UpdateUserLocation } from "./LogRecord.types";
+import {
+  OnErrorWatcher,
+  LogPageStep,
+  UpdateUserLocation,
+  SetPageStep,
+  SetWatchCode,
+  SetLogData,
+} from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
@@ -12,9 +19,9 @@ interface LogRecordViewProps {
   watchCode: number;
   userLocation: GeoJSONPoint;
 
-  setChangeStep: (step: LogPageStep) => void;
-  setWatchCode: (code: number) => void;
-  setLogData: (log: MasilRecordRequest) => void;
+  setPageStep: SetPageStep;
+  setWatchCode: SetWatchCode;
+  setLogData: SetLogData;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
 }
@@ -25,7 +32,7 @@ const LogRecordView = ({
   watchCode,
   userLocation,
   setLogData,
-  setChangeStep,
+  setPageStep,
   setWatchCode,
   onErrorWatcher,
   updateUserLocation,
@@ -34,13 +41,11 @@ const LogRecordView = ({
     <S.LogRecordLayout>
       {/* 테스트 이후 제거 예정 */}
       <S.LogTestActionList>
-        <S.LogTestButton onClick={() => setChangeStep("LOG_RECORD_STANDBY")}>
-          Standby
-        </S.LogTestButton>
-        <S.LogTestButton onClick={() => setChangeStep("LOG_RECORD_RECORDING")}>
+        <S.LogTestButton onClick={() => setPageStep("LOG_RECORD_STANDBY")}>Standby</S.LogTestButton>
+        <S.LogTestButton onClick={() => setPageStep("LOG_RECORD_RECORDING")}>
           Recording
         </S.LogTestButton>
-        <S.LogTestButton onClick={() => setChangeStep("LOG_RECORD_EDITING")}>Edit</S.LogTestButton>
+        <S.LogTestButton onClick={() => setPageStep("LOG_RECORD_EDITING")}>Edit</S.LogTestButton>
       </S.LogTestActionList>
 
       <MasilMap
@@ -53,7 +58,7 @@ const LogRecordView = ({
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
           watchCode={watchCode}
-          setChangeStep={setChangeStep}
+          setPageStep={setPageStep}
           setWatchCode={setWatchCode}
           onErrorWatcher={onErrorWatcher}
           updateUserLocation={updateUserLocation}
@@ -65,7 +70,7 @@ const LogRecordView = ({
           setLogData={setLogData}
           watchCode={watchCode}
           setWatchCode={setWatchCode}
-          setChangeStep={setChangeStep}
+          setPageStep={setPageStep}
           onErrorWatcher={onErrorWatcher}
           updateUserLocation={updateUserLocation}
         />

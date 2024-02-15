@@ -1,18 +1,23 @@
 import { useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
-import { LogPageStep, OnErrorWatcher, UpdateUserLocation } from "../../LogRecord.types";
+import {
+  OnErrorWatcher,
+  SetPageStep,
+  SetWatchCode,
+  UpdateUserLocation,
+} from "../../LogRecord.types";
 
 interface LogRecordStandbyControllerProps {
   watchCode: number;
-  setChangeStep: (step: LogPageStep) => void;
-  setWatchCode: (code: number) => void;
+  setPageStep: SetPageStep;
+  setWatchCode: SetWatchCode;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
 }
 
 const LogRecordStandbyController = ({
   watchCode,
-  setChangeStep,
+  setPageStep,
   setWatchCode,
   onErrorWatcher,
   updateUserLocation,
@@ -35,7 +40,7 @@ const LogRecordStandbyController = ({
   }, []);
 
   const handleStartRecord = () => {
-    setChangeStep("LOG_RECORD_RECORDING");
+    setPageStep("LOG_RECORD_RECORDING");
   };
 
   return <LogRecordStandbyView onClick={handleStartRecord} />;
