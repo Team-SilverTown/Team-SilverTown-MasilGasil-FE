@@ -1,4 +1,4 @@
-const RecordFill = ({ ...props }) => {
+const DiaryFill = ({ ...props }) => {
   return (
     <svg
       width="1.5rem"
@@ -18,4 +18,4 @@ const RecordFill = ({ ...props }) => {
   );
 };
 
-export default RecordFill;
+export default DiaryFill;
