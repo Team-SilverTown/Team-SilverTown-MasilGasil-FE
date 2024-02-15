@@ -1,14 +1,19 @@
 import { Button } from "@/components";
 import * as S from "./LogRecordRecording.styles";
 import Theme, { BUTTON_FULL_WIDTH, FONT_WEIGHT } from "@/styles/theme";
-import { MapPin, Pin } from "@/components/icons";
+import { Pin } from "@/components/icons";
 
-const LogRecordRecordingView = () => {
+interface LogRecordRecordingViewProps {
+  handleClickCreatePin: () => void;
+}
+
+const LogRecordRecordingView = ({ handleClickCreatePin }: LogRecordRecordingViewProps) => {
   return (
     <S.LogRecordActionLayout>
       <Button
         style={{ marginBottom: "1rem" }}
         variant="neumorp"
+        onClickHandler={handleClickCreatePin}
       >
         <Pin />
       </Button>

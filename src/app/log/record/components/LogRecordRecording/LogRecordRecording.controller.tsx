@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import LogRecordRecordingView from "./LogRecordRecording.view";
 import {
   OnErrorWatcher,
@@ -8,6 +8,7 @@ import {
   UpdateUserLocation,
 } from "../../LogRecord.types";
 import { throttle } from "lodash";
+import useUserLocationStore from "@/stores/useUserLocationStore";
 
 interface LogRecordRecordingControllerProps {
   watchCode: number;
@@ -26,6 +27,8 @@ const LogRecordRecordingController = ({
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordRecordingControllerProps) => {
+  const { userLocation } = useUserLocationStore();
+
   /**
    * @summary watch의 success 콜백에 들어가는 함수로 경로 값을 추가시켜줍니다.
    *
@@ -60,11 +63,23 @@ const LogRecordRecordingController = ({
 
     return () => {
       navigator.geolocation.clearWatch(watchCode);
-      console.log("Recording Component cleanUp");
     };
   }, []);
 
-  return <LogRecordRecordingView />;
+  const handleClickCreatePin = useCallback(() => {
+    const newPin = {
+      point: userLocation,
+      content: "",
+      thumbnailUrl: null,
+    };
+
+    setLogData((prevData) => ({
+      ...prevData,
+      pins: [...prevData.pins, newPin],
+    }));
+  }, [userLocation]);
+
+  return <LogRecordRecordingView handleClickCreatePin={handleClickCreatePin} />;
 };
 
 export default LogRecordRecordingController;
