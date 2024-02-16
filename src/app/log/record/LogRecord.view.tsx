@@ -54,7 +54,7 @@ const LogRecordView = ({
         center={userLocation}
         path={logData.path}
         pins={logData.pins}
-        draggable={pageStep !== "LOG_RECORD_EDITING"}
+        draggable={pageStep === "LOG_RECORD_EDITING"}
         onCreatePathLine={onCreatePathLine}
       />
 
