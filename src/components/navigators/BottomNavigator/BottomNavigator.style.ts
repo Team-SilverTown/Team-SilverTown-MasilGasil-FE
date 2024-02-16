@@ -9,40 +9,40 @@ export const BottomNavContainer = styled.div`
   right: 0;
   width: 100%;
   padding: 1rem;
-  background-color: ${(props: any) => props.theme.container_color};
+  background-color: ${({ theme }) => theme.container_color};
   align-items: center;
   z-index: 1000;
 `;
 
-export const BottomNavItem = styled.div<{ active: boolean }>`
+export const BottomNavItem = styled.div<{ $active: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: ${({ active, theme }) => (active ? theme.green_500 : theme.gray_300)};
+  color: ${({ $active, theme }) => ($active ? theme.green_500 : theme.gray_300)};
   font-size: 0.9rem;
   cursor: pointer;
 
   & > svg {
-    stroke: ${({ active, theme }) => (active ? "none" : theme.gray_300)};
-    fill: ${({ active, theme }) => (active ? theme.green_500 : "none")};
+    stroke: ${({ $active, theme }) => ($active ? "none" : theme.gray_300)};
+    fill: ${({ $active, theme }) => ($active ? theme.green_500 : "none")};
     margin-bottom: 0.6rem;
   }
 
   &:hover {
-    color: ${({ theme }) => theme.green_500};
+    color: ${({ $active, theme }) => ($active ? "none" : theme.green_500)};
     & > svg {
-      stroke: ${({ theme }) => theme.green_500};
+      stroke: ${({ $active, theme }) => ($active ? "none" : theme.green_500)};
     }
   }
 `;
 
-export const ProfileCircle = styled.div<{ active: boolean }>`
+export const ProfileCircle = styled.div<{ $active: boolean }>`
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background-color: ${({ active, theme }) => (active ? theme.green_500 : theme.gray_300)};
+  background-color: ${({ $active, theme }) => ($active ? theme.green_500 : theme.gray_300)};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,6 +50,6 @@ export const ProfileCircle = styled.div<{ active: boolean }>`
   margin-bottom: 0.6rem;
 
   &:hover {
-    background-color: ${({ theme }) => theme.green_500};
+    background-color: ${({ $active, theme }) => ($active ? "none" : theme.green_500)};
   }
 `;
