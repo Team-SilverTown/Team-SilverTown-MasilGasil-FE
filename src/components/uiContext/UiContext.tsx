@@ -9,6 +9,7 @@ import { TestModal } from "@components/modalViews";
 import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import LogInitConfirmModal from "../modalViews/LogInitConfirmModal/LogInitConfirmModal";
+import CompleteRecordModal from "../modalViews/RecordCompleteModal/CompleteRecordModal";
 
 export interface State {
   displayModal: boolean;
@@ -115,6 +116,7 @@ const ModalView = ({
     <Modal onClose={closeModal}>
       {modalView === "INIT_VIEW" && <TestModal />}
       {modalView === "LOG_INIT_CONFIRM" && <LogInitConfirmModal props={props} />}
+      {modalView === "LOG_COMPLETE_RECORD" && <CompleteRecordModal props={props} />}
     </Modal>
   );
 };
