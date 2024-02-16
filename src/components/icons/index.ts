@@ -15,6 +15,7 @@ export { default as Heart } from "./Heart";
 export { default as Home } from "./Home";
 export { default as HomeFill } from "./HomeFill";
 export { default as Info } from "./Info";
+export { default as KebabMenu } from "./KebabMenu";
 export { default as MapPin } from "./MapPin";
 export { default as Menu } from "./Menu";
 export { default as Minus } from "./Minus";
