@@ -1,59 +1,98 @@
 import * as S from "./LogRecord.styles";
 
-import { GeoJSONPoint, KakaoFormatPosition } from "@/types/OriginDataType";
-import { LogPageStep } from "./LogRecord.types";
+import {
+  OnErrorWatcher,
+  LogPageStep,
+  UpdateUserLocation,
+  SetPageStep,
+  SetWatchCode,
+  SetLogData,
+} from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
+import { GeoJSONPoint } from "@/types/OriginDataType";
+import { useEffect } from "react";
+import { Button } from "@/components";
+import { ChevronLeft } from "@/components/icons";
+import { OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
-  center: GeoJSONPoint;
   logData: MasilRecordRequest;
   watchCode: number;
+  userLocation: GeoJSONPoint;
 
-  onChangeStep: (step: LogPageStep) => void;
-  onChangeCenter: (coords: KakaoFormatPosition) => void;
-  setWatchCode: (code: number) => void;
+  setPageStep: SetPageStep;
+  setWatchCode: SetWatchCode;
+  setLogData: SetLogData;
+  onErrorWatcher: OnErrorWatcher;
+  updateUserLocation: UpdateUserLocation;
+  handleClickFallback: () => void;
+  onCreatePathLine: OnCreatePathLine;
 }
 
 const LogRecordView = ({
   pageStep,
-  center,
   logData,
   watchCode,
-  onChangeStep,
-  onChangeCenter,
+  userLocation,
+  setLogData,
+  setPageStep,
   setWatchCode,
+  onErrorWatcher,
+  updateUserLocation,
+  handleClickFallback,
+  onCreatePathLine,
 }: LogRecordViewProps) => {
+  useEffect(() => {
+    console.log(logData);
+  }, [logData]);
   return (
     <S.LogRecordLayout>
-      {/* 테스트 이후 제거 예정 */}
-      <S.LogTestActionList>
-        <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_STANDBY")}>
-          Standby
-        </S.LogTestButton>
-        <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_RECORDING")}>
-          Recording
-        </S.LogTestButton>
-        <S.LogTestButton onClick={() => onChangeStep("LOG_RECORD_EDITING")}>Edit</S.LogTestButton>
-      </S.LogTestActionList>
-
       <MasilMap
-        center={center}
+        center={userLocation}
         path={logData.path}
         pins={logData.pins}
+        draggable={pageStep === "LOG_RECORD_EDITING"}
+        onCreatePathLine={onCreatePathLine}
       />
+
+      <S.LogRecordTop>
+        <Button
+          variant="naked"
+          onClickHandler={handleClickFallback}
+        >
+          <ChevronLeft
+            strokeWidth={3}
+            width={32}
+            height={32}
+          />
+        </Button>
+      </S.LogRecordTop>
 
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
           watchCode={watchCode}
-          onChangeCenter={onChangeCenter}
+          setLogData={setLogData}
+          setPageStep={setPageStep}
           setWatchCode={setWatchCode}
+          onErrorWatcher={onErrorWatcher}
+          updateUserLocation={updateUserLocation}
         />
       )}
 
-      {pageStep === "LOG_RECORD_RECORDING" && <LogRecordRecording />}
+      {pageStep === "LOG_RECORD_RECORDING" && (
+        <LogRecordRecording
+          logData={logData}
+          setLogData={setLogData}
+          watchCode={watchCode}
+          setWatchCode={setWatchCode}
+          setPageStep={setPageStep}
+          onErrorWatcher={onErrorWatcher}
+          updateUserLocation={updateUserLocation}
+        />
+      )}
 
       {pageStep === "LOG_RECORD_EDITING" && <LogRecordEdit />}
     </S.LogRecordLayout>
