@@ -1,5 +1,5 @@
 import { ModalLayout } from "@/components/Modal";
-import * as S from "./LogInitConfirmModal.styles";
+import * as GS from "../ConfirmModalGlobal.styles";
 import { Button } from "@/components";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { useUI } from "@/components/uiContext/UiContext";
@@ -23,16 +23,16 @@ const LogInitConfirmModal = ({ props }: ModalProp) => {
 
   return (
     <ModalLayout>
-      <S.LogInitConfirmLayout>
-        <S.LogInitConfirmMessage>
+      <GS.ConfirmModalLayout>
+        <GS.ConfirmModalMessage>
           모든 기록이 사라집니다.
           <br />
           진짜로 뒤로 가쉴...?
-        </S.LogInitConfirmMessage>
+        </GS.ConfirmModalMessage>
 
-        <S.LogInitConfirmWarning>현재의 기록은 저장되지 않고 사라집니다.</S.LogInitConfirmWarning>
+        <GS.ConfirmModalWarning>현재의 기록은 저장되지 않고 사라집니다.</GS.ConfirmModalWarning>
 
-        <S.ConfirmActionsContainer>
+        <GS.ConfirmModalActionsContainer>
           <Button
             variant="neumorp"
             buttonColor={Theme.lightTheme.gray_200}
@@ -51,8 +51,8 @@ const LogInitConfirmModal = ({ props }: ModalProp) => {
           >
             확인
           </Button>
-        </S.ConfirmActionsContainer>
-      </S.LogInitConfirmLayout>
+        </GS.ConfirmModalActionsContainer>
+      </GS.ConfirmModalLayout>
     </ModalLayout>
   );
 };
