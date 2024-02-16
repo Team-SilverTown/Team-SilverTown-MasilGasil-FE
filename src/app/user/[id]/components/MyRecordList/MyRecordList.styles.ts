@@ -39,3 +39,8 @@ export const BorderContentListWrapper = styled.div`
     flex-shrink: 0;
   }
 `;
+
+export const EmptyAlert = styled.div`
+  padding: 4rem;
+  margin: 0 auto;
+`;

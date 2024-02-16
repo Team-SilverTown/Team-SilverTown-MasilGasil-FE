@@ -172,7 +172,7 @@ export const RECORDLIST_DUMMY_DATA: MyRecordListProps[] = [
   {
     title: "내가 좋아하는 산책로",
     urlLink: "/more?keyword=my_like",
-    recordList: POSTS_DUMMY_DATA,
+    recordList: [],
     type: "Posts",
   },
 ];
