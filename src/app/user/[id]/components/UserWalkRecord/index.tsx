@@ -1,3 +1,6 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
 import * as S from "./UserWalkRecord.styles";
 
 type UserGenderInfo = "male" | "female";
@@ -16,7 +19,25 @@ const UserWalkRecord = ({
   totalWalkDistance,
   totalWalkCount,
   exerciseIntensity,
+  userAge,
+  userWeight,
+  userHeight,
+  gender,
 }: UserWalkRecordProps) => {
+  const [isUserInfoCheck, setIsUserInfoCheck] = useState<boolean | null>(null);
+
+  const userInfoCheck = useCallback(() => {
+    if (!exerciseIntensity || !userAge || !userWeight || !userHeight || !gender) {
+      return false;
+    }
+
+    return true;
+  }, [exerciseIntensity, userAge, userWeight, userHeight, gender]);
+
+  useEffect(() => {
+    setIsUserInfoCheck(userInfoCheck());
+  }, [userInfoCheck]);
+
   return (
     <S.UserWalkRecordContainer>
       <h3>나의 총 산책 기록</h3>
@@ -35,13 +56,15 @@ const UserWalkRecord = ({
             <small>번</small>
           </div>
         </li>
-        <li>
-          <strong>총 소모 열량</strong>
-          <div className="walkItemInfo">
-            <span>1,500</span>
-            <small>kacl</small>
-          </div>
-        </li>
+        {isUserInfoCheck && (
+          <li>
+            <strong>총 소모 열량</strong>
+            <div className="walkItemInfo">
+              <span>1,500</span>
+              <small>kacl</small>
+            </div>
+          </li>
+        )}
       </S.UserWalkRecordList>
     </S.UserWalkRecordContainer>
   );
