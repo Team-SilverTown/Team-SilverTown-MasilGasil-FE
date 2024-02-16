@@ -5,10 +5,10 @@ import { MyRecordListProps } from "./components/MyRecordList";
 import * as S from "./Mypage.styles";
 
 interface MypageViewProps {
-  RECORDLIST_DUMMY_DATA: MyRecordListProps[];
+  boardList: MyRecordListProps[];
 }
 
-const MypageView = ({ RECORDLIST_DUMMY_DATA }: MypageViewProps) => {
+const MypageView = ({ boardList }: MypageViewProps) => {
   return (
     <S.UserProfileContainer>
       <UserInfo
@@ -25,7 +25,7 @@ const MypageView = ({ RECORDLIST_DUMMY_DATA }: MypageViewProps) => {
         userHeight={177}
         gender="male"
       />
-      {RECORDLIST_DUMMY_DATA.map(({ title, urlLink, recordList, type }) => (
+      {boardList.map(({ title, urlLink, recordList, type }) => (
         <MyRecordList
           title={title}
           urlLink={urlLink}
