@@ -5,11 +5,9 @@ import { ThemeProvider } from "styled-components";
 
 import { useLocalStorage } from "@lib/hooks/useLocalStorage";
 import { Modal } from "@components/Modal";
-import { TestModal } from "@components/modalViews";
+import { CompleteRecordModal, LogInitConfirmModal, TestModal } from "@components/modalViews";
 import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
 import { darkTheme, lightTheme } from "@/styles/theme";
-import LogInitConfirmModal from "../modalViews/LogInitConfirmModal/LogInitConfirmModal";
-import CompleteRecordModal from "../modalViews/RecordCompleteModal/CompleteRecordModal";
 
 export interface State {
   displayModal: boolean;
