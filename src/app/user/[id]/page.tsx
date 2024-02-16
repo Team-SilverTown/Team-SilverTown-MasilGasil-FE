@@ -1,7 +1,7 @@
-import React from "react";
+import MypageController from "./Mypage.controller";
 
-const Profile = () => {
-  return <div>ProfilePage</div>;
+const Mypage = () => {
+  return <MypageController />;
 };
 
-export default Profile;
+export default Mypage;
