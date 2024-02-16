@@ -1,3 +1,5 @@
+"use client";
+
 import { CSSProperties, useState } from "react";
 import * as S from "./LogDetailCard.style";
 import { Heart, KebabMenu } from "../icons";

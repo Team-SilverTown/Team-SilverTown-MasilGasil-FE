@@ -1,3 +1,4 @@
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 interface LogSimpleCardProps {
@@ -15,7 +16,7 @@ export const LogSimpleCardContainer = styled.div<LogSimpleCardProps>`
   background-image: ${(props) => `url(${props.thumbnail})`};
   background-position: center;
   background-size: cover;
-  box-shadow: inset gray 0px -50px 50px -12px;
+  box-shadow: inset gray 0px -5rem 5rem -1.2rem;
   cursor: pointer;
 `;
 
@@ -30,8 +31,8 @@ export const LogSimpleCardBottom = styled.div`
   padding: 5px;
 
   & > strong {
-    font-size: 12px;
-    color: #fff;
+    font-size: ${FONT_SIZE.MINI};
+    color: ${({ theme }) => theme.white};
     max-width: 70px;
     white-space: normal;
     display: -webkit-box;
@@ -51,9 +52,9 @@ export const LogSimpleCardInfo = styled.div`
     width: 100%;
   }
   ul li {
-    font-size: 10px;
-    font-weight: 600;
-    color: #fff;
+    font-size: ${FONT_SIZE.MICRO};
+    font-weight: ${FONT_WEIGHT.SEMIBOLD};
+    color: ${({ theme }) => theme.white};
   }
   ul li:first-child {
     position: relative;
@@ -68,11 +69,11 @@ export const LogSimpleCardInfo = styled.div`
       width: 2px;
       height: 2px;
       border-radius: 50%;
-      background-color: #fff;
+      background-color: ${({ theme }) => theme.white};
     }
   }
   strong {
-    font-size: 12px;
-    color: #fff;
+    font-size: ${FONT_SIZE.MINI};
+    color: ${({ theme }) => theme.white};
   }
 `;
