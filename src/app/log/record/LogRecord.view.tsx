@@ -45,9 +45,6 @@ const LogRecordView = ({
   handleClickFallback,
   onCreatePathLine,
 }: LogRecordViewProps) => {
-  useEffect(() => {
-    console.log(logData);
-  }, [logData]);
   return (
     <S.LogRecordLayout>
       <MasilMap
