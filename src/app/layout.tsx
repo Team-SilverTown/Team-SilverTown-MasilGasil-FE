@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 const KAKAO_API_KEY = process.env.DB_KAKAO_API_KEY;
 
-const URL = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&autoload=false`;
+const URL = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&libraries=services,clusterer,drawing&autoload=false`;
 
 export default function RootLayout({
   children,

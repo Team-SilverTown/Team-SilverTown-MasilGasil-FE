@@ -8,6 +8,7 @@ import { Modal } from "@components/Modal";
 import { TestModal } from "@components/modalViews";
 import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
 import { darkTheme, lightTheme } from "@/styles/theme";
+import LogInitConfirmModal from "../modalViews/LogInitConfirmModal/LogInitConfirmModal";
 
 export interface State {
   displayModal: boolean;
@@ -110,7 +111,12 @@ const ModalView = ({
   closeModal: () => void;
   props?: any;
 }) => {
-  return <Modal onClose={closeModal}>{modalView === "INIT_VIEW" && <TestModal />}</Modal>;
+  return (
+    <Modal onClose={closeModal}>
+      {modalView === "INIT_VIEW" && <TestModal />}
+      {modalView === "LOG_INIT_CONFIRM" && <LogInitConfirmModal props={props} />}
+    </Modal>
+  );
 };
 
 export const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {

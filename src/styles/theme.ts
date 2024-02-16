@@ -1,4 +1,4 @@
-export const lightTheme: object = {
+export const lightTheme = {
   theme_mode: "light",
 
   white: "#FFFFFF",
@@ -34,6 +34,7 @@ export const lightTheme: object = {
   text_primary_color: "#232323",
   text_secondary_color: "#FEFEFE",
 };
+export type LightTheme = typeof lightTheme;
 
 export const darkTheme = {
   theme_mode: "dark",
@@ -71,6 +72,7 @@ export const darkTheme = {
   text_primary_color: "#232323",
   text_secondary_color: "#FEFEFE",
 };
+export type DarkTheme = typeof darkTheme;
 
 const Theme = {
   lightTheme,
@@ -106,7 +108,6 @@ export const MODAL = {
   HEADER_MARGIN: 1.5, // rem
 };
 
-// Z-Index //
 export const Z_INDEX = {
   SEARCH_BAR: 30,
   NAVIGATOR: 50,
