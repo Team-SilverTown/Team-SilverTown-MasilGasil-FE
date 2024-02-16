@@ -11,7 +11,7 @@ import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
 import PathLine from "./components/PathLine/PathLine";
 import { useMemo } from "react";
-import { OnClickPin, OnCreatePath, PathLineWeight } from "./MasilMap.types";
+import { OnClickPin, OnCreatePathLine, PathLineWeight } from "./MasilMap.types";
 import CustomPin from "./components/CustomPin/CustomPin";
 
 interface MasilMapProps {
@@ -28,13 +28,17 @@ interface MasilMapProps {
   centerMarkerSize?: number;
   centerMarkerFill?: string;
 
-  onCreatePath?: OnCreatePath;
+  onCreatePathLine?: OnCreatePathLine;
   pathColor?: string;
   pathOpacity?: number;
   pathWeight?: PathLineWeight;
 
   onClickPin?: OnClickPin;
   pinSize?: number;
+  pinColor?: string;
+  pinSelectColor?: string;
+  pinFontColor?: string;
+  selectedPinIndex?: number;
 }
 
 /**
@@ -60,6 +64,10 @@ interface MasilMapProps {
  *
  * @param onClickPin 핀 클릭 이벤트 - type : 미정
  * @param pinSize 핀의 사이즈 ( 기본값 24px ) - type : number ( px )
+ * @param pinColor 핀의 색상을 변경 - type : string
+ * @param pinSelectColor 선택된 핀의 색상을 변경 - type : string
+ * @param pinFontColor 핀 내부 폰트의 색상을 변경 - type : string
+ * @param selectedPinIndex 현재 선택된 핀의 index 번호 - type : number
  */
 const MasilMap = ({
   center,
@@ -75,13 +83,17 @@ const MasilMap = ({
   centerMarkerSize,
   centerMarkerFill,
 
-  onCreatePath,
+  onCreatePathLine,
   pathColor,
   pathOpacity,
   pathWeight,
 
   onClickPin,
   pinSize,
+  pinColor,
+  pinSelectColor,
+  pinFontColor,
+  selectedPinIndex,
 }: MasilMapProps) => {
   const [lat, lng] = center.coordinates;
   const centerPosition = { lat, lng };
@@ -133,7 +145,7 @@ const MasilMap = ({
       {kakaoFormatPath && (
         <PathLine
           path={kakaoFormatPath}
-          onCreatePath={onCreatePath}
+          onCreatePathLine={onCreatePathLine}
           pathColor={pathColor}
           pathOpacity={pathOpacity}
           pathWeight={pathWeight}
@@ -141,11 +153,17 @@ const MasilMap = ({
       )}
 
       {kakaoFormatPins &&
-        kakaoFormatPins.map(({ point }) => (
+        kakaoFormatPins.map(({ point }, index) => (
           <CustomPin
+            key={`${point.lat}${point.lng}${index}`}
             position={point}
             size={pinSize}
             onClickPin={onClickPin && onClickPin}
+            pinIndex={index + 1}
+            pinColor={pinColor}
+            pinSelectColor={pinSelectColor}
+            pinFontColor={pinFontColor}
+            isSelected={selectedPinIndex === index}
           />
         ))}
     </Map>

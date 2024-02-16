@@ -25,3 +25,4 @@ export { default as ShoppingBag } from "./ShoppingBag";
 export { default as Star } from "./Star";
 export { default as Sun } from "./Sun";
 export { default as Trash } from "./Trash";
+export { default as Pin } from "./Pin";

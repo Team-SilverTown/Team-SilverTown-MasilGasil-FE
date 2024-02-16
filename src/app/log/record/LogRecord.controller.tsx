@@ -4,12 +4,17 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import useLogRecordModel from "./LogRecord.model";
 import LogRecordView from "./LogRecord.view";
 import { throttle } from "lodash";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
+import { useUI } from "@/components/uiContext/UiContext";
 
 const LogRecordController = () => {
+  const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
   const { pageStep, setPageStep, logData, setLogData, watchCode, setWatchCode } =
     useLogRecordModel();
+  const router = useRouter();
 
   /**
    * @summary watcher가 오류가 발생했을때 수행할 동작을 위한 함수입니다.
@@ -35,17 +40,49 @@ const LogRecordController = () => {
     }, 200),
   ).current;
 
+  const handleClickFallback = () => {
+    if (pageStep === "LOG_RECORD_STANDBY") {
+      router.back();
+      return;
+    }
+
+    setModalView("LOG_INIT_CONFIRM");
+    openModal({
+      onClickAccept: () => {
+        setPageStep("LOG_RECORD_STANDBY");
+        setLogData(DEFAULT_LOG_DATA);
+        closeModal();
+      },
+    });
+  };
+
+  /**
+   * @summary 전달받은 경로(polyline) 데이터 내부의 getLength 함수를 통해
+   *
+   * 경로 거리를 M단위로 전달받고 LogData에 업로드 합니다.
+   */
+  const handleDistanceCalculation = useCallback((polyLine: kakao.maps.Polyline) => {
+    const newDistance = Math.floor(polyLine.getLength());
+
+    setLogData((prevData) => ({
+      ...prevData,
+      distance: newDistance,
+    }));
+  }, []);
+
   return (
     <LogRecordView
       pageStep={pageStep}
       logData={logData}
       watchCode={watchCode}
       userLocation={userLocation}
-      setChangeStep={setPageStep}
+      setPageStep={setPageStep}
       setWatchCode={setWatchCode}
       setLogData={setLogData}
       onErrorWatcher={handleWatchError}
       updateUserLocation={updateUserLocation}
+      handleClickFallback={handleClickFallback}
+      onCreatePathLine={handleDistanceCalculation}
     />
   );
 };
