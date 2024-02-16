@@ -10,6 +10,14 @@ interface LogRecordRecordingViewProps {
 }
 
 const LogRecordRecordingView = ({ handleClickCreatePin, logData }: LogRecordRecordingViewProps) => {
+  const calcHour = Math.floor(logData.totalTime / 3600);
+  const calcMin = Math.floor((logData.totalTime % 3600) / 60);
+  const calcSec = logData.totalTime % 60;
+
+  const hour = calcHour > 9 ? calcHour : `0${calcHour}`;
+  const min = calcMin > 9 ? calcMin : `0${calcMin}`;
+  const sec = calcSec > 9 ? calcSec : `0${calcSec}`;
+
   return (
     <S.LogRecordActionLayout>
       <Button
@@ -22,7 +30,7 @@ const LogRecordRecordingView = ({ handleClickCreatePin, logData }: LogRecordReco
 
       <S.LogRecordActionContainer>
         <S.LogRecordInfoContainer>
-          <S.LogRecordInfo>{"00 : 00 : 00"}</S.LogRecordInfo>
+          <S.LogRecordInfo>{`${hour} : ${min} : ${sec}`}</S.LogRecordInfo>
           <S.LogRecordInfo>{`${logData.distance} M`}</S.LogRecordInfo>
         </S.LogRecordInfoContainer>
 

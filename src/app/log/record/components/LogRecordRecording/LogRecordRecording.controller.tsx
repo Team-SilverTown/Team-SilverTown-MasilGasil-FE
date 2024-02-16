@@ -10,6 +10,7 @@ import {
 import { throttle } from "lodash";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { MasilRecordRequest } from "@/types/Request";
+import useLogRecordRecordingModel from "./LogRecordRecording.model";
 
 interface LogRecordRecordingControllerProps {
   logData: MasilRecordRequest;
@@ -30,6 +31,7 @@ const LogRecordRecordingController = ({
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordRecordingControllerProps) => {
+  const { timerId, setTimerId } = useLogRecordRecordingModel();
   const { userLocation } = useUserLocationStore();
 
   /**
@@ -52,6 +54,12 @@ const LogRecordRecordingController = ({
     }, 5000),
   ).current;
 
+  const increaseTime = useRef(
+    throttle(() => {
+      setLogData((prevData) => ({ ...prevData, totalTime: prevData.totalTime + 1 }));
+    }, 1000),
+  ).current;
+
   useEffect(() => {
     const newWatchCode = navigator.geolocation.watchPosition(
       (geoPosition: GeolocationPosition) => {
@@ -61,11 +69,18 @@ const LogRecordRecordingController = ({
       onErrorWatcher,
       { enableHighAccuracy: true },
     );
-
     setWatchCode(newWatchCode);
+
+    const newTimerId = setInterval(increaseTime, 1000);
+
+    setTimerId(newTimerId);
 
     return () => {
       navigator.geolocation.clearWatch(watchCode);
+
+      if (timerId) {
+        clearInterval(timerId);
+      }
     };
   }, []);
 
