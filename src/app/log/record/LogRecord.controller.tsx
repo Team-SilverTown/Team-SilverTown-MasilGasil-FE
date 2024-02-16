@@ -61,7 +61,7 @@ const LogRecordController = () => {
    *
    * 경로 거리를 M단위로 전달받고 LogData에 업로드 합니다.
    */
-  const handleCreatePathLine = useCallback((polyLine: kakao.maps.Polyline) => {
+  const handleDistanceCalculation = useCallback((polyLine: kakao.maps.Polyline) => {
     const newDistance = Math.floor(polyLine.getLength());
 
     setLogData((prevData) => ({
@@ -82,7 +82,7 @@ const LogRecordController = () => {
       onErrorWatcher={handleWatchError}
       updateUserLocation={updateUserLocation}
       handleClickFallback={handleClickFallback}
-      onCreatePathLine={handleCreatePathLine}
+      onCreatePathLine={handleDistanceCalculation}
     />
   );
 };
