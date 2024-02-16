@@ -20,7 +20,7 @@ const MypageView = ({ boardList }: MypageViewProps) => {
         totalWalkDistance={104.2}
         totalWalkCount={50}
         exerciseIntensity="1"
-        userBirthday="1994.12.26"
+        userAge="1994.12.26"
         userWeight={71}
         userHeight={177}
         gender="male"
