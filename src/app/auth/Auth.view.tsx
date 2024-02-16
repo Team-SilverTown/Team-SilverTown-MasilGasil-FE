@@ -47,7 +47,9 @@ const AuthView = ({
         <Button onClickHandler={onPrevButtonHandler}>이전</Button>
         <StepButton
           buttonText={focusedStep === 3 ? "마실가실 시작하기" : "다음"}
-          onClickHandler={focusedStep === 3 ? () => console.log("submit") : onNextButtonHandler}
+          onClickHandler={
+            focusedStep === 3 ? handleSubmit(onValid, onInvalid) : onNextButtonHandler
+          }
           isDisabled={!stepValidations[focusedStep]}
         />
       </div>

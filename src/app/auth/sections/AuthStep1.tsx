@@ -22,8 +22,8 @@ const AuthStep1 = ({ register, errors }: AuthStep1Props) => {
             register={register("nickname", {
               required: "NickName is required",
               minLength: {
-                message: "NickName Should be longer then 4 chars",
-                value: 4,
+                message: "NickName Should be longer then 2 chars",
+                value: 2,
               },
             })}
             placeholder="닉네임을 입력해주세요."
