@@ -56,6 +56,11 @@ const LogRecordController = () => {
     });
   };
 
+  /**
+   * @summary 전달받은 경로(polyline) 데이터 내부의 getLength 함수를 통해
+   *
+   * 경로 거리를 M단위로 전달받고 LogData에 업로드 합니다.
+   */
   const handleCreatePathLine = useCallback((polyLine: kakao.maps.Polyline) => {
     const newDistance = Math.floor(polyLine.getLength());
 
