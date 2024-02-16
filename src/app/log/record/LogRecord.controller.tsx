@@ -4,7 +4,7 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import useLogRecordModel from "./LogRecord.model";
 import LogRecordView from "./LogRecord.view";
 import { throttle } from "lodash";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
 import { useUI } from "@/components/uiContext/UiContext";
@@ -46,7 +46,6 @@ const LogRecordController = () => {
       return;
     }
 
-    // 경고 모달 동작과 데이터 초기화 작업 수행
     setModalView("LOG_INIT_CONFIRM");
     openModal({
       onClickAccept: () => {
@@ -56,6 +55,15 @@ const LogRecordController = () => {
       },
     });
   };
+
+  const handleCreatePathLine = useCallback((polyLine: kakao.maps.Polyline) => {
+    const newDistance = Math.floor(polyLine.getLength());
+
+    setLogData((prevData) => ({
+      ...prevData,
+      distance: newDistance,
+    }));
+  }, []);
 
   return (
     <LogRecordView
@@ -69,6 +77,7 @@ const LogRecordController = () => {
       onErrorWatcher={handleWatchError}
       updateUserLocation={updateUserLocation}
       handleClickFallback={handleClickFallback}
+      onCreatePathLine={handleCreatePathLine}
     />
   );
 };

@@ -15,6 +15,7 @@ import { GeoJSONPoint } from "@/types/OriginDataType";
 import { useEffect } from "react";
 import { Button } from "@/components";
 import { ChevronLeft } from "@/components/icons";
+import { OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
@@ -28,6 +29,7 @@ interface LogRecordViewProps {
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
   handleClickFallback: () => void;
+  onCreatePathLine: OnCreatePathLine;
 }
 
 const LogRecordView = ({
@@ -41,6 +43,7 @@ const LogRecordView = ({
   onErrorWatcher,
   updateUserLocation,
   handleClickFallback,
+  onCreatePathLine,
 }: LogRecordViewProps) => {
   useEffect(() => {
     console.log(logData);
@@ -52,6 +55,7 @@ const LogRecordView = ({
         path={logData.path}
         pins={logData.pins}
         draggable={pageStep !== "LOG_RECORD_EDITING"}
+        onCreatePathLine={onCreatePathLine}
       />
 
       <S.LogRecordTop>

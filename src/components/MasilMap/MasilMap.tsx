@@ -11,7 +11,7 @@ import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
 import PathLine from "./components/PathLine/PathLine";
 import { useMemo } from "react";
-import { OnClickPin, OnCreatePath, PathLineWeight } from "./MasilMap.types";
+import { OnClickPin, OnCreatePathLine, PathLineWeight } from "./MasilMap.types";
 import CustomPin from "./components/CustomPin/CustomPin";
 
 interface MasilMapProps {
@@ -28,7 +28,7 @@ interface MasilMapProps {
   centerMarkerSize?: number;
   centerMarkerFill?: string;
 
-  onCreatePath?: OnCreatePath;
+  onCreatePathLine?: OnCreatePathLine;
   pathColor?: string;
   pathOpacity?: number;
   pathWeight?: PathLineWeight;
@@ -83,7 +83,7 @@ const MasilMap = ({
   centerMarkerSize,
   centerMarkerFill,
 
-  onCreatePath,
+  onCreatePathLine,
   pathColor,
   pathOpacity,
   pathWeight,
@@ -145,7 +145,7 @@ const MasilMap = ({
       {kakaoFormatPath && (
         <PathLine
           path={kakaoFormatPath}
-          onCreatePath={onCreatePath}
+          onCreatePathLine={onCreatePathLine}
           pathColor={pathColor}
           pathOpacity={pathOpacity}
           pathWeight={pathWeight}
