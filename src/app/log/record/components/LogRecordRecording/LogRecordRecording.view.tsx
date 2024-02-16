@@ -7,9 +7,14 @@ import { MasilRecordRequest } from "@/types/Request";
 interface LogRecordRecordingViewProps {
   logData: MasilRecordRequest;
   handleClickCreatePin: () => void;
+  handleClickCompleteRecord: () => void;
 }
 
-const LogRecordRecordingView = ({ handleClickCreatePin, logData }: LogRecordRecordingViewProps) => {
+const LogRecordRecordingView = ({
+  handleClickCreatePin,
+  handleClickCompleteRecord,
+  logData,
+}: LogRecordRecordingViewProps) => {
   const calcHour = Math.floor(logData.totalTime / 3600);
   const calcMin = Math.floor((logData.totalTime % 3600) / 60);
   const calcSec = logData.totalTime % 60;
@@ -40,6 +45,7 @@ const LogRecordRecordingView = ({ handleClickCreatePin, logData }: LogRecordReco
           textColor={Theme.lightTheme.white}
           style={{ fontWeight: FONT_WEIGHT.BOLD, opacity: 0.9, fontSize: FONT_SIZE.LARGE }}
           width={"100%"}
+          onClickHandler={handleClickCompleteRecord}
         >
           마실 기록 완료
         </Button>

@@ -10,7 +10,7 @@ import {
 import { throttle } from "lodash";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { MasilRecordRequest } from "@/types/Request";
-import useLogRecordRecordingModel from "./LogRecordRecording.model";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface LogRecordRecordingControllerProps {
   logData: MasilRecordRequest;
@@ -31,8 +31,8 @@ const LogRecordRecordingController = ({
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordRecordingControllerProps) => {
-  const { timerId, setTimerId } = useLogRecordRecordingModel();
   const { userLocation } = useUserLocationStore();
+  const { openModal, setModalView, closeModal } = useUI();
 
   /**
    * @summary watch의 success 콜백에 들어가는 함수로 경로 값을 추가시켜줍니다.
@@ -71,16 +71,11 @@ const LogRecordRecordingController = ({
     );
     setWatchCode(newWatchCode);
 
-    const newTimerId = setInterval(increaseTime, 1000);
-
-    setTimerId(newTimerId);
+    const timerId = setInterval(increaseTime, 1000);
 
     return () => {
       navigator.geolocation.clearWatch(watchCode);
-
-      if (timerId) {
-        clearInterval(timerId);
-      }
+      clearInterval(timerId);
     };
   }, []);
 
@@ -97,10 +92,21 @@ const LogRecordRecordingController = ({
     }));
   }, [userLocation]);
 
+  const handleClickCompleteRecord = () => {
+    setModalView("LOG_COMPLETE_RECORD");
+    openModal({
+      onClickAccept: () => {
+        setPageStep("LOG_RECORD_EDITING");
+        closeModal();
+      },
+    });
+  };
+
   return (
     <LogRecordRecordingView
       logData={logData}
       handleClickCreatePin={handleClickCreatePin}
+      handleClickCompleteRecord={handleClickCompleteRecord}
     />
   );
 };
