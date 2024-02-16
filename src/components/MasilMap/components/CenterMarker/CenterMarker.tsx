@@ -1,3 +1,4 @@
+import Theme from "@/styles/theme";
 import * as S from "./CenterMarker.styles";
 
 import { KakaoFormatPosition } from "@/types/OriginDataType";
@@ -9,7 +10,11 @@ interface CenterMarkerProps {
   position: KakaoFormatPosition;
 }
 
-const CenterMarker = ({ position, size = 32, fill = "black" }: CenterMarkerProps) => {
+const CenterMarker = ({
+  position,
+  size = 32,
+  fill = Theme.lightTheme.black,
+}: CenterMarkerProps) => {
   return (
     <CustomOverlayMap position={position}>
       <S.CenterMarkerLayout

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 export const LogInitConfirmLayout = styled.div`
   width: 28rem;
@@ -11,15 +12,15 @@ export const LogInitConfirmMessage = styled.p`
   width: 100%;
   padding: 1rem 0;
 
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: ${FONT_SIZE.LARGE};
+  font-weight: ${FONT_WEIGHT.SEMIBOLD};
 `;
 
 export const LogInitConfirmWarning = styled.p`
   width: 100%;
 
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: ${FONT_SIZE.MINI};
+  font-weight: ${FONT_WEIGHT.MEDIUM};
   color: red;
 `;
 

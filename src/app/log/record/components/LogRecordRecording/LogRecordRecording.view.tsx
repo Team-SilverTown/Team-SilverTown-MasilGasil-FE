@@ -1,6 +1,6 @@
 import { Button } from "@/components";
 import * as S from "./LogRecordRecording.styles";
-import Theme, { BUTTON_FULL_WIDTH, FONT_WEIGHT } from "@/styles/theme";
+import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Pin } from "@/components/icons";
 import { MasilRecordRequest } from "@/types/Request";
 
@@ -13,7 +13,7 @@ const LogRecordRecordingView = ({ handleClickCreatePin, logData }: LogRecordReco
   return (
     <S.LogRecordActionLayout>
       <Button
-        style={{ marginBottom: "1rem" }}
+        style={{ marginBottom: "1.6rem" }}
         variant="neumorp"
         onClickHandler={handleClickCreatePin}
       >
@@ -30,8 +30,8 @@ const LogRecordRecordingView = ({ handleClickCreatePin, logData }: LogRecordReco
           buttonColor={Theme.lightTheme.green_500}
           variant="neumorp"
           textColor={Theme.lightTheme.white}
-          style={{ fontWeight: FONT_WEIGHT.BOLD, opacity: 0.9, fontSize: "1.6rem" }}
-          width={BUTTON_FULL_WIDTH}
+          style={{ fontWeight: FONT_WEIGHT.BOLD, opacity: 0.9, fontSize: FONT_SIZE.LARGE }}
+          width={"100%"}
         >
           마실 기록 완료
         </Button>

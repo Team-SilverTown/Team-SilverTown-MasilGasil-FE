@@ -1,7 +1,7 @@
 import { ModalLayout } from "@/components/Modal";
 import * as S from "./LogInitConfirmModal.styles";
 import { Button } from "@/components";
-import Theme from "@/styles/theme";
+import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { useUI } from "@/components/uiContext/UiContext";
 
 interface ConfirmModalProps {
@@ -37,7 +37,7 @@ const LogInitConfirmModal = ({ props }: ModalProp) => {
             variant="neumorp"
             buttonColor={Theme.lightTheme.gray_200}
             width={100}
-            style={{ fontSize: "1.6rem", fontWeight: 600 }}
+            style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.SEMIBOLD }}
             onClickHandler={closeModal}
           >
             취소
@@ -46,7 +46,7 @@ const LogInitConfirmModal = ({ props }: ModalProp) => {
             variant="neumorp"
             buttonColor={Theme.lightTheme.green_500}
             width={100}
-            style={{ fontSize: "1.6rem", fontWeight: 600 }}
+            style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.SEMIBOLD }}
             onClickHandler={onClickAccept}
           >
             확인
