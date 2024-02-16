@@ -1,9 +1,14 @@
 .root {
-  @apply inline-flex text-center items-center leading-7;
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  line-height: 1.75rem;
 }
 
 .root .dot {
-  @apply rounded-full h-2 w-2;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 999px;
   background-color: currentColor;
   animation-name: blink;
   animation-duration: 1.4s;

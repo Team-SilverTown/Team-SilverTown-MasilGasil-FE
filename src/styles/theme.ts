@@ -11,10 +11,10 @@ export const lightTheme: object = {
   gray_200: "#E3E3E3",
   gray_100: "#EFEFEF",
 
-  transparent_10: "#B3B3B310",
-  transparent_30: "#B3B3B330",
-  transparent_50: "#B3B3B350",
-  transparent_90: "#B3B3B390",
+  transparent_10: "#23232310",
+  transparent_30: "#23232330",
+  transparent_50: "#23232350",
+  transparent_90: "#23232390",
 
   red_100: "#FF6878",
   red_500: "#FF4141",
@@ -28,12 +28,11 @@ export const lightTheme: object = {
   green_300: "#B9DB56",
   green_500: "#81BB26",
 
-  // 삭제 후보군
-
+  background_color: " #F8F8F8",
   container_color: "#FEFEFE",
 
-  text_primary_color: "#0F1118",
-  text_secondary_color: "#F0F0F0",
+  text_primary_color: "#232323",
+  text_secondary_color: "#FEFEFE",
 };
 
 export const darkTheme = {
@@ -49,10 +48,10 @@ export const darkTheme = {
   gray_200: "#E3E3E3",
   gray_100: "#EFEFEF",
 
-  transparent_10: "#B3B3B310",
-  transparent_30: "#B3B3B330",
-  transparent_50: "#B3B3B350",
-  transparent_90: "#B3B3B390",
+  transparent_10: "#23232310",
+  transparent_30: "#23232330",
+  transparent_50: "#23232350",
+  transparent_90: "#23232390",
 
   red_100: "#FF6878",
   red_500: "#FF4141",
@@ -66,12 +65,11 @@ export const darkTheme = {
   green_300: "#B9DB56",
   green_500: "#81BB26",
 
-  // 삭제 후보군
-
+  background_color: " #F8F8F8",
   container_color: "#FEFEFE",
 
-  text_primary_color: "#0F1118",
-  text_secondary_color: "#F0F0F0",
+  text_primary_color: "#232323",
+  text_secondary_color: "#FEFEFE",
 };
 
 const Theme = {
@@ -100,32 +98,7 @@ export const CONTAINER = {
   MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen",
 };
 
-/**
- * @summary Screen 사이즈에 관한 값으로 px을 기준으로 합니다.
- */
-export const SCREEN = {
-  APP_MAX_WIDTH: 600, // 600px
-
-  SIZE_MB: 450, // 450px
-  SIZE_SM: 640, // 640px
-  SIZE_MD: 768, // 768px
-  SIZE_XMD: 940, // 940px
-  SIZE_LG: 1024, // 1024px
-  SIZE_XL: 1280, // 1280px
-
-  MOBILE_LIMIT: 768, // 768px
-  TABLET_LIMIT: 1025, // 655 + 370px
-  DESKTOP_VIEW_WIDTH: 655, // 655px
-};
-
 export const NAV_HEIGHT: number = 3; // 3.75 rem
-
-export const POSTER = {
-  SIMPLE_CARD_WIDTH: 150, // 150px
-  SIMPLE_CARD_HEIGHT: 150, // 150px
-  DETAIL_CARD_WIDTH: 150, // 500px
-  DETAIL_CARD_HEIGHT: 150, // 600px
-};
 
 export const MODAL = {
   VERTICAL_PADDING: 3, // rem
@@ -137,10 +110,10 @@ export const MODAL = {
 export const Z_INDEX = {
   SEARCH_BAR: 30,
   NAVIGATOR: 50,
-  MODAL: 888,
-  MODAL_BACKGROUND: 888,
-  MODAL_LAYOUT: 999,
-  SPINNER: 9999,
+  MODAL: 800,
+  MODAL_BACKGROUND: 800,
+  MODAL_LAYOUT: 850,
+  SPINNER: 999,
 };
 
 export const FONT_WEIGHT = {

@@ -22,6 +22,8 @@ export const GlobalStyle = createGlobalStyle<any>`
       -moz-osx-font-smoothing: grayscale;
 
       overscroll-behavior-x: none;
+
+
     }
 
     html {
@@ -34,7 +36,7 @@ export const GlobalStyle = createGlobalStyle<any>`
       min-height: 100%;
       margin: 0 auto;
       
-      background-color: "#F8F8F8";
+      background-color: ${(props) => props.theme.background_color};
       
       position: relative;
       

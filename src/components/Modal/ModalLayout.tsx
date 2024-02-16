@@ -72,7 +72,10 @@ const ModalLayout: FC<ModalLayoutProps> = ({
         onClick={() => handleClose()}
         aria-label="Close panel"
       >
-        <Cross className="h-6 w-6" />
+        <Cross
+          width="2.5rem"
+          height="2.5rem"
+        />
       </ModalHeaderButton>
       <ModalContentWrapper>{children}</ModalContentWrapper>
     </ModalLayoutContainer>

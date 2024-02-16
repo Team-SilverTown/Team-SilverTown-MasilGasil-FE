@@ -6,7 +6,7 @@ import styled from "styled-components";
 const ButtonBaseWrapper = styled.button<any>`
   position: relative;
   overflow: hidden;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -18,7 +18,7 @@ const ButtonBaseWrapper = styled.button<any>`
 
   & .ripple > span {
     background-color: ${(props) =>
-      props.$rippleColor ? props.$rippleColor : props.theme.transparent_30};
+      props.$rippleColor ? props.$rippleColor : props.theme.transparent_10};
   }
 `;
 
@@ -26,8 +26,8 @@ export const Flat = styled(ButtonBaseWrapper)<any>``;
 
 export const Neumorp = styled(ButtonBaseWrapper)<any>`
   border-width: ${BORDER.TINE_WIDTH}px;
-  border-color: ${(props) => props.theme.transparent_50};
-  box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_50};
+  border-color: ${(props) => props.theme.transparent_10};
+  box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_10};
 `;
 
 export const Naked = styled(ButtonBaseWrapper)<any>`
@@ -45,6 +45,6 @@ export const Disabled = styled(ButtonBaseWrapper)<any>`
 
   &,
   & > span {
-    color: ${(props) => props.theme.gray_500};
+    color: ${(props) => props.theme.gray_300};
   }
 `;
