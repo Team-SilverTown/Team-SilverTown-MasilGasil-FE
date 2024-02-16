@@ -1,7 +1,7 @@
 const DiaryFill = ({ ...props }) => {
   return (
     <svg
-      width="1.5rem"
+      width="2.6rem"
       height="auto"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="3 3 26 26"

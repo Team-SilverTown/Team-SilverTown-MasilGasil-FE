@@ -21,13 +21,13 @@ export const BottomNavItem = styled.div<{ $active: boolean }>`
   justify-content: center;
   text-align: center;
   color: ${({ $active, theme }) => ($active ? theme.green_500 : theme.gray_300)};
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   cursor: pointer;
 
   & > svg {
     stroke: ${({ $active, theme }) => ($active ? "none" : theme.gray_300)};
     fill: ${({ $active, theme }) => ($active ? theme.green_500 : "none")};
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem;
   }
 
   &:hover {
@@ -39,15 +39,15 @@ export const BottomNavItem = styled.div<{ $active: boolean }>`
 `;
 
 export const ProfileCircle = styled.div<{ $active: boolean }>`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50%;
   background-color: ${({ $active, theme }) => ($active ? theme.green_500 : theme.gray_300)};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 
   &:hover {
     background-color: ${({ $active, theme }) => ($active ? "none" : theme.green_500)};
