@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo } from "react";
 import * as S from "./UserWalkRecord.styles";
 
 type UserGenderInfo = "male" | "female";
@@ -24,8 +24,6 @@ const UserWalkRecord = ({
   userHeight,
   gender,
 }: UserWalkRecordProps) => {
-  const [isUserInfoCheck, setIsUserInfoCheck] = useState<boolean | null>(null);
-
   const userInfoCheck = useCallback(() => {
     if (!exerciseIntensity || !userAge || !userWeight || !userHeight || !gender) {
       return false;
@@ -34,8 +32,8 @@ const UserWalkRecord = ({
     return true;
   }, [exerciseIntensity, userAge, userWeight, userHeight, gender]);
 
-  useEffect(() => {
-    setIsUserInfoCheck(userInfoCheck());
+  const isUserInfoCheck = useMemo(() => {
+    return userInfoCheck();
   }, [userInfoCheck]);
 
   return (
