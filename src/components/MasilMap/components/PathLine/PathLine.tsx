@@ -1,12 +1,12 @@
 import { KakaoFormatPosition } from "@/types/OriginDataType";
 import { Polyline } from "react-kakao-maps-sdk";
 import { OnCreatePathLine, PathLineWeight } from "../../MasilMap.types";
+import { useCallback } from "react";
 
 interface PathLineProps {
   path: KakaoFormatPosition[];
   onCreatePathLine?: OnCreatePathLine;
 
-  // style
   pathColor?: string;
   pathWeight?: PathLineWeight;
   pathOpacity?: number;
@@ -19,6 +19,22 @@ const PathLine = ({
   pathOpacity = 0.7,
   pathWeight = 8,
 }: PathLineProps) => {
+  /**
+   * @summary 경로가 추가되거나 그려질때 발동하는 onCreate 함수의 핸들러입니다.
+   *
+   * ( 무한 렌더링 발생으로 useCallback 사용 )
+   */
+  const handleCreate = useCallback(
+    (polyline: kakao.maps.Polyline) => {
+      if (!onCreatePathLine) {
+        return;
+      }
+
+      console.log(polyline.getLength());
+      onCreatePathLine(polyline);
+    },
+    [path],
+  );
   return (
     <Polyline
       path={path}
@@ -26,7 +42,7 @@ const PathLine = ({
       strokeStyle="solid"
       strokeWeight={pathWeight}
       strokeOpacity={pathOpacity}
-      onCreate={onCreatePathLine && onCreatePathLine}
+      onCreate={handleCreate}
     />
   );
 };
