@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Script from "next/script";
 
 import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import "src/styles/globals.css";
 import { ManagedUIContext, ModalUI } from "@/components/uiContext/UiContext";
-
-const inter = Inter({ subsets: ["latin"] });
+import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
 
 export const metadata: Metadata = {
   title: "마실가실",
@@ -27,7 +25,7 @@ export default function RootLayout({
       <ManagedUIContext>
         <StyledComponentsRegistry>
           <GlobalStyle />
-          <body className={inter.className}>
+          <body>
             <Script
               src={URL}
               strategy={"beforeInteractive"}
@@ -35,6 +33,7 @@ export default function RootLayout({
 
             {children}
             <ModalUI />
+            <BottomNavigator />
           </body>
         </StyledComponentsRegistry>
       </ManagedUIContext>
