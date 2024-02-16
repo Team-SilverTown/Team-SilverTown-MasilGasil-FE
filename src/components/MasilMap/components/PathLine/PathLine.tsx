@@ -32,7 +32,6 @@ const PathLine = ({
         return;
       }
 
-      console.log(polyline.getLength());
       onCreatePathLine(polyline);
     },
     [path],
