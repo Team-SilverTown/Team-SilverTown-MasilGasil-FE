@@ -5,6 +5,7 @@ import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import "src/styles/globals.css";
 import { ManagedUIContext, ModalUI } from "@/components/uiContext/UiContext";
+import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
 
 export const metadata: Metadata = {
   title: "마실가실",
@@ -32,6 +33,7 @@ export default function RootLayout({
 
             {children}
             <ModalUI />
+            <BottomNavigator />
           </body>
         </StyledComponentsRegistry>
       </ManagedUIContext>
