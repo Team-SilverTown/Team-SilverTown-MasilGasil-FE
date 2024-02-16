@@ -9,8 +9,10 @@ import {
 } from "../../LogRecord.types";
 import { throttle } from "lodash";
 import useUserLocationStore from "@/stores/useUserLocationStore";
+import { MasilRecordRequest } from "@/types/Request";
 
 interface LogRecordRecordingControllerProps {
+  logData: MasilRecordRequest;
   watchCode: number;
   setLogData: SetLogData;
   setPageStep: SetPageStep;
@@ -20,6 +22,7 @@ interface LogRecordRecordingControllerProps {
 }
 
 const LogRecordRecordingController = ({
+  logData,
   setLogData,
   watchCode,
   setWatchCode,
@@ -79,7 +82,12 @@ const LogRecordRecordingController = ({
     }));
   }, [userLocation]);
 
-  return <LogRecordRecordingView handleClickCreatePin={handleClickCreatePin} />;
+  return (
+    <LogRecordRecordingView
+      logData={logData}
+      handleClickCreatePin={handleClickCreatePin}
+    />
+  );
 };
 
 export default LogRecordRecordingController;

@@ -83,6 +83,7 @@ const LogRecordView = ({
 
       {pageStep === "LOG_RECORD_RECORDING" && (
         <LogRecordRecording
+          logData={logData}
           setLogData={setLogData}
           watchCode={watchCode}
           setWatchCode={setWatchCode}

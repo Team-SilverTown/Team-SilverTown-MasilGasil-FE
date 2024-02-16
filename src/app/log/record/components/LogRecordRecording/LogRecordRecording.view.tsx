@@ -2,12 +2,14 @@ import { Button } from "@/components";
 import * as S from "./LogRecordRecording.styles";
 import Theme, { BUTTON_FULL_WIDTH, FONT_WEIGHT } from "@/styles/theme";
 import { Pin } from "@/components/icons";
+import { MasilRecordRequest } from "@/types/Request";
 
 interface LogRecordRecordingViewProps {
+  logData: MasilRecordRequest;
   handleClickCreatePin: () => void;
 }
 
-const LogRecordRecordingView = ({ handleClickCreatePin }: LogRecordRecordingViewProps) => {
+const LogRecordRecordingView = ({ handleClickCreatePin, logData }: LogRecordRecordingViewProps) => {
   return (
     <S.LogRecordActionLayout>
       <Button
@@ -21,7 +23,7 @@ const LogRecordRecordingView = ({ handleClickCreatePin }: LogRecordRecordingView
       <S.LogRecordActionContainer>
         <S.LogRecordInfoContainer>
           <S.LogRecordInfo>{"00 : 00 : 00"}</S.LogRecordInfo>
-          <S.LogRecordInfo>{"999 M"}</S.LogRecordInfo>
+          <S.LogRecordInfo>{`${logData.distance} M`}</S.LogRecordInfo>
         </S.LogRecordInfoContainer>
 
         <Button
