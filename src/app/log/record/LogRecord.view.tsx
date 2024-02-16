@@ -74,6 +74,7 @@ const LogRecordView = ({
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
           watchCode={watchCode}
+          setLogData={setLogData}
           setPageStep={setPageStep}
           setWatchCode={setWatchCode}
           onErrorWatcher={onErrorWatcher}
