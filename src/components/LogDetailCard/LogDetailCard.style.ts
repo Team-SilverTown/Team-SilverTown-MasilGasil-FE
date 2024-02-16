@@ -1,3 +1,4 @@
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 interface LogDetailCardThumbnailProps {
@@ -40,9 +41,9 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
     justify-content: space-between;
     align-items: center;
     h3 {
-      width: ${(props) => (props.isSettingLayout ? "calc(100% - 15px)" : "100%")};
-      font-size: 1.6rem;
-      font-weight: 700;
+      width: ${(props) => (props.isSettingLayout ? "calc(100% - 1.5rem)" : "100%")};
+      font-size: ${FONT_SIZE.LARGE};
+      font-weight: ${FONT_WEIGHT.BOLD};
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -60,7 +61,7 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
 
   p {
     margin: 1rem 0;
-    font-size: 1.2rem;
+    font-size: ${FONT_SIZE.MINI};
     line-height: 1.6rem;
     white-space: normal;
     display: -webkit-box;
@@ -77,7 +78,7 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
       display: flex;
       align-items: center;
       li {
-        font-size: 0.8rem;
+        font-size: ${FONT_SIZE.MICRO};
       }
       li:not(:first-child) {
         position: relative;
@@ -99,9 +100,10 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
 
     .likeInfo {
       display: flex;
+      align-items: center;
       font-size: 0.8rem;
       svg {
-        margin-right: 0.2rem;
+        margin-right: 0.1rem;
       }
       &:hover,
       &.liked {
@@ -127,7 +129,7 @@ export const LogDetailCardSettingModal = styled.div`
   ul {
     li {
       text-align: center;
-      font-size: 1.2rem;
+      font-size: ${FONT_SIZE.MINI};
       transition: background 0.2s;
       &:hover {
         background-color: ${(props) => props.theme.gray_100};
