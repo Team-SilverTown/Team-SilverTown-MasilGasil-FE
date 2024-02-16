@@ -4,6 +4,7 @@ import React from "react";
 import { Hello, ObjectOne, ObjectThree, ObjectTwo } from "./Home.styles";
 import { useUI } from "@/components/uiContext/UiContext";
 import { Button } from "@/components";
+import Theme, { FONT_WEIGHT } from "@/styles/theme";
 
 const HomeView = () => {
   const { setModalView, openModal } = useUI();
@@ -27,7 +28,7 @@ const HomeView = () => {
           width={300}
           type="button"
         >
-          <span style={{ fontWeight: 500 }}>Open Modal</span>
+          <span style={{ fontWeight: FONT_WEIGHT.MEDIUM }}>Open Modal</span>
         </Button>
       </div>
     </main>

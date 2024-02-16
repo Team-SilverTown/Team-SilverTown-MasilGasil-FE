@@ -44,5 +44,5 @@ export const Text = styled.span<{ $type: "normal" | "safety" | "warn" | "danger"
         `;
     }
   }};
-  font-size: 0.75rem;
+  font-size: 1.2rem;
 `;

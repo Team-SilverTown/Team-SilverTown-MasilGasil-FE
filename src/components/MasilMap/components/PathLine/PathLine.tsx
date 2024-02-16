@@ -1,6 +1,7 @@
 import { KakaoFormatPosition } from "@/types/OriginDataType";
 import { Polyline } from "react-kakao-maps-sdk";
 import { OnCreatePath, PathLineWeight } from "../../MasilMap.types";
+import useTheme from "@/lib/hooks/useTheme";
 
 interface PathLineProps {
   path: KakaoFormatPosition[];
@@ -15,7 +16,7 @@ interface PathLineProps {
 const PathLine = ({
   path,
   onCreatePath,
-  pathColor = "#7cbe13",
+  pathColor = "#81BB26",
   pathOpacity = 0.7,
   pathWeight = 8,
 }: PathLineProps) => {
