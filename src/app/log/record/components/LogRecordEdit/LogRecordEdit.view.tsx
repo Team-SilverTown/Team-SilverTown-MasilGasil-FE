@@ -8,7 +8,66 @@
  * 6. 입력값이 있으면 Slide Button의 내용이 변경됨
  */
 
+import { Button, Input, SlideButton } from "@/components";
+import * as S from "./LogRecordEdit.styles";
+import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
+import { useForm } from "react-hook-form";
+import EditPencil from "@/components/icons/EditPencil";
+
 const LogRecordEditView = () => {
-  return <>LogRecordEdit.view</>;
+  const { register } = useForm();
+
+  return (
+    <>
+      <S.SizeHandlerContainer>
+        <S.SizeHandler />
+      </S.SizeHandlerContainer>
+      <S.LogEditLayout>
+        <S.LogEditContainer>
+          <S.Header>메모</S.Header>
+          <Input
+            register={register("content")}
+            style={{ height: "17rem" }}
+          />
+        </S.LogEditContainer>
+        <S.LogEditContainer>
+          <S.Header>핀</S.Header>
+          <S.LogEditPinList>
+            <S.LogEditPinItem>
+              {/* TODO: 실제 데이터 바인딩 */}
+              <S.PinIndex backgroundcolor={Theme.lightTheme.green_500}>1</S.PinIndex>
+              <SlideButton subChildren={"삭제"}>
+                {/* TODO: 해당 핀 데이터 들어있으면? 데이터 + 편집 아이콘, 없으면 내용을 작성해주세요 */}
+                <S.SlideButtonContent $textColor={Theme.lightTheme.gray_300}>
+                  내용을 작성해주세요
+                  <EditPencil
+                    fill={Theme.lightTheme.gray_300}
+                    width="2.3rem"
+                  />
+                </S.SlideButtonContent>
+              </SlideButton>
+            </S.LogEditPinItem>
+          </S.LogEditPinList>
+        </S.LogEditContainer>
+        <Button
+          buttonColor={Theme.lightTheme.green_500}
+          variant="neumorp"
+          textColor={Theme.lightTheme.white}
+          style={{
+            fontWeight: FONT_WEIGHT.BOLD,
+            opacity: 0.9,
+            fontSize: FONT_SIZE.LARGE,
+            position: "fixed",
+            bottom: "1.5rem",
+            zIndex: 3,
+          }}
+          width={"90%"}
+          // onClickHandler={handleSubmit}
+        >
+          산책 기록하기
+        </Button>
+      </S.LogEditLayout>
+    </>
+  );
 };
 export default LogRecordEditView;
