@@ -12,8 +12,7 @@ import { useUI } from "@/components/uiContext/UiContext";
 const LogRecordController = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
-  const { pageStep, setPageStep, logData, setLogData, watchCode, setWatchCode } =
-    useLogRecordModel();
+  const { pageStep, setPageStep, logData, setLogData } = useLogRecordModel();
   const router = useRouter();
 
   /**
@@ -89,10 +88,8 @@ const LogRecordController = () => {
     <LogRecordView
       pageStep={pageStep}
       logData={logData}
-      watchCode={watchCode}
       userLocation={userLocation}
       setPageStep={setPageStep}
-      setWatchCode={setWatchCode}
       setLogData={setLogData}
       onErrorWatcher={handleWatchError}
       updateUserLocation={updateUserLocation}

@@ -5,7 +5,6 @@ import {
   LogPageStep,
   UpdateUserLocation,
   SetPageStep,
-  SetWatchCode,
   SetLogData,
 } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
@@ -19,11 +18,10 @@ import { GeoPosition } from "@/types/OriginDataType";
 interface LogRecordViewProps {
   pageStep: LogPageStep;
   logData: MasilRecordRequest;
-  watchCode: number;
+
   userLocation: GeoPosition;
 
   setPageStep: SetPageStep;
-  setWatchCode: SetWatchCode;
   setLogData: SetLogData;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
@@ -34,11 +32,9 @@ interface LogRecordViewProps {
 const LogRecordView = ({
   pageStep,
   logData,
-  watchCode,
   userLocation,
   setLogData,
   setPageStep,
-  setWatchCode,
   onErrorWatcher,
   updateUserLocation,
   handleClickFallback,
@@ -50,7 +46,6 @@ const LogRecordView = ({
         center={userLocation}
         path={logData.path}
         pins={logData.pins}
-        draggable={pageStep === "LOG_RECORD_EDITING"}
         onCreatePathLine={onCreatePathLine}
       />
 
@@ -69,10 +64,8 @@ const LogRecordView = ({
 
       {pageStep === "LOG_RECORD_STANDBY" && (
         <LogRecordStandby
-          watchCode={watchCode}
           setLogData={setLogData}
           setPageStep={setPageStep}
-          setWatchCode={setWatchCode}
           onErrorWatcher={onErrorWatcher}
           updateUserLocation={updateUserLocation}
         />
@@ -82,8 +75,6 @@ const LogRecordView = ({
         <LogRecordRecording
           logData={logData}
           setLogData={setLogData}
-          watchCode={watchCode}
-          setWatchCode={setWatchCode}
           setPageStep={setPageStep}
           onErrorWatcher={onErrorWatcher}
           updateUserLocation={updateUserLocation}
