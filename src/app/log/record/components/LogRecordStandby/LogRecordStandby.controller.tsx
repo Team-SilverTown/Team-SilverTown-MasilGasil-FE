@@ -7,6 +7,7 @@ import {
   SetWatchCode,
   UpdateUserLocation,
 } from "../../LogRecord.types";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface LogRecordStandbyControllerProps {
   watchCode: number;
@@ -25,6 +26,8 @@ const LogRecordStandbyController = ({
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordStandbyControllerProps) => {
+  const { setModalView, openModal } = useUI();
+
   useEffect(() => {
     /**
      * @summary watchPosition은 고유의 number를 반환합니다.
@@ -54,7 +57,11 @@ const LogRecordStandbyController = ({
 
       goe.coord2RegionCode(longitude, latitude, (result, status) => {
         if (status !== kakao.maps.services.Status.OK) {
-          // 추후 에러 처리
+          setModalView("ALERT");
+          openModal({
+            message: "현재 위치의 주소를 불러오는데 실패했습니다. 잠시 후 다시 이용해주세요.",
+          });
+          setPageStep("LOG_RECORD_STANDBY");
           return;
         }
 
