@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 
 import { useLocalStorage } from "@lib/hooks/useLocalStorage";
 import { Modal } from "@components/Modal";
-import { CompleteRecordModal, LogInitConfirmModal, TestModal } from "@components/modalViews";
+import { TestModal } from "@components/modalViews";
 import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import ConfirmModal from "../modalViews/ConfirmModal/ConfirmModal";
@@ -114,7 +114,6 @@ const ModalView = ({
   return (
     <Modal onClose={closeModal}>
       {modalView === "INIT_VIEW" && <TestModal />}
-      {modalView === "LOG_COMPLETE_RECORD" && <CompleteRecordModal props={props} />}
       {modalView === "CONFIRM" && <ConfirmModal props={props} />}
     </Modal>
   );

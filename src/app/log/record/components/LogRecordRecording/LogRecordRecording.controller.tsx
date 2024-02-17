@@ -90,12 +90,15 @@ const LogRecordRecordingController = ({
   }, [userLocation]);
 
   const handleClickCompleteRecord = () => {
-    setModalView("LOG_COMPLETE_RECORD");
+    setModalView("CONFIRM");
     openModal({
       onClickAccept: () => {
         setPageStep("LOG_RECORD_EDITING");
         closeModal();
       },
+      message: "산책을 마무리 하실건가요?",
+      warningMessage: "해당 페이지로 되돌아올 수 없습니다.",
+      acceptButtonText: "완료",
     });
   };
 

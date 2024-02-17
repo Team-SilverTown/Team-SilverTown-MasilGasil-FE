@@ -1,4 +1,4 @@
-export type MODAL_VIEWS = "INIT_VIEW" | "LOG_COMPLETE_RECORD" | "CONFIRM";
+export type MODAL_VIEWS = "INIT_VIEW" | "CONFIRM";
 
 export type MODAL_ACTION =
   | {
