@@ -13,7 +13,7 @@ import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { Button } from "@/components";
 import { ChevronLeft } from "@/components/icons";
-import { OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
+import { OnClickPin, OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
 import { GeoPosition } from "@/types/OriginDataType";
 
 interface LogRecordViewProps {
@@ -29,6 +29,7 @@ interface LogRecordViewProps {
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
   handleClickFallback: () => void;
+  onClickPin: OnClickPin;
   onCreatePathLine: OnCreatePathLine;
   setCurrentPinIndex: (pinIndex: number) => void;
 }
@@ -45,6 +46,7 @@ const LogRecordView = ({
   onErrorWatcher,
   updateUserLocation,
   handleClickFallback,
+  onClickPin,
   onCreatePathLine,
   setCurrentPinIndex,
 }: LogRecordViewProps) => {
@@ -56,6 +58,9 @@ const LogRecordView = ({
         pins={logData.pins}
         draggable={pageStep === "LOG_RECORD_EDITING"}
         onCreatePathLine={onCreatePathLine}
+        isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
+        onClickPin={onClickPin}
+        selectedPinIndex={currentPinIndex}
       />
 
       <S.LogRecordTop>
@@ -100,6 +105,7 @@ const LogRecordView = ({
           currentPinIndex={currentPinIndex}
           setLogData={setLogData}
           setCurrentPinIndex={setCurrentPinIndex}
+          onClickPin={onClickPin}
         />
       )}
     </S.LogRecordLayout>

@@ -14,7 +14,9 @@ export const LogEditLayout = styled.div`
   user-select: none;
 `;
 
-export const LogEditContainer = styled.div``;
+export const LogEditContainer = styled.div`
+  width: 100%;
+`;
 
 export const SizeHandlerContainer = styled.div`
   display: flex;
@@ -38,12 +40,19 @@ export const Header = styled.h1`
 `;
 
 export const LogEditPinList = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  justify-content: center;
+  align-items: center;
+  color: ${(props) => props.theme.gray_300};
 `;
 
 export const LogEditPinItem = styled.div`
+  width: 100%;
+
   display: flex;
   align-items: center;
   gap: 1.5rem;

@@ -14,6 +14,7 @@ import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { useForm } from "react-hook-form";
 import EditPencil from "@/components/icons/EditPencil";
 import { MasilRecordRequest } from "@/types/Request";
+import { useEffect } from "react";
 
 interface LogRecordEditViewProps {
   logData: MasilRecordRequest;
@@ -38,7 +39,8 @@ const LogRecordEditView = ({
   onSubmit,
   setCurrentPinIndex,
 }: LogRecordEditViewProps) => {
-  const { register } = useForm();
+  const { register, watch } = useForm();
+  const watchLogMemo = watch("logMemo");
 
   return (
     <>
@@ -57,25 +59,31 @@ const LogRecordEditView = ({
         <S.LogEditContainer>
           <S.Header>핀</S.Header>
           <S.LogEditPinList>
-            <S.LogEditPinItem>
-              {/* TODO: 실제 데이터 바인딩 */}
-              <S.PinIndex $backgroundcolor={Theme.lightTheme.green_500}>1</S.PinIndex>
-              <SlideButton
-                subChildren={"삭제"}
-                onButtonClickHandler={() => {
-                  onClickPin(3);
-                }}
-              >
-                {/* TODO: 해당 핀 데이터 들어있으면? 데이터 + 편집 아이콘, 없으면 내용을 작성해주세요 */}
-                <S.SlideButtonContent $textColor={Theme.lightTheme.gray_300}>
-                  내용을 작성해주세요
-                  <EditPencil
-                    fill={Theme.lightTheme.gray_300}
-                    width="2.3rem"
-                  />
-                </S.SlideButtonContent>
-              </SlideButton>
-            </S.LogEditPinItem>
+            {logData.pins.length > 0
+              ? logData.pins.map((pin, index) => {
+                  return (
+                    <S.LogEditPinItem key={index}>
+                      <S.PinIndex $backgroundcolor={Theme.lightTheme.green_500}>
+                        {index + 1}
+                      </S.PinIndex>
+                      <SlideButton
+                        subChildren={"삭제"}
+                        onButtonClickHandler={() => {
+                          onClickPin(index);
+                        }}
+                      >
+                        <S.SlideButtonContent $textColor={Theme.lightTheme.gray_300}>
+                          {pin.content ? pin.content : "내용을 작성해주세요"}
+                          <EditPencil
+                            fill={Theme.lightTheme.gray_300}
+                            width="2.3rem"
+                          />
+                        </S.SlideButtonContent>
+                      </SlideButton>
+                    </S.LogEditPinItem>
+                  );
+                })
+              : "저장한 핀이 존재하지 않습니다."}
           </S.LogEditPinList>
         </S.LogEditContainer>
         <Button
@@ -94,7 +102,9 @@ const LogRecordEditView = ({
             transform: "translateX(-50%)",
           }}
           width={"90%"}
-          // onClickHandler={handleSubmit}
+          onClickHandler={() => {
+            onSubmit(watchLogMemo);
+          }}
         >
           산책 기록하기
         </Button>

@@ -11,9 +11,9 @@
 
 import { useEffect } from "react";
 import LogRecordEditView from "./LogRecordEdit.view";
-import { useUI } from "@/components/uiContext/UiContext";
 import { SetLogData } from "../../LogRecord.types";
 import { MasilRecordRequest } from "@/types/Request";
+import { OnClickPin } from "@/components/MasilMap/MasilMap.types";
 
 interface LogRecordEditControllerProps {
   logData: MasilRecordRequest;
@@ -21,6 +21,7 @@ interface LogRecordEditControllerProps {
 
   setLogData: SetLogData;
   setCurrentPinIndex: (pinIndex: number) => void;
+  onClickPin: OnClickPin;
 }
 
 const LogRecordEditController = ({
@@ -29,9 +30,8 @@ const LogRecordEditController = ({
 
   setLogData,
   setCurrentPinIndex,
+  onClickPin,
 }: LogRecordEditControllerProps) => {
-  const { openModal, setModalView, closeModal } = useUI();
-
   useEffect(() => {
     // clean up
     return () => {
@@ -45,21 +45,6 @@ const LogRecordEditController = ({
    * @params ()
    * @brief
    */
-
-  /**
-   * @func handleClickPin
-   * @params (pinIndex: number)
-   * @brief 특정 인덱스의 핀 정보를 담고 있는 Modal을 불러옵니다.
-   */
-
-  const handleClickPin = (pinIndex: number) => {
-    setModalView("PIN_EDIT");
-    openModal({
-      onClickAccept: () => {
-        // TODO: 작성한 핀 메모를 logData에 저장
-      },
-    });
-  };
 
   /**
    * @func setPinData
@@ -87,13 +72,15 @@ const LogRecordEditController = ({
    * @params (memo: string)
    * @brief 폼을 통해 입력받은 Memo를 logData의 content에 저장한 후, 서버에 전송합니다.
    */
-  const handleSubmit = (memo: string) => {};
+  const handleSubmit = (memo: string) => {
+    console.log(memo);
+  };
 
   return (
     <LogRecordEditView
       logData={logData}
       currentPinIndex={currentPinIndex}
-      onClickPin={handleClickPin}
+      onClickPin={onClickPin}
       setPinData={setPinData}
       removePinData={removePinData}
       onImageUpload={handleImageUpload}
