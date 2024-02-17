@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import tw from "twin.macro";
 
 const animation = keyframes`
   0% {

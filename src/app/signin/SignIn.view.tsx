@@ -6,22 +6,22 @@ import { FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 import * as GS from "@/styles/GlobalStyle";
 import { Button } from "@/components";
 
-import { AuthHelper, StepButton, StepLayout } from "./components";
-import { AuthFormProps } from "./Auth.controller";
+import { SignInHelper, StepButton, StepLayout } from "./components";
+import { SignInFormProps } from "./SignIn.controller";
 
-interface AuthViewProps {
+interface SignInViewProps {
   stepViews: ReactNode[];
   focusedStep: number;
   prevFocusedStep: number;
   onPrevButtonHandler: () => void;
   onNextButtonHandler: () => void;
-  handleSubmit: UseFormHandleSubmit<AuthFormProps, AuthFormProps>;
-  onValid: (data: AuthFormProps) => void;
+  handleSubmit: UseFormHandleSubmit<SignInFormProps, SignInFormProps>;
+  onValid: (data: SignInFormProps) => void;
   onInvalid: (errors: FieldErrors) => void;
   stepValidations: boolean[];
 }
 
-const AuthView = ({
+const SignInView = ({
   stepViews,
   focusedStep,
   prevFocusedStep,
@@ -31,11 +31,11 @@ const AuthView = ({
   onValid,
   onInvalid,
   stepValidations,
-}: AuthViewProps) => {
+}: SignInViewProps) => {
   return (
     <GS.CommonContainer>
       <div className="relative w-full h-full">
-        <AuthHelper index={focusedStep} />
+        <SignInHelper index={focusedStep} />
         {stepViews && (
           <StepLayout
             focusedStep={focusedStep}
@@ -57,4 +57,4 @@ const AuthView = ({
   );
 };
 
-export default AuthView;
+export default SignInView;

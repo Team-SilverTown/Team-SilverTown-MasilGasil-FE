@@ -1,7 +1,8 @@
 import React from "react";
-import { SubTitle, Title } from "./AuthHelper.style";
 
-interface AuthHelperProps {
+import { SubTitle, Title } from "./SignInHelper.style";
+
+interface SignInHelperProps {
   index: number;
 }
 
@@ -26,7 +27,7 @@ const helperContent = [
   },
 ];
 
-const AuthHelper = ({ index }: AuthHelperProps) => {
+const SignInHelper = ({ index }: SignInHelperProps) => {
   const { title, subTitle } = helperContent[index];
 
   return (
@@ -40,4 +41,4 @@ const AuthHelper = ({ index }: AuthHelperProps) => {
   );
 };
 
-export default AuthHelper;
+export default SignInHelper;

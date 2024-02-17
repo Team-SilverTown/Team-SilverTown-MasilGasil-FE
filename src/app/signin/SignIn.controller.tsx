@@ -3,11 +3,11 @@
 import React, { useMemo, useRef } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
-import useAuthModel from "./Auth.model";
-import AuthView from "./Auth.view";
-import { AuthStep1, AuthStep2, AuthStep3, AuthStep4 } from "./sections";
+import useSignInModel from "./SignIn.model";
+import SignInView from "./SignIn.view";
+import { SignInStep1, SignInStep2, SignInStep3, SignInStep4 } from "./sections";
 
-export interface AuthFormProps {
+export interface SignInFormProps {
   nickname: string;
   sex?: "male" | "female";
   birthDate?: number;
@@ -19,8 +19,8 @@ export interface AuthFormProps {
   // policy3: boolean;
 }
 
-const AuthController = () => {
-  const { focusedStep, setFocusedStep } = useAuthModel();
+const SignInController = () => {
+  const { focusedStep, setFocusedStep } = useSignInModel();
   const prevFocusedStep = useRef(focusedStep);
 
   const {
@@ -29,12 +29,12 @@ const AuthController = () => {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<AuthFormProps>({
+  } = useForm<SignInFormProps>({
     mode: "onChange",
     shouldUnregister: false,
   });
 
-  const onValid = (data: AuthFormProps) => {
+  const onValid = (data: SignInFormProps) => {
     console.log("valid Action", data);
   };
 
@@ -69,17 +69,17 @@ const AuthController = () => {
   };
 
   const stepViews = [
-    <AuthStep1
+    <SignInStep1
       register={register}
       errors={errors}
     />,
-    <AuthStep2 setValue={setValue} />,
-    <AuthStep3 />,
-    <AuthStep4 />,
+    <SignInStep2 setValue={setValue} />,
+    <SignInStep3 />,
+    <SignInStep4 />,
   ];
 
   return (
-    <AuthView
+    <SignInView
       stepViews={stepViews}
       focusedStep={focusedStep}
       prevFocusedStep={prevFocusedStep.current}
@@ -93,4 +93,4 @@ const AuthController = () => {
   );
 };
 
-export default AuthController;
+export default SignInController;

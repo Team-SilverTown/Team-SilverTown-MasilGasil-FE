@@ -1,16 +1,17 @@
-import React, { useMemo } from "react";
-import { FieldErrors, UseFormGetValues, UseFormRegister } from "react-hook-form";
+import React from "react";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
-import { Button, Input, InputLabel } from "@/components";
-import { AuthFormProps } from "../Auth.controller";
 import useTheme from "@/lib/hooks/useTheme";
 
-interface AuthStep1Props {
-  register: UseFormRegister<AuthFormProps>;
-  errors: FieldErrors<AuthFormProps>;
+import { Button, Input, InputLabel } from "@/components";
+import { SignInFormProps } from "../SignIn.controller";
+
+interface SignInStep1Props {
+  register: UseFormRegister<SignInFormProps>;
+  errors: FieldErrors<SignInFormProps>;
 }
 
-const AuthStep1 = ({ register, errors }: AuthStep1Props) => {
+const SignInStep1 = ({ register, errors }: SignInStep1Props) => {
   const theme = useTheme();
 
   return (
@@ -53,4 +54,4 @@ const AuthStep1 = ({ register, errors }: AuthStep1Props) => {
   );
 };
 
-export default AuthStep1;
+export default SignInStep1;

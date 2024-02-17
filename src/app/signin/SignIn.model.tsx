@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-const useAuthModel = () => {
+const useSignInModel = () => {
   const [focusedStep, setFocusedStep] = useState(0);
 
   return { focusedStep, setFocusedStep };
 };
 
-export default useAuthModel;
+export default useSignInModel;

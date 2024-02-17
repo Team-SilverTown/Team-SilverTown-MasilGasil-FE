@@ -2,15 +2,17 @@
 
 import React from "react";
 import { UseFormSetValue } from "react-hook-form";
-import { AuthFormProps } from "../Auth.controller";
+
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 
-interface AuthStep2Props {
-  setValue: UseFormSetValue<AuthFormProps>;
+import { SignInFormProps } from "../SignIn.controller";
+
+interface SignInStep2Props {
+  setValue: UseFormSetValue<SignInFormProps>;
 }
 
-const AuthStep2 = ({ setValue }: AuthStep2Props) => {
+const SignInStep2 = ({ setValue }: SignInStep2Props) => {
   const theme = useTheme();
 
   const maleButtonClick = () => {
@@ -23,7 +25,7 @@ const AuthStep2 = ({ setValue }: AuthStep2Props) => {
 
   return (
     <div className="bg-yellow-300 h-full">
-      AuthStep2
+      SignInStep2
       <Button
         onClickHandler={maleButtonClick}
         buttonColor={theme?.green_500}
@@ -35,4 +37,4 @@ const AuthStep2 = ({ setValue }: AuthStep2Props) => {
   );
 };
 
-export default AuthStep2;
+export default SignInStep2;
