@@ -46,13 +46,15 @@ const LogRecordController = () => {
       return;
     }
 
-    setModalView("LOG_INIT_CONFIRM");
+    setModalView("CONFIRM");
     openModal({
       onClickAccept: () => {
         setPageStep("LOG_RECORD_STANDBY");
         setLogData(DEFAULT_LOG_DATA);
         closeModal();
       },
+      message: "모든 기록이 사라집니다. 진짜로 뒤로 가쉴...?",
+      warningMessage: "현재의 기록은 저장되지 않고 사라집니다.",
     });
   };
 
