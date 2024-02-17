@@ -95,6 +95,8 @@ const LogRecordRecordingController = ({
       onClickAccept: () => {
         setPageStep("LOG_RECORD_EDITING");
         closeModal();
+
+        console.log(logData);
       },
     });
   };

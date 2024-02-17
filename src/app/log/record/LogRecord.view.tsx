@@ -21,6 +21,7 @@ interface LogRecordViewProps {
   logData: MasilRecordRequest;
   watchCode: number;
   userLocation: GeoPosition;
+  currentPinIndex: number;
 
   setPageStep: SetPageStep;
   setWatchCode: SetWatchCode;
@@ -29,6 +30,7 @@ interface LogRecordViewProps {
   updateUserLocation: UpdateUserLocation;
   handleClickFallback: () => void;
   onCreatePathLine: OnCreatePathLine;
+  setCurrentPinIndex: (pinIndex: number) => void;
 }
 
 const LogRecordView = ({
@@ -36,6 +38,7 @@ const LogRecordView = ({
   logData,
   watchCode,
   userLocation,
+  currentPinIndex,
   setLogData,
   setPageStep,
   setWatchCode,
@@ -43,6 +46,7 @@ const LogRecordView = ({
   updateUserLocation,
   handleClickFallback,
   onCreatePathLine,
+  setCurrentPinIndex,
 }: LogRecordViewProps) => {
   return (
     <S.LogRecordLayout>
@@ -90,7 +94,14 @@ const LogRecordView = ({
         />
       )}
 
-      {pageStep === "LOG_RECORD_EDITING" && <LogRecordEdit />}
+      {pageStep === "LOG_RECORD_EDITING" && (
+        <LogRecordEdit
+          logData={logData}
+          currentPinIndex={currentPinIndex}
+          setLogData={setLogData}
+          setCurrentPinIndex={setCurrentPinIndex}
+        />
+      )}
     </S.LogRecordLayout>
   );
 };

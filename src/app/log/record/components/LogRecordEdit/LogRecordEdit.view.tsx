@@ -13,11 +13,31 @@ import * as S from "./LogRecordEdit.styles";
 import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { useForm } from "react-hook-form";
 import EditPencil from "@/components/icons/EditPencil";
+import { MasilRecordRequest } from "@/types/Request";
 
 interface LogRecordEditViewProps {
-  handleClickPin: (index: number) => void;
+  logData: MasilRecordRequest;
+  currentPinIndex: number;
+
+  onClickPin: (pinIndex: number) => void;
+  setPinData: (pinIndex: number, pinMemo: string) => void;
+  removePinData: (pinIndex: number) => void;
+  onImageUpload: (pinIndex: number, image: File) => void;
+  onSubmit: (memo: string) => void;
+  setCurrentPinIndex: (pinIndex: number) => void;
 }
-const LogRecordEditView = ({ handleClickPin }: LogRecordEditViewProps) => {
+
+const LogRecordEditView = ({
+  logData,
+  currentPinIndex,
+
+  onClickPin,
+  setPinData,
+  removePinData,
+  onImageUpload,
+  onSubmit,
+  setCurrentPinIndex,
+}: LogRecordEditViewProps) => {
   const { register } = useForm();
 
   return (
@@ -39,11 +59,11 @@ const LogRecordEditView = ({ handleClickPin }: LogRecordEditViewProps) => {
           <S.LogEditPinList>
             <S.LogEditPinItem>
               {/* TODO: 실제 데이터 바인딩 */}
-              <S.PinIndex backgroundcolor={Theme.lightTheme.green_500}>1</S.PinIndex>
+              <S.PinIndex $backgroundcolor={Theme.lightTheme.green_500}>1</S.PinIndex>
               <SlideButton
                 subChildren={"삭제"}
                 onButtonClickHandler={() => {
-                  handleClickPin(3);
+                  onClickPin(3);
                 }}
               >
                 {/* TODO: 해당 핀 데이터 들어있으면? 데이터 + 편집 아이콘, 없으면 내용을 작성해주세요 */}
@@ -69,6 +89,9 @@ const LogRecordEditView = ({ handleClickPin }: LogRecordEditViewProps) => {
             position: "fixed",
             bottom: "1.5rem",
             zIndex: 3,
+            maxWidth: "56rem",
+            left: "50%",
+            transform: "translateX(-50%)",
           }}
           width={"90%"}
           // onClickHandler={handleSubmit}
