@@ -1,8 +1,7 @@
 import React from "react";
-import AuthController from "./Auth.controller";
 
 const Auth = () => {
-  return <AuthController />;
+  return <div>Auth Page</div>;
 };
 
 export default Auth;
