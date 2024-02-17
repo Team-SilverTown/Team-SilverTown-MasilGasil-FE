@@ -54,5 +54,15 @@ export const PinDetailCardContent = styled.div<PinDetailCardContentProps>`
   h5 {
     margin-bottom: 1.5rem;
     font-weight: ${FONT_WEIGHT.SEMIBOLD};
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  p {
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 `;
