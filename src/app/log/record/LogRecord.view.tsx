@@ -11,17 +11,16 @@ import {
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
-import { GeoJSONPoint } from "@/types/OriginDataType";
-import { useEffect } from "react";
 import { Button } from "@/components";
 import { ChevronLeft } from "@/components/icons";
 import { OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
+import { GeoPosition } from "@/types/OriginDataType";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
   logData: MasilRecordRequest;
   watchCode: number;
-  userLocation: GeoJSONPoint;
+  userLocation: GeoPosition;
 
   setPageStep: SetPageStep;
   setWatchCode: SetWatchCode;

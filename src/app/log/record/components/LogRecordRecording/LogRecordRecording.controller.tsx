@@ -45,10 +45,7 @@ const LogRecordRecordingController = ({
       setLogData((prevData) => {
         return {
           ...prevData,
-          path: {
-            ...prevData.path,
-            coordinates: [...prevData.path.coordinates, [latitude, longitude]],
-          },
+          path: [...prevData.path, { lat: latitude, lng: longitude }],
         };
       });
     }, 5000),
