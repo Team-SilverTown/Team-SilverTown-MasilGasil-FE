@@ -11,10 +11,15 @@ const ButtonBaseWrapper = styled.button<any>`
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 
   background-color: ${(props) =>
     props.$buttonColor ? props.$buttonColor : props.theme.container_color};
-  color: ${(props) => (props.$textColor ? props.$textColor : "")};
+
+  &,
+  & > span {
+    color: ${(props) => (props.$textColor ? props.$textColor : "")};
+  }
 
   & .ripple > span {
     background-color: ${(props) =>

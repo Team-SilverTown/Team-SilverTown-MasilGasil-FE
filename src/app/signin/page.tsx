@@ -1,7 +1,8 @@
 import React from "react";
+import SignInController from "./SignIn.controller";
 
 const SignIn = () => {
-  return <div>SignInPage</div>;
+  return <SignInController />;
 };
 
 export default SignIn;

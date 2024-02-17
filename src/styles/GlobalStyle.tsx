@@ -2,6 +2,7 @@
 
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
+import { styled } from "twin.macro";
 
 export const GlobalStyle = createGlobalStyle<any>`
     ${normalize}
@@ -44,4 +45,15 @@ export const GlobalStyle = createGlobalStyle<any>`
       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     }
 
+`;
+
+export const CommonContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 2rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 100%;
+  height: 100%;
 `;

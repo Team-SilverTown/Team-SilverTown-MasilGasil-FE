@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 
 import * as S from "./InputLabel.styles";
 
@@ -8,6 +8,7 @@ interface InputLabelProps {
   fontSize?: string | number;
   fontColor?: string;
   position?: "start" | "center" | "end";
+  style?: CSSProperties;
 }
 
 const InputLabel = ({
@@ -16,9 +17,13 @@ const InputLabel = ({
   position = "start",
   fontSize,
   fontColor,
+  style,
 }: InputLabelProps) => {
   return (
-    <S.Label $position={position}>
+    <S.Label
+      $position={position}
+      style={{ ...style }}
+    >
       <S.Text
         $type={type}
         style={{ fontSize, color: fontColor }}
