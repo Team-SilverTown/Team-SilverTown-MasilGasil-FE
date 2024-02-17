@@ -14,7 +14,10 @@ import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { useForm } from "react-hook-form";
 import EditPencil from "@/components/icons/EditPencil";
 
-const LogRecordEditView = () => {
+interface LogRecordEditViewProps {
+  handleClickPin: (index: number) => void;
+}
+const LogRecordEditView = ({ handleClickPin }: LogRecordEditViewProps) => {
   const { register } = useForm();
 
   return (
@@ -26,8 +29,9 @@ const LogRecordEditView = () => {
         <S.LogEditContainer>
           <S.Header>메모</S.Header>
           <Input
-            register={register("content")}
+            register={register("logMemo")}
             style={{ height: "17rem" }}
+            placeholder="완료한 산책에 대한 간단한 메모를 작성해주세요."
           />
         </S.LogEditContainer>
         <S.LogEditContainer>
@@ -36,7 +40,12 @@ const LogRecordEditView = () => {
             <S.LogEditPinItem>
               {/* TODO: 실제 데이터 바인딩 */}
               <S.PinIndex backgroundcolor={Theme.lightTheme.green_500}>1</S.PinIndex>
-              <SlideButton subChildren={"삭제"}>
+              <SlideButton
+                subChildren={"삭제"}
+                onButtonClickHandler={() => {
+                  handleClickPin(3);
+                }}
+              >
                 {/* TODO: 해당 핀 데이터 들어있으면? 데이터 + 편집 아이콘, 없으면 내용을 작성해주세요 */}
                 <S.SlideButtonContent $textColor={Theme.lightTheme.gray_300}>
                   내용을 작성해주세요

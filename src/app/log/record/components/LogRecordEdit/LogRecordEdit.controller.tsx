@@ -1,6 +1,3 @@
-import { useEffect } from "react";
-import LogRecordEditView from "./LogRecordEdit.view";
-
 /**
  * @TODO
  * 1. View 인터페이스 작업
@@ -12,7 +9,13 @@ import LogRecordEditView from "./LogRecordEdit.view";
  * 7. 모션 애니메이션 적용
  */
 
+import { useEffect } from "react";
+import LogRecordEditView from "./LogRecordEdit.view";
+import { useUI } from "@/components/uiContext/UiContext";
+
 const LogRecordEditController = () => {
+  const { openModal, setModalView, closeModal } = useUI();
+
   useEffect(() => {
     // clean up
     return () => {
@@ -25,6 +28,23 @@ const LogRecordEditController = () => {
    * @params ()
    * @brief
    */
+
+  /**
+   * @func handleClickPin
+   * @params (pinIndex: number)
+   * @brief 특정 인덱스의 핀 정보를 담고 있는 Modal을 불러옵니다.
+   */
+
+  const handleClickPin = (index: number) => {
+    console.log(index);
+
+    setModalView("PIN_EDIT");
+    openModal({
+      onClickAccept: () => {
+        console.log(index);
+      },
+    });
+  };
 
   /**
    * @func setPinData
@@ -50,7 +70,7 @@ const LogRecordEditController = () => {
    * @brief 사용자가 핀 썸네일을 첨부하면 실행됩니다. API와 통신하여 이미지 파일을 서버에 저장, URL로 변환하여 반환받습니다. 성공적으로 반환받은 경우 썸네일 URL을 logData의 핀 인덱스에 저장합니다.
    */
 
-  return <LogRecordEditView />;
+  return <LogRecordEditView handleClickPin={handleClickPin} />;
 };
 
 export default LogRecordEditController;

@@ -5,7 +5,12 @@ import { ThemeProvider } from "styled-components";
 
 import { useLocalStorage } from "@lib/hooks/useLocalStorage";
 import { Modal } from "@components/Modal";
-import { CompleteRecordModal, LogInitConfirmModal, TestModal } from "@components/modalViews";
+import {
+  PinEditModal,
+  CompleteRecordModal,
+  LogInitConfirmModal,
+  TestModal,
+} from "@components/modalViews";
 import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
 import { darkTheme, lightTheme } from "@/styles/theme";
 
@@ -115,6 +120,7 @@ const ModalView = ({
       {modalView === "INIT_VIEW" && <TestModal />}
       {modalView === "LOG_INIT_CONFIRM" && <LogInitConfirmModal props={props} />}
       {modalView === "LOG_COMPLETE_RECORD" && <CompleteRecordModal props={props} />}
+      {modalView === "PIN_EDIT" && <PinEditModal props={props} />}
     </Modal>
   );
 };
