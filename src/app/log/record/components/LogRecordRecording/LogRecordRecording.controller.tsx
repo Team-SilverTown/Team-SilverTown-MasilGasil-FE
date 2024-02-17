@@ -1,23 +1,17 @@
 import { useCallback, useEffect, useRef } from "react";
 import LogRecordRecordingView from "./LogRecordRecording.view";
-import {
-  OnErrorWatcher,
-  SetLogData,
-  SetPageStep,
-  SetWatchCode,
-  UpdateUserLocation,
-} from "../../LogRecord.types";
+import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
 import { throttle } from "lodash";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { MasilRecordRequest } from "@/types/Request";
 import { useUI } from "@/components/uiContext/UiContext";
+import getTwoPointDistance from "../../func/getTwoPointDistance";
 
 interface LogRecordRecordingControllerProps {
   logData: MasilRecordRequest;
-  watchCode: number;
+
   setLogData: SetLogData;
   setPageStep: SetPageStep;
-  setWatchCode: SetWatchCode;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
 }
@@ -25,8 +19,6 @@ interface LogRecordRecordingControllerProps {
 const LogRecordRecordingController = ({
   logData,
   setLogData,
-  watchCode,
-  setWatchCode,
   setPageStep,
   onErrorWatcher,
   updateUserLocation,
@@ -42,10 +34,24 @@ const LogRecordRecordingController = ({
   const updatePath = useRef(
     throttle(({ coords }: GeolocationPosition) => {
       const { latitude, longitude } = coords;
+      const newPoint = { lat: latitude, lng: longitude };
+
       setLogData((prevData) => {
+        const { path } = prevData;
+        const prevPosition = path[path.length - 1];
+
+        if (prevPosition) {
+          const pointDistance = getTwoPointDistance(newPoint, prevPosition);
+
+          if (pointDistance < 10 || pointDistance > 200) {
+            console.log("걸러짐");
+            return prevData;
+          }
+        }
+
         return {
           ...prevData,
-          path: [...prevData.path, { lat: latitude, lng: longitude }],
+          path: [...prevData.path, newPoint],
         };
       });
     }, 5000),
@@ -58,7 +64,7 @@ const LogRecordRecordingController = ({
   ).current;
 
   useEffect(() => {
-    const newWatchCode = navigator.geolocation.watchPosition(
+    const watchCode = navigator.geolocation.watchPosition(
       (geoPosition: GeolocationPosition) => {
         updateUserLocation(geoPosition);
         updatePath(geoPosition);
@@ -66,7 +72,6 @@ const LogRecordRecordingController = ({
       onErrorWatcher,
       { enableHighAccuracy: true },
     );
-    setWatchCode(newWatchCode);
 
     const timerId = setInterval(increaseTime, 1000);
 
@@ -77,6 +82,14 @@ const LogRecordRecordingController = ({
   }, []);
 
   const handleClickCreatePin = useCallback(() => {
+    for (const { point: checkPin } of logData.pins) {
+      const pointDistance = getTwoPointDistance(userLocation, checkPin);
+
+      if (pointDistance < 10 /* M단위 */) {
+        return;
+      }
+    }
+
     const newPin = {
       point: userLocation,
       content: "",
@@ -87,7 +100,7 @@ const LogRecordRecordingController = ({
       ...prevData,
       pins: [...prevData.pins, newPin],
     }));
-  }, [userLocation]);
+  }, [userLocation, logData]);
 
   const handleClickCompleteRecord = () => {
     setModalView("CONFIRM");
