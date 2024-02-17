@@ -9,6 +9,7 @@ import { TestModal } from "@components/modalViews";
 import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import ConfirmModal from "../modalViews/ConfirmModal/ConfirmModal";
+import AlertModal from "../modalViews/AlertModal/AlertModal";
 
 export interface State {
   displayModal: boolean;
@@ -115,6 +116,7 @@ const ModalView = ({
     <Modal onClose={closeModal}>
       {modalView === "INIT_VIEW" && <TestModal />}
       {modalView === "CONFIRM" && <ConfirmModal props={props} />}
+      {modalView === "ALERT" && <AlertModal props={props} />}
     </Modal>
   );
 };
