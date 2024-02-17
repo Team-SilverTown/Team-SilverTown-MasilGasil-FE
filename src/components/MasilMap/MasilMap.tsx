@@ -4,7 +4,7 @@ import { GeoPosition, Pin } from "@/types/OriginDataType";
 import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
 import PathLine from "./components/PathLine/PathLine";
-import { useMemo } from "react";
+
 import { OnClickPin, OnCreatePathLine, PathLineWeight } from "./MasilMap.types";
 import CustomPin from "./components/CustomPin/CustomPin";
 
