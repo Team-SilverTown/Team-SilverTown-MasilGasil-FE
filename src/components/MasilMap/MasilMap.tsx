@@ -1,12 +1,6 @@
 import style from "./MasilMap.style.module.css";
 
-import {
-  GeoJSONLineString,
-  GeoJSONPoint,
-  KakaoFormatPin,
-  KakaoFormatPosition,
-  Pin,
-} from "@/types/OriginDataType";
+import { GeoPosition, Pin } from "@/types/OriginDataType";
 import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
 import PathLine from "./components/PathLine/PathLine";
@@ -15,8 +9,8 @@ import { OnClickPin, OnCreatePathLine, PathLineWeight } from "./MasilMap.types";
 import CustomPin from "./components/CustomPin/CustomPin";
 
 interface MasilMapProps {
-  center: GeoJSONPoint;
-  path: GeoJSONLineString;
+  center: GeoPosition;
+  path: GeoPosition[];
   pins: Pin[];
 
   draggable?: boolean;
@@ -95,39 +89,9 @@ const MasilMap = ({
   pinFontColor,
   selectedPinIndex,
 }: MasilMapProps) => {
-  const [lat, lng] = center.coordinates;
-  const centerPosition = { lat, lng };
-
-  /**
-   * @summary
-   * 기존 geoJSON 형식인 Position형태를 Kakao Api에서 사용 가능한 데이터 타입으로 변형합니다.
-   *
-   * ( geLocation.watchPosition으로 인해 많은 상태변화로 useMemo 사용 )
-   */
-  const kakaoFormatPath: KakaoFormatPosition[] = useMemo(() => {
-    return path.coordinates.map(([lat, lng]) => ({ lat, lng }));
-  }, [path]);
-
-  /**
-   * @summary
-   * 기존 geoJSON 형식인 PinList를 Kakao Api에서 사용 가능한 데이터 타입으로 변형합니다.
-   *
-   * ( geLocation.watchPosition으로 인해 많은 상태변화로 useMemo 사용 )
-   */
-  const kakaoFormatPins: KakaoFormatPin[] = useMemo(() => {
-    return pins.map((prevPoint) => {
-      const [lat, lng] = prevPoint.point.coordinates;
-
-      return {
-        ...prevPoint,
-        point: { lat, lng },
-      };
-    });
-  }, [pins]);
-
   return (
     <Map
-      center={centerPosition}
+      center={center}
       className={style.masil__map}
       draggable={draggable}
       zoomable={zoomable}
@@ -136,15 +100,15 @@ const MasilMap = ({
     >
       {isShowCenterMarker && (
         <CenterMarker
-          position={centerPosition}
+          position={center}
           size={centerMarkerSize}
           fill={centerMarkerFill}
         />
       )}
 
-      {kakaoFormatPath && (
+      {path.length !== 0 && (
         <PathLine
-          path={kakaoFormatPath}
+          path={path}
           onCreatePathLine={onCreatePathLine}
           pathColor={pathColor}
           pathOpacity={pathOpacity}
@@ -152,8 +116,8 @@ const MasilMap = ({
         />
       )}
 
-      {kakaoFormatPins &&
-        kakaoFormatPins.map(({ point }, index) => (
+      {pins.length !== 0 &&
+        pins.map(({ point }, index) => (
           <CustomPin
             key={`${point.lat}${point.lng}${index}`}
             position={point}

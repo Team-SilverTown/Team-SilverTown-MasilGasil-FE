@@ -1,11 +1,11 @@
-import { KakaoFormatPosition } from "@/types/OriginDataType";
 import { Polyline } from "react-kakao-maps-sdk";
 import { OnCreatePathLine, PathLineWeight } from "../../MasilMap.types";
 import { useCallback } from "react";
 import Theme from "@/styles/theme";
+import { GeoPosition } from "@/types/OriginDataType";
 
 interface PathLineProps {
-  path: KakaoFormatPosition[];
+  path: GeoPosition[];
   onCreatePathLine?: OnCreatePathLine;
 
   pathColor?: string;
