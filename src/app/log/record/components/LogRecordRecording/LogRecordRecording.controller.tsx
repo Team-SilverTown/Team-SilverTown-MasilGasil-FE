@@ -30,6 +30,8 @@ const LogRecordRecordingController = ({
    * @summary watch의 success 콜백에 들어가는 함수로 경로 값을 추가시켜줍니다.
    *
    * 단, throttle을 통해 5초에 한번 실행.
+   *
+   * 실행된 후 이전 경로보다 일정거리 이하 혹은 이상인 경우 종료.
    */
   const updatePath = useRef(
     throttle(({ coords }: GeolocationPosition) => {
@@ -43,8 +45,7 @@ const LogRecordRecordingController = ({
         if (prevPosition) {
           const pointDistance = getTwoPointDistance(newPoint, prevPosition);
 
-          if (pointDistance < 10 || pointDistance > 200) {
-            console.log("걸러짐");
+          if (pointDistance < 10 /* M 단위 */ || pointDistance > 200 /* M 단위 */) {
             return prevData;
           }
         }
@@ -57,6 +58,9 @@ const LogRecordRecordingController = ({
     }, 5000),
   ).current;
 
+  /**
+   * @summary 1초마다 증가하는 타이머
+   */
   const increaseTime = useRef(
     throttle(() => {
       setLogData((prevData) => ({ ...prevData, totalTime: prevData.totalTime + 1 }));
@@ -81,6 +85,11 @@ const LogRecordRecordingController = ({
     };
   }, []);
 
+  /**
+   * @summary 현재 위치에 핀을 추가하는 함수
+   *
+   * 특정 거리 이내에 핀이 존재할경우 찍히지 앟음.
+   */
   const handleClickCreatePin = useCallback(() => {
     for (const { point: checkPin } of logData.pins) {
       const pointDistance = getTwoPointDistance(userLocation, checkPin);
