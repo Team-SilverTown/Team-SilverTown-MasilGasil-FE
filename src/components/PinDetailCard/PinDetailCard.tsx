@@ -1,6 +1,6 @@
 import * as S from "./PinDetailCard.styles";
 
-interface PinDateCardProps {
+interface PinDetailCardProps {
   width?: number;
   height?: number;
   borderRadius?: number;
@@ -20,7 +20,7 @@ const PinDetailCard = ({
   thumbnailURL,
   index,
   PinTotalLength,
-}: PinDateCardProps) => {
+}: PinDetailCardProps) => {
   return (
     <S.PinDetailCardLayout
       width={width}
