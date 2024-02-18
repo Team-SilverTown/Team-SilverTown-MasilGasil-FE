@@ -71,6 +71,9 @@ const LogRecordEditView = ({
                         onButtonClickHandler={() => {
                           onClickPin(index);
                         }}
+                        onSubButtonClickHandler={() => {
+                          removePinData(index);
+                        }}
                       >
                         <S.SlideButtonContent $textColor={Theme.lightTheme.gray_300}>
                           {pin.content ? pin.content : "내용을 작성해주세요"}

@@ -6,41 +6,56 @@ import Image from "@/components/icons/Image";
 import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { Button, Input } from "@/components";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 interface ConfirmModalProps {
-  onClickAccept: () => void;
+  onClickAccept: (imageUrl: string | null, pinContent: string | null) => void;
   pin: Pin;
   pinIndex: number;
+  onUploadThumbnail: (pinIndex: number, image: File) => void;
 }
 
 interface ModalProp {
   props: ConfirmModalProps;
 }
 
-// TODO
-// ModalLayout 컴포넌트 TailwindCSS 제거 후 Styled-components 마이그레이션
+// TODO: ModalLayout 컴포넌트 Styled-components 마이그레이션
 
 const PinEditModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
-  const { onClickAccept, pin, pinIndex } = props;
-  const { register } = useForm();
+  const { onClickAccept, pin, pinIndex, onUploadThumbnail } = props;
+  const { register, watch } = useForm();
+  const watchPinMemo = watch("pinContent");
+
+  const [imageURL, setImageURL] = useState(null);
 
   if (!onClickAccept) {
     closeModal();
     return;
   }
 
+  const handleImageUpload = (event: React.MouseEvent) => {
+    // onUploadThumbnail(pinIndex,);
+    // TODO: 이미지 파일 업로드받음
+    // TODO: 이미지 서버에 전송, URL로 반환받음
+    // TODO: ImageURL State를 반환받은 URL로 갱신
+  };
+
   return (
     <ModalLayout modalTitle="핀 수정하기">
       <S.PinEditLayout>
-        <S.PinEditThumbnail
-        // onClick={handleUploadThumbnail}
-        >
-          <Image
-            width={40}
-            fill={Theme.lightTheme.gray_300}
-          />
-          클릭하여 썸네일 업로드
+        <S.PinEditThumbnail onClick={handleImageUpload}>
+          {imageURL ? (
+            <S.Image $src={imageURL} />
+          ) : (
+            <>
+              <Image
+                width={40}
+                fill={Theme.lightTheme.gray_300}
+              />
+              클릭하여 썸네일 업로드
+            </>
+          )}
         </S.PinEditThumbnail>
 
         <S.PinEditContainer>
@@ -60,7 +75,9 @@ const PinEditModal = ({ props }: ModalProp) => {
             fontWeight: FONT_WEIGHT.BOLD,
             fontSize: FONT_SIZE.LARGE,
           }}
-          // onClickHandler={handleSubmit}
+          onClickHandler={() => {
+            onClickAccept(imageURL, watchPinMemo);
+          }}
         >
           수정 완료
         </Button>

@@ -86,10 +86,33 @@ const LogRecordController = () => {
     setCurrentPinIndex(pinIndex);
     setModalView("PIN_EDIT");
     openModal({
-      onClickAccept: () => {
-        // TODO: 작성한 핀 메모를 logData에 저장
-        // TODO: Modal Close될 경우 currentPinIndex 초기화
+      onClickAccept: (imageUrl: string | null, pinContent: string | null) => {
+        /**
+         * @brief 핀 모달을 통해 입력받은 썸네일 이미지 혹은 메모를 logData에 저장합니다. 이후 모달을 닫고 currentPinIndex를 초기화합니다.
+         */
+
+        if (imageUrl) {
+          setLogData((prevData) => {
+            const newPins = [...prevData.pins];
+            newPins[pinIndex].thumbnailUrl = imageUrl;
+
+            return { ...prevData, pins: newPins };
+          });
+        }
+
+        if (pinContent) {
+          setLogData((prevData) => {
+            const newPins = [...prevData.pins];
+            newPins[pinIndex].content = pinContent;
+
+            return { ...prevData, pins: newPins };
+          });
+        }
+
+        closeModal();
+        setCurrentPinIndex(-1);
       },
+      pinIndex,
     });
   };
 

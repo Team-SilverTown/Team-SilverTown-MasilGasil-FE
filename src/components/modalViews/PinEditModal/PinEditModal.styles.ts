@@ -31,3 +31,9 @@ export const Header = styled.h1`
   font-size: ${FONT_SIZE.H6};
   font-weight: ${FONT_WEIGHT.BOLD};
 `;
+
+export const Image = styled.img<{ $src: string }>`
+  src: $src;
+  width: 100%;
+  height: 100%;
+`;
