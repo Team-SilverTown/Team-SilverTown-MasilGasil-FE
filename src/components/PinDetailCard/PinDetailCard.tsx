@@ -22,7 +22,7 @@ const PinDetailCard = ({
   PinTotalLength,
 }: PinDateCardProps) => {
   return (
-    <S.PinDetailCardContainer
+    <S.PinDetailCardLayout
       width={width}
       height={height}
       borderRadius={borderRadius}
@@ -43,7 +43,7 @@ const PinDetailCard = ({
         <h5>{title}</h5>
         <p>{content}</p>
       </S.PinDetailCardContent>
-    </S.PinDetailCardContainer>
+    </S.PinDetailCardLayout>
   );
 };
 

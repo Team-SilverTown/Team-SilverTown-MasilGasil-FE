@@ -3,7 +3,7 @@
 import { FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
-interface PinDetailCardContainerProps {
+interface PinDetailCardLayoutProps {
   width: number;
   height: number;
   borderRadius: number;
@@ -20,7 +20,7 @@ interface PinDetailCardContentProps {
   borderRadius: number;
 }
 
-export const PinDetailCardContainer = styled.div<PinDetailCardContainerProps>`
+export const PinDetailCardLayout = styled.div<PinDetailCardLayoutProps>`
   display: flex;
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};
