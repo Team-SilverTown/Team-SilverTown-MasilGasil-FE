@@ -112,7 +112,7 @@ const LogRecordRecordingController = ({
   }, [userLocation, logData]);
 
   const handleClickCompleteRecord = () => {
-    setModalView("CONFIRM");
+    setModalView("LOG_RECORD_CONFIRM_VIEW");
     openModal({
       onClickAccept: () => {
         setPageStep("LOG_RECORD_EDITING");
