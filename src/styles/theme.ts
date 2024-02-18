@@ -93,14 +93,14 @@ export const BORDER = {
 };
 
 export const CONTAINER = {
-  PADDING_VERTICAL: 2, // rem
-  PADDING_HORIZONTAL: 2.5, // rem
+  PADDING_VERTICAL: 1, // rem
+  PADDING_HORIZONTAL: 1.5, // rem
 
   MOBILEABLE_HORIZONTAL_SPACE: "w-[100%] sm:max-w-[420px]",
   MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen",
 };
 
-export const NAV_HEIGHT: number = 3; // 3.75 rem
+export const NAV_HEIGHT: number = 6; // rem
 
 export const MODAL = {
   VERTICAL_PADDING: 3, // rem
