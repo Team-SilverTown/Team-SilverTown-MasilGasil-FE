@@ -14,14 +14,12 @@ import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { useForm } from "react-hook-form";
 import EditPencil from "@/components/icons/EditPencil";
 import { MasilRecordRequest } from "@/types/Request";
-import { useEffect } from "react";
 
 interface LogRecordEditViewProps {
   logData: MasilRecordRequest;
   currentPinIndex: number;
 
   onClickPin: (pinIndex: number) => void;
-  setPinData: (pinIndex: number, pinMemo: string) => void;
   removePinData: (pinIndex: number) => void;
   onImageUpload: (pinIndex: number, image: File) => void;
   onSubmit: (memo: string) => void;
@@ -33,7 +31,6 @@ const LogRecordEditView = ({
   currentPinIndex,
 
   onClickPin,
-  setPinData,
   removePinData,
   onImageUpload,
   onSubmit,

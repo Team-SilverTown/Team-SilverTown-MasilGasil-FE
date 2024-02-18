@@ -15,6 +15,7 @@ import { SetLogData } from "../../LogRecord.types";
 import { MasilRecordRequest } from "@/types/Request";
 import { OnClickPin } from "@/components/MasilMap/MasilMap.types";
 import { DEFAULT_LOG_DATA } from "../../LogRecord.constants";
+import useUserLocationStore from "@/stores/useUserLocationStore";
 
 interface LogRecordEditControllerProps {
   logData: MasilRecordRequest;
@@ -33,11 +34,18 @@ const LogRecordEditController = ({
   setCurrentPinIndex,
   onClickPin,
 }: LogRecordEditControllerProps) => {
+  const { setUserLocation } = useUserLocationStore();
+
   useEffect(() => {
-    // clean up
     return () => {
-      console.log("Edit Component CleanUp");
-      // TODO: 그려진 경로 좌표들을 기반으로, 맵의 중간점을 갱신
+      const pathLength = logData.path.length;
+      const latAvg = logData.path.reduce((total, point) => total + point.lat, 0) / pathLength;
+      const lngAvg = logData.path.reduce((total, point) => total + point.lng, 0) / pathLength;
+
+      // TODO: 배포 후 테스트 필요
+      if (latAvg && lngAvg) {
+        setUserLocation({ lat: latAvg, lng: lngAvg });
+      }
     };
   }, []);
 
@@ -91,7 +99,6 @@ const LogRecordEditController = ({
       logData={logData}
       currentPinIndex={currentPinIndex}
       onClickPin={onClickPin}
-      setPinData={setPinData}
       removePinData={removePinData}
       onImageUpload={handleImageUpload}
       onSubmit={handleSubmit}
