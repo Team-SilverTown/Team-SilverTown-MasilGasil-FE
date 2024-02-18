@@ -5,7 +5,7 @@ import { throttle } from "lodash";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { MasilRecordRequest } from "@/types/Request";
 import { useUI } from "@/components/uiContext/UiContext";
-import getTwoPointDistance from "../../func/getTwoPointDistance";
+import getTwoPointDistance from "../../utiles/getTwoPointDistance";
 
 interface LogRecordRecordingControllerProps {
   logData: MasilRecordRequest;
