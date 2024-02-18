@@ -1,0 +1,1 @@
+export type MODAL_VIEWS = "INIT_VIEW" | "LOG_INIT_CONFIRM";
