@@ -8,8 +8,8 @@ import { Modal } from "@components/Modal";
 import { TestModal } from "@components/modalViews";
 import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
 import { darkTheme, lightTheme } from "@/styles/theme";
-import ConfirmModal from "../modalViews/ConfirmModal/ConfirmModal";
-import AlertModal from "../modalViews/AlertModal/AlertModal";
+import ConfirmModal from "../modalViews/LogRecordConfirmModal/ConfirmModal";
+import AlertModal from "../modalViews/LogRecordAlertModal/AlertModal";
 
 export interface State {
   displayModal: boolean;

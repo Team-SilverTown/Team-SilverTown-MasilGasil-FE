@@ -1,10 +1,10 @@
 import { Button } from "@/components";
-import * as S from "./ConfirmModal.styles";
+import * as S from "./LogRecordConfirmModal.styles";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { useUI } from "@/components/uiContext/UiContext";
 import { ModalLayout } from "@/components/Modal";
 
-interface ConfirmModalProps {
+interface LogRecordConfirmModalProps {
   message: string;
   warningMessage?: string;
   acceptButtonText?: string;
@@ -13,7 +13,7 @@ interface ConfirmModalProps {
 }
 
 interface ModalProp {
-  props: ConfirmModalProps;
+  props: LogRecordConfirmModalProps;
 }
 
 const ConfirmModal = ({ props }: ModalProp) => {
@@ -33,12 +33,14 @@ const ConfirmModal = ({ props }: ModalProp) => {
 
   return (
     <ModalLayout>
-      <S.ConfirmModalLayout>
-        <S.ConfirmModalMessage>{message}</S.ConfirmModalMessage>
+      <S.LogRecordConfirmModalLayout>
+        <S.LogRecordConfirmModalMessage>{message}</S.LogRecordConfirmModalMessage>
 
-        {warningMessage && <S.ConfirmModalWarning>{warningMessage}</S.ConfirmModalWarning>}
+        {warningMessage && (
+          <S.LogRecordConfirmModalWarning>{warningMessage}</S.LogRecordConfirmModalWarning>
+        )}
 
-        <S.ConfirmModalActionsContainer>
+        <S.LogRecordConfirmModalActionsContainer>
           <Button
             variant="neumorp"
             buttonColor={Theme.lightTheme.gray_200}
@@ -58,8 +60,8 @@ const ConfirmModal = ({ props }: ModalProp) => {
           >
             {acceptButtonText}
           </Button>
-        </S.ConfirmModalActionsContainer>
-      </S.ConfirmModalLayout>
+        </S.LogRecordConfirmModalActionsContainer>
+      </S.LogRecordConfirmModalLayout>
     </ModalLayout>
   );
 };
