@@ -1,20 +1,20 @@
 import { useUI } from "@/components/uiContext/UiContext";
-import * as S from "./AlertModal.styles";
+import * as S from "./LogRecordAlertModal.styles";
 import { ModalLayout } from "@/components/Modal";
 import { Button } from "@/components";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import React from "react";
 
-interface AlertModalProps {
+interface LogRecordAlertModalProps {
   message: React.ReactNode;
   cancelButtonText?: string;
 }
 
 interface ModalProp {
-  props: AlertModalProps;
+  props: LogRecordAlertModalProps;
 }
 
-const AlertModal = ({ props }: ModalProp) => {
+const LogRecordAlertModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
   const { message, cancelButtonText = "닫기" } = props;
 
@@ -25,8 +25,8 @@ const AlertModal = ({ props }: ModalProp) => {
 
   return (
     <ModalLayout>
-      <S.AlertModalLayout>
-        <S.AlertModalMessage>{message}</S.AlertModalMessage>
+      <S.LogRecordAlertModalLayout>
+        <S.LogRecordAlertModalMessage>{message}</S.LogRecordAlertModalMessage>
         <Button
           variant="neumorp"
           buttonColor={Theme.lightTheme.gray_200}
@@ -35,9 +35,9 @@ const AlertModal = ({ props }: ModalProp) => {
         >
           {cancelButtonText}
         </Button>
-      </S.AlertModalLayout>
+      </S.LogRecordAlertModalLayout>
     </ModalLayout>
   );
 };
 
-export default AlertModal;
+export default LogRecordAlertModal;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
-export const AlertModalLayout = styled.div`
+export const LogRecordAlertModalLayout = styled.div`
   width: 32rem;
   padding: 0 2rem;
 
@@ -11,7 +11,7 @@ export const AlertModalLayout = styled.div`
   user-select: none;
 `;
 
-export const AlertModalMessage = styled.p`
+export const LogRecordAlertModalMessage = styled.p`
   width: 100%;
   padding: 5rem 0 4rem 0;
 
