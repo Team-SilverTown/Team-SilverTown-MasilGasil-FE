@@ -1,6 +1,6 @@
 import * as S from "./PinDetailCard.styles";
 
-interface PinDetailCardProps {
+export interface PinDetailCardProps {
   width?: number;
   height?: number;
   borderRadius?: number;
