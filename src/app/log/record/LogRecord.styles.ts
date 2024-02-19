@@ -70,6 +70,8 @@ export const LogRecordActions = styled.div<LogRecordStyleProps>`
   justify-content: end;
   gap: 1.6rem;
 
+  opacity: 0.9;
+
   ${({ $pageStep }) => $pageStep === "LOG_RECORD_STANDBY" && isStandbyStep}
   ${({ $pageStep }) => $pageStep === "LOG_RECORD_EDITING" && isEditStep}
 `;
