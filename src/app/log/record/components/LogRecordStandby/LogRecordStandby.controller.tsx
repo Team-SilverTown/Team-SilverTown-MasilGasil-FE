@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
 import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
 import { useUI } from "@/components/uiContext/UiContext";
+import useUserLocationStore from "@/stores/useUserLocationStore";
 
 interface LogRecordStandbyControllerProps {
   setPageStep: SetPageStep;
@@ -17,6 +18,7 @@ const LogRecordStandbyController = ({
   updateUserLocation,
 }: LogRecordStandbyControllerProps) => {
   const { setModalView, openModal } = useUI();
+  const { setUserLocation } = useUserLocationStore();
 
   useEffect(() => {
     /**
@@ -66,13 +68,17 @@ const LogRecordStandbyController = ({
           },
         }));
       });
+
+      /* TODO
+        추후 getCurrentPosition 이 실행되는 동안의 Loading Spinner 추가
+      */
+      setPageStep("LOG_RECORD_RECORDING");
+      setUserLocation({ lat: latitude, lng: longitude });
     };
 
     navigator.geolocation.getCurrentPosition(updateAddress, onErrorWatcher, {
       enableHighAccuracy: true,
     });
-
-    setPageStep("LOG_RECORD_RECORDING");
   };
 
   return <LogRecordStandbyView onClick={handleStartRecord} />;
