@@ -11,9 +11,6 @@ export const LogRecordActionLayout = styled.div`
   flex-direction: column;
   align-items: end;
 
-  position: absolute;
-  bottom: 0;
-
   opacity: 0.9;
   user-select: none;
 `;

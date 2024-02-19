@@ -11,9 +11,10 @@ import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./component
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { Button } from "@/components";
-import { ChevronLeft } from "@/components/icons";
+import { ChevronLeft, Pin } from "@/components/icons";
 import { OnClickPin, OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
 import { GeoPosition } from "@/types/OriginDataType";
+import Center from "@/components/icons/Center";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
@@ -30,6 +31,7 @@ interface LogRecordViewProps {
   onClickPin: OnClickPin;
   onCreatePathLine: OnCreatePathLine;
   setCurrentPinIndex: (pinIndex: number) => void;
+  handleOffIsOutCenter: () => void;
 }
 
 const LogRecordView = ({
@@ -46,6 +48,7 @@ const LogRecordView = ({
   onClickPin,
   onCreatePathLine,
   setCurrentPinIndex,
+  handleOffIsOutCenter,
 }: LogRecordViewProps) => {
   return (
     <S.LogRecordLayout>
@@ -72,34 +75,54 @@ const LogRecordView = ({
         </Button>
       </S.LogRecordTop>
 
-      {pageStep === "LOG_RECORD_STANDBY" && (
-        <LogRecordStandby
-          setLogData={setLogData}
-          setPageStep={setPageStep}
-          onErrorWatcher={onErrorWatcher}
-          updateUserLocation={updateUserLocation}
-        />
-      )}
+      <S.LogRecordStepLayout $pageStep={pageStep}>
+        <S.LogRecordActions $pageStep={pageStep}>
+          {pageStep === "LOG_RECORD_RECORDING" && (
+            <Button
+              variant="neumorp"
+              onClickHandler={handleOffIsOutCenter}
+            >
+              <Pin />
+            </Button>
+          )}
 
-      {pageStep === "LOG_RECORD_RECORDING" && (
-        <LogRecordRecording
-          logData={logData}
-          setLogData={setLogData}
-          setPageStep={setPageStep}
-          onErrorWatcher={onErrorWatcher}
-          updateUserLocation={updateUserLocation}
-        />
-      )}
+          <Button
+            variant="neumorp"
+            onClickHandler={handleOffIsOutCenter}
+          >
+            <Center />
+          </Button>
+        </S.LogRecordActions>
 
-      {pageStep === "LOG_RECORD_EDITING" && (
-        <LogRecordEdit
-          logData={logData}
-          currentPinIndex={currentPinIndex}
-          setLogData={setLogData}
-          setCurrentPinIndex={setCurrentPinIndex}
-          onClickPin={onClickPin}
-        />
-      )}
+        {pageStep === "LOG_RECORD_STANDBY" && (
+          <LogRecordStandby
+            setLogData={setLogData}
+            setPageStep={setPageStep}
+            onErrorWatcher={onErrorWatcher}
+            updateUserLocation={updateUserLocation}
+          />
+        )}
+
+        {pageStep === "LOG_RECORD_RECORDING" && (
+          <LogRecordRecording
+            logData={logData}
+            setLogData={setLogData}
+            setPageStep={setPageStep}
+            onErrorWatcher={onErrorWatcher}
+            updateUserLocation={updateUserLocation}
+          />
+        )}
+
+        {pageStep === "LOG_RECORD_EDITING" && (
+          <LogRecordEdit
+            logData={logData}
+            currentPinIndex={currentPinIndex}
+            setLogData={setLogData}
+            setCurrentPinIndex={setCurrentPinIndex}
+            onClickPin={onClickPin}
+          />
+        )}
+      </S.LogRecordStepLayout>
     </S.LogRecordLayout>
   );
 };
