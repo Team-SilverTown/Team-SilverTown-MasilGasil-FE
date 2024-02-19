@@ -1,14 +1,3 @@
-/**
- * @TODO
- * 1. View 인터페이스 작업
- * 2. 모달 인터페이스 작업
- * 3. Props 작업
- * 4. 로직 작업
- * 5. 데이터, 로직 바인딩
- * 6. 예외처리 및 에러 핸들링
- * 7. 모션 애니메이션 적용
- */
-
 import { useEffect } from "react";
 import LogRecordEditView from "./LogRecordEdit.view";
 import { SetLogData } from "../../LogRecord.types";
@@ -86,6 +75,9 @@ const LogRecordEditController = ({
     // TODO: logData 전송, 전송 중 로딩스피너 + 전송 완료 시 데이터 초기화
 
     // setLogData(DEFAULT_LOG_DATA);
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      setUserLocation({ lat: coords.latitude, lng: coords.longitude });
+    });
   };
 
   return (
