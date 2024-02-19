@@ -4,7 +4,6 @@ import React, { ReactNode } from "react";
 import { FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 
 import * as GS from "@/styles/GlobalStyle";
-import { Button } from "@/components";
 
 import { SignInHelper, StepButton, StepLayout } from "./components";
 import { SignInFormProps } from "./SignIn.controller";
@@ -14,7 +13,6 @@ interface SignInViewProps {
   stepViews: ReactNode[];
   focusedStep: number;
   prevFocusedStep: number;
-  onPrevButtonHandler: () => void;
   onNextButtonHandler: () => void;
   handleSubmit: UseFormHandleSubmit<SignInFormProps, SignInFormProps>;
   onValid: (data: SignInFormProps) => void;
@@ -27,7 +25,6 @@ const SignInView = ({
   focusedStep,
   prevFocusedStep,
   onNextButtonHandler,
-  onPrevButtonHandler,
   handleSubmit,
   onValid,
   onInvalid,
