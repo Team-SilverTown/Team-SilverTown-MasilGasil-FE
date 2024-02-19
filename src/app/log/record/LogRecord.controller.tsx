@@ -8,13 +8,15 @@ import { useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
 import { useUI } from "@/components/uiContext/UiContext";
+import useMapCenterStore from "@/components/MasilMap/store/useMapCenterStore";
+import getTwoPointDistance from "./utils/getTwoPointDistance";
 
 const LogRecordController = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
   const { pageStep, setPageStep, logData, setLogData, currentPinIndex, setCurrentPinIndex } =
     useLogRecordModel();
-
+  const { setIsOutCenter } = useMapCenterStore();
   const router = useRouter();
 
   // TODO: 강남역에서 내 위치로 갱신될 때까지 loading spinner 및 pin 찍을 수 없게
@@ -90,6 +92,32 @@ const LogRecordController = () => {
     }));
   }, []);
 
+  /**
+   * @summary 현재 위치에 핀을 추가하는 함수
+   *
+   * 특정 거리 이내에 핀이 존재할경우 찍히지 앟음.
+   */
+  const handleClickCreatePin = useCallback(() => {
+    for (const { point: checkPin } of logData.pins) {
+      const pointDistance = getTwoPointDistance(userLocation, checkPin);
+
+      if (pointDistance < 10 /* M단위 */) {
+        return;
+      }
+    }
+
+    const newPin = {
+      point: userLocation,
+      content: "",
+      thumbnailUrl: null,
+    };
+
+    setLogData((prevData) => ({
+      ...prevData,
+      pins: [...prevData.pins, newPin],
+    }));
+  }, [userLocation, logData]);
+
   const handleClickPin = (pinIndex: number) => {
     setCurrentPinIndex(pinIndex);
     setModalView("PIN_EDIT");
@@ -140,6 +168,10 @@ const LogRecordController = () => {
     setCurrentPinIndex(-1);
   };
 
+  const handleOffIsOutCenter = () => {
+    setIsOutCenter(false);
+  };
+
   return (
     <LogRecordView
       pageStep={pageStep}
@@ -154,6 +186,8 @@ const LogRecordController = () => {
       onCreatePathLine={handleDistanceCalculation}
       currentPinIndex={currentPinIndex}
       setCurrentPinIndex={setCurrentPinIndex}
+      handleOffIsOutCenter={handleOffIsOutCenter}
+      handleClickCreatePin={handleClickCreatePin}
     />
   );
 };

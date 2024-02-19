@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import LogRecordRecordingView from "./LogRecordRecording.view";
 import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
 import { throttle } from "lodash";
-import useUserLocationStore from "@/stores/useUserLocationStore";
 import { MasilRecordRequest } from "@/types/Request";
 import { useUI } from "@/components/uiContext/UiContext";
 import getTwoPointDistance from "../../utils/getTwoPointDistance";
@@ -23,7 +22,6 @@ const LogRecordRecordingController = ({
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordRecordingControllerProps) => {
-  const { userLocation } = useUserLocationStore();
   const { openModal, setModalView, closeModal } = useUI();
 
   /**
@@ -65,8 +63,6 @@ const LogRecordRecordingController = ({
     }, 5000),
   ).current;
 
-  console.log(logData);
-
   useEffect(() => {
     const watchCode = navigator.geolocation.watchPosition(
       (geoPosition: GeolocationPosition) => {
@@ -85,32 +81,6 @@ const LogRecordRecordingController = ({
     };
   }, []);
 
-  /**
-   * @summary 현재 위치에 핀을 추가하는 함수
-   *
-   * 특정 거리 이내에 핀이 존재할경우 찍히지 앟음.
-   */
-  const handleClickCreatePin = useCallback(() => {
-    for (const { point: checkPin } of logData.pins) {
-      const pointDistance = getTwoPointDistance(userLocation, checkPin);
-
-      if (pointDistance < 10 /* M단위 */) {
-        return;
-      }
-    }
-
-    const newPin = {
-      point: userLocation,
-      content: "",
-      thumbnailUrl: null,
-    };
-
-    setLogData((prevData) => ({
-      ...prevData,
-      pins: [...prevData.pins, newPin],
-    }));
-  }, [userLocation, logData]);
-
   const handleClickCompleteRecord = () => {
     setModalView("LOG_RECORD_CONFIRM_VIEW");
     openModal({
@@ -127,7 +97,6 @@ const LogRecordRecordingController = ({
   return (
     <LogRecordRecordingView
       logData={logData}
-      handleClickCreatePin={handleClickCreatePin}
       handleClickCompleteRecord={handleClickCompleteRecord}
     />
   );

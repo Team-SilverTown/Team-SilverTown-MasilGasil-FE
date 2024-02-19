@@ -32,6 +32,7 @@ interface LogRecordViewProps {
   onCreatePathLine: OnCreatePathLine;
   setCurrentPinIndex: (pinIndex: number) => void;
   handleOffIsOutCenter: () => void;
+  handleClickCreatePin: () => void;
 }
 
 const LogRecordView = ({
@@ -49,6 +50,7 @@ const LogRecordView = ({
   onCreatePathLine,
   setCurrentPinIndex,
   handleOffIsOutCenter,
+  handleClickCreatePin,
 }: LogRecordViewProps) => {
   return (
     <S.LogRecordLayout>
@@ -80,7 +82,7 @@ const LogRecordView = ({
           {pageStep === "LOG_RECORD_RECORDING" && (
             <Button
               variant="neumorp"
-              onClickHandler={handleOffIsOutCenter}
+              onClickHandler={handleClickCreatePin}
             >
               <Pin />
             </Button>
