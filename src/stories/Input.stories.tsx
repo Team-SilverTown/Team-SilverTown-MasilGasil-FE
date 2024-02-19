@@ -47,8 +47,6 @@ export const Invalid = (args: any) => {
 export const WithLabel = (args: any) => {
   const { register } = useForm<TestProps>();
 
-  console.log(register);
-
   return (
     <div style={{ display: "flex", flexDirection: "column", width: 500, height: 500, gap: 5 }}>
       <Input

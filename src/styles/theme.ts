@@ -25,6 +25,7 @@ export const lightTheme = {
 
   yellow_500: "#F7BC01",
 
+  green_100: "#f1f5eb",
   green_300: "#B9DB56",
   green_500: "#81BB26",
 
@@ -63,6 +64,7 @@ export const darkTheme = {
 
   yellow_500: "#F7BC01",
 
+  green_100: "#f1f5eb",
   green_300: "#B9DB56",
   green_500: "#81BB26",
 

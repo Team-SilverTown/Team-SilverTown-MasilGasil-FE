@@ -1,7 +1,7 @@
 import tw from "twin.macro";
 import styled from "styled-components";
 
-import { MODAL, Z_INDEX } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT, MODAL, Z_INDEX } from "@/styles/theme";
 
 export const ModalContainer = styled.div`
   z-index: ${Z_INDEX.MODAL};
@@ -32,6 +32,11 @@ export const ModalLayoutHeader = styled.section`
 
 export const ModalHeaderTitle = styled.span`
   ${tw`relative text-center w-[70%] truncate m-auto text-lg font-semibold`}
+
+  display: flex;
+  justify-content: center;
+  font-size: ${FONT_SIZE.H4};
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
 export const ModalHeaderButton = styled.button`
