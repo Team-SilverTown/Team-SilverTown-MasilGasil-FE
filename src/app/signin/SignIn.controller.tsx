@@ -6,6 +6,9 @@ import { FieldErrors, useForm } from "react-hook-form";
 import useSignInModel from "./SignIn.model";
 import SignInView from "./SignIn.view";
 import { SignInStep1, SignInStep2, SignInStep3, SignInStep4 } from "./sections";
+import { TopNavigator } from "@/components/navigators/TopNavagtor";
+import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavagtor/components";
+import { useRouter } from "next/navigation";
 
 export interface SignInFormProps {
   nickname: string;
@@ -19,7 +22,11 @@ export interface SignInFormProps {
   policy3: boolean;
 }
 
+const LAST_STEP_INDEX = 3;
+
 const SignInController = () => {
+  const router = useRouter();
+
   const { focusedStep, setFocusedStep } = useSignInModel();
   const prevFocusedStep = useRef(focusedStep);
 
@@ -54,7 +61,7 @@ const SignInController = () => {
   const stepValidations = [isStep1Validate, true, true, true];
 
   const nextButtonClickHandler = () => {
-    if (focusedStep >= stepViews.length - 1) return;
+    if (focusedStep >= LAST_STEP_INDEX) return;
 
     prevFocusedStep.current = focusedStep;
     setFocusedStep((focusedStep) => focusedStep + 1);
@@ -62,7 +69,10 @@ const SignInController = () => {
 
   // 테스트용
   const prevButtonClickHandler = () => {
-    if (focusedStep === 0) return;
+    if (focusedStep === 0) {
+      router.back();
+      return;
+    }
 
     prevFocusedStep.current = focusedStep;
     setFocusedStep((focusedStep) => focusedStep - 1);
@@ -82,17 +92,29 @@ const SignInController = () => {
   ];
 
   return (
-    <SignInView
-      stepViews={stepViews}
-      focusedStep={focusedStep}
-      prevFocusedStep={prevFocusedStep.current}
-      onNextButtonHandler={nextButtonClickHandler}
-      onPrevButtonHandler={prevButtonClickHandler}
-      handleSubmit={handleSubmit}
-      onValid={onValid}
-      onInvalid={onInvalid}
-      stepValidations={stepValidations}
-    />
+    <>
+      <TopNavigator
+        leftChildren={<GoBackButton onGoBackHandler={prevButtonClickHandler} />}
+        rightChildren={
+          focusedStep === 0 ||
+          (focusedStep !== LAST_STEP_INDEX && (
+            <StepSkipButton onSkipHandler={nextButtonClickHandler} />
+          ))
+        }
+        title="회원가입"
+      />
+      <SignInView
+        stepViews={stepViews}
+        focusedStep={focusedStep}
+        prevFocusedStep={prevFocusedStep.current}
+        onNextButtonHandler={nextButtonClickHandler}
+        onPrevButtonHandler={prevButtonClickHandler}
+        handleSubmit={handleSubmit}
+        onValid={onValid}
+        onInvalid={onInvalid}
+        stepValidations={stepValidations}
+      />
+    </>
   );
 };
 
