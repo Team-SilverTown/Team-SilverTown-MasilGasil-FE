@@ -13,6 +13,21 @@ export const PinEditLayout = styled.div`
 `;
 
 export const PinEditContainer = styled.div``;
+export const PinEditRemoveContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.3rem;
+`;
+
+export const PinEditRemoveText = styled.div`
+  cursor: pointer;
+  font-weight: ${FONT_WEIGHT.BOLD};
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 export const PinEditThumbnail = styled.div`
   width: 100%;

@@ -112,8 +112,24 @@ const LogRecordController = () => {
         closeModal();
         setCurrentPinIndex(-1);
       },
+      onClickRemove: (pinIndex: number) => {
+        handleRemovePin(pinIndex);
+        closeModal();
+      },
       pinIndex,
     });
+  };
+
+  /**
+   * @func handleRemovePin
+   * @params (pinIndex: number)
+   * @brief 특정 인덱스의 핀을 제거합니다.
+   */
+  const handleRemovePin = (pinIndex: number) => {
+    setLogData((prevData) => {
+      return { ...prevData, pins: prevData.pins.filter((_, index) => index !== pinIndex) };
+    });
+    setCurrentPinIndex(-1);
   };
 
   return (

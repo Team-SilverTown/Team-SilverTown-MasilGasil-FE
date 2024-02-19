@@ -50,12 +50,6 @@ const LogRecordEditController = ({
   }, []);
 
   /**
-   * @func
-   * @params ()
-   * @brief
-   */
-
-  /**
    * @func removePinData
    * @params (pinIndex: number)
    * @brief 특정 인덱스의 핀을 제거합니다.

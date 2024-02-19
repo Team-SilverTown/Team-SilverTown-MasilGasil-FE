@@ -7,23 +7,23 @@ import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { Button, Input } from "@/components";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { Trash } from "@/components/icons";
 
 interface ConfirmModalProps {
   onClickAccept: (imageUrl: string | null, pinContent: string | null) => void;
   pin: Pin;
   pinIndex: number;
   onUploadThumbnail: (pinIndex: number, image: File) => void;
+  onClickRemove: (pinIndex: number) => void;
 }
 
 interface ModalProp {
   props: ConfirmModalProps;
 }
 
-// TODO: ModalLayout 컴포넌트 Styled-components 마이그레이션
-
 const PinEditModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
-  const { onClickAccept, pin, pinIndex, onUploadThumbnail } = props;
+  const { onClickAccept, pin, pinIndex, onUploadThumbnail, onClickRemove } = props;
   const { register, watch } = useForm();
   const watchPinMemo = watch("pinContent");
 
@@ -57,7 +57,6 @@ const PinEditModal = ({ props }: ModalProp) => {
             </>
           )}
         </S.PinEditThumbnail>
-
         <S.PinEditContainer>
           <S.Header>핀 메모</S.Header>
 
@@ -81,6 +80,16 @@ const PinEditModal = ({ props }: ModalProp) => {
         >
           수정 완료
         </Button>
+        <S.PinEditRemoveContainer>
+          <Trash width={"1.5rem"} />
+          <S.PinEditRemoveText
+            onClick={() => {
+              onClickRemove(pinIndex);
+            }}
+          >
+            핀 제거
+          </S.PinEditRemoveText>
+        </S.PinEditRemoveContainer>
       </S.PinEditLayout>
     </ModalLayout>
   );
