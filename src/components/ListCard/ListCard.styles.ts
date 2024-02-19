@@ -45,7 +45,9 @@ export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
     }
 
     .like {
-      position: relative;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
       cursor: pointer;
 
       svg {
