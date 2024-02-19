@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
-export const ConfirmModalLayout = styled.div`
+export const LogRecordConfirmModalLayout = styled.div`
   width: 28rem;
   padding: 0 2rem;
 
   user-select: none;
 `;
 
-export const ConfirmModalMessage = styled.p`
+export const LogRecordConfirmModalMessage = styled.p`
   width: 100%;
   padding: 1rem 0;
 
@@ -16,7 +16,7 @@ export const ConfirmModalMessage = styled.p`
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
 `;
 
-export const ConfirmModalWarning = styled.p`
+export const LogRecordConfirmModalWarning = styled.p`
   width: 100%;
 
   font-size: ${FONT_SIZE.MINI};
@@ -24,7 +24,7 @@ export const ConfirmModalWarning = styled.p`
   color: red;
 `;
 
-export const ConfirmModalActionsContainer = styled.div`
+export const LogRecordConfirmModalActionsContainer = styled.div`
   width: 100%;
   margin-top: 2rem;
 

@@ -22,6 +22,7 @@ const LogRecordController = () => {
     currentPinIndex,
     setCurrentPinIndex,
   } = useLogRecordModel();
+  
   const router = useRouter();
 
   // TODO: 강남역에서 내 위치로 갱신될 때까지 loading spinner 및 pin 찍을 수 없게
@@ -31,11 +32,24 @@ const LogRecordController = () => {
    * @param PERMISSION_DENIED 사용자가 위치 서비스를 동의 하지 않았는지를 파악할때 code와 비교하는 용도로 사용되어집니다.
    */
   const handleWatchError = ({ code, PERMISSION_DENIED }: GeolocationPositionError) => {
-    if (code === PERMISSION_DENIED) {
-      console.log("사용자가 위치 서비스에 동의하지 않았습니다 - 추후 에러 처리");
-    }
+    setModalView("LOG_RECORD_ALERT_VIEW");
 
-    console.log("기술적인 문제 발생");
+    if (code === PERMISSION_DENIED) {
+      /*
+      TODO
+      추후 멘트 수정 
+      */
+      openModal({
+        message: "현재 위치 서비스에 동의하지 않았습니다. 동의 후 이용 가능합니다.",
+      });
+    }
+    /*
+    TODO
+    추후 멘트 수정 
+    */
+    openModal({
+      message: "서비스에 문제가 발생했습니다. 잠시 후 이용해주세요.",
+    });
   };
 
   /**
@@ -56,7 +70,7 @@ const LogRecordController = () => {
       return;
     }
 
-    setModalView("LOG_INIT_CONFIRM");
+    setModalView("LOG_RECORD_CONFIRM_VIEW");
     openModal({
       onClickAccept: () => {
         setPageStep("LOG_RECORD_STANDBY");
@@ -65,6 +79,8 @@ const LogRecordController = () => {
         setLogData(DEFAULT_LOG_DATA);
         closeModal();
       },
+      message: "모든 기록이 사라집니다. 진짜로 뒤로 가쉴...?",
+      warningMessage: "현재의 기록은 저장되지 않고 사라집니다.",
     });
   };
 
@@ -136,10 +152,8 @@ const LogRecordController = () => {
     <LogRecordView
       pageStep={pageStep}
       logData={logData}
-      watchCode={watchCode}
       userLocation={userLocation}
       setPageStep={setPageStep}
-      setWatchCode={setWatchCode}
       setLogData={setLogData}
       onErrorWatcher={handleWatchError}
       updateUserLocation={updateUserLocation}

@@ -6,7 +6,6 @@ import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
 const useLogRecordModel = () => {
   const [pageStep, setPageStep] = useState<LogPageStep>("LOG_RECORD_STANDBY");
   const [logData, setLogData] = useState<MasilRecordRequest>(DEFAULT_LOG_DATA);
-  const [watchCode, setWatchCode] = useState(0);
   const [currentPinIndex, setCurrentPinIndex] = useState(-1);
 
   return {
@@ -14,8 +13,6 @@ const useLogRecordModel = () => {
     setPageStep,
     logData,
     setLogData,
-    watchCode,
-    setWatchCode,
     currentPinIndex,
     setCurrentPinIndex,
   };
