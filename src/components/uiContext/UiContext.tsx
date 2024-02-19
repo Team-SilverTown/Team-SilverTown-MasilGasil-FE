@@ -8,6 +8,7 @@ import { Modal } from "@components/Modal";
 import { TestModal } from "@components/modalViews";
 import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
 import { darkTheme, lightTheme } from "@/styles/theme";
+import LogInitConfirmModal from "../modalViews/LogInitConfirmModal/LogInitConfirmModal";
 
 export interface State {
   displayModal: boolean;
@@ -110,10 +111,15 @@ const ModalView = ({
   closeModal: () => void;
   props?: any;
 }) => {
-  return <Modal onClose={closeModal}>{modalView === "INIT_VIEW" && <TestModal />}</Modal>;
+  return (
+    <Modal onClose={closeModal}>
+      {modalView === "INIT_VIEW" && <TestModal />}
+      {modalView === "LOG_INIT_CONFIRM" && <LogInitConfirmModal props={props} />}
+    </Modal>
+  );
 };
 
-const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
+export const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
   const { displayModal, closeModal, modalView, modalProps } = useUI();
   return displayModal ? (
     <ModalView
@@ -136,10 +142,7 @@ export const ManagedUIContext = ({ children }: { children: any }) => {
 
   return (
     <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
-      <UIProvider>
-        {children}
-        <ModalUI />
-      </UIProvider>
+      <UIProvider>{children}</UIProvider>
     </ThemeProvider>
   );
 };
