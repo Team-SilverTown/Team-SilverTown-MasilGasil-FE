@@ -9,7 +9,7 @@ import CustomPin from "./components/CustomPin/CustomPin";
 import Theme from "@/styles/theme";
 import useDraggingStore from "./store/useDraggingStore";
 import { debounce, throttle } from "lodash";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 interface MasilMapProps {
   center: GeoPosition;
@@ -92,7 +92,8 @@ const MasilMap = ({
   pinFontColor,
   selectedPinIndex,
 }: MasilMapProps) => {
-  const { isDragging, setIsDragging, draggingPosition, setDraggingPosition } = useDraggingStore();
+  const [dragPosition, setDragPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
+  const { isDragging, setIsDragging } = useDraggingStore();
 
   const offIsDragging = useRef(
     debounce(() => {
@@ -105,7 +106,7 @@ const MasilMap = ({
       setIsDragging(true);
 
       const center = target.getCenter();
-      setDraggingPosition({
+      setDragPosition({
         lat: center.getLat(),
         lng: center.getLng(),
       });
@@ -116,7 +117,7 @@ const MasilMap = ({
 
   return (
     <Map
-      center={isDragging ? draggingPosition : center}
+      center={isDragging ? dragPosition : center}
       className={style.masil__map}
       draggable={draggable}
       zoomable={zoomable}
