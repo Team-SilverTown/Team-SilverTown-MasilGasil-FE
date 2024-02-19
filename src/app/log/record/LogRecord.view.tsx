@@ -6,6 +6,7 @@ import {
   UpdateUserLocation,
   SetPageStep,
   SetLogData,
+  OnDrag,
 } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
@@ -21,6 +22,8 @@ interface LogRecordViewProps {
 
   userLocation: GeoPosition;
   currentPinIndex: number;
+  isDragging: boolean;
+  dragPosition: GeoPosition;
 
   setPageStep: SetPageStep;
   setLogData: SetLogData;
@@ -30,6 +33,7 @@ interface LogRecordViewProps {
   onClickPin: OnClickPin;
   onCreatePathLine: OnCreatePathLine;
   setCurrentPinIndex: (pinIndex: number) => void;
+  onDrag: OnDrag;
 }
 
 const LogRecordView = ({
@@ -37,6 +41,8 @@ const LogRecordView = ({
   logData,
   userLocation,
   currentPinIndex,
+  isDragging,
+  dragPosition,
   setLogData,
   setPageStep,
   onErrorWatcher,
@@ -45,16 +51,18 @@ const LogRecordView = ({
   onClickPin,
   onCreatePathLine,
   setCurrentPinIndex,
+  onDrag,
 }: LogRecordViewProps) => {
   return (
     <S.LogRecordLayout>
       <MasilMap
-        center={userLocation}
+        center={isDragging ? dragPosition : userLocation}
         path={logData.path}
         pins={logData.pins}
         onCreatePathLine={onCreatePathLine}
         isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
         onClickPin={onClickPin}
+        onDrag={onDrag}
         selectedPinIndex={currentPinIndex}
       />
 

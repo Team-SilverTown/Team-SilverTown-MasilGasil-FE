@@ -12,8 +12,18 @@ import { useUI } from "@/components/uiContext/UiContext";
 const LogRecordController = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
-  const { pageStep, setPageStep, logData, setLogData, currentPinIndex, setCurrentPinIndex } =
-    useLogRecordModel();
+  const {
+    pageStep,
+    setPageStep,
+    logData,
+    setLogData,
+    currentPinIndex,
+    setCurrentPinIndex,
+    isDragging,
+    setIsDragging,
+    dragPosition,
+    setDragPosition,
+  } = useLogRecordModel();
 
   const router = useRouter();
 
@@ -140,11 +150,17 @@ const LogRecordController = () => {
     setCurrentPinIndex(-1);
   };
 
+  const handleDrag = (target: kakao.maps.Map) => {
+    console.log(target);
+  };
+
   return (
     <LogRecordView
       pageStep={pageStep}
       logData={logData}
       userLocation={userLocation}
+      isDragging={isDragging}
+      dragPosition={dragPosition}
       setPageStep={setPageStep}
       setLogData={setLogData}
       onErrorWatcher={handleWatchError}
@@ -154,6 +170,7 @@ const LogRecordController = () => {
       onCreatePathLine={handleDistanceCalculation}
       currentPinIndex={currentPinIndex}
       setCurrentPinIndex={setCurrentPinIndex}
+      onDrag={handleDrag}
     />
   );
 };

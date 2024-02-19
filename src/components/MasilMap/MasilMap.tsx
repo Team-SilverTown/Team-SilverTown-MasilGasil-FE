@@ -7,6 +7,7 @@ import PathLine from "./components/PathLine/PathLine";
 import { OnClickPin, OnCreatePathLine, PathLineWeight } from "./MasilMap.types";
 import CustomPin from "./components/CustomPin/CustomPin";
 import Theme from "@/styles/theme";
+import { OnDrag } from "@/app/log/record/LogRecord.types";
 
 interface MasilMapProps {
   center: GeoPosition;
@@ -33,6 +34,8 @@ interface MasilMapProps {
   pinSelectColor?: string;
   pinFontColor?: string;
   selectedPinIndex?: number;
+
+  onDrag: OnDrag;
 }
 
 /**
@@ -88,6 +91,8 @@ const MasilMap = ({
   pinSelectColor,
   pinFontColor,
   selectedPinIndex,
+
+  onDrag,
 }: MasilMapProps) => {
   return (
     <Map
@@ -97,6 +102,7 @@ const MasilMap = ({
       zoomable={zoomable}
       minLevel={minZoomLevel && minZoomLevel}
       maxLevel={maxZoomLevel && maxZoomLevel}
+      onDrag={onDrag}
     >
       {isShowCenterMarker && (
         <CenterMarker
