@@ -25,6 +25,7 @@ export const lightTheme = {
 
   yellow_500: "#F7BC01",
 
+  green_100: "#f1f5eb",
   green_300: "#B9DB56",
   green_500: "#81BB26",
 
@@ -63,6 +64,7 @@ export const darkTheme = {
 
   yellow_500: "#F7BC01",
 
+  green_100: "#f1f5eb",
   green_300: "#B9DB56",
   green_500: "#81BB26",
 
@@ -93,14 +95,14 @@ export const BORDER = {
 };
 
 export const CONTAINER = {
-  PADDING_VERTICAL: 2, // rem
-  PADDING_HORIZONTAL: 2.5, // rem
+  PADDING_VERTICAL: 1, // rem
+  PADDING_HORIZONTAL: 1.5, // rem
 
   MOBILEABLE_HORIZONTAL_SPACE: "w-[100%] sm:max-w-[420px]",
   MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen",
 };
 
-export const NAV_HEIGHT: number = 3; // 3.75 rem
+export const NAV_HEIGHT: number = 6; // rem
 
 export const MODAL = {
   VERTICAL_PADDING: 3, // rem

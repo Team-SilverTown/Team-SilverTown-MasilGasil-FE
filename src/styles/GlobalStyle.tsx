@@ -1,8 +1,7 @@
 "use client";
 
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import { styled } from "twin.macro";
 
 export const GlobalStyle = createGlobalStyle<any>`
     ${normalize}
@@ -47,11 +46,11 @@ export const GlobalStyle = createGlobalStyle<any>`
 
 `;
 
-export const CommonContainer = styled.div`
+export const CommonContainer = styled.main`
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 0rem 2rem;
+  padding: 0px ${CONTAINER.PADDING_HORIZONTAL}rem;
   overflow: hidden;
   box-sizing: border-box;
   min-height: 100%;
