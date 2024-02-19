@@ -2,6 +2,7 @@
 
 import styled, { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
+import { CONTAINER } from "./theme";
 
 export const GlobalStyle = createGlobalStyle<any>`
     ${normalize}
