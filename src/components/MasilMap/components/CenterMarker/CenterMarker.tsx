@@ -1,15 +1,20 @@
+import Theme from "@/styles/theme";
 import * as S from "./CenterMarker.styles";
 
-import { KakaoFormatPosition } from "@/types/OriginDataType";
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
+import { GeoPosition } from "@/types/OriginDataType";
 
 interface CenterMarkerProps {
   size?: number;
   fill?: string;
-  position: KakaoFormatPosition;
+  position: GeoPosition;
 }
 
-const CenterMarker = ({ position, size = 32, fill = "black" }: CenterMarkerProps) => {
+const CenterMarker = ({
+  position,
+  size = 32,
+  fill = Theme.lightTheme.black,
+}: CenterMarkerProps) => {
   return (
     <CustomOverlayMap position={position}>
       <S.CenterMarkerLayout

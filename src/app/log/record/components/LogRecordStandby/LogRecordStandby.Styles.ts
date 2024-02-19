@@ -13,8 +13,3 @@ export const LogRecordStandbyLayout = styled.article`
   position: absolute;
   bottom: 0;
 `;
-
-export const LogRecordStandbyButton = styled.div`
-  width: 90%;
-  height: 40px;
-`;

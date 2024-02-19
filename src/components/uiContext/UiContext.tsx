@@ -5,12 +5,15 @@ import { ThemeProvider } from "styled-components";
 
 import { useLocalStorage } from "@lib/hooks/useLocalStorage";
 import useModalStore from "@/stores/ui/useModalStore";
-import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
-import { darkTheme, lightTheme } from "@/styles/theme";
 import { Modal } from "@components/Modal";
-import { TestModal } from "@components/modalViews";
-
-import LogInitConfirmModal from "../modalViews/LogInitConfirmModal/LogInitConfirmModal";
+import {
+  PinEditModal,
+  LogRecordAlertModal,
+  LogRecordConfirmModal,
+  TestModal,
+} from "@components/modalViews";
+import { darkTheme, lightTheme } from "@/styles/theme";
+import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
 
 export const useUI = () => {
   const { displayModal, modalView, modalProps, setModalView, openModal, closeModal } =
@@ -42,7 +45,9 @@ const ModalView = ({
   return (
     <Modal onClose={closeModal}>
       {modalView === "INIT_VIEW" && <TestModal />}
-      {modalView === "LOG_INIT_CONFIRM" && <LogInitConfirmModal props={props} />}
+      {modalView === "LOG_RECORD_CONFIRM_VIEW" && <LogRecordConfirmModal props={props} />}
+      {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
+      {modalView === "PIN_EDIT" && <PinEditModal props={props} />}
     </Modal>
   );
 };

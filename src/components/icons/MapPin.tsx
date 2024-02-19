@@ -19,6 +19,12 @@ const MapPin = ({
   selectColor = "red",
   isSelected = false,
 }: MapPinProp) => {
+  const handleClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    if (onClickPin && pinIndex !== undefined) {
+      onClickPin(pinIndex);
+    }
+  };
+
   return (
     <svg
       width={size}
@@ -26,7 +32,7 @@ const MapPin = ({
       viewBox="0 0 24 24"
       fill={isSelected ? selectColor : fill}
       xmlns="http://www.w3.org/2000/svg"
-      onClick={onClickPin && onClickPin}
+      onClick={handleClick}
     >
       <path
         fillRule="evenodd"

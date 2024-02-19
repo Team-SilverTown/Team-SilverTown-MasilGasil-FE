@@ -1,3 +1,3 @@
 export * from "./Address";
 export * from "./Pin";
-export * from "./GeoJSON";
+export * from "./GeoPosition";
