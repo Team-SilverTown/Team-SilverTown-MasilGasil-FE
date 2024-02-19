@@ -55,15 +55,13 @@ const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
   }, [policyCheck]);
 
   const togglePolicyAccept = (index: number) => {
-    const newState = policyCheck.map((c, i) => {
+    const newState = policyCheck.map((policy, i) => {
       if (i === index) {
-        // Increment the clicked counter
-        return !c;
-      } else {
-        // The rest haven't changed
-        return c;
+        return !policy;
       }
+      return policy;
     });
+
     setPolicyCheck(newState);
     const prevValue = getValues(POLICY_CONTENT_LIST[index].formKey);
     setValue(POLICY_CONTENT_LIST[index].formKey, !prevValue);
