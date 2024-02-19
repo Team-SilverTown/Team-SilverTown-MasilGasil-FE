@@ -9,7 +9,7 @@ interface UseDraggingStore {
   setDraggingPosition: (newPosition: GeoPosition) => void;
 }
 
-const useUserLocationStore = create<UseDraggingStore>((set) => ({
+const useDraggingStore = create<UseDraggingStore>((set) => ({
   isDragging: false,
   draggingPosition: { lat: 0, lng: 0 },
 
@@ -17,4 +17,4 @@ const useUserLocationStore = create<UseDraggingStore>((set) => ({
   setDraggingPosition: (newPosition) => set(() => ({ draggingPosition: newPosition })),
 }));
 
-export default useUserLocationStore;
+export default useDraggingStore;
