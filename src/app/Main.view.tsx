@@ -36,7 +36,8 @@ const MainView = ({ loading }: MainViewProps) => {
         <S.AuthButtonWrapper>
           <Button
             buttonColor={theme?.yellow_500}
-            width={"100%"}
+            width={"calc(100% - 30px)"}
+            style={{ margin: "auto" }}
           >
             <Link href={"/home"}>
               <span
