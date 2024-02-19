@@ -4,9 +4,9 @@ import { GeoPosition, Pin } from "@/types/OriginDataType";
 import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
 import PathLine from "./components/PathLine/PathLine";
-import { useMemo } from "react";
 import { OnClickPin, OnCreatePathLine, PathLineWeight } from "./MasilMap.types";
 import CustomPin from "./components/CustomPin/CustomPin";
+import Theme from "@/styles/theme";
 
 interface MasilMapProps {
   center: GeoPosition;
@@ -27,7 +27,7 @@ interface MasilMapProps {
   pathOpacity?: number;
   pathWeight?: PathLineWeight;
 
-  onClickPin?: OnClickPin;
+  onClickPin: OnClickPin;
   pinSize?: number;
   pinColor?: string;
   pinSelectColor?: string;
@@ -122,9 +122,13 @@ const MasilMap = ({
             key={`${point.lat}${point.lng}${index}`}
             position={point}
             size={pinSize}
-            onClickPin={onClickPin && onClickPin}
+            onClickPin={() => {
+              onClickPin(index);
+            }}
             pinIndex={index + 1}
-            pinColor={pinColor}
+            pinColor={
+              selectedPinIndex && selectedPinIndex === index ? Theme.lightTheme.red_100 : pinColor
+            }
             pinSelectColor={pinSelectColor}
             pinFontColor={pinFontColor}
             isSelected={selectedPinIndex === index}
