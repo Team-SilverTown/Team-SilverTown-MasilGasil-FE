@@ -2,7 +2,7 @@ import { PinDetailCard } from "@/components";
 import { PinDetailCardProps } from "@/components/PinDetailCard/PinDetailCard";
 
 export default {
-  title: "Component/LogDetailCard",
+  title: "Component/PinDetailCard",
   component: PinDetailCard,
   argTypes: {
     width: { control: "number" },
