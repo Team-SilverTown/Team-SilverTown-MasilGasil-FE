@@ -93,6 +93,8 @@ export const ListCardContent = styled.div`
   border-bottom-right-radius: 0.8rem;
 
   .contentTitleWrapper {
+    width: calc(100% - 12rem);
+
     h3 {
       margin-bottom: 1.5rem;
       font-size: ${FONT_SIZE.H5};
@@ -112,11 +114,15 @@ export const ListCardContent = styled.div`
   }
 
   .contentInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
     strong {
       display: block;
-      margin-bottom: 1.5rem;
       font-size: ${FONT_SIZE.BASIC};
       font-weight: ${FONT_WEIGHT.MEDIUM};
+      text-align: right;
     }
 
     ul {
