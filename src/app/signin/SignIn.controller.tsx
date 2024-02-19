@@ -35,10 +35,16 @@ const SignInController = () => {
     handleSubmit,
     getValues,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<SignInFormProps>({
     mode: "onChange",
     shouldUnregister: false,
+    defaultValues: {
+      policy1: false,
+      policy2: false,
+      policy3: false,
+    },
   });
 
   const onValid = (data: SignInFormProps) => {
@@ -57,8 +63,13 @@ const SignInController = () => {
     else return true;
   }, [getValues(), errors]);
 
+  const isStep4Validate = useMemo(() => {
+    if (!getValues("policy1") || !getValues("policy2") || !getValues("policy3")) return false;
+    else return true;
+  }, [watch()]);
+
   // 각 step 별 유효성 검사 결과 boolean 값을 가지고 있습니다.
-  const stepValidations = [isStep1Validate, true, true, true];
+  const stepValidations = [isStep1Validate, true, true, isStep4Validate];
 
   const nextButtonClickHandler = () => {
     if (focusedStep >= LAST_STEP_INDEX) return;

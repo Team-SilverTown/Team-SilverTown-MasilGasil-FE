@@ -42,7 +42,7 @@ const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
   const { checkAllPolicy, setCheckAllPolicy, policyCheck, setPolicyCheck } = useSignInModel();
 
   useEffect(() => {
-    const initState = new Array(POLICY_CONTENT_LIST.length).fill(false);
+    const initState = POLICY_CONTENT_LIST.map(({ formKey }) => getValues(formKey));
     setPolicyCheck(initState);
   }, []);
 
