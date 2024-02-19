@@ -14,9 +14,9 @@ export interface SignInFormProps {
   height?: number;
   weight?: number;
   exerciseIntensity?: "SUPER_LOW" | "LOW" | "MIDDLE" | "HIGH" | "SUPER_HIGH";
-  // policy1: boolean;
-  // policy2: boolean;
-  // policy3: boolean;
+  policy1: boolean;
+  policy2: boolean;
+  policy3: boolean;
 }
 
 const SignInController = () => {
@@ -75,7 +75,10 @@ const SignInController = () => {
     />,
     <SignInStep2 setValue={setValue} />,
     <SignInStep3 />,
-    <SignInStep4 />,
+    <SignInStep4
+      getValues={getValues}
+      setValue={setValue}
+    />,
   ];
 
   return (

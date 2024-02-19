@@ -57,3 +57,13 @@ export const CommonContainer = styled.div`
   min-height: 100%;
   height: 100%;
 `;
+
+export const Col = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
