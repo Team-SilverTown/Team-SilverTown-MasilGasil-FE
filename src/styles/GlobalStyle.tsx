@@ -1,8 +1,7 @@
 "use client";
 
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import { styled } from "twin.macro";
 
 export const GlobalStyle = createGlobalStyle<any>`
     ${normalize}
