@@ -96,12 +96,22 @@ const MasilMap = ({
   const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
   const { isOutCenter, setIsOutCenter } = useMapCenterStore();
 
-  const offIsDragging = useRef(
+  /**
+   * @summary drag, zoom으로 인해 벗어난 Map의 center를 일정 시간 후 강제로 다시 이동시킵니다.
+   */
+  const offIsOutCenter = useRef(
     debounce(() => {
       setIsOutCenter(false);
     }, 2000),
   ).current;
 
+  /**
+   * @summary darg, zoom을 시작시 원활한 Map의 이동을 위해 outCenterPosition 값을 이용하고 갱신시켜줍니다.
+   *
+   * @param target kakao map api의 자체적인 타입값으로 Map에 대한 현재 상태를 반환해줍니다
+   *
+   * ( getCenter라는 메서드를 통해 사용자에게 보여지고 있는 Map을 기준으로 center값을 획득할 수 있습니다. )
+   */
   const handleMap = useRef(
     throttle((target: kakao.maps.Map) => {
       setIsOutCenter(true);
@@ -112,7 +122,7 @@ const MasilMap = ({
         lng: center.getLng(),
       });
 
-      offIsDragging();
+      offIsOutCenter();
     }, 200),
   ).current;
 
