@@ -1,8 +1,7 @@
 "use client";
 
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import { styled } from "twin.macro";
 
 export const GlobalStyle = createGlobalStyle<any>`
     ${normalize}
@@ -43,6 +42,13 @@ export const GlobalStyle = createGlobalStyle<any>`
       
       font-size : 1.4rem;
       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    }
+
+    @font-face {
+      font-family: 'MaplestoryOTFBold';
+      src: local("Maplestory") format('woff');
+      font-weight: normal;
+      font-style: normal;
     }
 
 `;

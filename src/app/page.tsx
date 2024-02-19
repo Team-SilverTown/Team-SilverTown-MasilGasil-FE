@@ -1,5 +1,5 @@
-import { HomeScreen } from "@screens/homeScreen";
+import SplashController from "./Splash.controller";
 
 export default function Home() {
-  return <HomeScreen />;
+  return <SplashController />;
 }
