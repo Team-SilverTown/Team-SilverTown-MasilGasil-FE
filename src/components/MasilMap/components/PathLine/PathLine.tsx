@@ -1,11 +1,11 @@
-import { KakaoFormatPosition } from "@/types/OriginDataType";
 import { Polyline } from "react-kakao-maps-sdk";
 import { OnCreatePathLine, PathLineWeight } from "../../MasilMap.types";
 import { useCallback } from "react";
-
+import Theme from "@/styles/theme";
+import { GeoPosition } from "@/types/OriginDataType";
 
 interface PathLineProps {
-  path: KakaoFormatPosition[];
+  path: GeoPosition[];
   onCreatePathLine?: OnCreatePathLine;
 
   pathColor?: string;
@@ -16,8 +16,8 @@ interface PathLineProps {
 const PathLine = ({
   path,
   onCreatePathLine,
-  pathColor = "#81BB26",
-  
+  pathColor = Theme.lightTheme.green_300,
+
   pathOpacity = 0.7,
   pathWeight = 8,
 }: PathLineProps) => {
@@ -32,7 +32,6 @@ const PathLine = ({
         return;
       }
 
-      console.log(polyline.getLength());
       onCreatePathLine(polyline);
     },
     [path],

@@ -1,41 +1,34 @@
 import { useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
-import {
-  OnErrorWatcher,
-  SetLogData,
-  SetPageStep,
-  SetWatchCode,
-  UpdateUserLocation,
-} from "../../LogRecord.types";
+import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
+import { useUI } from "@/components/uiContext/UiContext";
+import useUserLocationStore from "@/stores/useUserLocationStore";
 
 interface LogRecordStandbyControllerProps {
-  watchCode: number;
   setPageStep: SetPageStep;
-  setWatchCode: SetWatchCode;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
   setLogData: SetLogData;
 }
 
 const LogRecordStandbyController = ({
-  watchCode,
-  setWatchCode,
   setPageStep,
   setLogData,
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordStandbyControllerProps) => {
+  const { setModalView, openModal } = useUI();
+  const { setUserLocation } = useUserLocationStore();
+
   useEffect(() => {
     /**
      * @summary watchPosition은 고유의 number를 반환합니다.
      *
      * @summary enableHighAccuracy 옵션은 사용자의 기기에 배터리 소비를 증가시키지만 위치 정확도를 높여줍니다.
      */
-    const newWatchCode = navigator.geolocation.watchPosition(updateUserLocation, onErrorWatcher, {
+    const watchCode = navigator.geolocation.watchPosition(updateUserLocation, onErrorWatcher, {
       enableHighAccuracy: true,
     });
-
-    setWatchCode(newWatchCode);
 
     return () => {
       navigator.geolocation.clearWatch(watchCode);
@@ -54,7 +47,11 @@ const LogRecordStandbyController = ({
 
       goe.coord2RegionCode(longitude, latitude, (result, status) => {
         if (status !== kakao.maps.services.Status.OK) {
-          // 추후 에러 처리
+          setModalView("LOG_RECORD_ALERT_VIEW");
+          openModal({
+            message: "현재 위치의 주소를 불러오는데 실패했습니다. 잠시 후 다시 이용해주세요.",
+          });
+          setPageStep("LOG_RECORD_STANDBY");
           return;
         }
 
@@ -71,13 +68,17 @@ const LogRecordStandbyController = ({
           },
         }));
       });
+
+      /* TODO
+        추후 getCurrentPosition 이 실행되는 동안의 Loading Spinner 추가
+      */
+      setPageStep("LOG_RECORD_RECORDING");
+      setUserLocation({ lat: latitude, lng: longitude });
     };
 
     navigator.geolocation.getCurrentPosition(updateAddress, onErrorWatcher, {
       enableHighAccuracy: true,
     });
-
-    setPageStep("LOG_RECORD_RECORDING");
   };
 
   return <LogRecordStandbyView onClick={handleStartRecord} />;

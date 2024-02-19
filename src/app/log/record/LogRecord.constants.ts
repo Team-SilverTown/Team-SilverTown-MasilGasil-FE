@@ -7,7 +7,7 @@ export const DEFAULT_LOG_DATA: MasilRecordRequest = {
     depth3: "",
     depth4: "",
   },
-  path: { type: "LineString", coordinates: [] },
+  path: [],
   title: "",
   content: "",
   distance: 0,
