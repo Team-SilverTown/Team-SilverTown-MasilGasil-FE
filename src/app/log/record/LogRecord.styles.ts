@@ -26,11 +26,6 @@ export const LogRecordTop = styled.nav`
   top: 0;
 `;
 
-export const LogRecordCenterButton = styled.div`
-  position: absolute;
-  right: 1.6rem;
-`;
-
 const isEditStepLayout = css`
   height: 50%;
   position: relative;
