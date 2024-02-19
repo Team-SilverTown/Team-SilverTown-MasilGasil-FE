@@ -16,6 +16,9 @@ interface LogRecordRecordingControllerProps {
   updateUserLocation: UpdateUserLocation;
 }
 
+const MIN_INSERT_PATH_RAGE = 10; // M 단위
+const MAX_INSERT_PATH_RAGE = 200; // M 단위
+
 const LogRecordRecordingController = ({
   logData,
   setLogData,
@@ -51,7 +54,7 @@ const LogRecordRecordingController = ({
         if (prevPosition) {
           const pointDistance = getTwoPointDistance(newPoint, prevPosition);
 
-          if (pointDistance < 10 /* M 단위 */ || pointDistance > 200 /* M 단위 */) {
+          if (pointDistance < MIN_INSERT_PATH_RAGE || pointDistance > MAX_INSERT_PATH_RAGE) {
             return prevData;
           }
         }

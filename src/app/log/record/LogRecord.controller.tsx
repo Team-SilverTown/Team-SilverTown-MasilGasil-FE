@@ -11,6 +11,8 @@ import { useUI } from "@/components/uiContext/UiContext";
 import useMapCenterStore from "@/components/MasilMap/store/useMapCenterStore";
 import getTwoPointDistance from "./utils/getTwoPointDistance";
 
+const MIN_INSERT_PIN_RANGE = 10; // M 단위
+
 const LogRecordController = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
@@ -101,7 +103,7 @@ const LogRecordController = () => {
     for (const { point: checkPin } of logData.pins) {
       const pointDistance = getTwoPointDistance(userLocation, checkPin);
 
-      if (pointDistance < 10 /* M단위 */) {
+      if (pointDistance < MIN_INSERT_PIN_RANGE) {
         return;
       }
     }
