@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 
 import { useLocalStorage } from "@lib/hooks/useLocalStorage";
 import { Modal } from "@components/Modal";
-import { LogRecordAlertModal, LogRecordConfirmModal, TestModal } from "@components/modalViews";
+import { PinEditModal, LogRecordAlertModal, LogRecordConfirmModal, TestModal } from "@components/modalViews";
 import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
 import { darkTheme, lightTheme } from "@/styles/theme";
 
@@ -115,6 +115,7 @@ const ModalView = ({
       {modalView === "INIT_VIEW" && <TestModal />}
       {modalView === "LOG_RECORD_CONFIRM_VIEW" && <LogRecordConfirmModal props={props} />}
       {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
+      {modalView === "PIN_EDIT" && <PinEditModal props={props} />}
     </Modal>
   );
 };
