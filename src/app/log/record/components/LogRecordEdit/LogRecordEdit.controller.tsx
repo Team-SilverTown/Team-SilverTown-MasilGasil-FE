@@ -3,7 +3,6 @@ import LogRecordEditView from "./LogRecordEdit.view";
 import { SetLogData } from "../../LogRecord.types";
 import { MasilRecordRequest } from "@/types/Request";
 import { OnClickPin } from "@/components/MasilMap/MasilMap.types";
-import { DEFAULT_LOG_DATA } from "../../LogRecord.constants";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 
 interface LogRecordEditControllerProps {

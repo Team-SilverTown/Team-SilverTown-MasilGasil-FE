@@ -4,7 +4,7 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import useLogRecordModel from "./LogRecord.model";
 import LogRecordView from "./LogRecord.view";
 import { throttle } from "lodash";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
 import { useUI } from "@/components/uiContext/UiContext";
@@ -12,17 +12,9 @@ import { useUI } from "@/components/uiContext/UiContext";
 const LogRecordController = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
-  const {
-    pageStep,
-    setPageStep,
-    logData,
-    setLogData,
-    watchCode,
-    setWatchCode,
-    currentPinIndex,
-    setCurrentPinIndex,
-  } = useLogRecordModel();
-  
+  const { pageStep, setPageStep, logData, setLogData, currentPinIndex, setCurrentPinIndex } =
+    useLogRecordModel();
+
   const router = useRouter();
 
   // TODO: 강남역에서 내 위치로 갱신될 때까지 loading spinner 및 pin 찍을 수 없게
