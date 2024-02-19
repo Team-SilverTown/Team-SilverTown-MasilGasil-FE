@@ -108,7 +108,6 @@ const SignInController = () => {
         focusedStep={focusedStep}
         prevFocusedStep={prevFocusedStep.current}
         onNextButtonHandler={nextButtonClickHandler}
-        onPrevButtonHandler={prevButtonClickHandler}
         handleSubmit={handleSubmit}
         onValid={onValid}
         onInvalid={onInvalid}
