@@ -111,6 +111,8 @@ const MasilMap = ({
    * @param target kakao map api의 자체적인 타입값으로 Map에 대한 현재 상태를 반환해줍니다
    *
    * ( getCenter라는 메서드를 통해 사용자에게 보여지고 있는 Map을 기준으로 center값을 획득할 수 있습니다. )
+   *
+   * + 너무 많은 상태변화를 방지하기위해 0.2초의 throttle 적용
    */
   const handleMap = useRef(
     throttle((target: kakao.maps.Map) => {
