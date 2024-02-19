@@ -15,7 +15,7 @@ const fadeAnimation = keyframes`
 const showUpAnimation = keyframes`
   0% {
     opacity: 0;
-    transform: translateY(10px)
+    transform: translateY(1rem)
   }
   100% {
     opacity: 1;
