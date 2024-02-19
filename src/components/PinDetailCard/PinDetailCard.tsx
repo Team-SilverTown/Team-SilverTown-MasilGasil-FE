@@ -7,8 +7,8 @@ export interface PinDetailCardProps {
   title: string;
   content: string;
   thumbnailURL: string;
-  index: number;
-  PinTotalLength: number;
+  currentPinindex: number;
+  totalPinIndex: number;
 }
 
 const PinDetailCard = ({
@@ -18,8 +18,8 @@ const PinDetailCard = ({
   title,
   content,
   thumbnailURL,
-  index,
-  PinTotalLength,
+  currentPinindex,
+  totalPinIndex,
 }: PinDetailCardProps) => {
   return (
     <S.PinDetailCardLayout
@@ -33,7 +33,7 @@ const PinDetailCard = ({
         borderRadius={borderRadius}
       >
         <span>
-          {index}/{PinTotalLength}
+          {currentPinindex}/{totalPinIndex}
         </span>
       </S.PinDetailCardThumbnail>
       <S.PinDetailCardContent
