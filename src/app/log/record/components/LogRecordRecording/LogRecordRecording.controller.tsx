@@ -5,6 +5,7 @@ import { throttle } from "lodash";
 import { MasilRecordRequest } from "@/types/Request";
 import { useUI } from "@/components/uiContext/UiContext";
 import getTwoPointDistance from "../../utils/getTwoPointDistance";
+import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
 
 interface LogRecordRecordingControllerProps {
   logData: MasilRecordRequest;
@@ -88,9 +89,9 @@ const LogRecordRecordingController = ({
         setPageStep("LOG_RECORD_EDITING");
         closeModal();
       },
-      message: "산책을 마무리 하실건가요?",
-      warningMessage: "해당 페이지로 되돌아올 수 없습니다.",
-      acceptButtonText: "완료",
+      message: LOG_RECORD_MESSAGE.COMPLETE_RECORD.MESSAGE,
+      warningMessage: LOG_RECORD_MESSAGE.COMPLETE_RECORD.WARNING_MESSAGE,
+      acceptButtonText: LOG_RECORD_MESSAGE.COMPLETE_RECORD.ACCEPT_BUTTON,
     });
   };
 

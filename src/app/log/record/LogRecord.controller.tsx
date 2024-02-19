@@ -6,7 +6,7 @@ import LogRecordView from "./LogRecord.view";
 import { throttle } from "lodash";
 import { useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
+import { DEFAULT_LOG_DATA, LOG_RECORD_MESSAGE } from "./LogRecord.constants";
 import { useUI } from "@/components/uiContext/UiContext";
 import useMapCenterStore from "@/components/MasilMap/store/useMapCenterStore";
 import getTwoPointDistance from "./utils/getTwoPointDistance";
@@ -34,7 +34,7 @@ const LogRecordController = () => {
       추후 멘트 수정 
       */
       openModal({
-        message: "현재 위치 서비스에 동의하지 않았습니다. 동의 후 이용 가능합니다.",
+        message: LOG_RECORD_MESSAGE.ERROR.WATCH_PERMISSION_DENIED,
       });
     }
     /*
@@ -42,7 +42,7 @@ const LogRecordController = () => {
     추후 멘트 수정 
     */
     openModal({
-      message: "서비스에 문제가 발생했습니다. 잠시 후 이용해주세요.",
+      message: LOG_RECORD_MESSAGE.ERROR.WATCH_ERROR,
     });
   };
 
@@ -73,8 +73,8 @@ const LogRecordController = () => {
         setLogData(DEFAULT_LOG_DATA);
         closeModal();
       },
-      message: "모든 기록이 사라집니다. 진짜로 뒤로 가쉴...?",
-      warningMessage: "현재의 기록은 저장되지 않고 사라집니다.",
+      message: LOG_RECORD_MESSAGE.FALL_BACK.MESSAGE,
+      warningMessage: LOG_RECORD_MESSAGE.FALL_BACK.WARNING_MESSAGE,
     });
   };
 
