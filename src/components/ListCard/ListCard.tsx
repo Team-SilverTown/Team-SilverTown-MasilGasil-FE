@@ -1,5 +1,6 @@
 import * as S from "./ListCard.styles";
 import { Heart } from "../icons";
+import { CSSProperties } from "react";
 
 export interface ListCardProps {
   isRecruitLayout: boolean;
@@ -12,6 +13,7 @@ export interface ListCardProps {
   address: string;
   totalTime: number;
   distance: number;
+  style?: CSSProperties;
 }
 
 const ListCard = ({
@@ -25,6 +27,7 @@ const ListCard = ({
   address,
   totalTime,
   distance,
+  style,
 }: ListCardProps) => {
   /**
    *
@@ -61,7 +64,7 @@ const ListCard = ({
   const handleToggleLikes = () => {};
 
   return (
-    <S.ListCardContainer>
+    <S.ListCardContainer style={style}>
       <S.ListCardThumbnail
         thumbnailURL={thumbnailURL}
         isRecruit={isRecruit}
