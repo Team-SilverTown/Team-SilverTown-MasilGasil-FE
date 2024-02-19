@@ -7,9 +7,10 @@ import PathLine from "./components/PathLine/PathLine";
 import { OnClickPin, OnCreatePathLine, PathLineWeight } from "./MasilMap.types";
 import CustomPin from "./components/CustomPin/CustomPin";
 import Theme from "@/styles/theme";
-import useDraggingStore from "./store/useDraggingStore";
+
 import { debounce, throttle } from "lodash";
 import { useRef, useState } from "react";
+import useMapCenterStore from "./store/useMapCenterStore";
 
 interface MasilMapProps {
   center: GeoPosition;
@@ -92,21 +93,21 @@ const MasilMap = ({
   pinFontColor,
   selectedPinIndex,
 }: MasilMapProps) => {
-  const [dragPosition, setDragPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
-  const { isDragging, setIsDragging } = useDraggingStore();
+  const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
+  const { isOutCenter, setIsOutCenter } = useMapCenterStore();
 
   const offIsDragging = useRef(
     debounce(() => {
-      setIsDragging(false);
+      setIsOutCenter(false);
     }, 2000),
   ).current;
 
-  const handleDrag = useRef(
+  const handleMap = useRef(
     throttle((target: kakao.maps.Map) => {
-      setIsDragging(true);
+      setIsOutCenter(true);
 
       const center = target.getCenter();
-      setDragPosition({
+      setOutCenterPosition({
         lat: center.getLat(),
         lng: center.getLng(),
       });
@@ -117,13 +118,14 @@ const MasilMap = ({
 
   return (
     <Map
-      center={isDragging ? dragPosition : center}
+      center={isOutCenter ? outCenterPosition : center}
       className={style.masil__map}
       draggable={draggable}
       zoomable={zoomable}
       minLevel={minZoomLevel && minZoomLevel}
       maxLevel={maxZoomLevel && maxZoomLevel}
-      onDrag={handleDrag}
+      onDrag={handleMap}
+      onZoomChanged={handleMap}
     >
       {isShowCenterMarker && (
         <CenterMarker
