@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { SubTitle, Title } from "./SignInHelper.style";
@@ -33,7 +35,7 @@ const SignInHelper = ({ index }: SignInHelperProps) => {
   return (
     <section
       key={index}
-      className="text-2xl h-[150px] flex flex-col justify-center space-y-5 "
+      className="text-2xl h-[100px] flex flex-col justify-center space-y-5 "
     >
       {title}
       {subTitle}

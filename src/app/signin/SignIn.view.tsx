@@ -8,6 +8,7 @@ import { Button } from "@/components";
 
 import { SignInHelper, StepButton, StepLayout } from "./components";
 import { SignInFormProps } from "./SignIn.controller";
+import { NAV_HEIGHT } from "@/styles/theme";
 
 interface SignInViewProps {
   stepViews: ReactNode[];
@@ -33,7 +34,7 @@ const SignInView = ({
   stepValidations,
 }: SignInViewProps) => {
   return (
-    <GS.CommonContainer>
+    <GS.CommonContainer style={{ paddingTop: `${NAV_HEIGHT}rem` }}>
       <div className="relative w-full h-full">
         <SignInHelper index={focusedStep} />
         {stepViews && (
@@ -41,10 +42,9 @@ const SignInView = ({
             focusedStep={focusedStep}
             prevFocusedStep={prevFocusedStep}
             stepViews={stepViews}
-            style={{ height: "calc(100% - 200px)", position: "relative" }}
+            style={{ height: `calc(100% - 165px)`, position: "relative" }}
           />
         )}
-        <Button onClickHandler={onPrevButtonHandler}>이전</Button>
         <StepButton
           buttonText={focusedStep === 3 ? "마실가실 시작하기" : "다음"}
           onClickHandler={

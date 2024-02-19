@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Home, HomeFill, Exploration, ExplorationFill, Diary, DiaryFill } from "@/components/icons";
-import * as S from "./BottomNavigator.style";
+import * as S from "./BottomNavigator.styles";
 import { BOTTOM_NAV_INABLE } from "../navInablePath";
 import { BOTTOM_NAV_ITEMS } from "./BottomNavigator.constants";
 

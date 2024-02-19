@@ -16,8 +16,8 @@ const SignInStep1 = ({ register, errors }: SignInStep1Props) => {
 
   return (
     <div className="h-full">
-      <div className="flex space-x-4">
-        <div className="relative w-[75%] space-y-2">
+      <div className="flex justify-between space-x-4">
+        <div className="relative flex-1 space-y-2">
           <Input
             required
             register={register("nickname", {
@@ -43,11 +43,10 @@ const SignInStep1 = ({ register, errors }: SignInStep1Props) => {
         <Button
           buttonColor={theme?.green_500}
           textColor={theme?.text_secondary_color}
-          width={"20%"}
           useRipple
           rippleColor={theme?.text_secondary_color + 50}
         >
-          <span className="text-2xl font-bold">중복 확인 하기</span>
+          <span className="text-2xl font-bold">중복 확인</span>
         </Button>
       </div>
     </div>
