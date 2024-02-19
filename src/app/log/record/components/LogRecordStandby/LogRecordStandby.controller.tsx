@@ -60,12 +60,10 @@ const LogRecordStandbyController = ({
 
         setLogData((prevData) => ({
           ...prevData,
-          address: {
-            depth1: region_1depth_name,
-            depth2: region_2depth_name,
-            depth3: region_3depth_name,
-            depth4: region_4depth_name,
-          },
+          depth1: region_1depth_name,
+          depth2: region_2depth_name,
+          depth3: region_3depth_name,
+          depth4: region_4depth_name,
         }));
       });
 
