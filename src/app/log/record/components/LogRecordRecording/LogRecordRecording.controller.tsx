@@ -27,6 +27,13 @@ const LogRecordRecordingController = ({
   const { openModal, setModalView, closeModal } = useUI();
 
   /**
+   * @summary 1초마다 증가하는 타이머
+   */
+  const increaseTime = () => {
+    setLogData((prevData) => ({ ...prevData, totalTime: prevData.totalTime + 1 }));
+  };
+
+  /**
    * @summary watch의 success 콜백에 들어가는 함수로 경로 값을 추가시켜줍니다.
    *
    * 단, throttle을 통해 5초에 한번 실행.
@@ -58,14 +65,7 @@ const LogRecordRecordingController = ({
     }, 5000),
   ).current;
 
-  /**
-   * @summary 1초마다 증가하는 타이머
-   */
-  const increaseTime = useRef(
-    throttle(() => {
-      setLogData((prevData) => ({ ...prevData, totalTime: prevData.totalTime + 1 }));
-    }, 1000),
-  ).current;
+  console.log(logData);
 
   useEffect(() => {
     const watchCode = navigator.geolocation.watchPosition(
