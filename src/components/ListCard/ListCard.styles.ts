@@ -16,6 +16,7 @@ export const ListCardContainer = styled.div`
   height: 25rem;
   border-radius: 0.8rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0.1rem 0.1rem 1.1rem;
+  cursor: pointer;
 `;
 
 export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
@@ -137,11 +138,11 @@ export const ListCardContent = styled.div`
 
       li:not(:last-child) {
         position: relative;
-        margin-right: 0.5rem;
+        margin-right: 1rem;
 
         &::after {
           position: absolute;
-          right: -0.35rem;
+          right: -0.6rem;
           top: 50%;
           transform: translateY(-50%);
           content: "";
