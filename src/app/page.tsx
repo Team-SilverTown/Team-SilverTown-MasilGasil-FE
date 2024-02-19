@@ -1,5 +1,5 @@
-import SplashController from "./Splash.controller";
+import MainController from "./Main.controller";
 
-export default function Home() {
-  return <SplashController />;
+export default function Main() {
+  return <MainController />;
 }

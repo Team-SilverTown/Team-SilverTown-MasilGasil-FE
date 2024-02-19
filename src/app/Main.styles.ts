@@ -80,3 +80,12 @@ export const H1 = styled.h1`
   animation-delay: 1600ms;
   animation-fill-mode: forwards;
 `;
+
+export const AuthButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 17%;
+  width: 100%;
+  opacity: 0;
+  animation: ${fadeAnimation} 300ms ease-out 1;
+  animation-fill-mode: forwards;
+`;
