@@ -1,6 +1,22 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
+export const GenderSection = styled.div`
+  font-weight: ${FONT_WEIGHT.BOLD};
+  font-size: 2rem;
+  margin-top: 2.5rem;
+`;
+
+export const GenderTitle = styled.span``;
+
+export const GenderButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-around;
+  gap: 1.2rem;
+  margin: 1.4rem 0;
+  color: ${({ theme }) => theme.white};
+`;
+
 export const PolicyLable = styled.label`
   margin-left: 1rem;
   cursor: pointer;
