@@ -6,7 +6,7 @@ export const GenderSection = styled.section`
   flex-direction: column;
   font-weight: ${FONT_WEIGHT.BOLD};
   font-size: 2rem;
-  margin-top: 2.5rem;
+  margin-top: 3rem;
 `;
 
 export const GenderTitle = styled.span``;
@@ -21,7 +21,7 @@ export const GenderButtonGroup = styled.div`
 `;
 
 export const BirthDateSection = styled.section`
-  margin-top: 1.5rem;
+  margin-top: 3rem;
 `;
 
 export const BirthDateTitleWrapper = styled.div`
@@ -31,9 +31,27 @@ export const BirthDateTitleWrapper = styled.div`
 `;
 
 export const BirthDateTitle = styled.span`
+  display: block;
   font-size: 2rem;
   font-weight: ${FONT_WEIGHT.BOLD};
   width: 4.5rem;
+`;
+
+export const PhysicalSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  gap: 1.2rem;
+`;
+
+export const Group = styled.div`
+  flex: 1;
+`;
+
+export const GroupTitle = styled.span`
+  display: block;
+  font-size: 2rem;
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
 export const PolicyLable = styled.label`
