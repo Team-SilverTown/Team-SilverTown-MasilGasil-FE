@@ -3,6 +3,7 @@ import LogRecordStandbyView from "./LogRecordStandby.view";
 import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
 import { useUI } from "@/components/uiContext/UiContext";
 import useUserLocationStore from "@/stores/useUserLocationStore";
+import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
 
 interface LogRecordStandbyControllerProps {
   setPageStep: SetPageStep;
@@ -49,7 +50,7 @@ const LogRecordStandbyController = ({
         if (status !== kakao.maps.services.Status.OK) {
           setModalView("LOG_RECORD_ALERT_VIEW");
           openModal({
-            message: "현재 위치의 주소를 불러오는데 실패했습니다. 잠시 후 다시 이용해주세요.",
+            message: LOG_RECORD_MESSAGE.REGION_ERROR.MESSAGE,
           });
           setPageStep("LOG_RECORD_STANDBY");
           return;
@@ -60,12 +61,10 @@ const LogRecordStandbyController = ({
 
         setLogData((prevData) => ({
           ...prevData,
-          address: {
-            depth1: region_1depth_name,
-            depth2: region_2depth_name,
-            depth3: region_3depth_name,
-            depth4: region_4depth_name,
-          },
+          depth1: region_1depth_name,
+          depth2: region_2depth_name,
+          depth3: region_3depth_name,
+          depth4: region_4depth_name,
         }));
       });
 

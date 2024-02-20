@@ -10,6 +10,6 @@ export const LogRecordStandbyLayout = styled.article`
   align-items: center;
   justify-content: center;
 
-  position: absolute;
-  bottom: 0;
+  opacity: 0.9;
+  user-select: none;
 `;
