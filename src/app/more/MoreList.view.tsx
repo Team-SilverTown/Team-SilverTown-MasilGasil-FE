@@ -6,11 +6,17 @@ import { useInView } from "react-intersection-observer";
 import { throttle } from "lodash";
 import * as S from "./MoreList.styles";
 import { getListRecommends } from "./MoreList.controller";
-import { Dummy } from "./MoreList.constants";
+import { Dummy } from "./MoreList.types";
 import Skeleton from "./Skeleton/Skeleton";
 import { ListCard } from "@/components";
+import { TopNavigator } from "@/components/navigators/TopNavagtor";
+import { GoBackButton } from "@/components/navigators/TopNavagtor/components";
 
-const MoreListView = () => {
+interface MoreListViewProps {
+  topNavTitle?: string;
+}
+
+const MoreListView = ({ topNavTitle }: MoreListViewProps) => {
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isPending, isError } =
     useInfiniteQuery<Dummy[], Object, InfiniteData<Dummy[]>, [_1: string, _2: string], number>({
       queryKey: ["moreList", "recommends"],
@@ -62,43 +68,49 @@ const MoreListView = () => {
   }
 
   return (
-    <S.MoreListLayout>
-      <S.MoreListFilter>
-        <span>최신순</span>
-        <span>인기순</span>
-      </S.MoreListFilter>
-      <S.MoreListContainer>
-        {data?.pages.map((page) => (
-          <Fragment>
-            {page.map((list) => (
-              <Fragment>
-                <ListCard
-                  isRecruitLayout={true}
-                  isRecruit={true}
-                  isLiked={true}
-                  likeCount={Math.round(1200 * Math.random())}
-                  title={`타이틀${list.id}`}
-                  content={`내용${list.id}`}
-                  totalTime={10000 * Math.random()}
-                  distance={10000 * Math.random()}
-                  thumbnailURL="https://github.com/Team-SilverTown/Team-SilverTown-MasilGasil-FE/assets/114329713/71d9e550-9196-4539-b014-aadd5ebdea53"
-                  address="테스트"
-                  style={{ marginBottom: "2rem" }}
-                />
-              </Fragment>
-            ))}
-          </Fragment>
-        ))}
-        {isFetchingNextPage ? (
-          <Skeleton repeat={5} />
-        ) : (
-          <div
-            ref={ref}
-            style={{ height: 50 }}
-          />
-        )}
-      </S.MoreListContainer>
-    </S.MoreListLayout>
+    <>
+      <TopNavigator
+        leftChildren={<GoBackButton />}
+        title={topNavTitle}
+      />
+
+      <S.MoreListLayout>
+        <S.MoreListFilter>
+          <span>최신순</span>
+          <span>인기순</span>
+        </S.MoreListFilter>
+        <S.MoreListContainer>
+          {data?.pages.map((page, index) => (
+            <Fragment>
+              {page.map((list) => (
+                <Fragment>
+                  <ListCard
+                    isRecruit={true}
+                    isLiked={true}
+                    likeCount={Math.round(1200 * Math.random())}
+                    title={`타이틀${list.id}`}
+                    content={`내용${list.id}`}
+                    totalTime={10000 * Math.random()}
+                    distance={10000 * Math.random()}
+                    thumbnailURL="https://github.com/Team-SilverTown/Team-SilverTown-MasilGasil-FE/assets/114329713/71d9e550-9196-4539-b014-aadd5ebdea53"
+                    address="테스트"
+                    style={{ marginBottom: "2rem" }}
+                  />
+                </Fragment>
+              ))}
+            </Fragment>
+          ))}
+          {isFetchingNextPage ? (
+            <Skeleton repeat={5} />
+          ) : (
+            <div
+              ref={ref}
+              style={{ height: 50 }}
+            />
+          )}
+        </S.MoreListContainer>
+      </S.MoreListLayout>
+    </>
   );
 };
 

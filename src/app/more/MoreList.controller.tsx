@@ -3,21 +3,23 @@
 import { QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import MoreListView from "./MoreList.view";
 
-interface Props {
+interface getListRecommendsProps {
   pageParam?: number;
 }
 
-export async function getListRecommends({ pageParam }: Props) {
+/**
+ *
+ * @param pageParam 전달 받은 initialPageParam 데이터
+ * @returns fetch를 통해 호출한 데이터의 json()을 리턴합니다.
+ */
+export async function getListRecommends({ pageParam }: getListRecommendsProps) {
   const res = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${pageParam}`, {
     next: {
       tags: ["moreList", "recommends"],
     },
   });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
   }
   return res.json();
