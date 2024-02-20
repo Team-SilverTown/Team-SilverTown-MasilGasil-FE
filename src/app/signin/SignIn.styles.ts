@@ -1,7 +1,9 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
-export const GenderSection = styled.div`
+export const GenderSection = styled.section`
+  display: flex;
+  flex-direction: column;
   font-weight: ${FONT_WEIGHT.BOLD};
   font-size: 2rem;
   margin-top: 2.5rem;
@@ -15,6 +17,23 @@ export const GenderButtonGroup = styled.div`
   gap: 1.2rem;
   margin: 1.4rem 0;
   color: ${({ theme }) => theme.white};
+  cursor: pointer;
+`;
+
+export const BirthDateSection = styled.section`
+  margin-top: 1.5rem;
+`;
+
+export const BirthDateTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+`;
+
+export const BirthDateTitle = styled.span`
+  font-size: 2rem;
+  font-weight: ${FONT_WEIGHT.BOLD};
+  width: 4.5rem;
 `;
 
 export const PolicyLable = styled.label`
