@@ -1,7 +1,7 @@
-import React from "react";
+import LogRecordController from "./LogRecord.controller";
 
 const LogRecord = () => {
-  return <div>LogRecord</div>;
+  return <LogRecordController />;
 };
 
 export default LogRecord;

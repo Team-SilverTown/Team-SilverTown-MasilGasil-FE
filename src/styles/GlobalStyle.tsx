@@ -1,37 +1,72 @@
 "use client";
 
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
+import { CONTAINER } from "./theme";
 
 export const GlobalStyle = createGlobalStyle<any>`
     ${normalize}
 
-    *{
-      color: ${(props) => props.theme.text_primary_color};
-      /* font-family: sans-serif; */
-    }
-    body {
-      background-color: ${(props) => props.theme.background_color};
-      /* background-repeat: repeat; */
+    * {
+      color: ${(props: any) => props.theme.text_primary_color};
     }
 
     html,
     body {
+      width: 100%;
       height: 100%;
       box-sizing: border-box;
       touch-action: manipulation;
-      /* font-family: var(--font-sans); */
+    
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      /* background-color: var(--primary); */
-      /* color: var(--text-primary); */
+
       overscroll-behavior-x: none;
     }
 
-    body {
-      position: relative;
-      min-height: 100%;
-      margin: 0;
+    html {
+      font-size: 62.5%;
     }
+
+    body {
+      min-height: 100%;
+
+      background-color: ${(props) => props.theme.background_color};
+      
+      font-size : 1.4rem;
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    }
+
+    main {
+      width: 100%;
+      max-width: 600px;
+      height: 100%;
+      min-height: 100%; 
+      margin: 0 auto;
+
+      position: relative;
+    }
+`;
+
+export const CommonContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0px ${CONTAINER.PADDING_HORIZONTAL}rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+`;
+
+export const Col = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
 `;

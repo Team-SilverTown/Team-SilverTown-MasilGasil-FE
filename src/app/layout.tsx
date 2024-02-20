@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Script from "next/script";
 
 import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import "src/styles/globals.css";
 import { ManagedUIContext, ModalUI } from "@/components/uiContext/UiContext";
-
-const inter = Inter({ subsets: ["latin"] });
+import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
 
 export const metadata: Metadata = {
   title: "마실가실",
@@ -15,7 +13,7 @@ export const metadata: Metadata = {
 };
 const KAKAO_API_KEY = process.env.DB_KAKAO_API_KEY;
 
-const URL = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&autoload=false`;
+const URL = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&libraries=services,clusterer,drawing&autoload=false`;
 
 export default function RootLayout({
   children,
@@ -27,13 +25,15 @@ export default function RootLayout({
       <ManagedUIContext>
         <StyledComponentsRegistry>
           <GlobalStyle />
-          <body className={inter.className}>
+          <body>
             <Script
               src={URL}
               strategy={"beforeInteractive"}
             />
-
-            {children}
+            <main>
+              {children}
+              <BottomNavigator />
+            </main>
             <ModalUI />
           </body>
         </StyledComponentsRegistry>
