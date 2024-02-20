@@ -1,3 +1,4 @@
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const LogRecordActionLayout = styled.div`
@@ -10,9 +11,6 @@ export const LogRecordActionLayout = styled.div`
   flex-direction: column;
   align-items: end;
 
-  position: absolute;
-  bottom: 0;
-
   opacity: 0.9;
   user-select: none;
 `;
@@ -21,8 +19,7 @@ export const LogRecordActionContainer = styled.div`
   width: 100%;
   padding: 1.6rem;
 
-  /* 추후 전역 스타일 적용 */
-  background-color: ${({ theme }) => "#fff"};
+  background-color: ${({ theme }) => theme.white};
   border-radius: 0.8rem;
   box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_50};
 `;
@@ -44,12 +41,10 @@ export const LogRecordInfo = styled.p`
   align-items: center;
   justify-content: center;
 
-  /* 추후 전역 스타일 적용 */
-  background-color: #f1f5eb;
+  background-color: ${({ theme }) => theme.green_100};
   border-radius: 0.8rem;
   box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_50};
 
-  /* 추후 전역 스타일 적용 */
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-size: ${FONT_SIZE.LARGE};
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;

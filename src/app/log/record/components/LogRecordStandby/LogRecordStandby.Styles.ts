@@ -10,11 +10,6 @@ export const LogRecordStandbyLayout = styled.article`
   align-items: center;
   justify-content: center;
 
-  position: absolute;
-  bottom: 0;
-`;
-
-export const LogRecordStandbyButton = styled.div`
-  width: 90%;
-  height: 40px;
+  opacity: 0.9;
+  user-select: none;
 `;

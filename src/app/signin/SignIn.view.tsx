@@ -4,16 +4,15 @@ import React, { ReactNode } from "react";
 import { FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 
 import * as GS from "@/styles/GlobalStyle";
-import { Button } from "@/components";
 
 import { SignInHelper, StepButton, StepLayout } from "./components";
 import { SignInFormProps } from "./SignIn.controller";
+import { NAV_HEIGHT } from "@/styles/theme";
 
 interface SignInViewProps {
   stepViews: ReactNode[];
   focusedStep: number;
   prevFocusedStep: number;
-  onPrevButtonHandler: () => void;
   onNextButtonHandler: () => void;
   handleSubmit: UseFormHandleSubmit<SignInFormProps, SignInFormProps>;
   onValid: (data: SignInFormProps) => void;
@@ -26,14 +25,13 @@ const SignInView = ({
   focusedStep,
   prevFocusedStep,
   onNextButtonHandler,
-  onPrevButtonHandler,
   handleSubmit,
   onValid,
   onInvalid,
   stepValidations,
 }: SignInViewProps) => {
   return (
-    <GS.CommonContainer>
+    <GS.CommonContainer style={{ paddingTop: `${NAV_HEIGHT}rem` }}>
       <div className="relative w-full h-full">
         <SignInHelper index={focusedStep} />
         {stepViews && (
@@ -41,10 +39,9 @@ const SignInView = ({
             focusedStep={focusedStep}
             prevFocusedStep={prevFocusedStep}
             stepViews={stepViews}
-            style={{ height: "calc(100% - 200px)", position: "relative" }}
+            style={{ height: `calc(100% - 165px)`, position: "relative" }}
           />
         )}
-        <Button onClickHandler={onPrevButtonHandler}>이전</Button>
         <StepButton
           buttonText={focusedStep === 3 ? "마실가실 시작하기" : "다음"}
           onClickHandler={

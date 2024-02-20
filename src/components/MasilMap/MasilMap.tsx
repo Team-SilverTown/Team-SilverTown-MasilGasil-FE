@@ -1,22 +1,20 @@
 import style from "./MasilMap.style.module.css";
 
-import {
-  GeoJSONLineString,
-  GeoJSONPoint,
-  KakaoFormatPin,
-  KakaoFormatPosition,
-  Pin,
-} from "@/types/OriginDataType";
+import { GeoPosition, Pin } from "@/types/OriginDataType";
 import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
 import PathLine from "./components/PathLine/PathLine";
-import { useMemo } from "react";
 import { OnClickPin, OnCreatePathLine, PathLineWeight } from "./MasilMap.types";
 import CustomPin from "./components/CustomPin/CustomPin";
+import Theme from "@/styles/theme";
+
+import { debounce, throttle } from "lodash";
+import { useRef, useState } from "react";
+import useMapCenterStore from "./store/useMapCenterStore";
 
 interface MasilMapProps {
-  center: GeoJSONPoint;
-  path: GeoJSONLineString;
+  center: GeoPosition;
+  path: GeoPosition[];
   pins: Pin[];
 
   draggable?: boolean;
@@ -33,7 +31,7 @@ interface MasilMapProps {
   pathOpacity?: number;
   pathWeight?: PathLineWeight;
 
-  onClickPin?: OnClickPin;
+  onClickPin: OnClickPin;
   pinSize?: number;
   pinColor?: string;
   pinSelectColor?: string;
@@ -95,56 +93,63 @@ const MasilMap = ({
   pinFontColor,
   selectedPinIndex,
 }: MasilMapProps) => {
-  const [lat, lng] = center.coordinates;
-  const centerPosition = { lat, lng };
+  const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
+  const { isOutCenter, setIsOutCenter } = useMapCenterStore();
 
   /**
-   * @summary
-   * 기존 geoJSON 형식인 Position형태를 Kakao Api에서 사용 가능한 데이터 타입으로 변형합니다.
-   *
-   * ( geLocation.watchPosition으로 인해 많은 상태변화로 useMemo 사용 )
+   * @summary drag, zoom으로 인해 벗어난 Map의 center를 일정 시간 후 강제로 다시 이동시킵니다.
    */
-  const kakaoFormatPath: KakaoFormatPosition[] = useMemo(() => {
-    return path.coordinates.map(([lat, lng]) => ({ lat, lng }));
-  }, [path]);
+  const offIsOutCenter = useRef(
+    debounce(() => {
+      setIsOutCenter(false);
+    }, 2000),
+  ).current;
 
   /**
-   * @summary
-   * 기존 geoJSON 형식인 PinList를 Kakao Api에서 사용 가능한 데이터 타입으로 변형합니다.
+   * @summary darg, zoom을 시작시 원활한 Map의 이동을 위해 outCenterPosition 값을 이용하고 갱신시켜줍니다.
    *
-   * ( geLocation.watchPosition으로 인해 많은 상태변화로 useMemo 사용 )
+   * @param target kakao map api의 자체적인 타입값으로 Map에 대한 현재 상태를 반환해줍니다
+   *
+   * ( getCenter라는 메서드를 통해 사용자에게 보여지고 있는 Map을 기준으로 center값을 획득할 수 있습니다. )
+   *
+   * + 너무 많은 상태변화를 방지하기위해 0.2초의 throttle 적용
    */
-  const kakaoFormatPins: KakaoFormatPin[] = useMemo(() => {
-    return pins.map((prevPoint) => {
-      const [lat, lng] = prevPoint.point.coordinates;
+  const handleMap = useRef(
+    throttle((target: kakao.maps.Map) => {
+      setIsOutCenter(true);
 
-      return {
-        ...prevPoint,
-        point: { lat, lng },
-      };
-    });
-  }, [pins]);
+      const center = target.getCenter();
+      setOutCenterPosition({
+        lat: center.getLat(),
+        lng: center.getLng(),
+      });
+
+      offIsOutCenter();
+    }, 200),
+  ).current;
 
   return (
     <Map
-      center={centerPosition}
+      center={isOutCenter ? outCenterPosition : center}
       className={style.masil__map}
       draggable={draggable}
       zoomable={zoomable}
       minLevel={minZoomLevel && minZoomLevel}
       maxLevel={maxZoomLevel && maxZoomLevel}
+      onDrag={handleMap}
+      onZoomChanged={handleMap}
     >
       {isShowCenterMarker && (
         <CenterMarker
-          position={centerPosition}
+          position={center}
           size={centerMarkerSize}
           fill={centerMarkerFill}
         />
       )}
 
-      {kakaoFormatPath && (
+      {path.length !== 0 && (
         <PathLine
-          path={kakaoFormatPath}
+          path={path}
           onCreatePathLine={onCreatePathLine}
           pathColor={pathColor}
           pathOpacity={pathOpacity}
@@ -152,15 +157,19 @@ const MasilMap = ({
         />
       )}
 
-      {kakaoFormatPins &&
-        kakaoFormatPins.map(({ point }, index) => (
+      {pins.length !== 0 &&
+        pins.map(({ point }, index) => (
           <CustomPin
             key={`${point.lat}${point.lng}${index}`}
             position={point}
             size={pinSize}
-            onClickPin={onClickPin && onClickPin}
+            onClickPin={() => {
+              onClickPin(index);
+            }}
             pinIndex={index + 1}
-            pinColor={pinColor}
+            pinColor={
+              selectedPinIndex && selectedPinIndex === index ? Theme.lightTheme.red_100 : pinColor
+            }
             pinSelectColor={pinSelectColor}
             pinFontColor={pinFontColor}
             isSelected={selectedPinIndex === index}
