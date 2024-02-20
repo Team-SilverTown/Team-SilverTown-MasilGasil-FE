@@ -30,7 +30,7 @@ export default function RootLayout({
               src={URL}
               strategy={"beforeInteractive"}
             />
-            {children}
+            <main>{children}</main>
             <ModalUI />
             <BottomNavigator />
           </body>

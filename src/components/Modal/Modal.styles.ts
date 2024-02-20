@@ -4,14 +4,29 @@ import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT, MODAL, Z_INDEX } from "@/styles/theme";
 
 export const ModalContainer = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: ${Z_INDEX.MODAL};
-  ${tw`fixed flex items-center inset-0 justify-center`}
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const ModalBackground = styled.div<any>`
+  position: absolute;
+  background-color: ${(props) => props.theme.transparent_10};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(1.2px);
   z-index: ${Z_INDEX.MODAL_BACKGROUND};
-
-  ${tw`fixed bg-black bg-opacity-10 flex items-center inset-0 justify-center backdrop-blur-[1.2px]`}
 `;
 
 export const ModalLayoutContainer = styled.div`
@@ -21,17 +36,27 @@ export const ModalLayoutContainer = styled.div`
   padding-left: ${MODAL.HORIZONTAL_PADDING}rem;
   padding-right: ${MODAL.HORIZONTAL_PADDING}rem;
   z-index: ${Z_INDEX.MODAL_LAYOUT};
-
-  ${tw`relative shadow-md rounded-md`}
+  position: relative;
+  box-shadow: 0 2px 4px -2px ${(props) => props.theme.transparent_10};
+  border-radius: 6px;
 `;
 
 export const ModalLayoutHeader = styled.section`
   margin-top: ${MODAL.HEADER_MARGIN}rem;
-  ${tw`absolute left-0 top-0 w-full`}
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
 `;
 
 export const ModalHeaderTitle = styled.span`
-  ${tw`relative text-center w-[70%] truncate m-auto text-lg font-semibold`}
+  position: relative;
+  text-align: center;
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto;
 
   display: flex;
   justify-content: center;
