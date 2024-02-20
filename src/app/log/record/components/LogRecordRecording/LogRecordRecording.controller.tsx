@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import LogRecordRecordingView from "./LogRecordRecording.view";
 import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
 import { throttle } from "lodash";
-import useUserLocationStore from "@/stores/useUserLocationStore";
 import { MasilRecordRequest } from "@/types/Request";
 import { useUI } from "@/components/uiContext/UiContext";
 import getTwoPointDistance from "../../utils/getTwoPointDistance";
+import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
 
 interface LogRecordRecordingControllerProps {
   logData: MasilRecordRequest;
@@ -16,6 +16,9 @@ interface LogRecordRecordingControllerProps {
   updateUserLocation: UpdateUserLocation;
 }
 
+const MIN_INSERT_PATH_RAGE = 10; // M 단위
+const MAX_INSERT_PATH_RAGE = 200; // M 단위
+
 const LogRecordRecordingController = ({
   logData,
   setLogData,
@@ -23,7 +26,6 @@ const LogRecordRecordingController = ({
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordRecordingControllerProps) => {
-  const { userLocation } = useUserLocationStore();
   const { openModal, setModalView, closeModal } = useUI();
 
   /**
@@ -52,7 +54,7 @@ const LogRecordRecordingController = ({
         if (prevPosition) {
           const pointDistance = getTwoPointDistance(newPoint, prevPosition);
 
-          if (pointDistance < 10 /* M 단위 */ || pointDistance > 200 /* M 단위 */) {
+          if (pointDistance < MIN_INSERT_PATH_RAGE || pointDistance > MAX_INSERT_PATH_RAGE) {
             return prevData;
           }
         }
@@ -64,8 +66,6 @@ const LogRecordRecordingController = ({
       });
     }, 5000),
   ).current;
-
-  console.log(logData);
 
   useEffect(() => {
     const watchCode = navigator.geolocation.watchPosition(
@@ -85,32 +85,6 @@ const LogRecordRecordingController = ({
     };
   }, []);
 
-  /**
-   * @summary 현재 위치에 핀을 추가하는 함수
-   *
-   * 특정 거리 이내에 핀이 존재할경우 찍히지 앟음.
-   */
-  const handleClickCreatePin = useCallback(() => {
-    for (const { point: checkPin } of logData.pins) {
-      const pointDistance = getTwoPointDistance(userLocation, checkPin);
-
-      if (pointDistance < 10 /* M단위 */) {
-        return;
-      }
-    }
-
-    const newPin = {
-      point: userLocation,
-      content: "",
-      thumbnailUrl: null,
-    };
-
-    setLogData((prevData) => ({
-      ...prevData,
-      pins: [...prevData.pins, newPin],
-    }));
-  }, [userLocation, logData]);
-
   const handleClickCompleteRecord = () => {
     setModalView("LOG_RECORD_CONFIRM_VIEW");
     openModal({
@@ -118,16 +92,15 @@ const LogRecordRecordingController = ({
         setPageStep("LOG_RECORD_EDITING");
         closeModal();
       },
-      message: "산책을 마무리 하실건가요?",
-      warningMessage: "해당 페이지로 되돌아올 수 없습니다.",
-      acceptButtonText: "완료",
+      message: LOG_RECORD_MESSAGE.COMPLETE_RECORD.MESSAGE,
+      warningMessage: LOG_RECORD_MESSAGE.COMPLETE_RECORD.WARNING_MESSAGE,
+      acceptButtonText: LOG_RECORD_MESSAGE.COMPLETE_RECORD.ACCEPT_BUTTON,
     });
   };
 
   return (
     <LogRecordRecordingView
       logData={logData}
-      handleClickCreatePin={handleClickCreatePin}
       handleClickCompleteRecord={handleClickCompleteRecord}
     />
   );

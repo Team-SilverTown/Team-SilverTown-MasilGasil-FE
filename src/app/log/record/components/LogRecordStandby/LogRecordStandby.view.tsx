@@ -13,7 +13,7 @@ const LogRecordStandbyView = ({ onClick }: LogRecordStandbyViewProps) => {
         buttonColor={Theme.lightTheme.green_500}
         variant="neumorp"
         textColor={Theme.lightTheme.white}
-        style={{ fontWeight: FONT_WEIGHT.BOLD, opacity: 0.9, fontSize: FONT_SIZE.LARGE }}
+        style={{ fontWeight: FONT_WEIGHT.BOLD, fontSize: FONT_SIZE.LARGE }}
         width={"100%"}
         onClickHandler={onClick}
       >
