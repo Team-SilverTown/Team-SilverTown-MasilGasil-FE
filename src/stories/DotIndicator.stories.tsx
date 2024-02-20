@@ -82,6 +82,8 @@ export const Default = (args: any) => {
     },
   ];
 
+  // const [slideIdx, setSlideIdx] = useState(0);
+
   return (
     <div style={{ width: 390 }}>
       <Carousel
