@@ -25,16 +25,14 @@ const LogRecordEditController = ({
   const { setUserLocation } = useUserLocationStore();
 
   useEffect(() => {
-    return () => {
-      const pathLength = logData.path.length;
-      const latAvg = logData.path.reduce((total, point) => total + point.lat, 0) / pathLength;
-      const lngAvg = logData.path.reduce((total, point) => total + point.lng, 0) / pathLength;
+    const pathLength = logData.path.length;
+    const latAvg = logData.path.reduce((total, point) => total + point.lat, 0) / pathLength;
+    const lngAvg = logData.path.reduce((total, point) => total + point.lng, 0) / pathLength;
 
-      // TODO: 배포 후 테스트 필요
-      if (latAvg && lngAvg) {
-        setUserLocation({ lat: latAvg, lng: lngAvg });
-      }
-    };
+    // TODO: 배포 후 테스트 필요
+    if (latAvg && lngAvg) {
+      setUserLocation({ lat: latAvg, lng: lngAvg });
+    }
   }, []);
 
   /**

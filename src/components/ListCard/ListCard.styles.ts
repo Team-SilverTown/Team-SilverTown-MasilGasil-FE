@@ -41,8 +41,7 @@ export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
       font-size: ${FONT_SIZE.MICRO};
       font-weight: ${FONT_WEIGHT.MEDIUM};
       color: ${(props) => props.theme.white};
-      background-color: ${(props) =>
-        props.isRecruit ? props.theme.green_500 : props.theme.gray_500};
+      background-color: ${(props) => props.theme.green_500};
     }
 
     .like {
@@ -52,8 +51,8 @@ export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
       cursor: pointer;
 
       svg {
-        stroke: ${(props) => (props.isLiked ? props.theme.yellow_500 : props.theme.black)};
-        fill: ${(props) => props.isLiked && props.theme.yellow_500};
+        stroke: ${(props) => (props.isLiked ? props.theme.pink_100 : props.theme.black)};
+        fill: ${(props) => props.isLiked && props.theme.pink_100};
         transition: all 0.1s;
       }
 
@@ -64,18 +63,18 @@ export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
         transform: translateX(-50%);
         display: inline-block;
         font-size: ${FONT_SIZE.MICRO};
-        color: ${(props) => (props.isLiked ? props.theme.yellow_500 : props.theme.black)};
+        color: ${(props) => (props.isLiked ? props.theme.pink_100 : props.theme.black)};
         transition: all 0.1s;
       }
 
       &:hover {
         svg {
-          stroke: ${(props) => !props.isLiked && props.theme.yellow_500};
-          fill: ${(props) => props.theme.yellow_500};
+          stroke: ${(props) => !props.isLiked && props.theme.pink_100};
+          fill: ${(props) => props.theme.pink_100};
         }
 
         span {
-          color: ${(props) => props.theme.yellow_500};
+          color: ${(props) => props.theme.pink_100};
         }
       }
     }

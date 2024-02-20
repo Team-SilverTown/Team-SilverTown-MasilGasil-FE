@@ -5,7 +5,6 @@ export default {
   title: "Component/ListCard",
   component: ListCard,
   argTypes: {
-    isRecruitLayout: { control: "boolean" },
     isRecruit: { control: "boolean" },
     isLiked: { control: "boolean" },
     likeCount: { control: "number" },
@@ -23,7 +22,6 @@ export const Default = (args: ListCardProps) => {
 };
 
 Default.args = {
-  isRecruitLayout: true,
   isRecruit: true,
   isLiked: true,
   likeCount: 1000,

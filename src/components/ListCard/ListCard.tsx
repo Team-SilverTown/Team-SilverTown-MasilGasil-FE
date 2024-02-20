@@ -1,9 +1,10 @@
 import * as S from "./ListCard.styles";
 import { Heart } from "../icons";
 import { CSSProperties } from "react";
+import { convertSeconds } from "@/utils/convertSeconds";
+import { convertMeter } from "@/utils/convertMeter";
 
 export interface ListCardProps {
-  isRecruitLayout: boolean;
   isRecruit: boolean;
   isLiked: boolean;
   likeCount: number;
@@ -17,7 +18,6 @@ export interface ListCardProps {
 }
 
 const ListCard = ({
-  isRecruitLayout,
   isRecruit,
   isLiked,
   likeCount,
@@ -29,37 +29,6 @@ const ListCard = ({
   distance,
   style,
 }: ListCardProps) => {
-  /**
-   *
-   * @param sec 1초 단위로 전달되는 매개변수 입니다.
-   * @returns 산책 시간이 1분 미만이라면 1분을 보여줍니다.
-   *          산책 시간이 1시간 미만이라면 분만 보여줍니다.
-   *          산책 시간이 1시간 이상이라면 시간, 분을 같이 보여줍니다.
-   */
-
-  const convertSeconds = (sec: number) => {
-    let minutes = Math.round(sec / 60);
-    let hours = Math.floor(minutes / 60);
-    minutes = minutes % 60;
-    if (sec < 60) return `1분`;
-    if (hours === 0) return `${minutes}분`;
-    return `${hours}시간 ${minutes}분`;
-  };
-
-  /**
-   *
-   * @param meter 1m 단위로 전달되는 매개변수 입니다.
-   * @returns 1km 이상인 경우에는 소숫점 한 자리까지 반올림하여 거리를 km로 보여주고,
-   *          미만인 경우 전달 받은 meter그대로 m 단위로 보여줍니다.
-   */
-  const convertMeter = (meter: number) => {
-    const distance = Number((meter / 1000).toFixed(1));
-    if (meter >= 1000) {
-      return `${distance}km`;
-    }
-    return `${meter}m`;
-  };
-
   // 좋아요 증가 혹은 감소 시켜주는 함수
   const handleToggleLikes = () => {};
 
@@ -72,7 +41,7 @@ const ListCard = ({
         likeCount={likeCount}
       >
         <div className="topInfoSection">
-          {isRecruitLayout && <span className="recruit">{isRecruit ? "모집중" : "모집완료"}</span>}
+          {isRecruit && <span className="recruit">모집중</span>}
           <div
             className="like"
             onClick={handleToggleLikes}
