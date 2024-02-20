@@ -4,6 +4,7 @@ import { SetLogData } from "../../LogRecord.types";
 import { MasilRecordRequest } from "@/types/Request";
 import { OnClickPin } from "@/components/MasilMap/MasilMap.types";
 import useUserLocationStore from "@/stores/useUserLocationStore";
+import { drawPath } from "@/utils/drawPath";
 
 interface LogRecordEditControllerProps {
   logData: MasilRecordRequest;
@@ -68,6 +69,7 @@ const LogRecordEditController = ({
     });
 
     // TODO: 패스가 그려진 지도를 캡쳐한 이미지를 기본 썸네일로 저장
+    drawPath(logData.path);
 
     // TODO: logData 전송, 전송 중 로딩스피너 + 전송 완료 시 데이터 초기화
 
