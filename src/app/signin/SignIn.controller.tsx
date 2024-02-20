@@ -6,6 +6,9 @@ import { FieldErrors, useForm } from "react-hook-form";
 import useSignInModel from "./SignIn.model";
 import SignInView from "./SignIn.view";
 import { SignInStep1, SignInStep2, SignInStep3, SignInStep4 } from "./sections";
+import { TopNavigator } from "@/components/navigators/TopNavagtor";
+import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavagtor/components";
+import { useRouter } from "next/navigation";
 
 export interface SignInFormProps {
   nickname: string;
@@ -14,12 +17,16 @@ export interface SignInFormProps {
   height?: number;
   weight?: number;
   exerciseIntensity?: "SUPER_LOW" | "LOW" | "MIDDLE" | "HIGH" | "SUPER_HIGH";
-  // policy1: boolean;
-  // policy2: boolean;
-  // policy3: boolean;
+  policy1: boolean;
+  policy2: boolean;
+  policy3: boolean;
 }
 
+const LAST_STEP_INDEX = 3;
+
 const SignInController = () => {
+  const router = useRouter();
+
   const { focusedStep, setFocusedStep } = useSignInModel();
   const prevFocusedStep = useRef(focusedStep);
 
@@ -28,10 +35,16 @@ const SignInController = () => {
     handleSubmit,
     getValues,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<SignInFormProps>({
     mode: "onChange",
     shouldUnregister: false,
+    defaultValues: {
+      policy1: false,
+      policy2: false,
+      policy3: false,
+    },
   });
 
   const onValid = (data: SignInFormProps) => {
@@ -50,11 +63,16 @@ const SignInController = () => {
     else return true;
   }, [getValues(), errors]);
 
+  const isStep4Validate = useMemo(() => {
+    if (!getValues("policy1") || !getValues("policy2") || !getValues("policy3")) return false;
+    else return true;
+  }, [watch()]);
+
   // 각 step 별 유효성 검사 결과 boolean 값을 가지고 있습니다.
-  const stepValidations = [isStep1Validate, true, true, true];
+  const stepValidations = [isStep1Validate, true, true, isStep4Validate];
 
   const nextButtonClickHandler = () => {
-    if (focusedStep >= stepViews.length - 1) return;
+    if (focusedStep >= LAST_STEP_INDEX) return;
 
     prevFocusedStep.current = focusedStep;
     setFocusedStep((focusedStep) => focusedStep + 1);
@@ -62,7 +80,10 @@ const SignInController = () => {
 
   // 테스트용
   const prevButtonClickHandler = () => {
-    if (focusedStep === 0) return;
+    if (focusedStep === 0) {
+      router.back();
+      return;
+    }
 
     prevFocusedStep.current = focusedStep;
     setFocusedStep((focusedStep) => focusedStep - 1);
@@ -75,21 +96,35 @@ const SignInController = () => {
     />,
     <SignInStep2 setValue={setValue} />,
     <SignInStep3 />,
-    <SignInStep4 />,
+    <SignInStep4
+      getValues={getValues}
+      setValue={setValue}
+    />,
   ];
 
   return (
-    <SignInView
-      stepViews={stepViews}
-      focusedStep={focusedStep}
-      prevFocusedStep={prevFocusedStep.current}
-      onNextButtonHandler={nextButtonClickHandler}
-      onPrevButtonHandler={prevButtonClickHandler}
-      handleSubmit={handleSubmit}
-      onValid={onValid}
-      onInvalid={onInvalid}
-      stepValidations={stepValidations}
-    />
+    <>
+      <TopNavigator
+        leftChildren={<GoBackButton onGoBackHandler={prevButtonClickHandler} />}
+        rightChildren={
+          focusedStep === 0 ||
+          (focusedStep !== LAST_STEP_INDEX && (
+            <StepSkipButton onSkipHandler={nextButtonClickHandler} />
+          ))
+        }
+        title="회원가입"
+      />
+      <SignInView
+        stepViews={stepViews}
+        focusedStep={focusedStep}
+        prevFocusedStep={prevFocusedStep.current}
+        onNextButtonHandler={nextButtonClickHandler}
+        handleSubmit={handleSubmit}
+        onValid={onValid}
+        onInvalid={onInvalid}
+        stepValidations={stepValidations}
+      />
+    </>
   );
 };
 

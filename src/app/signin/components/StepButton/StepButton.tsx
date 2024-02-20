@@ -13,7 +13,7 @@ const StepButton = ({ onClickHandler, isDisabled, buttonText }: StepButtonProps)
   const theme = useTheme();
 
   return (
-    <div className="absolute w-full bottom-20 box-border">
+    <div className="absolute w-full bottom-5 box-border">
       <Button
         type="button"
         onClick={onClickHandler}

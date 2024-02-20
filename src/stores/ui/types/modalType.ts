@@ -1,0 +1,5 @@
+export type MODAL_VIEWS =
+  | "INIT_VIEW"
+  | "LOG_RECORD_CONFIRM_VIEW"
+  | "LOG_RECORD_ALERT_VIEW"
+  | "PIN_EDIT";
