@@ -45,6 +45,7 @@ const LogRecordStandbyController = ({
     const updateAddress = ({ coords }: GeolocationPosition) => {
       const { latitude, longitude } = coords;
       const goe = new kakao.maps.services.Geocoder();
+      const newStartPosition = { lat: latitude, lng: longitude };
 
       goe.coord2RegionCode(longitude, latitude, (result, status) => {
         if (status !== kakao.maps.services.Status.OK) {
@@ -61,6 +62,7 @@ const LogRecordStandbyController = ({
 
         setLogData((prevData) => ({
           ...prevData,
+          path: [newStartPosition],
           depth1: region_1depth_name,
           depth2: region_2depth_name,
           depth3: region_3depth_name,
@@ -70,9 +72,9 @@ const LogRecordStandbyController = ({
 
       /* TODO
         추후 getCurrentPosition 이 실행되는 동안의 Loading Spinner 추가
-      */
+        */
+      setUserLocation(newStartPosition);
       setPageStep("LOG_RECORD_RECORDING");
-      setUserLocation({ lat: latitude, lng: longitude });
     };
 
     navigator.geolocation.getCurrentPosition(updateAddress, onErrorWatcher, {
