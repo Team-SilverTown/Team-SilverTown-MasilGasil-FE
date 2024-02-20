@@ -6,6 +6,7 @@ import { GlobalStyle } from "@/styles/GlobalStyle";
 import "src/styles/globals.css";
 import { ManagedUIContext, ModalUI } from "@/components/uiContext/UiContext";
 import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
+import ReactQueryProvider from "@/components/ReactQueryProvider";
 
 export const metadata: Metadata = {
   title: "마실가실",
@@ -25,15 +26,17 @@ export default function RootLayout({
       <ManagedUIContext>
         <StyledComponentsRegistry>
           <GlobalStyle />
-          <body>
-            <Script
-              src={URL}
-              strategy={"beforeInteractive"}
-            />
-            {children}
-            <ModalUI />
-            <BottomNavigator />
-          </body>
+          <ReactQueryProvider>
+            <body>
+              <Script
+                src={URL}
+                strategy={"beforeInteractive"}
+              />
+              {children}
+              <ModalUI />
+              <BottomNavigator />
+            </body>
+          </ReactQueryProvider>
         </StyledComponentsRegistry>
       </ManagedUIContext>
     </html>
