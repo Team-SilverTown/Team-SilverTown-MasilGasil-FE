@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FieldErrors, UseFormSetValue, useForm, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormSetValue, UseFormRegister } from "react-hook-form";
 
 import useTheme from "@/lib/hooks/useTheme";
 
@@ -33,7 +33,7 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
             onClick={() => handleSexSelect("male")}
             style={{
               width: "50%",
-              backgroundColor: selectedSex === "male" ? theme?.green_500 : theme?.gray_200,
+              backgroundColor: selectedSex === "male" ? theme?.green_500 : theme?.transparent_10,
             }}
           >
             남성
@@ -42,7 +42,7 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
             onClick={() => handleSexSelect("female")}
             style={{
               width: "50%",
-              backgroundColor: selectedSex === "female" ? theme?.green_500 : theme?.gray_200,
+              backgroundColor: selectedSex === "female" ? theme?.green_500 : theme?.transparent_10,
             }}
           >
             여성
@@ -62,7 +62,7 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
           required
           type="number"
           register={register("birthDate", {
-            required: "나이는 필수 값입니다.",
+            required: "나이는 필수 항목입니다.",
             min: {
               message: "14세 이상이어야 합니다",
               value: 14,
@@ -92,6 +92,51 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
           style={{ position: "absolute" }}
         />
       </S.BirthDateSection>
+
+      <S.PhysicalSection>
+        <S.Group>
+          <S.GroupTitle>키</S.GroupTitle>
+          <Input
+            required
+            type="number"
+            register={register("height", { required: "키는 필수 항목입니다." })}
+            placeholder="키를 입력해주세요."
+            style={{
+              fontSize: "1.5rem",
+              lineHeight: "2rem",
+              color: theme?.gray_500,
+              margin: "1.4rem 0",
+            }}
+          />
+          <InputLabel
+            type="danger"
+            text={errors?.height?.message}
+            fontSize={"1.5rem"}
+            style={{ position: "absolute" }}
+          />
+        </S.Group>
+        <S.Group>
+          <S.GroupTitle>체중</S.GroupTitle>
+          <Input
+            required
+            type="number"
+            register={register("weight", { required: "체중은 필수 항목입니다." })}
+            placeholder="체중을 입력해주세요."
+            style={{
+              fontSize: "1.5rem",
+              lineHeight: "2rem",
+              color: theme?.gray_500,
+              margin: "1.4rem 0",
+            }}
+          />
+          <InputLabel
+            type="danger"
+            text={errors?.weight?.message}
+            fontSize={"1.5rem"}
+            style={{ position: "absolute" }}
+          />
+        </S.Group>
+      </S.PhysicalSection>
     </div>
   );
 };
