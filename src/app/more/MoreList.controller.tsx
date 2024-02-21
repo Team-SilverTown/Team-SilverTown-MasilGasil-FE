@@ -12,7 +12,7 @@ interface getListRecommendsProps {
  * @param pageParam 전달 받은 initialPageParam 데이터
  * @returns fetch를 통해 호출한 데이터의 json()을 리턴합니다.
  */
-export async function getListRecommends({ pageParam }: getListRecommendsProps) {
+export const getListRecommends = async ({ pageParam }: getListRecommendsProps) => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${pageParam}`, {
     next: {
       tags: ["moreList", "recommends"],
@@ -23,7 +23,7 @@ export async function getListRecommends({ pageParam }: getListRecommendsProps) {
     throw new Error("Failed to fetch data");
   }
   return res.json();
-}
+};
 
 const MoreListController = async () => {
   const queryClient = new QueryClient();
