@@ -4,7 +4,7 @@ import { GeoPosition } from "@/types/OriginDataType";
 export const drawPath = (path: GeoPosition[]) => {
   let [minLat, maxLat, minLng, maxLng] = [Infinity, -Infinity, Infinity, -Infinity];
   const CANVAS_SIZE = 480;
-  const CANVAS_OFFSET = CANVAS_SIZE * 0.3;
+  const CANVAS_OFFSET = CANVAS_SIZE * 0.2;
 
   for (const p of path) {
     minLat = Math.min(minLat, p.lat);
@@ -29,7 +29,7 @@ export const drawPath = (path: GeoPosition[]) => {
     pathCanvas.strokeStyle = Theme.lightTheme.green_500;
     pathCanvas.lineJoin = "round";
     pathCanvas.lineCap = "round";
-    pathCanvas.lineWidth = 5;
+    pathCanvas.lineWidth = 7;
     pathCanvas.font = "16px Arial";
 
     pathCanvas.beginPath();
@@ -49,7 +49,6 @@ export const drawPath = (path: GeoPosition[]) => {
       // 경로 그리기
       if (i === 0) {
         pathCanvas.moveTo(x, y);
-        pathCanvas.arc(x, y, 3, 0, Math.PI * 2, false);
       } else {
         pathCanvas.lineTo(x, y);
       }
@@ -65,8 +64,15 @@ export const drawPath = (path: GeoPosition[]) => {
       canvas.height - CANVAS_OFFSET - (path[path.length - 1].lat - minLat) * scaleY,
     ];
 
+    pathCanvas.fillStyle = Theme.lightTheme.green_500;
+
     pathCanvas.fillText("👟", startX, startY);
+    pathCanvas.arc(startX, startY, 6, 0, Math.PI * 2, false);
+    pathCanvas.fill();
+
     pathCanvas.fillText("⛳️", endX, endY);
+    pathCanvas.arc(endX, endY, 6, 0, Math.PI * 2, false);
+    pathCanvas.fill();
 
     pathCanvas.stroke();
   }
