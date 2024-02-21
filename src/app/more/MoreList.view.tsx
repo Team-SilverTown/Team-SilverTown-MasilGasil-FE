@@ -6,13 +6,15 @@ import * as S from "./MoreList.styles";
 import Skeleton from "./Skeleton/Skeleton";
 import { ListCard } from "@/components";
 import useMoreListModel from "./MoreList.model";
+import { SORT_DATA, SORT_TAB } from "./MoreList.constants";
 
 const MoreListView = () => {
-  const { infinityQuery, infinityRef } = useMoreListModel();
+  const { sortTab, setSortTab, infinityQuery, inViewResponse, listInfo } = useMoreListModel();
+  const { isFilter } = listInfo;
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isPending, isError } =
     infinityQuery;
-  const { ref, inView } = infinityRef;
+  const { ref, inView } = inViewResponse;
 
   const throttledFetchNextPage = useMemo(
     () =>
@@ -50,17 +52,36 @@ const MoreListView = () => {
     );
   }
 
+  const handleFilterToggle = (event: React.MouseEvent<HTMLElement>) => {
+    if (event.currentTarget.title === SORT_TAB.LATEST) {
+      setSortTab(SORT_TAB.LATEST);
+    } else {
+      setSortTab(SORT_TAB.POPULAR);
+    }
+  };
+
   return (
     <S.MoreListLayout>
-      <S.MoreListFilter>
-        <span>최신순</span>
-        <span>인기순</span>
-      </S.MoreListFilter>
+      {isFilter && (
+        <S.MoreListFilter>
+          {SORT_DATA.map(({ title, keyword }, index) => (
+            <button
+              key={index}
+              type="button"
+              className={sortTab === keyword ? "selected" : ""}
+              title={keyword}
+              onClick={handleFilterToggle}
+            >
+              {title}
+            </button>
+          ))}
+        </S.MoreListFilter>
+      )}
       <S.MoreListContainer>
         {data?.pages.map((page, index) => (
-          <Fragment>
+          <div key={index}>
             {page.map((list) => (
-              <Fragment>
+              <div key={list.id}>
                 <ListCard
                   isRecruit={true}
                   isLiked={true}
@@ -68,14 +89,14 @@ const MoreListView = () => {
                   title={`타이틀${list.id}`}
                   content={`내용${list.id}`}
                   totalTime={10000 * Math.random()}
-                  distance={10000 * Math.random()}
-                  thumbnailURL="https://github.com/Team-SilverTown/Team-SilverTown-MasilGasil-FE/assets/114329713/71d9e550-9196-4539-b014-aadd5ebdea53"
+                  distance={100 * Math.random()}
+                  thumbnailURL=""
                   address="테스트"
                   style={{ marginBottom: "2rem" }}
                 />
-              </Fragment>
+              </div>
             ))}
-          </Fragment>
+          </div>
         ))}
         {isFetchingNextPage ? (
           <Skeleton repeat={5} />
