@@ -13,9 +13,9 @@ import {
 export const axiosClientConfig = {};
 
 // server side fetch 의 경우 baseURL 이 필요함.
-export const axiosServerConfig = {
-  baseURL: "",
-};
+// export const axiosServerConfig = {
+//   baseURL: process.env.BASE_URL,
+// };
 
 export const onResponse = (response: AxiosResponse): AxiosResponse => {
   return response.data;
