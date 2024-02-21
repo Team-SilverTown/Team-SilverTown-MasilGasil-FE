@@ -4,7 +4,7 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import useLogRecordModel from "./LogRecord.model";
 import LogRecordView from "./LogRecord.view";
 import { throttle } from "lodash";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { DEFAULT_LOG_DATA, LOG_RECORD_MESSAGE } from "./LogRecord.constants";
 import { useUI } from "@/components/uiContext/UiContext";
@@ -22,6 +22,10 @@ const LogRecordController = () => {
   const router = useRouter();
 
   // TODO: 강남역에서 내 위치로 갱신될 때까지 loading spinner 및 pin 찍을 수 없게
+
+  useEffect(() => {
+    closeModal();
+  }, [pageStep]);
 
   /**
    * @summary watcher가 오류가 발생했을때 수행할 동작을 위한 함수입니다.
@@ -155,6 +159,7 @@ const LogRecordController = () => {
         closeModal();
       },
       pinIndex,
+      pin: logData.pins[pinIndex],
     });
   };
 
