@@ -1,30 +1,18 @@
 "use client";
 
 import { Fragment, useEffect, useMemo } from "react";
-import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
-import { useInView } from "react-intersection-observer";
 import { throttle } from "lodash";
 import * as S from "./MoreList.styles";
-import { getListRecommends } from "./MoreList.controller";
-import { Dummy } from "./MoreList.types";
 import Skeleton from "./Skeleton/Skeleton";
 import { ListCard } from "@/components";
+import useMoreListModel from "./MoreList.model";
 
 const MoreListView = () => {
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isPending, isError } =
-    useInfiniteQuery<Dummy[], Object, InfiniteData<Dummy[]>, [_1: string, _2: string], number>({
-      queryKey: ["moreList", "recommends"],
-      queryFn: getListRecommends,
-      initialPageParam: 1,
-      getNextPageParam: (lastPage, allPage) => (allPage.length * 5) / 5 + 1,
-      staleTime: 60 * 1000,
-      gcTime: 300 * 1000,
-    });
+  const { infinityQuery, infinityRef } = useMoreListModel();
 
-  const { ref, inView } = useInView({
-    threshold: 0,
-    delay: 0,
-  });
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isPending, isError } =
+    infinityQuery;
+  const { ref, inView } = infinityRef;
 
   const throttledFetchNextPage = useMemo(
     () =>
