@@ -18,7 +18,7 @@ export const drawPath = (path: GeoPosition[]) => {
   canvas.height = CANVAS_SIZE;
 
   const scaleX = (canvas.width - CANVAS_OFFSET * 2) / (maxLng - minLng);
-  const scaleY = (canvas.height - CANVAS_OFFSET * 2) / (maxLat - minLat);
+  const scaleY = (canvas.height - CANVAS_OFFSET) / (maxLat - minLat);
 
   const pathCanvas = canvas.getContext("2d");
 
