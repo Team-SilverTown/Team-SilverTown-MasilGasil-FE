@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
 import { FieldErrors, UseFormSetValue, UseFormRegister } from "react-hook-form";
 
 import useTheme from "@/lib/hooks/useTheme";
 
 import { Button, Input, InputLabel } from "@/components";
 import { SignInFormProps } from "../SignIn.controller";
+import useSignInModel from "../SignIn.model";
 import * as S from "../SignIn.styles";
 
 interface SignInStep2Props {
@@ -17,7 +17,8 @@ interface SignInStep2Props {
 
 const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
   const theme = useTheme();
-  const [selectedSex, setSelectedSex] = useState<"male" | "female" | null>(null);
+
+  const { selectedSex, setSelectedSex } = useSignInModel();
 
   const handleSexSelect = (sex: "male" | "female") => {
     setSelectedSex(sex);
