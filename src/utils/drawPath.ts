@@ -64,15 +64,11 @@ export const drawPath = (path: GeoPosition[]) => {
       canvas.height - CANVAS_OFFSET - (path[path.length - 1].lat - minLat) * scaleY,
     ];
 
-    pathCanvas.fillStyle = Theme.lightTheme.green_500;
+    pathCanvas.arc(startX, startY, 6, 0, Math.PI * 2, false);
+    pathCanvas.arc(endX, endY, 6, 0, Math.PI * 2, false);
 
     pathCanvas.fillText("👟", startX, startY);
-    pathCanvas.arc(startX, startY, 6, 0, Math.PI * 2, false);
-    pathCanvas.fill();
-
     pathCanvas.fillText("⛳️", endX, endY);
-    pathCanvas.arc(endX, endY, 6, 0, Math.PI * 2, false);
-    pathCanvas.fill();
 
     pathCanvas.stroke();
   }
