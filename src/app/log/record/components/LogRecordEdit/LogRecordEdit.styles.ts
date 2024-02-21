@@ -3,7 +3,7 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 export const LogEditLayout = styled.div`
   width: 100%;
-  height: 50%;
+  height: 100%;
   min-width: 24rem;
   padding: 0rem 2rem 9rem 2rem;
   display: flex;

@@ -6,15 +6,19 @@ import LogRecordView from "./LogRecord.view";
 import { throttle } from "lodash";
 import { useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { DEFAULT_LOG_DATA } from "./LogRecord.constants";
+import { DEFAULT_LOG_DATA, LOG_RECORD_MESSAGE } from "./LogRecord.constants";
 import { useUI } from "@/components/uiContext/UiContext";
+import useMapCenterStore from "@/components/MasilMap/store/useMapCenterStore";
+import getTwoPointDistance from "./utils/getTwoPointDistance";
+
+const MIN_INSERT_PIN_RANGE = 10; // M 단위
 
 const LogRecordController = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
   const { pageStep, setPageStep, logData, setLogData, currentPinIndex, setCurrentPinIndex } =
     useLogRecordModel();
-
+  const { setIsOutCenter } = useMapCenterStore();
   const router = useRouter();
 
   // TODO: 강남역에서 내 위치로 갱신될 때까지 loading spinner 및 pin 찍을 수 없게
@@ -32,7 +36,7 @@ const LogRecordController = () => {
       추후 멘트 수정 
       */
       openModal({
-        message: "현재 위치 서비스에 동의하지 않았습니다. 동의 후 이용 가능합니다.",
+        message: LOG_RECORD_MESSAGE.ERROR.WATCH_PERMISSION_DENIED,
       });
     }
     /*
@@ -40,7 +44,7 @@ const LogRecordController = () => {
     추후 멘트 수정 
     */
     openModal({
-      message: "서비스에 문제가 발생했습니다. 잠시 후 이용해주세요.",
+      message: LOG_RECORD_MESSAGE.ERROR.WATCH_ERROR,
     });
   };
 
@@ -71,8 +75,8 @@ const LogRecordController = () => {
         setLogData(DEFAULT_LOG_DATA);
         closeModal();
       },
-      message: "모든 기록이 사라집니다. 진짜로 뒤로 가쉴...?",
-      warningMessage: "현재의 기록은 저장되지 않고 사라집니다.",
+      message: LOG_RECORD_MESSAGE.FALL_BACK.MESSAGE,
+      warningMessage: LOG_RECORD_MESSAGE.FALL_BACK.WARNING_MESSAGE,
     });
   };
 
@@ -89,6 +93,32 @@ const LogRecordController = () => {
       distance: newDistance,
     }));
   }, []);
+
+  /**
+   * @summary 현재 위치에 핀을 추가하는 함수
+   *
+   * 특정 거리 이내에 핀이 존재할경우 찍히지 앟음.
+   */
+  const handleClickCreatePin = useCallback(() => {
+    for (const { point: checkPin } of logData.pins) {
+      const pointDistance = getTwoPointDistance(userLocation, checkPin);
+
+      if (pointDistance < MIN_INSERT_PIN_RANGE) {
+        return;
+      }
+    }
+
+    const newPin = {
+      point: userLocation,
+      content: "",
+      thumbnailUrl: null,
+    };
+
+    setLogData((prevData) => ({
+      ...prevData,
+      pins: [...prevData.pins, newPin],
+    }));
+  }, [userLocation, logData]);
 
   const handleClickPin = (pinIndex: number) => {
     setCurrentPinIndex(pinIndex);
@@ -140,6 +170,10 @@ const LogRecordController = () => {
     setCurrentPinIndex(-1);
   };
 
+  const handleOffIsOutCenter = () => {
+    setIsOutCenter(false);
+  };
+
   return (
     <LogRecordView
       pageStep={pageStep}
@@ -154,6 +188,8 @@ const LogRecordController = () => {
       onCreatePathLine={handleDistanceCalculation}
       currentPinIndex={currentPinIndex}
       setCurrentPinIndex={setCurrentPinIndex}
+      handleOffIsOutCenter={handleOffIsOutCenter}
+      handleClickCreatePin={handleClickCreatePin}
     />
   );
 };

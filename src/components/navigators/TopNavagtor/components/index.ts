@@ -1,2 +1,2 @@
-export { default as GoBackButton } from "./goBackButton";
+export { default as GoBackButton } from "./GoBackButton";
 export { default as StepSkipButton } from "./StepSkipButton";
