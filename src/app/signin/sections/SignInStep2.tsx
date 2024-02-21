@@ -15,6 +15,14 @@ interface SignInStep2Props {
   errors: FieldErrors<SignInFormProps>;
 }
 
+const sexOptions: Array<{
+  label: string;
+  value: "male" | "female";
+}> = [
+  { label: "남성", value: "male" },
+  { label: "여성", value: "female" },
+];
+
 const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
   const theme = useTheme();
 
@@ -28,32 +36,28 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
   return (
     <div className="h-full">
       <S.GenderSection>
-        <S.GenderTitle>성별</S.GenderTitle>
+        <S.Title>성별</S.Title>
         <S.GenderButtonGroup>
-          <Button
-            onClick={() => handleSexSelect("male")}
-            style={{
-              width: "50%",
-              backgroundColor: selectedSex === "male" ? theme?.green_500 : theme?.transparent_10,
-            }}
-          >
-            남성
-          </Button>
-          <Button
-            onClick={() => handleSexSelect("female")}
-            style={{
-              width: "50%",
-              backgroundColor: selectedSex === "female" ? theme?.green_500 : theme?.transparent_10,
-            }}
-          >
-            여성
-          </Button>
+          {sexOptions.map((option) => (
+            <Button
+              key={option.value}
+              onClick={() => handleSexSelect(option.value)}
+              style={{
+                width: "50%",
+                backgroundColor:
+                  selectedSex === option.value ? theme?.green_500 : theme?.transparent_10,
+                cursor: "pointer",
+              }}
+            >
+              {option.label}
+            </Button>
+          ))}
         </S.GenderButtonGroup>
       </S.GenderSection>
 
       <S.BirthDateSection>
         <S.BirthDateTitleWrapper>
-          <S.BirthDateTitle>나이</S.BirthDateTitle>
+          <S.Title style={{ width: "4.5rem" }}>나이</S.Title>
           <InputLabel
             text="14 ~ 100 사이의 값만 입력할 수 있어요!"
             style={{ color: theme?.gray_200 }}
@@ -82,7 +86,6 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
           style={{
             fontSize: "1.5rem",
             lineHeight: "2rem",
-            color: theme?.gray_500,
             margin: "1.4rem 0",
           }}
         />
@@ -95,8 +98,8 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
       </S.BirthDateSection>
 
       <S.PhysicalSection>
-        <S.Group>
-          <S.GroupTitle>키</S.GroupTitle>
+        <S.PhysicalGroup>
+          <S.Title>키</S.Title>
           <Input
             required
             type="number"
@@ -105,7 +108,6 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
             style={{
               fontSize: "1.5rem",
               lineHeight: "2rem",
-              color: theme?.gray_500,
               margin: "1.4rem 0",
             }}
           />
@@ -115,9 +117,9 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
             fontSize={"1.5rem"}
             style={{ position: "absolute" }}
           />
-        </S.Group>
-        <S.Group>
-          <S.GroupTitle>체중</S.GroupTitle>
+        </S.PhysicalGroup>
+        <S.PhysicalGroup>
+          <S.Title>체중</S.Title>
           <Input
             required
             type="number"
@@ -126,7 +128,6 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
             style={{
               fontSize: "1.5rem",
               lineHeight: "2rem",
-              color: theme?.gray_500,
               margin: "1.4rem 0",
             }}
           />
@@ -136,7 +137,7 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
             fontSize={"1.5rem"}
             style={{ position: "absolute" }}
           />
-        </S.Group>
+        </S.PhysicalGroup>
       </S.PhysicalSection>
     </div>
   );
