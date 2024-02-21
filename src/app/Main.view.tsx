@@ -12,10 +12,14 @@ import Link from "next/link";
 
 interface MainViewProps {
   loading: boolean;
+  data?: string;
+  onClickHandler: () => void;
 }
 
-const MainView = ({ loading }: MainViewProps) => {
+const MainView = ({ loading, data, onClickHandler }: MainViewProps) => {
   const theme = useTheme();
+
+  console.log(data);
 
   return (
     <GS.CommonContainer
@@ -38,18 +42,19 @@ const MainView = ({ loading }: MainViewProps) => {
             buttonColor={theme?.yellow_500}
             width={"calc(100% - 30px)"}
             style={{ margin: "auto" }}
+            onClickHandler={onClickHandler}
           >
-            <Link href={"/home"}>
-              <span
-                style={{
-                  fontSize: FONT_SIZE.LARGE,
-                  fontWeight: FONT_WEIGHT.BOLD,
-                  color: theme?.white_100,
-                }}
-              >
-                카카오로 시작하기
-              </span>
-            </Link>
+            {/* <Link href={"/home"}> */}
+            <span
+              style={{
+                fontSize: FONT_SIZE.LARGE,
+                fontWeight: FONT_WEIGHT.BOLD,
+                color: theme?.white_100,
+              }}
+            >
+              카카오로 시작하기
+            </span>
+            {/* </Link> */}
           </Button>
         </S.AuthButtonWrapper>
       )}

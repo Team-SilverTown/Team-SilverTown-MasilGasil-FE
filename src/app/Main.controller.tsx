@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import MainView from "./Main.view";
+import { getTest, postTest } from "@/lib/api/Test/test";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useMainModel from "./Main.model";
 
 const MainController = () => {
@@ -14,15 +16,14 @@ const MainController = () => {
   4. 실행 결과에 따라 HomePage 혹은 SignIn Page 로 이동
    */
 
-  // test
-  const { loading, setLoading } = useMainModel();
+  // test //
+  const { data, isLoading, mutation } = useMainModel();
 
-  const preload = async () => {
-    setTimeout(() => {
-      console.log("loading done");
-      setLoading(false);
-    }, 2500);
+  const handleClick = () => {
+    mutation.mutate("postTest!!!");
   };
+
+  const preload = async () => {};
 
   useEffect(() => {
     const prepare = async () => {
@@ -35,7 +36,13 @@ const MainController = () => {
     prepare();
   }, []); //deps -> [isLogIn, token]
 
-  return <MainView loading={loading} />;
+  return (
+    <MainView
+      loading={isLoading}
+      data={data?.serverTime}
+      onClickHandler={handleClick}
+    />
+  );
 };
 
 export default MainController;
