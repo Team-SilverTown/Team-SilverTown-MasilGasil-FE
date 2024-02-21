@@ -28,11 +28,14 @@ export const drawPath = (path: GeoPosition[]) => {
 
     pathCanvas.strokeStyle = Theme.lightTheme.green_500;
     pathCanvas.lineWidth = 5;
+    pathCanvas.font = "16px Arial";
 
     pathCanvas.beginPath();
 
     for (let i = 0; i < path.length; i++) {
       let x, y;
+
+      // 좌표 스케일링
       if (path.length === 1) {
         x = canvas.width / 2;
         y = canvas.height / 2;
@@ -41,14 +44,19 @@ export const drawPath = (path: GeoPosition[]) => {
         y = CANVAS_OFFSET + (path[i].lat - minLat) * scaleY;
       }
 
+      // 경로 그리기
       if (i === 0) {
         pathCanvas.moveTo(x, y);
         pathCanvas.arc(x, y, 3, 0, Math.PI * 2, false);
-        pathCanvas.font = "16px Arial";
-
-        pathCanvas.fillText("⛳️", x, y);
       } else {
         pathCanvas.lineTo(x, y);
+      }
+
+      // 시작점, 끝점 표시
+      if (i === 0) {
+        pathCanvas.fillText("👟", x, y);
+      } else if (i === path.length - 1) {
+        pathCanvas.fillText("⛳️", x, y);
       }
     }
     pathCanvas.stroke();
