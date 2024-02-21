@@ -66,13 +66,12 @@ export const Title = styled.span`
 export const ExerciseIntensityOption = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin: 1.6rem;
+  gap: 1.2rem;
+  margin: 1.6rem 1.2rem;
 `;
 
 export const RadioCircle = styled.label`
   cursor: "pointer";
-  margin-left: 0.6rem;
 `;
 
 export const PolicyLable = styled.label`
