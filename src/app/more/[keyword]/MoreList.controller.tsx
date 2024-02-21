@@ -6,7 +6,7 @@ import fetchMyLogList from "./lib/fetchMoreList";
 import useMoreListModel from "./MoreList.model";
 
 const MoreListController = async () => {
-  const { setSortTab, listInfo } = useMoreListModel();
+  const { listInfo } = useMoreListModel();
 
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({

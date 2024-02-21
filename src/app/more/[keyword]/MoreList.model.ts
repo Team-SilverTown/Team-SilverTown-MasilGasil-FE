@@ -1,18 +1,18 @@
 "use client";
 
-import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
-import { Dummy, KeywordType } from "./MoreList.types";
-import { useInView } from "react-intersection-observer";
-import fetchMyLogList from "./lib/fetchMoreList";
-import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
+import { useInView } from "react-intersection-observer";
+import { useParams } from "next/navigation";
+import fetchMyLogList from "./lib/fetchMoreList";
+import { Dummy } from "./MoreList.types";
 import { SEARCH_KEYWORD } from "./MoreList.constants";
 
 const useMoreListModel = () => {
-  const searchParams = useSearchParams();
-  const searchKeyword = searchParams.get("keyword") as KeywordType;
-
-  const listInfo = SEARCH_KEYWORD.filter(({ keyword }) => keyword === searchKeyword)[0];
+  const params = useParams();
+  const { keyword } = params;
+  console.log(params);
+  const listInfo = SEARCH_KEYWORD.filter((list) => list.keyword === keyword)[0];
 
   if (!listInfo) {
     throw new Error("'keyword' 파라미터가 없습니다.");
