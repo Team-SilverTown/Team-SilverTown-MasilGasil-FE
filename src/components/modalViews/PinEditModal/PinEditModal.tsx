@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Trash } from "@/components/icons";
 
-interface ConfirmModalProps {
+interface PinEditModalProps {
   onClickAccept: (imageUrl: string | null, pinContent: string | null) => void;
   pin: Pin;
   pinIndex: number;
@@ -18,7 +18,7 @@ interface ConfirmModalProps {
 }
 
 interface ModalProp {
-  props: ConfirmModalProps;
+  props: PinEditModalProps;
 }
 
 const PinEditModal = ({ props }: ModalProp) => {

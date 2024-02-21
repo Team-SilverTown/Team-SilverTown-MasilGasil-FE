@@ -6,6 +6,7 @@ import { OnClickPin } from "@/components/MasilMap/MasilMap.types";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { drawPath } from "@/utils/drawPath";
 import path from "path";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface LogRecordEditControllerProps {
   logData: MasilRecordRequest;
@@ -24,6 +25,7 @@ const LogRecordEditController = ({
   setCurrentPinIndex,
   onClickPin,
 }: LogRecordEditControllerProps) => {
+  const { setModalView, openModal, closeModal } = useUI();
   const { setUserLocation } = useUserLocationStore();
 
   useEffect(() => {
@@ -72,9 +74,25 @@ const LogRecordEditController = ({
       return { ...prevData, thumbnailUrl: pathThumbnailUrl, content: memo };
     });
 
-    // TODO: logData 전송, 전송 중 로딩스피너 + 전송 완료 시 데이터 초기화
+    // TODO: logData API 통신
+
+    // API 통신 완료 시
+    setModalView("LOG_RECORD_DONE_VIEW");
+    openModal({
+      onClickUploadPost: () => {
+        // 산책로 공유하기를 클릭한 경우
+        // 산책로 공유하기 페이지로 이동, logData를 전달
+        closeModal();
+      },
+      onClickCancle: () => {
+        // 산책로 공유하기를 클릭하지 않은 경우
+        // 메인 페이지 혹은 내 기록 페이지로 이동
+        closeModal();
+      },
+    });
 
     // setLogData(DEFAULT_LOG_DATA);
+
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       setUserLocation({ lat: coords.latitude, lng: coords.longitude });
     });

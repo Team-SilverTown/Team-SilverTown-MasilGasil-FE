@@ -126,7 +126,7 @@ const LogRecordController = () => {
 
   const handleClickPin = (pinIndex: number) => {
     setCurrentPinIndex(pinIndex);
-    setModalView("PIN_EDIT");
+    setModalView("PIN_EDIT_VIEW");
     openModal({
       onClickAccept: (imageUrl: string | null, pinContent: string | null) => {
         /**
