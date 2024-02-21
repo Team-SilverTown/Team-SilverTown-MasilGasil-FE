@@ -5,6 +5,7 @@ import { MasilRecordRequest } from "@/types/Request";
 import { OnClickPin } from "@/components/MasilMap/MasilMap.types";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { drawPath } from "@/utils/drawPath";
+import path from "path";
 
 interface LogRecordEditControllerProps {
   logData: MasilRecordRequest;
@@ -64,12 +65,12 @@ const LogRecordEditController = ({
    * @brief 폼을 통해 입력받은 Memo를 logData의 content에 저장한 후, 서버에 전송합니다.
    */
   const handleSubmit = (memo: string) => {
-    setLogData((prevData) => {
-      return { ...prevData, content: memo };
-    });
+    const pathThumbnailUrl = drawPath(logData.path);
 
-    // TODO: 패스가 그려진 지도를 캡쳐한 이미지를 기본 썸네일로 저장
-    drawPath(logData.path);
+    // 경로를 기반으로 그려진 썸네일과 메모를 logData 데이터에 저장
+    setLogData((prevData) => {
+      return { ...prevData, thumbnailUrl: pathThumbnailUrl, content: memo };
+    });
 
     // TODO: logData 전송, 전송 중 로딩스피너 + 전송 완료 시 데이터 초기화
 

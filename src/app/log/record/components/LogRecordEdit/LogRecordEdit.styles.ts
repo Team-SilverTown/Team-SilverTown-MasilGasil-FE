@@ -28,7 +28,7 @@ export const SizeHandlerContainer = styled.div`
 `;
 
 export const SizeHandler = styled.div`
-  width: 40%;
+  width: 20%;
   height: 1rem;
   border-radius: 10rem;
   background-color: ${(props) => props.theme.gray_100};
@@ -82,4 +82,10 @@ export const SlideButtonContent = styled.div<{ $textColor: string }>`
   gap: 1.6rem;
   font-size: ${FONT_SIZE.LARGE};
   color: ${({ $textColor }) => $textColor};
+`;
+
+export const Image = styled.img<{ $src: string | null }>`
+  src: $src;
+  width: 100%;
+  height: 100%;
 `;

@@ -36,6 +36,10 @@ const LogRecordEditView = ({
       </S.SizeHandlerContainer>
       <S.LogEditLayout>
         <S.LogEditContainer>
+          <S.Header>경로 (테스트용)</S.Header>
+          {logData.thumbnailUrl && <img src={logData.thumbnailUrl} />}
+        </S.LogEditContainer>
+        <S.LogEditContainer>
           <S.Header>메모</S.Header>
           <Input
             register={register("logMemo")}
@@ -62,7 +66,11 @@ const LogRecordEditView = ({
                           removePinData(index);
                         }}
                       >
-                        <S.SlideButtonContent $textColor={Theme.lightTheme.gray_300}>
+                        <S.SlideButtonContent
+                          $textColor={
+                            pin.content ? Theme.lightTheme.black : Theme.lightTheme.gray_300
+                          }
+                        >
                           {pin.content ? pin.content : "내용을 작성해주세요"}
                           <EditPencil
                             fill={Theme.lightTheme.gray_300}

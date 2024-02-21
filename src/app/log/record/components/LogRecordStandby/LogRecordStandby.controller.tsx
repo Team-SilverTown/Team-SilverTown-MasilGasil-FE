@@ -10,6 +10,7 @@ interface LogRecordStandbyControllerProps {
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
   setLogData: SetLogData;
+  setCurrentPinIndex: (pinIndex: number) => void;
 }
 
 const LogRecordStandbyController = ({
@@ -17,6 +18,7 @@ const LogRecordStandbyController = ({
   setLogData,
   onErrorWatcher,
   updateUserLocation,
+  setCurrentPinIndex,
 }: LogRecordStandbyControllerProps) => {
   const { setModalView, openModal } = useUI();
   const { setUserLocation } = useUserLocationStore();
@@ -30,6 +32,8 @@ const LogRecordStandbyController = ({
     const watchCode = navigator.geolocation.watchPosition(updateUserLocation, onErrorWatcher, {
       enableHighAccuracy: true,
     });
+
+    setCurrentPinIndex(-1);
 
     return () => {
       navigator.geolocation.clearWatch(watchCode);
