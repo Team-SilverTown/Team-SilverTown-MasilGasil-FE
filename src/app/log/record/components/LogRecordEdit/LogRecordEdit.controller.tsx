@@ -67,12 +67,12 @@ const LogRecordEditController = ({
    * @brief 폼을 통해 입력받은 Memo를 logData의 content에 저장한 후, 서버에 전송합니다.
    */
   const handleSubmit = (memo: string) => {
-    const pathThumbnailUrl = drawPath(logData.path);
+    // const pathThumbnailUrl = drawPath(logData.path);
 
     // 경로를 기반으로 그려진 썸네일과 메모를 logData 데이터에 저장
-    setLogData((prevData) => {
-      return { ...prevData, thumbnailUrl: pathThumbnailUrl, content: memo };
-    });
+    // setLogData((prevData) => {
+    //   return { ...prevData, thumbnailUrl: pathThumbnailUrl, content: memo };
+    // });
 
     // TODO: logData API 통신
 
@@ -89,13 +89,14 @@ const LogRecordEditController = ({
         // 메인 페이지 혹은 내 기록 페이지로 이동
         closeModal();
       },
+      logData,
     });
 
     // setLogData(DEFAULT_LOG_DATA);
 
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      setUserLocation({ lat: coords.latitude, lng: coords.longitude });
-    });
+    // navigator.geolocation.getCurrentPosition(({ coords }) => {
+    //   setUserLocation({ lat: coords.latitude, lng: coords.longitude });
+    // });
   };
 
   return (
