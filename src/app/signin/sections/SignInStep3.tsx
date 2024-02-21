@@ -37,17 +37,6 @@ const SignInStep3 = ({ getValues, setValue }: SignInStep3Props) => {
       </S.ExerciseIntensityTitleSection>
       {exerciseIntensity.map((option, index) => (
         <S.ExerciseIntensityOption key={index}>
-          {
-            // radio input이 필요할까요?
-            /* <input
-            type="radio"
-            id={option.value}
-            value={option.value}
-            checked={selectedIntensity === option.value}
-            onChange={() => handleSelectIntensity(option.value)}
-            style={{ display: "none" }}
-          /> */
-          }
           <Button
             id={option.value}
             variant="neumorp"
