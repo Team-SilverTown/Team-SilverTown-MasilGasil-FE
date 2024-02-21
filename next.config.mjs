@@ -9,7 +9,6 @@
 
 // export default nextConfig;
 
-import { sources } from "next/dist/compiled/webpack/webpack";
 import withTwin from "./withTwin.mjs";
 
 /**
@@ -21,7 +20,7 @@ export default withTwin({
     return [
       {
         source: "/:path*",
-        destination: "https://.../:path*",
+        destination: "http://ec2-3-35-207-242.ap-northeast-2.compute.amazonaws.com/:path*",
       },
     ];
   },
