@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { FieldErrors, UseFormSetValue, UseFormRegister } from "react-hook-form";
 
 import useTheme from "@/lib/hooks/useTheme";
@@ -23,15 +24,88 @@ const sexOptions: Array<{
   { label: "여성", value: "female" },
 ];
 
+const birthDateValidation = {
+  required: "나이는 필수 항목입니다.",
+  min: {
+    message: "14세 이상이어야 합니다",
+    value: 14,
+  },
+  max: {
+    message: "100세 이하여야 합니다",
+    value: 100,
+  },
+  // TODO: 동작하게 만들어야함.
+  // pattern: {
+  //   message: "숫자만 입력 가능합니다",
+  //   value: /^[0-9]+$/,
+  // },
+};
+
+const createInput = (
+  register: UseFormRegister<SignInFormProps>,
+  name: keyof SignInFormProps,
+  validation: {},
+  placeholder: string,
+) => (
+  <Input
+    required
+    type="number"
+    register={register(name, validation)}
+    placeholder={placeholder}
+    style={{
+      fontSize: "1.5rem",
+      lineHeight: "2rem",
+      margin: "1.4rem 0",
+      width: "100%",
+    }}
+  />
+);
+
+const renderInputLabel = (error: any) => {
+  if (error) {
+    return (
+      <InputLabel
+        type="danger"
+        text={error.message}
+        fontSize={"1.5rem"}
+        style={{ position: "absolute" }}
+      />
+    );
+  }
+};
+
 const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
   const theme = useTheme();
 
   const { selectedSex, setSelectedSex } = useSignInModel();
+  useEffect(() => {
+    if (selectedSex) setValue("sex", selectedSex);
+  }, [setValue, selectedSex]);
 
   const handleSexSelect = (sex: "male" | "female") => {
     setSelectedSex(sex);
     setValue("sex", sex);
+    console.log(sex);
   };
+
+  const birthDateInput = createInput(
+    register,
+    "birthDate",
+    birthDateValidation,
+    "만 나이를 입력해주세요.",
+  );
+  const heightInput = createInput(
+    register,
+    "height",
+    { required: "키는 필수 항목입니다." },
+    "키를 입력해주세요.",
+  );
+  const weightInput = createInput(
+    register,
+    "weight",
+    { required: "체중은 필수 항목입니다." },
+    "체중을 입력해주세요.",
+  );
 
   return (
     <div className="h-full">
@@ -63,80 +137,20 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
             style={{ color: theme?.gray_200 }}
           />
         </S.BirthDateTitleWrapper>
-        <Input
-          required
-          type="number"
-          register={register("birthDate", {
-            required: "나이는 필수 항목입니다.",
-            min: {
-              message: "14세 이상이어야 합니다",
-              value: 14,
-            },
-            max: {
-              message: "100세 이하여야 합니다",
-              value: 100,
-            },
-            // TODO: 동작하게 만들어야함
-            // pattern: {
-            //   message: "숫자만 입력 가능합니다",
-            //   value: /^[0-9]+$/,
-            // },
-          })}
-          placeholder="만 나이를 입력해주세요."
-          style={{
-            fontSize: "1.5rem",
-            lineHeight: "2rem",
-            margin: "1.4rem 0",
-          }}
-        />
-        <InputLabel
-          type="danger"
-          text={errors?.birthDate?.message}
-          fontSize={"1.5rem"}
-          style={{ position: "absolute" }}
-        />
+        {birthDateInput}
+        {renderInputLabel(errors?.birthDate)}
       </S.BirthDateSection>
 
       <S.PhysicalSection>
         <S.PhysicalGroup>
           <S.Title>키</S.Title>
-          <Input
-            required
-            type="number"
-            register={register("height", { required: "키는 필수 항목입니다." })}
-            placeholder="키를 입력해주세요."
-            style={{
-              fontSize: "1.5rem",
-              lineHeight: "2rem",
-              margin: "1.4rem 0",
-            }}
-          />
-          <InputLabel
-            type="danger"
-            text={errors?.height?.message}
-            fontSize={"1.5rem"}
-            style={{ position: "absolute" }}
-          />
+          {heightInput}
+          {renderInputLabel(errors?.height)}
         </S.PhysicalGroup>
         <S.PhysicalGroup>
           <S.Title>체중</S.Title>
-          <Input
-            required
-            type="number"
-            register={register("weight", { required: "체중은 필수 항목입니다." })}
-            placeholder="체중을 입력해주세요."
-            style={{
-              fontSize: "1.5rem",
-              lineHeight: "2rem",
-              margin: "1.4rem 0",
-            }}
-          />
-          <InputLabel
-            type="danger"
-            text={errors?.weight?.message}
-            fontSize={"1.5rem"}
-            style={{ position: "absolute" }}
-          />
+          {weightInput}
+          {renderInputLabel(errors?.weight)}
         </S.PhysicalGroup>
       </S.PhysicalSection>
     </div>
