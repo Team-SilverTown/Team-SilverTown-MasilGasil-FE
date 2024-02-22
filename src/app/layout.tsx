@@ -8,6 +8,7 @@ import { ManagedUIContext, ModalUI } from "@/components/uiContext/UiContext";
 import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
 import TanstackQueryProviver from "@/lib/TanstackQueryProvider";
 import { serverGetTest } from "@/lib/api/Test/serverTest";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 export const metadata: Metadata = {
   title: "마실가실",
@@ -44,6 +45,16 @@ export default async function RootLayout({
               </main>
               <ModalUI />
             </TanstackQueryProviver>
+            <Script
+              src={URL}
+              strategy={"beforeInteractive"}
+            />
+            <main>
+              {children}
+              <BottomNavigator />
+            </main>
+            <ModalUI />
+            <LoadingSpinner />
           </body>
         </StyledComponentsRegistry>
       </ManagedUIContext>
