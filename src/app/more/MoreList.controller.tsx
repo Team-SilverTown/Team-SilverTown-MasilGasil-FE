@@ -1,17 +1,16 @@
-"use client";
-
 import { QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import MoreListView from "./MoreList.view";
-import fetchMyLogList from "./lib/fetchMoreList";
-import useMoreListModel from "./MoreList.model";
+import fetchMoreList from "./lib/fetchMoreList";
 
-const MoreListController = async () => {
-  const { listInfo } = useMoreListModel();
+interface MoreListControllerProps {
+  keyword: string;
+}
 
+const MoreListController = async ({ keyword }: MoreListControllerProps) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["moreList", listInfo.keyword],
-    queryFn: ({ pageParam, queryKey }) => fetchMyLogList({ pageParam, queryKey }),
+    queryKey: ["moreList", keyword],
+    queryFn: fetchMoreList,
     initialPageParam: 1,
   });
 
@@ -19,7 +18,7 @@ const MoreListController = async () => {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <MoreListView />
+      <MoreListView keyword={keyword} />
     </HydrationBoundary>
   );
 };

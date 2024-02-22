@@ -21,13 +21,3 @@ export interface SearchKeywordType {
   isFilter: boolean;
   filter?: "latest" | "popular";
 }
-
-export interface SortDataType {
-  title: string;
-  keyword: string;
-}
-
-export interface SortTabType {
-  LATEST: "latest";
-  POPULAR: "popular";
-}

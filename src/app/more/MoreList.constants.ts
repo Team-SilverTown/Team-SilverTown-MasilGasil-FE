@@ -1,4 +1,4 @@
-import { SearchKeywordType, SortDataType, SortTabType } from "./MoreList.types";
+import { SearchKeywordType } from "./MoreList.types";
 
 export const HEADER_TITLE: Record<string, string> = {
   my_log: "내 최근 산책 기록",
@@ -42,18 +42,4 @@ export const SEARCH_KEYWORD: SearchKeywordType[] = [
   },
 ];
 
-export const SORT_DATA: SortDataType[] = [
-  {
-    title: "최신순",
-    keyword: "latest",
-  },
-  {
-    title: "인기순",
-    keyword: "popular",
-  },
-];
-
-export const SORT_TAB: SortTabType = {
-  LATEST: "latest",
-  POPULAR: "popular",
-};
+export const REPEAT_NUMBER: number = 5;

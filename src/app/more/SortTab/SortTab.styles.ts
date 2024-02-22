@@ -1,13 +1,7 @@
-"use client";
-
-import { FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
+import { FONT_WEIGHT } from "@/styles/theme";
 
-export const MoreListLayout = styled.section`
-  padding-top: 6rem;
-`;
-
-export const MoreListFilter = styled.nav`
+export const MoreListSort = styled.nav`
   display: flex;
   justify-content: flex-end;
   padding: 0 1.5rem;
@@ -15,7 +9,7 @@ export const MoreListFilter = styled.nav`
 
   button {
     padding: 0.5rem 0;
-    color: #999;
+    color: ${(props) => props.theme.gray_500};
 
     cursor: pointer;
     &:hover {
@@ -31,8 +25,4 @@ export const MoreListFilter = styled.nav`
     font-weight: ${FONT_WEIGHT.BOLD};
     color: ${(props) => props.theme.black};
   }
-`;
-
-export const MoreListContainer = styled.section`
-  padding: 0 1.5rem;
 `;
