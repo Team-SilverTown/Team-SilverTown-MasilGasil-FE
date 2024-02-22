@@ -17,6 +17,9 @@ interface MasilMapProps {
   path: GeoPosition[];
   pins: Pin[];
 
+  mapWidth?: string;
+  mapHeight?: string;
+
   draggable?: boolean;
   zoomable?: boolean;
   minZoomLevel?: number;
@@ -71,6 +74,9 @@ const MasilMap = ({
   center,
   path,
   pins,
+
+  mapHeight = "100%",
+  mapWidth = "100%",
 
   draggable = true,
   zoomable = true,
@@ -136,7 +142,7 @@ const MasilMap = ({
     if (current) {
       current.relayout();
     }
-  }, []);
+  }, [mapHeight]);
 
   return (
     <Map
@@ -149,6 +155,7 @@ const MasilMap = ({
       maxLevel={maxZoomLevel && maxZoomLevel}
       onDrag={handleMap}
       onZoomChanged={handleMap}
+      style={{ width: mapWidth, height: mapHeight }}
     >
       {isShowCenterMarker && (
         <CenterMarker
