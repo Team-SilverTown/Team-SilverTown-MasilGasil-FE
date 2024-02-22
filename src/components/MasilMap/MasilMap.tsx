@@ -128,8 +128,11 @@ const MasilMap = ({
     }, 200),
   ).current;
 
+  const mapRef = useRef<kakao.maps.Map | null>(null);
+
   return (
     <Map
+      ref={mapRef}
       center={isOutCenter ? outCenterPosition : center}
       className={style.masil__map}
       draggable={draggable}
