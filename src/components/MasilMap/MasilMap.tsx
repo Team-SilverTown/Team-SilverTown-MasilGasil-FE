@@ -1,5 +1,3 @@
-import style from "./MasilMap.style.module.css";
-
 import { GeoPosition, Pin } from "@/types/OriginDataType";
 import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
@@ -9,13 +7,16 @@ import CustomPin from "./components/CustomPin/CustomPin";
 import Theme from "@/styles/theme";
 
 import { debounce, throttle } from "lodash";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useMapCenterStore from "./store/useMapCenterStore";
 
 interface MasilMapProps {
   center: GeoPosition;
   path: GeoPosition[];
   pins: Pin[];
+
+  mapHeight?: string;
+  mapWidth?: string;
 
   draggable?: boolean;
   zoomable?: boolean;
@@ -71,6 +72,9 @@ const MasilMap = ({
   center,
   path,
   pins,
+
+  mapHeight = "100%",
+  mapWidth = "100%",
 
   draggable = true,
   zoomable = true,
@@ -128,16 +132,30 @@ const MasilMap = ({
     }, 200),
   ).current;
 
+  const mapRef = useRef<kakao.maps.Map | null>(null);
+  useEffect(() => {
+    const { current } = mapRef;
+
+    if (current) {
+      current.relayout();
+    }
+  }, [mapHeight, mapWidth]);
+
   return (
     <Map
+      ref={mapRef}
       center={isOutCenter ? outCenterPosition : center}
-      className={style.masil__map}
       draggable={draggable}
       zoomable={zoomable}
       minLevel={minZoomLevel && minZoomLevel}
       maxLevel={maxZoomLevel && maxZoomLevel}
-      onDrag={handleMap}
-      onZoomChanged={handleMap}
+      onCenterChanged={handleMap}
+      style={{
+        width: mapWidth,
+        height: mapHeight,
+        zIndex: 0,
+        position: "relative",
+      }}
     >
       {isShowCenterMarker && (
         <CenterMarker

@@ -62,6 +62,7 @@ const LogRecordView = ({
         isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
         onClickPin={onClickPin}
         selectedPinIndex={currentPinIndex}
+        mapHeight={pageStep === "LOG_RECORD_EDITING" ? "50%" : "100%"}
       />
 
       <S.LogRecordTop>
