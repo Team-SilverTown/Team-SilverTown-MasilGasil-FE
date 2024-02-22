@@ -69,7 +69,7 @@ const DotIndicator = ({ current, length }: DotIndicatorProps) => {
 
 export default DotIndicator;
 
-const IndicatorsWrapper = styled.div<any>`
+const IndicatorsWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
