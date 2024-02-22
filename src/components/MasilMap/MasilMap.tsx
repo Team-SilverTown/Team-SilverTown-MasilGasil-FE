@@ -9,7 +9,7 @@ import CustomPin from "./components/CustomPin/CustomPin";
 import Theme from "@/styles/theme";
 
 import { debounce, throttle } from "lodash";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useMapCenterStore from "./store/useMapCenterStore";
 
 interface MasilMapProps {
@@ -129,6 +129,14 @@ const MasilMap = ({
   ).current;
 
   const mapRef = useRef<kakao.maps.Map | null>(null);
+
+  useEffect(() => {
+    const { current } = mapRef;
+
+    if (current) {
+      current.relayout();
+    }
+  }, []);
 
   return (
     <Map
