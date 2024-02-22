@@ -1,5 +1,3 @@
-import style from "./MasilMap.style.module.css";
-
 import { GeoPosition, Pin } from "@/types/OriginDataType";
 import { Map } from "react-kakao-maps-sdk";
 import CenterMarker from "./components/CenterMarker/CenterMarker";
@@ -101,6 +99,7 @@ const MasilMap = ({
 }: MasilMapProps) => {
   const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
   const { isOutCenter, setIsOutCenter } = useMapCenterStore();
+  const mapRef = useRef<kakao.maps.Map | null>(null);
 
   /**
    * @summary drag, zoom으로 인해 벗어난 Map의 center를 일정 시간 후 강제로 다시 이동시킵니다.
@@ -134,28 +133,29 @@ const MasilMap = ({
     }, 200),
   ).current;
 
-  const mapRef = useRef<kakao.maps.Map | null>(null);
-
   useEffect(() => {
     const { current } = mapRef;
 
     if (current) {
       current.relayout();
     }
-  }, [mapHeight]);
+  }, [mapHeight, mapWidth]);
 
   return (
     <Map
       ref={mapRef}
       center={isOutCenter ? outCenterPosition : center}
-      className={style.masil__map}
       draggable={draggable}
       zoomable={zoomable}
       minLevel={minZoomLevel && minZoomLevel}
       maxLevel={maxZoomLevel && maxZoomLevel}
-      onDrag={handleMap}
-      onZoomChanged={handleMap}
-      style={{ width: mapWidth, height: mapHeight }}
+      onCenterChanged={handleMap}
+      style={{
+        width: mapWidth,
+        height: mapHeight,
+        zIndex: 0,
+        position: "relative",
+      }}
     >
       {isShowCenterMarker && (
         <CenterMarker
