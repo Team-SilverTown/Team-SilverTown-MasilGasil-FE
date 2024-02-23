@@ -15,6 +15,8 @@ import { ChevronLeft, Pin } from "@/components/icons";
 import { OnClickPin, OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
 import { GeoPosition } from "@/types/OriginDataType";
 import Center from "@/components/icons/Center";
+import { TopNavigator } from "@/components/navigators/TopNavagtor";
+import { GoBackButton } from "@/components/navigators/TopNavagtor/components";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
@@ -54,6 +56,8 @@ const LogRecordView = ({
 }: LogRecordViewProps) => {
   return (
     <S.LogRecordLayout>
+      <TopNavigator leftChildren={<GoBackButton onGoBackHandler={handleClickFallback} />} />
+
       <MasilMap
         center={userLocation}
         path={logData.path}
