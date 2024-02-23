@@ -1,8 +1,8 @@
 "use client";
 
+import * as GS from "@/styles/GlobalStyle";
 import { UserInfo, UserWalkRecord, MyRecordList } from "./components";
 import { MyRecordListProps } from "./components/MyRecordList";
-import * as S from "./Mypage.styles";
 
 interface MypageViewProps {
   boardList: MyRecordListProps[];
@@ -10,7 +10,7 @@ interface MypageViewProps {
 
 const MypageView = ({ boardList }: MypageViewProps) => {
   return (
-    <S.UserProfileContainer>
+    <GS.CommonContainer>
       <UserInfo
         profileImage=""
         profileName="김개똥"
@@ -33,7 +33,7 @@ const MypageView = ({ boardList }: MypageViewProps) => {
           type={type}
         />
       ))}
-    </S.UserProfileContainer>
+    </GS.CommonContainer>
   );
 };
 
