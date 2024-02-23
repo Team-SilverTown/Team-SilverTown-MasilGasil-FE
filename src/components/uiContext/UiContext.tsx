@@ -14,8 +14,10 @@ import {
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
+import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 
 export const useUI = () => {
+  const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
   const { displayModal, modalView, modalProps, setModalView, openModal, closeModal } =
     useModalStore();
 
@@ -27,6 +29,8 @@ export const useUI = () => {
     openModal: (props?: any) => openModal(props),
     closeModal: () => closeModal(),
     setModalView: (view: MODAL_VIEWS) => setModalView(view),
+    showLoadingSpinner,
+    closeLoadingSpinner,
   };
 
   return context;
