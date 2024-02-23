@@ -20,7 +20,7 @@ export default withTwin({
     return [
       {
         source: "/:path*",
-        destination: "http://ec2-3-35-207-242.ap-northeast-2.compute.amazonaws.com/:path*",
+        destination: `${process.env.DB_BASE_URL}/:path*`,
       },
     ];
   },
