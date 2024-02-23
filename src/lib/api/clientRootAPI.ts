@@ -16,7 +16,7 @@ export const GET = async <T>({
   const API = getRootAPI(auth);
 
   try {
-    const response = await API.get<T>(endPoint, config);
+    const response = await API.get<T>(`/api${endPoint}`, config);
     return response;
   } catch (error) {
     console.error(error);
@@ -38,7 +38,7 @@ export const POST = async <T>({
   const API = getRootAPI(auth);
 
   try {
-    const response = await API.post<T>(endPoint, data, config);
+    const response = await API.post<T>(`/api${endPoint}`, data, config);
     return response;
   } catch (error) {
     console.log(error);

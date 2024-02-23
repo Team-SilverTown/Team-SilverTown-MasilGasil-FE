@@ -19,7 +19,7 @@ export default withTwin({
   async rewrites() {
     return [
       {
-        source: "/:path*",
+        source: "/api/:path*",
         destination: `${process.env.DB_BASE_URL}/:path*`,
       },
     ];
