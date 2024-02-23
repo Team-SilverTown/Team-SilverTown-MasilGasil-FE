@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle<any>`
     html,
     body {
       width: 100%;
+      height: 100%;
       box-sizing: border-box;
       touch-action: manipulation;
     
@@ -38,6 +39,7 @@ export const GlobalStyle = createGlobalStyle<any>`
 
     main {
       width: 100%;
+      height: 100%;
       max-width: ${CONTAINER.MAX_WIDTH}rem;
       overflow-x: hidden;
       margin: 0 auto;
@@ -46,9 +48,6 @@ export const GlobalStyle = createGlobalStyle<any>`
 `;
 
 export const CommonContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
   padding: ${NAV_HEIGHT + 2}rem ${CONTAINER.PADDING_HORIZONTAL}rem;
   box-sizing: border-box;
   width: 100%;
