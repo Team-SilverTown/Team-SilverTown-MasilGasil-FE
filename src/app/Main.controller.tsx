@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import MainView from "./Main.view";
-import { getTest, postTest } from "@/lib/api/Test/test";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import useMainModel from "./Main.model";
 
 const MainController = () => {
