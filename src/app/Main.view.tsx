@@ -19,7 +19,7 @@ interface MainViewProps {
 const MainView = ({ loading, data, onClickHandler }: MainViewProps) => {
   const theme = useTheme();
 
-  console.log(data);
+  console.log("client: ", data);
 
   return (
     <GS.CommonContainer

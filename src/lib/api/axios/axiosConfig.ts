@@ -1,8 +1,6 @@
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 import {
   AxiosError,
-  AxiosInstance,
-  AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";

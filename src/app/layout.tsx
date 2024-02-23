@@ -24,7 +24,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   const data = await serverGetTest();
   console.log("SERVER", data);
 
@@ -34,27 +33,18 @@ export default async function RootLayout({
         <StyledComponentsRegistry>
           <GlobalStyle />
           <body>
+            <Script
+              src={URL}
+              strategy={"beforeInteractive"}
+            />
             <TanstackQueryProviver>
-              <Script
-                src={URL}
-                strategy={"beforeInteractive"}
-              />
               <main>
                 {children}
                 <BottomNavigator />
               </main>
               <ModalUI />
+              <LoadingSpinner />
             </TanstackQueryProviver>
-            <Script
-              src={URL}
-              strategy={"beforeInteractive"}
-            />
-            <main>
-              {children}
-              <BottomNavigator />
-            </main>
-            <ModalUI />
-            <LoadingSpinner />
           </body>
         </StyledComponentsRegistry>
       </ManagedUIContext>

@@ -3,7 +3,7 @@
  */
 
 export const TEST_KEY = {
-  GET: "test_post",
+  GET: "test_get",
   POST: "test_post",
 };
 

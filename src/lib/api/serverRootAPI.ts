@@ -1,14 +1,11 @@
-export const request = async <T>(url: string, options = {}) => {
+export const request = async <T>(url: string, options = {}): Promise<T | undefined> => {
   try {
-    const response = await fetch(
-      `http://ec2-3-35-207-242.ap-northeast-2.compute.amazonaws.com${url}`,
-      {
-        ...options,
-        headers: {
-          "Content-Type": "application/json",
-        },
+    const response = await fetch(`${process.env.DB_BASE_URL}${url}`, {
+      ...options,
+      headers: {
+        // "Content-Type": "application/json",
       },
-    );
+    });
 
     if (response.ok) {
       return await response.json();
