@@ -17,7 +17,7 @@ const Textarea = ({
   placeholder = "",
 }: TextareaProps) => {
   return (
-    <S.Textarea
+    <S.TextareaStyle
       placeholder={placeholder}
       className={className}
       required={required}

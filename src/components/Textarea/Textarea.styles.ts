@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Textarea = styled.textarea`
+export const TextareaStyle = styled.textarea`
   width: 100%;
   padding: 1.5rem 2rem;
 
