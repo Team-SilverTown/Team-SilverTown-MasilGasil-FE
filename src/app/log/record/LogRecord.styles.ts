@@ -17,15 +17,6 @@ export const LogRecordLayout = styled.section`
   position: relative;
 `;
 
-export const LogRecordTop = styled.nav`
-  width: 100%;
-
-  display: flex;
-
-  position: absolute;
-  top: 0;
-`;
-
 const isEditStepLayout = css`
   height: 50%;
   position: relative;

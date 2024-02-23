@@ -11,7 +11,7 @@ import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./component
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { Button } from "@/components";
-import { ChevronLeft, Pin } from "@/components/icons";
+import { Pin } from "@/components/icons";
 import { OnClickPin, OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
 import { GeoPosition } from "@/types/OriginDataType";
 import Center from "@/components/icons/Center";
@@ -67,19 +67,6 @@ const LogRecordView = ({
         onClickPin={onClickPin}
         selectedPinIndex={currentPinIndex}
       />
-
-      <S.LogRecordTop>
-        <Button
-          variant="naked"
-          onClickHandler={handleClickFallback}
-        >
-          <ChevronLeft
-            strokeWidth={3}
-            width={32}
-            height={32}
-          />
-        </Button>
-      </S.LogRecordTop>
 
       <S.LogRecordStepLayout $pageStep={pageStep}>
         <S.LogRecordActions $pageStep={pageStep}>
