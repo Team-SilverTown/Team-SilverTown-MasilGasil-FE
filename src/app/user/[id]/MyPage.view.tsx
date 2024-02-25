@@ -27,6 +27,7 @@ const MypageView = ({ boardList }: MypageViewProps) => {
       />
       {boardList.map(({ title, urlLink, recordList, type }) => (
         <MyRecordList
+          key={title}
           title={title}
           urlLink={urlLink}
           recordList={recordList}
