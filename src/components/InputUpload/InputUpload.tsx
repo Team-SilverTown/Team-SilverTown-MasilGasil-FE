@@ -13,6 +13,7 @@ import { IMAGE_TYPES } from "./InputUpload.constants";
 import * as S from "./InputUpload.styles";
 interface InputUploadProps<T extends FieldValues> {
   position?: "relative" | "absolute";
+  isPreview?: boolean;
   register: UseFormRegisterReturn;
   setValue: UseFormReturn<T>["setValue"];
   name: Path<T>;
@@ -22,6 +23,7 @@ interface InputUploadProps<T extends FieldValues> {
 
 const InputUpload = <T extends FieldValues>({
   position = "relative",
+  isPreview = true,
   register,
   setValue,
   name,
@@ -89,7 +91,7 @@ const InputUpload = <T extends FieldValues>({
         <S.InputUploadChildren onClick={handleImageClick}>{children}</S.InputUploadChildren>
       )}
 
-      {!onPreview && preview && (
+      {isPreview && !onPreview && preview && (
         <S.InputUploadPreview $position={position}>
           <Image
             src={preview}
