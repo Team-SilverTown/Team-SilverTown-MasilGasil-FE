@@ -25,7 +25,15 @@ export const useUI = () => {
   const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
   const { displayModal, modalView, modalProps, setModalView, openModal, closeModal } =
     useModalStore();
-  const { displayWindow, windowView, setWindowView, openWindow, closeWindow } = useWindowStore();
+  const {
+    displayWindow,
+    windowView,
+    setWindowView,
+    openWindow,
+    closeWindow,
+    setWindowURL,
+    windowURL,
+  } = useWindowStore();
 
   const context = {
     // modal
@@ -41,9 +49,11 @@ export const useUI = () => {
     // window
     displayWindow,
     windowView,
+    windowURL,
     openWindow: () => openWindow(),
     closeWindow: () => closeWindow(),
     setWindowView: (view: WINDOW_VIEWS) => setWindowView(view),
+    setWindowURL: (url: string) => setWindowURL(url),
   };
 
   return context;
@@ -83,27 +93,38 @@ export const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
 // ================================================================= Modal //
 
 // Policy Window View //
-const WindowView: React.FC<{
+const WindowView = ({
+  windowView,
+  closeWindow,
+  windowURL,
+}: {
   windowView: string;
   closeWindow(): any;
-}> = ({ windowView, closeWindow }) => {
+  windowURL: string;
+}) => {
+  const width = Math.min(screen.width, 600);
+  const height = screen.height;
+
   return (
     <>
       {windowView.includes("POLICY") && (
-        <Window onClose={closeWindow}>
-          <Policy />
-        </Window>
+        <Window
+          windowStyle={`width=${width},height=${height},left=0,top=0,resizable=no`}
+          onClose={closeWindow}
+          url={windowURL}
+        />
       )}
     </>
   );
 };
 
 export const WindowUI: React.FC = () => {
-  const { displayWindow, closeWindow, windowView } = useUI();
+  const { displayWindow, closeWindow, windowView, windowURL } = useUI();
   return displayWindow ? (
     <WindowView
       windowView={windowView}
       closeWindow={closeWindow}
+      windowURL={windowURL}
     />
   ) : null;
 };

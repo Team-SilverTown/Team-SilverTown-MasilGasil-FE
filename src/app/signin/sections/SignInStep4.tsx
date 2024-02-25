@@ -25,30 +25,34 @@ const POLICY_CONTENT_LIST: Array<{
   required: boolean;
   formKey: "policy_personal" | "policy_location" | "policy_age";
   policyView: WINDOW_VIEWS;
+  url: string;
 }> = [
   {
     content: "[필수] 개인정보 수집 및 이용 동의",
     required: true,
     formKey: "policy_personal",
     policyView: "POLICY_PERSONAL",
+    url: "http://localhost:3000/signin/policy/personal",
   },
   {
     content: "[필수] 위치정보 수집 및 이용 동의",
     required: true,
     formKey: "policy_location",
     policyView: "POLICY_LOCATION",
+    url: "http://localhost:3000/signin/policy/location",
   },
   {
     content: "[필수] 만 14세 미만 가입 제한",
     required: true,
     formKey: "policy_age",
     policyView: "POLICY_AGE",
+    url: "http://localhost:3000/signin/policy/age",
   },
 ];
 
 const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
   const theme = useTheme();
-  const { setWindowView, closeWindow, openWindow, displayWindow } = useUI();
+  const { setWindowView, closeWindow, openWindow, displayWindow, setWindowURL } = useUI();
 
   const { checkAllPolicy, setCheckAllPolicy, policyCheck, setPolicyCheck } = useSignInModel();
 
@@ -90,8 +94,9 @@ const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
     }
   };
 
-  const handleShowPolicy = (view: WINDOW_VIEWS) => {
+  const handleShowPolicy = (view: WINDOW_VIEWS, url: string) => {
     setWindowView(view);
+    setWindowURL(url);
 
     if (displayWindow) {
       closeWindow();
@@ -147,7 +152,7 @@ const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
                 {/* Show Policy */}
                 <button
                   onClick={() => {
-                    handleShowPolicy(policy.policyView);
+                    handleShowPolicy(policy.policyView, policy.url);
                   }}
                 >
                   <S.PolicySeeMoreText

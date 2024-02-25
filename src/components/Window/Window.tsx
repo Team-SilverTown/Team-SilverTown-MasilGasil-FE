@@ -8,11 +8,13 @@ import { createPortal } from "react-dom";
 interface WindowProps {
   windowStyle?: string;
   children?: any;
+  url?: string;
   onClose: () => void;
 }
 const Window = ({
   windowStyle = "width=600,height=400,left=200,top=200",
   children,
+  url,
   onClose,
 }: WindowProps) => {
   // const { displayWindow } = useUI();
@@ -30,7 +32,7 @@ const Window = ({
     if (container) {
       // console.log(container);
       // Create window
-      newWindow.current = window.open("", "", windowStyle);
+      newWindow.current = window.open(url ? url : "", "", windowStyle);
       // Append container
       newWindow.current.document.body.appendChild(container);
 
