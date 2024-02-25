@@ -8,6 +8,8 @@ const useLogRecordModel = () => {
   const [logData, setLogData] = useState<MasilRecordRequest>(DEFAULT_LOG_DATA);
   const [currentPinIndex, setCurrentPinIndex] = useState(-1);
 
+  const [isActiveExitAni, setIsActiveExitAni] = useState(false);
+
   return {
     pageStep,
     setPageStep,
@@ -15,6 +17,9 @@ const useLogRecordModel = () => {
     setLogData,
     currentPinIndex,
     setCurrentPinIndex,
+
+    isActiveExitAni,
+    setIsActiveExitAni,
   };
 };
 
