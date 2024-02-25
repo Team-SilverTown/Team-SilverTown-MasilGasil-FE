@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { useLocalStorage } from "@lib/hooks/useLocalStorage";
 import useModalStore from "@/stores/ui/useModalStore";
 import { Modal } from "@components/Modal";
+import Window from "@components/Window";
 import {
   PinEditModal,
   LogRecordAlertModal,
@@ -15,11 +16,16 @@ import {
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
 import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
+import useWindowStore from "@/stores/ui/useWindowStore";
+import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
+
+import Policy from "../windowViews/Policy";
 
 export const useUI = () => {
   const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
   const { displayModal, modalView, modalProps, setModalView, openModal, closeModal } =
     useModalStore();
+  const { displayWindow, windowView, setWindowView, openWindow, closeWindow } = useWindowStore();
 
   const context = {
     // modal
@@ -29,8 +35,15 @@ export const useUI = () => {
     openModal: (props?: any) => openModal(props),
     closeModal: () => closeModal(),
     setModalView: (view: MODAL_VIEWS) => setModalView(view),
+    // loadingSpinner
     showLoadingSpinner,
     closeLoadingSpinner,
+    // window
+    displayWindow,
+    windowView,
+    openWindow: () => openWindow(),
+    closeWindow: () => closeWindow(),
+    setWindowView: (view: WINDOW_VIEWS) => setWindowView(view),
   };
 
   return context;
@@ -68,6 +81,33 @@ export const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
   ) : null;
 };
 // ================================================================= Modal //
+
+// Policy Window View //
+const WindowView: React.FC<{
+  windowView: string;
+  closeWindow(): any;
+}> = ({ windowView, closeWindow }) => {
+  return (
+    <>
+      {windowView.includes("POLICY") && (
+        <Window onClose={closeWindow}>
+          <Policy />
+        </Window>
+      )}
+    </>
+  );
+};
+
+export const WindowUI: React.FC = () => {
+  const { displayWindow, closeWindow, windowView } = useUI();
+  return displayWindow ? (
+    <WindowView
+      windowView={windowView}
+      closeWindow={closeWindow}
+    />
+  ) : null;
+};
+// ------------------------------------------------------------------------------ //
 
 export const ManagedUIContext = ({ children }: { children: any }) => {
   const [localTheme] = useLocalStorage("theme");

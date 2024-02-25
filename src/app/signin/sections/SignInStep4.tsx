@@ -11,6 +11,8 @@ import { SignInFormProps } from "../SignIn.controller";
 import useSignInModel from "../SignIn.model";
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "../SignIn.styles";
+import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface SignInStep4Props {
   getValues: UseFormGetValues<SignInFormProps>;
@@ -21,23 +23,32 @@ const POLICY_CONTENT_LIST: Array<{
   content: string;
   // policyView: WINDOW_VIEWS;
   required: boolean;
-  formKey: "policy1" | "policy2" | "policy3";
+  formKey: "policy_personal" | "policy_location" | "policy_age";
+  policyView: WINDOW_VIEWS;
 }> = [
   {
     content: "[필수] 개인정보 수집 및 이용 동의",
     required: true,
-    formKey: "policy1",
+    formKey: "policy_personal",
+    policyView: "POLICY_PERSONAL",
   },
-  { content: "[필수] 위치정보 수집 및 이용 동의", required: true, formKey: "policy2" },
+  {
+    content: "[필수] 위치정보 수집 및 이용 동의",
+    required: true,
+    formKey: "policy_location",
+    policyView: "POLICY_LOCATION",
+  },
   {
     content: "[필수] 만 14세 미만 가입 제한",
     required: true,
-    formKey: "policy3",
+    formKey: "policy_age",
+    policyView: "POLICY_AGE",
   },
 ];
 
 const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
   const theme = useTheme();
+  const { setWindowView, closeWindow, openWindow, displayWindow } = useUI();
 
   const { checkAllPolicy, setCheckAllPolicy, policyCheck, setPolicyCheck } = useSignInModel();
 
@@ -77,6 +88,16 @@ const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
       setPolicyCheck(newState);
       POLICY_CONTENT_LIST.forEach(({ formKey }) => setValue(formKey, true));
     }
+  };
+
+  const handleShowPolicy = (view: WINDOW_VIEWS) => {
+    setWindowView(view);
+
+    if (displayWindow) {
+      closeWindow();
+    }
+    setTimeout(() => openWindow(), 100);
+    return;
   };
 
   return (
@@ -126,7 +147,7 @@ const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
                 {/* Show Policy */}
                 <button
                   onClick={() => {
-                    // handleShowPolicy(policy.policy);
+                    handleShowPolicy(policy.policyView);
                   }}
                 >
                   <S.PolicySeeMoreText
