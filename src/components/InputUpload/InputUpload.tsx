@@ -1,19 +1,33 @@
 "use client";
 
-import { IFormInput } from "@/app/mate/create/page";
 import React, { useRef, useState } from "react";
-import { UseFormReturn, UseFormRegisterReturn } from "react-hook-form";
-import * as S from "./InputUpload.styles";
+import {
+  FieldValues,
+  Path,
+  UseFormReturn,
+  UseFormRegisterReturn,
+  PathValue,
+} from "react-hook-form";
 import Image from "next/image";
-
-interface InputUploadProps {
+import { IMAGE_TYPES } from "./InputUpload.constants";
+import * as S from "./InputUpload.styles";
+interface InputUploadProps<T extends FieldValues> {
+  position?: "relative" | "absolute";
   register: UseFormRegisterReturn;
-  setValue: UseFormReturn<IFormInput>["setValue"];
-  name: keyof IFormInput;
+  setValue: UseFormReturn<T>["setValue"];
+  name: Path<T>;
   children?: React.ReactNode;
+  onPreview?: (preview: string | null, imageSize: { width: number; height: number }) => void;
 }
 
-const InputUpload = ({ register, setValue, name, children }: InputUploadProps) => {
+const InputUpload = <T extends FieldValues>({
+  position = "relative",
+  register,
+  setValue,
+  name,
+  children,
+  onPreview,
+}: InputUploadProps<T>) => {
   const inputRef = useRef<null | HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [imageSize, setImageSize] = useState({
@@ -22,27 +36,37 @@ const InputUpload = ({ register, setValue, name, children }: InputUploadProps) =
   });
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      console.log("reader", reader);
-      reader.onloadend = () => {
-        if (typeof reader.result === "string") {
+    if (event.target.files) {
+      const file = event.target.files[0];
+      const fileType = file.type;
+
+      if (IMAGE_TYPES[fileType]) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
           const image = document.createElement("img");
           image.onload = () => {
             setImageSize({
               width: image.width,
               height: image.height,
             });
+
+            if (onPreview) {
+              onPreview(reader.result as string, { width: image.width, height: image.height });
+            } else {
+              setPreview(reader.result as string);
+            }
           };
-          image.src = reader.result;
-          setPreview(reader.result);
-        }
-      };
-      reader.readAsDataURL(file);
+          image.src = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert("파일 형식이 올바르지 않습니다. 이미지 파일을 업로드해 주세요.");
+        event.target.value = "";
+      }
     }
+
     if (event.target.files) {
-      setValue(name, event.target.files);
+      setValue(name, event.target.files as unknown as PathValue<T, Path<T>>);
     }
   };
 
@@ -65,8 +89,8 @@ const InputUpload = ({ register, setValue, name, children }: InputUploadProps) =
         <S.InputUploadChildren onClick={handleImageClick}>{children}</S.InputUploadChildren>
       )}
 
-      <S.InputUploadPreview>
-        {preview && (
+      {!onPreview && preview && (
+        <S.InputUploadPreview $position={position}>
           <Image
             src={preview}
             alt="preview"
@@ -74,8 +98,8 @@ const InputUpload = ({ register, setValue, name, children }: InputUploadProps) =
             height={imageSize.height}
             onClick={handleImageClick}
           />
-        )}
-      </S.InputUploadPreview>
+        </S.InputUploadPreview>
+      )}
     </S.InputUploadLayout>
   );
 };
