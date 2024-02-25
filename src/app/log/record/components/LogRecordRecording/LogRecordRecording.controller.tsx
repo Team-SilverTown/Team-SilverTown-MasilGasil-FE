@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import LogRecordRecordingView from "./LogRecordRecording.view";
 import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
 import { throttle } from "lodash";
@@ -14,6 +14,8 @@ interface LogRecordRecordingControllerProps {
   setPageStep: SetPageStep;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
+
+  setIsActiveExitAni: Dispatch<SetStateAction<boolean>>;
 }
 
 const MIN_INSERT_PATH_RAGE = 10; // M 단위
@@ -25,6 +27,8 @@ const LogRecordRecordingController = ({
   setPageStep,
   onErrorWatcher,
   updateUserLocation,
+
+  setIsActiveExitAni,
 }: LogRecordRecordingControllerProps) => {
   const { openModal, setModalView, closeModal } = useUI();
 
@@ -89,6 +93,7 @@ const LogRecordRecordingController = ({
     setModalView("LOG_RECORD_CONFIRM_VIEW");
     openModal({
       onClickAccept: () => {
+        setIsActiveExitAni(true);
         setPageStep("LOG_RECORD_EDITING");
         closeModal();
       },

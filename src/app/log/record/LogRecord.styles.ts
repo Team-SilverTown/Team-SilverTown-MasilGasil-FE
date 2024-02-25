@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { LogPageStep } from "./LogRecord.types";
+import { motion } from "framer-motion";
 
 interface LogRecordStyleProps {
   $pageStep: LogPageStep;
@@ -15,6 +16,7 @@ export const LogRecordLayout = styled.section`
   justify-content: center;
 
   position: relative;
+  background-color: ${(props) => props.theme.background_color};
 `;
 
 const isEditStepLayout = css`
@@ -23,7 +25,7 @@ const isEditStepLayout = css`
   bottom: none;
 `;
 
-export const LogRecordStepLayout = styled.div<LogRecordStyleProps>`
+export const LogRecordStepLayout = styled(motion.div)<LogRecordStyleProps>`
   width: 100%;
 
   display: flex;
