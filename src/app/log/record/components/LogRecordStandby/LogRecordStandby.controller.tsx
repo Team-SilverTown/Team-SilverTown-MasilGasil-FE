@@ -4,6 +4,7 @@ import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../
 import { useUI } from "@/components/uiContext/UiContext";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
+import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 
 interface LogRecordStandbyControllerProps {
   setPageStep: SetPageStep;
@@ -18,7 +19,7 @@ const LogRecordStandbyController = ({
   onErrorWatcher,
   updateUserLocation,
 }: LogRecordStandbyControllerProps) => {
-  const { setModalView, openModal } = useUI();
+  const { setModalView, openModal, showLoadingSpinner, closeLoadingSpinner } = useUI();
   const { setUserLocation } = useUserLocationStore();
 
   useEffect(() => {
@@ -66,15 +67,15 @@ const LogRecordStandbyController = ({
           depth3: region_3depth_name,
           depth4: region_4depth_name,
         }));
+
+        closeLoadingSpinner();
       });
 
-      /* TODO
-        추후 getCurrentPosition 이 실행되는 동안의 Loading Spinner 추가
-      */
       setPageStep("LOG_RECORD_RECORDING");
       setUserLocation({ lat: latitude, lng: longitude });
     };
 
+    showLoadingSpinner();
     navigator.geolocation.getCurrentPosition(updateAddress, onErrorWatcher, {
       enableHighAccuracy: true,
     });

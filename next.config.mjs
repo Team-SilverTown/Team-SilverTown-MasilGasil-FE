@@ -16,4 +16,12 @@ import withTwin from "./withTwin.mjs";
  */
 export default withTwin({
   reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${process.env.DB_BASE_URL}/:path*`,
+      },
+    ];
+  },
 });
