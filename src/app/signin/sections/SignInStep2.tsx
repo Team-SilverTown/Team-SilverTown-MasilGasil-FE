@@ -8,7 +8,7 @@ import useTheme from "@/lib/hooks/useTheme";
 import { Button, Input, InputLabel } from "@/components";
 import { SignInFormProps } from "../SignIn.controller";
 import useSignInModel from "../SignIn.model";
-import { SEX_OPTIONS } from "../SignIn.constants";
+import { SEX_OPTIONS, signInValidation } from "../SignIn.constants";
 import * as S from "../SignIn.styles";
 
 interface SignInStep2Props {
@@ -24,18 +24,6 @@ interface CreateInputProps {
   placeholder: string;
   unit?: string;
 }
-
-const birthDateValidation = {
-  required: "나이는 필수 항목입니다.",
-  min: {
-    message: "14세 이상이어야 합니다",
-    value: 14,
-  },
-  max: {
-    message: "100세 이하여야 합니다",
-    value: 100,
-  },
-};
 
 const createInput = ({ register, name, validation, placeholder, unit }: CreateInputProps) => (
   <S.InputWrapper>
@@ -81,20 +69,20 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
   const birthDateInput = createInput({
     register,
     name: "birthDate",
-    validation: birthDateValidation,
+    validation: signInValidation.birthDate,
     placeholder: "만 나이를 입력해주세요.",
   });
   const heightInput = createInput({
     register,
     name: "height",
-    validation: { required: "키는 필수 항목입니다." },
+    validation: signInValidation.height,
     placeholder: "키를 입력해주세요.",
     unit: "cm",
   });
   const weightInput = createInput({
     register,
     name: "weight",
-    validation: { required: "체중은 필수 항목입니다." },
+    validation: signInValidation.weight,
     placeholder: "체중을 입력해주세요.",
     unit: "kg",
   });
