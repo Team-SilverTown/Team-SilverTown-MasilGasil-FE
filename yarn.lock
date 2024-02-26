@@ -25,7 +25,30 @@ __metadata:
   checksum: 10c0/7b878c48b9d25277d0e1a9b8b2f2312a314af806b4129dc902f2bc29ab09b58236e53964689feec187b28c80d2203aff03829754773a707a8a5987f1b7682d92
   languageName: node
   linkType: hard
+"@aashutoshrathi/word-wrap@npm:^1.2.3":
+  version: 1.2.6
+  resolution: "@aashutoshrathi/word-wrap@npm:1.2.6"
+  checksum: 10c0/53c2b231a61a46792b39a0d43bc4f4f776bb4542aa57ee04930676802e5501282c2fc8aac14e4cd1f1120ff8b52616b6ff5ab539ad30aa2277d726444b71619f
+  languageName: node
+  linkType: hard
 
+"@adobe/css-tools@npm:^4.3.2":
+  version: 4.3.3
+  resolution: "@adobe/css-tools@npm:4.3.3"
+  checksum: 10c0/e76e712df713964b87cdf2aca1f0477f19bebd845484d5fcba726d3ec7782366e2f26ec8cb2dcfaf47081a5c891987d8a9f5c3f30d11e1eb3c1848adc27fcb24
+  languageName: node
+  linkType: hard
+
+"@alloc/quick-lru@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "@alloc/quick-lru@npm:5.2.0"
+  checksum: 10c0/7b878c48b9d25277d0e1a9b8b2f2312a314af806b4129dc902f2bc29ab09b58236e53964689feec187b28c80d2203aff03829754773a707a8a5987f1b7682d92
+  languageName: node
+  linkType: hard
+
+"@ampproject/remapping@npm:^2.2.0":
+  version: 2.2.1
+  resolution: "@ampproject/remapping@npm:2.2.1"
 "@ampproject/remapping@npm:^2.2.0":
   version: 2.2.1
   resolution: "@ampproject/remapping@npm:2.2.1"
