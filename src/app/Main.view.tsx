@@ -22,14 +22,7 @@ const MainView = ({ loading, data, onClickHandler }: MainViewProps) => {
   console.log("client: ", data);
 
   return (
-    <GS.CommonContainer
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <GS.CommonContainer>
       <S.ObjectOne />
       <S.ObjectTwo />
       <S.ObjectThree />

@@ -1,20 +1,20 @@
-import { BORDER, CONTAINER, FONT_SIZE, FONT_WEIGHT, NAV_HEIGHT } from "@/styles/theme";
 import styled from "styled-components";
+
+import { BORDER, CONTAINER, FONT_SIZE, NAV_HEIGHT, Z_INDEX } from "@/styles/theme";
 
 export const BottomNavContainer = styled.nav`
   display: flex;
   justify-content: space-around;
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
   width: 100%;
+  max-width: ${CONTAINER.MAX_WIDTH}rem;
   height: ${NAV_HEIGHT}rem;
   padding: ${CONTAINER.PADDING_HORIZONTAL}rem;
-  /* background-color: ${({ theme }) => theme.container_color}; */
+  background-color: ${({ theme }) => theme.background_color};
   border-top: ${BORDER.TINE_WIDTH}px solid ${(props) => props.theme.transparent_10};
   align-items: center;
-  z-index: 1000;
+  z-index: ${Z_INDEX.NAVIGATOR};
 `;
 
 export const BottomNavItem = styled.div<{ $active: boolean }>`

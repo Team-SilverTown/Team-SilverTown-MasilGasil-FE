@@ -63,6 +63,21 @@ const SignInController = () => {
     else return true;
   }, [getValues(), errors]);
 
+  const isStep2Validate = useMemo(() => {
+    const checkSex = !getValues("sex") || !!errors?.sex?.message;
+    const checkBirthDate = !getValues("birthDate") || !!errors?.birthDate?.message;
+    const checkHeight = !getValues("height") || !!errors?.height?.message;
+    const checkWeight = !getValues("weight") || !!errors?.weight?.message;
+
+    if (checkSex || checkBirthDate || checkHeight || checkWeight) return false;
+    return true;
+  }, [getValues(), errors]);
+
+  const isStep3Validate = useMemo(() => {
+    if (!getValues("exerciseIntensity")) return false;
+    return true;
+  }, [getValues(), errors]);
+
   const isStep4Validate = useMemo(() => {
     if (!getValues("policy_personal") || !getValues("policy_location") || !getValues("policy_age"))
       return false;
@@ -70,7 +85,7 @@ const SignInController = () => {
   }, [watch()]);
 
   // 각 step 별 유효성 검사 결과 boolean 값을 가지고 있습니다.
-  const stepValidations = [isStep1Validate, true, true, isStep4Validate];
+  const stepValidations = [isStep1Validate, isStep2Validate, isStep3Validate, isStep4Validate];
 
   const nextButtonClickHandler = () => {
     if (focusedStep >= LAST_STEP_INDEX) return;
@@ -79,7 +94,6 @@ const SignInController = () => {
     setFocusedStep((focusedStep) => focusedStep + 1);
   };
 
-  // 테스트용
   const prevButtonClickHandler = () => {
     if (focusedStep === 0) {
       router.back();
@@ -95,8 +109,15 @@ const SignInController = () => {
       register={register}
       errors={errors}
     />,
-    <SignInStep2 setValue={setValue} />,
-    <SignInStep3 />,
+    <SignInStep2
+      setValue={setValue}
+      register={register}
+      errors={errors}
+    />,
+    <SignInStep3
+      getValues={getValues}
+      setValue={setValue}
+    />,
     <SignInStep4
       getValues={getValues}
       setValue={setValue}

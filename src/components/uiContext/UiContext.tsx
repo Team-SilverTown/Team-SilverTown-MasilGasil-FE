@@ -15,6 +15,7 @@ import {
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
+import LogRecordDoneModal from "../modalViews/LogRecordDoneModal/LogRecordDoneModal";
 import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 import useWindowStore from "@/stores/ui/useWindowStore";
 import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
@@ -74,7 +75,8 @@ const ModalView = ({
       {modalView === "INIT_VIEW" && <TestModal />}
       {modalView === "LOG_RECORD_CONFIRM_VIEW" && <LogRecordConfirmModal props={props} />}
       {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
-      {modalView === "PIN_EDIT" && <PinEditModal props={props} />}
+      {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
+      {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
     </Modal>
   );
 };
