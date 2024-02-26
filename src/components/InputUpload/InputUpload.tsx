@@ -1,28 +1,22 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import {
-  FieldValues,
-  Path,
-  PathValue,
-  UseFormReturn,
-  UseFormRegisterReturn,
-} from "react-hook-form";
+import { UseFormReturn, UseFormRegisterReturn } from "react-hook-form";
 import Image from "next/image";
 import { IMAGE_TYPES } from "./InputUpload.constants";
 import * as S from "./InputUpload.styles";
 
-interface InputUploadProps<T extends FieldValues> {
+interface InputUploadProps {
   position?: "relative" | "absolute";
   isPreview?: boolean;
   register: UseFormRegisterReturn;
-  setValue: UseFormReturn<T>["setValue"];
-  name: Path<T>;
+  setValue: UseFormReturn["setValue"];
+  name: string;
   children?: React.ReactNode;
-  onPreview?: (preview: string | null, imageSize: { width: number; height: number }) => void;
+  onPreview?: (preview: string | File, imageSize: { width: number; height: number }) => void;
 }
 
-const InputUpload = <T extends FieldValues>({
+const InputUpload = ({
   position = "absolute",
   isPreview = true,
   register,
@@ -30,7 +24,7 @@ const InputUpload = <T extends FieldValues>({
   name,
   children,
   onPreview,
-}: InputUploadProps<T>) => {
+}: InputUploadProps) => {
   const inputRef = useRef<null | HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [imageSize, setImageSize] = useState({
@@ -49,6 +43,7 @@ const InputUpload = <T extends FieldValues>({
     if (!IMAGE_TYPES[fileType]) {
       alert("파일 형식이 올바르지 않습니다. 이미지 파일을 업로드해 주세요.");
       event.target.value = "";
+      return;
     }
 
     const reader = new FileReader();
@@ -73,12 +68,13 @@ const InputUpload = <T extends FieldValues>({
         }
       };
 
-      image.src = reader.result as string;
+      if (typeof reader.result === "string") {
+        image.src = reader.result;
+      }
     };
 
     reader.readAsDataURL(file);
-
-    setValue(name, event.target.files as unknown as PathValue<T, Path<T>>);
+    setValue(name, file);
   };
 
   const handleImageClick = () => {
