@@ -35,11 +35,6 @@ const birthDateValidation = {
     message: "100세 이하여야 합니다",
     value: 100,
   },
-  // TODO: 동작하게 만들어야함.
-  // pattern: {
-  //   message: "숫자만 입력 가능합니다",
-  //   value: /^[0-9]+$/,
-  // },
 };
 
 const createInput = ({ register, name, validation, placeholder, unit }: CreateInputProps) => (
