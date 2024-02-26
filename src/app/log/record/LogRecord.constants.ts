@@ -36,4 +36,8 @@ export const LOG_RECORD_MESSAGE = {
     WARNING_MESSAGE: "해당 페이지로 되돌아올 수 없습니다.",
     ACCEPT_BUTTON: "완료",
   },
+  RECORD_DONE: {
+    MESSAGE: "기록을 완료했어요!",
+    PROPOSAL: "방금 다녀온 산책을 유저들과 공유해보세요.",
+  },
 };

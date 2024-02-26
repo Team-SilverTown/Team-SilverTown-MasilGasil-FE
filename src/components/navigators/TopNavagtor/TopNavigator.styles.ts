@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 export const TopNavigatorContainer = styled.nav`
   width: 100%;
+  max-width: ${CONTAINER.MAX_WIDTH}rem;
   height: ${NAV_HEIGHT}rem;
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;
   padding: 1rem ${CONTAINER.PADDING_HORIZONTAL}rem;
   z-index: ${Z_INDEX.NAVIGATOR};
   box-sizing: border-box;

@@ -1,9 +1,10 @@
-import { Button, Input, SlideButton } from "@/components";
+import { Button, SlideButton, Textarea } from "@/components";
 import * as S from "./LogRecordEdit.styles";
 import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { useForm } from "react-hook-form";
 import EditPencil from "@/components/icons/EditPencil";
 import { MasilRecordRequest } from "@/types/Request";
+import Image from "next/image";
 
 interface LogRecordEditViewProps {
   logData: MasilRecordRequest;
@@ -36,8 +37,17 @@ const LogRecordEditView = ({
       </S.SizeHandlerContainer>
       <S.LogEditLayout>
         <S.LogEditContainer>
+          <S.Header>경로 (테스트용)</S.Header>
+          {logData.thumbnailUrl && (
+            <Image
+              alt="pathThumbnail"
+              src={logData.thumbnailUrl}
+            />
+          )}
+        </S.LogEditContainer>
+        <S.LogEditContainer>
           <S.Header>메모</S.Header>
-          <Input
+          <Textarea
             register={register("logMemo")}
             style={{ height: "17rem" }}
             placeholder="완료한 산책에 대한 간단한 메모를 작성해주세요."
@@ -62,7 +72,11 @@ const LogRecordEditView = ({
                           removePinData(index);
                         }}
                       >
-                        <S.SlideButtonContent $textColor={Theme.lightTheme.gray_300}>
+                        <S.SlideButtonContent
+                          $textColor={
+                            pin.content ? Theme.lightTheme.black : Theme.lightTheme.gray_300
+                          }
+                        >
                           {pin.content ? pin.content : "내용을 작성해주세요"}
                           <EditPencil
                             fill={Theme.lightTheme.gray_300}
