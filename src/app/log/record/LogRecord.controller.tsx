@@ -21,8 +21,6 @@ const LogRecordController = () => {
   const { setIsOutCenter } = useMapCenterStore();
   const router = useRouter();
 
-  // TODO: 강남역에서 내 위치로 갱신될 때까지 loading spinner 및 pin 찍을 수 없게
-
   useEffect(() => {
     closeModal();
   }, [pageStep]);
@@ -65,6 +63,8 @@ const LogRecordController = () => {
   ).current;
 
   const handleClickFallback = () => {
+    setCurrentPinIndex(-1);
+
     if (pageStep === "LOG_RECORD_STANDBY") {
       router.back();
       return;

@@ -11,7 +11,7 @@ export const RecordDoneLayout = styled.div`
   user-select: none;
 `;
 
-export const Header = styled.h1`
+export const HeaderTitle = styled.span`
   font-size: ${FONT_SIZE.H4};
   font-weight: ${FONT_WEIGHT.BOLD};
   text-align: center;

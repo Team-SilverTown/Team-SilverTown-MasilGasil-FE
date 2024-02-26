@@ -33,8 +33,6 @@ const LogRecordStandbyController = ({
       enableHighAccuracy: true,
     });
 
-    setCurrentPinIndex(-1);
-
     return () => {
       navigator.geolocation.clearWatch(watchCode);
     };

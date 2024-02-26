@@ -4,8 +4,6 @@ import { SetLogData } from "../../LogRecord.types";
 import { MasilRecordRequest } from "@/types/Request";
 import { OnClickPin } from "@/components/MasilMap/MasilMap.types";
 import useUserLocationStore from "@/stores/useUserLocationStore";
-import { drawPath } from "@/utils/drawPath";
-import path from "path";
 import { useUI } from "@/components/uiContext/UiContext";
 
 interface LogRecordEditControllerProps {

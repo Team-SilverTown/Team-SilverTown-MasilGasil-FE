@@ -5,6 +5,7 @@ import { Button } from "@/components";
 import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import TimeChecker from "@/components/icons/TimeChecker";
 import FootPrint from "@/components/icons/FootPrint";
+import { LOG_RECORD_MESSAGE } from "@/app/log/record/LogRecord.constants";
 
 interface LogRecordDoneModalProps {
   logData: MasilRecordRequest;
@@ -25,8 +26,8 @@ const LogRecordDoneModal = ({ props }: ModalProps) => {
     <ModalLayout>
       <S.RecordDoneLayout>
         <S.RecordDoneContainer>
-          <S.Header>기록을 완료했어요!</S.Header>
-          <S.Text>방금 다녀온 산책을 유저들과 공유해보세요</S.Text>
+          <S.HeaderTitle>{LOG_RECORD_MESSAGE.RECORD_DONE.MESSAGE}</S.HeaderTitle>
+          <S.Text>{LOG_RECORD_MESSAGE.RECORD_DONE.PROPOSAL}</S.Text>
         </S.RecordDoneContainer>
 
         <S.RecordSummaryContainer>

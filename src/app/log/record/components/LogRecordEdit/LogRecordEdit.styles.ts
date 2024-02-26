@@ -83,9 +83,3 @@ export const SlideButtonContent = styled.div<{ $textColor: string }>`
   font-size: ${FONT_SIZE.LARGE};
   color: ${({ $textColor }) => $textColor};
 `;
-
-export const Image = styled.img<{ $src: string | null }>`
-  src: $src;
-  width: 100%;
-  height: 100%;
-`;

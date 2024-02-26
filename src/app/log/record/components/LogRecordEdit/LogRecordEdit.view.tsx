@@ -4,6 +4,7 @@ import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { useForm } from "react-hook-form";
 import EditPencil from "@/components/icons/EditPencil";
 import { MasilRecordRequest } from "@/types/Request";
+import Image from "next/image";
 
 interface LogRecordEditViewProps {
   logData: MasilRecordRequest;
@@ -37,7 +38,12 @@ const LogRecordEditView = ({
       <S.LogEditLayout>
         <S.LogEditContainer>
           <S.Header>경로 (테스트용)</S.Header>
-          {logData.thumbnailUrl && <img src={logData.thumbnailUrl} />}
+          {logData.thumbnailUrl && (
+            <Image
+              alt="pathThumbnail"
+              src={logData.thumbnailUrl}
+            />
+          )}
         </S.LogEditContainer>
         <S.LogEditContainer>
           <S.Header>메모</S.Header>
