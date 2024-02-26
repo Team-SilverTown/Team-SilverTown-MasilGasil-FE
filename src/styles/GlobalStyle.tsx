@@ -26,10 +26,12 @@ export const GlobalStyle = createGlobalStyle<any>`
 
     html {
       font-size: 62.5%;
+      height: 100%;
     }
 
     body {
       width: 100vw;
+      height: 100%;
       background-color: ${(props) => props.theme.background_color};
   
       font-size : 1.4rem;
@@ -43,6 +45,12 @@ export const GlobalStyle = createGlobalStyle<any>`
       overflow-x: hidden;
       margin: 0 auto;
       position: relative;
+      -ms-overflow-style: none; /* 인터넷 익스플로러 */
+      scrollbar-width: none; /* 파이어폭스 */
+    }
+
+    main::-webkit-scrollbar {
+      display: none;
     }
 `;
 
