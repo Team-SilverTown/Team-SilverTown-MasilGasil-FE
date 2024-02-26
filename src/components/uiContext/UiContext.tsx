@@ -118,7 +118,7 @@ const WindowView = ({
   );
 };
 
-export const WindowUI: React.FC = () => {
+export const WindowUI= () => {
   const { displayWindow, closeWindow, windowView, windowURL } = useUI();
   return displayWindow ? (
     <WindowView
