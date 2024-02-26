@@ -14,7 +14,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = ({
   className,
-  onChange,
   kind = "text",
   register,
   required = false,

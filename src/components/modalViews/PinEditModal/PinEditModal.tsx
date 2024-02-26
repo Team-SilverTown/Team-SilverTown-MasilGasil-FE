@@ -4,12 +4,12 @@ import { Pin } from "@/types/OriginDataType";
 import * as S from "./PinEditModal.styles";
 import Image from "@/components/icons/Image";
 import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
-import { Button, Input } from "@/components";
+import { Button, Textarea } from "@/components";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Trash } from "@/components/icons";
 
-interface ConfirmModalProps {
+interface PinEditModalProps {
   onClickAccept: (imageUrl: string | null, pinContent: string | null) => void;
   pin: Pin;
   pinIndex: number;
@@ -18,7 +18,7 @@ interface ConfirmModalProps {
 }
 
 interface ModalProp {
-  props: ConfirmModalProps;
+  props: PinEditModalProps;
 }
 
 const PinEditModal = ({ props }: ModalProp) => {
@@ -61,9 +61,9 @@ const PinEditModal = ({ props }: ModalProp) => {
           <S.Header>핀 메모</S.Header>
 
           {/* TODO: TextArea로 변경? */}
-          <Input
+          <Textarea
             register={register("pinContent")}
-            placeholder="핀에 대한 간단한 메모를 작성해주세요."
+            placeholder={pin.content ? pin.content : "핀에 대한 간단한 메모를 작성해주세요."}
           />
         </S.PinEditContainer>
         <Button
