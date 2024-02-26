@@ -17,6 +17,14 @@ interface SignInStep2Props {
   errors: FieldErrors<SignInFormProps>;
 }
 
+interface CreateInputProps {
+  register: UseFormRegister<SignInFormProps>;
+  name: keyof SignInFormProps;
+  validation: {};
+  placeholder: string;
+  unit?: string;
+}
+
 const birthDateValidation = {
   required: "나이는 필수 항목입니다.",
   min: {
@@ -34,16 +42,9 @@ const birthDateValidation = {
   // },
 };
 
-const createInput = (
-  register: UseFormRegister<SignInFormProps>,
-  name: keyof SignInFormProps,
-  validation: {},
-  placeholder: string,
-  unit?: string,
-) => (
+const createInput = ({ register, name, validation, placeholder, unit }: CreateInputProps) => (
   <S.InputWrapper>
     <Input
-      required
       type="number"
       register={register(name, validation)}
       placeholder={placeholder}
@@ -82,26 +83,26 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
     setValue("sex", sex);
   };
 
-  const birthDateInput = createInput(
+  const birthDateInput = createInput({
     register,
-    "birthDate",
-    birthDateValidation,
-    "만 나이를 입력해주세요.",
-  );
-  const heightInput = createInput(
+    name: "birthDate",
+    validation: birthDateValidation,
+    placeholder: "만 나이를 입력해주세요.",
+  });
+  const heightInput = createInput({
     register,
-    "height",
-    { required: "키는 필수 항목입니다." },
-    "키를 입력해주세요.",
-    "cm",
-  );
-  const weightInput = createInput(
+    name: "height",
+    validation: { required: "키는 필수 항목입니다." },
+    placeholder: "키를 입력해주세요.",
+    unit: "cm",
+  });
+  const weightInput = createInput({
     register,
-    "weight",
-    { required: "체중은 필수 항목입니다." },
-    "체중을 입력해주세요.",
-    "kg",
-  );
+    name: "weight",
+    validation: { required: "체중은 필수 항목입니다." },
+    placeholder: "체중을 입력해주세요.",
+    unit: "kg",
+  });
 
   return (
     <div className="h-full">

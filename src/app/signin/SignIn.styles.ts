@@ -1,16 +1,14 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
-export const Title = styled.span`
+export const Title = styled.strong`
   display: block;
   font-size: 2rem;
-  font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
 export const GenderSection = styled.section`
   display: flex;
   flex-direction: column;
-  font-weight: ${FONT_WEIGHT.BOLD};
   font-size: 2rem;
   margin-top: 3rem;
 `;
@@ -21,6 +19,7 @@ export const GenderButtonGroup = styled.div`
   gap: 1.2rem;
   margin: 1.4rem 0;
   color: ${({ theme }) => theme.white};
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
 export const BirthDateSection = styled.section`
