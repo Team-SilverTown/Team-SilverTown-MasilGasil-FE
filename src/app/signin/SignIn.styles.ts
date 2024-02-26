@@ -44,7 +44,34 @@ export const PhysicalGroup = styled.div`
   width: 50%;
 `;
 
-export const PolicyLable = styled.label`
+export const InputWrapper = styled.div`
+  display: flex;
+  position: relative;
+  align-items: center;
+  width: 100%;
+
+  input[type="number"] {
+    -webkit-appearance: none;
+    margin: 0;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  } //Input type=number의 기본 우측 화살표 제거
+`;
+
+export const UnitLabel = styled.span`
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+  font-weight: ${FONT_WEIGHT.REGULAR};
+`;
+
+export const PolicyLabel = styled.label`
   margin-left: 1rem;
   cursor: pointer;
 `;
