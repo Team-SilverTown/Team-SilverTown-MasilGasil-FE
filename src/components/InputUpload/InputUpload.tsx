@@ -4,13 +4,14 @@ import React, { useRef, useState } from "react";
 import {
   FieldValues,
   Path,
+  PathValue,
   UseFormReturn,
   UseFormRegisterReturn,
-  PathValue,
 } from "react-hook-form";
 import Image from "next/image";
 import { IMAGE_TYPES } from "./InputUpload.constants";
 import * as S from "./InputUpload.styles";
+
 interface InputUploadProps<T extends FieldValues> {
   position?: "relative" | "absolute";
   isPreview?: boolean;
@@ -22,7 +23,7 @@ interface InputUploadProps<T extends FieldValues> {
 }
 
 const InputUpload = <T extends FieldValues>({
-  position = "relative",
+  position = "absolute",
   isPreview = true,
   register,
   setValue,
@@ -38,38 +39,46 @@ const InputUpload = <T extends FieldValues>({
   });
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      const file = event.target.files[0];
-      const fileType = file.type;
-
-      if (IMAGE_TYPES[fileType]) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          const image = document.createElement("img");
-          image.onload = () => {
-            setImageSize({
-              width: image.width,
-              height: image.height,
-            });
-
-            if (onPreview) {
-              onPreview(reader.result as string, { width: image.width, height: image.height });
-            } else {
-              setPreview(reader.result as string);
-            }
-          };
-          image.src = reader.result as string;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("파일 형식이 올바르지 않습니다. 이미지 파일을 업로드해 주세요.");
-        event.target.value = "";
-      }
+    if (!event.target.files) {
+      return;
     }
 
-    if (event.target.files) {
-      setValue(name, event.target.files as unknown as PathValue<T, Path<T>>);
+    const file = event.target.files[0];
+    const fileType = file.type;
+
+    if (!IMAGE_TYPES[fileType]) {
+      alert("파일 형식이 올바르지 않습니다. 이미지 파일을 업로드해 주세요.");
+      event.target.value = "";
     }
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const image = document.createElement("img");
+
+      image.onload = () => {
+        setImageSize({
+          width: image.width,
+          height: image.height,
+        });
+
+        if (typeof reader.result !== "string") {
+          return;
+        }
+
+        if (onPreview) {
+          onPreview(reader.result, { width: image.width, height: image.height });
+        } else {
+          setPreview(reader.result);
+        }
+      };
+
+      image.src = reader.result as string;
+    };
+
+    reader.readAsDataURL(file);
+
+    setValue(name, event.target.files as unknown as PathValue<T, Path<T>>);
   };
 
   const handleImageClick = () => {
