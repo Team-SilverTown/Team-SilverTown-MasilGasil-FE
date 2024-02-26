@@ -39,7 +39,6 @@ export const GlobalStyle = createGlobalStyle<any>`
     main {
       width: 100%;
       height: 100%;
-      /* min-height: 100%; */
       max-width: ${CONTAINER.MAX_WIDTH}rem;
       overflow-x: hidden;
       margin: 0 auto;
