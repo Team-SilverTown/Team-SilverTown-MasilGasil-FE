@@ -78,7 +78,6 @@ const SignInController = () => {
     setFocusedStep((focusedStep) => focusedStep + 1);
   };
 
-  // 테스트용
   const prevButtonClickHandler = () => {
     if (focusedStep === 0) {
       router.back();
