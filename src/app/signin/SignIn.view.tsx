@@ -32,25 +32,21 @@ const SignInView = ({
   stepValidations,
 }: SignInViewProps) => {
   return (
-    <GS.CommonContainer style={{ paddingTop: `${NAV_HEIGHT}rem` }}>
-      <div className="relative w-full h-full">
-        <SignInHelper index={focusedStep} />
-        {stepViews && (
-          <StepLayout
-            focusedStep={focusedStep}
-            prevFocusedStep={prevFocusedStep}
-            stepViews={stepViews}
-            style={{ height: `calc(100% - 165px)`, position: "relative" }}
-          />
-        )}
-        <StepButton
-          buttonText={focusedStep === 3 ? "마실가실 시작하기" : "다음"}
-          onClickHandler={
-            focusedStep === 3 ? handleSubmit(onValid, onInvalid) : onNextButtonHandler
-          }
-          isDisabled={!stepValidations[focusedStep]}
+    <GS.CommonContainer>
+      <SignInHelper index={focusedStep} />
+      {stepViews && (
+        <StepLayout
+          focusedStep={focusedStep}
+          prevFocusedStep={prevFocusedStep}
+          stepViews={stepViews}
+          style={{ height: `calc(100% - 165px)`, position: "relative" }}
         />
-      </div>
+      )}
+      <StepButton
+        buttonText={focusedStep === 3 ? "마실가실 시작하기" : "다음"}
+        onClickHandler={focusedStep === 3 ? handleSubmit(onValid, onInvalid) : onNextButtonHandler}
+        isDisabled={!stepValidations[focusedStep]}
+      />
     </GS.CommonContainer>
   );
 };
