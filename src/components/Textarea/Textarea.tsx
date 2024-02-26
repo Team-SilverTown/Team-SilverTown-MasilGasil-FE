@@ -8,18 +8,9 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   register: UseFormRegisterReturn;
 }
 
-const Textarea = ({
-  width,
-  style,
-  register,
-  className,
-  required = false,
-  placeholder = "",
-}: TextareaProps) => {
+const Textarea = ({ width, style, register, required = false, ...props }: TextareaProps) => {
   return (
     <S.TextareaStyle
-      placeholder={placeholder}
-      className={className}
       required={required}
       autoComplete="off"
       autoCorrect="off"
@@ -27,6 +18,7 @@ const Textarea = ({
       spellCheck="false"
       style={{ width, ...style }}
       {...register}
+      {...props}
     />
   );
 };
