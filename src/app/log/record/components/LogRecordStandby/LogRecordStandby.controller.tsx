@@ -70,6 +70,7 @@ const LogRecordStandbyController = ({
           depth2: region_2depth_name,
           depth3: region_3depth_name,
           depth4: region_4depth_name,
+          startedAt: JSON.stringify(new Date()),
         }));
 
         closeLoadingSpinner();
