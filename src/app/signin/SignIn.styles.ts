@@ -68,11 +68,11 @@ export const UnitLabel = styled.span`
   font-weight: ${FONT_WEIGHT.REGULAR};
 `;
 
-export const ExerciseIntensityTitleSection = styled.section`
+export const ExerciseIntensityTitleSection = styled.ul`
   margin: 3rem 0;
 `;
 
-export const ExerciseIntensityOption = styled.div`
+export const ExerciseIntensityOption = styled.li`
   display: flex;
   align-items: center;
   gap: 1.2rem;
