@@ -48,11 +48,9 @@ export const InputWrapper = styled.div`
   position: relative;
   align-items: center;
   width: 100%;
-
   input[type="number"] {
     -webkit-appearance: none;
     margin: 0;
-
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
       -webkit-appearance: none;
@@ -70,7 +68,22 @@ export const UnitLabel = styled.span`
   font-weight: ${FONT_WEIGHT.REGULAR};
 `;
 
-export const PolicyLabel = styled.label`
+export const ExerciseIntensityTitleSection = styled.ul`
+  margin: 3rem 0;
+`;
+
+export const ExerciseIntensityOption = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 1.6rem 1.2rem;
+`;
+
+export const RadioCircle = styled.label`
+  cursor: "pointer";
+`;
+
+export const PolicyLable = styled.label`
   margin-left: 1rem;
   cursor: pointer;
 `;

@@ -73,13 +73,18 @@ const SignInController = () => {
     return true;
   }, [getValues(), errors]);
 
+  const isStep3Validate = useMemo(() => {
+    if (!getValues("exerciseIntensity")) return false;
+    return true;
+  }, [getValues(), errors]);
+
   const isStep4Validate = useMemo(() => {
     if (!getValues("policy1") || !getValues("policy2") || !getValues("policy3")) return false;
     else return true;
   }, [watch()]);
 
   // 각 step 별 유효성 검사 결과 boolean 값을 가지고 있습니다.
-  const stepValidations = [isStep1Validate, isStep2Validate, true, isStep4Validate];
+  const stepValidations = [isStep1Validate, isStep2Validate, isStep3Validate, isStep4Validate];
 
   const nextButtonClickHandler = () => {
     if (focusedStep >= LAST_STEP_INDEX) return;
@@ -108,7 +113,10 @@ const SignInController = () => {
       register={register}
       errors={errors}
     />,
-    <SignInStep3 />,
+    <SignInStep3
+      getValues={getValues}
+      setValue={setValue}
+    />,
     <SignInStep4
       getValues={getValues}
       setValue={setValue}
