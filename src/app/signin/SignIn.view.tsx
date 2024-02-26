@@ -4,10 +4,11 @@ import React, { ReactNode } from "react";
 import { FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 
 import * as GS from "@/styles/GlobalStyle";
-
-import { SignInHelper, StepButton, StepLayout } from "./components";
-import { SignInFormProps } from "./SignIn.controller";
+import { StepLayout } from "@/components";
 import { NAV_HEIGHT } from "@/styles/theme";
+
+import { SignInHelper, StepButton } from "./components";
+import { SignInFormProps } from "./SignIn.controller";
 
 interface SignInViewProps {
   stepViews: ReactNode[];
