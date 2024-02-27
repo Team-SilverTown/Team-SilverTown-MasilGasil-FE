@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
 import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
 import { useUI } from "@/components/uiContext/UiContext";
@@ -12,6 +12,7 @@ interface LogRecordStandbyControllerProps {
   updateUserLocation: UpdateUserLocation;
   setLogData: SetLogData;
   setCurrentPinIndex: (pinIndex: number) => void;
+  setIsActiveExitAni: Dispatch<SetStateAction<boolean>>;
 }
 
 const LogRecordStandbyController = ({
@@ -19,6 +20,7 @@ const LogRecordStandbyController = ({
   setLogData,
   onErrorWatcher,
   updateUserLocation,
+  setIsActiveExitAni,
   setCurrentPinIndex,
 }: LogRecordStandbyControllerProps) => {
   const { setModalView, openModal, showLoadingSpinner, closeLoadingSpinner } = useUI();
@@ -68,12 +70,13 @@ const LogRecordStandbyController = ({
           depth2: region_2depth_name,
           depth3: region_3depth_name,
           depth4: region_4depth_name,
+          startedAt: JSON.stringify(new Date()),
         }));
 
         closeLoadingSpinner();
+        setIsActiveExitAni(true);
+        setPageStep("LOG_RECORD_RECORDING");
       });
-
-      setPageStep("LOG_RECORD_RECORDING");
       setUserLocation({ lat: latitude, lng: longitude });
     };
 

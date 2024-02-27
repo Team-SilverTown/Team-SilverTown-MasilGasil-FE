@@ -16,8 +16,16 @@ const MIN_INSERT_PIN_RANGE = 10; // M 단위
 const LogRecordController = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
-  const { pageStep, setPageStep, logData, setLogData, currentPinIndex, setCurrentPinIndex } =
-    useLogRecordModel();
+  const {
+    pageStep,
+    setPageStep,
+    logData,
+    setLogData,
+    currentPinIndex,
+    setCurrentPinIndex,
+    isActiveExitAni,
+    setIsActiveExitAni,
+  } = useLogRecordModel();
   const { setIsOutCenter } = useMapCenterStore();
   const router = useRouter();
 
@@ -195,6 +203,8 @@ const LogRecordController = () => {
       setCurrentPinIndex={setCurrentPinIndex}
       handleOffIsOutCenter={handleOffIsOutCenter}
       handleClickCreatePin={handleClickCreatePin}
+      isActiveExitAni={isActiveExitAni}
+      setIsActiveExitAni={setIsActiveExitAni}
     />
   );
 };
