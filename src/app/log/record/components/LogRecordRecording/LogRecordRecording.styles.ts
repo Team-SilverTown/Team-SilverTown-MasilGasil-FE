@@ -52,7 +52,7 @@ export const LogRecordInfo = styled.p`
   font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
-export const LogRecordInfoUnit = styled.p`
+export const LogRecordInfoUnit = styled.span`
   color: ${({ theme }) => theme.gray_500};
   font-size: ${FONT_SIZE.MEDIUM};
   font-weight: ${FONT_WEIGHT.BOLD};
