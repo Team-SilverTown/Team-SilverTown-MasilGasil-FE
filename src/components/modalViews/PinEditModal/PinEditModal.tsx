@@ -25,10 +25,8 @@ interface ModalProp {
 const PinEditModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
   const { onClickAccept, pin, pinIndex, onUploadThumbnail, onClickRemove } = props;
-  const { register, watch, setValue } = useForm();
+  const { register, watch, setValue, getValues } = useForm();
   const watchPinMemo = watch("pinContent");
-
-  const [imageURL, setImageURL] = useState(null);
 
   if (!onClickAccept) {
     closeModal();
@@ -51,17 +49,11 @@ const PinEditModal = ({ props }: ModalProp) => {
           setValue={setValue}
         >
           <S.PinEditThumbnail onClick={handleImageUpload}>
-            {imageURL ? (
-              <S.Image $src={imageURL} />
-            ) : (
-              <>
-                <Image
-                  width={40}
-                  fill={Theme.lightTheme.gray_300}
-                />
-                클릭하여 썸네일 업로드
-              </>
-            )}
+            <Image
+              width={40}
+              fill={Theme.lightTheme.gray_300}
+            />
+            클릭하여 썸네일 업로드
           </S.PinEditThumbnail>
         </InputUpload>
         <S.PinEditContainer>
@@ -82,7 +74,15 @@ const PinEditModal = ({ props }: ModalProp) => {
             fontSize: FONT_SIZE.LARGE,
           }}
           onClickHandler={() => {
-            onClickAccept(imageURL, watchPinMemo);
+            const { pinImage } = getValues();
+            /* TODO
+
+            추후 URL이 반환되면 해당 값을 onClickAccept로 전달
+            현재는 pinImage 가File 타입
+
+            
+             */
+            onClickAccept(pinImage, watchPinMemo);
           }}
         >
           수정 완료
