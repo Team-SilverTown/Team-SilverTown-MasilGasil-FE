@@ -12,6 +12,8 @@ const UserSettingOptionsView = () => {
       <SettingContent
         icon={<PersonOff />}
         text={"계정 공개여부"}
+        onClick={() => {}}
+        isSwitch={true}
       />
 
       {/* TODO - 상태에따라 아이콘 변경 예정 */}
@@ -19,6 +21,8 @@ const UserSettingOptionsView = () => {
       <SettingContent
         icon={<NotificationActive />}
         text={"알림 설정"}
+        onClick={() => {}}
+        isSwitch={true}
       />
     </GS.UserSettingInnerLayout>
   );

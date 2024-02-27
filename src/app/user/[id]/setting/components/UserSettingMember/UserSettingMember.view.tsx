@@ -10,6 +10,7 @@ const UserSettingMemberView = () => {
       <SettingContent
         icon={<AccountManager />}
         text={"회원 수정"}
+        onClick={() => {}}
       />
     </GS.UserSettingInnerLayout>
   );

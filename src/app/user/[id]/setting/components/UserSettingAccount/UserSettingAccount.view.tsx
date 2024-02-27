@@ -10,11 +10,13 @@ const UserSettingAccountView = () => {
       <SettingContent
         icon={<LogOut />}
         text={"로그아웃"}
+        onClick={() => {}}
       />
 
       <SettingContent
         icon={<AccountDelete />}
         text={"회원탈퇴"}
+        onClick={() => {}}
       />
     </GS.UserSettingInnerLayout>
   );
