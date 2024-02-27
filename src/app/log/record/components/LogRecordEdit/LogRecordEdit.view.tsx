@@ -4,7 +4,6 @@ import Theme, { FONT_WEIGHT, FONT_SIZE, Z_INDEX } from "@/styles/theme";
 import { useForm } from "react-hook-form";
 import EditPencil from "@/components/icons/EditPencil";
 import { MasilRecordRequest } from "@/types/Request";
-import Image from "next/image";
 import Sheet from "@/components/BottomSheet";
 import useTheme from "@/lib/hooks/useTheme";
 
@@ -119,29 +118,31 @@ const LogRecordEditView = ({
             </S.LogEditContainer>
           </S.LogEditLayout>
         </Sheet.Container>
-        <Button
-          buttonColor={Theme.lightTheme.green_500}
-          variant="neumorp"
-          textColor={Theme.lightTheme.white}
-          style={{
-            fontWeight: FONT_WEIGHT.BOLD,
-            opacity: 0.9,
-            fontSize: FONT_SIZE.LARGE,
-            position: "fixed",
-            bottom: "1.5rem",
-            zIndex: 3,
-            maxWidth: "56rem",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
-          width={"90%"}
-          onClickHandler={() => {
-            onSubmit(watchLogMemo);
-          }}
-        >
-          산책 기록하기
-        </Button>
       </S.MotionSheet>
+
+      <Button
+        buttonColor={Theme.lightTheme.green_500}
+        variant="neumorp"
+        textColor={Theme.lightTheme.white}
+        style={{
+          fontWeight: FONT_WEIGHT.BOLD,
+          opacity: 0.9,
+          fontSize: FONT_SIZE.LARGE,
+          position: "fixed",
+          bottom: "1.5rem",
+          zIndex: 999,
+          maxWidth: "56rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
+        width={"90%"}
+        onClickHandler={() => {
+          onSubmit(watchLogMemo);
+          console.log("d");
+        }}
+      >
+        산책 기록하기
+      </Button>
     </>
   );
 };
