@@ -6,7 +6,6 @@ import Image from "@/components/icons/Image";
 import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { Button, Textarea } from "@/components";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { Trash } from "@/components/icons";
 import InputUpload from "@/components/InputUpload/InputUpload";
 
@@ -26,7 +25,10 @@ const PinEditModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
   const { onClickAccept, pin, pinIndex, onUploadThumbnail, onClickRemove } = props;
   const { register, watch, setValue, getValues } = useForm();
-  const watchPinMemo = watch("pinContent");
+
+  /* 렌더링을 할 필요가 있을까?... */
+  // const watchPinMemo = watch("pinContent");
+  // const watchPinImage = watch("pinImage");
 
   if (!onClickAccept) {
     closeModal();
@@ -74,15 +76,8 @@ const PinEditModal = ({ props }: ModalProp) => {
             fontSize: FONT_SIZE.LARGE,
           }}
           onClickHandler={() => {
-            const { pinImage } = getValues();
-            /* TODO
-
-            추후 URL이 반환되면 해당 값을 onClickAccept로 전달
-            현재는 pinImage 가File 타입
-
-            
-             */
-            onClickAccept(pinImage, watchPinMemo);
+            console.log(getValues());
+            // onClickAccept(watchPinImage, watchPinMemo);
           }}
         >
           수정 완료
