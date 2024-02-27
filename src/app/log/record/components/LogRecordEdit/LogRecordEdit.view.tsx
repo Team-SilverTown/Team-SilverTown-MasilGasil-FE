@@ -1,4 +1,4 @@
-import { Button, Input, SlideButton } from "@/components";
+import { Button, SlideButton, Textarea } from "@/components";
 import * as S from "./LogRecordEdit.styles";
 import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { useForm } from "react-hook-form";
@@ -37,7 +37,7 @@ const LogRecordEditView = ({
       <S.LogEditLayout>
         <S.LogEditContainer>
           <S.Header>메모</S.Header>
-          <Input
+          <Textarea
             register={register("logMemo")}
             style={{ height: "17rem" }}
             placeholder="완료한 산책에 대한 간단한 메모를 작성해주세요."
