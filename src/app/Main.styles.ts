@@ -90,4 +90,5 @@ export const AuthButtonWrapper = styled.div`
   opacity: 0;
   animation: ${fadeAnimation} 300ms ease-out 1;
   animation-fill-mode: forwards;
+  left: 0;
 `;
