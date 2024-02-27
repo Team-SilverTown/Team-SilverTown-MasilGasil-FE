@@ -7,12 +7,14 @@ const UserSettingAccountView = () => {
     <GS.UserSettingInnerLayout>
       <GS.UserSettingTitle>계정 관리</GS.UserSettingTitle>
 
+      {/* TODO - 로그아웃 API 연결 */}
       <SettingContent
         icon={<LogOut />}
         text={"로그아웃"}
         onClick={() => {}}
       />
 
+      {/* TODO - 탈퇴 Confirm  */}
       <SettingContent
         icon={<AccountDelete />}
         text={"회원탈퇴"}
