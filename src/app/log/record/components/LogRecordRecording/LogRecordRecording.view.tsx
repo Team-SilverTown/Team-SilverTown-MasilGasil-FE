@@ -24,15 +24,40 @@ const LogRecordRecordingView = ({
     <S.LogRecordActionLayout>
       <S.LogRecordActionContainer>
         <S.LogRecordInfoContainer>
-          <S.LogRecordInfo>{`${hour} : ${min} : ${sec}`}</S.LogRecordInfo>
-          <S.LogRecordInfo>{`${logData.distance} M`}</S.LogRecordInfo>
+          <S.LogRecordInfo>
+            {hour !== "00" ? (
+              <>
+                {hour}
+                <S.LogRecordInfoUnit>시</S.LogRecordInfoUnit>
+              </>
+            ) : (
+              ""
+            )}
+
+            {min !== "00" ? (
+              <>
+                {min}
+                <S.LogRecordInfoUnit>분</S.LogRecordInfoUnit>
+              </>
+            ) : (
+              ""
+            )}
+
+            {sec}
+            <S.LogRecordInfoUnit>초</S.LogRecordInfoUnit>
+          </S.LogRecordInfo>
+
+          <S.LogRecordInfo>
+            {logData.distance}
+            <S.LogRecordInfoUnit>m</S.LogRecordInfoUnit>
+          </S.LogRecordInfo>
         </S.LogRecordInfoContainer>
 
         <Button
           buttonColor={Theme.lightTheme.green_500}
           variant="neumorp"
           textColor={Theme.lightTheme.white}
-          style={{ fontWeight: FONT_WEIGHT.BOLD, fontSize: FONT_SIZE.LARGE }}
+          style={{ fontWeight: FONT_WEIGHT.BOLD, fontSize: FONT_SIZE.H5, height: "6rem" }}
           width={"100%"}
           onClickHandler={handleClickCompleteRecord}
         >

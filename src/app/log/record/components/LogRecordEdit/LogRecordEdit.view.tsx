@@ -35,7 +35,10 @@ const LogRecordEditView = ({
 
   return (
     <>
-      <Sheet
+      <S.MotionSheet
+        initial={{ y: "100%" }}
+        animate={{ y: 0 }}
+        exit={{ y: "100%" }}
         isOpen={true}
         onClose={() => null}
         fixedHeight={0.4}
@@ -138,7 +141,7 @@ const LogRecordEditView = ({
         >
           산책 기록하기
         </Button>
-      </Sheet>
+      </S.MotionSheet>
     </>
   );
 };
