@@ -114,7 +114,6 @@ const LogRecordView = ({
                 setPageStep={setPageStep}
                 onErrorWatcher={onErrorWatcher}
                 updateUserLocation={updateUserLocation}
-                setCurrentPinIndex={setCurrentPinIndex}
                 setIsActiveExitAni={setIsActiveExitAni}
               />
             )}
