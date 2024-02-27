@@ -9,6 +9,16 @@ export const SettingContent = styled.div`
   gap: 1.4rem;
 `;
 
+export const SettingLabel = styled.label`
+  flex-grow: 1;
+
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+
+  cursor: pointer;
+`;
+
 export const SettingText = styled.p`
   flex-grow: 1;
 
