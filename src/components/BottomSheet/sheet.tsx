@@ -94,7 +94,8 @@ const Sheet = React.forwardRef<any, SheetProps>(
     // convert fixedHeight
     if (fixedHeight && windowHeight) {
       // fixedHeight = windowHeight - fixedHeight - 34;
-      if (fixedHeight > 0 && fixedHeight <= 1) fixedHeight = Math.round(fixedHeight * windowHeight);
+      if (fixedHeight > 0 && fixedHeight <= 1)
+        fixedHeight = Math.round(fixedHeight * windowHeight);
       else fixedHeight = windowHeight - fixedHeight;
     }
 

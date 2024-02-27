@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 
 import Sheet from "@components/BottomSheet";
-import { NAV_HEIGHT, Z_INDEX } from "@/styles/theme";
+import { Z_INDEX } from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
 
 interface BottomSheetSectionProps {}
@@ -15,7 +15,7 @@ const BottomSheetSection = ({}: BottomSheetSectionProps) => {
     <Sheet
       isOpen={true}
       onClose={() => null}
-      fixedHeight={0.5}
+      fixedHeight={0.4}
       snapPoints={[0.9, 0.5]}
       style={{
         zIndex: Z_INDEX.NAVIGATOR - 10,
