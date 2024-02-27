@@ -6,13 +6,14 @@ import { MasilsListType, PostsListType } from "../../Mypage.types";
 type MyRecordListType = "Masils" | "Posts";
 
 export interface MyRecordListProps {
+  key: string | number;
   title: string;
   urlLink: string;
   recordList: MasilsListType[] | PostsListType[];
   type: MyRecordListType;
 }
 
-const MyRecordList = ({ title, urlLink, recordList, type }: MyRecordListProps) => {
+const MyRecordList = ({ key, title, urlLink, recordList, type }: MyRecordListProps) => {
   return (
     <S.BorderContainer>
       <S.BorderTitleSection>

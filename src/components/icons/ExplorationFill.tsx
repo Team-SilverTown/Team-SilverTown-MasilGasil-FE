@@ -1,8 +1,8 @@
 const ExplorationFill = ({ ...props }) => {
   return (
     <svg
-      width="2.6rem"
-      height="auto"
+      width="24"
+      height="24"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 26 26"
       fill="currentColor"

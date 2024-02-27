@@ -32,7 +32,7 @@ export const SizeHandlerContainer = styled.div`
 `;
 
 export const SizeHandler = styled.div`
-  width: 40%;
+  width: 20%;
   height: 1rem;
   border-radius: 10rem;
   background-color: ${(props) => props.theme.gray_100};

@@ -11,7 +11,7 @@ interface LogRecordStandbyControllerProps {
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
   setLogData: SetLogData;
-
+  setCurrentPinIndex: (pinIndex: number) => void;
   setIsActiveExitAni: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -20,8 +20,8 @@ const LogRecordStandbyController = ({
   setLogData,
   onErrorWatcher,
   updateUserLocation,
-
   setIsActiveExitAni,
+  setCurrentPinIndex,
 }: LogRecordStandbyControllerProps) => {
   const { setModalView, openModal, showLoadingSpinner, closeLoadingSpinner } = useUI();
   const { setUserLocation } = useUserLocationStore();

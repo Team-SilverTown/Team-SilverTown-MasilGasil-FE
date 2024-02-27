@@ -67,7 +67,9 @@ export const ObjectThree = styled.div`
 
 export const TitleWrapper = styled.div`
   position: absolute;
-  bottom: 41%;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const H1 = styled.h1`
