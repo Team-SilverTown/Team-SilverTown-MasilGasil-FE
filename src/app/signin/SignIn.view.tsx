@@ -4,10 +4,11 @@ import React, { ReactNode } from "react";
 import { FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 
 import * as GS from "@/styles/GlobalStyle";
-
-import { SignInHelper, StepButton, StepLayout } from "./components";
-import { SignInFormProps } from "./SignIn.controller";
+import { StepLayout } from "@/components";
 import { NAV_HEIGHT } from "@/styles/theme";
+
+import { SignInHelper, StepButton } from "./components";
+import { SignInFormProps } from "./SignIn.controller";
 
 interface SignInViewProps {
   stepViews: ReactNode[];
@@ -31,25 +32,21 @@ const SignInView = ({
   stepValidations,
 }: SignInViewProps) => {
   return (
-    <GS.CommonContainer style={{ paddingTop: `${NAV_HEIGHT}rem` }}>
-      <div className="relative w-full h-full">
-        <SignInHelper index={focusedStep} />
-        {stepViews && (
-          <StepLayout
-            focusedStep={focusedStep}
-            prevFocusedStep={prevFocusedStep}
-            stepViews={stepViews}
-            style={{ height: `calc(100% - 165px)`, position: "relative" }}
-          />
-        )}
-        <StepButton
-          buttonText={focusedStep === 3 ? "마실가실 시작하기" : "다음"}
-          onClickHandler={
-            focusedStep === 3 ? handleSubmit(onValid, onInvalid) : onNextButtonHandler
-          }
-          isDisabled={!stepValidations[focusedStep]}
+    <GS.CommonContainer>
+      <SignInHelper index={focusedStep} />
+      {stepViews && (
+        <StepLayout
+          focusedStep={focusedStep}
+          prevFocusedStep={prevFocusedStep}
+          stepViews={stepViews}
+          style={{ height: `calc(100% - 165px)`, position: "relative" }}
         />
-      </div>
+      )}
+      <StepButton
+        buttonText={focusedStep === 3 ? "마실가실 시작하기" : "다음"}
+        onClickHandler={focusedStep === 3 ? handleSubmit(onValid, onInvalid) : onNextButtonHandler}
+        isDisabled={!stepValidations[focusedStep]}
+      />
     </GS.CommonContainer>
   );
 };

@@ -1,16 +1,16 @@
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
 import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
 import { useUI } from "@/components/uiContext/UiContext";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
-import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 
 interface LogRecordStandbyControllerProps {
   setPageStep: SetPageStep;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
   setLogData: SetLogData;
+  setIsActiveExitAni: Dispatch<SetStateAction<boolean>>;
 }
 
 const LogRecordStandbyController = ({
@@ -18,6 +18,7 @@ const LogRecordStandbyController = ({
   setLogData,
   onErrorWatcher,
   updateUserLocation,
+  setIsActiveExitAni,
 }: LogRecordStandbyControllerProps) => {
   const { setModalView, openModal, showLoadingSpinner, closeLoadingSpinner } = useUI();
   const { setUserLocation } = useUserLocationStore();
@@ -46,6 +47,7 @@ const LogRecordStandbyController = ({
     const updateAddress = ({ coords }: GeolocationPosition) => {
       const { latitude, longitude } = coords;
       const goe = new kakao.maps.services.Geocoder();
+      const newStartPosition = { lat: latitude, lng: longitude };
 
       goe.coord2RegionCode(longitude, latitude, (result, status) => {
         if (status !== kakao.maps.services.Status.OK) {
@@ -62,16 +64,18 @@ const LogRecordStandbyController = ({
 
         setLogData((prevData) => ({
           ...prevData,
+          path: [newStartPosition],
           depth1: region_1depth_name,
           depth2: region_2depth_name,
           depth3: region_3depth_name,
           depth4: region_4depth_name,
+          startedAt: JSON.stringify(new Date()),
         }));
 
         closeLoadingSpinner();
+        setIsActiveExitAni(true);
+        setPageStep("LOG_RECORD_RECORDING");
       });
-
-      setPageStep("LOG_RECORD_RECORDING");
       setUserLocation({ lat: latitude, lng: longitude });
     };
 

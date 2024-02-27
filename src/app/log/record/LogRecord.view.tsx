@@ -6,19 +6,25 @@ import {
   UpdateUserLocation,
   SetPageStep,
   SetLogData,
+  SetIsActiveExitAni,
 } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { Button } from "@/components";
-import { ChevronLeft, Pin } from "@/components/icons";
+import { Pin } from "@/components/icons";
 import { OnClickPin, OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
 import { GeoPosition } from "@/types/OriginDataType";
 import Center from "@/components/icons/Center";
+import { TopNavigator } from "@/components/navigators/TopNavagtor";
+import { GoBackButton } from "@/components/navigators/TopNavagtor/components";
+
+import { AnimatePresence } from "framer-motion";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
   logData: MasilRecordRequest;
+  isActiveExitAni: boolean;
 
   userLocation: GeoPosition;
   currentPinIndex: number;
@@ -33,6 +39,8 @@ interface LogRecordViewProps {
   setCurrentPinIndex: (pinIndex: number) => void;
   handleOffIsOutCenter: () => void;
   handleClickCreatePin: () => void;
+
+  setIsActiveExitAni: SetIsActiveExitAni;
 }
 
 const LogRecordView = ({
@@ -40,6 +48,9 @@ const LogRecordView = ({
   logData,
   userLocation,
   currentPinIndex,
+
+  isActiveExitAni,
+  setIsActiveExitAni,
 
   setLogData,
   setPageStep,
@@ -54,6 +65,8 @@ const LogRecordView = ({
 }: LogRecordViewProps) => {
   return (
     <S.LogRecordLayout>
+      <TopNavigator leftChildren={<GoBackButton onGoBackHandler={handleClickFallback} />} />
+
       <MasilMap
         center={userLocation}
         path={logData.path}
@@ -62,69 +75,72 @@ const LogRecordView = ({
         isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
         onClickPin={onClickPin}
         selectedPinIndex={currentPinIndex}
+        mapHeight={pageStep === "LOG_RECORD_EDITING" ? "50%" : "100%"}
       />
 
-      <S.LogRecordTop>
-        <Button
-          variant="naked"
-          onClickHandler={handleClickFallback}
-        >
-          <ChevronLeft
-            strokeWidth={3}
-            width={32}
-            height={32}
-          />
-        </Button>
-      </S.LogRecordTop>
-
-      <S.LogRecordStepLayout $pageStep={pageStep}>
-        <S.LogRecordActions $pageStep={pageStep}>
-          {pageStep === "LOG_RECORD_RECORDING" && (
-            <Button
-              variant="neumorp"
-              onClickHandler={handleClickCreatePin}
-            >
-              <Pin />
-            </Button>
-          )}
-
-          <Button
-            variant="neumorp"
-            onClickHandler={handleOffIsOutCenter}
+      <AnimatePresence
+        onExitComplete={() => {
+          setIsActiveExitAni(false);
+        }}
+      >
+        {!isActiveExitAni && (
+          <S.LogRecordStepLayout
+            $pageStep={pageStep}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
           >
-            <Center />
-          </Button>
-        </S.LogRecordActions>
+            <S.LogRecordActions $pageStep={pageStep}>
+              {pageStep === "LOG_RECORD_RECORDING" && (
+                <Button
+                  variant="neumorp"
+                  onClickHandler={handleClickCreatePin}
+                >
+                  <Pin />
+                </Button>
+              )}
 
-        {pageStep === "LOG_RECORD_STANDBY" && (
-          <LogRecordStandby
-            setLogData={setLogData}
-            setPageStep={setPageStep}
-            onErrorWatcher={onErrorWatcher}
-            updateUserLocation={updateUserLocation}
-          />
-        )}
+              <Button
+                variant="neumorp"
+                onClickHandler={handleOffIsOutCenter}
+              >
+                <Center />
+              </Button>
+            </S.LogRecordActions>
 
-        {pageStep === "LOG_RECORD_RECORDING" && (
-          <LogRecordRecording
-            logData={logData}
-            setLogData={setLogData}
-            setPageStep={setPageStep}
-            onErrorWatcher={onErrorWatcher}
-            updateUserLocation={updateUserLocation}
-          />
-        )}
+            {pageStep === "LOG_RECORD_STANDBY" && (
+              <LogRecordStandby
+                setLogData={setLogData}
+                setPageStep={setPageStep}
+                onErrorWatcher={onErrorWatcher}
+                updateUserLocation={updateUserLocation}
+                setIsActiveExitAni={setIsActiveExitAni}
+              />
+            )}
 
-        {pageStep === "LOG_RECORD_EDITING" && (
-          <LogRecordEdit
-            logData={logData}
-            currentPinIndex={currentPinIndex}
-            setLogData={setLogData}
-            setCurrentPinIndex={setCurrentPinIndex}
-            onClickPin={onClickPin}
-          />
+            {pageStep === "LOG_RECORD_RECORDING" && (
+              <LogRecordRecording
+                logData={logData}
+                setLogData={setLogData}
+                setPageStep={setPageStep}
+                onErrorWatcher={onErrorWatcher}
+                updateUserLocation={updateUserLocation}
+                setIsActiveExitAni={setIsActiveExitAni}
+              />
+            )}
+
+            {pageStep === "LOG_RECORD_EDITING" && (
+              <LogRecordEdit
+                logData={logData}
+                currentPinIndex={currentPinIndex}
+                setLogData={setLogData}
+                setCurrentPinIndex={setCurrentPinIndex}
+                onClickPin={onClickPin}
+              />
+            )}
+          </S.LogRecordStepLayout>
         )}
-      </S.LogRecordStepLayout>
+      </AnimatePresence>
     </S.LogRecordLayout>
   );
 };

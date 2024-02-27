@@ -12,6 +12,8 @@ export const LogEditLayout = styled.div`
   position: relative;
   overflow-y: auto;
   user-select: none;
+
+  background-color: ${(props) => props.theme.background_color};
 `;
 
 export const LogEditContainer = styled.div`
@@ -25,10 +27,12 @@ export const SizeHandlerContainer = styled.div`
 
   width: 100%;
   height: 3rem;
+
+  background-color: ${(props) => props.theme.background_color};
 `;
 
 export const SizeHandler = styled.div`
-  width: 40%;
+  width: 20%;
   height: 1rem;
   border-radius: 10rem;
   background-color: ${(props) => props.theme.gray_100};

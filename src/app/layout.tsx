@@ -4,7 +4,7 @@ import Script from "next/script";
 import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import "src/styles/globals.css";
-import { ManagedUIContext, ModalUI } from "@/components/uiContext/UiContext";
+import { ManagedUIContext, ModalUI, WindowUI } from "@/components/uiContext/UiContext";
 import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
 import TanstackQueryProviver from "@/lib/TanstackQueryProvider";
 import { serverGetTest } from "@/lib/api/Test/serverTest";
@@ -44,6 +44,7 @@ export default async function RootLayout({
               </main>
               <ModalUI />
               <LoadingSpinner />
+              <WindowUI />
             </TanstackQueryProviver>
           </body>
         </StyledComponentsRegistry>
