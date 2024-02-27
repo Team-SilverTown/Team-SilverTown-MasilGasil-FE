@@ -24,9 +24,10 @@ export const UserSettingInnerLayout = styled.article`
   /* border: 1px solid blue; */
 `;
 
-export const UserSettingTitle = styled.h5`
-  font-size: ${FONT_SIZE.H5};
+export const UserSettingTitle = styled.h6`
+  font-size: ${FONT_SIZE.H6};
   font-weight: ${FONT_WEIGHT.BOLD};
+  letter-spacing: 1px;
 `;
 
 export const UserSettingDivideLine = styled.div`
