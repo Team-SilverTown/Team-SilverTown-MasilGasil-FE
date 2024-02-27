@@ -11,16 +11,13 @@ export const ModalContainer = styled.div`
   z-index: ${Z_INDEX.MODAL};
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 export const ModalBackground = styled.div<any>`
   position: absolute;
   background-color: ${(props) => props.theme.transparent_10};
-  display: flex;
-  justify-content: center;
-  align-items: center;
   top: 0;
   left: 0;
   width: 100%;

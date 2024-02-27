@@ -18,8 +18,8 @@ interface LogRecordRecordingControllerProps {
   setIsActiveExitAni: Dispatch<SetStateAction<boolean>>;
 }
 
-const MIN_INSERT_PATH_RAGE = 10; // M 단위
-const MAX_INSERT_PATH_RAGE = 200; // M 단위
+const MIN_INSERT_PATH_RAGE = 12; // M 단위
+const MAX_INSERT_PATH_RAGE = 150; // M 단위
 
 const LogRecordRecordingController = ({
   logData,
