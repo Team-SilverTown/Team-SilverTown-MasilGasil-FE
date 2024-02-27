@@ -5,6 +5,7 @@ import * as S from "./UserSetting.styles";
 
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
+import { UserSettingAccount, UserSettingMember, UserSettingOptions } from "./components";
 
 const UserSettingView = () => {
   return (
@@ -15,12 +16,17 @@ const UserSettingView = () => {
       />
 
       <S.UserSettingLayout>
-        <div>설정</div>
+        <UserSettingOptions />
 
-        <div>토글 1</div>
-        <div>토글 2</div>
+        <S.UserSettingDivideLine />
 
-        <div></div>
+        <UserSettingMember />
+
+        <S.UserSettingDivideLine />
+
+        <UserSettingAccount />
+
+        <S.UserSettingDivideLine />
       </S.UserSettingLayout>
     </GS.CommonContainer>
   );
