@@ -1,4 +1,3 @@
-// import tw from "twin.macro";
 import styled from "styled-components";
 
 import { FONT_SIZE, FONT_WEIGHT, MODAL, Z_INDEX } from "@/styles/theme";
@@ -66,7 +65,6 @@ export const ModalHeaderButton = styled.button`
   right: 0;
   top: 0;
   margin: 1.5rem;
-  /* ${tw`transition ease-in-out duration-150 absolute right-0 top-0 m-6`} */
 `;
 
 export const ModalContentWrapper = styled.section`
@@ -75,12 +73,10 @@ export const ModalContentWrapper = styled.section`
   height: 100%;
   overflow-y: scroll;
 
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
     display: none;
   }
-  /* ${tw`outline-none h-full overflow-y-scroll scrollbar-hide`} */
 `;
