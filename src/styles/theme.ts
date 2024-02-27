@@ -95,6 +95,7 @@ export const BORDER = {
 };
 
 export const CONTAINER = {
+  MAX_WIDTH: 60, // rem
   PADDING_VERTICAL: 1, // rem
   PADDING_HORIZONTAL: 1.5, // rem
 

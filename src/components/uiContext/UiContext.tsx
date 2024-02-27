@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { useLocalStorage } from "@lib/hooks/useLocalStorage";
 import useModalStore from "@/stores/ui/useModalStore";
 import { Modal } from "@components/Modal";
+import Window from "@components/Window";
 import {
   PinEditModal,
   LogRecordAlertModal,
@@ -14,12 +15,26 @@ import {
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
+import LogRecordDoneModal from "../modalViews/LogRecordDoneModal/LogRecordDoneModal";
 import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
+import useWindowStore from "@/stores/ui/useWindowStore";
+import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
+
+import Policy from "../windowViews/Policy";
 
 export const useUI = () => {
   const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
   const { displayModal, modalView, modalProps, setModalView, openModal, closeModal } =
     useModalStore();
+  const {
+    displayWindow,
+    windowView,
+    setWindowView,
+    openWindow,
+    closeWindow,
+    setWindowURL,
+    windowURL,
+  } = useWindowStore();
 
   const context = {
     // modal
@@ -29,8 +44,17 @@ export const useUI = () => {
     openModal: (props?: any) => openModal(props),
     closeModal: () => closeModal(),
     setModalView: (view: MODAL_VIEWS) => setModalView(view),
+    // loadingSpinner
     showLoadingSpinner,
     closeLoadingSpinner,
+    // window
+    displayWindow,
+    windowView,
+    windowURL,
+    openWindow: () => openWindow(),
+    closeWindow: () => closeWindow(),
+    setWindowView: (view: WINDOW_VIEWS) => setWindowView(view),
+    setWindowURL: (url: string) => setWindowURL(url),
   };
 
   return context;
@@ -51,7 +75,8 @@ const ModalView = ({
       {modalView === "INIT_VIEW" && <TestModal />}
       {modalView === "LOG_RECORD_CONFIRM_VIEW" && <LogRecordConfirmModal props={props} />}
       {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
-      {modalView === "PIN_EDIT" && <PinEditModal props={props} />}
+      {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
+      {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
     </Modal>
   );
 };
@@ -68,6 +93,44 @@ export const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
   ) : null;
 };
 // ================================================================= Modal //
+
+// Policy Window View //
+const WindowView = ({
+  windowView,
+  closeWindow,
+  windowURL,
+}: {
+  windowView: string;
+  closeWindow(): any;
+  windowURL: string;
+}) => {
+  const width = Math.min(screen.width, 600);
+  const height = screen.height;
+
+  return (
+    <>
+      {windowView.includes("POLICY") && (
+        <Window
+          windowStyle={`width=${width},height=${height},left=0,top=0,resizable=no`}
+          onClose={closeWindow}
+          url={windowURL}
+        />
+      )}
+    </>
+  );
+};
+
+export const WindowUI= () => {
+  const { displayWindow, closeWindow, windowView, windowURL } = useUI();
+  return displayWindow ? (
+    <WindowView
+      windowView={windowView}
+      closeWindow={closeWindow}
+      windowURL={windowURL}
+    />
+  ) : null;
+};
+// ------------------------------------------------------------------------------ //
 
 export const ManagedUIContext = ({ children }: { children: any }) => {
   const [localTheme] = useLocalStorage("theme");

@@ -2,7 +2,7 @@
 
 import styled, { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import { CONTAINER } from "./theme";
+import { CONTAINER, NAV_HEIGHT } from "./theme";
 
 export const GlobalStyle = createGlobalStyle<any>`
     ${normalize}
@@ -14,7 +14,6 @@ export const GlobalStyle = createGlobalStyle<any>`
     html,
     body {
       width: 100%;
-      height: 100%;
       box-sizing: border-box;
       touch-action: manipulation;
     
@@ -27,38 +26,39 @@ export const GlobalStyle = createGlobalStyle<any>`
 
     html {
       font-size: 62.5%;
+      height: 100%;
     }
 
     body {
-      min-height: 100%;
-
+      width: 100vw;
+      height: 100%;
       background-color: ${(props) => props.theme.background_color};
-      
+  
       font-size : 1.4rem;
       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     }
 
     main {
       width: 100%;
-      max-width: 600px;
       height: 100%;
-      min-height: 100%; 
+      max-width: ${CONTAINER.MAX_WIDTH}rem;
+      overflow-x: hidden;
       margin: 0 auto;
-
       position: relative;
+      -ms-overflow-style: none; /* 인터넷 익스플로러 */
+      scrollbar-width: none; /* 파이어폭스 */
+    }
+
+    main::-webkit-scrollbar {
+      display: none;
     }
 `;
 
 export const CommonContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 0px ${CONTAINER.PADDING_HORIZONTAL}rem;
-  overflow: hidden;
+  padding: ${NAV_HEIGHT + 2}rem ${CONTAINER.PADDING_HORIZONTAL}rem;
   box-sizing: border-box;
   width: 100%;
-  min-height: 100%;
-  height: 100%;
+  min-height: 100dvh;
 `;
 
 export const Col = styled.div`

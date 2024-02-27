@@ -1,5 +1,6 @@
 import babelPluginTypescript from "@babel/plugin-syntax-typescript";
 import babelPluginMacros from "babel-plugin-macros";
+
 import * as path from "path";
 import * as url from "url";
 
@@ -45,7 +46,8 @@ export default function withTwin(
         ],
       });
 
-      if (typeof nextConfig.webpack === "function") return nextConfig.webpack(config, options);
+      if (typeof nextConfig.webpack === "function")
+        return withMDX(nextConfig.webpack(config, options));
 
       return config;
     },

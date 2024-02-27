@@ -1,4 +1,4 @@
-import { styled } from "twin.macro";
+import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 export const PinEditLayout = styled.div`

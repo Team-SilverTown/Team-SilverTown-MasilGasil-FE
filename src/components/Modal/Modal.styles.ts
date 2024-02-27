@@ -1,4 +1,3 @@
-import tw from "twin.macro";
 import styled from "styled-components";
 
 import { FONT_SIZE, FONT_WEIGHT, MODAL, Z_INDEX } from "@/styles/theme";
@@ -11,16 +10,13 @@ export const ModalContainer = styled.div`
   z-index: ${Z_INDEX.MODAL};
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 export const ModalBackground = styled.div<any>`
   position: absolute;
   background-color: ${(props) => props.theme.transparent_10};
-  display: flex;
-  justify-content: center;
-  align-items: center;
   top: 0;
   left: 0;
   width: 100%;
@@ -65,9 +61,22 @@ export const ModalHeaderTitle = styled.span`
 `;
 
 export const ModalHeaderButton = styled.button`
-  ${tw`transition ease-in-out duration-150 absolute right-0 top-0 m-6`}
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 1.5rem;
 `;
 
 export const ModalContentWrapper = styled.section`
-  ${tw`outline-none h-full overflow-y-scroll scrollbar-hide`}
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  height: 100%;
+  overflow-y: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

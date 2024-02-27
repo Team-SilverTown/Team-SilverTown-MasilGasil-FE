@@ -10,3 +10,4 @@ export type UpdateUserLocation = (geo: GeolocationPosition) => void;
 export type SetPageStep = Dispatch<SetStateAction<LogPageStep>>;
 export type SetWatchCode = Dispatch<SetStateAction<number>>;
 export type SetLogData = Dispatch<SetStateAction<MasilRecordRequest>>;
+export type SetIsActiveExitAni = Dispatch<SetStateAction<boolean>>;
