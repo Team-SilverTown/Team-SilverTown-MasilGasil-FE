@@ -6,8 +6,8 @@ import { FieldErrors, useForm } from "react-hook-form";
 import useSignInModel from "./SignIn.model";
 import SignInView from "./SignIn.view";
 import { SignInStep1, SignInStep2, SignInStep3, SignInStep4 } from "./sections";
-import { TopNavigator } from "@/components/navigators/TopNavagtor";
-import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavagtor/components";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavigator/components";
 import { useRouter } from "next/navigation";
 
 export interface SignInFormProps {

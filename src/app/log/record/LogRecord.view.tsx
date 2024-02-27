@@ -16,8 +16,8 @@ import { Pin } from "@/components/icons";
 import { OnClickPin, OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
 import { GeoPosition } from "@/types/OriginDataType";
 import Center from "@/components/icons/Center";
-import { TopNavigator } from "@/components/navigators/TopNavagtor";
-import { GoBackButton } from "@/components/navigators/TopNavagtor/components";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 
 import { AnimatePresence } from "framer-motion";
 
