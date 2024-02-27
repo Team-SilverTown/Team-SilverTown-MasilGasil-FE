@@ -1,7 +1,8 @@
 import React from "react";
+import ExploreController from "./Explore.controller";
 
 const Explore = () => {
-  return <div>ExplorePage</div>;
+  return <ExploreController />;
 };
 
 export default Explore;
