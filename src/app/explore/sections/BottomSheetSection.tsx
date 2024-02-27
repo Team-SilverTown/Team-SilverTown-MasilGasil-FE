@@ -16,9 +16,10 @@ const BottomSheetSection = ({}: BottomSheetSectionProps) => {
       isOpen={true}
       onClose={() => null}
       fixedHeight={0.4}
+      initialSnap={1}
       snapPoints={[0.9, 0.5]}
       style={{
-        zIndex: Z_INDEX.NAVIGATOR - 10,
+        zIndex: Z_INDEX.BOTTOM_SHEET,
       }}
     >
       <Sheet.Container
