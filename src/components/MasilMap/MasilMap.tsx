@@ -156,6 +156,7 @@ const MasilMap = ({
         zIndex: 0,
         position: "relative",
       }}
+      isPanto
     >
       {isShowCenterMarker && (
         <CenterMarker

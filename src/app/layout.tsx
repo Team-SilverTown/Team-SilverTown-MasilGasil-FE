@@ -24,9 +24,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const data = await serverGetTest();
-  console.log("SERVER", data);
-
   return (
     <html lang="ko">
       <ManagedUIContext>
