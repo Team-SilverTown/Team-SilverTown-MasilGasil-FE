@@ -1,4 +1,4 @@
-import tw from "twin.macro";
+// import tw from "twin.macro";
 import styled from "styled-components";
 
 import { FONT_SIZE, FONT_WEIGHT, MODAL, Z_INDEX } from "@/styles/theme";
@@ -62,9 +62,25 @@ export const ModalHeaderTitle = styled.span`
 `;
 
 export const ModalHeaderButton = styled.button`
-  ${tw`transition ease-in-out duration-150 absolute right-0 top-0 m-6`}
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 1.5rem;
+  /* ${tw`transition ease-in-out duration-150 absolute right-0 top-0 m-6`} */
 `;
 
 export const ModalContentWrapper = styled.section`
-  ${tw`outline-none h-full overflow-y-scroll scrollbar-hide`}
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  height: 100%;
+  overflow-y: scroll;
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  /* ${tw`outline-none h-full overflow-y-scroll scrollbar-hide`} */
 `;

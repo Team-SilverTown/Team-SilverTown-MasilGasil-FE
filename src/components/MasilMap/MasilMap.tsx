@@ -15,8 +15,8 @@ interface MasilMapProps {
   path: GeoPosition[];
   pins: Pin[];
 
-  mapHeight?: string;
   mapWidth?: string;
+  mapHeight?: string;
 
   draggable?: boolean;
   zoomable?: boolean;
@@ -99,6 +99,7 @@ const MasilMap = ({
 }: MasilMapProps) => {
   const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
   const { isOutCenter, setIsOutCenter } = useMapCenterStore();
+  const mapRef = useRef<kakao.maps.Map | null>(null);
 
   /**
    * @summary drag, zoom으로 인해 벗어난 Map의 center를 일정 시간 후 강제로 다시 이동시킵니다.
@@ -132,7 +133,6 @@ const MasilMap = ({
     }, 200),
   ).current;
 
-  const mapRef = useRef<kakao.maps.Map | null>(null);
   useEffect(() => {
     const { current } = mapRef;
 
