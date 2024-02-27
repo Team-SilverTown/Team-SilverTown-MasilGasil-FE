@@ -4,14 +4,12 @@ import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../
 import { useUI } from "@/components/uiContext/UiContext";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
-import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 
 interface LogRecordStandbyControllerProps {
   setPageStep: SetPageStep;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
   setLogData: SetLogData;
-  setCurrentPinIndex: (pinIndex: number) => void;
   setIsActiveExitAni: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -21,7 +19,6 @@ const LogRecordStandbyController = ({
   onErrorWatcher,
   updateUserLocation,
   setIsActiveExitAni,
-  setCurrentPinIndex,
 }: LogRecordStandbyControllerProps) => {
   const { setModalView, openModal, showLoadingSpinner, closeLoadingSpinner } = useUI();
   const { setUserLocation } = useUserLocationStore();
