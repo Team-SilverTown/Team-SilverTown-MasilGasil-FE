@@ -3,8 +3,8 @@
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "./UserSetting.styles";
 
-import { TopNavigator } from "@/components/navigators/TopNavagtor";
-import { GoBackButton } from "@/components/navigators/TopNavagtor/components";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 
 const UserSettingView = () => {
   return (
