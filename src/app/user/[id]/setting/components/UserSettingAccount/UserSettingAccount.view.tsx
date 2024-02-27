@@ -1,26 +1,21 @@
 import { AccountDelete, LogOut } from "@/components/icons";
 import * as GS from "../../UserSetting.styles";
+import { SettingContent } from "..";
 
 const UserSettingAccountView = () => {
   return (
     <GS.UserSettingInnerLayout>
       <GS.UserSettingTitle>계정 관리</GS.UserSettingTitle>
 
-      <GS.UserSettingContent>
-        <GS.UserSettingIcon>
-          <LogOut />
-        </GS.UserSettingIcon>
+      <SettingContent
+        icon={<LogOut />}
+        text={"로그아웃"}
+      />
 
-        <GS.UserSettingText>로그아웃</GS.UserSettingText>
-      </GS.UserSettingContent>
-
-      <GS.UserSettingContent>
-        <GS.UserSettingIcon>
-          <AccountDelete />
-        </GS.UserSettingIcon>
-
-        <GS.UserSettingText>회원탈퇴</GS.UserSettingText>
-      </GS.UserSettingContent>
+      <SettingContent
+        icon={<AccountDelete />}
+        text={"회원탈퇴"}
+      />
     </GS.UserSettingInnerLayout>
   );
 };
