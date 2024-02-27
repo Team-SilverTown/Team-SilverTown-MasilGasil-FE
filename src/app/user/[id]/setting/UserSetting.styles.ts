@@ -8,7 +8,7 @@ export const UserSettingLayout = styled.section`
 
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 2rem;
 
   user-select: none;
 
@@ -20,14 +20,34 @@ export const UserSettingInnerLayout = styled.article`
 
   display: flex;
   flex-direction: column;
-
-  /* border: 1px solid blue; */
+  gap: 2rem;
 `;
 
-export const UserSettingTitle = styled.h6`
-  font-size: ${FONT_SIZE.H6};
+export const UserSettingContent = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const UserSettingTitle = styled.h5`
+  font-size: ${FONT_SIZE.H5};
   font-weight: ${FONT_WEIGHT.BOLD};
+`;
+
+export const UserSettingText = styled.p`
+  flex-grow: 1;
+
+  font-size: ${FONT_SIZE.LARGE};
+  font-weight: ${FONT_WEIGHT.SEMIBOLD};
   letter-spacing: 1px;
+  line-height: 1.2;
+`;
+
+export const UserSettingIcon = styled.div`
+  width: 2.8rem;
+  height: 2.8rem;
 `;
 
 export const UserSettingDivideLine = styled.div`
