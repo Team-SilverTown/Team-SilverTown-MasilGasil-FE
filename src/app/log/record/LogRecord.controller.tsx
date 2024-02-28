@@ -30,6 +30,9 @@ const LogRecordController = () => {
     setIsActiveExitAnimation,
     currentPinIndex,
     setCurrentPinIndex,
+
+    createPin,
+    updateDistance,
   } = useLogRecordContext();
 
   // Stay
@@ -99,47 +102,14 @@ const LogRecordController = () => {
     });
   };
 
-  // Context - reducer
-  /**
-   * @summary 전달받은 경로(polyline) 데이터 내부의 getLength 함수를 통해
-   *
-   * 경로 거리를 M단위로 전달받고 LogData에 업로드 합니다.
-   */
-  const handleDistanceCalculation = useCallback((polyLine: kakao.maps.Polyline) => {
-    const newDistance = Math.floor(polyLine.getLength());
+  // const handleDistanceCalculation = useCallback((polyLine: kakao.maps.Polyline) => {
+  //   const newDistance = Math.floor(polyLine.getLength());
 
-    setLogData((prevData) => ({
-      ...prevData,
-      distance: newDistance,
-    }));
-  }, []);
-
-  // Context - reducer
-  /**
-   * @summary 현재 위치에 핀을 추가하는 함수
-   *
-   * 특정 거리 이내에 핀이 존재할경우 찍히지 앟음.
-   */
-  const handleClickCreatePin = useCallback(() => {
-    for (const { point: checkPin } of logData.pins) {
-      const pointDistance = getTwoPointDistance(userLocation, checkPin);
-
-      if (pointDistance < MIN_INSERT_PIN_RANGE) {
-        return;
-      }
-    }
-
-    const newPin = {
-      point: userLocation,
-      content: "",
-      thumbnailUrl: null,
-    };
-
-    setLogData((prevData) => ({
-      ...prevData,
-      pins: [...prevData.pins, newPin],
-    }));
-  }, [userLocation, logData]);
+  //   setLogData((prevData) => ({
+  //     ...prevData,
+  //     distance: newDistance,
+  //   }));
+  // }, []);
 
   // Context - reducer
   const handleClickPin = (pinIndex: number) => {
@@ -210,11 +180,11 @@ const LogRecordController = () => {
       updateUserLocation={updateUserLocation}
       handleClickFallback={handleClickFallback}
       onClickPin={handleClickPin}
-      onCreatePathLine={handleDistanceCalculation}
+      onCreatePathLine={updateDistance}
       currentPinIndex={currentPinIndex}
       setCurrentPinIndex={setCurrentPinIndex}
       handleOffIsOutCenter={handleOffIsOutCenter}
-      handleClickCreatePin={handleClickCreatePin}
+      handleClickCreatePin={createPin}
       isActiveExitAni={isActiveExitAnimation}
       setIsActiveExitAni={setIsActiveExitAnimation}
       isMapResizing={isMapResizing}

@@ -1,5 +1,16 @@
 import { MasilRecordRequest } from "@/types/Request";
 
+interface LogRecordReducerType {
+  INIT: "RECORD_INIT";
+  CALCULATE_DISTANCE: "RECORD_CALCULATE_DISTANCE";
+  CREATE_PIN: "RECORD_CREATE_PIN";
+}
+export const LOG_RECORD_REDUCER_ACTIONS: LogRecordReducerType = {
+  INIT: "RECORD_INIT",
+  CALCULATE_DISTANCE: "RECORD_CALCULATE_DISTANCE",
+  CREATE_PIN: "RECORD_CREATE_PIN",
+};
+
 export const DEFAULT_LOG_DATA: MasilRecordRequest = {
   depth1: "",
   depth2: "",
