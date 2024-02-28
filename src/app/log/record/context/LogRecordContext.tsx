@@ -3,7 +3,6 @@ import React, {
   SetStateAction,
   createContext,
   useContext,
-  useEffect,
   useReducer,
   useState,
 } from "react";
@@ -12,6 +11,7 @@ import { MasilRecordRequest } from "@/types/Request";
 import { DEFAULT_LOG_DATA, LOG_RECORD_REDUCER_ACTIONS } from "../LogRecord.constants";
 import logRecordReducer from "./reducer/LogRecordReducer";
 import useUserLocationStore from "@/stores/useUserLocationStore";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface LogRecordContextValues {
   pageStep: LogPageStep;
@@ -25,6 +25,7 @@ interface LogRecordContextValues {
 
   updateDistance: (polyLine: kakao.maps.Polyline) => void;
   createPin: () => void;
+  clickPin: (pinIndex: number) => void;
 }
 
 interface LogRecordContextProviderProps {
@@ -43,6 +44,7 @@ const LogRecordContext = createContext<LogRecordContextValues>({
 
   updateDistance: () => {},
   createPin: () => {},
+  clickPin: () => {},
 });
 
 export const LogRecordContextProvider = ({ children }: LogRecordContextProviderProps) => {
@@ -53,6 +55,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
   const [currentPinIndex, setCurrentPinIndex] = useState(-1);
   const [isActiveExitAnimation, setIsActiveExitAnimation] = useState(false);
   const { userLocation } = useUserLocationStore();
+  const { openModal, setModalView, closeModal } = useUI();
 
   const updateDistance = (polyLine: kakao.maps.Polyline) => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CALCULATE_DISTANCE, payload: { polyLine } });
@@ -62,9 +65,32 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CREATE_PIN, payload: { location: userLocation } });
   };
 
-  useEffect(() => {
-    console.log("create PIN!!!!", test);
-  }, [test]);
+  const clickPin = (pinIndex: number) => {
+    setCurrentPinIndex(pinIndex);
+    setModalView("PIN_EDIT_VIEW");
+
+    openModal({
+      onClickAccept: (imageUrl: string | null, pinContent: string | null) => {
+        dispatch({
+          type: LOG_RECORD_REDUCER_ACTIONS.UPDATE_PIN,
+          payload: {
+            pinIndex,
+            imageUrl,
+            pinContent,
+          },
+        });
+        setCurrentPinIndex(-1);
+        closeModal();
+      },
+      onClickRemove: (pinIndex: number) => {
+        dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.REMOVE_PIN, payload: { pinIndex } });
+        setCurrentPinIndex(-1);
+        closeModal();
+      },
+      pinIndex,
+      pin: test.pins[pinIndex],
+    });
+  };
 
   return (
     <LogRecordContext.Provider
@@ -80,6 +106,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
 
         updateDistance,
         createPin,
+        clickPin,
       }}
     >
       {children}

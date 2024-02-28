@@ -32,6 +32,7 @@ const LogRecordController = () => {
     setCurrentPinIndex,
 
     createPin,
+    clickPin,
     updateDistance,
   } = useLogRecordContext();
 
@@ -111,45 +112,45 @@ const LogRecordController = () => {
   //   }));
   // }, []);
 
-  // Context - reducer
-  const handleClickPin = (pinIndex: number) => {
-    setCurrentPinIndex(pinIndex);
-    setModalView("PIN_EDIT_VIEW");
-    openModal({
-      onClickAccept: (imageUrl: string | null, pinContent: string | null) => {
-        /**
-         * @brief 핀 모달을 통해 입력받은 썸네일 이미지 혹은 메모를 logData에 저장합니다. 이후 모달을 닫고 currentPinIndex를 초기화합니다.
-         */
+  // const handleClickPin = (pinIndex: number) => {
+  //   setCurrentPinIndex(pinIndex);
 
-        if (imageUrl) {
-          setLogData((prevData) => {
-            const newPins = [...prevData.pins];
-            newPins[pinIndex].thumbnailUrl = imageUrl;
+  //   setModalView("PIN_EDIT_VIEW");
+  //   openModal({
+  //     onClickAccept: (imageUrl: string | null, pinContent: string | null) => {
+  //       /**
+  //        * @brief 핀 모달을 통해 입력받은 썸네일 이미지 혹은 메모를 logData에 저장합니다. 이후 모달을 닫고 currentPinIndex를 초기화합니다.
+  //        */
 
-            return { ...prevData, pins: newPins };
-          });
-        }
+  //       if (imageUrl) {
+  //         setLogData((prevData) => {
+  //           const newPins = [...prevData.pins];
+  //           newPins[pinIndex].thumbnailUrl = imageUrl;
 
-        if (pinContent) {
-          setLogData((prevData) => {
-            const newPins = [...prevData.pins];
-            newPins[pinIndex].content = pinContent;
+  //           return { ...prevData, pins: newPins };
+  //         });
+  //       }
 
-            return { ...prevData, pins: newPins };
-          });
-        }
+  //       if (pinContent) {
+  //         setLogData((prevData) => {
+  //           const newPins = [...prevData.pins];
+  //           newPins[pinIndex].content = pinContent;
 
-        closeModal();
-        setCurrentPinIndex(-1);
-      },
-      onClickRemove: (pinIndex: number) => {
-        handleRemovePin(pinIndex);
-        closeModal();
-      },
-      pinIndex,
-      pin: logData.pins[pinIndex],
-    });
-  };
+  //           return { ...prevData, pins: newPins };
+  //         });
+  //       }
+
+  //       closeModal();
+  //       setCurrentPinIndex(-1);
+  //     },
+  //     onClickRemove: (pinIndex: number) => {
+  //       handleRemovePin(pinIndex);
+  //       closeModal();
+  //     },
+  //     pinIndex,
+  //     pin: logData.pins[pinIndex],
+  //   });
+  // };
 
   // Context - reducer
   /**
@@ -157,12 +158,12 @@ const LogRecordController = () => {
    * @params (pinIndex: number)
    * @brief 특정 인덱스의 핀을 제거합니다.
    */
-  const handleRemovePin = (pinIndex: number) => {
-    setLogData((prevData) => {
-      return { ...prevData, pins: prevData.pins.filter((_, index) => index !== pinIndex) };
-    });
-    setCurrentPinIndex(-1);
-  };
+  // const handleRemovePin = (pinIndex: number) => {
+  //   setLogData((prevData) => {
+  //     return { ...prevData, pins: prevData.pins.filter((_, index) => index !== pinIndex) };
+  //   });
+  //   setCurrentPinIndex(-1);
+  // };
 
   // Stay
   const handleOffIsOutCenter = () => {
@@ -179,16 +180,16 @@ const LogRecordController = () => {
       onErrorWatcher={handleWatchError}
       updateUserLocation={updateUserLocation}
       handleClickFallback={handleClickFallback}
-      onClickPin={handleClickPin}
-      onCreatePathLine={updateDistance}
       currentPinIndex={currentPinIndex}
       setCurrentPinIndex={setCurrentPinIndex}
       handleOffIsOutCenter={handleOffIsOutCenter}
-      handleClickCreatePin={createPin}
       isActiveExitAni={isActiveExitAnimation}
       setIsActiveExitAni={setIsActiveExitAnimation}
       isMapResizing={isMapResizing}
       setIsMapResizing={setIsMapResizing}
+      onClickPin={clickPin}
+      handleClickCreatePin={createPin}
+      onCreatePathLine={updateDistance}
     />
   );
 };

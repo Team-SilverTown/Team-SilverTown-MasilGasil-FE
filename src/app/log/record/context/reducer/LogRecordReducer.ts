@@ -2,7 +2,7 @@ import { MasilRecordRequest } from "@/types/Request";
 import { DEFAULT_LOG_DATA, LOG_RECORD_REDUCER_ACTIONS } from "../../LogRecord.constants";
 import { GeoPosition } from "@/types/OriginDataType";
 import getTwoPointDistance from "../../utils/getTwoPointDistance";
-import { stat } from "fs";
+import { useUI } from "@/components/uiContext/UiContext";
 
 type ActionsType =
   | { type: "RECORD_INIT" }
@@ -13,6 +13,18 @@ type ActionsType =
   | {
       type: "RECORD_CREATE_PIN";
       payload: { location: GeoPosition };
+    }
+  | {
+      type: "RECORD_UPDATE_PIN";
+      payload: {
+        pinIndex: number;
+        imageUrl: string | null;
+        pinContent: string | null;
+      };
+    }
+  | {
+      type: "RECORD_REMOVE_PIN";
+      payload: { pinIndex: number };
     };
 
 const MIN_INSERT_PIN_RANGE = 10; // M 단위
@@ -63,6 +75,32 @@ const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
       return {
         ...state,
         pins: [...state.pins, newPin],
+      };
+    }
+
+    case LOG_RECORD_REDUCER_ACTIONS.UPDATE_PIN: {
+      const { pinIndex, imageUrl, pinContent } = action.payload;
+      const newPins = [...state.pins];
+
+      if (imageUrl) {
+        newPins[pinIndex].thumbnailUrl = imageUrl;
+      }
+
+      if (pinContent) {
+        newPins[pinIndex].content = pinContent;
+      }
+
+      return {
+        ...state,
+        pins: newPins,
+      };
+    }
+
+    case LOG_RECORD_REDUCER_ACTIONS.REMOVE_PIN: {
+      const { pinIndex } = action.payload;
+      return {
+        ...state,
+        pins: state.pins.filter((_, index) => index !== pinIndex),
       };
     }
 
