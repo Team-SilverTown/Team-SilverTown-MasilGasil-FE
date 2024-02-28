@@ -22,6 +22,11 @@ const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
     case LOG_RECORD_REDUCER_ACTIONS.INIT:
       return DEFAULT_LOG_DATA;
 
+    /**
+     * @summary 전달받은 경로(polyline) 데이터 내부의 getLength 함수를 통해
+     *
+     * 경로 거리를 M단위로 전달받고 LogData에 업로드 합니다.
+     */
     case LOG_RECORD_REDUCER_ACTIONS.CALCULATE_DISTANCE: {
       const { polyLine } = action.payload;
       const newDistance = Math.floor(polyLine.getLength());
@@ -32,6 +37,11 @@ const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
       };
     }
 
+    /**
+     * @summary 현재 위치에 핀을 추가하는 함수
+     *
+     * 특정 거리 이내에 핀이 존재할경우 찍히지 앟음.
+     */
     case LOG_RECORD_REDUCER_ACTIONS.CREATE_PIN: {
       const { location } = action.payload;
       const { pins } = state;

@@ -54,20 +54,10 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
   const [isActiveExitAnimation, setIsActiveExitAnimation] = useState(false);
   const { userLocation } = useUserLocationStore();
 
-  /**
-   * @summary 전달받은 경로(polyline) 데이터 내부의 getLength 함수를 통해
-   *
-   * 경로 거리를 M단위로 전달받고 LogData에 업로드 합니다.
-   */
   const updateDistance = (polyLine: kakao.maps.Polyline) => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CALCULATE_DISTANCE, payload: { polyLine } });
   };
 
-  /**
-   * @summary 현재 위치에 핀을 추가하는 함수
-   
-   * 특정 거리 이내에 핀이 존재할경우 찍히지 앟음.
-   */
   const createPin = () => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CREATE_PIN, payload: { location: userLocation } });
   };
