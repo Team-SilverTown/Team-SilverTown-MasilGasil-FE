@@ -1,19 +1,12 @@
 import { useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
-import { OnErrorWatcher, UpdateUserLocation } from "../../LogRecord.types";
 import { useUI } from "@/components/uiContext/UiContext";
 
 import useLogRecordContext from "../../context/LogRecordContext";
+import useGeoLocationUtils from "../../hooks/useGeoLocationUtils";
 
-interface LogRecordStandbyControllerProps {
-  onErrorWatcher: OnErrorWatcher;
-  updateUserLocation: UpdateUserLocation;
-}
-
-const LogRecordStandbyController = ({
-  onErrorWatcher,
-  updateUserLocation,
-}: LogRecordStandbyControllerProps) => {
+const LogRecordStandbyController = () => {
+  const { onErrorWatch, updateUserLocation } = useGeoLocationUtils();
   const { startRecord } = useLogRecordContext();
   const { showLoadingSpinner } = useUI();
 
@@ -23,7 +16,7 @@ const LogRecordStandbyController = ({
      *
      * @summary enableHighAccuracy 옵션은 사용자의 기기에 배터리 소비를 증가시키지만 위치 정확도를 높여줍니다.
      */
-    const watchCode = navigator.geolocation.watchPosition(updateUserLocation, onErrorWatcher, {
+    const watchCode = navigator.geolocation.watchPosition(updateUserLocation, onErrorWatch, {
       enableHighAccuracy: true,
     });
 
@@ -38,7 +31,7 @@ const LogRecordStandbyController = ({
   const handleStartRecord = () => {
     showLoadingSpinner();
 
-    navigator.geolocation.getCurrentPosition(startRecord, onErrorWatcher, {
+    navigator.geolocation.getCurrentPosition(startRecord, onErrorWatch, {
       enableHighAccuracy: true,
     });
   };

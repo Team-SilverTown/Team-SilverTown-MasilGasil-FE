@@ -1,14 +1,6 @@
 import * as S from "./LogRecord.styles";
 
-import {
-  OnErrorWatcher,
-  LogPageStep,
-  UpdateUserLocation,
-  SetPageStep,
-  SetLogData,
-  SetIsActiveExitAni,
-  SetIsMapResizing,
-} from "./LogRecord.types";
+import { LogPageStep, SetIsMapResizing } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
@@ -33,8 +25,7 @@ interface LogRecordViewProps {
 
   setPageStep: SetPageStep;
   setLogData: SetLogData;
-  onErrorWatcher: OnErrorWatcher;
-  updateUserLocation: UpdateUserLocation;
+
   handleClickFallback: () => void;
   onClickPin: OnClickPin;
   onCreatePathLine: OnCreatePathLine;
@@ -60,8 +51,7 @@ const LogRecordView = ({
 
   setLogData,
   setPageStep,
-  onErrorWatcher,
-  updateUserLocation,
+
   handleClickFallback,
   onClickPin,
   onCreatePathLine,
@@ -126,36 +116,11 @@ const LogRecordView = ({
               </Button>
             </S.LogRecordActions>
 
-            {pageStep === "LOG_RECORD_STANDBY" && (
-              <LogRecordStandby
-                setLogData={setLogData}
-                setPageStep={setPageStep}
-                onErrorWatcher={onErrorWatcher}
-                updateUserLocation={updateUserLocation}
-                setIsActiveExitAni={setIsActiveExitAni}
-              />
-            )}
+            {pageStep === "LOG_RECORD_STANDBY" && <LogRecordStandby />}
 
-            {pageStep === "LOG_RECORD_RECORDING" && (
-              <LogRecordRecording
-                logData={logData}
-                setLogData={setLogData}
-                setPageStep={setPageStep}
-                onErrorWatcher={onErrorWatcher}
-                updateUserLocation={updateUserLocation}
-                setIsActiveExitAni={setIsActiveExitAni}
-              />
-            )}
+            {pageStep === "LOG_RECORD_RECORDING" && <LogRecordRecording />}
 
-            {pageStep === "LOG_RECORD_EDITING" && (
-              <LogRecordEdit
-                logData={logData}
-                currentPinIndex={currentPinIndex}
-                setLogData={setLogData}
-                setCurrentPinIndex={setCurrentPinIndex}
-                onClickPin={onClickPin}
-              />
-            )}
+            {pageStep === "LOG_RECORD_EDITING" && <LogRecordEdit />}
           </S.LogRecordStepLayout>
         )}
       </AnimatePresence>

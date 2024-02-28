@@ -6,17 +6,11 @@ import { useUI } from "@/components/uiContext/UiContext";
 
 import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
 import useLogRecordContext from "../../context/LogRecordContext";
+import useGeoLocationUtils from "../../hooks/useGeoLocationUtils";
 
-interface LogRecordRecordingControllerProps {
-  onErrorWatcher: OnErrorWatcher;
-  updateUserLocation: UpdateUserLocation;
-}
-
-const LogRecordRecordingController = ({
-  onErrorWatcher,
-  updateUserLocation,
-}: LogRecordRecordingControllerProps) => {
+const LogRecordRecordingController = () => {
   const { openModal, setModalView, closeModal } = useUI();
+  const { onErrorWatch, updateUserLocation } = useGeoLocationUtils();
   const { increaseTimer, updatePath, logData, setPageStep, setIsActiveExitAnimation } =
     useLogRecordContext();
 
@@ -26,7 +20,7 @@ const LogRecordRecordingController = ({
         updateUserLocation(geoPosition);
         updatePath(geoPosition);
       },
-      onErrorWatcher,
+      onErrorWatch,
       { enableHighAccuracy: true },
     );
 
