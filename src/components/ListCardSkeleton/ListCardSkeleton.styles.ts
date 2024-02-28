@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-export const Shimmer = styled.div`
+export const ListCardShimmer = styled.section`
   width: 100%;
   height: 100%;
   background-color: #e0e0e0;
@@ -21,7 +21,7 @@ export const Shimmer = styled.div`
   }
 `;
 
-export const Div = styled.div`
+export const ListCardContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -34,7 +34,7 @@ export const Div = styled.div`
   box-shadow: rgba(0, 0, 0, 0.1) 0.1rem 0.1rem 1.1rem;
 `;
 
-export const Img = styled.div`
+export const ListCardThumbnail = styled.article`
   width: 100%;
   height: 16rem;
   border-top-left-radius: 0.8rem;
@@ -43,19 +43,19 @@ export const Img = styled.div`
   background-color: ${(props) => props.theme.gray_100};
 `;
 
-export const Wrap = styled.div`
+export const ListCardContent = styled.article`
   display: flex;
   justify-content: center;
   flex-direction: column;
   padding: 1.5rem;
 `;
 
-export const Flex = styled.div`
+export const ListCardContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export const Text = styled.div`
+export const ListCardInfo = styled.div`
   width: 12rem;
   height: 2rem;
   margin-bottom: 1rem;
