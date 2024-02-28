@@ -1,6 +1,6 @@
 import * as S from "./LogRecord.styles";
 
-import { LogPageStep, SetIsMapResizing } from "./LogRecord.types";
+import { LogPageStep, SetIsActiveExitAnimation, SetIsMapResizing } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
@@ -15,26 +15,23 @@ import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { AnimatePresence } from "framer-motion";
 
 interface LogRecordViewProps {
-  pageStep: LogPageStep;
   logData: MasilRecordRequest;
-  isActiveExitAni: boolean;
-  isMapResizing: boolean;
-
+  pageStep: LogPageStep;
   userLocation: GeoPosition;
   currentPinIndex: number;
 
-  setPageStep: SetPageStep;
-  setLogData: SetLogData;
+  isActiveExitAnimation: boolean;
+  setIsActiveExitAnimation: SetIsActiveExitAnimation;
 
-  handleClickFallback: () => void;
-  onClickPin: OnClickPin;
-  onCreatePathLine: OnCreatePathLine;
-  setCurrentPinIndex: (pinIndex: number) => void;
-  handleOffIsOutCenter: () => void;
-  handleClickCreatePin: () => void;
-
-  setIsActiveExitAni: SetIsActiveExitAni;
+  isMapResizing: boolean;
   setIsMapResizing: SetIsMapResizing;
+
+  onCreatePathLine: OnCreatePathLine;
+  onClickPin: OnClickPin;
+  handleClickFallback: () => void;
+
+  handleClickCreatePin: () => void;
+  handleOffIsOutCenter: () => void;
 }
 
 const LogRecordView = ({
@@ -43,21 +40,18 @@ const LogRecordView = ({
   userLocation,
   currentPinIndex,
 
-  isActiveExitAni,
-  setIsActiveExitAni,
+  isActiveExitAnimation,
+  setIsActiveExitAnimation,
 
   isMapResizing,
   setIsMapResizing,
 
-  setLogData,
-  setPageStep,
+  onCreatePathLine,
+  onClickPin,
+  handleClickCreatePin,
 
   handleClickFallback,
-  onClickPin,
-  onCreatePathLine,
-  setCurrentPinIndex,
   handleOffIsOutCenter,
-  handleClickCreatePin,
 }: LogRecordViewProps) => {
   const mapAnimation = {
     initial: { height: "100%" },
@@ -70,7 +64,9 @@ const LogRecordView = ({
 
       <S.LogRecordMapContainer
         initial="initial"
-        animate={pageStep === "LOG_RECORD_EDITING" && !isActiveExitAni ? "editing" : "initial"}
+        animate={
+          pageStep === "LOG_RECORD_EDITING" && !isActiveExitAnimation ? "editing" : "initial"
+        }
         variants={mapAnimation}
         onAnimationComplete={() => setIsMapResizing(true)}
       >
@@ -88,10 +84,10 @@ const LogRecordView = ({
 
       <AnimatePresence
         onExitComplete={() => {
-          setIsActiveExitAni(false);
+          setIsActiveExitAnimation(false);
         }}
       >
-        {!isActiveExitAni && (
+        {!isActiveExitAnimation && (
           <S.LogRecordStepLayout
             $pageStep={pageStep}
             initial={{ y: "100%" }}

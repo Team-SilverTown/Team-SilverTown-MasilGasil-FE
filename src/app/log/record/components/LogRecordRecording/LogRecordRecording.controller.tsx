@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import LogRecordRecordingView from "./LogRecordRecording.view";
-import { OnErrorWatcher, UpdateUserLocation } from "../../LogRecord.types";
 
 import { useUI } from "@/components/uiContext/UiContext";
 

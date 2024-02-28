@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { LogPageStep } from "../LogRecord.types";
+import { LogPageStep, SetCurrentPinIndex, SetIsActiveExitAnimation } from "../LogRecord.types";
 import { MasilRecordRequest } from "@/types/Request";
 import {
   DEFAULT_LOG_DATA,
@@ -21,14 +21,17 @@ import { useUI } from "@/components/uiContext/UiContext";
 import { throttle } from "lodash";
 
 interface LogRecordContextValues {
+  logData: MasilRecordRequest;
   pageStep: LogPageStep;
   setPageStep: Dispatch<SetStateAction<LogPageStep>>;
-  logData: MasilRecordRequest;
-  setLogData: Dispatch<SetStateAction<MasilRecordRequest>>;
+
   currentPinIndex: number;
-  setCurrentPinIndex: Dispatch<SetStateAction<number>>;
+  setCurrentPinIndex: SetCurrentPinIndex;
+
   isActiveExitAnimation: boolean;
-  setIsActiveExitAnimation: Dispatch<SetStateAction<boolean>>;
+  setIsActiveExitAnimation: SetIsActiveExitAnimation;
+
+  initData: () => void;
 
   createPin: () => void;
   removePin: (pinIndex: number) => void;
@@ -45,22 +48,26 @@ interface LogRecordContextProviderProps {
 }
 
 const LogRecordContext = createContext<LogRecordContextValues>({
+  logData: DEFAULT_LOG_DATA,
   pageStep: "LOG_RECORD_STANDBY",
   setPageStep: () => {},
-  logData: DEFAULT_LOG_DATA,
-  setLogData: () => {},
+
   currentPinIndex: -1,
   setCurrentPinIndex: () => {},
+
   isActiveExitAnimation: false,
   setIsActiveExitAnimation: () => {},
 
-  updateDistance: () => {},
+  initData: () => {},
+
   createPin: () => {},
   removePin: () => {},
   clickPin: () => {},
+
   startRecord: () => {},
   increaseTimer: () => {},
   updatePath: () => {},
+  updateDistance: () => {},
 });
 
 export const LogRecordContextProvider = ({ children }: LogRecordContextProviderProps) => {
@@ -69,7 +76,6 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
   const [currentPinIndex, setCurrentPinIndex] = useState(-1);
   const [isActiveExitAnimation, setIsActiveExitAnimation] = useState(false);
 
-  const [dummy, setLogData] = useState<MasilRecordRequest>(DEFAULT_LOG_DATA);
   const { userLocation, setUserLocation } = useUserLocationStore();
   const { openModal, setModalView, closeModal, closeLoadingSpinner } = useUI();
 
@@ -190,6 +196,10 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
     }, 5000),
   ).current;
 
+  const initData = () => {
+    dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.INIT });
+  };
+
   useEffect(() => {
     console.log(logData);
   }, [logData.path]);
@@ -197,7 +207,6 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
     <LogRecordContext.Provider
       value={{
         logData,
-        setLogData,
         pageStep,
         setPageStep,
         currentPinIndex,
@@ -205,14 +214,16 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
         isActiveExitAnimation,
         setIsActiveExitAnimation,
 
+        initData,
+
         createPin,
         removePin,
         clickPin,
 
         startRecord,
         increaseTimer,
-        updateDistance,
         updatePath,
+        updateDistance,
       }}
     >
       {children}
