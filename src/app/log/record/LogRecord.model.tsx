@@ -51,8 +51,6 @@ const LogRecordModel = () => {
     openModal({
       onClickAccept: () => {
         setPageStep("LOG_RECORD_STANDBY");
-
-        // TODO: 맵 Center 렌더링 필요
         initData();
         closeModal();
       },
