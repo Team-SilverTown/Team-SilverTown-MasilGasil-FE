@@ -7,3 +7,7 @@ export const MoreListLayout = styled.section`
 export const MoreList = styled.ul`
   padding: 0 1.5rem;
 `;
+
+export const ScrollObserver = styled.div`
+  height: 5rem;
+`;

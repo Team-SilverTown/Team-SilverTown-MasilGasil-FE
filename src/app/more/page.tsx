@@ -1,24 +1,31 @@
-import { TopNavigator } from "@/components/navigators/TopNavagtor";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import MoreListController from "./MoreList.controller";
-import MoreListView from "./MoreList.view";
-import { GoBackButton } from "@/components/navigators/TopNavagtor/components";
 import SortTab from "./SortTab/SortTab";
+import { HEADER_TITLE } from "./MoreList.constants";
 
 interface MorePageProps {
-  searchParams: { keyword: string };
+  searchParams: { keyword: string; order: string };
 }
 
 const More = ({ searchParams }: MorePageProps) => {
-  console.log(searchParams);
+  const { keyword, order } = searchParams;
+
   return (
     <>
       <TopNavigator
         leftChildren={<GoBackButton />}
-        title={searchParams.keyword}
+        title={HEADER_TITLE[keyword]}
       />
       <div style={{ paddingTop: "6rem" }}>
-        <SortTab />
-        <MoreListController keyword={searchParams.keyword} />
+        <SortTab
+          keyword={keyword}
+          order={order}
+        />
+        <MoreListController
+          keyword={keyword}
+          order={order}
+        />
       </div>
     </>
   );
