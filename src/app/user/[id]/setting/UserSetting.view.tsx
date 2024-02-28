@@ -15,7 +15,10 @@ const UserSettingView = () => {
         title={"설정"}
       />
 
-      <S.UserSettingLayout>
+      <S.UserSettingLayout
+        initial={{ y: "-100%" }}
+        animate={{ y: 0 }}
+      >
         <UserSettingOptions />
 
         <S.UserSettingDivideLine />
