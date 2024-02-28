@@ -11,10 +11,12 @@ const useGeoLocationUtils = () => {
   const router = useRouter();
 
   /**
-   * @summary watcher가 오류가 발생했을때 수행할 동작을 위한 함수입니다.
+   * @func onErrorWatch
    *
    * @param code 에러가 발생한 코드를 확인할 수 있습니다.
    * @param PERMISSION_DENIED 사용자가 위치 서비스를 동의 하지 않았는지를 파악할때 code와 비교하는 용도로 사용되어집니다.
+   *
+   * @brief watcher가 오류가 발생했을때 수행할 동작을 위한 함수입니다.
    */
   const onErrorWatch = ({ code, PERMISSION_DENIED }: GeolocationPositionError) => {
     setModalView("LOG_RECORD_ALERT_VIEW");
@@ -35,7 +37,8 @@ const useGeoLocationUtils = () => {
   };
 
   /**
-   * @summary Watcher 가 동작한 후 정상적으로 위치를 가져왔을대 실행되는 함수입니다.
+   * @func updateUserLocation
+   * @brief Watcher 가 동작한 후 정상적으로 위치를 가져왔을대 실행되는 함수입니다.
    *
    * ( throttle을 이용해 setter를 갱신시키기 위해선 useRef를 사용해야합니다. )
    */
