@@ -14,6 +14,7 @@ interface MasilMapProps {
   center: GeoPosition;
   path: GeoPosition[];
   pins: Pin[];
+  isResizing?: boolean;
 
   mapWidth?: string;
   mapHeight?: string;
@@ -96,6 +97,8 @@ const MasilMap = ({
   pinSelectColor,
   pinFontColor,
   selectedPinIndex,
+
+  isResizing,
 }: MasilMapProps) => {
   const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
   const { isOutCenter, setIsOutCenter } = useMapCenterStore();
@@ -139,7 +142,7 @@ const MasilMap = ({
     if (current) {
       current.relayout();
     }
-  }, [mapHeight, mapWidth]);
+  }, [mapHeight, mapWidth, isResizing]);
 
   return (
     <Map
