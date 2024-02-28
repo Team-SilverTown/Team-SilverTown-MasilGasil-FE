@@ -30,12 +30,13 @@ interface LogRecordContextValues {
   isActiveExitAnimation: boolean;
   setIsActiveExitAnimation: Dispatch<SetStateAction<boolean>>;
 
-  updateDistance: (polyLine: kakao.maps.Polyline) => void;
   createPin: () => void;
   clickPin: (pinIndex: number) => void;
+
   startRecord: (position: GeolocationPosition) => void;
   increaseTimer: () => void;
   updatePath: (position: GeolocationPosition) => void;
+  updateDistance: (polyLine: kakao.maps.Polyline) => void;
 }
 
 interface LogRecordContextProviderProps {
@@ -70,14 +71,29 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
   const { userLocation, setUserLocation } = useUserLocationStore();
   const { openModal, setModalView, closeModal, closeLoadingSpinner } = useUI();
 
+  /**
+   * @summary 현재 경로의 거리를 갱신하기위한 dispatch를 실행합니다.
+   *
+   * @param polyLine kakao maps에서 지원하는 polyline
+   */
   const updateDistance = (polyLine: kakao.maps.Polyline) => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CALCULATE_DISTANCE, payload: { polyLine } });
   };
 
+  /**
+   * @summary 현재 center 위치를 이용해 핀을 생성하기 위한 dispatch를 실행합니다.
+   */
   const createPin = () => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CREATE_PIN, payload: { location: userLocation } });
   };
 
+  /**
+   * @summary Pin을 클릭했을때 해당 pin을 수정 , 삭제 하기위한 Modal을 제공합니다.
+   *
+   * 각 모달 내부에 함수로 dispatch를 전달합니다.
+   *
+   * @param pinIndex click한 Pin의 index
+   */
   const clickPin = (pinIndex: number) => {
     setCurrentPinIndex(pinIndex);
     setModalView("PIN_EDIT_VIEW");
