@@ -20,6 +20,7 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 
 import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
@@ -63,20 +64,30 @@ const LogRecordView = ({
   handleOffIsOutCenter,
   handleClickCreatePin,
 }: LogRecordViewProps) => {
+  const mapAnimation = {
+    initial: { height: "100%" },
+    editing: { height: "50%" },
+  };
+
   return (
     <S.LogRecordLayout>
       <TopNavigator leftChildren={<GoBackButton onGoBackHandler={handleClickFallback} />} />
 
-      <MasilMap
-        center={userLocation}
-        path={logData.path}
-        pins={logData.pins}
-        onCreatePathLine={onCreatePathLine}
-        isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
-        onClickPin={onClickPin}
-        selectedPinIndex={currentPinIndex}
-        mapHeight={pageStep === "LOG_RECORD_EDITING" ? "50%" : "100%"}
-      />
+      <S.LogRecordMapContainer
+        initial="initial"
+        animate={pageStep === "LOG_RECORD_EDITING" && !isActiveExitAni ? "editing" : "initial"}
+        variants={mapAnimation}
+      >
+        <MasilMap
+          center={userLocation}
+          path={logData.path}
+          pins={logData.pins}
+          onCreatePathLine={onCreatePathLine}
+          isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
+          onClickPin={onClickPin}
+          selectedPinIndex={currentPinIndex}
+        />
+      </S.LogRecordMapContainer>
 
       <AnimatePresence
         onExitComplete={() => {
