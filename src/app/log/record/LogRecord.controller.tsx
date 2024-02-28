@@ -25,6 +25,8 @@ const LogRecordController = () => {
     setCurrentPinIndex,
     isActiveExitAni,
     setIsActiveExitAni,
+    isMapResizing,
+    setIsMapResizing,
   } = useLogRecordModel();
   const { setIsOutCenter } = useMapCenterStore();
   const router = useRouter();
@@ -205,6 +207,8 @@ const LogRecordController = () => {
       handleClickCreatePin={handleClickCreatePin}
       isActiveExitAni={isActiveExitAni}
       setIsActiveExitAni={setIsActiveExitAni}
+      isMapResizing={isMapResizing}
+      setIsMapResizing={setIsMapResizing}
     />
   );
 };

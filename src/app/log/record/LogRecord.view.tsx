@@ -7,6 +7,7 @@ import {
   SetPageStep,
   SetLogData,
   SetIsActiveExitAni,
+  SetIsMapResizing,
 } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
@@ -20,12 +21,12 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
 
 interface LogRecordViewProps {
   pageStep: LogPageStep;
   logData: MasilRecordRequest;
   isActiveExitAni: boolean;
+  isMapResizing: boolean;
 
   userLocation: GeoPosition;
   currentPinIndex: number;
@@ -42,6 +43,7 @@ interface LogRecordViewProps {
   handleClickCreatePin: () => void;
 
   setIsActiveExitAni: SetIsActiveExitAni;
+  setIsMapResizing: SetIsMapResizing;
 }
 
 const LogRecordView = ({
@@ -52,6 +54,9 @@ const LogRecordView = ({
 
   isActiveExitAni,
   setIsActiveExitAni,
+
+  isMapResizing,
+  setIsMapResizing,
 
   setLogData,
   setPageStep,
@@ -77,6 +82,7 @@ const LogRecordView = ({
         initial="initial"
         animate={pageStep === "LOG_RECORD_EDITING" && !isActiveExitAni ? "editing" : "initial"}
         variants={mapAnimation}
+        onAnimationComplete={() => setIsMapResizing(true)}
       >
         <MasilMap
           center={userLocation}
@@ -86,6 +92,7 @@ const LogRecordView = ({
           isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
           onClickPin={onClickPin}
           selectedPinIndex={currentPinIndex}
+          isResizing={isMapResizing}
         />
       </S.LogRecordMapContainer>
 

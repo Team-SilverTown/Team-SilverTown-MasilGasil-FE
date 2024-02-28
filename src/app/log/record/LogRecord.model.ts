@@ -9,6 +9,7 @@ const useLogRecordModel = () => {
   const [currentPinIndex, setCurrentPinIndex] = useState(-1);
 
   const [isActiveExitAni, setIsActiveExitAni] = useState(false);
+  const [isMapResizing, setIsMapResizing] = useState(false);
 
   return {
     pageStep,
@@ -20,6 +21,8 @@ const useLogRecordModel = () => {
 
     isActiveExitAni,
     setIsActiveExitAni,
+    isMapResizing,
+    setIsMapResizing,
   };
 };
 
