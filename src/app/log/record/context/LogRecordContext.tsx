@@ -31,6 +31,7 @@ interface LogRecordContextValues {
   setIsActiveExitAnimation: Dispatch<SetStateAction<boolean>>;
 
   createPin: () => void;
+  removePin: (pinIndex: number) => void;
   clickPin: (pinIndex: number) => void;
 
   startRecord: (position: GeolocationPosition) => void;
@@ -55,6 +56,7 @@ const LogRecordContext = createContext<LogRecordContextValues>({
 
   updateDistance: () => {},
   createPin: () => {},
+  removePin: () => {},
   clickPin: () => {},
   startRecord: () => {},
   increaseTimer: () => {},
@@ -88,6 +90,16 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
   };
 
   /**
+   * @func removePin
+   * @params (pinIndex: number)
+   * @brief 특정 인덱스의 핀을 제거합니다.
+   */
+  const removePin = (pinIndex: number) => {
+    dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.REMOVE_PIN, payload: { pinIndex } });
+    setCurrentPinIndex(-1);
+  };
+
+  /**
    * @summary Pin을 클릭했을때 해당 pin을 수정 , 삭제 하기위한 Modal을 제공합니다.
    *
    * 각 모달 내부에 함수로 dispatch를 전달합니다.
@@ -112,8 +124,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
         closeModal();
       },
       onClickRemove: (pinIndex: number) => {
-        dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.REMOVE_PIN, payload: { pinIndex } });
-        setCurrentPinIndex(-1);
+        removePin(pinIndex);
         closeModal();
       },
       pinIndex,
@@ -194,11 +205,13 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
         isActiveExitAnimation,
         setIsActiveExitAnimation,
 
-        updateDistance,
         createPin,
+        removePin,
         clickPin,
+
         startRecord,
         increaseTimer,
+        updateDistance,
         updatePath,
       }}
     >
