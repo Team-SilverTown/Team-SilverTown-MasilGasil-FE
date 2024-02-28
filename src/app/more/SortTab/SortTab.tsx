@@ -1,17 +1,30 @@
 "use client";
 
-import { useState } from "react";
-import { SORT_DATA, SORT_TAB } from "./SortTab.constants";
+import React, { useState } from "react";
+import { SORT_DATA } from "./SortTab.constants";
 import * as S from "./SortTab.styles";
+import { useRouter } from "next/navigation";
 
-const SortTab = () => {
-  const [sortTab, setSortTab] = useState<"latest" | "popular">(SORT_TAB.LATEST);
+interface SortTabProps {
+  keyword: string;
+  order: string;
+}
+
+const SortTab = ({ keyword, order }: SortTabProps) => {
+  const [sort, setSort] = useState(order);
+  const router = useRouter();
 
   const handleFilterToggle = (event: React.MouseEvent<HTMLElement>) => {
-    if (event.currentTarget.title === SORT_TAB.LATEST) {
-      setSortTab(SORT_TAB.LATEST);
+    if (event.currentTarget.id === sort) {
+      return;
+    }
+
+    if (sort === "latest") {
+      setSort("popular");
+      router.push(`/more?keyword=${keyword}&order=popular`);
     } else {
-      setSortTab(SORT_TAB.POPULAR);
+      setSort("latest");
+      router.push(`/more?keyword=${keyword}&order=latest`);
     }
   };
 
@@ -21,8 +34,9 @@ const SortTab = () => {
         <button
           key={index}
           type="button"
-          className={sortTab === keyword ? "selected" : ""}
+          className={sort === keyword ? "selected" : ""}
           title={keyword}
+          id={keyword}
           onClick={handleFilterToggle}
         >
           {title}
