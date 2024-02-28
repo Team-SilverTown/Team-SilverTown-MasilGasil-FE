@@ -35,9 +35,9 @@ type ActionsType =
       payload: { location: GeoPosition };
     };
 
-const MIN_INSERT_PIN_RANGE = 10; // M 단위
+const MIN_INSERT_PIN_RANGE = 30; // M 단위
 
-const MIN_INSERT_PATH_RAGE = 12; // M 단위
+const MIN_INSERT_PATH_RAGE = 25; // M 단위
 const MAX_INSERT_PATH_RAGE = 150; // M 단위
 
 const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
