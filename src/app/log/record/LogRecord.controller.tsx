@@ -4,32 +4,33 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import useLogRecordModel from "./LogRecord.model";
 import LogRecordView from "./LogRecord.view";
 import { throttle } from "lodash";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { DEFAULT_LOG_DATA, LOG_RECORD_MESSAGE } from "./LogRecord.constants";
 import { useUI } from "@/components/uiContext/UiContext";
 import useMapCenterStore from "@/components/MasilMap/store/useMapCenterStore";
 import getTwoPointDistance from "./utils/getTwoPointDistance";
+import useLogRecordContext from "./context/LogRecordContext";
 
 const MIN_INSERT_PIN_RANGE = 10; // M 단위
 
 const LogRecordController = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { userLocation, setUserLocation } = useUserLocationStore();
+  const { isMapResizing, setIsMapResizing } = useLogRecordModel();
+  const { setIsOutCenter } = useMapCenterStore();
+  const router = useRouter();
+
   const {
     pageStep,
     setPageStep,
     logData,
     setLogData,
+    isActiveExitAnimation,
+    setIsActiveExitAnimation,
     currentPinIndex,
     setCurrentPinIndex,
-    isActiveExitAni,
-    setIsActiveExitAni,
-    isMapResizing,
-    setIsMapResizing,
-  } = useLogRecordModel();
-  const { setIsOutCenter } = useMapCenterStore();
-  const router = useRouter();
+  } = useLogRecordContext();
 
   // Stay
   useEffect(() => {
@@ -214,8 +215,8 @@ const LogRecordController = () => {
       setCurrentPinIndex={setCurrentPinIndex}
       handleOffIsOutCenter={handleOffIsOutCenter}
       handleClickCreatePin={handleClickCreatePin}
-      isActiveExitAni={isActiveExitAni}
-      setIsActiveExitAni={setIsActiveExitAni}
+      isActiveExitAni={isActiveExitAnimation}
+      setIsActiveExitAni={setIsActiveExitAnimation}
       isMapResizing={isMapResizing}
       setIsMapResizing={setIsMapResizing}
     />

@@ -7,8 +7,10 @@ export type OnErrorWatcher = (error: GeolocationPositionError) => void;
 
 export type UpdateUserLocation = (geo: GeolocationPosition) => void;
 
-export type SetPageStep = Dispatch<SetStateAction<LogPageStep>>;
 export type SetWatchCode = Dispatch<SetStateAction<number>>;
-export type SetLogData = Dispatch<SetStateAction<MasilRecordRequest>>;
+
+export type SetPageStep = Dispatch<SetStateAction<LogPageStep>>;
 export type SetIsActiveExitAni = Dispatch<SetStateAction<boolean>>;
+export type SetLogData = Dispatch<SetStateAction<MasilRecordRequest>>;
+
 export type SetIsMapResizing = Dispatch<SetStateAction<boolean>>;
