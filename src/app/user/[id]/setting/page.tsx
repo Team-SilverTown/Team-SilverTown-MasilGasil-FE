@@ -1,7 +1,7 @@
-import { UserSettingController } from "./UserSetting.controller";
+import React from "react";
 
 const Setting = () => {
-  return <UserSettingController />;
+  return <div>SettingPage</div>;
 };
 
 export default Setting;
