@@ -2,13 +2,10 @@
 
 import React from "react";
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister, UseFormWatch } from "react-hook-form";
-import tw from "twin.macro";
-import styled from "styled-components";
 
 import { Input } from "@/components";
 import { Cross, Search } from "@/components/icons";
 import useTheme from "@/lib/hooks/useTheme";
-import { NAV_HEIGHT, Z_INDEX } from "@/styles/theme";
 
 import { SearchProps } from "../../Explore.controller";
 import * as S from "./SearchBar.styles";
@@ -37,12 +34,6 @@ const SearchBar = ({
   return (
     <S.SearchBarContainer>
       <S.SearchForm onSubmit={handleSubmit(onSubmit, onInvaild)}>
-        <label
-          className="hidden"
-          htmlFor={id}
-        >
-          Search
-        </label>
         <Input
           register={register("keyword", {
             required: "Keyword is required",
@@ -56,7 +47,9 @@ const SearchBar = ({
           // onBlur={(e) => handleBlur(e)}
         />
         <S.SearchIconWrapper>
-          <Search className="h-6 w-6" />
+          <label htmlFor={id}>
+            <Search className="h-6 w-6" />
+          </label>
         </S.SearchIconWrapper>
         {watch("keyword") && (
           <S.CrossIconWrapper>
