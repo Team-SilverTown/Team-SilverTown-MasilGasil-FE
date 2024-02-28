@@ -19,8 +19,8 @@ interface SearchBarProps {
   handleSubmit: UseFormHandleSubmit<SearchProps>;
   watch: UseFormWatch<SearchProps>;
   clearHandler: Function;
-  onSubmit: (data: SearchProps) => void;
-  onInvaild: (data: FieldErrors) => void;
+  onValid: (data: SearchProps) => void;
+  onInvalid: (data: FieldErrors) => void;
 }
 
 const SearchBar = ({
@@ -29,14 +29,14 @@ const SearchBar = ({
   handleSubmit,
   watch,
   clearHandler,
-  onSubmit,
-  onInvaild,
+  onValid,
+  onInvalid,
 }: SearchBarProps) => {
   const theme = useTheme();
 
   return (
     <S.SearchBarContainer>
-      <S.SearchForm onSubmit={handleSubmit(onSubmit, onInvaild)}>
+      <S.SearchForm onSubmit={handleSubmit(onValid, onInvalid)}>
         <label
           className="hidden"
           htmlFor={id}
@@ -60,7 +60,7 @@ const SearchBar = ({
           // onBlur={(e) => handleBlur(e)}
         />
         <S.SearchIconWrapper>
-          <Search className="h-6 w-6" />
+          <Search className="h-6 w-6" />ㅊ{" "}
         </S.SearchIconWrapper>
         {watch("keyword") && (
           <S.CrossIconWrapper>

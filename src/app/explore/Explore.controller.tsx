@@ -21,10 +21,10 @@ const ExploreController = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (data: SearchProps) => {
+  const onValid = (data: SearchProps) => {
     console.log(data);
   };
-  const onInvaild = (errors: FieldErrors) => {
+  const onInvalid = (errors: FieldErrors) => {
     console.log(errors);
   };
 
@@ -42,8 +42,8 @@ const ExploreController = () => {
             handleSubmit={handleSubmit}
             watch={watch}
             clearHandler={searchClearHandler}
-            onSubmit={onSubmit}
-            onInvaild={onInvaild}
+            onValid={onValid}
+            onInvalid={onInvalid}
           />
         }
         rightSectionStyle={{ width: "calc(100%)" }}
