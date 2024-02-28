@@ -28,9 +28,17 @@ type ActionsType =
   | {
       type: "RECORD_UPDATE_ADDRESS";
       payload: { location: GeoPosition; region: kakao.maps.services.RegionCode };
+    }
+  | { type: "RECORD_INCREASE_TIMER" }
+  | {
+      type: "RECORD_UPDATE_PATH";
+      payload: { location: GeoPosition };
     };
 
 const MIN_INSERT_PIN_RANGE = 10; // M 단위
+
+const MIN_INSERT_PATH_RAGE = 12; // M 단위
+const MAX_INSERT_PATH_RAGE = 150; // M 단위
 
 const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
   switch (action.type) {
@@ -122,6 +130,35 @@ const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
         depth4: region_4depth_name,
         startedAt: new Date().toISOString(),
         path: [{ lat, lng }],
+      };
+    }
+
+    /**
+     * @summary 1초마다 증가하는 타이머
+     */
+    case LOG_RECORD_REDUCER_ACTIONS.INCREASE_TIMER:
+      return {
+        ...state,
+        totalTime: state.totalTime + 1,
+      };
+
+    case LOG_RECORD_REDUCER_ACTIONS.UPDATE_PATH: {
+      const { location } = action.payload;
+
+      const { path } = state;
+      const prevPosition = path[path.length - 1];
+
+      if (prevPosition) {
+        const pointDistance = getTwoPointDistance(location, prevPosition);
+
+        if (pointDistance < MIN_INSERT_PATH_RAGE || pointDistance > MAX_INSERT_PATH_RAGE) {
+          return state;
+        }
+      }
+
+      return {
+        ...state,
+        path: [...path, location],
       };
     }
 

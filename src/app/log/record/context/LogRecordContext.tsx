@@ -5,6 +5,7 @@ import React, {
   useContext,
   useEffect,
   useReducer,
+  useRef,
   useState,
 } from "react";
 import { LogPageStep } from "../LogRecord.types";
@@ -17,6 +18,7 @@ import {
 import logRecordReducer from "./reducer/LogRecordReducer";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { useUI } from "@/components/uiContext/UiContext";
+import { throttle } from "lodash";
 
 interface LogRecordContextValues {
   pageStep: LogPageStep;
@@ -31,7 +33,9 @@ interface LogRecordContextValues {
   updateDistance: (polyLine: kakao.maps.Polyline) => void;
   createPin: () => void;
   clickPin: (pinIndex: number) => void;
-  startRecord: (location: GeolocationPosition) => void;
+  startRecord: (position: GeolocationPosition) => void;
+  increaseTimer: () => void;
+  updatePath: (position: GeolocationPosition) => void;
 }
 
 interface LogRecordContextProviderProps {
@@ -52,6 +56,8 @@ const LogRecordContext = createContext<LogRecordContextValues>({
   createPin: () => {},
   clickPin: () => {},
   startRecord: () => {},
+  increaseTimer: () => {},
+  updatePath: () => {},
 });
 
 export const LogRecordContextProvider = ({ children }: LogRecordContextProviderProps) => {
@@ -108,7 +114,6 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
     const { latitude, longitude } = coords;
 
     const goe = new kakao.maps.services.Geocoder();
-
     goe.coord2RegionCode(longitude, latitude, (result, status) => {
       if (status !== kakao.maps.services.Status.OK) {
         setModalView("LOG_RECORD_ALERT_VIEW");
@@ -135,9 +140,32 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
     setPageStep("LOG_RECORD_RECORDING");
   };
 
+  /**
+   * @summary 1초마다 증가하는 타이머
+   */
+  const increaseTimer = () => {
+    dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.INCREASE_TIMER });
+  };
+
+  /**
+   * @summary watch의 success 콜백에 들어가는 함수로 경로 값을 추가시켜줍니다.
+   *
+   * 단, throttle을 통해 5초에 한번 실행.
+   *
+   * 실행된 후 이전 경로보다 일정거리 이하 혹은 이상인 경우 종료.
+   */
+  const updatePath = useRef(
+    throttle(({ coords }: GeolocationPosition) => {
+      const { latitude, longitude } = coords;
+      const newPoint = { lat: latitude, lng: longitude };
+
+      dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.UPDATE_PATH, payload: { location: newPoint } });
+    }, 5000),
+  ).current;
+
   useEffect(() => {
     console.log(logData);
-  }, [logData.depth1]);
+  }, [logData.path]);
   return (
     <LogRecordContext.Provider
       value={{
@@ -154,6 +182,8 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
         createPin,
         clickPin,
         startRecord,
+        increaseTimer,
+        updatePath,
       }}
     >
       {children}
