@@ -1,25 +1,31 @@
 "use client";
 
 import React, { useEffect, useMemo } from "react";
-import { throttle } from "lodash";
-import * as S from "./MoreList.styles";
-import Skeleton from "./Skeleton/Skeleton";
-import { ListCard } from "@/components";
-import { REPEAT_NUMBER } from "./MoreList.constants";
-import { useInView } from "react-intersection-observer";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
-import { Dummy } from "./MoreList.types";
+import { useInView } from "react-intersection-observer";
 import fetchMoreList from "./lib/fetchMoreList";
+import { REPEAT_NUMBER } from "./MoreList.constants";
+import { Dummy } from "./MoreList.types";
+
+import { ListCard, ListCardSkeleton } from "@/components";
+
+import * as S from "./MoreList.styles";
 
 interface MoreListViewProps {
   keyword: string;
+  order: string;
 }
 
-const MoreListView = ({ keyword }: MoreListViewProps) => {
-  console.log(keyword);
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isPending, isError } =
-    useInfiniteQuery<Dummy[], Object, InfiniteData<Dummy[]>, [_1: string, _2: string], number>({
-      queryKey: ["moreList", keyword],
+const MoreListView = ({ keyword, order }: MoreListViewProps) => {
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isError } =
+    useInfiniteQuery<
+      Dummy[],
+      Object,
+      InfiniteData<Dummy[]>,
+      [_1: string, _2: string, _3: string],
+      number
+    >({
+      queryKey: ["moreList", keyword, order],
       queryFn: fetchMoreList,
       initialPageParam: 1,
       getNextPageParam: (lastPage, allPage) => {
@@ -36,23 +42,14 @@ const MoreListView = ({ keyword }: MoreListViewProps) => {
     delay: 0,
   });
 
-  const throttledFetchNextPage = useMemo(
-    () =>
-      throttle(fetchNextPage, 500, {
-        trailing: false,
-      }),
-    [],
-  );
-
   /**
    * 화면의 하단에 닿으면 inView 값이 true가 됩니다.
    * 이때, 패칭 중인 데이터(isFetching)가 없고 다음에 불러올 데이터가 있으면(hasNextPage)
-   * throttledFetchNextPage 함수를 통해 fetchNextPage를 호출합니다.
-   * 여기서 throttle을 사용하지 않으면 데이터를 두 번씩 호출하는 문제가 있어서 throttle을 사용했습니다.
+   * fetchNextPage를 호출합니다.
    */
   useEffect(() => {
     if (inView) {
-      !isFetching && hasNextPage && throttledFetchNextPage();
+      !isFetching && hasNextPage && fetchNextPage();
     }
   }, [inView, isFetching, hasNextPage]);
 
@@ -62,36 +59,29 @@ const MoreListView = ({ keyword }: MoreListViewProps) => {
     return "에러 처리 해라!!";
   }
 
-  if (isPending) {
-    return <Skeleton repeat={REPEAT_NUMBER} />;
-  }
-
   return (
     <S.MoreList>
       {data &&
         moreList.map((list) => (
-          <div key={list.id}>
+          <li key={list.id}>
             <ListCard
               isRecruit={true}
               isLiked={true}
-              likeCount={Math.round(1200 * Math.random())}
-              title={`타이틀${list.id}`}
-              content={`내용${list.id}`}
-              totalTime={10000 * Math.random()}
-              distance={100 * Math.random()}
-              thumbnailURL=""
+              likeCount={10}
+              title={`${order}${list.id}`}
+              content={`${order}${list.id}`}
+              totalTime={10000}
+              distance={100}
+              thumbnailURL="test"
               address="테스트"
               style={{ marginBottom: "2rem" }}
             />
-          </div>
+          </li>
         ))}
       {isFetchingNextPage ? (
-        <Skeleton repeat={REPEAT_NUMBER} />
+        <ListCardSkeleton repeat={REPEAT_NUMBER} />
       ) : (
-        <div
-          ref={ref}
-          style={{ height: 50 }}
-        />
+        <S.ScrollObserver ref={ref} />
       )}
     </S.MoreList>
   );
