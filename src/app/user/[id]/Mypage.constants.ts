@@ -160,21 +160,21 @@ export const RECORDLIST_DUMMY_DATA: MyRecordListProps[] = [
   {
     key: 1,
     title: "내 최근 산책 기록",
-    urlLink: "/more?keyword=my_log",
+    urlLink: "/more?keyword=my_log&order=latest",
     recordList: MASILS_DUMMY_DATA, // 이 값은 추후 API 데이터로 변경
     type: "Masils",
   },
   {
     key: 2,
     title: "내가 작성한 산책로",
-    urlLink: "/more?keyword=my_post",
+    urlLink: "/more?keyword=my_post&order=latest",
     recordList: POSTS_DUMMY_DATA,
     type: "Posts",
   },
   {
     key: 3,
     title: "내가 좋아하는 산책로",
-    urlLink: "/more?keyword=my_like",
+    urlLink: "/more?keyword=my_like&order=latest",
     recordList: [],
     type: "Posts",
   },

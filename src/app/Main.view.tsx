@@ -21,8 +21,6 @@ const MainView = ({ loading, data, onClickHandler }: MainViewProps) => {
 
   console.log("client: ", data);
 
-  console.log(loading);
-
   return (
     <GS.CommonContainer>
       <S.ObjectOne />

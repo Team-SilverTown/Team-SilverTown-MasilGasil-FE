@@ -1,8 +1,10 @@
+"use client";
+
 import * as S from "./ListCard.styles";
 import { Heart } from "../icons";
 import { CSSProperties } from "react";
-import { convertSeconds } from "@/utils/convertSeconds";
-import { convertMeter } from "@/utils/convertMeter";
+import { convertSeconds } from "@/components/ListCard/utils/convertSeconds";
+import { convertMeter } from "@/components/ListCard/utils/convertMeter";
 
 export interface ListCardProps {
   isRecruit: boolean;
