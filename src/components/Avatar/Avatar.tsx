@@ -10,6 +10,7 @@ interface AvatarProps {
   name?: string;
   src?: string;
   style?: CSSProperties;
+  imageStyle?: CSSProperties;
 }
 
 const AvatarSize = {
@@ -28,7 +29,13 @@ const AvatarSize = {
  * @param style 만약 정의되지 않은 size 혹은 style을 정의하고 싶다면 inline style로 style을 정의할 수 있습니다.
  */
 
-const Avatar = ({ size = "xs", name = "프로필 이미지", src = userProfile, style }: AvatarProps) => {
+const Avatar = ({
+  size = "xs",
+  name = "프로필 이미지",
+  src = userProfile,
+  style,
+  imageStyle,
+}: AvatarProps) => {
   return (
     <S.AvatarLayout
       $size={AvatarSize[size]}
@@ -39,6 +46,7 @@ const Avatar = ({ size = "xs", name = "프로필 이미지", src = userProfile, 
         width={AvatarSize[size]}
         height={AvatarSize[size]}
         alt={name}
+        style={imageStyle}
       />
     </S.AvatarLayout>
   );
