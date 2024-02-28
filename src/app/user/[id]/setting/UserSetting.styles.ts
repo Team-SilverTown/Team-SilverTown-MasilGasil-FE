@@ -1,18 +1,17 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const UserSettingLayout = styled.section`
+export const UserSettingLayout = styled(motion.section)`
   width: 100%;
   height: 100%;
   padding: 2rem 1.6rem;
 
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 2rem;
 
   user-select: none;
-
-  /* border: 1px solid red; */
 `;
 
 export const UserSettingInnerLayout = styled.article`
@@ -20,14 +19,12 @@ export const UserSettingInnerLayout = styled.article`
 
   display: flex;
   flex-direction: column;
-
-  /* border: 1px solid blue; */
+  gap: 2rem;
 `;
 
 export const UserSettingTitle = styled.h6`
   font-size: ${FONT_SIZE.H6};
   font-weight: ${FONT_WEIGHT.BOLD};
-  letter-spacing: 1px;
 `;
 
 export const UserSettingDivideLine = styled.div`
