@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
 import { OnErrorWatcher, UpdateUserLocation } from "../../LogRecord.types";
 import { useUI } from "@/components/uiContext/UiContext";
@@ -32,8 +32,9 @@ const LogRecordStandbyController = ({
     };
   }, []);
 
-  // Stay
-
+  /**
+   * @summary 기록을 시작할때 현재 사용자의 위치를 기준으로 준비 작업을 실행합니다.
+   */
   const handleStartRecord = () => {
     showLoadingSpinner();
 
