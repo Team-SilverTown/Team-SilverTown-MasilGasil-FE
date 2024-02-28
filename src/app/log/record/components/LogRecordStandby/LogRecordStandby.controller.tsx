@@ -1,27 +1,21 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import LogRecordStandbyView from "./LogRecordStandby.view";
-import { OnErrorWatcher, SetLogData, SetPageStep, UpdateUserLocation } from "../../LogRecord.types";
+import { OnErrorWatcher, UpdateUserLocation } from "../../LogRecord.types";
 import { useUI } from "@/components/uiContext/UiContext";
-import useUserLocationStore from "@/stores/useUserLocationStore";
-import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
+
+import useLogRecordContext from "../../context/LogRecordContext";
 
 interface LogRecordStandbyControllerProps {
-  setPageStep: SetPageStep;
   onErrorWatcher: OnErrorWatcher;
   updateUserLocation: UpdateUserLocation;
-  setLogData: SetLogData;
-  setIsActiveExitAni: Dispatch<SetStateAction<boolean>>;
 }
 
 const LogRecordStandbyController = ({
-  setPageStep,
-  setLogData,
   onErrorWatcher,
   updateUserLocation,
-  setIsActiveExitAni,
 }: LogRecordStandbyControllerProps) => {
-  const { setModalView, openModal, showLoadingSpinner, closeLoadingSpinner } = useUI();
-  const { setUserLocation } = useUserLocationStore();
+  const { startRecord } = useLogRecordContext();
+  const { showLoadingSpinner } = useUI();
 
   useEffect(() => {
     /**
@@ -39,50 +33,11 @@ const LogRecordStandbyController = ({
   }, []);
 
   // Stay
-  /**
-   * @summary 사용자의 현 위치 좌표를 기반으로 주소를 반환합니다.
-   *
-   * - 만약 주소를 찾을 수 없거나 정상적인 주소를 반환받지 못한다면 홈으로 유도합니다.
-   */
+
   const handleStartRecord = () => {
-    // 해당 함수만 Context
-    const updateAddress = ({ coords }: GeolocationPosition) => {
-      const { latitude, longitude } = coords;
-      const goe = new kakao.maps.services.Geocoder();
-      const newStartPosition = { lat: latitude, lng: longitude };
-
-      goe.coord2RegionCode(longitude, latitude, (result, status) => {
-        if (status !== kakao.maps.services.Status.OK) {
-          setModalView("LOG_RECORD_ALERT_VIEW");
-          openModal({
-            message: LOG_RECORD_MESSAGE.REGION_ERROR.MESSAGE,
-          });
-          setPageStep("LOG_RECORD_STANDBY");
-          return;
-        }
-
-        const { region_1depth_name, region_2depth_name, region_3depth_name, region_4depth_name } =
-          result[0];
-
-        setLogData((prevData) => ({
-          ...prevData,
-          path: [newStartPosition],
-          depth1: region_1depth_name,
-          depth2: region_2depth_name,
-          depth3: region_3depth_name,
-          depth4: region_4depth_name,
-          startedAt: JSON.stringify(new Date()),
-        }));
-
-        closeLoadingSpinner();
-        setIsActiveExitAni(true);
-        setPageStep("LOG_RECORD_RECORDING");
-      });
-      setUserLocation({ lat: latitude, lng: longitude });
-    };
-
     showLoadingSpinner();
-    navigator.geolocation.getCurrentPosition(updateAddress, onErrorWatcher, {
+
+    navigator.geolocation.getCurrentPosition(startRecord, onErrorWatcher, {
       enableHighAccuracy: true,
     });
   };

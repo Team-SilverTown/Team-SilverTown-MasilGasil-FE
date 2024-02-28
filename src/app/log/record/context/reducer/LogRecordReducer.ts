@@ -2,7 +2,6 @@ import { MasilRecordRequest } from "@/types/Request";
 import { DEFAULT_LOG_DATA, LOG_RECORD_REDUCER_ACTIONS } from "../../LogRecord.constants";
 import { GeoPosition } from "@/types/OriginDataType";
 import getTwoPointDistance from "../../utils/getTwoPointDistance";
-import { useUI } from "@/components/uiContext/UiContext";
 
 type ActionsType =
   | { type: "RECORD_INIT" }
@@ -25,6 +24,10 @@ type ActionsType =
   | {
       type: "RECORD_REMOVE_PIN";
       payload: { pinIndex: number };
+    }
+  | {
+      type: "RECORD_UPDATE_ADDRESS";
+      payload: { location: GeoPosition; region: kakao.maps.services.RegionCode };
     };
 
 const MIN_INSERT_PIN_RANGE = 10; // M 단위
@@ -101,6 +104,24 @@ const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
       return {
         ...state,
         pins: state.pins.filter((_, index) => index !== pinIndex),
+      };
+    }
+
+    case LOG_RECORD_REDUCER_ACTIONS.UPDATE_ADDRESS: {
+      const { location, region } = action.payload;
+      const { lat, lng } = location;
+
+      const { region_1depth_name, region_2depth_name, region_3depth_name, region_4depth_name } =
+        region;
+
+      return {
+        ...state,
+        depth1: region_1depth_name,
+        depth2: region_2depth_name,
+        depth3: region_3depth_name,
+        depth4: region_4depth_name,
+        startedAt: new Date().toISOString(),
+        path: [{ lat, lng }],
       };
     }
 
