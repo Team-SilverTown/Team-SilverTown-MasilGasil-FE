@@ -4,22 +4,22 @@ import fetchMoreList from "./lib/fetchMoreList";
 
 interface MoreListControllerProps {
   keyword: string;
+  order: string;
 }
 
-const MoreListController = async ({ keyword }: MoreListControllerProps) => {
+const MoreListController = async ({ keyword, order }: MoreListControllerProps) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["moreList", keyword],
+    queryKey: ["moreList", keyword, order],
     queryFn: fetchMoreList,
     initialPageParam: 1,
   });
 
-  const dehydratedState = dehydrate(queryClient);
-
   return (
-    <HydrationBoundary state={dehydratedState}>
-      <MoreListView keyword={keyword} />
-    </HydrationBoundary>
+    <MoreListView
+      keyword={keyword}
+      order={order}
+    />
   );
 };
 
