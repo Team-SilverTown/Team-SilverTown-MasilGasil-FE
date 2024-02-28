@@ -113,6 +113,7 @@ export const MODAL = {
 
 export const Z_INDEX = {
   SEARCH_BAR: 30,
+  BOTTOM_SHEET: 40,
   NAVIGATOR: 50,
   MODAL: 800,
   MODAL_BACKGROUND: 800,
