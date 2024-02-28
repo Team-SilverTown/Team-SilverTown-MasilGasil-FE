@@ -85,7 +85,7 @@ const Button: React.FC<ButtonProps> = forwardRef(
         {...rest}
       >
         {!isLoading ? <>{children}</> : <i className="pl-2 m-0 flex">{<LoadingDots />}</i>}
-        {useRipple && variant !== "neumorp" && !disabled && <RippleEffect ref={rippleRef} />}
+        {useRipple && !disabled && <RippleEffect ref={rippleRef} />}
       </ButtonWrapper>
     );
   },

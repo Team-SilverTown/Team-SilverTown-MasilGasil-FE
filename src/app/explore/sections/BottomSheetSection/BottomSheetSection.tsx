@@ -6,18 +6,25 @@ import Sheet from "@components/BottomSheet";
 import { Z_INDEX } from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
 
-interface BottomSheetSectionProps {}
+interface BottomSheetSectionProps {
+  location: {
+    depth1: string;
+    depth2: string;
+    depth3: string;
+    depth4: string;
+  } | null;
+}
 
-const BottomSheetSection = ({}: BottomSheetSectionProps) => {
+const BottomSheetSection = ({ location }: BottomSheetSectionProps) => {
   const theme = useTheme();
 
   return (
     <Sheet
       isOpen={true}
       onClose={() => null}
-      fixedHeight={0.4}
+      fixedHeight={0.51}
       initialSnap={1}
-      snapPoints={[0.91, 0.5]}
+      snapPoints={[0.91, 0.41]}
       style={{
         zIndex: Z_INDEX.BOTTOM_SHEET,
       }}
@@ -31,7 +38,7 @@ const BottomSheetSection = ({}: BottomSheetSectionProps) => {
         }}
       >
         <Sheet.Header />
-        <Sheet.Content>Bottom Sheet Content</Sheet.Content>
+        <Sheet.Content>{JSON.stringify(location)}</Sheet.Content>
       </Sheet.Container>
     </Sheet>
   );
