@@ -5,7 +5,7 @@ import { useUI } from "@/components/uiContext/UiContext";
 import useLogRecordContext from "../../context/LogRecordContext";
 import useGeoLocationUtils from "../../hooks/useGeoLocationUtils";
 
-const LogRecordStandbyController = () => {
+const LogRecordStandbyModel = () => {
   const { onErrorWatch, updateUserLocation } = useGeoLocationUtils();
   const { startRecord } = useLogRecordContext();
   const { showLoadingSpinner } = useUI();
@@ -39,4 +39,4 @@ const LogRecordStandbyController = () => {
   return <LogRecordStandbyView onClick={handleStartRecord} />;
 };
 
-export default LogRecordStandbyController;
+export default LogRecordStandbyModel;

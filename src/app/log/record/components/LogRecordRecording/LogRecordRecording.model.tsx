@@ -7,7 +7,7 @@ import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
 import useLogRecordContext from "../../context/LogRecordContext";
 import useGeoLocationUtils from "../../hooks/useGeoLocationUtils";
 
-const LogRecordRecordingController = () => {
+const LogRecordRecordingModel = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { onErrorWatch, updateUserLocation } = useGeoLocationUtils();
   const { increaseTimer, updatePath, logData, setPageStep, setIsActiveExitAnimation } =
@@ -56,4 +56,4 @@ const LogRecordRecordingController = () => {
   );
 };
 
-export default LogRecordRecordingController;
+export default LogRecordRecordingModel;

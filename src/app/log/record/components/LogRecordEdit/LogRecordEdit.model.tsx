@@ -4,7 +4,7 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import { useUI } from "@/components/uiContext/UiContext";
 import useLogRecordContext from "../../context/LogRecordContext";
 
-const LogRecordEditController = () => {
+const LogRecordEditModel = () => {
   const { setModalView, openModal, closeModal } = useUI();
   const { setUserLocation } = useUserLocationStore();
 
@@ -83,4 +83,4 @@ const LogRecordEditController = () => {
   );
 };
 
-export default LogRecordEditController;
+export default LogRecordEditModel;
