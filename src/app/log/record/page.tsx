@@ -1,12 +1,12 @@
 "use client";
 
-import LogRecordController from "./LogRecord.controller";
+import LogRecordModel from "./LogRecord.model";
 import { LogRecordContextProvider } from "./context/LogRecordContext";
 
 const LogRecord = () => {
   return (
     <LogRecordContextProvider>
-      <LogRecordController />
+      <LogRecordModel />
     </LogRecordContextProvider>
   );
 };

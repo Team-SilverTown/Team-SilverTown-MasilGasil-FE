@@ -1,44 +1,43 @@
-"use client";
-
-import useUserLocationStore from "@/stores/useUserLocationStore";
-import useLogRecordModel from "./LogRecord.model";
+import { useEffect, useState } from "react";
 import LogRecordView from "./LogRecord.view";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { DEFAULT_LOG_DATA, LOG_RECORD_MESSAGE } from "./LogRecord.constants";
+import { LOG_RECORD_MESSAGE } from "./LogRecord.constants";
+import useLogRecordContext from "./context/LogRecordContext";
 import { useUI } from "@/components/uiContext/UiContext";
 import useMapCenterStore from "@/components/MasilMap/store/useMapCenterStore";
+import useUserLocationStore from "@/stores/useUserLocationStore";
+import { useRouter } from "next/navigation";
 
-import useLogRecordContext from "./context/LogRecordContext";
-
-const LogRecordController = () => {
-  const { openModal, setModalView, closeModal } = useUI();
-  const { userLocation } = useUserLocationStore();
-  const { isMapResizing, setIsMapResizing } = useLogRecordModel();
-  const { setIsOutCenter } = useMapCenterStore();
-  const router = useRouter();
-
+const LogRecordModel = () => {
+  const [isMapResizing, setIsMapResizing] = useState(false);
   const {
+    logData,
     pageStep,
     setPageStep,
-    logData,
-
-    isActiveExitAnimation,
-    setIsActiveExitAnimation,
     currentPinIndex,
     setCurrentPinIndex,
 
-    initData,
+    isActiveExitAnimation,
+    setIsActiveExitAnimation,
 
+    updateDistance,
     createPin,
     clickPin,
-    updateDistance,
-  } = useLogRecordContext();
 
-  // Stay
+    initData,
+  } = useLogRecordContext();
+  const { userLocation } = useUserLocationStore();
+
+  const { closeModal, setModalView, openModal } = useUI();
+  const { setIsOutCenter } = useMapCenterStore();
+  const router = useRouter();
+
   useEffect(() => {
     closeModal();
   }, [pageStep]);
+
+  const handleOffIsOutCenter = () => {
+    setIsOutCenter(false);
+  };
 
   const handleClickFallback = () => {
     setCurrentPinIndex(-1);
@@ -62,10 +61,6 @@ const LogRecordController = () => {
     });
   };
 
-  const handleOffIsOutCenter = () => {
-    setIsOutCenter(false);
-  };
-
   return (
     <LogRecordView
       logData={logData}
@@ -85,4 +80,4 @@ const LogRecordController = () => {
   );
 };
 
-export default LogRecordController;
+export default LogRecordModel;
