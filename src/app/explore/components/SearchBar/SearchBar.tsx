@@ -55,12 +55,12 @@ const SearchBar = ({
             boxShadow: `0px 2px 7.8px 0px ${theme?.transparent_30}`,
           }}
           placeholder="지도 범위 내 검색 결과 키워드로 찾기."
-          required={false}
+          // required={false}
           // onFocus={(e) => handleFocus(e)}
           // onBlur={(e) => handleBlur(e)}
         />
         <S.SearchIconWrapper>
-          <Search className="h-6 w-6" />ㅊ{" "}
+          <Search className="h-6 w-6" />
         </S.SearchIconWrapper>
         {watch("keyword") && (
           <S.CrossIconWrapper>
