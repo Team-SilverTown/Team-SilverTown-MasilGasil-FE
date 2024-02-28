@@ -11,7 +11,6 @@ import { GeoPosition } from "@/types/OriginDataType";
 import Center from "@/components/icons/Center";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-
 import { AnimatePresence } from "framer-motion";
 
 interface LogRecordViewProps {

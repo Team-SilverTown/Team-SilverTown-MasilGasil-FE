@@ -3,7 +3,6 @@ import React, {
   SetStateAction,
   createContext,
   useContext,
-  useEffect,
   useReducer,
   useRef,
   useState,
@@ -80,16 +79,17 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
   const { openModal, setModalView, closeModal, closeLoadingSpinner } = useUI();
 
   /**
-   * @summary 현재 경로의 거리를 갱신하기위한 dispatch를 실행합니다.
-   *
-   * @param polyLine kakao maps에서 지원하는 polyline
+   * @func updateDistance
+   * @params (polyLine: kakao.maps.Polyline)
+   * @brief 현재 경로의 거리를 갱신하기위한 dispatch를 실행합니다.
    */
   const updateDistance = (polyLine: kakao.maps.Polyline) => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CALCULATE_DISTANCE, payload: { polyLine } });
   };
 
   /**
-   * @summary 현재 center 위치를 이용해 핀을 생성하기 위한 dispatch를 실행합니다.
+   * @func createPin
+   * @brief 현재 center 위치를 이용해 핀을 생성하기 위한 dispatch를 실행합니다.
    */
   const createPin = () => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CREATE_PIN, payload: { location: userLocation } });
@@ -106,11 +106,11 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
   };
 
   /**
-   * @summary Pin을 클릭했을때 해당 pin을 수정 , 삭제 하기위한 Modal을 제공합니다.
+   * @func clickPin
+   * @params (pinIndex: number)
+   * @brief Pin을 클릭했을때 해당 pin을 수정 , 삭제 하기위한 Modal을 제공합니다.
    *
    * 각 모달 내부에 함수로 dispatch를 전달합니다.
-   *
-   * @param pinIndex click한 Pin의 index
    */
   const clickPin = (pinIndex: number) => {
     setCurrentPinIndex(pinIndex);
@@ -139,9 +139,11 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
   };
 
   /**
-   * @summary 사용자의 현 위치 좌표를 기반으로 주소를 반환합니다.
+   * @func startRecord
+   * @params (position : GeolocationPosition)
+   * @brief 사용자의 현 위치 좌표를 기반으로 주소를 반환합니다.
    *
-   * - 만약 주소를 찾을 수 없거나 정상적인 주소를 반환받지 못한다면 홈으로 유도합니다.
+   * 만약 주소를 찾을 수 없거나 정상적인 주소를 반환받지 못한다면 홈으로 유도합니다.
    */
   const startRecord = ({ coords }: GeolocationPosition) => {
     const { latitude, longitude } = coords;
@@ -174,18 +176,21 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
   };
 
   /**
-   * @summary 1초마다 증가하는 타이머
+   * @func increaseTimer
+   * @brief 1초마다 증가하는 타이머
    */
   const increaseTimer = () => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.INCREASE_TIMER });
   };
 
   /**
-   * @summary watch의 success 콜백에 들어가는 함수로 경로 값을 추가시켜줍니다.
+   * @func updatePath
+   * @params (position : GeolocationPosition)
+   * @brief watch의 success 콜백에 들어가는 함수로 경로 값을 추가시켜줍니다.
    *
    * 단, throttle을 통해 5초에 한번 실행.
    *
-   * 실행된 후 이전 경로보다 일정거리 이하 혹은 이상인 경우 종료.
+   *  실행된 후 이전 경로보다 일정거리 이하 혹은 이상인 경우 종료.
    */
   const updatePath = useRef(
     throttle(({ coords }: GeolocationPosition) => {
@@ -196,13 +201,14 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
     }, 5000),
   ).current;
 
+  /**
+   * @func initData
+   * @brief 산책 정보 데이터를 초기화합니다.
+   */
   const initData = () => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.INIT });
   };
 
-  useEffect(() => {
-    console.log(logData);
-  }, [logData.path]);
   return (
     <LogRecordContext.Provider
       value={{
