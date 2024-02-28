@@ -14,7 +14,6 @@ interface MasilMapProps {
   center: GeoPosition;
   path: GeoPosition[];
   pins: Pin[];
-  isResizing?: boolean;
 
   mapWidth?: string;
   mapHeight?: string;
@@ -39,6 +38,8 @@ interface MasilMapProps {
   pinSelectColor?: string;
   pinFontColor?: string;
   selectedPinIndex?: number;
+
+  isResizing?: boolean;
 }
 
 /**
@@ -168,7 +169,6 @@ const MasilMap = ({
           fill={centerMarkerFill}
         />
       )}
-
       {path.length !== 0 && (
         <PathLine
           path={path}

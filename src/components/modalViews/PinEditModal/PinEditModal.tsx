@@ -24,11 +24,7 @@ interface ModalProp {
 const PinEditModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
   const { onClickAccept, pin, pinIndex, onUploadThumbnail, onClickRemove } = props;
-  const { register, watch, setValue, getValues } = useForm();
-
-  /* 렌더링을 할 필요가 있을까?... */
-  // const watchPinMemo = watch("pinContent");
-  // const watchPinImage = watch("pinImage");
+  const { register, setValue, getValues } = useForm();
 
   if (!onClickAccept) {
     closeModal();
@@ -76,7 +72,14 @@ const PinEditModal = ({ props }: ModalProp) => {
             fontSize: FONT_SIZE.LARGE,
           }}
           onClickHandler={() => {
-            console.log(getValues());
+            const { pinContent, pinImage } = getValues();
+
+            if (typeof pinContent === "string") {
+              console.log(pinContent);
+            }
+            if (pinImage instanceof File) {
+              console.log(pinImage);
+            }
             // onClickAccept(watchPinImage, watchPinMemo);
           }}
         >
