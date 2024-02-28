@@ -37,6 +37,7 @@ const LogRecordEditController = ({
     }
   }, []);
 
+  // Context - reducer
   /**
    * @func removePinData
    * @params (pinIndex: number)
@@ -59,6 +60,7 @@ const LogRecordEditController = ({
     // PinEditModal에서 구현할수도 있음
   };
 
+  // Stay
   /**
    * @func handleSubmit
    * @params (memo: string)

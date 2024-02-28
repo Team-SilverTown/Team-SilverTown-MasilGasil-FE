@@ -38,12 +38,14 @@ const LogRecordStandbyController = ({
     };
   }, []);
 
+  // Stay
   /**
    * @summary 사용자의 현 위치 좌표를 기반으로 주소를 반환합니다.
    *
    * - 만약 주소를 찾을 수 없거나 정상적인 주소를 반환받지 못한다면 홈으로 유도합니다.
    */
   const handleStartRecord = () => {
+    // 해당 함수만 Context
     const updateAddress = ({ coords }: GeolocationPosition) => {
       const { latitude, longitude } = coords;
       const goe = new kakao.maps.services.Geocoder();

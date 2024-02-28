@@ -31,10 +31,12 @@ const LogRecordController = () => {
   const { setIsOutCenter } = useMapCenterStore();
   const router = useRouter();
 
+  // Stay
   useEffect(() => {
     closeModal();
   }, [pageStep]);
 
+  // Util - Context
   /**
    * @summary watcher가 오류가 발생했을때 수행할 동작을 위한 함수입니다.
    * @param PERMISSION_DENIED 사용자가 위치 서비스를 동의 하지 않았는지를 파악할때 code와 비교하는 용도로 사용되어집니다.
@@ -60,6 +62,7 @@ const LogRecordController = () => {
     });
   };
 
+  // Util - GeoLocationUtils // Context
   /**
    * @summary Watcher 가 동작한 후 정상적으로 위치를 가져왔을대 실행되는 함수입니다.
    *
@@ -72,6 +75,7 @@ const LogRecordController = () => {
     }, 200),
   ).current;
 
+  // Stay or Context
   const handleClickFallback = () => {
     setCurrentPinIndex(-1);
 
@@ -94,6 +98,7 @@ const LogRecordController = () => {
     });
   };
 
+  // Context - reducer
   /**
    * @summary 전달받은 경로(polyline) 데이터 내부의 getLength 함수를 통해
    *
@@ -108,6 +113,7 @@ const LogRecordController = () => {
     }));
   }, []);
 
+  // Context - reducer
   /**
    * @summary 현재 위치에 핀을 추가하는 함수
    *
@@ -134,6 +140,7 @@ const LogRecordController = () => {
     }));
   }, [userLocation, logData]);
 
+  // Context - reducer
   const handleClickPin = (pinIndex: number) => {
     setCurrentPinIndex(pinIndex);
     setModalView("PIN_EDIT_VIEW");
@@ -173,6 +180,7 @@ const LogRecordController = () => {
     });
   };
 
+  // Context - reducer
   /**
    * @func handleRemovePin
    * @params (pinIndex: number)
@@ -185,6 +193,7 @@ const LogRecordController = () => {
     setCurrentPinIndex(-1);
   };
 
+  // Stay
   const handleOffIsOutCenter = () => {
     setIsOutCenter(false);
   };

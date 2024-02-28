@@ -32,6 +32,7 @@ const LogRecordRecordingController = ({
 }: LogRecordRecordingControllerProps) => {
   const { openModal, setModalView, closeModal } = useUI();
 
+  // Context - reducer
   /**
    * @summary 1초마다 증가하는 타이머
    */
@@ -39,6 +40,7 @@ const LogRecordRecordingController = ({
     setLogData((prevData) => ({ ...prevData, totalTime: prevData.totalTime + 1 }));
   };
 
+  // Context Reducer
   /**
    * @summary watch의 success 콜백에 들어가는 함수로 경로 값을 추가시켜줍니다.
    *
@@ -89,6 +91,7 @@ const LogRecordRecordingController = ({
     };
   }, []);
 
+  // Stay or Context
   const handleClickCompleteRecord = () => {
     setModalView("LOG_RECORD_CONFIRM_VIEW");
     openModal({
