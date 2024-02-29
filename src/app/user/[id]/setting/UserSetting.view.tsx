@@ -16,20 +16,20 @@ const UserSettingView = () => {
       />
 
       <S.UserSettingLayout
-        initial={{ y: "-100%" }}
-        animate={{ y: 0 }}
+        initial={{ x: "-100%" }}
+        animate={{ x: 0 }}
       >
         <UserSettingOptions />
 
-        <S.UserSettingDivideLine />
+        <S.Divider />
 
         <UserSettingMember />
 
-        <S.UserSettingDivideLine />
+        <S.Divider />
 
         <UserSettingAccount />
 
-        <S.UserSettingDivideLine />
+        <S.Divider />
       </S.UserSettingLayout>
     </GS.CommonContainer>
   );

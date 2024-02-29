@@ -27,7 +27,7 @@ export const UserSettingTitle = styled.h6`
   font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
-export const UserSettingDivideLine = styled.div`
+export const Divider = styled.div`
   width: 100%;
   height: 2px;
 
