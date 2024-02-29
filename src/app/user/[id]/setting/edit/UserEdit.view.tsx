@@ -4,7 +4,7 @@ import * as S from "./UserEdit.styles";
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "./UserEdit.types";
 
-import { EditSex, EditNickname, EditAge, EditBodyInfo } from "./components";
+import { EditSex, EditNickname, EditAge, EditBodyInfo, EditIntensity } from "./components";
 
 interface UserEditViewProps {
   register: UseFormRegister<UserEditData>;
@@ -59,7 +59,7 @@ const UserEditView = ({
           errors={errors}
         />
 
-        <div>강도</div>
+        <EditIntensity />
 
         <button>테스트용 제출 버튼</button>
       </S.UserEditLayout>

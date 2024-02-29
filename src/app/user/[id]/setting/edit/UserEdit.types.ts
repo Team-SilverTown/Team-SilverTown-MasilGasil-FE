@@ -4,4 +4,5 @@ export interface UserEditData {
   age: number;
   height: number;
   weight: number;
+  intensity: "SUPER_LOW" | "LOW" | "MIDDLE" | "HIGH" | "SUPER_HIGH";
 }

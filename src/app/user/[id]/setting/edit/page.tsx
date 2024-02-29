@@ -11,6 +11,7 @@ const FORM_DEFAULT_VALUE: UserEditData = {
   age: 12,
   height: 182,
   weight: 150,
+  intensity: "SUPER_LOW",
 };
 
 const UserEdit = ({ params }: { params: UserEditParams }) => {
