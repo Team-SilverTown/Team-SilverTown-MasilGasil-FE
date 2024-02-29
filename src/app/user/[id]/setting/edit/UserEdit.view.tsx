@@ -15,13 +15,11 @@ interface UserEditViewProps {
   register: UseFormRegister<UserEditData>;
   errors: FieldErrors<UserEditData>;
 
-  getValues: UseFormGetValues<UserEditData>;
   onSubmit: UseFormHandleSubmit<UserEditData>;
   onValid: (data: UserEditData) => void;
   onInValid: (error: FieldErrors) => void;
 
   isCheckedNickname: boolean;
-  onChangeNickname: () => void;
   onCheckSameNickname: () => void;
 }
 
@@ -29,13 +27,11 @@ const UserEditView = ({
   register,
   errors,
 
-  getValues,
   onSubmit,
   onValid,
   onInValid,
 
   isCheckedNickname,
-  onChangeNickname,
   onCheckSameNickname,
 }: UserEditViewProps) => {
   return (
@@ -48,7 +44,6 @@ const UserEditView = ({
           register={register}
           errors={errors}
           isCheckedNickname={isCheckedNickname}
-          onChangeNickname={onChangeNickname}
           onCheckSameNickname={onCheckSameNickname}
         />
 

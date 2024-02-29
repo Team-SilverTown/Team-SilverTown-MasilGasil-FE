@@ -6,37 +6,40 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { UserEditData } from "./UserEdit.types";
 import useUserEditModel from "./UserEdit.model";
+import { useEffect } from "react";
 
 interface UserEditControllerProps {
-  userId: string;
+  userData: UserEditData;
 }
 
-const FORM_DEFAULT_VALUE: UserEditData = {
-  nickname: "임시값닉네임",
-  sex: "male",
-  age: 12,
-  height: 182,
-  weight: 150,
-};
-
 // userId 는 추후 유저의 데이터를 불러올때 사용
-const UserEditController = ({ userId }: UserEditControllerProps) => {
+const UserEditController = ({ userData }: UserEditControllerProps) => {
   const { isCheckedNickname, setIsCheckedNickname } = useUserEditModel();
-  const { register, handleSubmit, formState, getValues } = useForm<UserEditData>({
+  const { register, handleSubmit, watch, formState, getValues } = useForm<UserEditData>({
     mode: "onChange",
-    defaultValues: FORM_DEFAULT_VALUE,
+    defaultValues: userData,
   });
   const { errors } = formState;
 
-  const handleChangeNickname = () => {
-    if (!isCheckedNickname) {
+  const newNickname = watch("nickname");
+  useEffect(() => {
+    if (userData.nickname === newNickname) {
+      setIsCheckedNickname(true);
       return;
     }
-    setIsCheckedNickname(false);
-  };
+
+    if (isCheckedNickname) {
+      setIsCheckedNickname(false);
+    }
+  }, [newNickname]);
 
   const handleValid = (data: UserEditData) => {
     console.log(data);
+    /*
+      TODO
+
+      최종 검증 후 업데이트 로직 수행
+    */
   };
 
   const handleInValid = (error: FieldErrors) => {
@@ -64,12 +67,10 @@ const UserEditController = ({ userId }: UserEditControllerProps) => {
       <UserEditView
         register={register}
         errors={errors}
-        getValues={getValues}
         onValid={handleValid}
         onInValid={handleInValid}
         onSubmit={handleSubmit}
         isCheckedNickname={isCheckedNickname}
-        onChangeNickname={handleChangeNickname}
         onCheckSameNickname={handleCheckSameNickName}
       />
     </>

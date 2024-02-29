@@ -16,7 +16,6 @@ interface EditNicknameProps {
 
   isCheckedNickname: boolean;
   onCheckSameNickname: () => void;
-  onChangeNickname: () => void;
 }
 
 const EditNickname = ({
@@ -24,7 +23,6 @@ const EditNickname = ({
   errors,
 
   isCheckedNickname,
-  onChangeNickname,
   onCheckSameNickname,
 }: EditNicknameProps) => {
   const theme = useTheme();
@@ -57,7 +55,6 @@ const EditNickname = ({
           })}
           type="text"
           placeholder="수정하실 닉네임을 입력해주세요!"
-          onChange={onChangeNickname}
         />
 
         <Button
