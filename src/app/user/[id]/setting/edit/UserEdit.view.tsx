@@ -4,7 +4,7 @@ import * as S from "./UserEdit.styles";
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "./UserEdit.types";
 
-import { EditSex, EditNickname } from "./components";
+import { EditSex, EditNickname, EditAge } from "./components";
 
 interface UserEditViewProps {
   register: UseFormRegister<UserEditData>;
@@ -49,7 +49,10 @@ const UserEditView = ({
           selectedSex={selectedSex}
         />
 
-        <div>나이</div>
+        <EditAge
+          register={register}
+          errors={errors}
+        />
 
         <div>키 , 체중</div>
 
