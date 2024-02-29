@@ -34,6 +34,11 @@ const UserEditView = ({
       onSubmit={onSubmit(onValid, onInValid)}
     >
       <S.UserEditLayout>
+        <EditNickname
+          register={register}
+          onChangeNickname={onChangeNickname}
+        />
+
         <div>성별</div>
 
         <div>나이</div>
