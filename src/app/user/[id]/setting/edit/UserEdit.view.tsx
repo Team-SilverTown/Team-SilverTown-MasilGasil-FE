@@ -4,7 +4,6 @@ import * as S from "./UserEdit.styles";
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "./UserEdit.types";
 
-import useTheme from "@/lib/hooks/useTheme";
 import { EditNickname } from "./components";
 
 interface UserEditViewProps {
@@ -23,11 +22,6 @@ const UserEditView = ({
   onInValid,
   onChangeNickname,
 }: UserEditViewProps) => {
-  const theme = useTheme();
-  if (!theme) {
-    return;
-  }
-
   return (
     <GS.CommonContainer
       style={{ height: "100%" }}
