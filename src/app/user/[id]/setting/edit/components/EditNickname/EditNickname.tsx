@@ -6,7 +6,7 @@ import { UserEditData } from "../../UserEdit.types";
 import { Button, Input, InputLabel } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { USER_EDIT_ERROR_MESSAGE } from "../../UserEdit.constants";
+import { USER_EDIT_ERROR_MESSAGE, USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
 import { USER_VALIDATE } from "@/constants/userValidate";
 import { MouseEvent } from "react";
 
@@ -54,7 +54,7 @@ const EditNickname = ({
               value: USER_VALIDATE.NICKNAME.MAX_LENGTH,
             },
           })}
-          placeholder="수정하실 닉네임을 입력해주세요!"
+          placeholder={USER_EDIT_PLACEHOLDER.NICKNAME}
           style={{
             lineHeight: "2rem",
             width: "100%",

@@ -1,12 +1,9 @@
 import * as S from "./UserEditInput.styles";
 import * as GS from "../../UserEdit.styles";
 
-import { RegisterOptions, UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
-import { UserEditData } from "../../UserEdit.types";
-import { Button, Input, InputLabel } from "@/components";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import useTheme from "@/lib/hooks/useTheme";
-import { MouseEvent } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
+import { Input, InputLabel } from "@/components";
+import { FONT_WEIGHT } from "@/styles/theme";
 
 interface UserEditInputProps {
   title: string;
@@ -15,11 +12,6 @@ interface UserEditInputProps {
   errorsMessage?: string;
 
   register: UseFormRegisterReturn;
-
-  hasButton?: boolean;
-  buttonTitle?: string;
-  onClickButton?: () => {};
-  isDisabledButton?: boolean;
 }
 
 const UserEditInput = ({
@@ -29,27 +21,7 @@ const UserEditInput = ({
   errorsMessage,
 
   register,
-
-  hasButton = false,
-  buttonTitle,
-  onClickButton,
-  isDisabledButton,
 }: UserEditInputProps) => {
-  const theme = useTheme();
-
-  if (!theme) {
-    return;
-  }
-
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (!onClickButton) {
-      return;
-    }
-
-    onClickButton();
-  };
-
   return (
     <>
       <GS.UserEditTitle>{title}</GS.UserEditTitle>
@@ -66,26 +38,6 @@ const UserEditInput = ({
             fontWeight: FONT_WEIGHT.SEMIBOLD,
           }}
         />
-
-        {hasButton && (
-          <Button
-            width={"16rem"}
-            buttonColor={theme.green_500}
-            textColor={theme.text_secondary_color}
-            useRipple
-            rippleColor={theme.text_secondary_color + 50}
-            style={{
-              whiteSpace: "nowrap",
-              fontSize: FONT_SIZE.H5,
-              fontWeight: FONT_WEIGHT.SEMIBOLD,
-              userSelect: "none",
-            }}
-            onClickHandler={handleClick}
-            disabled={isDisabledButton}
-          >
-            {buttonTitle}
-          </Button>
-        )}
       </S.InputActions>
 
       <GS.UserEditWarning>
