@@ -16,11 +16,12 @@ const EditAge = ({ register, errors }: EditAgeProps) => {
   return (
     <GS.UserEditSectionContainer>
       <UserEditInput
-        register={register}
         title={"나이"}
-        type={"age"}
-        requiredMessage={USER_EDIT_ERROR_MESSAGE.AGE.REQUIRE}
+        inputType={"number"}
         placeholder={USER_EDIT_PLACEHOLDER.AGE}
+        register={register("age", {
+          required: USER_EDIT_ERROR_MESSAGE.AGE.REQUIRE,
+        })}
         errorsMessage={errors.age && errors.age.message}
       />
     </GS.UserEditSectionContainer>
