@@ -1,6 +1,6 @@
 import { Input, InputLabel } from "@/components";
 import * as GS from "../../UserEdit.styles";
-import * as S from "./EditAge.styles";
+
 import { FONT_WEIGHT } from "@/styles/theme";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
