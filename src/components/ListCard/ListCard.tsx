@@ -1,3 +1,5 @@
+"use client";
+
 import * as S from "./ListCard.styles";
 import { Heart } from "../icons";
 import { CSSProperties } from "react";
