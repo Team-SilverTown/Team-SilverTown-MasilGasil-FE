@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const UserEditLayout = styled.section`
+export const UserEditLayout = styled.form`
   width: 100%;
   height: 100%;
   padding: 0 1.6rem;
