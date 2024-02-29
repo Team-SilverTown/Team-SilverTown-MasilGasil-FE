@@ -22,7 +22,8 @@ const UserEditController = ({ userData }: UserEditControllerProps) => {
   const { errors } = formState;
 
   const newNickname = watch("nickname");
-  const selectedValue = watch("sex");
+  const selectedSex = watch("sex");
+
   useEffect(() => {
     if (userData.nickname === newNickname) {
       setIsCheckedNickname(true);
@@ -71,6 +72,7 @@ const UserEditController = ({ userData }: UserEditControllerProps) => {
         onValid={handleValid}
         onInValid={handleInValid}
         onSubmit={handleSubmit}
+        selectedSex={selectedSex}
         isCheckedNickname={isCheckedNickname}
         onCheckSameNickname={handleCheckSameNickName}
       />

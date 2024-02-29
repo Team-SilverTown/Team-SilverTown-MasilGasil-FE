@@ -4,8 +4,9 @@ import * as S from "./EditSex.styles";
 import { UserEditData } from "../../UserEdit.types";
 interface EditAgeProps {
   register: UseFormRegister<UserEditData>;
+  selectedSex: string;
 }
-const EditSex = ({ register }: EditAgeProps) => {
+const EditSex = ({ register, selectedSex }: EditAgeProps) => {
   const options = [
     { text: "남성", value: "male" },
     { text: "여성", value: "female" },
@@ -21,7 +22,7 @@ const EditSex = ({ register }: EditAgeProps) => {
             key={`${text}_${value}`}
             value={value}
             text={text}
-            isSelected={true}
+            isSelected={selectedSex === value}
             register={register("sex", { required: "성별의 입력은 필수" })}
           />
         ))}

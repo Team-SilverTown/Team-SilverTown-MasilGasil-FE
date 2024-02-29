@@ -14,6 +14,7 @@ interface UserEditViewProps {
   onValid: (data: UserEditData) => void;
   onInValid: (error: FieldErrors) => void;
 
+  selectedSex: string;
   isCheckedNickname: boolean;
   onCheckSameNickname: () => void;
 }
@@ -26,6 +27,7 @@ const UserEditView = ({
   onValid,
   onInValid,
 
+  selectedSex,
   isCheckedNickname,
   onCheckSameNickname,
 }: UserEditViewProps) => {
@@ -42,7 +44,10 @@ const UserEditView = ({
           onCheckSameNickname={onCheckSameNickname}
         />
 
-        <EditSex register={register} />
+        <EditSex
+          register={register}
+          selectedSex={selectedSex}
+        />
 
         <div>나이</div>
 

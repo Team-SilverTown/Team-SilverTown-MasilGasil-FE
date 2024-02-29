@@ -21,13 +21,15 @@ export const InputRadioLabel = styled.label<{ $isSelected: boolean }>`
   justify-content: center;
 
   border-radius: 0.8rem;
+  background-color: ${({ theme, $isSelected }) =>
+    $isSelected ? theme.green_500 : theme.transparent_10};
 
-  font-size: ${FONT_SIZE.LARGE};
+  font-size: ${FONT_SIZE.H5};
   font-weight: ${FONT_WEIGHT.BOLD};
   letter-spacing: 1px;
   white-space: nowrap;
+  color: ${({ theme }) => theme.text_secondary_color};
 
   user-select: none;
-
-  border: 1px solid red;
+  cursor: pointer;
 `;
