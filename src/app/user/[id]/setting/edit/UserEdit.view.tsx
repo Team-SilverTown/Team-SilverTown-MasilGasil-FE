@@ -1,7 +1,12 @@
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "./UserEdit.styles";
 
-import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
+import {
+  FieldErrors,
+  UseFormGetValues,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from "react-hook-form";
 import { UserEditData } from "./UserEdit.types";
 
 import { EditNickname } from "./components";
@@ -10,21 +15,28 @@ interface UserEditViewProps {
   register: UseFormRegister<UserEditData>;
   errors: FieldErrors<UserEditData>;
 
+  getValues: UseFormGetValues<UserEditData>;
   onSubmit: UseFormHandleSubmit<UserEditData>;
   onValid: (data: UserEditData) => void;
   onInValid: (error: FieldErrors) => void;
 
+  isCheckedNickname: boolean;
   onChangeNickname: () => void;
+  onCheckSameNickname: () => void;
 }
 
 const UserEditView = ({
   register,
   errors,
 
+  getValues,
   onSubmit,
   onValid,
   onInValid,
+
+  isCheckedNickname,
   onChangeNickname,
+  onCheckSameNickname,
 }: UserEditViewProps) => {
   return (
     <GS.CommonContainer
@@ -35,7 +47,9 @@ const UserEditView = ({
         <EditNickname
           register={register}
           errors={errors}
+          isCheckedNickname={isCheckedNickname}
           onChangeNickname={onChangeNickname}
+          onCheckSameNickname={onCheckSameNickname}
         />
 
         <div>성별</div>

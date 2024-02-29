@@ -1,7 +1,7 @@
 import * as S from "./EditNickname.styles";
 import * as GS from "../../UserEdit.styles";
 
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormGetValues, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
 import { Button, Input, InputLabel } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
@@ -14,10 +14,19 @@ interface EditNicknameProps {
   register: UseFormRegister<UserEditData>;
   errors: FieldErrors<UserEditData>;
 
+  isCheckedNickname: boolean;
+  onCheckSameNickname: () => void;
   onChangeNickname: () => void;
 }
 
-const EditNickname = ({ register, onChangeNickname, errors }: EditNicknameProps) => {
+const EditNickname = ({
+  register,
+  errors,
+
+  isCheckedNickname,
+  onChangeNickname,
+  onCheckSameNickname,
+}: EditNicknameProps) => {
   const theme = useTheme();
 
   if (!theme) {
@@ -26,9 +35,9 @@ const EditNickname = ({ register, onChangeNickname, errors }: EditNicknameProps)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    console.log("dd");
+    onCheckSameNickname();
   };
+
   return (
     <S.EditNickNameContainer>
       <GS.UserEditTitle>닉네임</GS.UserEditTitle>
@@ -59,6 +68,7 @@ const EditNickname = ({ register, onChangeNickname, errors }: EditNicknameProps)
           rippleColor={theme.text_secondary_color + 50}
           style={{ whiteSpace: "nowrap", fontWeight: FONT_WEIGHT.SEMIBOLD, userSelect: "none" }}
           onClickHandler={handleClick}
+          disabled={isCheckedNickname}
         >
           중복 확인
         </Button>

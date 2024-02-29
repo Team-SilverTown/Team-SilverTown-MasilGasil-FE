@@ -22,7 +22,7 @@ const FORM_DEFAULT_VALUE: UserEditData = {
 // userId 는 추후 유저의 데이터를 불러올때 사용
 const UserEditController = ({ userId }: UserEditControllerProps) => {
   const { isCheckedNickname, setIsCheckedNickname } = useUserEditModel();
-  const { register, handleSubmit, formState } = useForm<UserEditData>({
+  const { register, handleSubmit, formState, getValues } = useForm<UserEditData>({
     mode: "onChange",
     defaultValues: FORM_DEFAULT_VALUE,
   });
@@ -32,8 +32,7 @@ const UserEditController = ({ userId }: UserEditControllerProps) => {
     if (!isCheckedNickname) {
       return;
     }
-
-    setIsCheckedNickname((state) => !state);
+    setIsCheckedNickname(false);
   };
 
   const handleValid = (data: UserEditData) => {
@@ -44,6 +43,18 @@ const UserEditController = ({ userId }: UserEditControllerProps) => {
     console.log(error);
   };
 
+  const handleCheckSameNickName = () => {
+    const newNickname = getValues("nickname");
+
+    // TODO - API 연결로 인해 중복 닉네임 체크후 없는 닉네임이라면 통과처리
+
+    // if(){
+    //   console.log(newNickname);
+    // }
+
+    setIsCheckedNickname(true);
+  };
+
   return (
     <>
       <TopNavigator
@@ -52,11 +63,14 @@ const UserEditController = ({ userId }: UserEditControllerProps) => {
       />
       <UserEditView
         register={register}
+        errors={errors}
+        getValues={getValues}
         onValid={handleValid}
         onInValid={handleInValid}
         onSubmit={handleSubmit}
-        errors={errors}
+        isCheckedNickname={isCheckedNickname}
         onChangeNickname={handleChangeNickname}
+        onCheckSameNickname={handleCheckSameNickName}
       />
     </>
   );
