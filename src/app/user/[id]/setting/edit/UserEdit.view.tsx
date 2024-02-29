@@ -9,7 +9,7 @@ import {
 } from "react-hook-form";
 import { UserEditData } from "./UserEdit.types";
 
-import { EditNickname } from "./components";
+import { EditAge, EditNickname } from "./components";
 
 interface UserEditViewProps {
   register: UseFormRegister<UserEditData>;
@@ -47,7 +47,7 @@ const UserEditView = ({
           onCheckSameNickname={onCheckSameNickname}
         />
 
-        <div>성별</div>
+        <EditAge register={register} />
 
         <div>나이</div>
 
