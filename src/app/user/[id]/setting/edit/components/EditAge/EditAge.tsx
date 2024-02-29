@@ -4,7 +4,8 @@ import * as GS from "../../UserEdit.styles";
 import { FONT_WEIGHT } from "@/styles/theme";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
-import { USER_EDIT_ERROR_MESSAGE } from "../../UserEdit.constants";
+import { USER_EDIT_ERROR_MESSAGE, USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
+import { UserEditInput } from "..";
 
 interface EditAgeProps {
   register: UseFormRegister<UserEditData>;
@@ -14,30 +15,14 @@ interface EditAgeProps {
 const EditAge = ({ register, errors }: EditAgeProps) => {
   return (
     <GS.UserEditSectionContainer>
-      <GS.UserEditTitle>나이</GS.UserEditTitle>
-
-      <Input
-        type="number"
-        register={register("age", {
-          required: USER_EDIT_ERROR_MESSAGE.AGE.REQUIRE,
-        })}
-        placeholder="수정하실 닉네임을 입력해주세요!"
-        style={{
-          lineHeight: "2rem",
-          width: "100%",
-          fontSize: "1.5rem",
-          fontWeight: FONT_WEIGHT.SEMIBOLD,
-        }}
+      <UserEditInput
+        register={register}
+        title={"나이"}
+        type={"age"}
+        requiredMessage={USER_EDIT_ERROR_MESSAGE.AGE.REQUIRE}
+        placeholder={USER_EDIT_PLACEHOLDER.AGE}
+        errorsMessage={errors.age && errors.age.message}
       />
-
-      <GS.UserEditWarning>
-        {errors.age && (
-          <InputLabel
-            text={errors.age.message}
-            type="danger"
-          />
-        )}
-      </GS.UserEditWarning>
     </GS.UserEditSectionContainer>
   );
 };
