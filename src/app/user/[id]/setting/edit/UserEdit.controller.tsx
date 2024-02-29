@@ -26,7 +26,7 @@ const UserEditController = ({ userId }: UserEditControllerProps) => {
     mode: "onChange",
     defaultValues: FORM_DEFAULT_VALUE,
   });
-  console.log(!!formState.errors.nickname);
+  const { errors } = formState;
 
   const handleChangeNickname = () => {
     if (!isCheckedNickname) {
@@ -55,6 +55,7 @@ const UserEditController = ({ userId }: UserEditControllerProps) => {
         onValid={handleValid}
         onInValid={handleInValid}
         onSubmit={handleSubmit}
+        errors={errors}
         onChangeNickname={handleChangeNickname}
       />
     </>

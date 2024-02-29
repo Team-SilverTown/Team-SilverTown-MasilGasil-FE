@@ -8,6 +8,8 @@ import { EditNickname } from "./components";
 
 interface UserEditViewProps {
   register: UseFormRegister<UserEditData>;
+  errors: FieldErrors<UserEditData>;
+
   onSubmit: UseFormHandleSubmit<UserEditData>;
   onValid: (data: UserEditData) => void;
   onInValid: (error: FieldErrors) => void;
@@ -17,6 +19,8 @@ interface UserEditViewProps {
 
 const UserEditView = ({
   register,
+  errors,
+
   onSubmit,
   onValid,
   onInValid,
@@ -30,6 +34,7 @@ const UserEditView = ({
       <S.UserEditLayout>
         <EditNickname
           register={register}
+          errors={errors}
           onChangeNickname={onChangeNickname}
         />
 
