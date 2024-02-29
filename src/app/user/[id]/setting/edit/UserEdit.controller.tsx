@@ -2,6 +2,8 @@
 
 import { useForm } from "react-hook-form";
 import UserEditView from "./UserEdit.view";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 
 interface UserEditControllerProps {
   userId: string;
@@ -31,7 +33,15 @@ const UserEditController = ({ userId }: UserEditControllerProps) => {
 
   // 추후 userId를 이용해 사용자 정보를 호출할 예정
   console.log(userId);
-  return <UserEditView />;
+  return (
+    <>
+      <TopNavigator
+        leftChildren={<GoBackButton />}
+        title={"회원 정보 수정"}
+      />
+      <UserEditView />
+    </>
+  );
 };
 
 export default UserEditController;
