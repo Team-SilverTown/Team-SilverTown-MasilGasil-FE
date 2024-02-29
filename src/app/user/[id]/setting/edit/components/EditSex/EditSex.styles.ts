@@ -1,13 +1,13 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
-export const EditAgeContainer = styled.div`
+export const EditSexContainer = styled.div`
   width: 100%;
 
   border: 1px solid red;
 `;
 
-export const EditAgeActions = styled.div`
+export const EditSexActions = styled.div`
   display: flex;
   gap: 2rem;
 `;

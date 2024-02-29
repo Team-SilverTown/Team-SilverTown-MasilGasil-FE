@@ -1,15 +1,10 @@
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "./UserEdit.styles";
 
-import {
-  FieldErrors,
-  UseFormGetValues,
-  UseFormHandleSubmit,
-  UseFormRegister,
-} from "react-hook-form";
+import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "./UserEdit.types";
 
-import { EditAge, EditNickname } from "./components";
+import { EditSex, EditNickname } from "./components";
 
 interface UserEditViewProps {
   register: UseFormRegister<UserEditData>;
@@ -47,7 +42,7 @@ const UserEditView = ({
           onCheckSameNickname={onCheckSameNickname}
         />
 
-        <EditAge register={register} />
+        <EditSex register={register} />
 
         <div>나이</div>
 
