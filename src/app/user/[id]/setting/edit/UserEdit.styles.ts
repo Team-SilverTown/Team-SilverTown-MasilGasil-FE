@@ -1,4 +1,4 @@
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const UserEditLayout = styled.form`
@@ -10,6 +10,10 @@ export const UserEditLayout = styled.form`
   gap: 2rem;
 `;
 
+export const UserEditSectionContainer = styled.div`
+  width: 100%;
+`;
+
 export const UserEditTitle = styled.h6`
   margin-bottom: 1.6rem;
   padding-left: 0.6rem;
@@ -18,4 +22,19 @@ export const UserEditTitle = styled.h6`
   font-weight: ${FONT_WEIGHT.BOLD};
 
   user-select: none;
+`;
+
+export const UserEditWarning = styled.div`
+  width: 100%;
+  height: 2.4rem;
+  padding-left: 0.6rem;
+
+  display: flex;
+  align-items: center;
+
+  white-space: nowrap;
+
+  overflow: scroll;
+
+  ${DISPLAY_NONE_SCROLLBAR}
 `;
