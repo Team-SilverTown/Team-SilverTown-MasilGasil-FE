@@ -8,6 +8,7 @@ import useTheme from "@/lib/hooks/useTheme";
 import { FONT_WEIGHT } from "@/styles/theme";
 import { USER_EDIT_ERROR_MESSAGE } from "../../UserEdit.constants";
 import { USER_VALIDATE } from "@/constants/userValidate";
+import { MouseEvent } from "react";
 
 interface EditNicknameProps {
   register: UseFormRegister<UserEditData>;
@@ -22,6 +23,12 @@ const EditNickname = ({ register, onChangeNickname, errors }: EditNicknameProps)
   if (!theme) {
     return;
   }
+
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    console.log("dd");
+  };
   return (
     <S.EditNickNameContainer>
       <GS.UserEditTitle>닉네임</GS.UserEditTitle>
@@ -48,9 +55,10 @@ const EditNickname = ({ register, onChangeNickname, errors }: EditNicknameProps)
           width={"16rem"}
           buttonColor={theme.green_500}
           textColor={theme.text_secondary_color}
-          useRipple={true}
+          useRipple
           rippleColor={theme.text_secondary_color + 50}
           style={{ whiteSpace: "nowrap", fontWeight: FONT_WEIGHT.SEMIBOLD, userSelect: "none" }}
+          onClickHandler={handleClick}
         >
           중복 확인
         </Button>
