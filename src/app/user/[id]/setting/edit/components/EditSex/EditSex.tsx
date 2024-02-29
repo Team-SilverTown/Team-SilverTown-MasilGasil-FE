@@ -1,7 +1,8 @@
-import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 import * as GS from "../../UserEdit.styles";
 import * as S from "./EditSex.styles";
 import { UserEditData } from "../../UserEdit.types";
+import { InputRadio } from "@/components";
 interface EditAgeProps {
   register: UseFormRegister<UserEditData>;
   selectedSex: string;
@@ -32,31 +33,3 @@ const EditSex = ({ register, selectedSex }: EditAgeProps) => {
 };
 
 export default EditSex;
-
-interface createInputRadioProps {
-  register: UseFormRegisterReturn;
-  value: string | number;
-  text: string;
-  isSelected: boolean;
-  key?: string | number;
-}
-const InputRadio = ({ value, text, register, isSelected }: createInputRadioProps) => {
-  return (
-    <>
-      <input
-        type="radio"
-        id={`${text}_${value}`}
-        value={value}
-        style={{ display: "none" }}
-        {...register}
-      />
-
-      <S.InputRadioLabel
-        htmlFor={`${text}_${value}`}
-        $isSelected={isSelected}
-      >
-        {text}
-      </S.InputRadioLabel>
-    </>
-  );
-};
