@@ -1,7 +1,8 @@
 import * as S from "./UserEditInput.styles";
 import * as GS from "../../UserEdit.styles";
 
-import { UseFormRegisterReturn } from "react-hook-form";
+import { RegisterOptions, UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
+import { UserEditData } from "../../UserEdit.types";
 import { Button, Input, InputLabel } from "@/components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
@@ -17,7 +18,7 @@ interface UserEditInputProps {
 
   hasButton?: boolean;
   buttonTitle?: string;
-  onClickButton?: () => void;
+  onClickButton?: () => {};
   isDisabledButton?: boolean;
 }
 

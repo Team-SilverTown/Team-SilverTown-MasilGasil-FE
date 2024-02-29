@@ -1,5 +1,7 @@
+import { Input, InputLabel } from "@/components";
 import * as GS from "../../UserEdit.styles";
 
+import { FONT_WEIGHT } from "@/styles/theme";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
 import { USER_EDIT_ERROR_MESSAGE, USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
