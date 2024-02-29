@@ -1,46 +1,92 @@
+import * as S from "./UserEditInput.styles";
 import * as GS from "../../UserEdit.styles";
 
-import { UseFormRegister } from "react-hook-form";
+import { RegisterOptions, UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
-import { Input, InputLabel } from "@/components";
-import { FONT_WEIGHT } from "@/styles/theme";
+import { Button, Input, InputLabel } from "@/components";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import useTheme from "@/lib/hooks/useTheme";
+import { MouseEvent } from "react";
 
 interface UserEditInputProps {
   title: string;
-  type: "height" | "weight" | "age";
-
-  requiredMessage: string;
+  inputType: "text" | "number";
   placeholder: string;
-
-  register: UseFormRegister<UserEditData>;
   errorsMessage?: string;
+
+  register: UseFormRegisterReturn;
+
+  hasButton?: boolean;
+  buttonTitle?: string;
+  onClickButton?: () => {};
+  isDisabledButton?: boolean;
 }
 
 const UserEditInput = ({
   title,
-  type,
-  requiredMessage,
+  inputType,
   placeholder,
-  register,
   errorsMessage,
+
+  register,
+
+  hasButton = false,
+  buttonTitle,
+  onClickButton,
+  isDisabledButton,
 }: UserEditInputProps) => {
+  const theme = useTheme();
+
+  if (!theme) {
+    return;
+  }
+
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!onClickButton) {
+      return;
+    }
+
+    onClickButton();
+  };
+
   return (
     <>
       <GS.UserEditTitle>{title}</GS.UserEditTitle>
 
-      <Input
-        type="number"
-        register={register(type, {
-          required: requiredMessage,
-        })}
-        placeholder={placeholder}
-        style={{
-          lineHeight: "2rem",
-          width: "100%",
-          fontSize: "1.5rem",
-          fontWeight: FONT_WEIGHT.SEMIBOLD,
-        }}
-      />
+      <S.InputActions>
+        <Input
+          type={inputType}
+          register={register}
+          placeholder={placeholder}
+          style={{
+            lineHeight: "2rem",
+            width: "100%",
+            fontSize: "1.5rem",
+            fontWeight: FONT_WEIGHT.SEMIBOLD,
+          }}
+        />
+
+        {hasButton && (
+          <Button
+            width={"16rem"}
+            buttonColor={theme.green_500}
+            textColor={theme.text_secondary_color}
+            useRipple
+            rippleColor={theme.text_secondary_color + 50}
+            style={{
+              whiteSpace: "nowrap",
+              fontSize: FONT_SIZE.H5,
+              fontWeight: FONT_WEIGHT.SEMIBOLD,
+              userSelect: "none",
+            }}
+            onClickHandler={handleClick}
+            disabled={isDisabledButton}
+          >
+            {buttonTitle}
+          </Button>
+        )}
+      </S.InputActions>
 
       <GS.UserEditWarning>
         {errorsMessage && (
