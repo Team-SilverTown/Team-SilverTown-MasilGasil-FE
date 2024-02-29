@@ -27,7 +27,7 @@ const EditSex = ({ register, selectedSex }: EditAgeProps) => {
             value={value}
             text={text}
             isSelected={selectedSex === value}
-            register={register("sex", { required: "성별의 입력은 필수" })}
+            register={register("sex")}
           />
         ))}
       </S.EditSexActions>
