@@ -16,7 +16,6 @@ interface UserEditControllerProps {
 const UserEditController = ({ userData }: UserEditControllerProps) => {
   const { isCheckedNickname, setIsCheckedNickname } = useUserEditModel();
   const { register, handleSubmit, watch, formState, getValues } = useForm<UserEditData>({
-    mode: "onChange",
     defaultValues: userData,
   });
   const { errors } = formState;
