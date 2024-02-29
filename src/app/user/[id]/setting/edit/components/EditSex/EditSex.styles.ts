@@ -1,10 +1,9 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
+import { theme } from "twin.macro";
 
 export const EditSexContainer = styled.div`
   width: 100%;
-
-  border: 1px solid red;
 `;
 
 export const EditSexActions = styled.div`
@@ -28,7 +27,7 @@ export const InputRadioLabel = styled.label<{ $isSelected: boolean }>`
   font-weight: ${FONT_WEIGHT.BOLD};
   letter-spacing: 1px;
   white-space: nowrap;
-  color: ${({ theme }) => theme.text_secondary_color};
+  color: ${({ theme, $isSelected }) => ($isSelected ? theme.text_secondary_color : theme.gray_300)};
 
   user-select: none;
   cursor: pointer;

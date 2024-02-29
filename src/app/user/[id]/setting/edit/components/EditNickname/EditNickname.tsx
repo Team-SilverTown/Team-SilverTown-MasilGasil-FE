@@ -1,11 +1,11 @@
 import * as S from "./EditNickname.styles";
 import * as GS from "../../UserEdit.styles";
 
-import { FieldErrors, UseFormGetValues, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
 import { Button, Input, InputLabel } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
-import { FONT_WEIGHT } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { USER_EDIT_ERROR_MESSAGE } from "../../UserEdit.constants";
 import { USER_VALIDATE } from "@/constants/userValidate";
 import { MouseEvent } from "react";
@@ -55,6 +55,12 @@ const EditNickname = ({
           })}
           type="text"
           placeholder="수정하실 닉네임을 입력해주세요!"
+          style={{
+            lineHeight: "2rem",
+            width: "100%",
+            fontSize: "1.5rem",
+            fontWeight: FONT_WEIGHT.SEMIBOLD,
+          }}
         />
 
         <Button
@@ -63,7 +69,12 @@ const EditNickname = ({
           textColor={theme.text_secondary_color}
           useRipple
           rippleColor={theme.text_secondary_color + 50}
-          style={{ whiteSpace: "nowrap", fontWeight: FONT_WEIGHT.SEMIBOLD, userSelect: "none" }}
+          style={{
+            whiteSpace: "nowrap",
+            fontSize: FONT_SIZE.H5,
+            fontWeight: FONT_WEIGHT.SEMIBOLD,
+            userSelect: "none",
+          }}
           onClickHandler={handleClick}
           disabled={isCheckedNickname}
         >
