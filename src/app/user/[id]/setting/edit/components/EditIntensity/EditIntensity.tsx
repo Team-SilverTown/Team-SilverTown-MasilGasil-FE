@@ -2,8 +2,15 @@ import { Check } from "@/components/icons";
 import * as GS from "../../UserEdit.styles";
 import * as S from "./EditIntensity.styles";
 import useTheme from "@/lib/hooks/useTheme";
+import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
+import { IntensityType, UserEditData } from "../../UserEdit.types";
 
-const EditIntensity = () => {
+interface EditIntensityProps {
+  register: UseFormRegister<UserEditData>;
+  selectedIntensity: IntensityType;
+}
+
+const EditIntensity = ({ register, selectedIntensity }: EditIntensityProps) => {
   const exerciseIntensity = [
     { label: "좌식", value: "SUPER_LOW" },
     { label: "가벼운 활동(가벼운 운동/스포츠 3-5일/주)", value: "LOW" },
@@ -22,9 +29,11 @@ const EditIntensity = () => {
       <S.IntensityOptionList>
         {exerciseIntensity.map(({ label, value }) => (
           <IntensityItem
+            key={value}
             value={value}
             optionDescription={label}
-            isSelected={true}
+            isSelected={selectedIntensity === value}
+            register={register("intensity")}
           />
         ))}
       </S.IntensityOptionList>
@@ -35,12 +44,14 @@ const EditIntensity = () => {
 export default EditIntensity;
 
 interface IntensityItemProps {
+  key?: string | number;
   value: string;
   optionDescription: string;
   isSelected: boolean;
+  register: UseFormRegisterReturn;
 }
 
-const IntensityItem = ({ isSelected, value, optionDescription }: IntensityItemProps) => {
+const IntensityItem = ({ isSelected, value, optionDescription, register }: IntensityItemProps) => {
   const theme = useTheme();
 
   if (!theme) {
@@ -49,7 +60,14 @@ const IntensityItem = ({ isSelected, value, optionDescription }: IntensityItemPr
 
   return (
     <S.IntensityItemContainer>
-      <S.IntensityItemLabel>
+      <input
+        id={`intensity_${value}`}
+        type="radio"
+        style={{ display: "none" }}
+        value={value}
+        {...register}
+      />
+      <S.IntensityItemLabel htmlFor={`intensity_${value}`}>
         <S.IntensityItemCircle $isSelected={isSelected}>
           <Check
             className={`w-6 h-6 mx-auto my-auto transition-colors`}
