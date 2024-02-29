@@ -16,7 +16,7 @@ const EditSex = ({ register, selectedSex }: EditAgeProps) => {
   ];
 
   return (
-    <S.EditSexContainer>
+    <GS.UserEditSectionContainer>
       <GS.UserEditTitle>성별</GS.UserEditTitle>
 
       <S.EditSexActions>
@@ -30,7 +30,7 @@ const EditSex = ({ register, selectedSex }: EditAgeProps) => {
           />
         ))}
       </S.EditSexActions>
-    </S.EditSexContainer>
+    </GS.UserEditSectionContainer>
   );
 };
 

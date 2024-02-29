@@ -37,7 +37,7 @@ const EditNickname = ({
   };
 
   return (
-    <S.EditNickNameContainer>
+    <GS.UserEditSectionContainer>
       <GS.UserEditTitle>닉네임</GS.UserEditTitle>
 
       <S.EditNicknameActions>
@@ -82,15 +82,15 @@ const EditNickname = ({
         </Button>
       </S.EditNicknameActions>
 
-      <S.EditNicknameWarningWrapper>
+      <GS.UserEditWarning>
         {errors.nickname && (
           <InputLabel
             text={errors.nickname.message}
             type="danger"
           />
         )}
-      </S.EditNicknameWarningWrapper>
-    </S.EditNickNameContainer>
+      </GS.UserEditWarning>
+    </GS.UserEditSectionContainer>
   );
 };
 
