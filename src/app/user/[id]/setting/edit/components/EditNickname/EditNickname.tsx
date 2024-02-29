@@ -42,6 +42,7 @@ const EditNickname = ({
 
       <S.EditNicknameActions>
         <Input
+          type="text"
           register={register("nickname", {
             required: USER_EDIT_ERROR_MESSAGE.NICKNAME.REQUIRE,
             minLength: {
@@ -53,7 +54,6 @@ const EditNickname = ({
               value: USER_VALIDATE.NICKNAME.MAX_LENGTH,
             },
           })}
-          type="text"
           placeholder="수정하실 닉네임을 입력해주세요!"
           style={{
             lineHeight: "2rem",

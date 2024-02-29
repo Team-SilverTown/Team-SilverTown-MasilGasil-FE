@@ -7,7 +7,7 @@ interface UserEditParams {
 
 const FORM_DEFAULT_VALUE: UserEditData = {
   nickname: "임시값닉네임",
-  sex: "male",
+  sex: "female",
   age: 12,
   height: 182,
   weight: 150,

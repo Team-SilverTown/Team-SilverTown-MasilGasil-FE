@@ -3,10 +3,12 @@ import * as GS from "../../UserEdit.styles";
 import * as S from "./EditSex.styles";
 import { UserEditData } from "../../UserEdit.types";
 import { InputRadio } from "@/components";
+
 interface EditAgeProps {
   register: UseFormRegister<UserEditData>;
   selectedSex: string;
 }
+
 const EditSex = ({ register, selectedSex }: EditAgeProps) => {
   const options = [
     { text: "남성", value: "male" },
