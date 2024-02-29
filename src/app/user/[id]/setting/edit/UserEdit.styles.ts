@@ -8,6 +8,9 @@ export const UserEditLayout = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  overflow-y: scroll;
+  ${DISPLAY_NONE_SCROLLBAR}
 `;
 
 export const UserEditSectionContainer = styled.div`
