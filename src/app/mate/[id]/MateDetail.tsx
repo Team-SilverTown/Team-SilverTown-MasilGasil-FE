@@ -5,10 +5,14 @@ import { CommonContainerTailwind } from "@/styles/GlobalStyle";
 import Divider from "@/components/Divider/Divider";
 import { MateEvaluation, MateInfo, MateMembers } from "./components";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
+import { MatePost } from "./MateDetail.types";
 
-interface MateDetailProps {}
+interface MateDetailProps {
+  matePost: MatePost;
+}
 
-const MateDetail = ({}: MateDetailProps) => {
+const MateDetail = ({ matePost }: MateDetailProps) => {
+  const { members } = matePost;
   return (
     <>
       <TopNavigator
@@ -25,7 +29,7 @@ const MateDetail = ({}: MateDetailProps) => {
 
           <Divider />
 
-          <MateMembers />
+          <MateMembers members={members} />
         </article>
       </section>
     </>
