@@ -61,6 +61,16 @@ export const CommonContainer = styled.div`
   min-height: 100vh;
 `;
 
+export const CommonContainerTailwind = `
+w-full
+h-full
+min-h-screen
+py-32 
+px-6 
+
+box-border
+`;
+
 export const Col = styled.div`
   display: flex;
   flex-direction: column;
