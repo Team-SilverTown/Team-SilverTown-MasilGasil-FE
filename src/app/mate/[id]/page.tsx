@@ -1,7 +1,14 @@
 import React from "react";
+import MateDetail from "./MateDetail";
 
-const Mate = () => {
-  return <div>Mate</div>;
+interface MateProps {
+  params: { id: string };
+}
+
+const Mate = ({ params }: MateProps) => {
+  const { id } = params;
+
+  return <MateDetail />;
 };
 
 export default Mate;
