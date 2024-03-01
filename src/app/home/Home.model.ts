@@ -1,129 +1,89 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import convertLatLonToGrid from "./components/MyLocationWeather/utils/convertLatLonToGrid";
-import getCurrentDateTime from "./components/MyLocationWeather/utils/getCurrentDateTime";
-
-interface LocationType {
-  lat: number;
-  lon: number;
-}
+import useUserLocationStore from "@/stores/useUserLocationStore";
+import useGetCurrentPosition from "./hook/useGetCurrentPosition";
+import useGetWeatherForecast from "./hook/useGetweatherForecast";
+import convertLatLonToGrid from "./utils/convertLatLonToGrid";
 
 const useHomeModel = () => {
   const [isNotification] = useState<null | boolean>(null);
-  const [location, setLocation] = useState<LocationType>({
-    lat: 0,
-    lon: 0,
-  });
-  const [temperature, settemperature] = useState<null | number>(null);
-  const [weather, setWeather] = useState<null | string>(null);
-  const [precipitation, setPrecipitation] = useState<null | string>(null);
 
-  function success({ coords }: GeolocationPosition) {
-    const lat = coords.latitude;
-    const lon = coords.longitude;
-    setLocation({
-      lat,
-      lon,
-    });
-  }
+  const { setUserLocation } = useUserLocationStore();
+  const { location } = useGetCurrentPosition();
+  const { getWeatherForecast, temperature, weather, precipitation } = useGetWeatherForecast();
 
-  function error() {
-    alert("위치 정보를 불러올 수 없습니다.");
-  }
+  const getNearbyStation = async (tmX: number, tmY: number) => {
+    console.log(tmX, tmY);
+    try {
+      const response = await fetch(
+        `http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getNearbyMsrstnList?serviceKey=${encodeURIComponent("Pj8xFP6BMcRU4ICxL6h3YCLA76ohQ2aL2l28ccdU7qXCcRn1KwyQgKR5dGB1fNcJRmywBU79iIlZuP3uKgM5XA==")}&returnType=json&tmX=${tmX}&tmY=${tmY}`,
+      );
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success, error);
-  }, []);
+      console.log(response);
 
-  const getWeatherForecast = async ({ lat, lon }: LocationType) => {
-    const currentDateTime = getCurrentDateTime();
-
-    const grid = convertLatLonToGrid("toXY", lat, lon);
-    const url = new URL(
-      "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst",
-    );
-    const SERVICE_KEY = process.env.WEATHER_SERVICE_KEY;
-
-    if (!SERVICE_KEY) {
-      throw new Error("서비스 키가 존재하지 않습니다.");
-      return;
-    }
-
-    const params = {
-      serviceKey: SERVICE_KEY,
-      pageNo: "1",
-      numOfRows: "60",
-      dataType: "json",
-      base_date: currentDateTime.date,
-      base_time: currentDateTime.time,
-      nx: (grid.x || 0).toString(),
-      ny: (grid.y || 0).toString(),
-    };
-
-    url.search = new URLSearchParams(params).toString();
-
-    const response = await fetch(url.toString());
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const result = await response.json();
-    const weatherData = result.response?.body?.items?.item;
-
-    if (!weatherData) {
-      return;
-    }
-
-    const temperature = weatherData.find((item: any) => item.category === "T1H").fcstValue;
-    const skyStatus = weatherData.find((item: any) => item.category === "SKY").fcstValue;
-    const precipitation = weatherData.find((item: any) => item.category === "PTY").fcstValue;
-
-    if (temperature) {
-      settemperature(temperature);
-    }
-
-    if (skyStatus) {
-      switch (skyStatus) {
-        case "1":
-          setWeather("맑음");
-          break;
-        case "2":
-          setWeather("구름조금");
-          break;
-        case "3":
-          setWeather("구름많음");
-          break;
-        case "4":
-          setWeather("흐림");
-          break;
-        default:
-          setWeather("없음");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    }
 
-    if (precipitation) {
-      switch (precipitation) {
-        case "0":
-          setPrecipitation("없음");
-          break;
-        case "1":
-          setPrecipitation("비");
-          break;
-        case "2":
-          setPrecipitation("진눈개비");
-          break;
-        case "3":
-          setPrecipitation("눈");
-          break;
-        default:
-          setPrecipitation("없음");
-      }
+      const data = (await response.json()) as StationData;
+
+      console.log(data);
+    } catch (error) {
+      console.error(`Error fetching nearby station data: ${error}`);
     }
   };
 
+  interface StationData {
+    response: {
+      body: {
+        items: {
+          stationName: string;
+        }[];
+      };
+    };
+  }
+
+  // interface AirPollutionData {}
+
+  // async function getAirPollutionData() {
+  //   try {
+  //     const response = await fetch(
+  //       `http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${encodeURIComponent(
+  //         "Q4YR47JM1hmM9KU06DLKaXXlRNt2bhiiUWMdVReCoExzz58GCA9299/eLsYBNdO/p5of4K9mhba4V88RwtXo3w==",
+  //       )}&returnType=json&numOfRows=100&pageNo=1&sidoName=경기&ver=1.0`,
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+
+  //     const data = (await response.json()) as any;
+
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error(`Error fetching air pollution data: ${error}`);
+  //   }
+  // }
+
   useEffect(() => {
     getWeatherForecast(location);
+
+    if (location.lat > 0 && location.lng > 0) {
+      setUserLocation(location);
+    }
+  }, [location]);
+
+  useEffect(() => {
+    const coords = convertLatLonToGrid("toXY", location.lat, location.lng, "TM"); // 위도와 경도를 TM 좌표계로 변환
+    console.log("location", location);
+    console.log("coords", coords);
+    const tmX = coords.x;
+    const tmY = coords.y;
+
+    if (tmX && tmY && tmX > 0 && tmY > 0) {
+      getNearbyStation(tmX, tmY);
+    }
   }, [location]);
 
   return {
