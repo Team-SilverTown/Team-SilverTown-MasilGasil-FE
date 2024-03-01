@@ -7,7 +7,7 @@ import { FONT_WEIGHT } from "@/styles/theme";
 
 interface UserEditInputProps {
   title: string;
-  inputType: "text" | "number";
+  inputType: "text" | "number" | "date";
   placeholder: string;
   errorsMessage?: string;
 

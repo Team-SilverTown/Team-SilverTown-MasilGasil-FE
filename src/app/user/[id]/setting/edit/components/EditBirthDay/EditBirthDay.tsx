@@ -11,12 +11,12 @@ interface EditAgeProps {
   errors: FieldErrors<UserEditData>;
 }
 
-const EditAge = ({ register, errors }: EditAgeProps) => {
+const EditBirthDay = ({ register, errors }: EditAgeProps) => {
   return (
     <GS.UserEditSectionContainer>
       <UserEditInput
         title={"나이"}
-        inputType={"number"}
+        inputType={"date"}
         placeholder={USER_EDIT_PLACEHOLDER.AGE}
         register={register("age", validation_user.age)}
         errorsMessage={errors.age && errors.age.message}
@@ -25,4 +25,4 @@ const EditAge = ({ register, errors }: EditAgeProps) => {
   );
 };
 
-export default EditAge;
+export default EditBirthDay;
