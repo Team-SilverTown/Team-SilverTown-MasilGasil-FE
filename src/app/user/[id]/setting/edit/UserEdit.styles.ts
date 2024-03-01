@@ -1,7 +1,8 @@
 import { DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const UserEditLayout = styled.form`
+export const UserEditLayout = styled(motion.form)`
   width: 100%;
   height: 100%;
 

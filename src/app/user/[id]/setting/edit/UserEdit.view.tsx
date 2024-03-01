@@ -38,7 +38,10 @@ const UserEditView = ({
       style={{ height: "100%" }}
       onSubmit={onSubmit(onValid, onInValid)}
     >
-      <S.UserEditLayout>
+      <S.UserEditLayout
+        initial={{ x: "-120%" }}
+        animate={{ x: 0 }}
+      >
         <EditNickname
           register={register}
           errors={errors}
