@@ -12,5 +12,6 @@ export interface UserEvaluationType {
 }
 
 export interface MatePost {
+  authorNickname: string;
   members: MateMemberType[];
 }

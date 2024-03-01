@@ -13,7 +13,7 @@ interface MateDetailProps {
 }
 
 const MateDetail = ({ matePost, authorEvaluation }: MateDetailProps) => {
-  const { members } = matePost;
+  const { members, authorNickname } = matePost;
   return (
     <>
       <TopNavigator
@@ -26,7 +26,10 @@ const MateDetail = ({ matePost, authorEvaluation }: MateDetailProps) => {
 
           <Divider />
 
-          <MateEvaluation authorEvaluation={authorEvaluation} />
+          <MateEvaluation
+            authorEvaluation={authorEvaluation}
+            nickName={authorNickname}
+          />
 
           <Divider />
 

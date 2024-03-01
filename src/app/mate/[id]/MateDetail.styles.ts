@@ -10,8 +10,7 @@ gap-8
 export const MateInformationContainer = `
 w-full 
 
-border-blue-500 
-border-2
+select-none
 `;
 
 export const MateDetailInformationTitle = `

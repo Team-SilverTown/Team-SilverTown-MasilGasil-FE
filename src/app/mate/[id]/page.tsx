@@ -20,6 +20,7 @@ const Mate = ({ params }: MateProps) => {
 export default Mate;
 
 const DUMMY_DATA: MatePost = {
+  authorNickname: "재영",
   members: [
     { user_id: "22", state: "invited", thumbnailUrl: "", nickname: "기술 브레인 원주" },
     { user_id: "33", state: "invited", thumbnailUrl: "", nickname: "멘탈 브레이커 송희" },

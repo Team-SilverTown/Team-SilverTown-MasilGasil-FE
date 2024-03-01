@@ -13,8 +13,11 @@ const MateMembers = ({ members }: MateMembersProps) => {
       <h5 className={GS.MateDetailInformationTitle}>참가자</h5>
 
       <ul className="w-full flex flex-col gap-6 py-6">
-        {members.map(({ thumbnailUrl, nickname }) => (
-          <li className="w-full flex items-center gap-4">
+        {members.map(({ thumbnailUrl, nickname, user_id }) => (
+          <li
+            key={user_id}
+            className="w-full flex items-center gap-4"
+          >
             <Avatar src={thumbnailUrl} />
             <p className="grow text-large font-medium whitespace-nowrap">{nickname}</p>
           </li>
