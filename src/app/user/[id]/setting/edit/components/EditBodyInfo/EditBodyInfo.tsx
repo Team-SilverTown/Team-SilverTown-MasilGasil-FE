@@ -2,8 +2,9 @@ import * as S from "./EditBodyInfo.styles";
 
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
-import { USER_EDIT_ERROR_MESSAGE, USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
+import { USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
 import { UserEditInput } from "..";
+import { validation_user } from "@/constants/userValidate";
 
 interface EditBodyInfoProps {
   register: UseFormRegister<UserEditData>;
@@ -19,9 +20,7 @@ const EditBodyInfo = ({ register, errors }: EditBodyInfoProps) => {
           inputType={"number"}
           placeholder={USER_EDIT_PLACEHOLDER.HEIGHT}
           errorsMessage={errors.height && errors.height.message}
-          register={register("height", {
-            required: USER_EDIT_ERROR_MESSAGE.HEIGHT.REQUIRE,
-          })}
+          register={register("height", validation_user.height)}
         />
       </S.EditBodyInfoContainer>
 
@@ -31,9 +30,7 @@ const EditBodyInfo = ({ register, errors }: EditBodyInfoProps) => {
           inputType={"number"}
           placeholder={USER_EDIT_PLACEHOLDER.WEIGHT}
           errorsMessage={errors.weight && errors.weight.message}
-          register={register("weight", {
-            required: USER_EDIT_ERROR_MESSAGE.WEIGHT.REQUIRE,
-          })}
+          register={register("weight", validation_user.weight)}
         />
       </S.EditBodyInfoContainer>
     </S.EditBodyInfoLayout>
