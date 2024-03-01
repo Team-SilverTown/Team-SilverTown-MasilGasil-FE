@@ -1,11 +1,11 @@
 import * as GS from "../../MateDetail.styles";
 
-const MateInfo = () => {
+const MateMembers = () => {
   return (
     <article className={GS.MateInformationContainer}>
-      <div></div>
+      <h5 className={GS.MateDetailInformationTitle}>참가자</h5>
     </article>
   );
 };
 
-export default MateInfo;
+export default MateMembers;

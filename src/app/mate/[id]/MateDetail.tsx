@@ -3,7 +3,7 @@ import * as S from "./MateDetail.styles";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { CommonContainerTailwind } from "@/styles/GlobalStyle";
 import Divider from "@/components/Divider/Divider";
-import { MateEvaluation, MateInfo } from "./components";
+import { MateEvaluation, MateInfo, MateMembers } from "./components";
 
 interface MateDetailProps {}
 
@@ -20,6 +20,8 @@ const MateDetail = ({}: MateDetailProps) => {
           <MateEvaluation />
 
           <Divider />
+
+          <MateMembers />
         </article>
       </section>
     </>
