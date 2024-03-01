@@ -5,6 +5,12 @@ export interface MateMemberType {
   nickname: string;
 }
 
+export interface UserEvaluationType {
+  kind: number;
+  time: number;
+  bad: number;
+}
+
 export interface MatePost {
   members: MateMemberType[];
 }

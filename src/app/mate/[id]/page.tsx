@@ -9,7 +9,12 @@ interface MateProps {
 const Mate = ({ params }: MateProps) => {
   const { id } = params;
 
-  return <MateDetail matePost={DUMMY_DATA} />;
+  return (
+    <MateDetail
+      matePost={DUMMY_DATA}
+      authorEvaluation={DUMMY_USER_EVALUATION}
+    />
+  );
 };
 
 export default Mate;
@@ -21,4 +26,10 @@ const DUMMY_DATA: MatePost = {
     { user_id: "44", state: "invited", thumbnailUrl: "", nickname: "디자인 천재 재웅" },
     { user_id: "55", state: "invited", thumbnailUrl: "", nickname: "CSS의 황제 승현" },
   ],
+};
+
+const DUMMY_USER_EVALUATION = {
+  kind: 9172613,
+  time: 99214718,
+  bad: 0,
 };

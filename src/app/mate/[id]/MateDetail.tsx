@@ -5,13 +5,14 @@ import { CommonContainerTailwind } from "@/styles/GlobalStyle";
 import Divider from "@/components/Divider/Divider";
 import { MateEvaluation, MateInfo, MateMembers } from "./components";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import { MatePost } from "./MateDetail.types";
+import { MatePost, UserEvaluationType } from "./MateDetail.types";
 
 interface MateDetailProps {
   matePost: MatePost;
+  authorEvaluation: UserEvaluationType;
 }
 
-const MateDetail = ({ matePost }: MateDetailProps) => {
+const MateDetail = ({ matePost, authorEvaluation }: MateDetailProps) => {
   const { members } = matePost;
   return (
     <>
@@ -25,7 +26,7 @@ const MateDetail = ({ matePost }: MateDetailProps) => {
 
           <Divider />
 
-          <MateEvaluation />
+          <MateEvaluation authorEvaluation={authorEvaluation} />
 
           <Divider />
 
