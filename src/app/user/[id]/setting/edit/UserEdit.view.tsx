@@ -5,6 +5,9 @@ import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-fo
 import { IntensityType, UserEditData } from "./UserEdit.types";
 
 import { EditSex, EditNickname, EditBirthDay, EditBodyInfo, EditIntensity } from "./components";
+import { Button } from "@/components";
+import useTheme from "@/lib/hooks/useTheme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 interface UserEditViewProps {
   register: UseFormRegister<UserEditData>;
@@ -33,6 +36,12 @@ const UserEditView = ({
   isCheckedNickname,
   onCheckSameNickname,
 }: UserEditViewProps) => {
+  const theme = useTheme();
+
+  if (!theme) {
+    return;
+  }
+
   return (
     <GS.CommonContainer
       style={{ height: "100%" }}
@@ -69,7 +78,20 @@ const UserEditView = ({
           selectedIntensity={selectedIntensity}
         />
 
-        <button>테스트용 제출 버튼</button>
+        <Button
+          variant="flat"
+          useRipple
+          rippleColor={theme.text_secondary_color + 50}
+          buttonColor={theme.green_500}
+          textColor={theme.text_secondary_color}
+          style={{
+            fontSize: FONT_SIZE.H4,
+            fontWeight: FONT_WEIGHT.BOLD,
+            minHeight: "5rem",
+          }}
+        >
+          수정 완료
+        </Button>
       </S.UserEditLayout>
     </GS.CommonContainer>
   );
