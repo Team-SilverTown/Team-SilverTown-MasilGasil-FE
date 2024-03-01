@@ -42,7 +42,7 @@ export const validation_user = {
     },
   },
 
-  age: {
+  birthDay: {
     required: "나이는 필수 항목입니다.",
     min: {
       value: 14,

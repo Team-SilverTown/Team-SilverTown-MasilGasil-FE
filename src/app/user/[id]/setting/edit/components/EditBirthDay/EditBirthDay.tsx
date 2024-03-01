@@ -17,9 +17,9 @@ const EditBirthDay = ({ register, errors }: EditAgeProps) => {
       <UserEditInput
         title={"나이"}
         inputType={"date"}
-        placeholder={USER_EDIT_PLACEHOLDER.AGE}
-        register={register("age", validation_user.age)}
-        errorsMessage={errors.age && errors.age.message}
+        placeholder={USER_EDIT_PLACEHOLDER.BIRTHDAY}
+        register={register("birthDay", validation_user.birthDay)}
+        errorsMessage={errors.birthDay && errors.birthDay.message}
       />
     </GS.UserEditSectionContainer>
   );
