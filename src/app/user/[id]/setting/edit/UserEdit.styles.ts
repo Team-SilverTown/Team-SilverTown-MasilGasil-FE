@@ -31,7 +31,7 @@ export const UserEditTitle = styled.h6`
 
 export const UserEditWarning = styled.div`
   width: 100%;
-  height: 2.4rem;
+  min-height: 2.4rem;
   padding-left: 0.6rem;
 
   display: flex;
