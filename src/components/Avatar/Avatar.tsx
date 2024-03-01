@@ -42,7 +42,7 @@ const Avatar = ({
       style={style}
     >
       <Image
-        src={src}
+        src={src ? src : userProfile}
         width={AvatarSize[size]}
         height={AvatarSize[size]}
         alt={name}
