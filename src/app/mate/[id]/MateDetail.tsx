@@ -1,7 +1,9 @@
+import * as S from "./MateDetail.styles";
+
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { CommonContainerTailwind } from "@/styles/GlobalStyle";
-import { MateDetailLayout } from "./MateDetail.styles";
 import Divider from "@/components/Divider/Divider";
+import { MateEvaluation, MateInfo } from "./components";
 
 interface MateDetailProps {}
 
@@ -10,9 +12,13 @@ const MateDetail = ({}: MateDetailProps) => {
     <>
       <TopNavigator title="메이트 모집" />
       <section className={CommonContainerTailwind}>
-        <article className={MateDetailLayout}>
+        <article className={S.MateDetailLayout}>
+          <MateInfo />
+
           <Divider />
-          <Divider />
+
+          <MateEvaluation />
+
           <Divider />
         </article>
       </section>
