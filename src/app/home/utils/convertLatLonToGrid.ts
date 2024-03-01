@@ -9,10 +9,10 @@ const RE = 6371.00877; // 지구 반경(km)
 const GRID = 5.0; // 격자 간격(km)
 const SLAT1 = 30.0; // 표준 위도 1
 const SLAT2 = 60.0; // 표준 위도 2
-const OLON = 126.0; // 기준점 경도
-const OLAT = 38.0; // 기준점 위도
-const XO = 43; // 기준점 X좌표
-const YO = 136; // 기준점 Y좌표
+let OLON = 126.0; // 기준점 경도
+let OLAT = 38.0; // 기준점 위도
+let XO = 43; // 기준점 X좌표
+let YO = 136; // 기준점 Y좌표
 
 /**
  * 해당 함수는 위도, 경도를 받아 격자 좌표로 변환해주는 함수 입니다.
@@ -21,7 +21,25 @@ const YO = 136; // 기준점 Y좌표
  * @param lng  위도 값
  * @returns rs라는 격자 좌표로 변환된 값을 반환해줍니다.
  */
-const convertLatLonToGrid = (code: string, lat: number, lng: number): Coords => {
+
+const convertLatLonToGrid = (
+  code: string,
+  lat: number,
+  lng: number,
+  type: "TM" | "LCC",
+): Coords => {
+  if (type === "TM") {
+    OLON = 127.0;
+    OLAT = 38.0;
+    XO = 200000;
+    YO = 500000;
+  } else if ("LCC") {
+    OLON = 126.0;
+    OLAT = 38.0;
+    XO = 43;
+    YO = 136;
+  }
+
   let sn =
     Math.tan(Math.PI * 0.25 + ((SLAT2 * Math.PI) / 180.0) * 0.5) /
     Math.tan(Math.PI * 0.25 + ((SLAT1 * Math.PI) / 180.0) * 0.5);
