@@ -17,7 +17,7 @@ const MyLocationWeather = ({ temperature, weather, precipitation }: MyLocationWe
       </S.MyLocation>
       <S.MyWeather>
         <li className="temperatures">
-          {weather} {temperature}˚
+          {weather && weather} {temperature && `${temperature}˚`}
         </li>
         <li className="fineDust">미세먼지 나쁨</li>
       </S.MyWeather>
