@@ -19,21 +19,20 @@ export const EvaluationTitle = `
   rounded-bl-lg
   
   text-medium
-  font-medium
+  font-semibold
   whitespace-nowrap
 `;
 
 export const EvaluationText = `
-  text-medium
-  font-medium
+  text-basic
+  font-regular
   whitespace-nowrap
 `;
 
 export const EvaluationUnit = `
   px-1
 
-  text-basic
+  text-mini
   font-semibold
   whitespace-nowrap
-  text-[#909090]"
 `;

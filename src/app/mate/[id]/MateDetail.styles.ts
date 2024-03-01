@@ -1,20 +1,23 @@
 export const MateDetailLayout = `
-h-full 
-w-full 
+  h-full 
+  w-full 
 
-flex 
-flex-col 
-gap-8
+  flex 
+  flex-col 
+  gap-8
+
+  overflow-y-scroll
+  scrollbar-hide
 `;
 
 export const MateInformationContainer = `
-w-full 
+  w-full 
 
-select-none
+  select-none
 `;
 
 export const MateDetailInformationTitle = `
-  text-h5
-  font-medium
+  text-large
+  font-semibold
   whitespace-nowrap
 `;

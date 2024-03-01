@@ -22,7 +22,7 @@ const MateMembers = ({ members }: MateMembersProps) => {
               src={thumbnailUrl}
               userId={user_id}
             />
-            <p className="grow text-large font-medium whitespace-nowrap">{nickname}</p>
+            <p className="grow text-basic font-medium whitespace-nowrap">{nickname}</p>
           </li>
         ))}
       </ul>

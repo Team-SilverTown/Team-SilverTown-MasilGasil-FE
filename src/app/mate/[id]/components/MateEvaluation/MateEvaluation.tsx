@@ -21,7 +21,7 @@ const MateEvaluation = ({ authorEvaluation, nickName }: MateEvaluationProps) => 
     <article className={GS.MateInformationContainer}>
       <h6 className={GS.MateDetailInformationTitle}>{`${nickName}님이 받은 매너 평가`}</h6>
 
-      <ul className="w-full py-6 flex flex-col gap-6">
+      <ul className="w-full py-6 flex flex-col gap-6 overflow-x-scroll scrollbar-hide">
         {evaluationList.map(({ text, type }) => (
           <li
             className={S.EvaluationItem}
