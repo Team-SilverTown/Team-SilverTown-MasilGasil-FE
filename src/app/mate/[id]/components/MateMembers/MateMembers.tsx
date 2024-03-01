@@ -18,7 +18,10 @@ const MateMembers = ({ members }: MateMembersProps) => {
             key={user_id}
             className="w-full flex items-center gap-4"
           >
-            <Avatar src={thumbnailUrl} />
+            <Avatar
+              src={thumbnailUrl}
+              userId={user_id}
+            />
             <p className="grow text-large font-medium whitespace-nowrap">{nickname}</p>
           </li>
         ))}

@@ -1,9 +1,10 @@
 "use client";
 
-import { CSSProperties } from "react";
+import { CSSProperties, MouseEvent } from "react";
 import Image from "next/image";
 import userProfile from "@/assets/userProfile.svg";
 import * as S from "./Avatar.styles";
+import { useRouter } from "next/navigation";
 
 interface AvatarProps {
   size?: "xs" | "sm" | "md" | "lg";
@@ -11,6 +12,8 @@ interface AvatarProps {
   src?: string;
   style?: CSSProperties;
   imageStyle?: CSSProperties;
+
+  userId?: string;
 }
 
 const AvatarSize = {
@@ -27,6 +30,7 @@ const AvatarSize = {
  * @param name name은 Image 태그의 alt 속성에 추가되는 설명입니다.
  * @param src src는 Avatar 이미지가 되는 주소입니다. (아무 값도 전달하지 않을 경우 기본 프로필이 정의됩니다.)
  * @param style 만약 정의되지 않은 size 혹은 style을 정의하고 싶다면 inline style로 style을 정의할 수 있습니다.
+ * @param userId 사용하는곳에서 userId를 전달시 해당 id에 맞는 user 페이지로 이동시킵니다.
  */
 
 const Avatar = ({
@@ -35,11 +39,24 @@ const Avatar = ({
   src = userProfile,
   style,
   imageStyle,
+  userId,
 }: AvatarProps) => {
+  const router = useRouter();
+
+  const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
+    if (!userId) {
+      return;
+    }
+
+    router.push(`/user/${userId}`);
+  };
   return (
     <S.AvatarLayout
       $size={AvatarSize[size]}
       style={style}
+      onClick={handleClick}
     >
       <Image
         src={src ? src : userProfile}
