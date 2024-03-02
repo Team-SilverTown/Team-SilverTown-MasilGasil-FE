@@ -35,12 +35,10 @@ const useGetWeatherForecast = () => {
 
     if (!WEATHER_URL) {
       throw new Error("기본 URL이 존재하지 않습니다.");
-      return;
     }
 
     if (!SERVICE_KEY) {
       throw new Error("서비스 키가 존재하지 않습니다.");
-      return;
     }
 
     const url = new URL(WEATHER_URL);
@@ -72,13 +70,13 @@ const useGetWeatherForecast = () => {
 
     const temperature = weatherData.find(
       (item: WeatherDataItemType) => item.category === "T1H",
-    ).fcstValue;
+    )?.fcstValue;
     const skyStatus = weatherData.find(
       (item: WeatherDataItemType) => item.category === "SKY",
-    ).fcstValue;
+    )?.fcstValue;
     const precipitation = weatherData.find(
       (item: WeatherDataItemType) => item.category === "PTY",
-    ).fcstValue;
+    )?.fcstValue;
 
     if (temperature) {
       setTemperature(temperature);
