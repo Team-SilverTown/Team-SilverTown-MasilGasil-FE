@@ -42,3 +42,11 @@ export { default as NotificationOff } from "./NotificationOff";
 export { default as PersonSearch } from "./PersonSearch";
 export { default as PersonOff } from "./PersonOff";
 export { default as Location } from "./Location";
+
+export { default as ClearSky } from "./ClearSky";
+export { default as PartlyCloudy } from "./PartlyCloudy";
+export { default as Overcast } from "./Overcast";
+export { default as Rainy } from "./Rainy";
+export { default as Sleet } from "./Sleet";
+export { default as Snowy } from "./Snowy";
+export { default as FineDust } from "./FineDust";
