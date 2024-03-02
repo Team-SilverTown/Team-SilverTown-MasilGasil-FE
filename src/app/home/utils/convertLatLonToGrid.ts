@@ -22,24 +22,7 @@ let YO = 136; // 기준점 Y좌표
  * @returns rs라는 격자 좌표로 변환된 값을 반환해줍니다.
  */
 
-const convertLatLonToGrid = (
-  code: string,
-  lat: number,
-  lng: number,
-  type: "TM" | "LCC",
-): Coords => {
-  if (type === "TM") {
-    OLON = 127.0;
-    OLAT = 38.0;
-    XO = 200000;
-    YO = 500000;
-  } else if ("LCC") {
-    OLON = 126.0;
-    OLAT = 38.0;
-    XO = 43;
-    YO = 136;
-  }
-
+const convertLatLonToGrid = (code: string, lat: number, lng: number): Coords => {
   let sn =
     Math.tan(Math.PI * 0.25 + ((SLAT2 * Math.PI) / 180.0) * 0.5) /
     Math.tan(Math.PI * 0.25 + ((SLAT1 * Math.PI) / 180.0) * 0.5);
