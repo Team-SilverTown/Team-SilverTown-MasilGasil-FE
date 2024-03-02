@@ -6,6 +6,7 @@ import { DotMenu, Trash } from "@/components/icons";
 import EditPencil from "@/components/icons/EditPencil";
 import useToggle from "@/hooks/useToggle";
 import { AnimatePresence } from "framer-motion";
+import { MouseEvent } from "react";
 
 interface MateToggleMenuProps {
   postId: string;
@@ -13,6 +14,19 @@ interface MateToggleMenuProps {
 
 const MateToggleMenu = ({ postId }: MateToggleMenuProps) => {
   const { isToggle, handleToggle, toggleRef } = useToggle();
+
+  const handleClickEdit = (e: MouseEvent<HTMLLIElement>) => {
+    e.preventDefault();
+
+    console.log("수정 클릭");
+  };
+
+  const handleClickRemove = (e: MouseEvent<HTMLLIElement>) => {
+    e.preventDefault();
+
+    console.log("삭제 클릭");
+  };
+
   return (
     <>
       <DotMenu
@@ -29,13 +43,16 @@ const MateToggleMenu = ({ postId }: MateToggleMenuProps) => {
               animate={{ opacity: 1, height: "100%" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <S.MateToggleMenuItem>
+              <S.MateToggleMenuItem onClick={handleClickEdit}>
                 <EditPencil className="w-6 h-6" />
                 수정
               </S.MateToggleMenuItem>
+
               <Divider />
-              <S.MateToggleMenuItem>
-                <Trash className="w-6 h-6" /> 삭제
+
+              <S.MateToggleMenuItem onClick={handleClickRemove}>
+                <Trash className="w-6 h-6" />
+                삭제
               </S.MateToggleMenuItem>
             </S.MateToggleMenuContainer>
           </S.MateToggleMenuLayout>

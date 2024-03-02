@@ -32,8 +32,11 @@ export const MateToggleMenuContainer = styled(motion.ul)`
 `;
 
 export const MateToggleMenuItem = styled.li`
+  width: 100%;
+
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
 
   font-size: ${FONT_SIZE.MEDIUM};
