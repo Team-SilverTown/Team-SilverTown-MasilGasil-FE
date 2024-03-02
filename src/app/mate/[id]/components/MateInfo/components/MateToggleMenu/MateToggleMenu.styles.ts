@@ -2,9 +2,20 @@ import { FONT_SIZE, FONT_WEIGHT, Z_INDEX } from "@/styles/theme";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const MateToggleMenuLayout = styled(motion.ul)`
+export const MateToggleMenuLayout = styled(motion.div)`
   width: 9rem;
   height: 10.6rem;
+
+  position: absolute;
+  right: 1rem;
+  bottom: -10rem;
+
+  z-index: ${Z_INDEX.MATE_TOGGLE_MENU};
+`;
+
+export const MateToggleMenuContainer = styled(motion.ul)`
+  width: 100%;
+  height: 100%;
   padding: 1rem;
 
   display: flex;
@@ -13,13 +24,11 @@ export const MateToggleMenuLayout = styled(motion.ul)`
   align-items: center;
   gap: 1.6rem;
 
-  position: absolute;
-  right: 1rem;
-  bottom: -10rem;
-
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.background_color};
   box-shadow: 0 0 1rem 0.2rem rgba(0, 0, 0, 0.1);
+
+  overflow: hidden;
 `;
 
 export const MateToggleMenuItem = styled.li`
@@ -31,5 +40,4 @@ export const MateToggleMenuItem = styled.li`
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
 
   cursor: pointer;
-  z-index: ${Z_INDEX.MATE_TOGGLE_MENU};
 `;
