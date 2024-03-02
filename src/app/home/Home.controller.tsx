@@ -6,7 +6,7 @@ import { NotificationActive, NotificationOff } from "@/components/icons";
 import useHomeModel from "./Home.model";
 
 const HomeController = () => {
-  const { isNotification, temperature, weather, precipitation } = useHomeModel();
+  const { isNotification, temperature, weather, precipitation, pm10, address } = useHomeModel();
 
   return (
     <>
@@ -15,6 +15,8 @@ const HomeController = () => {
         temperature={temperature}
         weather={weather}
         precipitation={precipitation}
+        address={address}
+        pm10={pm10}
       />
     </>
   );
