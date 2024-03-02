@@ -2,26 +2,38 @@ import { useState } from "react";
 
 import convertLatLonToGrid from "../utils/convertLatLonToGrid";
 import getCurrentDateTime from "../utils/getCurrentDateTime";
+import { Precipitation, WeatherType } from "../Home.types";
 
 interface LocationType {
   lat: number;
   lng: number;
 }
 
+interface WeatherDataItemType {
+  baseDate: string;
+  baseTime: string;
+  category: string;
+  fcstDate: string;
+  fcstTime: string;
+  fcstValue: string;
+  nx: number;
+  ny: number;
+}
+
 const useGetWeatherForecast = () => {
-  const [temperature, setTemperature] = useState<null | string>(null);
-  const [weather, setWeather] = useState<null | string>(null);
-  const [precipitation, setPrecipitation] = useState<null | string>(null);
+  const [temperature, setTemperature] = useState<string | null>(null);
+  const [weather, setWeather] = useState<WeatherType | null>(null);
+  const [precipitation, setPrecipitation] = useState<Precipitation | null>(null);
 
   const getWeatherForecast = async ({ lat, lng }: LocationType) => {
     const currentDateTime = getCurrentDateTime();
 
-    const grid = convertLatLonToGrid("toXY", lat, lng, "LCC");
+    const coords = convertLatLonToGrid("toXY", lat, lng);
 
-    const SERVICE_URL = process.env.NEXT_PUBLIC_WEATHER_BASE_URL;
-    const SERVICE_KEY = process.env.NEXT_PUBLIC_WEATHER_SERVICE_KEY;
+    const WEATHER_URL = process.env.NEXT_PUBLIC_WEATHER_URL;
+    const SERVICE_KEY = process.env.NEXT_PUBLIC_SERVICE_KEY;
 
-    if (!SERVICE_URL) {
+    if (!WEATHER_URL) {
       throw new Error("기본 URL이 존재하지 않습니다.");
       return;
     }
@@ -31,7 +43,7 @@ const useGetWeatherForecast = () => {
       return;
     }
 
-    const url = new URL(SERVICE_URL);
+    const url = new URL(WEATHER_URL);
 
     const params = {
       serviceKey: SERVICE_KEY,
@@ -40,8 +52,8 @@ const useGetWeatherForecast = () => {
       dataType: "json",
       base_date: currentDateTime.date,
       base_time: currentDateTime.time,
-      nx: (grid.x || 0).toString(),
-      ny: (grid.y || 0).toString(),
+      nx: (coords.x || 0).toString(),
+      ny: (coords.y || 0).toString(),
     };
 
     url.search = new URLSearchParams(params).toString();
@@ -58,9 +70,15 @@ const useGetWeatherForecast = () => {
       return;
     }
 
-    const temperature = weatherData.find((item: any) => item.category === "T1H").fcstValue;
-    const skyStatus = weatherData.find((item: any) => item.category === "SKY").fcstValue;
-    const precipitation = weatherData.find((item: any) => item.category === "PTY").fcstValue;
+    const temperature = weatherData.find(
+      (item: WeatherDataItemType) => item.category === "T1H",
+    ).fcstValue;
+    const skyStatus = weatherData.find(
+      (item: WeatherDataItemType) => item.category === "SKY",
+    ).fcstValue;
+    const precipitation = weatherData.find(
+      (item: WeatherDataItemType) => item.category === "PTY",
+    ).fcstValue;
 
     if (temperature) {
       setTemperature(temperature);
@@ -75,13 +93,11 @@ const useGetWeatherForecast = () => {
           setWeather("구름조금");
           break;
         case "3":
-          setWeather("구름많음");
+          setWeather("흐림");
           break;
         case "4":
           setWeather("흐림");
           break;
-        default:
-          setWeather("없음");
       }
     }
 
@@ -99,8 +115,6 @@ const useGetWeatherForecast = () => {
         case "3":
           setPrecipitation("눈");
           break;
-        default:
-          setPrecipitation("없음");
       }
     }
   };
