@@ -1,5 +1,5 @@
 import { LogDetailCard } from "@/components";
-import { LogDetailCardProps } from "@/components/LogDetailCard";
+import { LogDetailCardProps } from "@/components/LogDetailCard/LogDetailCard";
 
 export default {
   title: "Component/LogDetailCard",
