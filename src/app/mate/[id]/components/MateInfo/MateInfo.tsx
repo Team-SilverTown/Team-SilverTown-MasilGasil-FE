@@ -2,7 +2,7 @@ import * as GS from "../../MateDetail.styles";
 import style from "./MateInfo.styles.module.css";
 
 import Avatar from "@/components/Avatar/Avatar";
-import { MateToggleMenu } from "./components";
+import { MateActions, MateToggleMenu } from "./components";
 import { MatePost } from "../../MateDetail.types";
 import Divider from "@/components/Divider/Divider";
 
@@ -55,6 +55,8 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
           <p className={style.mate_info__item_text}>{`${recruitingUser}/${recruitedUser}명`}</p>
         </li>
       </ul>
+
+      <MateActions />
     </article>
   );
 };

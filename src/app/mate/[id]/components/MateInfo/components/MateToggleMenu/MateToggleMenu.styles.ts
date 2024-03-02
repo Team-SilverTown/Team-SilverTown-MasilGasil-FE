@@ -5,7 +5,6 @@ import styled from "styled-components";
 export const MateMenuLayout = styled.div`
   width: 2.6rem;
   height: 2.6rem;
-  margin-right: 2rem;
 
   display: flex;
   align-items: center;
