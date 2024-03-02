@@ -55,7 +55,7 @@ const Avatar = ({
   return (
     <S.AvatarLayout
       $size={AvatarSize[size]}
-      style={{ ...style, cursor: userId ? "pointer" : "none" }}
+      style={{ ...style, cursor: userId ? "pointer" : "auto" }}
       onClick={handleClick}
     >
       <Image
