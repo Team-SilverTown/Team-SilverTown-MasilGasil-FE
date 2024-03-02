@@ -1,8 +1,10 @@
 import * as GS from "../../MateDetail.styles";
+import style from "./MateInfo.styles.module.css";
 
 import Avatar from "@/components/Avatar/Avatar";
 import { MateToggleMenu } from "./components";
 import { MatePost } from "../../MateDetail.types";
+import Divider from "@/components/Divider/Divider";
 
 interface MateInfoProps {
   postId: string;
@@ -10,10 +12,18 @@ interface MateInfoProps {
 }
 
 const MateInfo = ({ mateData, postId }: MateInfoProps) => {
-  const { authorThumbnailUrl, authorNickname } = mateData;
+  const {
+    authorThumbnailUrl,
+    authorNickname,
+    content,
+    mateTime,
+    mateLocation,
+    recruitedUser,
+    recruitingUser,
+  } = mateData;
 
   return (
-    <article className={GS.MateInformationContainer}>
+    <article className={`${GS.MateInformationContainer} flex flex-col gap-12`}>
       <div className="w-full flex items-center gap-6">
         <Avatar
           size="sm"
@@ -22,6 +32,29 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
         <p className="grow text-medium font-medium whitespace-nowrap">{authorNickname}</p>
         <MateToggleMenu postId={postId} />
       </div>
+
+      <p className="w-full text-medium font-medium leading-snug ">{content}</p>
+
+      <ul className={style.mate_info__list}>
+        <li className={style.mate_info__item}>
+          <p className={style.mate_info__item_title}>모임 장소</p>
+          <p className={style.mate_info__item_text}>대전 세종시 대평동 으라차차으라차차</p>
+        </li>
+
+        <Divider isColumn />
+
+        <li className={style.mate_info__item}>
+          <p className={style.mate_info__item_title}>모임 시간</p>
+          <p className={style.mate_info__item_text}>{mateTime}</p>
+        </li>
+
+        <Divider isColumn />
+
+        <li className={style.mate_info__item}>
+          <p className={style.mate_info__item_title}>모임 인원</p>
+          <p className={style.mate_info__item_text}>{`${recruitingUser}/${recruitedUser}명`}</p>
+        </li>
+      </ul>
     </article>
   );
 };
