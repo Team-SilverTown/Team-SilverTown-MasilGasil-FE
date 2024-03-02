@@ -28,9 +28,9 @@ const MateToggleMenu = ({ postId }: MateToggleMenuProps) => {
   };
 
   return (
-    <>
+    <S.MateMenuLayout>
       <DotMenu
-        className="w-8 h-8 mr-4"
+        className="w-full h-full"
         onClick={handleToggle}
         style={{ cursor: "pointer" }}
       />
@@ -58,7 +58,7 @@ const MateToggleMenu = ({ postId }: MateToggleMenuProps) => {
           </S.MateToggleMenuLayout>
         )}
       </AnimatePresence>
-    </>
+    </S.MateMenuLayout>
   );
 };
 

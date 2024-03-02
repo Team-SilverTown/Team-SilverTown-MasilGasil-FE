@@ -2,13 +2,27 @@ import { FONT_SIZE, FONT_WEIGHT, Z_INDEX } from "@/styles/theme";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
+export const MateMenuLayout = styled.div`
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-right: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  cursor: pointer;
+`;
+
 export const MateToggleMenuLayout = styled(motion.div)`
   width: 9rem;
   height: 10.6rem;
 
   position: absolute;
-  right: 1rem;
-  bottom: -10rem;
+  right: 0;
+  bottom: -12rem;
 
   z-index: ${Z_INDEX.MATE_TOGGLE_MENU};
 `;

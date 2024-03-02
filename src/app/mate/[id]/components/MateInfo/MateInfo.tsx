@@ -38,7 +38,7 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
       <ul className={style.mate_info__list}>
         <li className={style.mate_info__item}>
           <p className={style.mate_info__item_title}>모임 장소</p>
-          <p className={style.mate_info__item_text}>대전 세종시 대평동 으라차차으라차차</p>
+          <p className={style.mate_info__item_text}>{mateLocation}</p>
         </li>
 
         <Divider isColumn />
