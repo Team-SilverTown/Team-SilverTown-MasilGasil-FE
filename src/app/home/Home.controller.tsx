@@ -1,9 +1,9 @@
 "use client";
 
-import { TopNavigator } from "@/components/navigators/TopNavigator";
-import HomeView from "./Home.view";
-import { NotificationActive, NotificationOff } from "@/components/icons";
 import useHomeModel from "./Home.model";
+import HomeView from "./Home.view";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { NotificationActive, NotificationOff } from "@/components/icons";
 
 const HomeController = () => {
   const { isNotification, temperature, weather, precipitation, pm10, address } = useHomeModel();

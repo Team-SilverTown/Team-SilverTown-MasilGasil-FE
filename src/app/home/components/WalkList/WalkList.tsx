@@ -1,5 +1,5 @@
-import { LogDetailCard } from "@/components";
 import { MasilsListType, PostsListType } from "../../Home.types";
+import { LogDetailCard } from "@/components";
 import * as S from "./WalkList.styles";
 
 interface WalkListProps {

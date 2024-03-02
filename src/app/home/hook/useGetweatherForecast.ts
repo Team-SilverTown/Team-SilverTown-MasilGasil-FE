@@ -1,8 +1,9 @@
 import { useState } from "react";
 
+import { Precipitation, WeatherType } from "../Home.types";
+
 import convertLatLonToGrid from "../utils/convertLatLonToGrid";
 import getCurrentDateTime from "../utils/getCurrentDateTime";
-import { Precipitation, WeatherType } from "../Home.types";
 
 interface LocationType {
   lat: number;

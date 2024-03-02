@@ -1,9 +1,5 @@
-import { FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
-
-interface MyWeatherProps {
-  $backgroundColor: string;
-}
+import { FONT_WEIGHT } from "@/styles/theme";
 
 export const MyLocationWeatherLayout = styled.article`
   display: flex;
@@ -20,7 +16,7 @@ export const MyLocation = styled.div`
   }
 `;
 
-export const MyWeather = styled.ul<MyWeatherProps>`
+export const MyWeather = styled.ul`
   display: flex;
   list-style: none;
   font-weight: ${FONT_WEIGHT.BOLD};
@@ -36,15 +32,11 @@ export const MyWeather = styled.ul<MyWeatherProps>`
   }
 
   li.temperatures {
-    margin-right: 1rem;
+    margin-right: 0.7rem;
     color: ${(props) => props.theme.yellow_500};
   }
 
   li.fineDust {
     color: ${(props) => props.theme.green_500};
-
-    svg {
-      fill: ${(props) => props.$backgroundColor};
-    }
   }
 `;

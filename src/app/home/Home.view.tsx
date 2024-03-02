@@ -1,14 +1,18 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import * as GS from "@/styles/GlobalStyle";
-import * as S from "./Home.styles";
+
 import { WALKLIST_DUMMY_DATA } from "./Home.constants";
-import WalkList from "./components/WalkList/WalkList";
-import MyWalkRecord from "./components/MyWalkRecord/MyWalkRecord";
-import MyLocationWeather from "./components/MyLocationWeather/MyLocationWeather";
-import { Precipitation, WeatherType } from "./Home.types";
+
+import { Button } from "@/components";
 import { More, ClearSky, Overcast, PartlyCloudy, Rainy, Sleet, Snowy } from "@/components/icons";
+import { WalkList, MyWalkRecord, MyLocationWeather } from "./components";
+
+import { Precipitation, WeatherType } from "./Home.types";
+
+import Theme, { CONTAINER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import * as S from "./Home.styles";
 
 interface HomeViewProps {
   temperature: string | null;
@@ -29,31 +33,58 @@ const WEATHER_ICON = {
 };
 
 const HomeView = ({ temperature, weather, precipitation, address, pm10 }: HomeViewProps) => {
+  const router = useRouter();
   const weatherIcon =
     precipitation && weather ? WEATHER_ICON[precipitation] || WEATHER_ICON[weather] : null;
 
+  const handleClickWalking = () => {
+    router.push("/log/record");
+  };
+
   return (
-    <GS.CommonContainer>
-      <MyLocationWeather
-        temperature={temperature}
-        weather={weatherIcon}
-        precipitation={precipitation}
-        address={address}
-        pm10={pm10}
-      />
-      <MyWalkRecord weather={weatherIcon} />
-      {WALKLIST_DUMMY_DATA.map(({ title, walkList, urlLink }) => (
-        <S.HomeWalkListSection key={title}>
-          <S.HomeWalkListTitle>
-            <h3>{title}</h3>
-            <Link href={urlLink}>
-              <More />
-            </Link>
-          </S.HomeWalkListTitle>
-          <WalkList walkList={walkList} />
-        </S.HomeWalkListSection>
-      ))}
-    </GS.CommonContainer>
+    <S.HomePageContainer>
+      <S.MyInfoSection>
+        <MyLocationWeather
+          temperature={temperature}
+          weather={weatherIcon}
+          precipitation={precipitation}
+          address={address}
+          pm10={pm10}
+        />
+        <MyWalkRecord weather={weatherIcon} />
+      </S.MyInfoSection>
+      <S.WalkListSection>
+        {WALKLIST_DUMMY_DATA.map(({ title, walkList, urlLink }) => (
+          <S.HomeWalkListSection key={title}>
+            <S.HomeWalkListTitle>
+              <h3>{title}</h3>
+              <Link href={urlLink}>
+                <More />
+              </Link>
+            </S.HomeWalkListTitle>
+            <WalkList walkList={walkList} />
+          </S.HomeWalkListSection>
+        ))}
+      </S.WalkListSection>
+      <Button
+        style={{
+          position: "fixed",
+          left: "50%",
+          bottom: "7rem",
+          transform: "translateX(-50%)",
+          width: "calc(100% - 3rem)",
+          maxWidth: `${CONTAINER.MAX_WIDTH}rem`,
+          height: "6rem",
+          fontSize: `${FONT_SIZE.H6}`,
+          fontWeight: `${FONT_WEIGHT.BOLD}`,
+          backgroundColor: `${Theme.lightTheme.green_500}`,
+          color: `${Theme.lightTheme.white}`,
+        }}
+        onClick={handleClickWalking}
+      >
+        산책 기록 하기
+      </Button>
+    </S.HomePageContainer>
   );
 };
 

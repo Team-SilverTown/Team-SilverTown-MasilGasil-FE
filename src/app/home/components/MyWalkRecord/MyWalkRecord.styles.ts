@@ -1,8 +1,8 @@
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 export const MyWalkRecordContainer = styled.article`
-  padding: 2.3rem 1.5rem;
+  padding: 2.3rem 1rem;
   margin-bottom: 3rem;
   background-color: ${(props) => props.theme.white};
   border-radius: 0.8rem;
