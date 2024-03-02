@@ -1,9 +1,12 @@
 import * as S from "./MyWalkRecord.styles";
 
-const MyWalkRecord = () => {
+interface MyWalkRecordProps {
+  weather: React.ReactNode | null;
+}
+const MyWalkRecord = ({ weather }: MyWalkRecordProps) => {
   return (
     <S.MyWalkRecordContainer>
-      <h3>000님, 먹어서 응원해요!</h3>
+      <h3>{weather} 000님, 먹어서 응원해요!</h3>
       <S.MyWalkRecordList>
         <li>
           <strong>총 거리</strong>

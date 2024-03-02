@@ -9,10 +9,21 @@ export const MyWalkRecordContainer = styled.article`
   box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 11px;
 
   h3 {
-    padding-bottom: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3.5rem;
     font-size: ${FONT_SIZE.MEDIUM};
     font-weight: ${FONT_WEIGHT.BOLD};
     text-align: center;
+
+    svg {
+      width: 4rem;
+      height: auto;
+      margin-right: 1rem;
+      stroke: ${(props) => props.theme.gray_200};
+      stroke-width: 0.5px;
+    }
   }
 `;
 

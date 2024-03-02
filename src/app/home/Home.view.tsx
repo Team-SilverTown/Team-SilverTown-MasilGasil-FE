@@ -1,29 +1,47 @@
 "use client";
 
-import * as GS from "@/styles/GlobalStyle";
-import { WALKLIST_DUMMY_DATA } from "./Home.constants";
 import Link from "next/link";
+import * as GS from "@/styles/GlobalStyle";
 import * as S from "./Home.styles";
-import { More } from "@/components/icons";
+import { WALKLIST_DUMMY_DATA } from "./Home.constants";
 import WalkList from "./components/WalkList/WalkList";
 import MyWalkRecord from "./components/MyWalkRecord/MyWalkRecord";
 import MyLocationWeather from "./components/MyLocationWeather/MyLocationWeather";
+import { Precipitation, WeatherType } from "./Home.types";
+import { More, ClearSky, Overcast, PartlyCloudy, Rainy, Sleet, Snowy } from "@/components/icons";
 
 interface HomeViewProps {
-  temperature: number | null;
-  weather: string | null;
-  precipitation: string | null;
+  temperature: string | null;
+  weather: WeatherType | null;
+  precipitation: Precipitation | null;
+  address: string;
+  pm10: number | null;
 }
 
-const HomeView = ({ temperature, weather, precipitation }: HomeViewProps) => {
+const WEATHER_ICON = {
+  맑음: <ClearSky />,
+  구름조금: <PartlyCloudy />,
+  흐림: <Overcast />,
+  비: <Rainy />,
+  진눈개비: <Sleet />,
+  눈: <Snowy />,
+  없음: null,
+};
+
+const HomeView = ({ temperature, weather, precipitation, address, pm10 }: HomeViewProps) => {
+  const weatherIcon =
+    precipitation && weather ? WEATHER_ICON[precipitation] || WEATHER_ICON[weather] : null;
+
   return (
     <GS.CommonContainer>
       <MyLocationWeather
         temperature={temperature}
-        weather={weather}
+        weather={weatherIcon}
         precipitation={precipitation}
+        address={address}
+        pm10={pm10}
       />
-      <MyWalkRecord />
+      <MyWalkRecord weather={weatherIcon} />
       {WALKLIST_DUMMY_DATA.map(({ title, walkList, urlLink }) => (
         <S.HomeWalkListSection key={title}>
           <S.HomeWalkListTitle>

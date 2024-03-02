@@ -41,3 +41,6 @@ export interface PostsListType {
   created_at: string;
   updated_at: string;
 }
+
+export type WeatherType = "맑음" | "구름조금" | "흐림";
+export type Precipitation = "없음" | "비" | "진눈개비" | "눈";
