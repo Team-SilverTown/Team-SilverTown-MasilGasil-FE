@@ -65,8 +65,8 @@ const LogDetailCard = ({
       style={style}
       onClick={handleDetailViewClick}
     >
-      <S.LogDetailCardThumbnail thumbnailURL={thumbnailURL} />
-      <S.LogDetailCardInfo isSettingLayout={isSettingLayout}>
+      <S.LogDetailCardThumbnail $thumbnailURL={thumbnailURL} />
+      <S.LogDetailCardInfo $isSettingLayout={isSettingLayout}>
         <div className="infoTopSection">
           <div className="infoTitle">
             <h3>{title}</h3>

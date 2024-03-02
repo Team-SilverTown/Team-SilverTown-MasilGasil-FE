@@ -2,11 +2,11 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 interface LogDetailCardThumbnailProps {
-  thumbnailURL: string;
+  $thumbnailURL: string;
 }
 
 interface LogDetailCardInfoProps {
-  isSettingLayout: boolean;
+  $isSettingLayout: boolean;
 }
 
 export const LogDetailCardContainer = styled.div`
@@ -21,7 +21,7 @@ export const LogDetailCardContainer = styled.div`
 export const LogDetailCardThumbnail = styled.div<LogDetailCardThumbnailProps>`
   width: 12rem;
   height: 12rem;
-  background-image: ${(props) => `url(${props.thumbnailURL})`};
+  background-image: ${(props) => `url(${props.$thumbnailURL})`};
   background-position: center;
   background-size: cover;
   border-top-left-radius: 0.8rem;
@@ -41,7 +41,7 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
     justify-content: space-between;
     align-items: center;
     h3 {
-      width: ${(props) => (props.isSettingLayout ? "calc(100% - 1.5rem)" : "100%")};
+      width: ${(props) => (props.$isSettingLayout ? "calc(100% - 1.5rem)" : "100%")};
       font-size: ${FONT_SIZE.LARGE};
       font-weight: ${FONT_WEIGHT.BOLD};
       overflow: hidden;
