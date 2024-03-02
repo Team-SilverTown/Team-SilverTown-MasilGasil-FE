@@ -8,12 +8,14 @@ import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { MatePost, UserEvaluationType } from "./MateDetail.types";
 
 interface MateDetailProps {
+  postId: string;
   matePost: MatePost;
   authorEvaluation: UserEvaluationType;
 }
 
-const MateDetail = ({ matePost, authorEvaluation }: MateDetailProps) => {
+const MateDetail = ({ postId, matePost, authorEvaluation }: MateDetailProps) => {
   const { members, authorNickname } = matePost;
+
   return (
     <>
       <TopNavigator
@@ -22,7 +24,10 @@ const MateDetail = ({ matePost, authorEvaluation }: MateDetailProps) => {
       />
       <section className={CommonContainerTailwind}>
         <article className={S.MateDetailLayout}>
-          <MateInfo />
+          <MateInfo
+            postId={postId}
+            mateData={matePost}
+          />
 
           <Divider />
 
