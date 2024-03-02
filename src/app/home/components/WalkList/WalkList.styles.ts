@@ -12,3 +12,10 @@ export const WalkListContainer = styled.ul`
     display: none;
   }
 `;
+
+export const NoWalkRecordMessage = styled.li`
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  min-height: 12rem;
+`;

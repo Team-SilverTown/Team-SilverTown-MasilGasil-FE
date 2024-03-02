@@ -25,7 +25,9 @@ const WalkList = ({ walkList }: WalkListProps) => {
           />
         </li>
       ))}
-      {walkList.length === 0 && <div>산책로가 존재하지 않습니다.</div>}
+      {walkList.length === 0 && (
+        <S.NoWalkRecordMessage>산책 기록이 존재하지 않습니다.</S.NoWalkRecordMessage>
+      )}
     </S.WalkListContainer>
   );
 };
