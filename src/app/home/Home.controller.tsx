@@ -7,7 +7,6 @@ import convertLatLonToTM from "./utils/convertLatLonToTM";
 import useHomeModel from "./Home.model";
 import HomeView from "./Home.view";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
-import { NotificationActive, NotificationOff } from "@/components/icons";
 import Notification from "./components/Notification/Notification";
 
 const HomeController = () => {
