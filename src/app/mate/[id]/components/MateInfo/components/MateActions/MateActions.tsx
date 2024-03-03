@@ -16,7 +16,7 @@ const MateActions = () => {
   const isPending = false;
 
   const isInvited = true;
-  const isAuthorAndTimeOver = true;
+  const isAuthorAndTimeOver = false;
 
   const isCompleted = false;
   const isRecording = false;

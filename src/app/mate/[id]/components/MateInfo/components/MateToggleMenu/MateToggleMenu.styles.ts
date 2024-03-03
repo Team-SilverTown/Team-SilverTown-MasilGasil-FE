@@ -20,7 +20,7 @@ export const MateToggleMenuLayout = styled(motion.div)`
   height: 10.6rem;
 
   position: absolute;
-  right: 0;
+  right: 0.6rem;
   bottom: -12rem;
 
   z-index: ${Z_INDEX.MATE_TOGGLE_MENU};
