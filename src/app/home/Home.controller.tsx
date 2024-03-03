@@ -8,6 +8,7 @@ import useHomeModel from "./Home.model";
 import HomeView from "./Home.view";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { NotificationActive, NotificationOff } from "@/components/icons";
+import Notification from "./components/Notification/Notification";
 
 const HomeController = () => {
   const { isNotification } = useHomeModel();
@@ -63,7 +64,7 @@ const HomeController = () => {
 
   return (
     <>
-      <TopNavigator rightChildren={isNotification ? <NotificationActive /> : <NotificationOff />} />
+      <TopNavigator rightChildren={<Notification isNotification={isNotification} />} />
       <HomeView
         temperature={temperature}
         weather={weather}
