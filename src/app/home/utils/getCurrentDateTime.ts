@@ -5,7 +5,7 @@ const getCurrentDateTime = () => {
   const month = (now.getMonth() + 1).toString().padStart(2, "0");
   const day = now.getDate().toString().padStart(2, "0");
   let hours: number | string = now.getHours();
-  const minutes = "30";
+  let minutes = "30";
 
   if (now.getMinutes() < 30) {
     hours -= 1;
@@ -13,6 +13,7 @@ const getCurrentDateTime = () => {
 
   if (hours < 0) {
     hours = "00";
+    minutes = "00";
   } else {
     hours = hours.toString().padStart(2, "0");
   }
