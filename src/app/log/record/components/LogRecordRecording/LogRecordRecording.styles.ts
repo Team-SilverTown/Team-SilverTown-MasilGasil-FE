@@ -38,7 +38,7 @@ export const LogRecordInfoContainer = styled.div`
 
 export const LogRecordInfo = styled.p`
   width: calc(50% - 0.8rem);
-  height: 6rem;
+  height: 5rem;
 
   display: flex;
   align-items: center;
@@ -48,11 +48,11 @@ export const LogRecordInfo = styled.p`
   background-color: ${({ theme }) => theme.green_100};
   border-radius: 0.8rem;
 
-  font-size: ${FONT_SIZE.H6};
+  font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
-export const LogRecordInfoUnit = styled.p`
+export const LogRecordInfoUnit = styled.span`
   color: ${({ theme }) => theme.gray_500};
   font-size: ${FONT_SIZE.MEDIUM};
   font-weight: ${FONT_WEIGHT.BOLD};

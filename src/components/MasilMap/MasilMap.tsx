@@ -38,6 +38,8 @@ interface MasilMapProps {
   pinSelectColor?: string;
   pinFontColor?: string;
   selectedPinIndex?: number;
+
+  isResizing?: boolean;
 }
 
 /**
@@ -96,6 +98,8 @@ const MasilMap = ({
   pinSelectColor,
   pinFontColor,
   selectedPinIndex,
+
+  isResizing,
 }: MasilMapProps) => {
   const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
   const { isOutCenter, setIsOutCenter } = useMapCenterStore();
@@ -139,7 +143,7 @@ const MasilMap = ({
     if (current) {
       current.relayout();
     }
-  }, [mapHeight, mapWidth]);
+  }, [mapHeight, mapWidth, isResizing]);
 
   return (
     <Map
@@ -165,7 +169,6 @@ const MasilMap = ({
           fill={centerMarkerFill}
         />
       )}
-
       {path.length !== 0 && (
         <PathLine
           path={path}

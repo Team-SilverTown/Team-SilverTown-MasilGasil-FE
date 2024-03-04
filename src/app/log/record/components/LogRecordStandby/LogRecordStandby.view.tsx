@@ -1,5 +1,5 @@
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import * as S from "./LogRecordStandby.Styles";
+import * as S from "./LogRecordStandby.styles";
 import { Button } from "@/components";
 
 interface LogRecordStandbyViewProps {

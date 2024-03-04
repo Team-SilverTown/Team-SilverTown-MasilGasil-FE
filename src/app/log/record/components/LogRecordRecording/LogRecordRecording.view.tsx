@@ -25,22 +25,18 @@ const LogRecordRecordingView = ({
       <S.LogRecordActionContainer>
         <S.LogRecordInfoContainer>
           <S.LogRecordInfo>
-            {hour !== "00" ? (
+            {hour !== "00" && (
               <>
                 {hour}
                 <S.LogRecordInfoUnit>시</S.LogRecordInfoUnit>
               </>
-            ) : (
-              ""
             )}
 
-            {min !== "00" ? (
+            {min !== "00" && (
               <>
                 {min}
                 <S.LogRecordInfoUnit>분</S.LogRecordInfoUnit>
               </>
-            ) : (
-              ""
             )}
 
             {sec}
@@ -57,7 +53,7 @@ const LogRecordRecordingView = ({
           buttonColor={Theme.lightTheme.green_500}
           variant="neumorp"
           textColor={Theme.lightTheme.white}
-          style={{ fontWeight: FONT_WEIGHT.BOLD, fontSize: FONT_SIZE.H5, height: "6rem" }}
+          style={{ fontWeight: FONT_WEIGHT.BOLD, fontSize: FONT_SIZE.LARGE }}
           width={"100%"}
           onClickHandler={handleClickCompleteRecord}
         >
