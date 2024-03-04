@@ -1,6 +1,7 @@
-import { UseFormRegister } from "react-hook-form";
 import * as GS from "../../UserEdit.styles";
 import * as S from "./EditSex.styles";
+
+import { UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
 import { InputRadio } from "@/components";
 
@@ -16,7 +17,7 @@ const EditSex = ({ register, selectedSex }: EditAgeProps) => {
   ];
 
   return (
-    <S.EditSexContainer>
+    <GS.UserEditSectionContainer>
       <GS.UserEditTitle>성별</GS.UserEditTitle>
 
       <S.EditSexActions>
@@ -26,11 +27,11 @@ const EditSex = ({ register, selectedSex }: EditAgeProps) => {
             value={value}
             text={text}
             isSelected={selectedSex === value}
-            register={register("sex", { required: "성별의 입력은 필수" })}
+            register={register("sex")}
           />
         ))}
       </S.EditSexActions>
-    </S.EditSexContainer>
+    </GS.UserEditSectionContainer>
   );
 };
 

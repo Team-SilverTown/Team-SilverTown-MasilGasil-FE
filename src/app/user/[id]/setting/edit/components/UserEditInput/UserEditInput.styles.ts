@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const EditNicknameActions = styled.div`
+export const InputActions = styled.div`
   display: flex;
   gap: 1rem;
 `;
