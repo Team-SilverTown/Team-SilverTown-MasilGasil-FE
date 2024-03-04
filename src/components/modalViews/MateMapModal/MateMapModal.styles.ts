@@ -23,9 +23,9 @@ export const LocationAddress = styled.p`
   margin-bottom: 2rem;
 
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 
-  font-size: ${FONT_SIZE.MEDIUM};
+  font-size: ${FONT_SIZE.BASIC};
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
   color: ${({ theme }) => theme.gray_500};
 `;
