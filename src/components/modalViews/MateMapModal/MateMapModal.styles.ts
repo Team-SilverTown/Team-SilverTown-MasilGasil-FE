@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MapModalLayout = styled.section`
-  min-width: 26rem;
+  min-width: 27rem;
 `;
 
 export const MapWrapper = styled.article`

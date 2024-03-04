@@ -23,7 +23,9 @@ const MateToggleMenu = ({ postId }: MateToggleMenuProps) => {
     console.log("수정 클릭");
 
     setModalView("MATE_CREATE_MAP_VIEW");
-    openModal();
+    openModal({
+      baseLocation: { lat: 37.497, lng: 127.0254 },
+    });
   };
 
   const handleClickRemove = (e: MouseEvent<HTMLLIElement>) => {
