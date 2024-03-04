@@ -15,7 +15,7 @@ export interface SearchProps {
 }
 
 const ExploreController = () => {
-  const { location, setLocation } = useExploreModel();
+  const { locationData, setLocationData } = useExploreModel();
 
   const { register, handleSubmit, watch, setValue, setFocus } = useForm<SearchProps>({
     mode: "onChange",
@@ -49,8 +49,8 @@ const ExploreController = () => {
         rightSectionStyle={{ width: "calc(100%)" }}
       />
       <ExploreView>
-        <MapSection setLocation={setLocation} />
-        <BottomSheetSection location={location} />
+        <MapSection setLocationData={setLocationData} />
+        <BottomSheetSection locationData={locationData} />
       </ExploreView>
     </>
   );

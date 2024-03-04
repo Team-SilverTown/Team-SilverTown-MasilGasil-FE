@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const useExploreModel = () => {
-  const [location, setLocation] = useState<{
+  const [locationData, setLocationData] = useState<{
     depth1: string;
     depth2: string;
     depth3: string;
@@ -11,8 +11,8 @@ const useExploreModel = () => {
   } | null>(null);
 
   return {
-    location,
-    setLocation,
+    locationData,
+    setLocationData,
   };
 };
 

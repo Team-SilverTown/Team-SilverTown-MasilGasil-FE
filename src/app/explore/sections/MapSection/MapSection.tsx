@@ -20,7 +20,7 @@ declare global {
 }
 
 interface MapSectionProps {
-  setLocation: Dispatch<
+  setLocationData: Dispatch<
     SetStateAction<{
       depth1: string;
       depth2: string;
@@ -30,7 +30,7 @@ interface MapSectionProps {
   >;
 }
 
-const MapSection = ({ setLocation }: MapSectionProps) => {
+const MapSection = ({ setLocationData }: MapSectionProps) => {
   const mapRef = useRef<kakao.maps.Map | null>(null);
 
   const { openModal, setModalView } = useUI();
@@ -83,7 +83,7 @@ const MapSection = ({ setLocation }: MapSectionProps) => {
       const { region_1depth_name, region_2depth_name, region_3depth_name, region_4depth_name } =
         result[0];
 
-      setLocation(() => ({
+      setLocationData(() => ({
         depth1: region_1depth_name,
         depth2: region_2depth_name,
         depth3: region_3depth_name,
