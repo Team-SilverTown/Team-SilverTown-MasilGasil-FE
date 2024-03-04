@@ -31,15 +31,9 @@ export const UserEditTitle = styled.h6`
 
 export const UserEditWarning = styled.div`
   width: 100%;
-  min-height: 2.4rem;
+  min-height: 2.8rem;
   padding-left: 0.6rem;
 
   display: flex;
   align-items: center;
-
-  white-space: nowrap;
-
-  overflow: scroll;
-
-  ${DISPLAY_NONE_SCROLLBAR}
 `;
