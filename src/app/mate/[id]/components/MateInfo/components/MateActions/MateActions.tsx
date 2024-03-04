@@ -139,7 +139,7 @@ const createButton = ({ theme, text, onClick, disabled, isSecondButton }: Create
       rippleColor={theme.text_secondary_color + 50}
       style={{
         whiteSpace: "nowrap",
-        fontSize: FONT_SIZE.H5,
+        fontSize: FONT_SIZE.H6,
         fontWeight: FONT_WEIGHT.SEMIBOLD,
         userSelect: "none",
       }}

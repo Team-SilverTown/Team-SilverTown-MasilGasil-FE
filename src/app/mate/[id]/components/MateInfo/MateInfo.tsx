@@ -23,7 +23,7 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
   } = mateData;
 
   return (
-    <article className={`${GS.MateInformationContainer} flex flex-col gap-12`}>
+    <article className={`${GS.MateInformationContainer} py-4 flex flex-col gap-12`}>
       <div className="w-full flex items-center gap-6">
         <Avatar
           size="sm"
@@ -33,7 +33,7 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
         <MateToggleMenu postId={postId} />
       </div>
 
-      <p className="w-full text-medium font-medium leading-snug ">{content}</p>
+      <p className="w-full text-medium font-medium leading-normal">{content}</p>
 
       <ul className={style.mate_info__list}>
         <li className={style.mate_info__item}>
