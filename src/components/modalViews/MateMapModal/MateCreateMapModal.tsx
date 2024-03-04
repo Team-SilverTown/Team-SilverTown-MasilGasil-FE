@@ -34,6 +34,14 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
   });
   const { errors } = formState;
 
+  /**
+   * @function handleChangeCenter
+   *
+   * @param target Map의 onCenterChange 이벤트를 통해실행될 경우 해당 param에서 위치를 얻어냄
+   * @param mouseEvent Map의 onClick 이벤트가 동작했을 경우에만 해당 param에서 위치를 얻어냄
+   *
+   * @summary 하나의 handle가 onChange onCenterChange 두개의 이벤트를 동시에 처리할 수 있도록 구현하였습니다.
+   */
   const handleChangeCenter = (target: kakao.maps.Map, mouseEvent?: kakao.maps.event.MouseEvent) => {
     if (mouseEvent) {
       const { latLng } = mouseEvent;
@@ -50,6 +58,13 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
     updateAddress(newPosition);
   };
 
+  /**
+   * @function updateAddress
+   *
+   * @summary 현재 center를 기준으로 현 위치의 주소를 반환합니다.
+   *
+   * 과도한 호출을 방지하기위해 0.5초의 debounce를 사용
+   */
   const updateAddress = useRef(
     debounce(({ lat, lng }: GeoPosition) => {
       const goe = new kakao.maps.services.Geocoder();
