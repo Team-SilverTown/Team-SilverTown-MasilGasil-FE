@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LogRecordView from "./LogRecord.view";
 import { LOG_RECORD_MESSAGE } from "./LogRecord.constants";
 import useLogRecordContext from "./context/LogRecordContext";
 import { useUI } from "@/components/uiContext/UiContext";
-import useMapCenterStore from "@/components/MasilMap/store/useMapCenterStore";
+
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { useRouter } from "next/navigation";
+import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 
 const LogRecordModel = () => {
-const [isMapResizing, setIsMapResizing] = useState(false);
   const {
     logData,
     pageStep,
@@ -28,7 +28,7 @@ const [isMapResizing, setIsMapResizing] = useState(false);
   const { userLocation } = useUserLocationStore();
 
   const { closeModal, setModalView, openModal } = useUI();
-  const { setIsOutCenter } = useMapCenterStore();
+  const { setIsOutCenter, setIsActiveMapResizing } = useMasilMapStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const [isMapResizing, setIsMapResizing] = useState(false);
     openModal({
       onClickAccept: () => {
         setIsActiveExitAnimation(true);
-
+        // setIsActiveMapResizing(true);
         setPageStep("LOG_RECORD_STANDBY");
         initData();
         closeModal();
@@ -69,8 +69,7 @@ const [isMapResizing, setIsMapResizing] = useState(false);
       currentPinIndex={currentPinIndex}
       isActiveExitAnimation={isActiveExitAnimation}
       setIsActiveExitAnimation={setIsActiveExitAnimation}
-      isMapResizing={isMapResizing}
-      setIsMapResizing={setIsMapResizing}
+      setIsActiveMapResizing={setIsActiveMapResizing}
       onCreatePathLine={updateDistance}
       onClickPin={clickPin}
       handleClickCreatePin={createPin}

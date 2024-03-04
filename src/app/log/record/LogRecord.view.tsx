@@ -22,8 +22,7 @@ interface LogRecordViewProps {
   isActiveExitAnimation: boolean;
   setIsActiveExitAnimation: SetIsActiveExitAnimation;
 
-  isMapResizing: boolean;
-  setIsMapResizing: SetIsMapResizing;
+  setIsActiveMapResizing: (newState: boolean) => void;
 
   onCreatePathLine: OnCreatePathLine;
   onClickPin: OnClickPin;
@@ -42,8 +41,7 @@ const LogRecordView = ({
   isActiveExitAnimation,
   setIsActiveExitAnimation,
 
-  isMapResizing,
-  setIsMapResizing,
+  setIsActiveMapResizing,
 
   onCreatePathLine,
   onClickPin,
@@ -67,7 +65,7 @@ const LogRecordView = ({
           pageStep === "LOG_RECORD_EDITING" && !isActiveExitAnimation ? "editing" : "initial"
         }
         variants={mapAnimation}
-        onAnimationComplete={() => setIsMapResizing(true)}
+        onAnimationComplete={() => setIsActiveMapResizing(true)}
       >
         <MasilMap
           center={userLocation}
@@ -77,9 +75,14 @@ const LogRecordView = ({
           isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
           onClickPin={onClickPin}
           selectedPinIndex={currentPinIndex}
-          isResizing={isMapResizing}
         />
       </S.LogRecordMapContainer>
+
+      {/* <AnimatePresence
+          onExitComplete={() => {
+            setIsActiveExitAnimation(false);
+          }}
+        > */}
 
       <AnimatePresence
         onExitComplete={() => {
@@ -87,37 +90,38 @@ const LogRecordView = ({
         }}
       >
         {!isActiveExitAnimation && (
-          <S.LogRecordStepLayout
-            $pageStep={pageStep}
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-          >
-            <S.LogRecordActions $pageStep={pageStep}>
-              {pageStep === "LOG_RECORD_RECORDING" && (
+          <>
+            <S.LogRecordStepLayout
+              $pageStep={pageStep}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+            >
+              <S.LogRecordActions $pageStep={pageStep}>
+                {pageStep === "LOG_RECORD_RECORDING" && (
+                  <Button
+                    variant="neumorp"
+                    onClickHandler={handleClickCreatePin}
+                  >
+                    <Pin />
+                  </Button>
+                )}
+
                 <Button
                   variant="neumorp"
-                  onClickHandler={handleClickCreatePin}
+                  onClickHandler={handleOffIsOutCenter}
                 >
-                  <Pin />
+                  <Center />
                 </Button>
-              )}
+              </S.LogRecordActions>
 
-              <Button
-                variant="neumorp"
-                onClickHandler={handleOffIsOutCenter}
-              >
-                <Center />
-              </Button>
-            </S.LogRecordActions>
+              {pageStep === "LOG_RECORD_STANDBY" && <LogRecordStandby />}
 
-            {pageStep === "LOG_RECORD_STANDBY" && <LogRecordStandby />}
-
-            {pageStep === "LOG_RECORD_RECORDING" && <LogRecordRecording />}
-          </S.LogRecordStepLayout>
+              {pageStep === "LOG_RECORD_RECORDING" && <LogRecordRecording />}
+            </S.LogRecordStepLayout>
+            {pageStep === "LOG_RECORD_EDITING" && <LogRecordEdit />}
+          </>
         )}
-
-        {!isActiveExitAnimation && pageStep === "LOG_RECORD_EDITING" && <LogRecordEdit />}
       </AnimatePresence>
     </S.LogRecordLayout>
   );
