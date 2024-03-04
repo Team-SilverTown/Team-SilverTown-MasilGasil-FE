@@ -6,11 +6,11 @@ export const MateCreateMapDetail = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 `;
 
 export const MateCreateMapTitle = styled.h6`
   margin-left: 0.4rem;
+  margin-bottom: 1rem;
 
   font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.BOLD};
@@ -19,6 +19,8 @@ export const MateCreateMapTitle = styled.h6`
 export const MateCreateWarningMessage = styled.p`
   width: 100%;
   height: 2.4rem;
+  margin-bottom: 2rem;
 
-  border: 1px solid red;
+  display: flex;
+  align-items: center;
 `;
