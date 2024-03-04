@@ -5,3 +5,8 @@ export const INTENSITY_OPTIONS = [
   { label: "활동적(일주일에 6-7일 격렬한 운동/스포츠)", value: "HIGH" },
   { label: "매우 활독적인 경우 (매우 힘든 운동/스포츠 및 육체 노동)", value: "SUPER_HIGH" },
 ];
+
+export const SEX_OPTIONS = [
+  { text: "남성", value: "male" },
+  { text: "여성", value: "female" },
+];
