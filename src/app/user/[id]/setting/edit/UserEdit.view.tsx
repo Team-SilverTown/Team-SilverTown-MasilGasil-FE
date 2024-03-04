@@ -2,12 +2,13 @@ import * as GS from "@/styles/GlobalStyle";
 import * as S from "./UserEdit.styles";
 
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
-import { IntensityType, UserEditData } from "./UserEdit.types";
+import { UserEditData } from "./UserEdit.types";
 
 import { EditSex, EditNickname, EditBirthDay, EditBodyInfo, EditIntensity } from "./components";
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { IntensityOption } from "@/types/OriginDataType";
 
 interface UserEditViewProps {
   register: UseFormRegister<UserEditData>;
@@ -18,7 +19,7 @@ interface UserEditViewProps {
   onInValid: (error: FieldErrors) => void;
 
   selectedSex: string;
-  selectedIntensity: IntensityType;
+  selectedIntensity: IntensityOption;
   isCheckedNickname: boolean;
   onCheckSameNickname: () => void;
 }

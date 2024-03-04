@@ -1,4 +1,4 @@
-import { SexOption } from "@/types/OriginDataType/SexOption";
+import { SexOption } from "@/types/OriginDataType/";
 
 export const INTENSITY_OPTIONS = [
   { label: "좌식", value: "SUPER_LOW" },

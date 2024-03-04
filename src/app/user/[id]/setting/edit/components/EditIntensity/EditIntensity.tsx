@@ -3,12 +3,13 @@ import * as GS from "../../UserEdit.styles";
 import * as S from "./EditIntensity.styles";
 import useTheme from "@/lib/hooks/useTheme";
 import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
-import { IntensityType, UserEditData } from "../../UserEdit.types";
+import { UserEditData } from "../../UserEdit.types";
 import { INTENSITY_OPTIONS } from "@/constants/variable";
+import { IntensityOption } from "@/types/OriginDataType";
 
 interface EditIntensityProps {
   register: UseFormRegister<UserEditData>;
-  selectedIntensity: IntensityType;
+  selectedIntensity: IntensityOption;
 }
 
 const EditIntensity = ({ register, selectedIntensity }: EditIntensityProps) => {
