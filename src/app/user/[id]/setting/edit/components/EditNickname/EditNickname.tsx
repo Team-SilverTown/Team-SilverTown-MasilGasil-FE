@@ -27,10 +27,6 @@ const EditNickname = ({
 }: EditNicknameProps) => {
   const theme = useTheme();
 
-  if (!theme) {
-    return;
-  }
-
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onCheckSameNickname();
@@ -55,10 +51,10 @@ const EditNickname = ({
 
         <Button
           width={"16rem"}
-          buttonColor={theme.green_500}
-          textColor={theme.text_secondary_color}
+          buttonColor={theme?.green_500}
+          textColor={theme?.text_secondary_color}
           useRipple
-          rippleColor={theme.text_secondary_color + 50}
+          rippleColor={theme?.text_secondary_color + 50}
           style={{
             whiteSpace: "nowrap",
             fontSize: FONT_SIZE.H5,
