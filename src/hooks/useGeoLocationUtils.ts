@@ -2,7 +2,7 @@ import { useUI } from "@/components/uiContext/UiContext";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { throttle } from "lodash";
 import { useRef } from "react";
-import { LOG_RECORD_MESSAGE } from "../LogRecord.constants";
+import { LOG_RECORD_MESSAGE } from "../app/log/record/LogRecord.constants";
 import { useRouter } from "next/navigation";
 
 const useGeoLocationUtils = () => {

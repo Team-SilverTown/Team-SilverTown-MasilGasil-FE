@@ -3,7 +3,7 @@ import LogRecordStandbyView from "./LogRecordStandby.view";
 import { useUI } from "@/components/uiContext/UiContext";
 
 import useLogRecordContext from "../../context/LogRecordContext";
-import useGeoLocationUtils from "../../hooks/useGeoLocationUtils";
+import useGeoLocationUtils from "../../../../../hooks/useGeoLocationUtils";
 
 const LogRecordStandbyModel = () => {
   const { onErrorWatch, updateUserLocation } = useGeoLocationUtils();

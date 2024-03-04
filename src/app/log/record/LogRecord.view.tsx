@@ -1,6 +1,6 @@
 import * as S from "./LogRecord.styles";
 
-import { LogPageStep, SetIsActiveExitAnimation, SetIsMapResizing } from "./LogRecord.types";
+import { LogPageStep, SetIsActiveExitAnimation } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
 import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
@@ -77,12 +77,6 @@ const LogRecordView = ({
           selectedPinIndex={currentPinIndex}
         />
       </S.LogRecordMapContainer>
-
-      {/* <AnimatePresence
-          onExitComplete={() => {
-            setIsActiveExitAnimation(false);
-          }}
-        > */}
 
       <AnimatePresence
         onExitComplete={() => {

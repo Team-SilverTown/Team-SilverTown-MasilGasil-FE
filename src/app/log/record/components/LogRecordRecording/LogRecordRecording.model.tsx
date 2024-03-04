@@ -5,7 +5,7 @@ import { useUI } from "@/components/uiContext/UiContext";
 
 import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
 import useLogRecordContext from "../../context/LogRecordContext";
-import useGeoLocationUtils from "../../hooks/useGeoLocationUtils";
+import useGeoLocationUtils from "../../../../../hooks/useGeoLocationUtils";
 
 const LogRecordRecordingModel = () => {
   const { openModal, setModalView, closeModal } = useUI();
