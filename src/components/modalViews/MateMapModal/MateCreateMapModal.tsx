@@ -5,7 +5,7 @@ import * as GS from "./MateMapModal.styles";
 import * as S from "./MateCreateMapModal.styles";
 
 import { ModalLayout } from "@/components/Modal";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
 import CustomPin from "@/components/MasilMap/components/CustomPin/CustomPin";
 import { Button, Input, InputLabel } from "@/components";
@@ -103,15 +103,20 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
     });
   };
 
+  useEffect(() => {
+    updateAddress(center);
+  }, []);
+
   return (
     <ModalLayout
       style={{
         paddingRight: "1rem",
         paddingLeft: "1rem",
         paddingBottom: "2rem",
-        paddingTop: "4.6rem",
+        paddingTop: "4rem",
       }}
     >
+      <S.MateCreateMapAlert>모임 장소를 지도에서 선택해 주세요.</S.MateCreateMapAlert>
       <GS.MapModalLayout>
         <GS.MapWrapper>
           <Map
@@ -136,7 +141,7 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
         </GS.LocationAddress>
 
         <S.MateCreateMapDetail>
-          <S.MateCreateMapTitle>장소 추가정보 입력</S.MateCreateMapTitle>
+          <S.MateCreateMapTitle>모임장소 상세정보 입력</S.MateCreateMapTitle>
           <Input
             type="text"
             placeholder="장소에대한 추가정보를 입력해주세요!"
