@@ -83,7 +83,7 @@ export const RadioCircle = styled.label`
   cursor: "pointer";
 `;
 
-export const PolicyLable = styled.label`
+export const PolicyLabel = styled.label`
   margin-left: 1rem;
   cursor: pointer;
 `;
