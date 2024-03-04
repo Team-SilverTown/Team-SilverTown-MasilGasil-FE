@@ -9,13 +9,14 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { Tab } from "@/components";
 import { Calendar } from "@/components/ShadcnUi/ui/calendar";
+import MonthlyStatistics from "./components/MonthlyStatistics";
 
 const MasilDiaryView = () => {
-  const { currentTabIdx, setCurrentTabIdx } = useMasilDiaryController();
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const { currentTabIdx, setCurrentTabIdx, date, setDate } = useMasilDiaryController();
 
-  const bookedDays = [new Date(2024, 2, 4), new Date(2024, 2, 9)];
-  const bookedStyle = { backgroundColor: "green", color: "white", borderRadius: "50%" };
+  // TODO: 산책기록이 존재하는 날짜의 스타일 처리
+  const bookedDays = [new Date(2024, 2, 6), new Date(2024, 2, 9)];
+  const bookedStyle = { backgroundColor: "#B9DB56", color: "white", borderRadius: "50%" };
 
   return (
     <>
@@ -33,15 +34,17 @@ const MasilDiaryView = () => {
         />
         {currentTabIdx === 0 && (
           <>
-            cal
             <Calendar
               mode="single"
+              onMonthChange={setDate}
               selected={date}
               onSelect={setDate}
               className="rounded-md"
               modifiers={{ booked: bookedDays }}
               modifiersStyles={{ booked: bookedStyle }}
             />
+
+            <MonthlyStatistics month={date?.getMonth()} />
           </>
         )}
         {currentTabIdx === 1 && <>list</>}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useMasilDiaryController = () => {
   /**
@@ -10,6 +10,11 @@ const useMasilDiaryController = () => {
    */
 
   const [currentTabIdx, setCurrentTabIdx] = useState(0);
+  const [date, setDate] = useState<Date | undefined>(new Date());
+
+  useEffect(() => {
+    console.log(date);
+  }, [date]);
 
   /**
    * @func1 탭 클릭 시 상태 변경 (calender, list)
@@ -17,7 +22,7 @@ const useMasilDiaryController = () => {
    * @func3 캘린더 일자 클릭 시 해당 일자의 산책 기록을 담은 바텀시트 출력
    * @func4 각 산책 기록을 클릭하면 해당 산책 기록 id의 logDetail 페이지로 이동
    */
-  return { currentTabIdx, setCurrentTabIdx };
+  return { currentTabIdx, setCurrentTabIdx, date, setDate };
 };
 
 export default useMasilDiaryController;
