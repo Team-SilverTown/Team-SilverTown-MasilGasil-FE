@@ -13,5 +13,15 @@ export interface UserEvaluationType {
 
 export interface MatePost {
   authorNickname: string;
+  authorThumbnailUrl: string;
+
+  content: string;
+
+  mateTime: string;
+  mateLocation: string;
+
+  recruitedUser: number;
+  recruitingUser: number;
+
   members: MateMemberType[];
 }

@@ -13,6 +13,8 @@ export const MateDetailLayout = `
 export const MateInformationContainer = `
   w-full 
 
+  relative
+
   select-none
 `;
 
