@@ -7,6 +7,7 @@ import EditPencil from "@/components/icons/EditPencil";
 import useToggle from "@/hooks/useToggle";
 import { AnimatePresence } from "framer-motion";
 import { MouseEvent } from "react";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface MateToggleMenuProps {
   postId: string;
@@ -14,11 +15,15 @@ interface MateToggleMenuProps {
 
 const MateToggleMenu = ({ postId }: MateToggleMenuProps) => {
   const { isToggle, handleToggle, toggleRef } = useToggle();
+  const { setModalView, openModal } = useUI();
 
   const handleClickEdit = (e: MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
 
     console.log("수정 클릭");
+
+    setModalView("MATE_CREATE_MAP_VIEW");
+    openModal();
   };
 
   const handleClickRemove = (e: MouseEvent<HTMLLIElement>) => {
