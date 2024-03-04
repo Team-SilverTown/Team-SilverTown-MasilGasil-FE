@@ -11,18 +11,18 @@ interface EditAgeProps {
   errors: FieldErrors<UserEditData>;
 }
 
-const EditBirthDay = ({ register, errors }: EditAgeProps) => {
+const EditBirthDate = ({ register, errors }: EditAgeProps) => {
   return (
     <GS.UserEditSectionContainer>
       <UserEditInput
         title={"나이"}
         inputType={"date"}
-        placeholder={USER_EDIT_PLACEHOLDER.BIRTHDAY}
-        register={register("birthDay", validation_user.birthDay)}
-        errorsMessage={errors.birthDay && errors.birthDay.message}
+        placeholder={USER_EDIT_PLACEHOLDER.BIRTH_DATE}
+        register={register("birthDate", validation_user.birthDate)}
+        errorsMessage={errors.birthDate && errors.birthDate.message}
       />
     </GS.UserEditSectionContainer>
   );
 };
 
-export default EditBirthDay;
+export default EditBirthDate;

@@ -8,7 +8,7 @@ interface UserEditParams {
 const FORM_DEFAULT_VALUE: UserEditData = {
   nickname: "임시값닉네임",
   sex: "female",
-  birthDay: "1994-12-26",
+  birthDate: "1994-12-26",
   height: 182,
   weight: 150,
   intensity: "",

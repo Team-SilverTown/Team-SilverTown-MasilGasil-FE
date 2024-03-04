@@ -4,7 +4,7 @@ import * as S from "./UserEdit.styles";
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "./UserEdit.types";
 
-import { EditSex, EditNickname, EditBirthDay, EditBodyInfo, EditIntensity } from "./components";
+import { EditSex, EditNickname, EditBirthDate, EditBodyInfo, EditIntensity } from "./components";
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
@@ -60,7 +60,7 @@ const UserEditView = ({
           selectedSex={selectedSex}
         />
 
-        <EditBirthDay
+        <EditBirthDate
           register={register}
           errors={errors}
         />

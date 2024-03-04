@@ -70,7 +70,7 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
   const birthDateInput = createInput({
     register,
     name: "birthDate",
-    validation: validation_user.birthDay,
+    validation: validation_user.birthDate,
     placeholder: "만 나이를 입력해주세요.",
   });
   const heightInput = createInput({
