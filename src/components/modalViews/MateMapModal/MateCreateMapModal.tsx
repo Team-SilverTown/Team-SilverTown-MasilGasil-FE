@@ -6,7 +6,7 @@ import * as S from "./MateCreateMapModal.styles";
 
 import { ModalLayout } from "@/components/Modal";
 import { useRef, useState } from "react";
-import { GeoPosition } from "@/types/OriginDataType";
+import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
 import CustomPin from "@/components/MasilMap/components/CustomPin/CustomPin";
 import { Button, Input, InputLabel } from "@/components";
 import { useForm } from "react-hook-form";
@@ -17,7 +17,7 @@ import { debounce } from "lodash";
 
 interface MateMapModalProps {
   baseLocation: GeoPosition;
-  onSubmit: () => void;
+  onSubmit: (placeInfo: MateGatheringPlace) => void;
 }
 
 interface ModalProp {
@@ -25,7 +25,7 @@ interface ModalProp {
 }
 
 const MateCreateMapModal = ({ props }: ModalProp) => {
-  const { baseLocation } = props;
+  const { baseLocation, onSubmit } = props;
   const [center, setCenter] = useState(baseLocation);
   const [address, setAddress] = useState("");
   const theme = useTheme();
@@ -64,15 +64,28 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
     }, 500),
   ).current;
 
+  /**
+   * @function onValid
+   *
+   * @summary form에서 에러가 없이 처리되었을때 수행되어집니다.
+   *
+   * 만약 detail input 필드에 사용자가 입력한 내용이 존재한다면 detail을, 없다면 address를 onSubmit으로 내보냅니다.
+   */
   const onValid = ({ detail }: { detail: string }) => {
     if (detail) {
       console.log(detail);
       console.log(center);
+      onSubmit({
+        point: center,
+        detail,
+      });
       return;
     }
 
-    console.log(address);
-    console.log(center);
+    onSubmit({
+      point: center,
+      detail: address,
+    });
   };
 
   return (

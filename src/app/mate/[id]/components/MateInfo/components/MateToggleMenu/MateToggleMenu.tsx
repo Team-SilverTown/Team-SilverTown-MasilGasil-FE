@@ -8,6 +8,7 @@ import useToggle from "@/hooks/useToggle";
 import { AnimatePresence } from "framer-motion";
 import { MouseEvent } from "react";
 import { useUI } from "@/components/uiContext/UiContext";
+import { MateGatheringPlace } from "@/types/OriginDataType";
 
 interface MateToggleMenuProps {
   postId: string;
@@ -25,6 +26,9 @@ const MateToggleMenu = ({ postId }: MateToggleMenuProps) => {
     setModalView("MATE_CREATE_MAP_VIEW");
     openModal({
       baseLocation: { lat: 37.497, lng: 127.0254 },
+      onSubmit: ({ detail, point }: MateGatheringPlace) => {
+        console.log(detail, point);
+      },
     });
   };
 
