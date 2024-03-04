@@ -9,8 +9,8 @@ interface TabProps {
   tabClickHandler: (index: number) => void;
   focusedTab: number;
   style?: CSSProperties;
-  width: string | number;
-  height: string | number;
+  width?: string | number;
+  height?: string | number;
 }
 
 const Tab = ({
