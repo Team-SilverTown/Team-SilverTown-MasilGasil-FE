@@ -24,7 +24,7 @@ const styles: { [key: string]: CSS.Properties } = {
   container: {
     zIndex: 2,
     position: 'absolute',
-    left: 0,
+    // left: 0,
     bottom: 0,
     width: '100%',
     backgroundColor: '#fff',
