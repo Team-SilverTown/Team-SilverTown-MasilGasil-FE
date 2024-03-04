@@ -17,6 +17,13 @@ export const UserEditLayout = styled(motion.form)`
 
 export const UserEditSectionContainer = styled.div`
   width: 100%;
+
+  overflow-y: scroll;
+  ${DISPLAY_NONE_SCROLLBAR}
+`;
+
+export const UserEditSectionContainer = styled.div`
+  width: 100%;
 `;
 
 export const UserEditTitle = styled.h6`

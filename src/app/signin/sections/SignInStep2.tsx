@@ -8,7 +8,6 @@ import useTheme from "@/lib/hooks/useTheme";
 import { Button, Input, InputLabel } from "@/components";
 import { SignInFormProps } from "../SignIn.controller";
 import useSignInModel from "../SignIn.model";
-// import { SEX_OPTIONS } from "../SignIn.constants";
 import * as S from "../SignIn.styles";
 import { validation_user } from "@/constants/userValidate";
 import { SEX_OPTIONS } from "@/constants/variable";
