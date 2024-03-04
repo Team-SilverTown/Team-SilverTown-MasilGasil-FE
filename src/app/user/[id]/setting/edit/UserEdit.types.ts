@@ -1,4 +1,4 @@
-export type IntensityType = "SUPER_LOW" | "LOW" | "MIDDLE" | "HIGH" | "SUPER_HIGH" | "";
+import { IntensityOption } from "@/types/OriginDataType";
 
 export interface UserEditData {
   nickname: string;
@@ -6,5 +6,5 @@ export interface UserEditData {
   birthDay: string;
   height: number;
   weight: number;
-  intensity: IntensityType;
+  intensity: IntensityOption;
 }

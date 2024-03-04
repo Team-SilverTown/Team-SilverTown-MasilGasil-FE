@@ -4,6 +4,7 @@ import * as S from "./EditSex.styles";
 import { UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
 import { InputRadio } from "@/components";
+import { SEX_OPTIONS } from "@/constants/variable";
 
 interface EditAgeProps {
   register: UseFormRegister<UserEditData>;
@@ -11,21 +12,16 @@ interface EditAgeProps {
 }
 
 const EditSex = ({ register, selectedSex }: EditAgeProps) => {
-  const options = [
-    { text: "남성", value: "male" },
-    { text: "여성", value: "female" },
-  ];
-
   return (
     <GS.UserEditSectionContainer>
       <GS.UserEditTitle>성별</GS.UserEditTitle>
 
       <S.EditSexActions>
-        {options.map(({ text, value }) => (
+        {SEX_OPTIONS.map(({ label, value }) => (
           <InputRadio
-            key={`${text}_${value}`}
+            key={`${label}_${value}`}
             value={value}
-            text={text}
+            text={label}
             isSelected={selectedSex === value}
             register={register("sex")}
           />

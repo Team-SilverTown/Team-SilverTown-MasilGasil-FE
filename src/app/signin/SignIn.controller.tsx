@@ -9,6 +9,7 @@ import { SignInStep1, SignInStep2, SignInStep3, SignInStep4 } from "./sections";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavigator/components";
 import { useRouter } from "next/navigation";
+import { IntensityOption } from "@/types/OriginDataType";
 
 export interface SignInFormProps {
   nickname: string;
@@ -16,7 +17,7 @@ export interface SignInFormProps {
   birthDate?: number;
   height?: number;
   weight?: number;
-  exerciseIntensity?: "SUPER_LOW" | "LOW" | "MIDDLE" | "HIGH" | "SUPER_HIGH";
+  exerciseIntensity?: IntensityOption;
   policy_personal: boolean;
   policy_location: boolean;
   policy_age: boolean;

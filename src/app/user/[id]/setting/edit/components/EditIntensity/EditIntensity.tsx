@@ -3,12 +3,13 @@ import * as GS from "../../UserEdit.styles";
 import * as S from "./EditIntensity.styles";
 import useTheme from "@/lib/hooks/useTheme";
 import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
-import { IntensityType, UserEditData } from "../../UserEdit.types";
+import { UserEditData } from "../../UserEdit.types";
 import { INTENSITY_OPTIONS } from "@/constants/variable";
+import { IntensityOption } from "@/types/OriginDataType";
 
 interface EditIntensityProps {
   register: UseFormRegister<UserEditData>;
-  selectedIntensity: IntensityType;
+  selectedIntensity: IntensityOption;
 }
 
 const EditIntensity = ({ register, selectedIntensity }: EditIntensityProps) => {
@@ -47,10 +48,6 @@ interface IntensityItemProps {
 const IntensityItem = ({ isSelected, value, optionDescription, register }: IntensityItemProps) => {
   const theme = useTheme();
 
-  if (!theme) {
-    return;
-  }
-
   return (
     <S.IntensityItemContainer>
       <input
@@ -64,7 +61,7 @@ const IntensityItem = ({ isSelected, value, optionDescription, register }: Inten
         <S.IntensityItemCircle $isSelected={isSelected}>
           <Check
             className={`w-6 h-6 mx-auto my-auto transition-colors`}
-            stroke={isSelected ? theme.white_100 : theme.gray_300}
+            stroke={isSelected ? theme?.white_100 : theme?.gray_300}
             strokeWidth={3.5}
           />
         </S.IntensityItemCircle>

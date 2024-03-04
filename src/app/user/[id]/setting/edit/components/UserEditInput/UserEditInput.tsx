@@ -3,7 +3,7 @@ import * as GS from "../../UserEdit.styles";
 
 import { UseFormRegisterReturn } from "react-hook-form";
 import { Input, InputLabel } from "@/components";
-import { FONT_WEIGHT } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 interface UserEditInputProps {
   title: string;
@@ -34,7 +34,7 @@ const UserEditInput = ({
           style={{
             lineHeight: "2rem",
             width: "100%",
-            fontSize: "1.5rem",
+            fontSize: FONT_SIZE.MEDIUM,
             fontWeight: FONT_WEIGHT.SEMIBOLD,
           }}
         />
