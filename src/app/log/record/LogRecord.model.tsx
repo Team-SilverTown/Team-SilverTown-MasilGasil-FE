@@ -8,7 +8,7 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import { useRouter } from "next/navigation";
 
 const LogRecordModel = () => {
-  const [isMapResizing, setIsMapResizing] = useState(false);
+const [isMapResizing, setIsMapResizing] = useState(false);
   const {
     logData,
     pageStep,
@@ -50,6 +50,8 @@ const LogRecordModel = () => {
     setModalView("LOG_RECORD_CONFIRM_VIEW");
     openModal({
       onClickAccept: () => {
+        setIsActiveExitAnimation(true);
+
         setPageStep("LOG_RECORD_STANDBY");
         initData();
         closeModal();
