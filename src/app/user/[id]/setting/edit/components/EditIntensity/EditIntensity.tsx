@@ -47,10 +47,6 @@ interface IntensityItemProps {
 const IntensityItem = ({ isSelected, value, optionDescription, register }: IntensityItemProps) => {
   const theme = useTheme();
 
-  if (!theme) {
-    return;
-  }
-
   return (
     <S.IntensityItemContainer>
       <input
@@ -64,7 +60,7 @@ const IntensityItem = ({ isSelected, value, optionDescription, register }: Inten
         <S.IntensityItemCircle $isSelected={isSelected}>
           <Check
             className={`w-6 h-6 mx-auto my-auto transition-colors`}
-            stroke={isSelected ? theme.white_100 : theme.gray_300}
+            stroke={isSelected ? theme?.white_100 : theme?.gray_300}
             strokeWidth={3.5}
           />
         </S.IntensityItemCircle>
