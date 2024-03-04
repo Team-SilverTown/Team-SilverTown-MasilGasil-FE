@@ -23,6 +23,7 @@ export const IntensityDescription = styled.p`
 
 export const IntensityOptionList = styled.ul`
   width: 100%;
+  margin-bottom: 2.8rem;
 
   display: flex;
   flex-direction: column;

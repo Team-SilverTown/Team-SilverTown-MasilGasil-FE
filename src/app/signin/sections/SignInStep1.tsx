@@ -5,6 +5,7 @@ import useTheme from "@/lib/hooks/useTheme";
 
 import { Button, Input, InputLabel } from "@/components";
 import { SignInFormProps } from "../SignIn.controller";
+import { validation_user } from "@/constants/userValidate";
 
 interface SignInStep1Props {
   register: UseFormRegister<SignInFormProps>;
@@ -20,13 +21,7 @@ const SignInStep1 = ({ register, errors }: SignInStep1Props) => {
         <div className="relative flex-1 space-y-2">
           <Input
             required
-            register={register("nickname", {
-              required: "NickName is required",
-              minLength: {
-                message: "NickName Should be longer then 2 chars",
-                value: 2,
-              },
-            })}
+            register={register("nickname", validation_user.nickname)}
             placeholder="닉네임을 입력해주세요."
             style={{
               fontSize: "1.5rem",

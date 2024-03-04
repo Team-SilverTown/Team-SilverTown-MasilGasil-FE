@@ -6,8 +6,8 @@ import { UserEditData } from "../../UserEdit.types";
 import { Button, Input, InputLabel } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { USER_EDIT_ERROR_MESSAGE, USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
-import { USER_VALIDATE } from "@/constants/userValidate";
+import { USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
+import { validation_user } from "@/constants/userValidate";
 import { MouseEvent } from "react";
 
 interface EditNicknameProps {
@@ -27,10 +27,6 @@ const EditNickname = ({
 }: EditNicknameProps) => {
   const theme = useTheme();
 
-  if (!theme) {
-    return;
-  }
-
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onCheckSameNickname();
@@ -43,17 +39,7 @@ const EditNickname = ({
       <S.EditNicknameActions>
         <Input
           type="text"
-          register={register("nickname", {
-            required: USER_EDIT_ERROR_MESSAGE.NICKNAME.REQUIRE,
-            minLength: {
-              message: USER_EDIT_ERROR_MESSAGE.NICKNAME.MIN_LENGTH,
-              value: USER_VALIDATE.NICKNAME.MIN_LENGTH,
-            },
-            maxLength: {
-              message: USER_EDIT_ERROR_MESSAGE.NICKNAME.MAX_LENGTH,
-              value: USER_VALIDATE.NICKNAME.MAX_LENGTH,
-            },
-          })}
+          register={register("nickname", validation_user.nickname)}
           placeholder={USER_EDIT_PLACEHOLDER.NICKNAME}
           style={{
             lineHeight: "2rem",
@@ -65,10 +51,10 @@ const EditNickname = ({
 
         <Button
           width={"16rem"}
-          buttonColor={theme.green_500}
-          textColor={theme.text_secondary_color}
+          buttonColor={theme?.green_500}
+          textColor={theme?.text_secondary_color}
           useRipple
-          rippleColor={theme.text_secondary_color + 50}
+          rippleColor={theme?.text_secondary_color + 50}
           style={{
             whiteSpace: "nowrap",
             fontSize: FONT_SIZE.H5,
