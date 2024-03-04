@@ -3,11 +3,11 @@
 import * as S from "./UserInfo.styles";
 import Image from "next/image";
 import userProfile from "@/assets/userProfile.svg";
+import Camera from "@/components/icons/Camera";
 
 interface UserInfoProfileProps {
   profileImage: string | null;
   profileName: string;
-  profileMessage: string;
   width?: number;
   height?: number;
 }
@@ -15,7 +15,6 @@ interface UserInfoProfileProps {
 const UserInfoProfile = ({
   profileImage,
   profileName,
-  profileMessage,
   width = 120,
   height = 120,
 }: UserInfoProfileProps) => {
@@ -31,10 +30,12 @@ const UserInfoProfile = ({
           width={width}
           height={height}
         />
+        <S.CameraIconLayout>
+          <Camera />
+        </S.CameraIconLayout>
       </S.UserInfoProfileImage>
       <S.UserInfoProfileText>
         <strong>{profileName}</strong>
-        <p>{profileMessage}</p>
       </S.UserInfoProfileText>
     </S.UserInfoProfile>
   );
