@@ -2,7 +2,7 @@ import * as GS from "@/styles/GlobalStyle";
 import * as S from "./UserEdit.styles";
 
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
-import { IntensityType, UserEditData } from "./UserEdit.types";
+import { UserEditData } from "./UserEdit.types";
 
 import { EditSex, EditNickname, EditBirthDay, EditBodyInfo, EditIntensity } from "./components";
 import { Button } from "@/components";
@@ -48,10 +48,6 @@ const UserEditView = ({
         initial={{ x: "-120%" }}
         animate={{ x: 0 }}
       >
-      <S.UserEditLayout
-        initial={{ x: "-120%" }}
-        animate={{ x: 0 }}
-      >
         <EditNickname
           register={register}
           errors={errors}
@@ -64,10 +60,6 @@ const UserEditView = ({
           selectedSex={selectedSex}
         />
 
-        <EditBirthDay
-          register={register}
-          errors={errors}
-        />
         <EditBirthDay
           register={register}
           errors={errors}
