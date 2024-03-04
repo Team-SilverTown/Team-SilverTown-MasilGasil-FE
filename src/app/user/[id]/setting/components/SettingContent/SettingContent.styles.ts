@@ -3,10 +3,16 @@ import styled from "styled-components";
 
 export const SettingContent = styled.div`
   width: 100%;
+  padding: 0.6rem;
 
   display: flex;
   align-items: center;
   gap: 1.4rem;
+
+  &:hover {
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 0.6rem;
+  }
 `;
 
 export const SettingLabel = styled.label`
@@ -28,7 +34,11 @@ export const SettingText = styled.p`
   line-height: 1.2;
 `;
 
-export const SettingIcon = styled.div`
-  width: 2.8rem;
-  height: 2.8rem;
+export const SettingIcon = styled.i`
+  width: 3rem;
+  height: 3rem;
+  padding: 2px;
+
+  border-radius: 4px;
+  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.1);
 `;
