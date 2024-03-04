@@ -114,16 +114,9 @@ const LogRecordView = ({
             {pageStep === "LOG_RECORD_STANDBY" && <LogRecordStandby />}
 
             {pageStep === "LOG_RECORD_RECORDING" && <LogRecordRecording />}
-
           </S.LogRecordStepLayout>
         )}
-      </AnimatePresence>
 
-      <AnimatePresence
-        onExitComplete={() => {
-          setIsActiveExitAnimation(false);
-        }}
-      >
         {!isActiveExitAnimation && pageStep === "LOG_RECORD_EDITING" && <LogRecordEdit />}
       </AnimatePresence>
     </S.LogRecordLayout>
