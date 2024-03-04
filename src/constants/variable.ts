@@ -6,7 +6,12 @@ export const INTENSITY_OPTIONS = [
   { label: "매우 활독적인 경우 (매우 힘든 운동/스포츠 및 육체 노동)", value: "SUPER_HIGH" },
 ];
 
-export const SEX_OPTIONS = [
-  { text: "남성", value: "male" },
-  { text: "여성", value: "female" },
+export interface SexOptionProps {
+  label: string;
+  value: "male" | "female";
+}
+
+export const SEX_OPTIONS: SexOptionProps[] = [
+  { label: "남성", value: "male" },
+  { label: "여성", value: "female" },
 ];

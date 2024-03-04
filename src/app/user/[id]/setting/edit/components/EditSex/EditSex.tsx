@@ -17,11 +17,11 @@ const EditSex = ({ register, selectedSex }: EditAgeProps) => {
       <GS.UserEditTitle>성별</GS.UserEditTitle>
 
       <S.EditSexActions>
-        {SEX_OPTIONS.map(({ text, value }) => (
+        {SEX_OPTIONS.map(({ label, value }) => (
           <InputRadio
-            key={`${text}_${value}`}
+            key={`${label}_${value}`}
             value={value}
-            text={text}
+            text={label}
             isSelected={selectedSex === value}
             register={register("sex")}
           />
