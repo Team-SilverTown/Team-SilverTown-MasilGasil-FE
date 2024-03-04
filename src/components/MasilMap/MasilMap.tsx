@@ -12,8 +12,8 @@ import useMapCenterStore from "./store/useMapCenterStore";
 
 interface MasilMapProps {
   center: GeoPosition;
-  path: GeoPosition[];
-  pins: Pin[];
+  path?: GeoPosition[];
+  pins?: Pin[];
 
   mapWidth?: string;
   mapHeight?: string;
@@ -32,7 +32,7 @@ interface MasilMapProps {
   pathOpacity?: number;
   pathWeight?: PathLineWeight;
 
-  onClickPin: OnClickPin;
+  onClickPin?: OnClickPin;
   pinSize?: number;
   pinColor?: string;
   pinSelectColor?: string;
@@ -165,7 +165,7 @@ const MasilMap = ({
         />
       )}
 
-      {path.length !== 0 && (
+      {path && path.length !== 0 && (
         <PathLine
           path={path}
           onCreatePathLine={onCreatePathLine}
@@ -175,14 +175,15 @@ const MasilMap = ({
         />
       )}
 
-      {pins.length !== 0 &&
+      {pins &&
+        pins.length !== 0 &&
         pins.map(({ point }, index) => (
           <CustomPin
             key={`${point.lat}${point.lng}${index}`}
             position={point}
             size={pinSize}
             onClickPin={() => {
-              onClickPin(index);
+              onClickPin && onClickPin(index);
             }}
             pinIndex={index + 1}
             pinColor={
