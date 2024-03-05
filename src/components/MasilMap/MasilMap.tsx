@@ -70,6 +70,9 @@ interface MasilMapProps {
  * @param pinSelectColor 선택된 핀의 색상을 변경 - type : string
  * @param pinFontColor 핀 내부 폰트의 색상을 변경 - type : string
  * @param selectedPinIndex 현재 선택된 핀의 index 번호 - type : number
+ *
+ * @param style map의 스타일을 지정
+ * @param innerElement 별도의 원하는 Custom Map 요소
  */
 const MasilMap = ({
   center,
