@@ -2,11 +2,14 @@
 
 import MasilMap from "@/components/MasilMap/MasilMap";
 import * as GS from "../MateMapModal.styles";
+import * as S from "./MapLocationMapModal.styles";
 
 import { ModalLayout } from "@/components/Modal";
 import { MateGatheringPlace } from "@/types/OriginDataType";
 import CustomPin from "@/components/MasilMap/components/CustomPin/CustomPin";
-import { useMemo } from "react";
+import { Button } from "@/components";
+import useTheme from "@/lib/hooks/useTheme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 interface MateLocationMapModalProps {
   gatherPlace: MateGatheringPlace;
@@ -19,8 +22,7 @@ interface ModalProp {
 const MateLocationMapModal = ({ props }: ModalProp) => {
   const { gatherPlace } = props;
   const { point, detail } = gatherPlace;
-
-  const address = useMemo(() => {}, [point]);
+  const theme = useTheme();
 
   return (
     <ModalLayout
@@ -34,7 +36,7 @@ const MateLocationMapModal = ({ props }: ModalProp) => {
     >
       <GS.MapModalLayout>
         <GS.MapModalTitle>모임 장소</GS.MapModalTitle>
-        <GS.MapWrapper>
+        <GS.MapWrapper style={{ marginBottom: "2rem" }}>
           <MasilMap
             center={gatherPlace.point}
             isShowCenterMarker={false}
@@ -47,6 +49,23 @@ const MateLocationMapModal = ({ props }: ModalProp) => {
             }
           />
         </GS.MapWrapper>
+
+        <S.MapLocationModalDetail>{detail}</S.MapLocationModalDetail>
+
+        <Button
+          buttonColor={theme?.green_500}
+          textColor={theme?.text_secondary_color}
+          useRipple
+          rippleColor={theme?.text_secondary_color + 50}
+          style={{
+            whiteSpace: "nowrap",
+            fontSize: FONT_SIZE.LARGE,
+            fontWeight: FONT_WEIGHT.SEMIBOLD,
+            userSelect: "none",
+          }}
+        >
+          닫기
+        </Button>
       </GS.MapModalLayout>
     </ModalLayout>
   );
