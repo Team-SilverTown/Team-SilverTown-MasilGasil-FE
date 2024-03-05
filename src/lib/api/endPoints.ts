@@ -8,3 +8,7 @@ export const TEST_ENDPOINT = {
 };
 
 export const USER = {};
+
+export const MASIL = {
+  POST: "/api/v1/masils",
+};

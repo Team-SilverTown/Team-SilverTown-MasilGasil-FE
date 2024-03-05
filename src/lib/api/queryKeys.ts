@@ -11,3 +11,7 @@ export const USER_KEY = {
   AUTH: "user_auth",
   SIGN_UP: "user_signup",
 };
+
+export const MASIL_KEY = {
+  RECORD_SUBMIT: "masil_log_record_submit",
+};
