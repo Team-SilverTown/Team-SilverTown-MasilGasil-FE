@@ -10,6 +10,7 @@ export const Title = styled.strong`
 
 export const Section = styled.section`
   margin-top: 3rem;
+  width: 100%;
 `;
 export const FlexContainer = styled.div`
   display: flex;

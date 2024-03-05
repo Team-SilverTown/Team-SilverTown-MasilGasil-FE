@@ -11,7 +11,7 @@ import * as GS from "@/styles/GlobalStyle";
 import * as S from "./MateCreate.styles";
 import { MateCreateProps } from "./MateCreate.controller";
 
-import { CalendarDatePicker } from "./components";
+import { CalendarDatePicker, OptionTimePicker } from "./components";
 
 interface MateCreateViewProps {
   register: UseFormRegister<MateCreateProps>;
@@ -42,12 +42,19 @@ const MateCreateView = ({ register, handleSubmit, isFormFilled }: MateCreateView
               <Textarea
                 placeholder={field.placeholder}
                 register={register(field.name)}
+                style={{
+                  fontSize: "1.5rem",
+                }}
               />
             )}
             {field.type !== "textarea" && field.name !== "date" && (
               <Input
                 placeholder={field.placeholder}
                 register={register(field.name)}
+                style={{
+                  lineHeight: "2rem",
+                  fontSize: "1.5rem",
+                }}
               />
             )}
             {field.name === "date" && <CalendarDatePicker />}
@@ -57,16 +64,7 @@ const MateCreateView = ({ register, handleSubmit, isFormFilled }: MateCreateView
         <S.FlexContainer>
           <S.TimeSection>
             <S.Title>희망 시간</S.Title>
-            <Input
-              type="text"
-              placeholder={"시간을 입력해주세요."}
-              register={register("time")}
-              style={{
-                lineHeight: "2rem",
-                width: "100%",
-                fontSize: "1.5rem",
-              }}
-            />
+            <OptionTimePicker />
           </S.TimeSection>
 
           <S.PersonnelSection>
