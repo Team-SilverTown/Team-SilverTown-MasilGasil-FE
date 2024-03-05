@@ -12,7 +12,7 @@ import { Button, Input, InputLabel } from "@/components";
 import { useForm } from "react-hook-form";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
-import { MapPin } from "@/components/icons";
+import { Center, MapPin } from "@/components/icons";
 import { debounce } from "lodash";
 
 interface MateMapModalProps {
@@ -28,6 +28,7 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
   const { baseLocation, onSubmit } = props;
   const [center, setCenter] = useState(baseLocation);
   const [address, setAddress] = useState("");
+  const mapRef = useRef<kakao.maps.Map>(null);
   const theme = useTheme();
   const { register, formState, handleSubmit } = useForm({
     defaultValues: { detail: "" },
@@ -101,6 +102,16 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
     });
   };
 
+  const handleClickBasePosition = () => {
+    const { current } = mapRef;
+    if (!current) {
+      return;
+    }
+
+    const moveLatLng = new kakao.maps.LatLng(baseLocation.lat, baseLocation.lng);
+    current.panTo(moveLatLng);
+  };
+
   useEffect(() => {
     updateAddress(center);
   }, []);
@@ -119,8 +130,9 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
         <GS.MapModalTitle>모임 장소 지정</GS.MapModalTitle>
         <GS.MapWrapper>
           <Map
+            ref={mapRef}
             center={center}
-            className="w-full h-full rounded-2xl"
+            className="w-full h-full rounded-2xl z-0"
             onCenterChanged={handleChangeCenter}
             onClick={handleChangeCenter}
           >
@@ -129,6 +141,19 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
               size={28}
             />
           </Map>
+
+          <Button
+            style={{
+              padding: "0.6rem",
+              position: "absolute",
+              bottom: "0.6rem",
+              right: "0.6rem",
+              boxShadow: "0 0 7px 2px rgba(0,0,0,0.2)",
+            }}
+            onClickHandler={handleClickBasePosition}
+          >
+            <Center size={20} />
+          </Button>
         </GS.MapWrapper>
         <GS.LocationAddress>
           <MapPin

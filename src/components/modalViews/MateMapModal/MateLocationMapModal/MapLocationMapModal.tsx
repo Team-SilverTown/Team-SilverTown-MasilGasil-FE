@@ -11,7 +11,7 @@ import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Center } from "@/components/icons";
-import useMapCenterStore from "@/components/MasilMap/store/useMapCenterStore";
+import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 
 interface MateLocationMapModalProps {
   gatherPlace: MateGatheringPlace;
@@ -24,6 +24,7 @@ interface ModalProp {
 const MateLocationMapModal = ({ props }: ModalProp) => {
   const { gatherPlace } = props;
   const { point, detail } = gatherPlace;
+  const { setIsOutCenter } = useMasilMapStore();
   const theme = useTheme();
 
   return (
@@ -59,6 +60,7 @@ const MateLocationMapModal = ({ props }: ModalProp) => {
               right: "0.6rem",
               boxShadow: "0 0 7px 2px rgba(0,0,0,0.2)",
             }}
+            onClickHandler={() => setIsOutCenter(false)}
           >
             <Center size={20} />
           </Button>
