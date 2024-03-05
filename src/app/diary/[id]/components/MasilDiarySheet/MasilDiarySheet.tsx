@@ -3,6 +3,7 @@ import useTheme from "@/lib/hooks/useTheme";
 import { Z_INDEX } from "@/styles/theme";
 import DiaryItem from "../DiaryItem/DiaryItem";
 import * as S from "./MasilDiarySheet.styles";
+import { easeIn } from "framer-motion";
 
 interface MasilDiarySheetProps {
   isSheetOpen: boolean;
@@ -26,11 +27,15 @@ const MasilDiarySheet = ({ isSheetOpen, masils }: MasilDiarySheetProps) => {
   return (
     <>
       <Sheet
+        initial={{ y: "100%" }}
+        animate={isSheetOpen ? { y: 0 } : { y: "100%" }}
+        exit={{ y: "100%" }}
+        transition={{ duration: 0.4, type: "spring", damping: 14, ease: easeIn }}
         isOpen={isSheetOpen}
         onClose={() => null}
-        fixedHeight={0.46}
+        fixedHeight={0.53}
         initialSnap={1}
-        snapPoints={[0.85, 0.31]}
+        snapPoints={[0.85, 0.38]}
         style={{
           zIndex: Z_INDEX.BOTTOM_SHEET,
         }}

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import useMasilDiaryController from "./MasilDiary.controller";
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "./MasilDiary.styles";
@@ -16,11 +16,14 @@ const MasilDiaryView = () => {
   const { currentTabIdx, setCurrentTabIdx, date, setDate, isSheetOpen, setIsSheetOpen } =
     useMasilDiaryController();
 
+  useEffect(() => {
+    setDate(new Date());
+  }, [currentTabIdx]);
+
   const handleSelectDate = (day: Date | undefined) => {
     if (day) {
       setDate(day);
     }
-
     setIsSheetOpen(true);
   };
 
