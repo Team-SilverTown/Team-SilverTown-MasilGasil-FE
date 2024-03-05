@@ -27,4 +27,11 @@ export const TextareaStyle = styled.textarea`
     outline-offset: 2px;
     border-color: ${(props) => props.theme.green_500};
   }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

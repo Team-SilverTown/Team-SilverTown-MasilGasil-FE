@@ -3,10 +3,11 @@ import { GeoPosition } from "@/types/OriginDataType";
 const EARTH_RADIUS = 6371;
 
 /**
- * @summary 두개의 포인트를 가지고 서로의 거리를 구해주는 함수입니다.
- *
+ * @func getTwoPointDistance
  * @param newPosition 새로운 위치
  * @param checkPosition 비교할 대상의 위치
+ *
+ * @brief 두개의 포인트를 가지고 서로의 거리를 구해주는 함수입니다.
  *
  * 함수를 호출할때 newPosition 과 checkPosition에 전달하는 인수 자리가 변경되어도 상관없음.
  *
