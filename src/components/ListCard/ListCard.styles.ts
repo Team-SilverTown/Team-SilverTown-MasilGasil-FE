@@ -70,7 +70,7 @@ export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
       &:hover {
         svg {
           stroke: ${(props) => !props.isLiked && props.theme.pink_100};
-          fill: ${(props) => props.theme.yellow_500};
+          fill: ${(props) => props.theme.pink_100};
         }
 
         span {
