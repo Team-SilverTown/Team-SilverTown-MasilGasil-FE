@@ -11,12 +11,12 @@ interface LogSimpleCardProps {
   width?: string;
   height?: string;
   radius?: string;
-  thumbnail: string;
-  location_1: string;
-  location_2: string;
-  total_time: string;
+  thumbnailUrl: string | null;
+  depth1: string;
+  depth2: string;
+  totalTime: string;
   distance: string;
-  created_at: string;
+  startedAt: string;
   style?: CSSProperties;
   onClick: () => void;
 }
@@ -25,34 +25,34 @@ const LogSimpleCard = ({
   width = "160px",
   height = "160px",
   radius = "8px",
-  thumbnail,
-  location_1,
-  location_2,
-  total_time,
+  thumbnailUrl,
+  depth1,
+  depth2,
+  totalTime,
   distance,
-  created_at,
+  startedAt,
   style,
   onClick,
 }: LogSimpleCardProps) => {
   return (
     <LogSimpleCardContainer
-      width={width}
-      height={height}
-      radius={radius}
-      thumbnail={thumbnail}
+      $width={width}
+      $height={height}
+      $radius={radius}
+      $thumbnailUrl={thumbnailUrl}
       style={style}
       onClick={onClick}
     >
       <LogSimpleCardBottom>
         <strong>
-          {location_1} {location_2}
+          {depth1} {depth2}
         </strong>
         <LogSimpleCardInfo>
           <ul>
-            <li>{total_time}</li>
+            <li>{totalTime}</li>
             <li>{distance}</li>
           </ul>
-          <strong>{created_at}</strong>
+          <strong>{startedAt}</strong>
         </LogSimpleCardInfo>
       </LogSimpleCardBottom>
     </LogSimpleCardContainer>

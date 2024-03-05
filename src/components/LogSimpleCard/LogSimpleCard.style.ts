@@ -2,21 +2,21 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 interface LogSimpleCardProps {
-  width: string;
-  height: string;
-  thumbnail: string;
-  radius: string;
+  $width: string;
+  $height: string;
+  $thumbnailUrl: string | null;
+  $radius: string;
 }
 
 export const LogSimpleCardContainer = styled.div<LogSimpleCardProps>`
   position: relative;
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  border-radius: ${(props) => props.radius};
-  background-image: ${(props) => `url(${props.thumbnail})`};
+  width: ${(props) => props.$width};
+  height: ${(props) => props.$height};
+  border-radius: ${(props) => props.$radius};
+  background-image: ${(props) => (props.$thumbnailUrl ? `url(${props.$thumbnailUrl})` : "")};
   background-position: center;
   background-size: cover;
-  box-shadow: inset gray 0px -5rem 5rem -1.2rem;
+  box-shadow: inset gray 0px -50px 50px -12px;
   cursor: pointer;
 `;
 
@@ -28,16 +28,14 @@ export const LogSimpleCardBottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 5px;
+  padding: 0.5rem;
 
   & > strong {
     font-size: ${FONT_SIZE.MINI};
     color: ${({ theme }) => theme.white};
-    max-width: 70px;
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+    max-width: 8rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
   }
 `;
@@ -45,8 +43,8 @@ export const LogSimpleCardBottom = styled.div`
 export const LogSimpleCardInfo = styled.div`
   ul {
     position: absolute;
-    top: -5px;
-    right: 5px;
+    top: -0.5rem;
+    right: 0.5rem;
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -58,22 +56,22 @@ export const LogSimpleCardInfo = styled.div`
   }
   ul li:first-child {
     position: relative;
-    margin-right: 5px;
+    margin-right: 0.5rem;
     &::after {
       position: absolute;
-      right: -3.5px;
+      right: -0.35rem;
       top: 50%;
       transform: translateY(-50%);
       content: "";
       display: inline-block;
-      width: 2px;
-      height: 2px;
+      width: 0.2rem;
+      height: 0.2rem;
       border-radius: 50%;
       background-color: ${({ theme }) => theme.white};
     }
   }
   strong {
-    font-size: ${FONT_SIZE.MINI};
+    font-size: ${FONT_SIZE.MICRO};
     color: ${({ theme }) => theme.white};
   }
 `;
