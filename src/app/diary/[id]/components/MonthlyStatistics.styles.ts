@@ -18,12 +18,18 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   width: 100%;
+  margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: end;
+
+  @media (max-width: 375px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-export const Title = styled.p`
+export const Title = styled.span`
   font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.BOLD};
 `;
@@ -35,16 +41,46 @@ export const AccentText = styled.span`
   color: ${(props) => props.theme.green_300};
 `;
 
+export const AccentTitle = styled.span`
+  font-weight: ${FONT_WEIGHT.BOLD};
+  color: ${(props) => props.theme.green_300};
+  font-size: ${FONT_SIZE.LARGE};
+`;
+
 export const Section = styled.section`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+  @media (max-width: 375px) {
+    flex-direction: column;
+  }
 `;
 
 export const SectionItem = styled.div`
-  padding: 2rem;
+  padding: 1rem;
+  gap: 0.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+
+  font-weight: ${FONT_WEIGHT.BOLD};
+
+  @media (min-width: 700px) {
+    padding: 1rem 3rem;
+  }
 `;
 
+export const ColDivider = styled.div`
+  width: 1px;
+  height: 3rem;
+  background-color: ${(props) => props.theme.gray_100};
+
+  @media (max-width: 375px) {
+    width: 3rem;
+    height: 1px;
+  }
+`;

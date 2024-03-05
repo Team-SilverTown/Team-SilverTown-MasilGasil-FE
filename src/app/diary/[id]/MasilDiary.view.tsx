@@ -45,6 +45,8 @@ const MasilDiaryView = () => {
             />
 
             <MonthlyStatistics month={date?.getMonth()} />
+
+            <S.Section>조회를 원하는 날짜를 선택해주세요</S.Section>
           </>
         )}
         {currentTabIdx === 1 && <>list</>}
