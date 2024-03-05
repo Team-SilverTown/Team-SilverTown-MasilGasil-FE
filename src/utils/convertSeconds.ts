@@ -7,7 +7,7 @@
  *          산책 시간이 1시간 이상이라면 시간, 분을 같이 보여줍니다.
  */
 
-export const convertSeconds = (sec: number): string => {
+const convertSeconds = (sec: number): string => {
   let minutes = Math.round(sec / 60);
   let hours = Math.floor(minutes / 60);
   minutes = minutes % 60;
@@ -16,3 +16,5 @@ export const convertSeconds = (sec: number): string => {
   if (minutes === 0) return `${hours}시간`;
   return `${hours}시간 ${minutes}분`;
 };
+
+export default convertSeconds;

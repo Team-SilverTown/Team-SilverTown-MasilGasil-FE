@@ -1,4 +1,4 @@
-export const calculateAge = (birthDate: string): number => {
+const calculateAge = (birthDate: string): number => {
   const birthday = new Date(birthDate);
   const today = new Date();
 
@@ -11,3 +11,5 @@ export const calculateAge = (birthDate: string): number => {
 
   return age;
 };
+
+export default calculateAge;

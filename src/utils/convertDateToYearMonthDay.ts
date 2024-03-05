@@ -5,7 +5,7 @@
  * @throws {Error} 입력된 날짜가 유효하지 않을 때, 또는 날짜를 변환할 수 없을 때 오류를 발생시킵니다.
  */
 
-export const convertDateToYearMonthDay = (inputDate: string | Date): string => {
+const convertDateToYearMonthDay = (inputDate: string | Date): string => {
   let date: Date;
 
   if (inputDate instanceof Date) {
@@ -29,3 +29,5 @@ export const convertDateToYearMonthDay = (inputDate: string | Date): string => {
 
   return `${year}-${monthString}-${dayString}`;
 };
+
+export default convertDateToYearMonthDay;

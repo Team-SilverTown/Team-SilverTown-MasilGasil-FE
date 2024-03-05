@@ -1,4 +1,4 @@
-export const calculateWalkingCalories = (
+const calculateWalkingCalories = (
   sex: "MALE" | "FEMALE",
   age: number,
   height: number,
@@ -46,3 +46,5 @@ export const calculateWalkingCalories = (
 
   return Math.round(calories);
 };
+
+export default calculateWalkingCalories;
