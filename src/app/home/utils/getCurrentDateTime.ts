@@ -18,9 +18,6 @@ const getCurrentDateTime = () => {
     hours = hours.toString().padStart(2, "0");
   }
 
-  console.log(year, month, day);
-  console.log(hours, minutes);
-
   return {
     date: `${year}${month}${day}`,
     time: `${hours}${minutes}`,
