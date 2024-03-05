@@ -1,20 +1,21 @@
 "use client";
 
-import Divider from "@/components/Divider/Divider";
-import * as S from "./MateToggleMenu.styles";
+import * as S from "./MateDropDownMenu.styles";
+import { MouseEvent } from "react";
+
 import { DotMenu, Trash } from "@/components/icons";
 import EditPencil from "@/components/icons/EditPencil";
 import useToggle from "@/hooks/useToggle";
 import { AnimatePresence } from "framer-motion";
-import { MouseEvent } from "react";
 import { useUI } from "@/components/uiContext/UiContext";
 import { MateGatheringPlace } from "@/types/OriginDataType";
+import Divider from "@/components/Divider/Divider";
 
-interface MateToggleMenuProps {
+interface MateDropDownMenuProps {
   postId: string;
 }
 
-const MateToggleMenu = ({ postId }: MateToggleMenuProps) => {
+const MateDropDownMenu = ({ postId }: MateDropDownMenuProps) => {
   const { isToggle, handleToggle, toggleRef } = useToggle();
   const { setModalView, openModal } = useUI();
 
@@ -48,29 +49,29 @@ const MateToggleMenu = ({ postId }: MateToggleMenuProps) => {
 
       <AnimatePresence>
         {isToggle && (
-          <S.MateToggleMenuLayout ref={toggleRef}>
-            <S.MateToggleMenuContainer
+          <S.MateDropDownMenuLayout ref={toggleRef}>
+            <S.MateDropDownMenuContainer
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "100%" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <S.MateToggleMenuItem onClick={handleClickEdit}>
+              <S.MateDropDownMenuItem onClick={handleClickEdit}>
                 <EditPencil className="w-6 h-6" />
                 수정
-              </S.MateToggleMenuItem>
+              </S.MateDropDownMenuItem>
 
               <Divider />
 
-              <S.MateToggleMenuItem onClick={handleClickRemove}>
+              <S.MateDropDownMenuItem onClick={handleClickRemove}>
                 <Trash className="w-6 h-6" />
                 삭제
-              </S.MateToggleMenuItem>
-            </S.MateToggleMenuContainer>
-          </S.MateToggleMenuLayout>
+              </S.MateDropDownMenuItem>
+            </S.MateDropDownMenuContainer>
+          </S.MateDropDownMenuLayout>
         )}
       </AnimatePresence>
     </S.MateMenuLayout>
   );
 };
 
-export default MateToggleMenu;
+export default MateDropDownMenu;

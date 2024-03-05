@@ -88,8 +88,6 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
    */
   const onValid = ({ detail }: { detail: string }) => {
     if (detail) {
-      console.log(detail);
-      console.log(center);
       onSubmit({
         point: center,
         detail,
