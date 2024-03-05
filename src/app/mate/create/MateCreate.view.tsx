@@ -17,6 +17,13 @@ interface MateCreateViewProps {
   isFormFilled: boolean;
 }
 
+const regularFields = [
+  { title: "제목", placeholder: "제목을 입력해주세요.", name: "title" },
+  { title: "설명", placeholder: "설명을 입력해주세요.", name: "content" },
+  { title: "위치", placeholder: "모이는 위치를 입력해주세요.", name: "location" },
+  { title: "희망 날짜", placeholder: "날짜를 입력해주세요.", name: "date" },
+];
+
 const MateCreateView = ({ register, handleSubmit, isFormFilled }: MateCreateViewProps) => {
   return (
     <S.MateCreateContainer>
@@ -26,55 +33,22 @@ const MateCreateView = ({ register, handleSubmit, isFormFilled }: MateCreateView
       />
 
       <GS.CommonContainer>
-        <S.TitleSection>
-          <S.Title>제목</S.Title>
-          <Input
-            type="text"
-            placeholder="제목을 입력해주세요."
-            register={register("title")}
-            style={{
-              lineHeight: "2rem",
-              width: "100%",
-              fontSize: "1.5rem",
-            }}
-          />
-        </S.TitleSection>
-
-        <S.ContentSection>
-          <S.Title>설명</S.Title>
-          <Textarea
-            placeholder="설명을 입력해주세요."
-            register={register("content")}
-          />
-        </S.ContentSection>
-
-        <S.LocationSection>
-          <S.Title>위치</S.Title>
-          <Input
-            type="text"
-            placeholder={"모이는 위치를 입력해주세요."}
-            register={register("location")}
-            style={{
-              lineHeight: "2rem",
-              width: "100%",
-              fontSize: "1.5rem",
-            }}
-          />
-        </S.LocationSection>
-
-        <S.DateSection>
-          <S.Title>희망 날짜</S.Title>
-          <Input
-            type="text"
-            placeholder={"날짜를 입력해주세요."}
-            register={register("date")}
-            style={{
-              lineHeight: "2rem",
-              width: "100%",
-              fontSize: "1.5rem",
-            }}
-          />
-        </S.DateSection>
+        {regularFields.map((field, index) => (
+          <S.Section>
+            <S.Title>{field.title}</S.Title>
+            {field.type === "textarea" ? (
+              <Textarea
+                placeholder={field.placeholder}
+                register={register(field.name)}
+              />
+            ) : (
+              <Input
+                placeholder={field.placeholder}
+                register={register(field.name)}
+              />
+            )}
+          </S.Section>
+        ))}
 
         <S.FlexContainer>
           <S.TimeSection>

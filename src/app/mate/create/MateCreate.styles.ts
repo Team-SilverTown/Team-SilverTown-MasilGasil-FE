@@ -8,26 +8,13 @@ export const Title = styled.strong`
   margin-bottom: 1.4rem;
 `;
 
-export const TitleSection = styled.section`
+export const Section = styled.section`
   margin-top: 3rem;
 `;
-
-export const ContentSection = styled.section`
-  margin-top: 3rem;
-`;
-
-export const LocationSection = styled.section`
-  margin-top: 3rem;
-`;
-
 export const FlexContainer = styled.div`
   display: flex;
   margin-top: 3rem;
   gap: 2rem;
-`;
-
-export const DateSection = styled.section`
-  margin-top: 3rem;
 `;
 
 export const TimeSection = styled.section`
