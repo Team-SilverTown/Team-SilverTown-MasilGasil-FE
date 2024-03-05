@@ -6,8 +6,7 @@ export const MapLocationModalDetail = styled.p`
   max-width: 26rem;
   margin-bottom: 2rem;
 
-  text-align: center;
-
   font-size: ${FONT_SIZE.BASIC};
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
+  text-align: center;
 `;

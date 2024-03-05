@@ -9,7 +9,6 @@ export const MapModalLayout = styled.section`
 `;
 
 export const MapModalTitle = styled.h5`
-  /* width: 100%; */
   height: 5rem;
   padding-top: 0.6rem;
 
@@ -18,7 +17,6 @@ export const MapModalTitle = styled.h5`
   justify-content: center;
 
   position: absolute;
-  /* left: 0; */
   top: 0;
 
   font-size: ${FONT_SIZE.H6};
@@ -30,6 +28,8 @@ export const MapWrapper = styled.article`
   width: 100%;
   height: 26rem;
   margin-bottom: 0.4rem;
+
+  position: relative;
 
   border-radius: 1rem;
   border: 1px ${({ theme }) => theme.green_500} solid;

@@ -10,6 +10,8 @@ import CustomPin from "@/components/MasilMap/components/CustomPin/CustomPin";
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { Center } from "@/components/icons";
+import useMapCenterStore from "@/components/MasilMap/store/useMapCenterStore";
 
 interface MateLocationMapModalProps {
   gatherPlace: MateGatheringPlace;
@@ -48,6 +50,18 @@ const MateLocationMapModal = ({ props }: ModalProp) => {
               />
             }
           />
+
+          <Button
+            style={{
+              padding: "0.6rem",
+              position: "absolute",
+              bottom: "0.6rem",
+              right: "0.6rem",
+              boxShadow: "0 0 7px 2px rgba(0,0,0,0.2)",
+            }}
+          >
+            <Center size={20} />
+          </Button>
         </GS.MapWrapper>
 
         <S.MapLocationModalDetail>{detail}</S.MapLocationModalDetail>
