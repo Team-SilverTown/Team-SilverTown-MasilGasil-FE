@@ -2,17 +2,17 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 interface LogSimpleCardProps {
-  $width: string;
-  $height: string;
+  $width: string | number;
+  $height: string | number;
+  $radius: string | number;
   $thumbnailUrl: string | null;
-  $radius: string;
 }
 
 export const LogSimpleCardContainer = styled.div<LogSimpleCardProps>`
   position: relative;
-  width: ${(props) => props.$width};
-  height: ${(props) => props.$height};
-  border-radius: ${(props) => props.$radius};
+  width: ${(props) => `${props.$width}px`};
+  height: ${(props) => `${props.$height}px`};
+  border-radius: ${(props) => `${props.$radius}px`};
   background-image: ${(props) => (props.$thumbnailUrl ? `url(${props.$thumbnailUrl})` : "")};
   background-position: center;
   background-size: cover;

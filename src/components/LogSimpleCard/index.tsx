@@ -7,9 +7,9 @@ import {
   LogSimpleCardInfo,
 } from "./LogSimpleCard.style";
 
-interface LogSimpleCardProps {
-  width?: string;
-  height?: string;
+export interface LogSimpleCardProps {
+  width?: number | string;
+  height?: number | string;
   radius?: string;
   thumbnailUrl: string | null;
   depth1: string;
@@ -22,9 +22,9 @@ interface LogSimpleCardProps {
 }
 
 const LogSimpleCard = ({
-  width = "160px",
-  height = "160px",
-  radius = "8px",
+  width = 160,
+  height = 160,
+  radius = "8",
   thumbnailUrl,
   depth1,
   depth2,
