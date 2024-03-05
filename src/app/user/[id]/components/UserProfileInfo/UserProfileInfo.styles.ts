@@ -15,6 +15,14 @@ export const UserInfoProfileImage = styled.div<UserInfoProfileImageProps>`
   height: ${(props) => `${props.height}px`};
   margin: 0 auto;
   border-radius: 50%;
+
+  img {
+    min-width: 12rem;
+    max-width: 12rem;
+    min-height: 12rem;
+    max-height: 12rem;
+    border-radius: 50%;
+  }
 `;
 
 export const CameraIconLayout = styled.div`

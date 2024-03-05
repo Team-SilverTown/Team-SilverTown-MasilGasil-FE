@@ -12,6 +12,7 @@ import {
   LogRecordAlertModal,
   LogRecordConfirmModal,
   TestModal,
+  ProfileEditModal,
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
@@ -77,6 +78,7 @@ const ModalView = ({
       {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
       {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
       {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
+      {modalView === "PROFILE_EDIT_VIEW" && <ProfileEditModal props={props} />}
     </Modal>
   );
 };
@@ -120,7 +122,7 @@ const WindowView = ({
   );
 };
 
-export const WindowUI= () => {
+export const WindowUI = () => {
   const { displayWindow, closeWindow, windowView, windowURL } = useUI();
   return displayWindow ? (
     <WindowView
