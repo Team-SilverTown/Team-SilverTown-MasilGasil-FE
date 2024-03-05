@@ -9,24 +9,16 @@ import useTheme from "@/lib/hooks/useTheme";
 
 interface LogRecordEditViewProps {
   logData: MasilRecordRequest;
-  currentPinIndex: number;
-
   onClickPin: (pinIndex: number) => void;
   removePinData: (pinIndex: number) => void;
-  onImageUpload: (pinIndex: number, image: File) => void;
   onSubmit: (memo: string) => void;
-  setCurrentPinIndex: (pinIndex: number) => void;
 }
 
 const LogRecordEditView = ({
   logData,
-  currentPinIndex,
-
   onClickPin,
   removePinData,
-  onImageUpload,
   onSubmit,
-  setCurrentPinIndex,
 }: LogRecordEditViewProps) => {
   const { register, watch } = useForm();
   const watchLogMemo = watch("logMemo");
@@ -40,7 +32,7 @@ const LogRecordEditView = ({
         exit={{ y: "100%" }}
         isOpen={true}
         onClose={() => null}
-        fixedHeight={0.4}
+        fixedHeight={0.61}
         initialSnap={1}
         snapPoints={[0.9, 0.5]}
         style={{
@@ -130,7 +122,7 @@ const LogRecordEditView = ({
           fontSize: FONT_SIZE.LARGE,
           position: "fixed",
           bottom: "1.5rem",
-          zIndex: 999,
+          zIndex: Z_INDEX.BOTTOM_SHEET + 1,
           maxWidth: "56rem",
           left: "50%",
           transform: "translateX(-50%)",
