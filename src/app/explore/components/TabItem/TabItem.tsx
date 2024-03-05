@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 import * as S from "./TabItem.styles";
 
@@ -19,7 +18,7 @@ const TabItem = ({ item, index, focusedTab }: TabItemProps) => {
         {item}
       </S.TabContent>
       {focusedTab == index && (
-        <motion.div
+        <S.TabActive
           layoutId="active-fill"
           className="absolute inset-0 rounded-full bg-green-500"
         />
