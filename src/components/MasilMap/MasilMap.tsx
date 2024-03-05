@@ -7,7 +7,7 @@ import CustomPin from "./components/CustomPin/CustomPin";
 import Theme from "@/styles/theme";
 
 import { debounce, throttle } from "lodash";
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
 import useMapCenterStore from "./store/useMapCenterStore";
 
 interface MasilMapProps {
@@ -38,6 +38,9 @@ interface MasilMapProps {
   pinSelectColor?: string;
   pinFontColor?: string;
   selectedPinIndex?: number;
+
+  style?: CSSProperties;
+  innerElement?: ReactNode;
 }
 
 /**
@@ -96,6 +99,9 @@ const MasilMap = ({
   pinSelectColor,
   pinFontColor,
   selectedPinIndex,
+
+  style,
+  innerElement,
 }: MasilMapProps) => {
   const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
   const { isOutCenter, setIsOutCenter } = useMapCenterStore();
@@ -155,6 +161,7 @@ const MasilMap = ({
         height: mapHeight,
         zIndex: 0,
         position: "relative",
+        ...style,
       }}
     >
       {isShowCenterMarker && (
@@ -194,6 +201,8 @@ const MasilMap = ({
             isSelected={selectedPinIndex === index}
           />
         ))}
+
+      {innerElement}
     </Map>
   );
 };
