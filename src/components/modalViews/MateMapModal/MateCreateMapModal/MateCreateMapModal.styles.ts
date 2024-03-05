@@ -7,6 +7,7 @@ export const MateCreateMapAlert = styled.p`
 
   font-size: ${FONT_SIZE.MINI};
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
+  color: ${({ theme }) => theme.gray_500};
 
   user-select: none;
 `;

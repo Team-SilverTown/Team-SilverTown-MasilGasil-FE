@@ -111,11 +111,12 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
         paddingRight: "1rem",
         paddingLeft: "1rem",
         paddingBottom: "2rem",
-        paddingTop: "4rem",
+        paddingTop: "5rem",
       }}
     >
       <S.MateCreateMapAlert>모임 장소를 지도에서 선택해 주세요.</S.MateCreateMapAlert>
       <GS.MapModalLayout>
+        <GS.MapModalTitle>모임 장소 지정</GS.MapModalTitle>
         <GS.MapWrapper>
           <Map
             center={center}

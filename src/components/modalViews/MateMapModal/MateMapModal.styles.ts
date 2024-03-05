@@ -8,6 +8,23 @@ export const MapModalLayout = styled.section`
   flex-direction: column;
 `;
 
+export const MapModalTitle = styled.h5`
+  width: 100%;
+  height: 5rem;
+  padding-top: 0.6rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  font-size: ${FONT_SIZE.H6};
+  font-weight: ${FONT_WEIGHT.SEMIBOLD};
+`;
+
 export const MapWrapper = styled.article`
   width: 100%;
   height: 26rem;

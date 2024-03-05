@@ -25,13 +25,15 @@ const MateLocationMapModal = ({ props }: ModalProp) => {
   return (
     <ModalLayout
       style={{
+        position: "relative",
         paddingRight: "1rem",
         paddingLeft: "1rem",
         paddingBottom: "2rem",
-        paddingTop: "4rem",
+        paddingTop: "5rem",
       }}
     >
       <GS.MapModalLayout>
+        <GS.MapModalTitle>모임 장소</GS.MapModalTitle>
         <GS.MapWrapper>
           <MasilMap
             center={gatherPlace.point}
