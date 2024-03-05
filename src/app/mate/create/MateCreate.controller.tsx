@@ -33,7 +33,8 @@ const MateCreateController = () => {
     console.log("Form Errors:", errors);
   };
 
-  const { isFormFilled, setIsFormFilled } = useMateCreateModel();
+  const { isFormFilled, setIsFormFilled, selectedPersonnel, setSelectedPersonnel } =
+    useMateCreateModel();
 
   const watchedFields = watch();
 
@@ -42,11 +43,17 @@ const MateCreateController = () => {
     setIsFormFilled(allFieldsFilled);
   }, [watchedFields]);
 
+  const handlePersonnelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedPersonnel(event.target.value);
+  };
+
   return (
     <MateCreateView
       register={register}
       handleSubmit={handleSubmit(onValid, onInvalid)}
       isFormFilled={isFormFilled}
+      handlePersonnelChange={handlePersonnelChange}
+      selectedPersonnel={selectedPersonnel}
     />
   );
 };

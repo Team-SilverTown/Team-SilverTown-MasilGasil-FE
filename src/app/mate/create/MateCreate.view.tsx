@@ -17,6 +17,8 @@ interface MateCreateViewProps {
   register: UseFormRegister<MateCreateProps>;
   handleSubmit: () => void;
   isFormFilled: boolean;
+  handlePersonnelChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectedPersonnel: string;
 }
 
 const regularFields = [
@@ -26,7 +28,13 @@ const regularFields = [
   { title: "희망 날짜", placeholder: "날짜를 입력해주세요.", name: "date" },
 ];
 
-const MateCreateView = ({ register, handleSubmit, isFormFilled }: MateCreateViewProps) => {
+const MateCreateView = ({
+  register,
+  handleSubmit,
+  isFormFilled,
+  handlePersonnelChange,
+  selectedPersonnel,
+}: MateCreateViewProps) => {
   return (
     <S.MateCreateContainer>
       <TopNavigator
@@ -62,24 +70,29 @@ const MateCreateView = ({ register, handleSubmit, isFormFilled }: MateCreateView
         ))}
 
         <S.FlexContainer>
-          <S.TimeSection>
+          <S.Section>
             <S.Title>희망 시간</S.Title>
             <OptionTimePicker />
-          </S.TimeSection>
+          </S.Section>
 
-          <S.PersonnelSection>
+          <S.Section>
             <S.Title>모집 인원</S.Title>
-            <Input
-              type="number"
-              placeholder={"모집 인원을 입력해주세요."}
-              register={register("personnel")}
-              style={{
-                lineHeight: "2rem",
-                width: "100%",
-                fontSize: "1.5rem",
-              }}
-            />
-          </S.PersonnelSection>
+            <S.PersonnelSelect
+              value={selectedPersonnel}
+              onChange={handlePersonnelChange}
+              isSelected={selectedPersonnel !== ""}
+            >
+              <option value="">인원을 선택해주세요.</option>
+              {Array.from({ length: 10 }, (_, i) => (
+                <option
+                  key={i + 1}
+                  value={i + 1}
+                >
+                  {i + 1}명
+                </option>
+              ))}
+            </S.PersonnelSelect>
+          </S.Section>
         </S.FlexContainer>
 
         <StepButton
