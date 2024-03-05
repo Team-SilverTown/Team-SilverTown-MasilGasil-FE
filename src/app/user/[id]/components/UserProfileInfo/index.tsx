@@ -33,19 +33,24 @@ const UserInfoProfile = ({
     });
   };
 
+  console.log(profile);
+
   return (
     <S.UserInfoProfile>
       <S.UserInfoProfileImage
         width={width}
         height={height}
+        $profile={profile}
         onClick={handlePropfileEdit}
       >
-        <Image
-          src={profile ? profile : userProfile}
-          alt={profileName}
-          width={width}
-          height={height}
-        />
+        {!profile && (
+          <Image
+            src={profile ? profile : userProfile}
+            alt={profileName}
+            width={width}
+            height={height}
+          />
+        )}
         <S.CameraIconLayout>
           <Camera />
         </S.CameraIconLayout>

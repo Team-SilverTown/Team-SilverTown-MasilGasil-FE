@@ -3,6 +3,7 @@ import styled from "styled-components";
 interface UserInfoProfileImageProps {
   width: number;
   height: number;
+  $profile: string | null;
 }
 
 export const UserInfoProfile = styled.div`
@@ -13,16 +14,13 @@ export const UserInfoProfileImage = styled.div<UserInfoProfileImageProps>`
   position: relative;
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};
+  background-image: ${(props) => `url(${props.$profile})`};
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer; // 추후 자신의 프로필에 접속 한 경우에만 "pointer"로 조건 처리
   margin: 0 auto;
   border-radius: 50%;
-
-  img {
-    min-width: 12rem;
-    max-width: 12rem;
-    min-height: 12rem;
-    max-height: 12rem;
-    border-radius: 50%;
-  }
 `;
 
 export const CameraIconLayout = styled.div`
