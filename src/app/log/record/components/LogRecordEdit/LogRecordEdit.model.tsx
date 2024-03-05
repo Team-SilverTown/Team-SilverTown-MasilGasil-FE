@@ -1,30 +1,15 @@
 import { useEffect } from "react";
 import LogRecordEditView from "./LogRecordEdit.view";
-import { SetLogData } from "../../LogRecord.types";
-import { MasilRecordRequest } from "@/types/Request";
-import { OnClickPin } from "@/components/MasilMap/MasilMap.types";
 import useUserLocationStore from "@/stores/useUserLocationStore";
 import { useUI } from "@/components/uiContext/UiContext";
+import useLogRecordContext from "../../context/LogRecordContext";
 
-interface LogRecordEditControllerProps {
-  logData: MasilRecordRequest;
-  currentPinIndex: number;
-
-  setLogData: SetLogData;
-  setCurrentPinIndex: (pinIndex: number) => void;
-  onClickPin: OnClickPin;
-}
-
-const LogRecordEditController = ({
-  logData,
-  currentPinIndex,
-
-  setLogData,
-  setCurrentPinIndex,
-  onClickPin,
-}: LogRecordEditControllerProps) => {
+const LogRecordEditModel = () => {
   const { setModalView, openModal, closeModal } = useUI();
   const { setUserLocation } = useUserLocationStore();
+
+  const { logData, removePin, clickPin, currentPinIndex, setCurrentPinIndex } =
+    useLogRecordContext();
 
   useEffect(() => {
     const pathLength = logData.path.length;
@@ -36,18 +21,6 @@ const LogRecordEditController = ({
       setUserLocation({ lat: latAvg, lng: lngAvg });
     }
   }, []);
-
-  /**
-   * @func removePinData
-   * @params (pinIndex: number)
-   * @brief 특정 인덱스의 핀을 제거합니다.
-   */
-  const removePinData = (pinIndex: number) => {
-    setLogData((prevData) => {
-      return { ...prevData, pins: prevData.pins.filter((_, index) => index !== pinIndex) };
-    });
-    setCurrentPinIndex(-1);
-  };
 
   /**
    * @func handleImageUpload
@@ -101,8 +74,8 @@ const LogRecordEditController = ({
     <LogRecordEditView
       logData={logData}
       currentPinIndex={currentPinIndex}
-      onClickPin={onClickPin}
-      removePinData={removePinData}
+      onClickPin={clickPin}
+      removePinData={removePin}
       onImageUpload={handleImageUpload}
       onSubmit={handleSubmit}
       setCurrentPinIndex={setCurrentPinIndex}
@@ -110,4 +83,4 @@ const LogRecordEditController = ({
   );
 };
 
-export default LogRecordEditController;
+export default LogRecordEditModel;

@@ -33,7 +33,7 @@ const SearchBar = ({
 
   return (
     <S.SearchBarContainer>
-      <S.SearchForm onSubmit={handleSubmit(onValid, onInvalid)}>
+      <S.SearchForm onSubmit={handleSubmit(onSubmit, onInvaild)}>
         <Input
           register={register("keyword", {
             required: "Keyword is required",

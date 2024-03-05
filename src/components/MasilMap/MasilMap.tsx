@@ -8,7 +8,7 @@ import Theme from "@/styles/theme";
 
 import { debounce, throttle } from "lodash";
 import { useEffect, useRef, useState } from "react";
-import useMapCenterStore from "./store/useMapCenterStore";
+import useMasilMapStore from "./store/useMasilMapStore";
 
 interface MasilMapProps {
   center: GeoPosition;
@@ -98,7 +98,8 @@ const MasilMap = ({
   selectedPinIndex,
 }: MasilMapProps) => {
   const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
-  const { isOutCenter, setIsOutCenter } = useMapCenterStore();
+  const { isOutCenter, setIsOutCenter, isActiveMapResizing, setIsActiveMapResizing } =
+    useMasilMapStore();
   const mapRef = useRef<kakao.maps.Map | null>(null);
 
   /**
@@ -137,9 +138,12 @@ const MasilMap = ({
     const { current } = mapRef;
 
     if (current) {
-      current.relayout();
+      setTimeout(() => {
+        current.relayout();
+      }, 200);
     }
-  }, [mapHeight, mapWidth]);
+    setIsActiveMapResizing(false);
+  }, [mapHeight, mapWidth, isActiveMapResizing]);
 
   return (
     <Map
@@ -156,6 +160,7 @@ const MasilMap = ({
         zIndex: 0,
         position: "relative",
       }}
+      isPanto
     >
       {isShowCenterMarker && (
         <CenterMarker
@@ -164,7 +169,6 @@ const MasilMap = ({
           fill={centerMarkerFill}
         />
       )}
-
       {path.length !== 0 && (
         <PathLine
           path={path}
