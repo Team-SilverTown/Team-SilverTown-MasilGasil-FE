@@ -5,7 +5,7 @@ import * as GS from "../MateMapModal.styles";
 import * as S from "./MateCreateMapModal.styles";
 
 import { ModalLayout } from "@/components/Modal";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
 import CustomPin from "@/components/MasilMap/components/CustomPin/CustomPin";
 import { Button, Input, InputLabel } from "@/components";
@@ -14,6 +14,7 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
 import { Center, MapPin } from "@/components/icons";
 import { debounce } from "lodash";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface MateMapModalProps {
   baseLocation: GeoPosition;
@@ -30,6 +31,7 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
   const [address, setAddress] = useState("");
   const mapRef = useRef<kakao.maps.Map>(null);
   const theme = useTheme();
+  const { closeModal } = useUI();
   const { register, formState, handleSubmit } = useForm({
     defaultValues: { detail: "" },
   });
@@ -93,6 +95,7 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
         point: center,
         detail,
       });
+      closeModal();
       return;
     }
 
@@ -100,6 +103,7 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
       point: center,
       detail: address,
     });
+    closeModal();
   };
 
   const handleClickBasePosition = () => {

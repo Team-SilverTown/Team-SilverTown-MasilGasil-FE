@@ -12,6 +12,7 @@ import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Center } from "@/components/icons";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface MateLocationMapModalProps {
   gatherPlace: MateGatheringPlace;
@@ -25,6 +26,7 @@ const MateLocationMapModal = ({ props }: ModalProp) => {
   const { gatherPlace } = props;
   const { point, detail } = gatherPlace;
   const { setIsOutCenter } = useMasilMapStore();
+  const { closeModal } = useUI();
   const theme = useTheme();
 
   return (
@@ -79,6 +81,7 @@ const MateLocationMapModal = ({ props }: ModalProp) => {
             fontWeight: FONT_WEIGHT.SEMIBOLD,
             userSelect: "none",
           }}
+          onClickHandler={closeModal}
         >
           닫기
         </Button>
