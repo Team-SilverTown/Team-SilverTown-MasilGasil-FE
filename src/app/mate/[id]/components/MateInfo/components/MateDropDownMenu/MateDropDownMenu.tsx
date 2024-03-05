@@ -31,6 +31,8 @@ const MateDropDownMenu = ({ postId }: MateDropDownMenuProps) => {
         console.log(detail, point);
       },
     });
+
+    handleToggle();
   };
 
   const handleClickRemove = (e: MouseEvent<HTMLLIElement>) => {
@@ -45,6 +47,8 @@ const MateDropDownMenu = ({ postId }: MateDropDownMenuProps) => {
         detail: "나는 여기가 어딘지 몰라요 강남이래요",
       },
     });
+
+    handleToggle();
   };
 
   return (
