@@ -13,7 +13,7 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.white};
   border-width: ${BORDER.TINE_WIDTH}px;
   border-color: ${(props) => props.theme.transparent_10};
-  box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_10};
+  box-shadow: 0 2px 7.8px 0 rgba(0, 0, 0, 0.02);
 `;
 
 export const Header = styled.div`

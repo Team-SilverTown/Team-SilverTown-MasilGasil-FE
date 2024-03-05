@@ -9,10 +9,9 @@ import { buttonVariants } from "@/components/ShadcnUi/ui/button";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
-function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
+function Calendar({ className, classNames, ...props }: CalendarProps) {
   return (
     <DayPicker
-      showOutsideDays={showOutsideDays}
       className={cn("p-5", className)}
       classNames={{
         months: "flex flex-col space-y-4 ",
