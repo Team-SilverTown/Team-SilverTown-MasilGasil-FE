@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const CustomInput = styled.button`
-  width: 100%;
+  width: 56.9rem;
+  height: 5.2rem;
   background-color: ${(props) => props.theme.transparent_10};
   color: ${(props) =>
     props.isSelected ? props.theme.text_primary_color : props.theme.text_primary_color + 30};
-
+  text-align: left;
   border-width: 1.4px;
   border-color: transparent;
   line-height: 1rem;

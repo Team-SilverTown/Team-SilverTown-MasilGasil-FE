@@ -15,12 +15,11 @@ const CalendarDatePicker = () => {
       isSelected={startDate !== null}
       readOnly
     >
-      {value || "모임 날짜를 선택하세요"}
+      {value || "모임 날짜를 선택해주세요."}
     </S.CustomInput>
   );
 
   return (
-    // TODO: width=100%임에도 화면 가득 차지 않는 문제 해결
     <DatePicker
       locale={ko}
       dateFormat="yyyy년 MM월 dd일"

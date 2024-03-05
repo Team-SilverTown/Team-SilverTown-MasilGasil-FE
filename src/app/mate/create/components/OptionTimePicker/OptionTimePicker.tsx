@@ -26,7 +26,7 @@ const OptionTimePicker = () => {
       showTimeSelectOnly
       timeIntervals={5}
       timeCaption="Time"
-      dateFormat="h:mm aa"
+      dateFormat="h시 mm분 ( aa )"
       customInput={<CustomInput startTime={startTime} />}
     />
   );
