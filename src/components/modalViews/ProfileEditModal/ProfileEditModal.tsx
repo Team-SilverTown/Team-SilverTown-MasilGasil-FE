@@ -17,7 +17,7 @@ interface ModalProp {
 
 const PinEditModal = ({ props }: ModalProp) => {
   const { onClickAccept } = props;
-  const { register, setValue, watch, getValues } = useForm();
+  const { register, setValue, watch } = useForm();
 
   const [profileImage, setProfileImage] = useState("");
 
@@ -70,7 +70,11 @@ const PinEditModal = ({ props }: ModalProp) => {
             fontSize: FONT_SIZE.LARGE,
           }}
           onClickHandler={() => {
-            onClickAccept(profileImage);
+            if (profileImage) {
+              onClickAccept(profileImage);
+            } else {
+              alert("업로드한 이미지가 존재하지 않습니다.");
+            }
           }}
         >
           수정 완료

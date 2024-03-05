@@ -33,8 +33,6 @@ const UserInfoProfile = ({
     });
   };
 
-  console.log(profile);
-
   return (
     <S.UserInfoProfile>
       <S.UserInfoProfileImage
