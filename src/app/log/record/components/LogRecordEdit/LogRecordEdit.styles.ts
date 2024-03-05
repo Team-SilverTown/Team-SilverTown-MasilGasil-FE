@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import Sheet from "@/components/BottomSheet/sheet";
 
 export const LogEditLayout = styled.div`
   width: 100%;
@@ -87,3 +88,5 @@ export const SlideButtonContent = styled.div<{ $textColor: string }>`
   font-size: ${FONT_SIZE.LARGE};
   color: ${({ $textColor }) => $textColor};
 `;
+
+export const MotionSheet = styled(Sheet)``;

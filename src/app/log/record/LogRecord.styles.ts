@@ -19,6 +19,11 @@ export const LogRecordLayout = styled.section`
   background-color: ${(props) => props.theme.background_color};
 `;
 
+export const LogRecordMapContainer = styled(motion.article)`
+  width: 100%;
+  height: 100%;
+`;
+
 const isEditStepLayout = css`
   height: 50%;
   position: relative;
