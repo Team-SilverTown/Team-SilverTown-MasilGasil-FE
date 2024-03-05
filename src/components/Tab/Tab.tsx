@@ -9,8 +9,9 @@ interface TabProps {
   tabClickHandler: (index: number) => void;
   focusedTab: number;
   style?: CSSProperties;
-  width: string | number;
-  height: string | number;
+  width?: string | number;
+  height?: string | number;
+  TabComponent?: React.ComponentType<any>;
 }
 
 const Tab = ({
@@ -20,6 +21,7 @@ const Tab = ({
   width = "100%",
   height = `${NAV_HEIGHT}rem`,
   style,
+  TabComponent,
 }: TabProps) => {
   return (
     <S.Tabs style={{ width, height, ...style }}>
@@ -28,13 +30,27 @@ const Tab = ({
           key={index}
           onClick={() => tabClickHandler(index)}
         >
-          <S.TabText $focused={index === focusedTab}>{item}</S.TabText>
-          {index === focusedTab ? (
-            <motion.div
-              className="underline"
-              layoutId="underline"
+          {TabComponent ? (
+            <TabComponent
+              item={item}
+              index={index}
             />
-          ) : null}
+          ) : (
+            <>
+              <S.TabText
+                $focused={index === focusedTab}
+                className="z-20"
+              >
+                {item}
+              </S.TabText>
+              {index === focusedTab ? (
+                <motion.div
+                  className="underline"
+                  layoutId="underline"
+                />
+              ) : null}
+            </>
+          )}
         </S.Tab>
       ))}
     </S.Tabs>

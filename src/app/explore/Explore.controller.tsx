@@ -15,16 +15,16 @@ export interface SearchProps {
 }
 
 const ExploreController = () => {
-  const { location, setLocation } = useExploreModel();
+  const { locationData, setLocationData } = useExploreModel();
 
   const { register, handleSubmit, watch, setValue, setFocus } = useForm<SearchProps>({
     mode: "onChange",
   });
 
-  const onSubmit = (data: SearchProps) => {
+  const onValid = (data: SearchProps) => {
     console.log(data);
   };
-  const onInvaild = (errors: FieldErrors) => {
+  const onInvalid = (errors: FieldErrors) => {
     console.log(errors);
   };
 
@@ -42,15 +42,15 @@ const ExploreController = () => {
             handleSubmit={handleSubmit}
             watch={watch}
             clearHandler={searchClearHandler}
-            onSubmit={onSubmit}
-            onInvaild={onInvaild}
+            onValid={onValid}
+            onInvalid={onInvalid}
           />
         }
         rightSectionStyle={{ width: "calc(100%)" }}
       />
       <ExploreView>
-        <MapSection setLocation={setLocation} />
-        <BottomSheetSection location={location} />
+        <MapSection setLocationData={setLocationData} />
+        <BottomSheetSection locationData={locationData} />
       </ExploreView>
     </>
   );

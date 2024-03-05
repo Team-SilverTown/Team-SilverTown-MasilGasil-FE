@@ -19,8 +19,8 @@ interface SearchBarProps {
   handleSubmit: UseFormHandleSubmit<SearchProps>;
   watch: UseFormWatch<SearchProps>;
   clearHandler: Function;
-  onSubmit: (data: SearchProps) => void;
-  onInvaild: (data: FieldErrors) => void;
+  onValid: (data: SearchProps) => void;
+  onInvalid: (data: FieldErrors) => void;
 }
 
 const SearchBar = ({
@@ -29,14 +29,14 @@ const SearchBar = ({
   handleSubmit,
   watch,
   clearHandler,
-  onSubmit,
-  onInvaild,
+  onValid,
+  onInvalid,
 }: SearchBarProps) => {
   const theme = useTheme();
 
   return (
     <S.SearchBarContainer>
-      <S.SearchForm onSubmit={handleSubmit(onSubmit, onInvaild)}>
+      <S.SearchForm onSubmit={handleSubmit(onValid, onInvalid)}>
         <label
           className="hidden"
           htmlFor={id}
@@ -55,7 +55,7 @@ const SearchBar = ({
             boxShadow: `0px 2px 7.8px 0px ${theme?.transparent_30}`,
           }}
           placeholder="지도 범위 내 검색 결과 키워드로 찾기."
-          required={false}
+          // required={false}
           // onFocus={(e) => handleFocus(e)}
           // onBlur={(e) => handleBlur(e)}
         />

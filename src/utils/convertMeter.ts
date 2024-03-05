@@ -9,5 +9,5 @@ export const convertMeter = (meter: number): string => {
   if (meter >= 1000) {
     return `${distance}km`;
   }
-  return `${meter}m`;
+  return `${meter.toFixed(0)}m`;
 };

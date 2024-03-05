@@ -58,7 +58,7 @@ export const CommonContainer = styled.div`
   padding: ${NAV_HEIGHT + 2}rem ${CONTAINER.PADDING_HORIZONTAL}rem;
   box-sizing: border-box;
   width: 100%;
-  min-height: 100dvh;
+  min-height: 100vh;
 `;
 
 export const Col = styled.div`
