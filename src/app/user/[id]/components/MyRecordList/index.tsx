@@ -1,69 +1,76 @@
+"use client";
+
 import Link from "next/link";
-import * as S from "./MyRecordList.styles";
+import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/utils";
 import { LogDetailCard, LogSimpleCard } from "@/components";
-import { MasilsListType, PostsListType } from "../../Mypage.types";
+import { MasilsListType, PostsListType, UserInfoType } from "../../Mypage.types";
+import * as S from "./MyRecordList.styles";
 
-type MyRecordListType = "Masils" | "Posts";
-
-export interface MyRecordListProps {
-  key: string | number;
+interface MyRecordListProps {
   title: string;
   urlLink: string;
   recordList: MasilsListType[] | PostsListType[];
-  type: MyRecordListType;
+  type: "Masils" | "Posts";
+  userInfo: UserInfoType;
 }
 
-const MyRecordList = ({ key, title, urlLink, recordList, type }: MyRecordListProps) => {
+const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordListProps) => {
   return (
     <S.BorderContainer>
       <S.BorderTitleSection>
         <h3>{title}</h3>
-        <Link href={urlLink}>더 보기</Link>
+        <Link
+          href={urlLink}
+          title={title}
+        >
+          더 보기
+        </Link>
       </S.BorderTitleSection>
       <S.BorderContentSection>
         <S.BorderContentListWrapper>
-          {type === "Masils"
-            ? (recordList as MasilsListType[]).map(
-                ({
-                  thumbnail_url,
-                  region_1depth_name,
-                  region_2depth_name,
-                  distance,
-                  total_time,
-                  created_at,
-                  id,
-                }) => (
+          {type === "Masils" &&
+            (recordList as MasilsListType[]).map(
+              ({ thumbnailUrl, depth1, depth2, distance, totalTime, startedAt, id }) => (
+                <li key={id}>
                   <LogSimpleCard
-                    thumbnail={thumbnail_url}
-                    location_1={region_1depth_name}
-                    location_2={region_2depth_name}
-                    distance={distance}
-                    total_time={total_time}
-                    created_at={created_at}
+                    thumbnailUrl={thumbnailUrl}
+                    depth1={depth1}
+                    depth2={depth2}
+                    distance={convertMeter(distance)}
+                    totalTime={convertSeconds(totalTime)}
+                    startedAt={convertDateToYearMonthDay(startedAt)}
                     onClick={() => console.log(`${id}로 이동~~`)}
                   />
-                ),
-              )
-            : (recordList as PostsListType[]).map(
-                ({ title, content, thumbnail, distance, total_time, like_count }) => (
+                </li>
+              ),
+            )}
+
+          {type === "Posts" &&
+            (recordList as PostsListType[]).map(
+              ({ title, content, thumbnailUrl, distance, totalTime, likeCount, id }) => (
+                <li key={id}>
                   <LogDetailCard
                     title={title}
                     content={content}
-                    thumbnailURL={thumbnail}
-                    distance={distance}
-                    totalTime={total_time}
-                    likeCount={like_count}
+                    thumbnailUrl={thumbnailUrl}
+                    distance={convertMeter(distance)}
+                    totalTime={convertSeconds(totalTime)}
+                    totalDistance={distance}
+                    likeCount={likeCount}
                     isLiked={true}
                     isLikeLayout={true}
                     isSettingLayout={true}
+                    userInfo={userInfo}
                     onDetailClick={() => console.log("Detail View 클릭!")}
                     onLikeClick={(event) => {
                       event.stopPropagation();
                       console.log("like 클릭 !!");
                     }}
                   />
-                ),
-              )}
+                </li>
+              ),
+            )}
+
           {recordList.length === 0 && (
             <S.EmptyAlert>
               <strong>산책로가 비어있어요.</strong>
