@@ -6,7 +6,7 @@ import { GlobalStyle } from "@/styles/GlobalStyle";
 import "src/styles/globals.css";
 import { ManagedUIContext, ModalUI, WindowUI } from "@/components/uiContext/UiContext";
 import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
-import TanstackQueryProviver from "@/lib/TanstackQueryProvider";
+import TanstackQueryProvider from "@/lib/TanstackQueryProvider";
 import { serverGetTest } from "@/lib/api/Test/serverTest";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
@@ -24,6 +24,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const data = await serverGetTest();
+  // console.log("SERVER", data);
+
   return (
     <html lang="ko">
       <ManagedUIContext>
@@ -34,7 +37,7 @@ export default async function RootLayout({
               src={URL}
               strategy={"beforeInteractive"}
             />
-            <TanstackQueryProviver>
+            <TanstackQueryProvider>
               <main>
                 {children}
                 <BottomNavigator />
@@ -42,7 +45,7 @@ export default async function RootLayout({
               <ModalUI />
               <LoadingSpinner />
               <WindowUI />
-            </TanstackQueryProviver>
+            </TanstackQueryProvider>
           </body>
         </StyledComponentsRegistry>
       </ManagedUIContext>
