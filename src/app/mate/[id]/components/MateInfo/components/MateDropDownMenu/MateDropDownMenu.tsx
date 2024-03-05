@@ -37,6 +37,14 @@ const MateDropDownMenu = ({ postId }: MateDropDownMenuProps) => {
     e.preventDefault();
 
     console.log("삭제 클릭");
+
+    setModalView("MATE_LOCATION_MAP_VIEW");
+    openModal({
+      gatherPlace: {
+        point: { lat: 37.497, lng: 127.0254 },
+        detail: "나는 여기가 어딘지 몰라요 강남이래요",
+      },
+    });
   };
 
   return (
