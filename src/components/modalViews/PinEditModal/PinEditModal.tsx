@@ -31,6 +31,11 @@ const PinEditModal = ({ props }: ModalProp) => {
     return;
   }
 
+  /**
+   * @func handleImageUpload
+   * @params (image: File, pinIndex: number)
+   * @brief 사용자가 핀 썸네일을 첨부하면 실행됩니다. API와 통신하여 이미지 파일을 서버에 저장, URL로 변환하여 반환받습니다. 성공적으로 반환받은 경우 썸네일 URL을 logData의 핀 인덱스에 저장합니다.
+   */
   const handleImageUpload = (event: React.MouseEvent) => {
     // onUploadThumbnail(pinIndex,);
     // TODO: 이미지 파일 업로드받음

@@ -12,7 +12,7 @@ import animationData from "./animationData.json";
 interface LogRecordDoneModalProps {
   logData: MasilRecordRequest;
   onClickUploadPost: () => void;
-  onClickCancle: () => {};
+  onClickCancel: () => {};
 }
 
 interface ModalProps {
@@ -22,7 +22,7 @@ interface ModalProps {
 // TODO: Close 버튼 제거 및 background를 클릭해도 모달이 닫히지 않게
 
 const LogRecordDoneModal = ({ props }: ModalProps) => {
-  const { onClickCancle, onClickUploadPost, logData } = props;
+  const { onClickCancel, onClickUploadPost, logData } = props;
 
   const defaultOptions = {
     loop: false,

@@ -130,7 +130,6 @@ const LogRecordEditView = ({
         width={"90%"}
         onClickHandler={() => {
           onSubmit(watchLogMemo);
-          console.log("d");
         }}
       >
         산책 기록하기
