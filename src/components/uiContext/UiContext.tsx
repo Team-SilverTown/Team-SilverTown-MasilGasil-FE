@@ -12,6 +12,7 @@ import {
   LogRecordAlertModal,
   LogRecordConfirmModal,
   TestModal,
+  MateCreateMapModal,
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
@@ -21,7 +22,6 @@ import useWindowStore from "@/stores/ui/useWindowStore";
 import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
 
 import Policy from "../windowViews/Policy";
-import MateCreateMapModal from "../modalViews/MateMapModal/MateCreateMapModal";
 
 export const useUI = () => {
   const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();

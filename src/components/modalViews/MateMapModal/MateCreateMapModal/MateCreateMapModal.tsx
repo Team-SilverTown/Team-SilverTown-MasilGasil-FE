@@ -1,7 +1,7 @@
 "use client";
 
 import { Map } from "react-kakao-maps-sdk";
-import * as GS from "./MateMapModal.styles";
+import * as GS from "../MateMapModal.styles";
 import * as S from "./MateCreateMapModal.styles";
 
 import { ModalLayout } from "@/components/Modal";
