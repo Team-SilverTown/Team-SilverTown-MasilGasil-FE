@@ -1,92 +1,38 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { WALKLIST_DUMMY_DATA } from "./Home.constants";
 
-import { Button } from "@/components";
-import { More, ClearSky, Overcast, PartlyCloudy, Rainy, Sleet, Snowy } from "@/components/icons";
+import { More } from "@/components/icons";
 import { WalkList, MyWalkRecord, MyLocationWeather } from "./components";
 
-import { Precipitation, WeatherType } from "./Home.types";
-
-import Theme, { CONTAINER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./Home.styles";
+import WalkStartButton from "./components/WalkStartButton/WalkStartButton";
 
-interface HomeViewProps {
-  temperature: string | null;
-  weather: WeatherType | null;
-  precipitation: Precipitation | null;
-  address: string;
-  pm10: number | null;
-}
-
-const WEATHER_ICON = {
-  맑음: <ClearSky />,
-  구름조금: <PartlyCloudy />,
-  흐림: <Overcast />,
-  비: <Rainy />,
-  진눈개비: <Sleet />,
-  눈: <Snowy />,
-  없음: null,
-};
-
-const HomeView = ({ temperature, weather, precipitation, address, pm10 }: HomeViewProps) => {
-  const router = useRouter();
-  const weatherIcon =
-    precipitation && weather ? WEATHER_ICON[precipitation] || WEATHER_ICON[weather] : null;
-
-  const handleClickWalking = () => {
-    router.push("/log/record");
-  };
-
+const HomeView = () => {
   return (
-    <S.HomePageContainer>
-      <S.MyInfoSection>
-        <MyLocationWeather
-          temperature={temperature}
-          weather={weatherIcon}
-          precipitation={precipitation}
-          address={address}
-          pm10={pm10}
-        />
-        <MyWalkRecord weather={weatherIcon} />
-      </S.MyInfoSection>
-      <S.WalkListSection>
+    <div className={S.HomePageContainer}>
+      <section className={S.MyInfoSection}>
+        <MyLocationWeather />
+        <MyWalkRecord />
+      </section>
+      <section className={S.WalkListSection}>
         {WALKLIST_DUMMY_DATA.map(({ title, walkList, urlLink }) => (
-          <S.HomeWalkListSection key={title}>
-            <S.HomeWalkListTitle>
-              <h3>{title}</h3>
+          <section
+            className={S.HomeWalkListSection}
+            key={title}
+          >
+            <article className={S.HomeWalkListArticle}>
+              <h3 className={S.HomeWalkListTitle}>{title}</h3>
               <Link href={urlLink}>
                 <More />
               </Link>
-            </S.HomeWalkListTitle>
+            </article>
             <WalkList walkList={walkList} />
-          </S.HomeWalkListSection>
+          </section>
         ))}
-      </S.WalkListSection>
-      <Button
-        variant="neumorp"
-        buttonColor={Theme.lightTheme.green_500}
-        textColor={Theme.lightTheme.white}
-        width={"calc(100% - 3rem)"}
-        style={{
-          position: "fixed",
-          left: "50%",
-          bottom: "7rem",
-          transform: "translateX(-50%)",
-          maxWidth: `${CONTAINER.MAX_WIDTH}rem`,
-          height: "6rem",
-          fontSize: `${FONT_SIZE.H6}`,
-          fontWeight: `${FONT_WEIGHT.BOLD}`,
-          opacity: "0.9",
-        }}
-        onClick={handleClickWalking}
-      >
-        산책 기록 하기
-      </Button>
-    </S.HomePageContainer>
+      </section>
+      <WalkStartButton />
+    </div>
   );
 };
 

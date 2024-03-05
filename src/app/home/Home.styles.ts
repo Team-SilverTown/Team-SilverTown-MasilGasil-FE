@@ -1,37 +1,41 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import styled from "styled-components";
 
-export const HomePageContainer = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  padding: 8rem 0 14rem;
-  box-sizing: border-box;
+export const HomePageContainer = `
+  w-full
+  min-h-screen
+
+  pt-32
+  pb-56
+
+  box-border
 `;
 
-export const MyInfoSection = styled.section`
-  padding: 0 1.5rem;
+export const MyInfoSection = `
+  px-6
 `;
 
-export const WalkListSection = styled.section`
-  padding-left: 1.5rem;
+export const WalkListSection = `
+  pl-5
 `;
 
-export const HomeWalkListSection = styled.section`
-  margin-top: 2rem;
+export const HomeWalkListSection = `
+  mt-8
 `;
 
-export const HomeWalkListTitle = styled.article`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+export const HomeWalkListArticle = `
+  flex
+  justify-between
+  items-center
+  mb-4
+`;
 
-  h3 {
-    font-size: ${FONT_SIZE.LARGE};
-    font-weight: ${FONT_WEIGHT.BOLD};
-  }
+// font-size: ${FONT_SIZE.LARGE};
+// font-weight: ${FONT_WEIGHT.BOLD};
+export const HomeWalkListTitle = `
+  text-3xl
+  font-bold
+`;
 
-  a {
-    padding-right: 1.5rem;
-  }
+export const HomeWalkListMoreButton = `
+  pr-6
 `;
