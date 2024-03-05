@@ -1,40 +1,36 @@
-"use client";
-
-import * as GS from "@/styles/GlobalStyle";
-import { UserInfo, UserWalkRecord, MyRecordList } from "./components";
-import { MyRecordListProps } from "./components/MyRecordList";
+import { UserProfileInfo, UserWalkRecord, MyRecordList } from "./components";
+import { MyRecordListType, UserInfoType } from "./Mypage.types";
+import * as S from "./Mypage.styles";
 
 interface MypageViewProps {
-  boardList: MyRecordListProps[];
+  boardList: MyRecordListType[];
+  userInfo: UserInfoType;
 }
 
-const MypageView = ({ boardList }: MypageViewProps) => {
+const MypageView = ({ boardList, userInfo }: MypageViewProps) => {
   return (
-    <GS.CommonContainer>
-      <UserInfo
-        profileImage=""
-        profileName="김개똥"
-        profileMessage="간단한 자기소개!!"
-      />
-      <UserWalkRecord
-        totalWalkDistance={104.2}
-        totalWalkCount={50}
-        exerciseIntensity="1"
-        userAge="1994.12.26"
-        userWeight={71}
-        userHeight={177}
-        gender="male"
-      />
-      {boardList.map(({ title, urlLink, recordList, type }) => (
-        <MyRecordList
-          key={title}
-          title={title}
-          urlLink={urlLink}
-          recordList={recordList}
-          type={type}
+    <S.UserProfileContainer>
+      <S.UserProfileLayout className="scrollbar-hide">
+        <UserProfileInfo
+          profileImage=""
+          profileName="김개똥"
         />
-      ))}
-    </GS.CommonContainer>
+        <UserWalkRecord
+          totalWalkDistance={11000}
+          totalWalkCount={50}
+          userInfo={userInfo}
+        />
+        {boardList.map(({ title, urlLink, recordList, type }) => (
+          <MyRecordList
+            title={title}
+            urlLink={urlLink}
+            recordList={recordList}
+            type={type}
+            userInfo={userInfo}
+          />
+        ))}
+      </S.UserProfileLayout>
+    </S.UserProfileContainer>
   );
 };
 

@@ -1,36 +1,73 @@
 export interface MasilsListType {
-  id: string;
-  user_id: string;
-  post_id: string;
-  region_1depth_name: string;
-  region_2depth_name: string;
-  region_3depth_name: string;
-  path: [];
+  id: number;
+  depth1: string;
+  depth2: string;
+  depth3: string;
+  depth4: string;
   title: string;
   content: string;
-  thumbnail_url: string;
-  distance: string;
-  total_time: string;
-  started_at: string;
-  created_at: string;
-  updated_at: string;
+  path: PathType[];
+  distance: number;
+  totalTime: number;
+  startedAt: string;
+  postId: null | number;
+  thumbnailUrl: null | string;
+  pins: PinsType[];
 }
 
 export interface PostsListType {
-  id: string;
-  user_id: string;
-  region_1depth_name: string;
-  region_2depth_name: string;
-  region_3depth_name: string;
-  path: [];
+  id: number;
+  depth1: string;
+  depth2: string;
+  depth3: string;
+  depth4: string;
   title: string;
   content: string;
-  thumbnail: string;
-  is_public: boolean;
-  distance: string;
-  total_time: string;
-  view_count: number;
-  like_count: number;
-  created_at: string;
-  updated_at: string;
+  path: PathType[];
+  distance: number;
+  totalTime: number;
+  isPublic: boolean;
+  viewCount: number;
+  likeCount: number;
+  pins: PinsType[];
+  authorId: number;
+  authorName: string;
+  thumbnailUrl: string;
 }
+
+interface PathType {
+  lat: number;
+  lng: number;
+}
+
+interface PinsType {
+  id: number;
+  point: PathType;
+  content: string;
+  thumbnail: string;
+}
+
+export interface UserInfoType {
+  sex?: "MALE" | "FEMALE";
+  birthDate?: string;
+  height?: number;
+  weight?: number;
+  exerciseIntensity?: "SUPER_LOW" | "LOW" | "MIDDLE" | "HIGH" | "SUPER_HIGH";
+}
+
+interface RecordType {
+  title: string;
+  urlLink: string;
+}
+
+interface RecordMasilsType extends RecordType {
+  type: "Masils";
+  recordList: MasilsListType[];
+}
+
+interface RecordPostsType extends RecordType {
+  type: "Posts";
+  recordList: PostsListType[];
+}
+
+export type MyRecordListType = RecordMasilsType | RecordPostsType;
