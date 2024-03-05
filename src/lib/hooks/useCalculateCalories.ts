@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { UserInfoType } from "@/app/user/[id]/Mypage.types";
-import { calculateAge } from "@/utils/calculateAge";
-import { calculateWalkingCalories } from "@/utils/calculateWalkingCalories";
+import { calculateAge, calculateWalkingCalories } from "@/utils";
 
 interface useCalculateCaloriesProps {
   userInfo: UserInfoType;

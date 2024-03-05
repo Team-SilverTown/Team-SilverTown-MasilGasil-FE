@@ -1,40 +1,18 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { UserInfoType } from "../../Mypage.types";
 import * as S from "./UserWalkRecord.styles";
-
-type UserGenderInfo = "male" | "female";
+import { convertMeter } from "@/utils";
+import useCalculateCalories from "@/lib/hooks/useCalculateCalories";
 
 interface UserWalkRecordProps {
   totalWalkDistance: number;
   totalWalkCount: number;
-  exerciseIntensity?: string;
-  userAge?: string;
-  userWeight?: number;
-  userHeight?: number;
-  gender?: UserGenderInfo;
+  userInfo: UserInfoType;
 }
 
-const UserWalkRecord = ({
-  totalWalkDistance,
-  totalWalkCount,
-  exerciseIntensity,
-  userAge,
-  userWeight,
-  userHeight,
-  gender,
-}: UserWalkRecordProps) => {
-  const userInfoCheck = useCallback(() => {
-    if (!exerciseIntensity || !userAge || !userWeight || !userHeight || !gender) {
-      return false;
-    }
-
-    return true;
-  }, [exerciseIntensity, userAge, userWeight, userHeight, gender]);
-
-  const isUserInfoCheck = useMemo(() => {
-    return userInfoCheck();
-  }, [userInfoCheck]);
+const UserWalkRecord = ({ totalWalkDistance, totalWalkCount, userInfo }: UserWalkRecordProps) => {
+  const { isUserInfoCheck, calories } = useCalculateCalories({ userInfo, totalWalkDistance });
 
   return (
     <S.UserWalkRecordContainer>
@@ -43,23 +21,20 @@ const UserWalkRecord = ({
         <li>
           <strong>거리</strong>
           <div className="walkItemInfo">
-            <span>{totalWalkDistance}</span>
-            <small>km</small>
+            <span>{convertMeter(totalWalkDistance)}</span>
           </div>
         </li>
         <li>
           <strong>총 산책 횟수</strong>
           <div className="walkItemInfo">
-            <span>{totalWalkCount}</span>
-            <small>번</small>
+            <span>{totalWalkCount}번</span>
           </div>
         </li>
         {isUserInfoCheck && (
           <li>
             <strong>총 소모 열량</strong>
             <div className="walkItemInfo">
-              <span>1,500</span>
-              <small>kacl</small>
+              <span>{calories}kacl</span>
             </div>
           </li>
         )}
