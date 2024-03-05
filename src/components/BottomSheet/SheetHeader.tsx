@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { motion, useTransform } from 'framer-motion';
+import * as React from "react";
+import { motion, useTransform } from "framer-motion";
 
-import { SheetDraggableProps } from './types';
-import { useSheetContext } from './context';
-import { useDragConstraints } from './hooks';
-import { mergeRefs } from './utils';
-import styles from './styles';
+import { SheetDraggableProps } from "./types";
+import { useSheetContext } from "./context";
+import { useDragConstraints } from "./hooks";
+import { mergeRefs } from "./utils";
+import styles from "./styles";
 
 const SheetHeader = React.forwardRef<any, SheetDraggableProps>(
   ({ children, style, disableDrag, ...rest }, ref) => {
@@ -15,12 +15,12 @@ const SheetHeader = React.forwardRef<any, SheetDraggableProps>(
 
     const indicator1Transform = useTransform(
       indicatorRotation,
-      r => `translateX(2px) rotate(${r}deg)`
+      (r) => `translateX(2px) rotate(${r}deg)`,
     );
 
     const indicator2Transform = useTransform(
       indicatorRotation,
-      r => `translateX(-2px) rotate(${-1 * r}deg)`
+      (r) => `translateX(-2px) rotate(${-1 * r}deg)`,
     );
 
     return (
@@ -32,8 +32,11 @@ const SheetHeader = React.forwardRef<any, SheetDraggableProps>(
         dragConstraints={constraintsRef}
         onMeasureDragConstraints={onMeasureDragConstraints}
       >
-        {children || (
-          <div className="react-modal-sheet-header" style={styles.header}>
+        <>
+          <div
+            className="react-modal-sheet-header"
+            style={styles.header}
+          >
             <motion.span
               className="react-modal-sheet-drag-indicator"
               style={{ ...styles.indicator, transform: indicator1Transform }}
@@ -43,10 +46,11 @@ const SheetHeader = React.forwardRef<any, SheetDraggableProps>(
               style={{ ...styles.indicator, transform: indicator2Transform }}
             />
           </div>
-        )}
+          {children}
+        </>
       </motion.div>
     );
-  }
+  },
 );
 
 export default SheetHeader;

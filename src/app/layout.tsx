@@ -34,6 +34,7 @@ export default async function RootLayout({
           <GlobalStyle />
           <body>
             <Script
+              type="text/javascript"
               src={URL}
               strategy={"beforeInteractive"}
             />
