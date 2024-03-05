@@ -15,13 +15,8 @@ export const GET = async <T>({
 }) => {
   const API = getRootAPI(auth);
 
-  try {
-    const response = await API.get<T>(`/api${endPoint}`, config);
-    return response;
-  } catch (error) {
-    console.error(error);
-    return undefined;
-  }
+  const response = await API.get<T>(`/api${endPoint}`, config);
+  return response;
 };
 
 export const POST = async <T>({
@@ -37,13 +32,8 @@ export const POST = async <T>({
 }) => {
   const API = getRootAPI(auth);
 
-  try {
-    const response = await API.post<T>(`/api${endPoint}`, data, config);
-    return response;
-  } catch (error) {
-    console.error(error);
-    return undefined;
-  }
+  const response = await API.post<T>(`/api${endPoint}`, data, config);
+  return response;
 };
 
 export const PUT = async <T>({
@@ -59,13 +49,8 @@ export const PUT = async <T>({
 }) => {
   const API = getRootAPI(auth);
 
-  try {
-    const response = await API.put<T>(`/api${endPoint}`, data, config);
-    return response;
-  } catch (error) {
-    console.error(error);
-    return undefined;
-  }
+  const response = await API.put<T>(`/api${endPoint}`, data, config);
+  return response;
 };
 
 export const DELETE = async <T>({
@@ -79,11 +64,6 @@ export const DELETE = async <T>({
 }) => {
   const API = getRootAPI(auth);
 
-  try {
-    const response = await API.delete<T>(`/api${endPoint}`, config);
-    return response;
-  } catch (error) {
-    console.error(error);
-    return undefined;
-  }
+  const response = await API.delete<T>(`/api${endPoint}`, config);
+  return response;
 };
