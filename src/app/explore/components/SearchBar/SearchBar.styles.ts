@@ -3,11 +3,9 @@ import styled from "styled-components";
 import { CONTAINER, NAV_HEIGHT, Z_INDEX } from "@/styles/theme";
 
 export const SearchBarContainer = styled.div`
-  position: relative;
   top: 0;
   left: 0;
   display: flex;
-  justify-content: start;
   width: 100%;
   padding-left: ${CONTAINER.PADDING_HORIZONTAL}rem;
   padding-right: ${CONTAINER.PADDING_HORIZONTAL}rem;
@@ -52,5 +50,5 @@ export const CrossButton = styled.button`
   }
 
   padding: 0.25rem;
-  border-radius: 9999px;
+  border-radius: 50%;
 `;
