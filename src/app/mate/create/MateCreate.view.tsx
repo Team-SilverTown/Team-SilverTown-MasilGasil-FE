@@ -11,6 +11,8 @@ import * as GS from "@/styles/GlobalStyle";
 import * as S from "./MateCreate.styles";
 import { MateCreateProps } from "./MateCreate.controller";
 
+import { CalendarDatePicker } from "./components";
+
 interface MateCreateViewProps {
   register: UseFormRegister<MateCreateProps>;
   handleSubmit: () => void;
@@ -19,7 +21,7 @@ interface MateCreateViewProps {
 
 const regularFields = [
   { title: "제목", placeholder: "제목을 입력해주세요.", name: "title" },
-  { title: "설명", placeholder: "설명을 입력해주세요.", name: "content" },
+  { title: "설명", type: "textarea", placeholder: "설명을 입력해주세요.", name: "content" },
   { title: "위치", placeholder: "모이는 위치를 입력해주세요.", name: "location" },
   { title: "희망 날짜", placeholder: "날짜를 입력해주세요.", name: "date" },
 ];
@@ -36,17 +38,19 @@ const MateCreateView = ({ register, handleSubmit, isFormFilled }: MateCreateView
         {regularFields.map((field, index) => (
           <S.Section>
             <S.Title>{field.title}</S.Title>
-            {field.type === "textarea" ? (
+            {field.type === "textarea" && field.name !== "date" && (
               <Textarea
                 placeholder={field.placeholder}
                 register={register(field.name)}
               />
-            ) : (
+            )}
+            {field.type !== "textarea" && field.name !== "date" && (
               <Input
                 placeholder={field.placeholder}
                 register={register(field.name)}
               />
             )}
+            {field.name === "date" && <CalendarDatePicker />}
           </S.Section>
         ))}
 
