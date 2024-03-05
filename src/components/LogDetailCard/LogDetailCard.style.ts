@@ -108,10 +108,10 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
       &:hover,
       &.liked {
         svg {
-          stroke: ${(props) => props.theme.yellow_500};
+          stroke: ${(props) => props.theme.pink_100};
         }
         .like {
-          color: ${(props) => props.theme.yellow_500};
+          color: ${(props) => props.theme.pink_100};
         }
       }
     }
