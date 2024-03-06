@@ -8,11 +8,11 @@ import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import MasilMap from "@/components/MasilMap/MasilMap";
 
 const PostCreateView = () => {
-  const { pageStep, center } = usePostCreateController();
+  const { pageStep, center, handleFallback } = usePostCreateController();
 
   return (
     <S.PostCreateLayout>
-      <TopNavigator leftChildren={<GoBackButton />} />
+      <TopNavigator leftChildren={<GoBackButton onGoBackHandler={handleFallback} />} />
 
       <S.PostCreateMapWrapper>
         <MasilMap
