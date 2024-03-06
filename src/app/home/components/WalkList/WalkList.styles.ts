@@ -1,21 +1,14 @@
-import styled from "styled-components";
-
-export const WalkListContainer = styled.ul`
-  display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+export const WalkListContainer = `
+  flex
+  gap-8
+  overflow-x-auto
+  scrollbar-hide
 `;
 
-export const NoWalkRecordMessage = styled.li`
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  min-height: 12rem;
+export const NoWalkRecordMessage = `
+  flex
+  items-center
+  mx-auto
+  my-0
+  min-h-48
 `;

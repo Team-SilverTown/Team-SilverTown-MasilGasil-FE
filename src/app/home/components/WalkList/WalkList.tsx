@@ -1,9 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { MasilsListType, PostsListType } from "../../Home.types";
 import { LogDetailCard } from "@/components";
 import * as S from "./WalkList.styles";
-import Link from "next/link";
 
 interface WalkListProps {
   walkList: MasilsListType[] | PostsListType[];
@@ -11,7 +11,7 @@ interface WalkListProps {
 
 const WalkList = ({ walkList }: WalkListProps) => {
   return (
-    <S.WalkListContainer>
+    <ul className={S.WalkListContainer}>
       {walkList.map((list) => (
         <li key={list.id}>
           <Link
@@ -34,9 +34,9 @@ const WalkList = ({ walkList }: WalkListProps) => {
         </li>
       ))}
       {walkList.length === 0 && (
-        <S.NoWalkRecordMessage>산책 기록이 존재하지 않습니다.</S.NoWalkRecordMessage>
+        <li className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</li>
       )}
-    </S.WalkListContainer>
+    </ul>
   );
 };
 
