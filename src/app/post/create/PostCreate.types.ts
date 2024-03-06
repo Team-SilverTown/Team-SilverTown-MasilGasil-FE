@@ -4,3 +4,9 @@ export interface PostCreateInputValue {
   title: string;
   content: string;
 }
+
+export type HandleCompleteStepOne = (data: {
+  title: string;
+  content: string;
+  isPublic: boolean;
+}) => void;

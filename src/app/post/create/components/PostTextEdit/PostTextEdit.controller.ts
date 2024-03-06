@@ -4,7 +4,7 @@ import usePostCreateContext from "../../context/PostCreateContext";
 import { useEffect, useMemo, useState } from "react";
 
 const usePostTextEditController = () => {
-  const { postData, pageStep, setPageStep } = usePostCreateContext();
+  const { postData, pageStep, setPageStep, handleCompleteStepOne } = usePostCreateContext();
 
   const [isPublic, setIsPublic] = useState(() => {
     return postData.isPublic;
@@ -29,8 +29,13 @@ const usePostTextEditController = () => {
     return true;
   }, [errors]);
 
-  const handleValid = (data: PostCreateInputValue) => {
-    // 추후 데이터를 postData에 업로드
+  const handleValid = ({ title, content }: PostCreateInputValue) => {
+    handleCompleteStepOne({
+      title,
+      content,
+      isPublic: isPublic,
+    });
+
     setPageStep("POST_CREATE_PIN_EDIT");
   };
 

@@ -7,7 +7,7 @@ import {
   useReducer,
   useState,
 } from "react";
-import { PostCreatePageStep } from "../PostCreate.types";
+import { HandleCompleteStepOne, PostCreatePageStep } from "../PostCreate.types";
 import { MasilResponse } from "@/types/Response";
 import postCreateReducer from "./reducer/PostCreateReducer";
 import {
@@ -25,12 +25,14 @@ interface PostCreateContextValues {
   postData: PostCreateRequest;
   pageStep: PostCreatePageStep;
   setPageStep: Dispatch<SetStateAction<PostCreatePageStep>>;
+  handleCompleteStepOne: HandleCompleteStepOne;
 }
 
 const PostCreateContext = createContext<PostCreateContextValues>({
   postData: POST_CREATE_DEFAULT_REQUEST_VALUE,
   pageStep: "POST_CREATE_TEXT_EDIT",
   setPageStep: () => {},
+  handleCompleteStepOne: () => {},
 });
 
 export const PostCreateContextProvider = ({
@@ -44,8 +46,12 @@ export const PostCreateContextProvider = ({
     dispatch({ type: POST_CREATE_REDUCER_ACTION.INIT, payload: { defaultData } });
   }, []);
 
+  const handleCompleteStepOne: HandleCompleteStepOne = (newData) => {
+    dispatch({ type: POST_CREATE_REDUCER_ACTION.COMPLETE_STEP_ONE, payload: newData });
+  };
+
   return (
-    <PostCreateContext.Provider value={{ pageStep, setPageStep, postData }}>
+    <PostCreateContext.Provider value={{ pageStep, setPageStep, postData, handleCompleteStepOne }}>
       {children}
     </PostCreateContext.Provider>
   );
