@@ -47,7 +47,7 @@ const LogRecordModel = () => {
       return;
     }
 
-    setModalView("LOG_RECORD_CONFIRM_VIEW");
+    setModalView("CONFIRM_VIEW");
     openModal({
       onClickAccept: () => {
         setIsActiveExitAnimation(true);

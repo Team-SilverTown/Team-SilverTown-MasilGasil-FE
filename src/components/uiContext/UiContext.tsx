@@ -7,12 +7,7 @@ import { useLocalStorage } from "@lib/hooks/useLocalStorage";
 import useModalStore from "@/stores/ui/useModalStore";
 import { Modal } from "@components/Modal";
 import Window from "@components/Window";
-import {
-  PinEditModal,
-  LogRecordAlertModal,
-  LogRecordConfirmModal,
-  TestModal,
-} from "@components/modalViews";
+import { PinEditModal, LogRecordAlertModal, ConfirmModal, TestModal } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
 import LogRecordDoneModal from "../modalViews/LogRecordDoneModal/LogRecordDoneModal";
@@ -73,7 +68,7 @@ const ModalView = ({
   return (
     <Modal onClose={closeModal}>
       {modalView === "INIT_VIEW" && <TestModal />}
-      {modalView === "LOG_RECORD_CONFIRM_VIEW" && <LogRecordConfirmModal props={props} />}
+      {modalView === "CONFIRM_VIEW" && <ConfirmModal props={props} />}
       {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
       {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
       {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
@@ -120,7 +115,7 @@ const WindowView = ({
   );
 };
 
-export const WindowUI= () => {
+export const WindowUI = () => {
   const { displayWindow, closeWindow, windowView, windowURL } = useUI();
   return displayWindow ? (
     <WindowView
