@@ -56,6 +56,7 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
       <S.BirthDateSection>
         <UserEditInput
           title={"나이"}
+          description="14세 이상부터 이용 가능합니다."
           inputType={"date"}
           placeholder={USER_INPUT_PLACEHOLDER.BIRTH_DATE}
           register={register("birthDate", validation_user.birthDate)}

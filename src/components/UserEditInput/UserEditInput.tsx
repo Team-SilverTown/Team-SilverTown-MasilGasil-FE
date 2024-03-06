@@ -6,6 +6,7 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 interface UserEditInputProps {
   title: string;
+  description?: string;
   inputType: "text" | "number" | "date";
   placeholder: string;
   errorsMessage?: string;
@@ -16,6 +17,7 @@ interface UserEditInputProps {
 
 const UserEditInput = ({
   title,
+  description,
   inputType,
   placeholder,
   errorsMessage,
@@ -25,7 +27,10 @@ const UserEditInput = ({
 }: UserEditInputProps) => {
   return (
     <>
-      <S.UserEditInputTitle>{title}</S.UserEditInputTitle>
+      <S.UserEditInputTitle>
+        {title}
+        <S.UserEditInputDescription>{description}</S.UserEditInputDescription>
+      </S.UserEditInputTitle>
 
       <S.UserEditInputActions>
         <Input

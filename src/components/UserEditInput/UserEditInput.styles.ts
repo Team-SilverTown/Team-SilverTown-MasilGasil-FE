@@ -11,6 +11,14 @@ export const UserEditInputTitle = styled.h6`
   user-select: none;
 `;
 
+export const UserEditInputDescription = styled.span`
+  margin-left: 1rem;
+
+  font-size: ${FONT_SIZE.SMALL};
+  font-weight: ${FONT_WEIGHT.SEMIBOLD};
+  color: ${({ theme }) => theme.gray_500};
+`;
+
 export const UserEditInputActions = styled.div`
   display: flex;
   align-items: center;
