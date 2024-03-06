@@ -13,12 +13,6 @@ export const PostTextEditInputContainer = styled.div`
   width: 100%;
 `;
 
-export const PostTextEditTitleContainer = styled.div`
-  width: 100%;
-
-  border: 1px solid red;
-`;
-
 export const PostTextEditInputTitle = styled.h6`
   width: 100%;
   margin-bottom: 1rem;
