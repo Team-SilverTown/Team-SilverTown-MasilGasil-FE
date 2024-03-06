@@ -3,20 +3,23 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as GS from "../../PostTextEdit.styles";
 import { Input, InputLabel } from "@/components";
-import { UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { PostCreateInputValue } from "@/app/post/create/PostCreate.types";
+import { postCreateValidation } from "@/app/post/create/PostCreate.constants";
 
 interface PostTitleEditProps {
   register: UseFormRegister<PostCreateInputValue>;
+  errors: FieldErrors<PostCreateInputValue>;
 }
 
-const PostTitleEdit = ({ register }: PostTitleEditProps) => {
+const PostTitleEdit = ({ register, errors }: PostTitleEditProps) => {
   return (
     <GS.PostTextEditInputContainer>
       <GS.PostTextEditInputTitle>제목</GS.PostTextEditInputTitle>
       <Input
         type="text"
-        register={register("title")}
+        register={register("title", postCreateValidation.title)}
+        placeholder="제목을 입력해주세요."
         style={{
           lineHeight: "2rem",
           width: "100%",
@@ -25,10 +28,12 @@ const PostTitleEdit = ({ register }: PostTitleEditProps) => {
         }}
       />
       <GS.PostTextEditWarning>
-        <InputLabel
-          type="danger"
-          text={"이것은 경고 경고 경고 메세지여 경고"}
-        />
+        {errors.title && (
+          <InputLabel
+            type="danger"
+            text={errors.title.message}
+          />
+        )}
       </GS.PostTextEditWarning>
     </GS.PostTextEditInputContainer>
   );

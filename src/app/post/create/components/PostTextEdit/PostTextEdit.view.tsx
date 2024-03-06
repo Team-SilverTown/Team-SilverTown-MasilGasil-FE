@@ -11,15 +11,30 @@ import { PostContentEdit, PostPublicEdit, PostTitleEdit } from "./components";
 
 const PostTextEditView = () => {
   const theme = useTheme();
-  const { pageStep, register, isPublic, setIsPublic, handleClickNextStep } =
-    usePostTextEditController();
+  const {
+    pageStep,
+    register,
+    errors,
+    isPublic,
+    setIsPublic,
+    isFullField,
+    handleValid,
+
+    handleSubmit,
+  } = usePostTextEditController();
 
   return (
     <>
       <GS.PostCreateSheetContent>
-        <PostTitleEdit register={register} />
+        <PostTitleEdit
+          register={register}
+          errors={errors}
+        />
 
-        <PostContentEdit register={register} />
+        <PostContentEdit
+          register={register}
+          errors={errors}
+        />
 
         <PostPublicEdit
           isPublic={isPublic}
@@ -40,7 +55,8 @@ const PostTextEditView = () => {
             fontWeight: FONT_WEIGHT.SEMIBOLD,
             userSelect: "none",
           }}
-          onClickHandler={handleClickNextStep}
+          onClickHandler={handleSubmit(handleValid)}
+          disabled={!isFullField}
         >
           다음
         </Button>
