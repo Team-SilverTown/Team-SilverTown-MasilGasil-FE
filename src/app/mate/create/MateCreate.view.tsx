@@ -2,10 +2,10 @@
 
 import { UseFormRegister } from "react-hook-form";
 
-import { Input, Textarea } from "@/components";
+import { Input, Textarea, Button } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import { StepButton } from "@/app/signin/components";
+import useTheme from "@/lib/hooks/useTheme";
 import * as GS from "@/styles/GlobalStyle";
 
 import * as S from "./MateCreate.styles";
@@ -28,6 +28,19 @@ const regularFields = [
   { title: "희망 날짜", placeholder: "날짜를 입력해주세요.", name: "date" },
 ];
 
+const MateCreateButton = ({ onClickHandler, isDisabled, theme }) => (
+  <Button
+    type="button"
+    onClick={onClickHandler}
+    buttonColor={theme?.green_500}
+    textColor={theme?.text_secondary_color}
+    width={"100%"}
+    disabled={isDisabled}
+  >
+    <span className="text-3xl font-bold">메이트 모집하기</span>
+  </Button>
+);
+
 const MateCreateView = ({
   register,
   handleSubmit,
@@ -35,6 +48,8 @@ const MateCreateView = ({
   handlePersonnelChange,
   selectedPersonnel,
 }: MateCreateViewProps) => {
+  const theme = useTheme();
+
   return (
     <S.MateCreateContainer>
       <TopNavigator
@@ -95,10 +110,10 @@ const MateCreateView = ({
           </S.Section>
         </S.FlexContainer>
 
-        <StepButton
-          buttonText={"메이트 모집하기"}
+        <MateCreateButton
           onClickHandler={handleSubmit}
           isDisabled={!isFormFilled}
+          theme={theme}
         />
       </GS.CommonContainer>
     </S.MateCreateContainer>

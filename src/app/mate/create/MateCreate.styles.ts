@@ -14,7 +14,7 @@ export const Section = styled.section`
 `;
 export const FlexContainer = styled.div`
   display: flex;
-  margin-top: 3rem;
+  margin-bottom: 3.5rem;
   gap: 2rem;
 `;
 
