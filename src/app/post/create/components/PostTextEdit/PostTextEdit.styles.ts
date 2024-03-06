@@ -7,6 +7,8 @@ export const PostTextEditButtonWrapper = styled.div`
 
   position: absolute;
   bottom: 1rem;
+
+  opacity: 0.9;
 `;
 
 export const PostTextEditInputContainer = styled.div`
