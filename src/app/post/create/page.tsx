@@ -9,8 +9,24 @@ const PostCreate = () => {
   // 추후 이곳에서 LogData 에 대해 fetch를 받아온 후 전달하기
 
   // 현재 Init 부분을 tanstack 가공에서 처리가능다면 추후 반영하기
+
+  const defaultData = {
+    depth1: DUMMY.depth1,
+    depth2: DUMMY.depth2,
+    depth3: DUMMY.depth3,
+    depth4: DUMMY.depth4,
+    path: DUMMY.path,
+    title: DUMMY.title,
+    content: DUMMY.content,
+    distance: DUMMY.distance,
+    totalTime: DUMMY.totalTime,
+    isPublic: true,
+    pins: DUMMY.pins,
+    thumbnailUrl: DUMMY.thumbnailUrl,
+  };
+
   return (
-    <PostCreateContextProvider logData={DUMMY}>
+    <PostCreateContextProvider defaultData={defaultData}>
       <PostCreateView />
     </PostCreateContextProvider>
   );

@@ -3,7 +3,7 @@
 import * as GS from "../../PostCreate.styles";
 import * as S from "./PostTextEdit.styles";
 
-import { Button, Input, InputLabel, Textarea } from "@/components";
+import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import usePostTextEditController from "./PostTextEdit.controller";

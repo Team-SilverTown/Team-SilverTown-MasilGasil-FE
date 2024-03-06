@@ -1,17 +1,17 @@
 import { GeoPosition, Pin } from "../OriginDataType";
 
 export interface PostCreateRequest {
-  depth1: String;
-  depth2: String;
-  depth3: String;
-  depth4: String;
+  depth1: string;
+  depth2: string;
+  depth3: string;
+  depth4: string;
   path: GeoPosition[];
-  title: String;
-  content: String;
+  title: string;
+  content: string;
 
   distance: number;
   totalTime: number;
-  isPublic: Boolean;
+  isPublic: boolean;
   pins: Pin[];
-  thumbnailUrl: String | null;
+  thumbnailUrl: string | null;
 }
