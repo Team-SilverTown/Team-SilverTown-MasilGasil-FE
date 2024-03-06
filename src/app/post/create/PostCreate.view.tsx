@@ -8,6 +8,7 @@ import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { ArrowForward } from "@/components/icons";
 import useTheme from "@/lib/hooks/useTheme";
+import { PostPinEdit, PostTextEdit } from "./components";
 
 const PostCreateView = () => {
   const theme = useTheme();
@@ -37,7 +38,10 @@ const PostCreateView = () => {
           />
         </S.PostCreateSheetHeader>
 
-        <S.PostCreateSheetContent></S.PostCreateSheetContent>
+        <S.PostCreateSheetContent>
+          {pageStep === "POST_CREATE_TEXT_EDIT" && <PostTextEdit />}
+          {pageStep === "POST_CREATE_PIN_EDIT" && <PostPinEdit />}
+        </S.PostCreateSheetContent>
       </S.PostCreateSheet>
     </S.PostCreateLayout>
   );
