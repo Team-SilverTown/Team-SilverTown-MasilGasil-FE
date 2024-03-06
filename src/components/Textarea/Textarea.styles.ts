@@ -16,7 +16,8 @@ export const TextareaStyle = styled.textarea`
 
   resize: none;
   appearance: none;
-  overflow: scroll;
+
+  /* overflow: scroll; */
 
   &::placeholder {
     color: ${(props) => props.theme.text_primary_color + 30};
@@ -26,5 +27,12 @@ export const TextareaStyle = styled.textarea`
     outline: 2px solid transparent;
     outline-offset: 2px;
     border-color: ${(props) => props.theme.green_500};
+  }
+
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
