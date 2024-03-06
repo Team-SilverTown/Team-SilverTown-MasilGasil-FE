@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FineDust, Location } from "@/components/icons";
 import * as S from "./MyLocationWeather.styles";
 import convertLatLonToTM from "../../utils/convertLatLonToTM";
 import useUserLocationStore from "@/stores/useUserLocationStore";
-import { useGetAirQuality, useGetWeatherForecast } from "../../hook";
 import { ClearSky, Overcast, PartlyCloudy, Rainy, Sleet, Snowy } from "@/components/icons";
+import { PrecipitationType, WeatherType } from "../../Home.types";
+import fetchNearbyStation from "../../api/fetchNearbyStation";
 
 const WEATHER_ICON = {
   맑음: <ClearSky />,
@@ -34,14 +35,28 @@ const findDust = (pm10: number | null) => {
   }
 };
 
-const MyLocationWeather = () => {
-  const { setUserLocation } = useUserLocationStore();
-  const { getWeatherForecast, temperature, weather, precipitation } = useGetWeatherForecast();
-  const { pm10, address, getNearbyStation } = useGetAirQuality();
+interface weatherDataType {
+  address: string;
+  pm10: number | null;
+  precipitation: PrecipitationType | null;
+  temperature: string | null;
+  weather: WeatherType | null;
+}
 
-  const showYourLocation = ({ coords }: GeolocationPosition) => {
+const MyLocationWeather = () => {
+  const [weatherData, setWeatherData] = useState<weatherDataType>({
+    address: "",
+    pm10: null,
+    precipitation: null,
+    temperature: null,
+    weather: null,
+  });
+  const { setUserLocation } = useUserLocationStore();
+
+  const showYourLocation = async ({ coords }: GeolocationPosition) => {
     const lat = coords.latitude;
     const lng = coords.longitude;
+
     setUserLocation({
       lat,
       lng,
@@ -57,8 +72,10 @@ const MyLocationWeather = () => {
     const tmY = tmCoords.y;
 
     if (tmX && tmY && tmX > 0 && tmY > 0) {
-      getNearbyStation(tmX, tmY);
-      getWeatherForecast({ lat, lng });
+      const weatherInfo = await fetchNearbyStation(tmX, tmY, lat, lng);
+      if (weatherInfo) {
+        setWeatherData(weatherInfo);
+      }
     }
   };
 
@@ -84,6 +101,8 @@ const MyLocationWeather = () => {
     navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMsg);
   }, []);
 
+  const { precipitation, weather, pm10, address, temperature } = weatherData;
+
   const weatherIcon =
     precipitation && weather ? WEATHER_ICON[precipitation] || WEATHER_ICON[weather] : null;
   const pm10Value = findDust(pm10);
@@ -93,7 +112,7 @@ const MyLocationWeather = () => {
       <S.MyLocation>
         {address && (
           <>
-            <Location />
+            <Location style={{ marginRight: "0.5rem" }} />
             <span>{address}</span>
           </>
         )}
