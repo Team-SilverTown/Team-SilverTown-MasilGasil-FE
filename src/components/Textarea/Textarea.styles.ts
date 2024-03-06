@@ -29,8 +29,8 @@ export const TextareaStyle = styled.textarea`
     border-color: ${(props) => props.theme.green_500};
   }
 
-  -ms-overflow-style: none; /* 인터넷 익스플로러 */
-  scrollbar-width: none; /* 파이어폭스 */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
     display: none;
