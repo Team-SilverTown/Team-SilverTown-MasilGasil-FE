@@ -5,5 +5,6 @@ export const BOTTOM_NAV_INABLE = [
   "/signin/policy/location",
   "/signin/policy/age",
   "/log/record",
+  "/post/create",
   "/not-found",
 ];

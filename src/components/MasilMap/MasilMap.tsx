@@ -32,7 +32,7 @@ interface MasilMapProps {
   pathOpacity?: number;
   pathWeight?: PathLineWeight;
 
-  onClickPin: OnClickPin;
+  onClickPin?: OnClickPin;
   pinSize?: number;
   pinColor?: string;
   pinSelectColor?: string;
@@ -186,7 +186,7 @@ const MasilMap = ({
             position={point}
             size={pinSize}
             onClickPin={() => {
-              onClickPin(index);
+              onClickPin && onClickPin(index);
             }}
             pinIndex={index + 1}
             pinColor={
