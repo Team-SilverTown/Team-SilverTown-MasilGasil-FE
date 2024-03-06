@@ -1,6 +1,6 @@
 import { GeoPosition, Pin } from "../OriginDataType";
 
-export interface MasilDetailResponse {
+export interface MasilResponse {
   id: number;
   depth1: string;
   depth2: string;
