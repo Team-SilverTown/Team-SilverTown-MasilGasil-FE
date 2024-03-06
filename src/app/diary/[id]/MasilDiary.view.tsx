@@ -11,9 +11,11 @@ import { Tab } from "@/components";
 import { Calendar } from "@/components/ShadcnUi/ui/calendar";
 import MonthlyStatistics from "./components/MonthlyStatistics/MonthlyStatistics";
 import MasilDiarySheet from "./components/MasilDiarySheet/MasilDiarySheet";
+import { DaylessCalendar } from "@/components/ShadcnUi/ui/daylessCalender";
+import DiaryItem from "./components/DiaryItem/DiaryItem";
 
 const MasilDiaryView = () => {
-  const { currentTabIdx, setCurrentTabIdx, date, setDate, isSheetOpen, setIsSheetOpen } =
+  const { currentTabIdx, date, isSheetOpen, setCurrentTabIdx, setDate, setIsSheetOpen } =
     useMasilDiaryController();
 
   useEffect(() => {
@@ -25,6 +27,14 @@ const MasilDiaryView = () => {
       setDate(day);
     }
     setIsSheetOpen(true);
+  };
+
+  const handleChangeMonth = (day: Date | undefined) => {
+    if (day) {
+      setDate(day);
+    }
+
+    // TODO: 쿼리스트링 Link 이동 (startDate=2023-03-06)
   };
 
   // TODO: 산책기록이 존재하는 날짜의 스타일 처리
@@ -49,7 +59,7 @@ const MasilDiaryView = () => {
           <>
             <Calendar
               mode="single"
-              onMonthChange={setDate}
+              onMonthChange={handleChangeMonth}
               selected={date}
               onSelect={handleSelectDate}
               className="rounded-md"
@@ -64,7 +74,21 @@ const MasilDiaryView = () => {
             <MasilDiarySheet isSheetOpen={isSheetOpen} />
           </>
         )}
-        {currentTabIdx === 1 && <>list</>}
+        {currentTabIdx === 1 && (
+          <>
+            <DaylessCalendar
+              mode="single"
+              onMonthChange={handleChangeMonth}
+            />
+            {/* TODO: 쿼리스트링에 따른 masils 데이터를 받아와, 해당 월의 기록을 출력*/}
+            {/* {masils
+              ? masils.map((masil) => {
+                  return <DiaryItem masil={masil} />;
+                })
+              : "기록이 존재하지 않습니다."} */}
+            <S.Section>기록이 존재하지 않습니다</S.Section>
+          </>
+        )}
       </GS.CommonContainer>
     </>
   );

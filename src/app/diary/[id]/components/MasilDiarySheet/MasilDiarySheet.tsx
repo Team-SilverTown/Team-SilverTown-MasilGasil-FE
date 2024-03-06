@@ -55,7 +55,7 @@ const MasilDiarySheet = ({ isSheetOpen, masils }: MasilDiarySheetProps) => {
               ? masils.map((masil) => {
                   return <DiaryItem masil={masil} />;
                 })
-              : "기록이 존재하지 않습니다."}
+              : "기록이 존재하지 않습니다"}
           </S.ItemWrapper>
         </Sheet.Container>
       </Sheet>
