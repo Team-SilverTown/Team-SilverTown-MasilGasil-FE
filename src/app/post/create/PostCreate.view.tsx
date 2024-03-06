@@ -38,10 +38,11 @@ const PostCreateView = () => {
           />
         </S.PostCreateSheetHeader>
 
-        <S.PostCreateSheetContent>
+        <S.PostCreateSheetContentWrapper>
           {pageStep === "POST_CREATE_TEXT_EDIT" && <PostTextEdit />}
+
           {pageStep === "POST_CREATE_PIN_EDIT" && <PostPinEdit />}
-        </S.PostCreateSheetContent>
+        </S.PostCreateSheetContentWrapper>
       </S.PostCreateSheet>
     </S.PostCreateLayout>
   );

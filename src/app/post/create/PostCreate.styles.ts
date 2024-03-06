@@ -1,3 +1,4 @@
+import { CONTAINER } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostCreateLayout = styled.section`
@@ -45,9 +46,15 @@ export const PostCreateSheetHeader = styled.div`
   cursor: pointer;
 `;
 
+export const PostCreateSheetContentWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 export const PostCreateSheetContent = styled.div`
   width: 100%;
   height: 100%;
+  padding: 0rem ${CONTAINER.PADDING_HORIZONTAL}rem;
 
   border: 1px solid red;
 `;
