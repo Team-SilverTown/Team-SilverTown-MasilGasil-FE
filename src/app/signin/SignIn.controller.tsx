@@ -48,8 +48,6 @@ const SignInController = () => {
     },
   });
 
-  console.log(watch());
-
   const onValid = (data: SignInFormProps) => {
     console.log("valid Action", data);
   };

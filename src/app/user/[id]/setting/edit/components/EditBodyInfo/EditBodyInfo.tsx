@@ -16,6 +16,7 @@ const EditBodyInfo = ({ register, errors }: EditBodyInfoProps) => {
       <S.EditBodyInfoContainer>
         <UserEditInput
           title={"키"}
+          unit={"cm"}
           inputType={"number"}
           placeholder={USER_INPUT_PLACEHOLDER.HEIGHT}
           errorsMessage={errors.height && errors.height.message}
@@ -26,6 +27,7 @@ const EditBodyInfo = ({ register, errors }: EditBodyInfoProps) => {
       <S.EditBodyInfoContainer>
         <UserEditInput
           title={"몸무게"}
+          unit={"kg"}
           inputType={"number"}
           placeholder={USER_INPUT_PLACEHOLDER.WEIGHT}
           errorsMessage={errors.weight && errors.weight.message}

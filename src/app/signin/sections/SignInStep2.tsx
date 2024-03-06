@@ -67,6 +67,7 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
         <S.PhysicalGroup>
           <UserEditInput
             title={"키"}
+            unit={"cm"}
             inputType={"number"}
             placeholder={USER_INPUT_PLACEHOLDER.HEIGHT}
             errorsMessage={errors.height && errors.height.message}
@@ -76,6 +77,7 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
         <S.PhysicalGroup>
           <UserEditInput
             title={"몸무게"}
+            unit={"kg"}
             inputType={"number"}
             placeholder={USER_INPUT_PLACEHOLDER.WEIGHT}
             errorsMessage={errors.weight && errors.weight.message}

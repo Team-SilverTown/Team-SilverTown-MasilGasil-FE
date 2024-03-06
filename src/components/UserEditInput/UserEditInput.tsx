@@ -1,5 +1,4 @@
 import * as S from "./UserEditInput.styles";
-import * as GS from "../../app/user/[id]/setting/edit/UserEdit.styles";
 
 import { UseFormRegisterReturn } from "react-hook-form";
 import { Input, InputLabel } from "@/components";
@@ -10,6 +9,7 @@ interface UserEditInputProps {
   inputType: "text" | "number" | "date";
   placeholder: string;
   errorsMessage?: string;
+  unit?: string;
 
   register: UseFormRegisterReturn;
 }
@@ -19,14 +19,15 @@ const UserEditInput = ({
   inputType,
   placeholder,
   errorsMessage,
+  unit,
 
   register,
 }: UserEditInputProps) => {
   return (
     <>
-      <GS.UserEditTitle>{title}</GS.UserEditTitle>
+      <S.UserEditInputTitle>{title}</S.UserEditInputTitle>
 
-      <S.InputActions>
+      <S.UserEditInputActions>
         <Input
           type={inputType}
           register={register}
@@ -38,16 +39,18 @@ const UserEditInput = ({
             fontWeight: FONT_WEIGHT.SEMIBOLD,
           }}
         />
-      </S.InputActions>
 
-      <GS.UserEditWarning>
+        {unit && <S.UserEditInputUnit>{unit}</S.UserEditInputUnit>}
+      </S.UserEditInputActions>
+
+      <S.UserEditWarning>
         {errorsMessage && (
           <InputLabel
             text={errorsMessage}
             type="danger"
           />
         )}
-      </GS.UserEditWarning>
+      </S.UserEditWarning>
     </>
   );
 };
