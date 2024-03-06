@@ -3,7 +3,7 @@
 import * as GS from "../../PostCreate.styles";
 import * as S from "./PostTextEdit.styles";
 
-import { Button } from "@/components";
+import { Button, Input, InputLabel } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import usePostTextEditController from "./PostTextEdit.controller";
@@ -14,7 +14,28 @@ const PostTextEditView = () => {
 
   return (
     <>
-      <GS.PostCreateSheetContent></GS.PostCreateSheetContent>
+      <GS.PostCreateSheetContent>
+        <S.PostTextEditTitleContainer>
+          <S.PostTextEditInputTitle>제목</S.PostTextEditInputTitle>
+          <Input
+            type="text"
+            register={register("title")}
+            style={{
+              lineHeight: "2rem",
+              width: "100%",
+              fontSize: FONT_SIZE.MEDIUM,
+              fontWeight: FONT_WEIGHT.SEMIBOLD,
+            }}
+          />
+          <S.PostTextEditWarning>
+            <InputLabel
+              type="danger"
+              text={"이것은 경고 경고 경고 메세지여 경고"}
+            />
+          </S.PostTextEditWarning>
+        </S.PostTextEditTitleContainer>
+      </GS.PostCreateSheetContent>
+
       <S.PostTextEditButtonWrapper>
         <Button
           width={"100%"}

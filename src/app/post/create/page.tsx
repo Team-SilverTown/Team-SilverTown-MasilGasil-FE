@@ -7,6 +7,8 @@ import PostCreateView from "./PostCreate.view";
 const PostCreate = () => {
   // TODO
   // 추후 이곳에서 LogData 에 대해 fetch를 받아온 후 전달하기
+
+  // 현재 Init 부분을 tanstack 가공에서 처리가능다면 추후 반영하기
   return (
     <PostCreateContextProvider logData={DUMMY}>
       <PostCreateView />
