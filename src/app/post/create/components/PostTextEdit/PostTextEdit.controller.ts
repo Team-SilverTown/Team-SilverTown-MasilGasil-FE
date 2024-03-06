@@ -9,7 +9,7 @@ const usePostTextEditController = () => {
   const [isPublic, setIsPublic] = useState(() => {
     return postData.isPublic;
   });
-  const { register, setValue, formState, handleSubmit } = useForm<PostCreateInputValue>({
+  const { register, setValue, watch, formState, handleSubmit } = useForm<PostCreateInputValue>({
     defaultValues: { content: "", title: "" },
     mode: "onChange",
   });
@@ -27,7 +27,7 @@ const usePostTextEditController = () => {
     }
 
     return true;
-  }, [errors]);
+  }, [watch(), errors]);
 
   const handleValid = ({ title, content }: PostCreateInputValue) => {
     handleCompleteStepOne({
