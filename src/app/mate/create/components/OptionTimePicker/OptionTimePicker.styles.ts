@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CustomInput = styled.button`
-  width: 32rem;
+  width: 32.9rem;
   height: 5.2rem;
   background-color: ${(props) => props.theme.transparent_10};
   color: ${(props) =>

@@ -18,7 +18,12 @@ interface MateCreateViewProps {
   handleSubmit: () => void;
   isFormFilled: boolean;
   handlePersonnelChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  // startDate,
+  // setStartDate,
+  // startTime,
+  // setStartTime,
   selectedPersonnel: string;
+  // setSelectedPersonnel,
 }
 
 const regularFields = [
@@ -46,7 +51,12 @@ const MateCreateView = ({
   handleSubmit,
   isFormFilled,
   handlePersonnelChange,
+  startDate,
+  setStartDate,
+  startTime,
+  setStartTime,
   selectedPersonnel,
+  setSelectedPersonnel,
 }: MateCreateViewProps) => {
   const theme = useTheme();
 
@@ -80,14 +90,22 @@ const MateCreateView = ({
                 }}
               />
             )}
-            {field.name === "date" && <CalendarDatePicker />}
+            {field.name === "date" && (
+              <CalendarDatePicker
+                startDate={startDate}
+                setStartDate={setStartDate}
+              />
+            )}
           </S.Section>
         ))}
 
         <S.FlexContainer>
           <S.Section>
             <S.Title>희망 시간</S.Title>
-            <OptionTimePicker />
+            <OptionTimePicker
+              startTime={startTime}
+              setStartTime={setStartTime}
+            />
           </S.Section>
 
           <S.Section>

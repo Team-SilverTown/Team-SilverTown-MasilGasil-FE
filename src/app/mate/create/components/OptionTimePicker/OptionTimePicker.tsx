@@ -5,13 +5,11 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import * as S from "./OptionTimePicker.styles";
 
-const OptionTimePicker = () => {
-  const [startTime, setStartTime] = useState(null);
-
-  const CustomInput = ({ value, onClick, startTime }) => (
+const OptionTimePicker = ({ startTime, setStartTime }) => {
+  const CustomInput = ({ value, onClick }) => (
     <S.CustomInput
       onClick={onClick}
-      isSelected={startTime !== null}
+      isSelected={!!startTime}
       readOnly
     >
       {value || "모임 시간을 선택해주세요."}
@@ -25,9 +23,9 @@ const OptionTimePicker = () => {
       showTimeSelect
       showTimeSelectOnly
       timeIntervals={5}
-      timeCaption="Time"
+      timeCaption="희망 시간"
       dateFormat="h시 mm분 ( aa )"
-      customInput={<CustomInput startTime={startTime} />}
+      customInput={<CustomInput value={startTime ? startTime.toLocaleTimeString() : ""} />}
     />
   );
 };

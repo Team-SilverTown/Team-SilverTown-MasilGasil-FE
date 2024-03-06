@@ -33,15 +33,29 @@ const MateCreateController = () => {
     console.log("Form Errors:", errors);
   };
 
-  const { isFormFilled, setIsFormFilled, selectedPersonnel, setSelectedPersonnel } =
-    useMateCreateModel();
+  const {
+    isFormFilled,
+    setIsFormFilled,
+    selectedPersonnel,
+    setSelectedPersonnel,
+    startDate,
+    setStartDate,
+    startTime,
+    setStartTime,
+  } = useMateCreateModel();
 
   const watchedFields = watch();
 
   useEffect(() => {
-    const allFieldsFilled = Object.values(watchedFields).every((field) => field);
+    const allFieldsFilled =
+      watchedFields.title &&
+      watchedFields.content &&
+      watchedFields.location &&
+      startDate &&
+      startTime &&
+      selectedPersonnel;
     setIsFormFilled(allFieldsFilled);
-  }, [watchedFields]);
+  }, [watchedFields, startDate, startTime, selectedPersonnel]);
 
   const handlePersonnelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPersonnel(event.target.value);
@@ -53,7 +67,12 @@ const MateCreateController = () => {
       handleSubmit={handleSubmit(onValid, onInvalid)}
       isFormFilled={isFormFilled}
       handlePersonnelChange={handlePersonnelChange}
+      startDate={startDate}
+      setStartDate={setStartDate}
+      startTime={startTime}
+      setStartTime={setStartTime}
       selectedPersonnel={selectedPersonnel}
+      setSelectedPersonnel={setSelectedPersonnel}
     />
   );
 };
