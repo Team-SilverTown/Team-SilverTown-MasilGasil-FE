@@ -7,6 +7,7 @@ import { Button, Input, InputLabel, Textarea } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import usePostTextEditController from "./PostTextEdit.controller";
+import { PostPublicEdit } from "./components";
 
 const PostTextEditView = () => {
   const theme = useTheme();
@@ -50,43 +51,10 @@ const PostTextEditView = () => {
           </S.PostTextEditWarning>
         </S.PostTextEditContentContainer>
 
-        <S.PostTextEditPublicContainer>
-          <S.PostTextEditInputTitle>공개 여부</S.PostTextEditInputTitle>
-          <S.PostTextEditPublicActions>
-            <Button
-              width={"50%"}
-              useRipple
-              buttonColor={isPublic ? theme?.green_500 : theme?.gray_200}
-              textColor={theme?.text_secondary_color}
-              rippleColor={theme?.text_secondary_color + 50}
-              style={{
-                whiteSpace: "nowrap",
-                fontSize: FONT_SIZE.H6,
-                fontWeight: FONT_WEIGHT.SEMIBOLD,
-                userSelect: "none",
-              }}
-              onClickHandler={() => setIsPublic(true)}
-            >
-              공개
-            </Button>
-            <Button
-              width={"50%"}
-              useRipple
-              buttonColor={!isPublic ? theme?.green_500 : theme?.gray_200}
-              textColor={theme?.text_secondary_color}
-              rippleColor={theme?.text_secondary_color + 50}
-              style={{
-                whiteSpace: "nowrap",
-                fontSize: FONT_SIZE.H6,
-                fontWeight: FONT_WEIGHT.SEMIBOLD,
-                userSelect: "none",
-              }}
-              onClickHandler={() => setIsPublic(false)}
-            >
-              비 공개
-            </Button>
-          </S.PostTextEditPublicActions>
-        </S.PostTextEditPublicContainer>
+        <PostPublicEdit
+          isPublic={isPublic}
+          setIsPublic={setIsPublic}
+        />
       </GS.PostCreateSheetContent>
 
       <S.PostTextEditButtonWrapper>

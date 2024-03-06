@@ -9,6 +9,10 @@ export const PostTextEditButtonWrapper = styled.div`
   bottom: 1rem;
 `;
 
+export const PostTextEditInputContainer = styled.div`
+  width: 100%;
+`;
+
 export const PostTextEditTitleContainer = styled.div`
   width: 100%;
 
@@ -36,18 +40,4 @@ export const PostTextEditContentContainer = styled.div`
   width: 100%;
 
   border: 1px solid red;
-`;
-
-export const PostTextEditPublicContainer = styled.div`
-  width: 100%;
-  min-width: 2.8rem;
-
-  border: 1px solid red;
-`;
-
-export const PostTextEditPublicActions = styled.div`
-  width: 100%;
-
-  display: flex;
-  gap: 2rem;
 `;
