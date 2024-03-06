@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import LogRecordEditView from "./LogRecordEdit.view";
 import useUserLocationStore from "@/stores/useUserLocationStore";
@@ -35,10 +37,13 @@ const LogRecordEditModel = () => {
   /**
    * @func handleSubmit
    * @params (memo: string)
+   *
    * @brief 폼을 통해 입력받은 Memo를 logData의 content에 저장한 후, 서버에 전송합니다.
+   *
+   * 이후, 서버에 전송 성공시 Done Modal이 제공되어지고, 공유를 선택시 시작지점과 성성된 log id 를 post 생성 페이지에 전달합니다.
    */
   const handleSubmit = (memo: string) => {
-    const pathThumbnailUrl = drawPath(logData.path);
+    // const pathThumbnailUrl = drawPath(logData.path);
 
     // TODO: logData API 통신
 
@@ -59,7 +64,7 @@ const LogRecordEditModel = () => {
       totalTime: 0,
       startedAt: new Date().toISOString(),
       pins: [],
-      thumbnailUrl: pathThumbnailUrl,
+      thumbnailUrl: "ㅇㅇㅇ",
       postId: null,
     };
 
@@ -69,26 +74,29 @@ const LogRecordEditModel = () => {
           return;
         }
         const { id } = res;
+        router.push(`/log/${id}`);
 
         setModalView("LOG_RECORD_DONE_VIEW");
         openModal({
           onClickUploadPost: () => {
-            // 산책로 공유하기를 클릭한 경우
-            // 산책로 생성 페이지로 이동, logData를 전달
+            const startPoint = JSON.stringify(logData.path[0]);
+
+            router.push(`/post/create?id=${id}&point=${startPoint}`);
             closeModal();
           },
           onClickCancel: () => {
-            // 산책로 공유하기를 클릭하지 않은 경우
-            // 내 기록 페이지로 이동
-            router.push(`/log/${id}`);
             closeModal();
           },
           logData,
         });
       },
-      // onError: (e) => {
-      //   console.log(e);
-      // },
+
+      onError: () => {
+        setModalView("LOG_RECORD_ALERT_VIEW");
+        openModal({
+          message: `산책로 저장에 오류가 발생하였습니다. 잠시 후 다시 시도해주세요.`,
+        });
+      },
     });
   };
 

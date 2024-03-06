@@ -69,18 +69,6 @@ const LogRecordDoneModal = ({ props }: ModalProps) => {
 
       <S.ButtonContainer>
         <Button
-          buttonColor={Theme.lightTheme.gray_300}
-          variant="neumorp"
-          textColor={Theme.lightTheme.white}
-          style={{
-            fontWeight: FONT_WEIGHT.BOLD,
-            fontSize: FONT_SIZE.LARGE,
-          }}
-          onClickHandler={() => {}}
-        >
-          메인으로
-        </Button>
-        <Button
           buttonColor={Theme.lightTheme.green_500}
           variant="neumorp"
           textColor={Theme.lightTheme.white}
@@ -88,9 +76,21 @@ const LogRecordDoneModal = ({ props }: ModalProps) => {
             fontWeight: FONT_WEIGHT.BOLD,
             fontSize: FONT_SIZE.LARGE,
           }}
-          onClickHandler={() => {}}
+          onClickHandler={onClickUploadPost}
         >
           산책 공유하기
+        </Button>
+        <Button
+          buttonColor={Theme.lightTheme.gray_300}
+          variant="neumorp"
+          textColor={Theme.lightTheme.white}
+          style={{
+            fontWeight: FONT_WEIGHT.BOLD,
+            fontSize: FONT_SIZE.LARGE,
+          }}
+          onClickHandler={onClickCancel}
+        >
+          다음에 하기
         </Button>
       </S.ButtonContainer>
     </ModalLayout>

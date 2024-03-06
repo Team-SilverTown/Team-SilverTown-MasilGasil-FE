@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import LogRecordView from "./LogRecord.view";
 import { LOG_RECORD_MESSAGE } from "./LogRecord.constants";
@@ -51,7 +53,6 @@ const LogRecordModel = () => {
     openModal({
       onClickAccept: () => {
         setIsActiveExitAnimation(true);
-        // setIsActiveMapResizing(true);
         setPageStep("LOG_RECORD_STANDBY");
         initData();
         closeModal();
