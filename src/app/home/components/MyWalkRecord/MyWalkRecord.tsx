@@ -1,10 +1,10 @@
-import * as S from "./MyWalkRecord.styles";
+import S from "./MyWalkRecord.module.css";
 
 const MyWalkRecord = () => {
   return (
-    <S.MyWalkRecordContainer>
+    <article className={S.MyWalkRecordContainer}>
       <h3>000님, 먹어서 응원해요!</h3>
-      <S.MyWalkRecordList>
+      <ul className={S.MyWalkRecordList}>
         <li>
           <strong>총 거리</strong>
           <span>104.2km</span>
@@ -17,8 +17,8 @@ const MyWalkRecord = () => {
           <strong>총 소모 열량</strong>
           <span>1400kcal</span>
         </li>
-      </S.MyWalkRecordList>
-    </S.MyWalkRecordContainer>
+      </ul>
+    </article>
   );
 };
 
