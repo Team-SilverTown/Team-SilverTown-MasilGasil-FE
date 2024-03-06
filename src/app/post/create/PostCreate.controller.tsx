@@ -1,13 +1,18 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import usePostCreateContext from "./context/PostCreateContext";
 import { GeoPosition } from "@/types/OriginDataType";
 import { useRouter } from "next/navigation";
 import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
 
 const usePostCreateController = () => {
+  const [isOpenBottom, setIsOpenBottom] = useState(false);
   const { pageStep, setPageStep } = usePostCreateContext();
   const { setModalView, openModal } = useUI();
   const router = useRouter();
+  const theme = useTheme();
+
+  // 추후 중앙값 계산하여 추가
   const center = useMemo<GeoPosition>(() => ({ lat: 37.497, lng: 127.0254 }), []);
 
   const handleFallback = () => {
@@ -24,9 +29,18 @@ const usePostCreateController = () => {
 
     setPageStep("POST_CREATE_TEXT_EDIT");
   };
+
+  const handleToggleBottomSheet = () => {
+    setIsOpenBottom((openState) => !openState);
+  };
+
   return {
+    isOpenBottom,
+    handleToggleBottomSheet,
+
     pageStep,
     center,
+    theme,
 
     handleFallback,
   };
