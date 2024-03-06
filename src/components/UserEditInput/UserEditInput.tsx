@@ -1,5 +1,5 @@
 import * as S from "./UserEditInput.styles";
-import * as GS from "../../UserEdit.styles";
+import * as GS from "../../app/user/[id]/setting/edit/UserEdit.styles";
 
 import { UseFormRegisterReturn } from "react-hook-form";
 import { Input, InputLabel } from "@/components";

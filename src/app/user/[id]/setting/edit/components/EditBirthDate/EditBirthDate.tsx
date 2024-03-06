@@ -3,8 +3,8 @@ import * as GS from "../../UserEdit.styles";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
 import { USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
-import { UserEditInput } from "..";
 import { validation_user } from "@/lib/constants/userValidate";
+import { UserEditInput } from "@/components";
 
 interface EditAgeProps {
   register: UseFormRegister<UserEditData>;
