@@ -7,7 +7,7 @@ import { Button, Input, InputLabel, Textarea } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import usePostTextEditController from "./PostTextEdit.controller";
-import { PostPublicEdit } from "./components";
+import { PostContentEdit, PostPublicEdit } from "./components";
 
 const PostTextEditView = () => {
   const theme = useTheme();
@@ -37,19 +37,7 @@ const PostTextEditView = () => {
           </S.PostTextEditWarning>
         </S.PostTextEditTitleContainer>
 
-        <S.PostTextEditContentContainer>
-          <S.PostTextEditInputTitle>설명</S.PostTextEditInputTitle>
-          <Textarea
-            register={register("content")}
-            style={{ height: "20rem", fontSize: FONT_SIZE.MEDIUM, fontWeight: FONT_WEIGHT.MEDIUM }}
-          />
-          <S.PostTextEditWarning>
-            <InputLabel
-              type="danger"
-              text={"이것은 경고 경고 경고 메세지여 경고"}
-            />
-          </S.PostTextEditWarning>
-        </S.PostTextEditContentContainer>
+        <PostContentEdit register={register} />
 
         <PostPublicEdit
           isPublic={isPublic}

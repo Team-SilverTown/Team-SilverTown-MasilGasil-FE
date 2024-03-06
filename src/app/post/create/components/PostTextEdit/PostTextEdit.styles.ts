@@ -35,9 +35,3 @@ export const PostTextEditWarning = styled.p`
   display: flex;
   align-items: center;
 `;
-
-export const PostTextEditContentContainer = styled.div`
-  width: 100%;
-
-  border: 1px solid red;
-`;
