@@ -4,9 +4,11 @@ import usePostCreateContext from "../../context/PostCreateContext";
 
 const usePostTextEditController = () => {
   const { register } = useForm<PostCreateInputValue>();
-  const { pageStep } = usePostCreateContext();
+  const { pageStep, setPageStep } = usePostCreateContext();
 
-  return { pageStep, register };
+  const handleClickNextStep = () => {};
+
+  return { pageStep, register, handleClickNextStep };
 };
 
 export default usePostTextEditController;

@@ -10,7 +10,7 @@ import usePostTextEditController from "./PostTextEdit.controller";
 
 const PostTextEditView = () => {
   const theme = useTheme();
-  const { pageStep, register } = usePostTextEditController();
+  const { pageStep, register, handleClickNextStep } = usePostTextEditController();
 
   return (
     <>
@@ -28,7 +28,7 @@ const PostTextEditView = () => {
             fontWeight: FONT_WEIGHT.SEMIBOLD,
             userSelect: "none",
           }}
-          onClickHandler={() => {}}
+          onClickHandler={handleClickNextStep}
         >
           다음
         </Button>

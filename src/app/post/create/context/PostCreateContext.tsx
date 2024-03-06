@@ -1,7 +1,22 @@
-import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { PostCreatePageStep } from "../PostCreate.types";
+import { MasilResponse } from "@/types/Response";
+import postCreateReducer from "./reducer/PostCreateReducer";
+import {
+  POST_CREATE_DEFAULT_REQUEST_VALUE,
+  POST_CREATE_REDUCER_ACTION,
+} from "../PostCreate.constants";
 
 interface PostCreateContextProviderProps {
+  logData: MasilResponse;
   children: React.ReactNode;
 }
 
@@ -15,8 +30,16 @@ const PostCreateContext = createContext<PostCreateContextValues>({
   setPageStep: () => {},
 });
 
-export const PostCreateContextProvider = ({ children }: PostCreateContextProviderProps) => {
+export const PostCreateContextProvider = ({
+  children,
+  logData,
+}: PostCreateContextProviderProps) => {
+  const [postData, dispatch] = useReducer(postCreateReducer, POST_CREATE_DEFAULT_REQUEST_VALUE);
   const [pageStep, setPageStep] = useState<PostCreatePageStep>("POST_CREATE_TEXT_EDIT");
+
+  useEffect(() => {
+    dispatch({ type: POST_CREATE_REDUCER_ACTION.INIT, payload: { logData } });
+  }, []);
 
   return (
     <PostCreateContext.Provider value={{ pageStep, setPageStep }}>
