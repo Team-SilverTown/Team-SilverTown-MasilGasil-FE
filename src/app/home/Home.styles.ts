@@ -1,5 +1,3 @@
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-
 export const HomePageContainer = `
   w-full
   min-h-screen
@@ -29,8 +27,6 @@ export const HomeWalkListArticle = `
   mb-4
 `;
 
-// font-size: ${FONT_SIZE.LARGE};
-// font-weight: ${FONT_WEIGHT.BOLD};
 export const HomeWalkListTitle = `
   text-3xl
   font-bold
