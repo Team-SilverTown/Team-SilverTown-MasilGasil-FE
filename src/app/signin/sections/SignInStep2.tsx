@@ -9,8 +9,8 @@ import { Button, Input, InputLabel } from "@/components";
 import { SignInFormProps } from "../SignIn.controller";
 import useSignInModel from "../SignIn.model";
 import * as S from "../SignIn.styles";
-import { validation_user } from "@/constants/userValidate";
-import { SEX_OPTIONS } from "@/constants/variable";
+import { validation_user } from "@/lib/constants/userValidate";
+import { SEX_OPTIONS } from "@/lib/constants/variable";
 
 interface SignInStep2Props {
   setValue: UseFormSetValue<SignInFormProps>;

@@ -7,7 +7,7 @@ import useTheme from "@/lib/hooks/useTheme";
 
 import { SignInFormProps } from "../SignIn.controller";
 import * as S from "../SignIn.styles";
-import { INTENSITY_OPTIONS } from "@/constants/variable";
+import { INTENSITY_OPTIONS } from "@/lib/constants/variable";
 
 interface SignInStep3Props {
   setValue: UseFormSetValue<SignInFormProps>;

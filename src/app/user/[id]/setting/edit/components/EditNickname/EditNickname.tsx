@@ -7,7 +7,7 @@ import { Button, Input, InputLabel } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
-import { validation_user } from "@/constants/userValidate";
+import { validation_user } from "@/lib/constants/userValidate";
 import { MouseEvent } from "react";
 
 interface EditNicknameProps {

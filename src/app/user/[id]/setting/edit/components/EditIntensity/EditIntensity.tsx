@@ -4,7 +4,7 @@ import * as S from "./EditIntensity.styles";
 import useTheme from "@/lib/hooks/useTheme";
 import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
-import { INTENSITY_OPTIONS } from "@/constants/variable";
+import { INTENSITY_OPTIONS } from "@/lib/constants/variable";
 import { IntensityOption } from "@/types/OriginDataType";
 
 interface EditIntensityProps {
