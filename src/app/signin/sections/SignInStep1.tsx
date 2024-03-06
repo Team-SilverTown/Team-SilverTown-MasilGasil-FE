@@ -5,7 +5,7 @@ import useTheme from "@/lib/hooks/useTheme";
 
 import { Button, Input, InputLabel } from "@/components";
 import { SignInFormProps } from "../SignIn.controller";
-import { validation_user } from "@/lib/constants/userValidate";
+import { validation_user } from "@/lib/constants/userConstants";
 
 interface SignInStep1Props {
   register: UseFormRegister<SignInFormProps>;

@@ -2,8 +2,9 @@ import * as S from "./EditBodyInfo.styles";
 
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
-import { USER_INPUT_PLACEHOLDER, validation_user } from "@/lib/constants/userValidate";
+
 import { UserEditInput } from "@/components";
+import { USER_INPUT_PLACEHOLDER, validation_user } from "@/lib/constants/userConstants";
 
 interface EditBodyInfoProps {
   register: UseFormRegister<UserEditData>;
