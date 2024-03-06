@@ -26,7 +26,28 @@ export const PostTextEditInputTitle = styled.h6`
 export const PostTextEditWarning = styled.p`
   width: 100%;
   height: 2.4rem;
+  min-height: 2.4rem;
 
   display: flex;
   align-items: center;
+`;
+
+export const PostTextEditContentContainer = styled.div`
+  width: 100%;
+
+  border: 1px solid red;
+`;
+
+export const PostTextEditPublicContainer = styled.div`
+  width: 100%;
+  min-width: 2.8rem;
+
+  border: 1px solid red;
+`;
+
+export const PostTextEditPublicActions = styled.div`
+  width: 100%;
+
+  display: flex;
+  gap: 2rem;
 `;

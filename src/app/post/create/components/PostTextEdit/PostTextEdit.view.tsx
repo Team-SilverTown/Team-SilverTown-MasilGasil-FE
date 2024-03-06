@@ -3,14 +3,15 @@
 import * as GS from "../../PostCreate.styles";
 import * as S from "./PostTextEdit.styles";
 
-import { Button, Input, InputLabel } from "@/components";
+import { Button, Input, InputLabel, Textarea } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import usePostTextEditController from "./PostTextEdit.controller";
 
 const PostTextEditView = () => {
   const theme = useTheme();
-  const { pageStep, register, handleClickNextStep } = usePostTextEditController();
+  const { pageStep, register, isPublic, setIsPublic, handleClickNextStep } =
+    usePostTextEditController();
 
   return (
     <>
@@ -34,6 +35,58 @@ const PostTextEditView = () => {
             />
           </S.PostTextEditWarning>
         </S.PostTextEditTitleContainer>
+
+        <S.PostTextEditContentContainer>
+          <S.PostTextEditInputTitle>설명</S.PostTextEditInputTitle>
+          <Textarea
+            register={register("content")}
+            style={{ height: "20rem", fontSize: FONT_SIZE.MEDIUM, fontWeight: FONT_WEIGHT.MEDIUM }}
+          />
+          <S.PostTextEditWarning>
+            <InputLabel
+              type="danger"
+              text={"이것은 경고 경고 경고 메세지여 경고"}
+            />
+          </S.PostTextEditWarning>
+        </S.PostTextEditContentContainer>
+
+        <S.PostTextEditPublicContainer>
+          <S.PostTextEditInputTitle>공개 여부</S.PostTextEditInputTitle>
+          <S.PostTextEditPublicActions>
+            <Button
+              width={"50%"}
+              useRipple
+              buttonColor={isPublic ? theme?.green_500 : theme?.gray_200}
+              textColor={theme?.text_secondary_color}
+              rippleColor={theme?.text_secondary_color + 50}
+              style={{
+                whiteSpace: "nowrap",
+                fontSize: FONT_SIZE.H6,
+                fontWeight: FONT_WEIGHT.SEMIBOLD,
+                userSelect: "none",
+              }}
+              onClickHandler={() => setIsPublic(true)}
+            >
+              공개
+            </Button>
+            <Button
+              width={"50%"}
+              useRipple
+              buttonColor={!isPublic ? theme?.green_500 : theme?.gray_200}
+              textColor={theme?.text_secondary_color}
+              rippleColor={theme?.text_secondary_color + 50}
+              style={{
+                whiteSpace: "nowrap",
+                fontSize: FONT_SIZE.H6,
+                fontWeight: FONT_WEIGHT.SEMIBOLD,
+                userSelect: "none",
+              }}
+              onClickHandler={() => setIsPublic(false)}
+            >
+              비 공개
+            </Button>
+          </S.PostTextEditPublicActions>
+        </S.PostTextEditPublicContainer>
       </GS.PostCreateSheetContent>
 
       <S.PostTextEditButtonWrapper>

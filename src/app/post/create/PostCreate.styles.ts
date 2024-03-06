@@ -55,4 +55,8 @@ export const PostCreateSheetContent = styled.div`
   width: 100%;
   height: 100%;
   padding: 0rem ${CONTAINER.PADDING_HORIZONTAL}rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
