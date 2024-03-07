@@ -117,8 +117,10 @@ const MasilDiaryView = ({ id }: MasilDiaryViewProps) => {
             <S.Section>조회를 원하는 날짜를 선택해주세요</S.Section>
 
             <MasilDiarySheet
+              date={date}
               isSheetOpen={isSheetOpen}
               masils={dailyMasils}
+              setIsSheetOpen={setIsSheetOpen}
             />
           </>
         )}

@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import dummyMasils from "./dummyMasils.json";
-import { masilProps } from "./components/MasilDiarySheet/MasilDiarySheet";
+import { MasilProps } from "./components/MasilDiarySheet/MasilDiarySheet";
 
 const useMasilDiaryController = () => {
   // TODO: 쿼리 파라미터를 조회하여 서버에 GET 요청, 해당 기간의 로그 기록 데이터를 받아옴
@@ -22,7 +22,7 @@ const useMasilDiaryController = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [masils, setMasils] = useState(dummyMasils);
-  const [dailyMasils, setDailyMasils] = useState<masilProps[] | null>(null);
+  const [dailyMasils, setDailyMasils] = useState<MasilProps[] | null>(null);
 
   /**
    * @func1 탭 클릭 시 상태 변경 (calender, list)

@@ -7,10 +7,12 @@ import { easeIn } from "framer-motion";
 
 interface MasilDiarySheetProps {
   isSheetOpen: boolean;
-  masils: masilProps[] | null;
+  setIsSheetOpen: (value: boolean) => void;
+  masils: MasilProps[] | null;
+  date: Date | undefined;
 }
 
-export interface masilProps {
+export interface MasilProps {
   id: number;
   address: { depth1: string; depth2: string; depth3: string; depth4: string };
   content: string;
@@ -20,8 +22,9 @@ export interface masilProps {
   calorie: number;
 }
 
-const MasilDiarySheet = ({ isSheetOpen, masils }: MasilDiarySheetProps) => {
+const MasilDiarySheet = ({ isSheetOpen, setIsSheetOpen, masils, date }: MasilDiarySheetProps) => {
   const theme = useTheme();
+  const dateArr = date?.toLocaleDateString("en-CA").split("-");
 
   return (
     <>
@@ -49,6 +52,16 @@ const MasilDiarySheet = ({ isSheetOpen, masils }: MasilDiarySheetProps) => {
           }}
         >
           <Sheet.Header />
+          <S.HeaderContainer>
+            <S.Text>{dateArr && `${dateArr[0]}년 ${dateArr[1]}월 ${dateArr[2]}일`}</S.Text>
+            <S.SubText
+              onClick={() => {
+                setIsSheetOpen(false);
+              }}
+            >
+              닫기
+            </S.SubText>
+          </S.HeaderContainer>
           <S.ItemWrapper>
             {masils
               ? masils.map((masil) => {
