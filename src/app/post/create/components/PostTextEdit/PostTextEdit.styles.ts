@@ -1,16 +1,6 @@
 import { CONTAINER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
-export const PostTextEditButtonWrapper = styled.div`
-  width: 100%;
-  padding: 0rem ${CONTAINER.PADDING_HORIZONTAL}rem;
-
-  position: absolute;
-  bottom: 1rem;
-
-  opacity: 0.9;
-`;
-
 export const PostTextEditInputContainer = styled.div`
   width: 100%;
 `;

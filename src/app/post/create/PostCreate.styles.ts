@@ -69,3 +69,13 @@ export const PostCreateSheetContent = styled.div`
   overflow: scroll;
   ${DISPLAY_NONE_SCROLLBAR}
 `;
+
+export const PostCreateButtonWrapper = styled.div`
+  width: 100%;
+  padding: 0rem ${CONTAINER.PADDING_HORIZONTAL}rem;
+
+  position: absolute;
+  bottom: 1rem;
+
+  opacity: 0.9;
+`;

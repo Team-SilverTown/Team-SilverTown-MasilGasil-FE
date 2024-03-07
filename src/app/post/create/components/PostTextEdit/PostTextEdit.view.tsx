@@ -42,7 +42,7 @@ const PostTextEditView = () => {
         />
       </GS.PostCreateSheetContent>
 
-      <S.PostTextEditButtonWrapper>
+      <GS.PostCreateButtonWrapper>
         <Button
           width={"100%"}
           useRipple
@@ -60,7 +60,7 @@ const PostTextEditView = () => {
         >
           다음
         </Button>
-      </S.PostTextEditButtonWrapper>
+      </GS.PostCreateButtonWrapper>
     </>
   );
 };
