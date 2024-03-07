@@ -46,7 +46,11 @@ const InputUpload = ({
   /**
    * @function handleFileChange
    *
-   * @summary input요소 외 다른 요소를 클릭하여 input을 띄울 수 있는 함수
+   * @summary input에 Image가 변경될시 type검사를 진행합니다.
+   * 검사 후, updateFile에 변경된 File을 전달하고
+   * preview 이미지를 업로드 합니다.
+   *
+   * 내부에서 preview의 size를 확인하여 imageSize의 값을 변경
    */
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
