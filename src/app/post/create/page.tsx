@@ -44,7 +44,7 @@ const DUMMY = {
   title: "로그에서는 제목없어져야 합니다.",
   content:
     "이것은 로그에서 전해져온 내용으로 이 로그를 본 사용자는 즉시 PR을 5개 날릴 작업을 진행해야합니다.",
-  path: [],
+  path: [{ lat: 37.497, lng: 127.0254 }],
 
   distance: 0,
   totalTime: 0,
@@ -52,5 +52,12 @@ const DUMMY = {
 
   postId: null,
   thumbnailUrl: "",
-  pins: [],
+  pins: [
+    {
+      id: 11,
+      content: "핀 컨텐츠임",
+      thumbnailUrl: "",
+      point: { lat: 37.497, lng: 127.0254 },
+    },
+  ],
 };

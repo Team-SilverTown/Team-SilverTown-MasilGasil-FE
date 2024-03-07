@@ -12,7 +12,7 @@ import { PostPinEdit, PostTextEdit } from "./components";
 
 const PostCreateView = () => {
   const theme = useTheme();
-  const { isOpenBottom, handleToggleBottomSheet, pageStep, center, handleFallback } =
+  const { isOpenBottom, handleToggleBottomSheet, postData, pageStep, center, handleFallback } =
     usePostCreateController();
 
   return (
@@ -22,8 +22,9 @@ const PostCreateView = () => {
       <S.PostCreateMapWrapper>
         <MasilMap
           center={center}
-          path={[]}
-          pins={[]}
+          isShowCenterMarker={false}
+          path={postData.path}
+          pins={postData.pins}
         />
       </S.PostCreateMapWrapper>
       <S.PostCreateSheet $isOpen={isOpenBottom}>
