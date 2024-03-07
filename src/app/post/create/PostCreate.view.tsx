@@ -18,6 +18,7 @@ const PostCreateView = () => {
     postData,
     pageStep,
     center,
+    currentPinIndex,
     handleFallback,
     handleClickPin,
   } = usePostCreateController();
@@ -33,6 +34,7 @@ const PostCreateView = () => {
           path={postData.path}
           pins={postData.pins}
           onClickPin={handleClickPin}
+          selectedPinIndex={currentPinIndex}
         />
       </S.PostCreateMapWrapper>
       <S.PostCreateSheet $isOpen={isOpenBottom}>

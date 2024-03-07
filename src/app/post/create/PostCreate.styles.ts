@@ -78,6 +78,8 @@ export const PostCreateButtonWrapper = styled.div`
   bottom: 1rem;
 
   opacity: 0.9;
+
+  z-index: 2;
 `;
 
 export const PostCreateContentTitle = styled.h6`

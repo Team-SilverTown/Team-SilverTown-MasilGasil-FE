@@ -30,6 +30,7 @@ interface PostCreateContextProviderProps {
 interface PostCreateContextValues {
   postData: PostCreateRequest;
   pageStep: PostCreatePageStep;
+  currentPinIndex: number;
   setPageStep: Dispatch<SetStateAction<PostCreatePageStep>>;
   handleCompleteStepOne: HandleCompleteStepOne;
   handleClickPin: HandleClickPin;
@@ -39,6 +40,7 @@ interface PostCreateContextValues {
 const PostCreateContext = createContext<PostCreateContextValues>({
   postData: POST_CREATE_DEFAULT_REQUEST_VALUE,
   pageStep: "POST_CREATE_TEXT_EDIT",
+  currentPinIndex: -1,
   setPageStep: () => {},
   handleCompleteStepOne: () => {},
   handleClickPin: () => {},
@@ -102,6 +104,7 @@ export const PostCreateContextProvider = ({
         pageStep,
         setPageStep,
         postData,
+        currentPinIndex,
         handleCompleteStepOne,
         handleClickPin,
         handleRemovePin,
