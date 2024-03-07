@@ -14,9 +14,10 @@
             "depth4": ""
           },
           "content": "기록들 주루루룰루ㅜㄱ",
-          "thumbnailUrl": "url",
+          "thumbnailUrl": "http://url",
           "distance": 1100,
-          "totalTime": 300
+          "totalTime": 300,
+          "calorie": 200
         },
         {
           "id": 2,
@@ -27,9 +28,10 @@
             "depth4": ""
           },
           "content": "기록",
-          "thumbnailUrl": "url",
+          "thumbnailUrl": "http://url",
           "distance": 1540,
-          "totalTime": 300
+          "totalTime": 300,
+          "calorie": 200
         }
       ]
     },
@@ -45,9 +47,10 @@
             "depth4": ""
           },
           "content": "기록들 주루루룰루ㅜㄱ",
-          "thumbnailUrl": "url",
+          "thumbnailUrl": "http://url",
           "distance": 1100,
-          "totalTime": 300
+          "totalTime": 300,
+          "calorie": 200
         },
         {
           "id": 4,
@@ -58,9 +61,10 @@
             "depth4": ""
           },
           "content": "기록",
-          "thumbnailUrl": "url",
+          "thumbnailUrl": "http://url",
           "distance": 1540,
-          "totalTime": 450
+          "totalTime": 450,
+          "calorie": 200
         }
       ]
     }

@@ -7,7 +7,7 @@ import { easeIn } from "framer-motion";
 
 interface MasilDiarySheetProps {
   isSheetOpen: boolean;
-  masils?: masilProps[];
+  masils: masilProps[] | null;
 }
 
 export interface masilProps {
@@ -17,6 +17,7 @@ export interface masilProps {
   thumbnailUrl: string;
   distance: number;
   totalTime: number;
+  calorie: number;
 }
 
 const MasilDiarySheet = ({ isSheetOpen, masils }: MasilDiarySheetProps) => {
@@ -51,7 +52,12 @@ const MasilDiarySheet = ({ isSheetOpen, masils }: MasilDiarySheetProps) => {
           <S.ItemWrapper>
             {masils
               ? masils.map((masil) => {
-                  return <DiaryItem masil={masil} />;
+                  return (
+                    <DiaryItem
+                      masil={masil}
+                      key={masil.id}
+                    />
+                  );
                 })
               : "기록이 존재하지 않습니다"}
           </S.ItemWrapper>

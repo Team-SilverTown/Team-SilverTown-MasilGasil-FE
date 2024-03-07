@@ -22,14 +22,34 @@ interface MasilDiaryViewProps {
 
 const MasilDiaryView = ({ id }: MasilDiaryViewProps) => {
   const router = useRouter();
-  const { currentTabIdx, date, isSheetOpen, setCurrentTabIdx, setDate, setIsSheetOpen, masils } =
-    useMasilDiaryController();
+  const {
+    currentTabIdx,
+    date,
+    isSheetOpen,
+    masils,
+    dailyMasils,
+    setCurrentTabIdx,
+    setDate,
+    setIsSheetOpen,
+    setDailyMasils,
+  } = useMasilDiaryController();
 
   useEffect(() => {
     // 새로고침 시 쿼리스트링이 초기화됩니다.
     // TODO: 새로고침, 뒤로가기 시 쿼리스트링이 유지되며, 해당 쿼리스트링에 맞춰 캘린더 초기화
     router.replace(`/diary/${id}`);
   }, []);
+
+  useEffect(() => {
+    const selectedDate = date?.toLocaleDateString("en-CA");
+    const temp = masils.contents.filter((m) => m.date === selectedDate);
+
+    if (temp[0]) {
+      setDailyMasils(temp[0]?.masils);
+    } else {
+      setDailyMasils(null);
+    }
+  }, [date]);
 
   useEffect(() => {
     setDate(new Date());
@@ -96,7 +116,10 @@ const MasilDiaryView = ({ id }: MasilDiaryViewProps) => {
 
             <S.Section>조회를 원하는 날짜를 선택해주세요</S.Section>
 
-            <MasilDiarySheet isSheetOpen={isSheetOpen} />
+            <MasilDiarySheet
+              isSheetOpen={isSheetOpen}
+              masils={dailyMasils}
+            />
           </>
         )}
         {currentTabIdx === 1 && (
