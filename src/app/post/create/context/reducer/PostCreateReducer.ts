@@ -9,7 +9,7 @@ type ReducerActionType =
   | { type: "POST_CREATE_INIT"; payload: { defaultData: PostCreateRequest } }
   | {
       type: "POST_CREATE_COMPLETE_STEP_ONE";
-      payload: { content: string; title: string; isPublic: boolean };
+      payload: { content: string; title: string; isPublic: boolean; thumbnailUrl: string | null };
     }
   | {
       type: "POST_CREATE_PIN_UPDATE";
@@ -29,12 +29,13 @@ const postCreateReducer = (state: PostCreateRequest, action: ReducerActionType) 
     }
 
     case POST_CREATE_REDUCER_ACTION.COMPLETE_STEP_ONE: {
-      const { content, title, isPublic } = action.payload;
+      const { content, title, isPublic, thumbnailUrl } = action.payload;
       return {
         ...state,
         content,
         title,
         isPublic,
+        thumbnailUrl,
       };
     }
 

@@ -13,7 +13,6 @@ import {
   HandleRemovePin,
   PostCreatePageStep,
 } from "../PostCreate.types";
-import { MasilResponse } from "@/types/Response";
 import postCreateReducer from "./reducer/PostCreateReducer";
 import {
   POST_CREATE_DEFAULT_REQUEST_VALUE,
@@ -31,6 +30,7 @@ interface PostCreateContextValues {
   postData: PostCreateRequest;
   pageStep: PostCreatePageStep;
   currentPinIndex: number;
+  defaultData: PostCreateRequest;
   setPageStep: Dispatch<SetStateAction<PostCreatePageStep>>;
   handleCompleteStepOne: HandleCompleteStepOne;
   handleClickPin: HandleClickPin;
@@ -41,6 +41,7 @@ const PostCreateContext = createContext<PostCreateContextValues>({
   postData: POST_CREATE_DEFAULT_REQUEST_VALUE,
   pageStep: "POST_CREATE_TEXT_EDIT",
   currentPinIndex: -1,
+  defaultData: POST_CREATE_DEFAULT_REQUEST_VALUE,
   setPageStep: () => {},
   handleCompleteStepOne: () => {},
   handleClickPin: () => {},
@@ -101,6 +102,7 @@ export const PostCreateContextProvider = ({
   return (
     <PostCreateContext.Provider
       value={{
+        defaultData,
         pageStep,
         setPageStep,
         postData,
