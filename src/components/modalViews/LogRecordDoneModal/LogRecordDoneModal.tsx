@@ -40,6 +40,7 @@ const LogRecordDoneModal = ({ props }: ModalProps) => {
           options={defaultOptions}
           height={150}
           width={250}
+          isClickToPauseDisabled={true}
         />
         <S.RecordDoneContainer>
           <S.HeaderTitle>{LOG_RECORD_MESSAGE.RECORD_DONE.MESSAGE}</S.HeaderTitle>

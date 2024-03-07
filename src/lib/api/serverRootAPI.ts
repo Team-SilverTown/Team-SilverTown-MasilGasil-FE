@@ -1,10 +1,14 @@
-export const request = async <T>(url: string, options = {}): Promise<T | undefined> => {
+import { NextRequest, RequestInit } from "next/dist/server/web/spec-extension/request";
+
+export const request = async <T>(
+  url: string,
+  method: string,
+  options?: RequestInit,
+): Promise<T | undefined> => {
   try {
     const response = await fetch(`${process.env.DB_BASE_URL}${url}`, {
+      method,
       ...options,
-      headers: {
-        // "Content-Type": "application/json",
-      },
     });
 
     if (response.ok) {
@@ -18,10 +22,12 @@ export const request = async <T>(url: string, options = {}): Promise<T | undefin
   }
 };
 
-export const SERVER_GET = async <T>({ endPoint, config }: { endPoint: string; config?: any }) => {
-  return await request<T>(endPoint, config);
+export const SERVER_GET = async <T>({
+  endPoint,
+  options,
+}: {
+  endPoint: string;
+  options?: RequestInit;
+}) => {
+  return await request<T>(endPoint, "GET", options);
 };
-
-// export const POST = async <T>(url:string, data) => {
-//   return await request<T>(url, { method: "POST", body: JSON.stringify(data) });
-// };
