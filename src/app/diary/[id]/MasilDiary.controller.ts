@@ -1,21 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const useMasilDiaryController = () => {
+  // TODO: 쿼리 파라미터를 조회하여 서버에 GET 요청, 해당 기간의 로그 기록 데이터를 받아옴
+  // TODO: View는 로그 기록 데이터를 프롭으로 받고, 내부에서 처리
+
   /**
    * @state1 현재 탭 상태
    * @state2 현재 월
    * @state2 특정 월 산책 기록 + 통계 데이터
    */
 
+  const searchParams = useSearchParams();
+  const startDateParam = searchParams.get("startDate");
+
   const [currentTabIdx, setCurrentTabIdx] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-
-  useEffect(() => {
-    console.log(date);
-  }, [date]);
 
   /**
    * @func1 탭 클릭 시 상태 변경 (calender, list)

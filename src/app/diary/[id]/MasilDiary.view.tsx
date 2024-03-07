@@ -14,14 +14,32 @@ import MasilDiarySheet from "./components/MasilDiarySheet/MasilDiarySheet";
 import { DaylessCalendar } from "@/components/ShadcnUi/ui/daylessCalender";
 import DiaryItem from "./components/DiaryItem/DiaryItem";
 
-const MasilDiaryView = () => {
+import { usePathname, useRouter } from "next/navigation";
+
+interface MasilDiaryViewProps {
+  id: string;
+}
+
+const MasilDiaryView = ({ id }: MasilDiaryViewProps) => {
+  const router = useRouter();
   const { currentTabIdx, date, isSheetOpen, setCurrentTabIdx, setDate, setIsSheetOpen } =
     useMasilDiaryController();
+
+  useEffect(() => {
+    // 새로고침 시 쿼리스트링이 초기화됩니다.
+    // TODO: 새로고침, 뒤로가기 시 쿼리스트링이 유지되며, 해당 쿼리스트링에 맞춰 캘린더 초기화
+    router.replace(`/diary/${id}`);
+  }, []);
 
   useEffect(() => {
     setDate(new Date());
   }, [currentTabIdx]);
 
+  /**
+   * @function handleSelectDate
+   * @param day
+   * @breif 선택한 날짜를 갱신합니다. 일 단위로 변경되며, BottomSheet를 열어 해당 일자의 산책 기록을 보여줍니다.
+   */
   const handleSelectDate = (day: Date | undefined) => {
     if (day) {
       setDate(day);
@@ -29,12 +47,19 @@ const MasilDiaryView = () => {
     setIsSheetOpen(true);
   };
 
+  /**
+   * @function handleChangeMonth
+   * @param day
+   * @breif 선택한 날짜를 갱신합니다. 월 단위로 변경되며, 변경된 값을 Query Params로 넘겨줍니다.
+   * @TODO 디바운싱 적용
+   */
   const handleChangeMonth = (day: Date | undefined) => {
     if (day) {
       setDate(day);
-    }
+      const startDate = day.toLocaleDateString("en-CA");
 
-    // TODO: 쿼리스트링 Link 이동 (startDate=2023-03-06)
+      router.push(`/diary/${id}?startDate=${startDate}`);
+    }
   };
 
   // TODO: 산책기록이 존재하는 날짜의 스타일 처리
