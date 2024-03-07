@@ -7,13 +7,14 @@ import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import usePostTextEditController from "./PostTextEdit.controller";
-import { PostContentEdit, PostPublicEdit, PostTitleEdit } from "./components";
+import { PostContentEdit, PostPublicEdit, PostThumbnailEdit, PostTitleEdit } from "./components";
 
 const PostTextEditView = () => {
   const theme = useTheme();
   const {
-    pageStep,
+    postData,
     register,
+    setValue,
     errors,
     isPublic,
     setIsPublic,
@@ -26,6 +27,11 @@ const PostTextEditView = () => {
   return (
     <>
       <GS.PostCreateSheetContent>
+        <PostThumbnailEdit
+          postData={postData}
+          updateImage={(file: File | null) => setValue("thumbnail", file)}
+        />
+
         <PostTitleEdit
           register={register}
           errors={errors}

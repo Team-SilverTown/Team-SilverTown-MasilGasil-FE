@@ -40,8 +40,10 @@ const usePostTextEditController = () => {
   };
 
   return {
+    postData,
     pageStep,
     register,
+    setValue,
     errors,
     isPublic,
     setIsPublic,
