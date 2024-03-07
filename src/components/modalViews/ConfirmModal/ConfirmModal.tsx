@@ -19,7 +19,6 @@ interface ModalProp {
 
 const ConfirmModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
-  const theme = useTheme();
 
   const {
     onClickAccept,

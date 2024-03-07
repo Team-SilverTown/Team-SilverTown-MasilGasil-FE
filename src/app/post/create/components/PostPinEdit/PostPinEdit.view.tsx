@@ -10,7 +10,8 @@ import usePostPinEditController from "./PostPinEdit.controller";
 
 const PostPinEditView = () => {
   const theme = useTheme();
-  const { postData, handleClickPin, handleRemovePin } = usePostPinEditController();
+  const { postData, handleClickPin, handleRemovePin, handleCreatePost } =
+    usePostPinEditController();
   return (
     <>
       <GS.PostCreateSheetContent>
@@ -43,7 +44,7 @@ const PostPinEditView = () => {
             fontWeight: FONT_WEIGHT.SEMIBOLD,
             userSelect: "none",
           }}
-          onClickHandler={() => {}}
+          onClickHandler={handleCreatePost}
         >
           산책로 등록하기
         </Button>
