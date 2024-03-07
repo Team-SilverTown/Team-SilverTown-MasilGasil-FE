@@ -18,12 +18,12 @@ export const FlexContainer = styled.div`
   gap: 2rem;
 `;
 
-export const PersonnelSelect = styled.select<{ isSelected: boolean }>`
+export const PersonnelSelect = styled.select<{ $isSelected: boolean }>`
   width: 100%;
   height: 5.2rem;
   background-color: ${(props) => props.theme.transparent_10};
   color: ${(props) =>
-    props.isSelected ? props.theme.text_primary_color : props.theme.text_primary_color + 30};
+    props.$isSelected ? props.theme.text_primary_color : props.theme.text_primary_color + 30};
   text-align: left;
   border-width: 1.4px;
   border-color: transparent;
@@ -36,6 +36,6 @@ export const PersonnelSelect = styled.select<{ isSelected: boolean }>`
   &:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
-    border-color: ${(props) => (props.$isInvalid ? props.theme.red_500 : props.theme.green_500)};
+    border-color: ${(props) => props.theme.green_500};
   }
 `;

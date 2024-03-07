@@ -5,12 +5,21 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import * as S from "./OptionTimePicker.styles";
 
-const OptionTimePicker = ({ startTime, setStartTime }) => {
-  const CustomInput = ({ value, onClick }) => (
+interface OptionTimePickerProps {
+  startTime: Date | null;
+  setStartTime: (time: Date | null) => void;
+}
+
+interface CustomInputProps {
+  value?: string;
+  onClick?: () => void;
+}
+
+const OptionTimePicker = ({ startTime, setStartTime }: OptionTimePickerProps) => {
+  const CustomInput = ({ value, onClick }: CustomInputProps) => (
     <S.CustomInput
       onClick={onClick}
-      isSelected={!!startTime}
-      readOnly
+      $isSelected={!!startTime}
     >
       {value || "모임 시간을 선택해주세요."}
     </S.CustomInput>

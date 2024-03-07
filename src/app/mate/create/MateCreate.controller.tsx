@@ -47,13 +47,14 @@ const MateCreateController = () => {
   const watchedFields = watch();
 
   useEffect(() => {
-    const allFieldsFilled =
+    const allFieldsFilled = !!(
       watchedFields.title &&
       watchedFields.content &&
       watchedFields.location &&
       startDate &&
       startTime &&
-      selectedPersonnel;
+      selectedPersonnel
+    );
     setIsFormFilled(allFieldsFilled);
   }, [watchedFields, startDate, startTime, selectedPersonnel]);
 

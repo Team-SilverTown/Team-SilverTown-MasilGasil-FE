@@ -6,12 +6,21 @@ import { ko } from "date-fns/locale";
 
 import * as S from "./CalendarDatePicker.styles";
 
-const CalendarDatePicker = ({ startDate, setStartDate }) => {
-  const CustomInput = ({ value, onClick }) => (
+interface CalendarDatePickerProps {
+  startDate: Date | null;
+  setStartDate: (date: Date | null) => void;
+}
+
+interface CustomInputProps {
+  value?: string;
+  onClick?: () => void;
+}
+
+const CalendarDatePicker = ({ startDate, setStartDate }: CalendarDatePickerProps) => {
+  const CustomInput = ({ value, onClick }: CustomInputProps) => (
     <S.CustomInput
       onClick={onClick}
-      isSelected={!!startDate}
-      readOnly
+      $isSelected={!!startDate}
     >
       {value || "모임 날짜를 선택해주세요."}
     </S.CustomInput>
@@ -24,7 +33,7 @@ const CalendarDatePicker = ({ startDate, setStartDate }) => {
       selected={startDate}
       minDate={new Date()}
       onChange={(date: Date) => setStartDate(date)}
-      customInput={<CustomInput value={startDate} />}
+      customInput={<CustomInput value={startDate ? startDate.toLocaleDateString() : ""} />}
     />
   );
 };

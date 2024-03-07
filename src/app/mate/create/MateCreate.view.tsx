@@ -12,18 +12,25 @@ import * as S from "./MateCreate.styles";
 import { MateCreateProps } from "./MateCreate.controller";
 
 import { CalendarDatePicker, OptionTimePicker } from "./components";
+import { DefaultTheme } from "styled-components";
 
 interface MateCreateViewProps {
   register: UseFormRegister<MateCreateProps>;
   handleSubmit: () => void;
   isFormFilled: boolean;
   handlePersonnelChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  // startDate,
-  // setStartDate,
-  // startTime,
-  // setStartTime,
+  startDate: Date | null;
+  setStartDate: (date: Date | null) => void;
+  startTime: Date | null;
+  setStartTime: (date: Date | null) => void;
   selectedPersonnel: string;
-  // setSelectedPersonnel,
+  setSelectedPersonnel: (value: string) => void;
+}
+
+interface MateCreateButtonProps {
+  onClickHandler: () => void;
+  isDisabled: boolean;
+  theme: DefaultTheme | undefined;
 }
 
 const regularFields = [
@@ -33,7 +40,7 @@ const regularFields = [
   { title: "희망 날짜", placeholder: "날짜를 입력해주세요.", name: "date" },
 ];
 
-const MateCreateButton = ({ onClickHandler, isDisabled, theme }) => (
+const MateCreateButton = ({ onClickHandler, isDisabled, theme }: MateCreateButtonProps) => (
   <Button
     type="button"
     onClick={onClickHandler}
@@ -74,7 +81,7 @@ const MateCreateView = ({
             {field.type === "textarea" && field.name !== "date" && (
               <Textarea
                 placeholder={field.placeholder}
-                register={register(field.name)}
+                register={register(field.name as keyof MateCreateProps)}
                 style={{
                   fontSize: "1.5rem",
                 }}
@@ -83,7 +90,7 @@ const MateCreateView = ({
             {field.type !== "textarea" && field.name !== "date" && (
               <Input
                 placeholder={field.placeholder}
-                register={register(field.name)}
+                register={register(field.name as keyof MateCreateProps)}
                 style={{
                   lineHeight: "2rem",
                   fontSize: "1.5rem",
@@ -113,7 +120,7 @@ const MateCreateView = ({
             <S.PersonnelSelect
               value={selectedPersonnel}
               onChange={handlePersonnelChange}
-              isSelected={selectedPersonnel !== ""}
+              $isSelected={selectedPersonnel !== ""}
             >
               <option value="">인원을 선택해주세요.</option>
               {Array.from({ length: 10 }, (_, i) => (
