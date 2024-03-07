@@ -12,8 +12,15 @@ import { PostPinEdit, PostTextEdit } from "./components";
 
 const PostCreateView = () => {
   const theme = useTheme();
-  const { isOpenBottom, handleToggleBottomSheet, postData, pageStep, center, handleFallback } =
-    usePostCreateController();
+  const {
+    isOpenBottom,
+    handleToggleBottomSheet,
+    postData,
+    pageStep,
+    center,
+    handleFallback,
+    handleClickPin,
+  } = usePostCreateController();
 
   return (
     <S.PostCreateLayout>
@@ -25,6 +32,7 @@ const PostCreateView = () => {
           isShowCenterMarker={false}
           path={postData.path}
           pins={postData.pins}
+          onClickPin={handleClickPin}
         />
       </S.PostCreateMapWrapper>
       <S.PostCreateSheet $isOpen={isOpenBottom}>

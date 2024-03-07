@@ -10,3 +10,7 @@ export type HandleCompleteStepOne = (data: {
   content: string;
   isPublic: boolean;
 }) => void;
+
+export type HandleClickPin = (pinIndex: number) => void;
+
+export type HandleRemovePin = (pinIndex: number) => void;

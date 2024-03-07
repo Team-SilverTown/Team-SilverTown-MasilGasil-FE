@@ -7,7 +7,7 @@ import useTheme from "@/lib/hooks/useTheme";
 
 const usePostCreateController = () => {
   const [isOpenBottom, setIsOpenBottom] = useState(false);
-  const { pageStep, setPageStep, postData } = usePostCreateContext();
+  const { pageStep, setPageStep, postData, handleClickPin } = usePostCreateContext();
   const { setModalView, openModal } = useUI();
   const router = useRouter();
   const theme = useTheme();
@@ -44,6 +44,7 @@ const usePostCreateController = () => {
     theme,
 
     handleFallback,
+    handleClickPin,
   };
 };
 
