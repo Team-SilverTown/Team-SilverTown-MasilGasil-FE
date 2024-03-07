@@ -22,7 +22,7 @@ interface MasilDiaryViewProps {
 
 const MasilDiaryView = ({ id }: MasilDiaryViewProps) => {
   const router = useRouter();
-  const { currentTabIdx, date, isSheetOpen, setCurrentTabIdx, setDate, setIsSheetOpen } =
+  const { currentTabIdx, date, isSheetOpen, setCurrentTabIdx, setDate, setIsSheetOpen, masils } =
     useMasilDiaryController();
 
   useEffect(() => {
@@ -62,8 +62,8 @@ const MasilDiaryView = ({ id }: MasilDiaryViewProps) => {
     }
   };
 
-  // TODO: 산책기록이 존재하는 날짜의 스타일 처리
-  const bookedDays = [new Date(2024, 2, 6), new Date(2024, 2, 9)];
+  const bookedDays = masils.contents.map((m) => new Date(m.date));
+
   const bookedStyle = { backgroundColor: "#B9DB56", color: "white", borderRadius: "50%" };
 
   return (
@@ -106,12 +106,20 @@ const MasilDiaryView = ({ id }: MasilDiaryViewProps) => {
               onMonthChange={handleChangeMonth}
             />
             {/* TODO: 쿼리스트링에 따른 masils 데이터를 받아와, 해당 월의 기록을 출력*/}
-            {/* {masils
-              ? masils.map((masil) => {
-                  return <DiaryItem masil={masil} />;
-                })
-              : "기록이 존재하지 않습니다."} */}
-            <S.Section>기록이 존재하지 않습니다</S.Section>
+            {masils.contents ? (
+              masils.contents.map((masil) => {
+                return masil.masils.map((m, i) => {
+                  return (
+                    <DiaryItem
+                      masil={m}
+                      key={m.id}
+                    />
+                  );
+                });
+              })
+            ) : (
+              <S.Section>기록이 존재하지 않습니다</S.Section>
+            )}
           </>
         )}
       </GS.CommonContainer>

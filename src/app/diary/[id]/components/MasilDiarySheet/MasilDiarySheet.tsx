@@ -11,14 +11,12 @@ interface MasilDiarySheetProps {
 }
 
 export interface masilProps {
-  id: string;
-  title: string;
+  id: number;
+  address: { depth1: string; depth2: string; depth3: string; depth4: string };
   content: string;
   thumbnailUrl: string;
   distance: number;
   totalTime: number;
-
-  // TODO: 위치정보도 넘어오면 좋을 듯
 }
 
 const MasilDiarySheet = ({ isSheetOpen, masils }: MasilDiarySheetProps) => {

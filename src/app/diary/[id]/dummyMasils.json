@@ -1,0 +1,68 @@
+{
+  "totalDistance": 104200,
+  "totalCounts": 50,
+  "contents": [
+    {
+      "date": "2024-03-06",
+      "masils": [
+        {
+          "id": 1,
+          "address": {
+            "depth1": "경기도 안양시",
+            "depth2": "동안구",
+            "depth3": "관양동",
+            "depth4": ""
+          },
+          "content": "기록들 주루루룰루ㅜㄱ",
+          "thumbnailUrl": "url",
+          "distance": 1100,
+          "totalTime": 300
+        },
+        {
+          "id": 2,
+          "address": {
+            "depth1": "경기도 안양시",
+            "depth2": "동안구",
+            "depth3": "관양동",
+            "depth4": ""
+          },
+          "content": "기록",
+          "thumbnailUrl": "url",
+          "distance": 1540,
+          "totalTime": 300
+        }
+      ]
+    },
+    {
+      "date": "2024-03-10",
+      "masils": [
+        {
+          "id": 3,
+          "address": {
+            "depth1": "경기도 안양시",
+            "depth2": "동안구",
+            "depth3": "관양동",
+            "depth4": ""
+          },
+          "content": "기록들 주루루룰루ㅜㄱ",
+          "thumbnailUrl": "url",
+          "distance": 1100,
+          "totalTime": 300
+        },
+        {
+          "id": 4,
+          "address": {
+            "depth1": "경기도 안양시",
+            "depth2": "동안구",
+            "depth3": "관양동",
+            "depth4": ""
+          },
+          "content": "기록",
+          "thumbnailUrl": "url",
+          "distance": 1540,
+          "totalTime": 450
+        }
+      ]
+    }
+  ]
+}

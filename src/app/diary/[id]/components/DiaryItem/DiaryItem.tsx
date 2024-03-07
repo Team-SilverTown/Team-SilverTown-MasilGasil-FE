@@ -3,7 +3,7 @@ import * as S from "./DiaryItem.styles";
 
 // thumbnailUrl, memo, location, time, length, kcal
 
-const DiaryItem = ({ masil }: { masil: masilProps }) => {
+const DiaryItem = ({ masil }: { masil: masilProps; key?: number | string }) => {
   const handleClickItem = () => {
     //TODO: 해당 로그 id의 디테일페이지로 이동
   };
