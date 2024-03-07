@@ -2,6 +2,7 @@
 
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as GS from "../../PostTextEdit.styles";
+import * as TGS from "../../../../PostCreate.styles";
 import { Input, InputLabel } from "@/components";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { PostCreateInputValue } from "@/app/post/create/PostCreate.types";
@@ -15,7 +16,7 @@ interface PostTitleEditProps {
 const PostTitleEdit = ({ register, errors }: PostTitleEditProps) => {
   return (
     <GS.PostTextEditInputContainer>
-      <GS.PostTextEditInputTitle>제목</GS.PostTextEditInputTitle>
+      <TGS.PostCreateContentTitle>제목</TGS.PostCreateContentTitle>
       <Input
         type="text"
         register={register("title", postCreateValidation.title)}

@@ -1,4 +1,4 @@
-import { CONTAINER, DISPLAY_NONE_SCROLLBAR } from "@/styles/theme";
+import { CONTAINER, DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostCreateLayout = styled.section`
@@ -78,4 +78,12 @@ export const PostCreateButtonWrapper = styled.div`
   bottom: 1rem;
 
   opacity: 0.9;
+`;
+
+export const PostCreateContentTitle = styled.h6`
+  width: 100%;
+  margin-bottom: 1rem;
+
+  font-size: ${FONT_SIZE.H6};
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;

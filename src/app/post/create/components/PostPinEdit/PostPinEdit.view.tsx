@@ -7,7 +7,9 @@ const PostPinEditView = () => {
   const theme = useTheme();
   return (
     <>
-      <GS.PostCreateSheetContent></GS.PostCreateSheetContent>
+      <GS.PostCreateSheetContent>
+        <GS.PostCreateContentTitle>핀 수정하기</GS.PostCreateContentTitle>
+      </GS.PostCreateSheetContent>
 
       <GS.PostCreateButtonWrapper>
         <Button

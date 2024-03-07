@@ -2,6 +2,7 @@
 
 import * as S from "./PostPublicEdit.styles";
 import * as GS from "../../PostTextEdit.styles";
+import * as TGS from "../../../../PostCreate.styles";
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
@@ -17,7 +18,7 @@ const PostPublicEdit = ({ isPublic, setIsPublic }: PostPublicEditProps) => {
 
   return (
     <GS.PostTextEditInputContainer>
-      <GS.PostTextEditInputTitle>공개 여부</GS.PostTextEditInputTitle>
+      <TGS.PostCreateContentTitle>공개 여부</TGS.PostCreateContentTitle>
       <S.PostEditPublicActions>
         <Button
           width={"50%"}
