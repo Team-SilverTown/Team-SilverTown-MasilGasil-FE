@@ -1,46 +1,89 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import dummyMasils from "./dummyMasils.json";
 import { MasilProps } from "./components/MasilDiarySheet/MasilDiarySheet";
 
 const useMasilDiaryController = () => {
-  // TODO: 쿼리 파라미터를 조회하여 서버에 GET 요청, 해당 기간의 로그 기록 데이터를 받아옴
-  // TODO: View는 로그 기록 데이터를 프롭으로 받고, 내부에서 처리
-
-  /**
-   * @state1 현재 탭 상태
-   * @state2 현재 월
-   * @state2 특정 월 산책 기록 + 통계 데이터
-   */
-
+  const router = useRouter();
   const searchParams = useSearchParams();
   const startDateParam = searchParams.get("startDate");
+  const params = useParams<{ id: string }>();
+  const id = params.id;
 
   const [currentTabIdx, setCurrentTabIdx] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [masils, setMasils] = useState(dummyMasils);
   const [dailyMasils, setDailyMasils] = useState<MasilProps[] | null>(null);
+  const [monthlyMasils, setMonthlyMasils] = useState<Date[]>([]);
+
+  useEffect(() => {
+    // TODO: 새로고침, 뒤로가기 시 쿼리스트링이 유지되며, 해당 쿼리스트링에 맞춰 캘린더 초기화
+    router.replace(`/diary/${id}`);
+  }, []);
+
+  useEffect(() => {
+    setDate(new Date());
+  }, [currentTabIdx]);
+
+  useEffect(() => {
+    const selectedDate = date?.toLocaleDateString("en-CA"); // yyyy-mm-dd
+    const tempDailyMasils = masils.contents.filter((m) => m.date === selectedDate);
+    const tempMothlyMasils = masils.contents.map((m) => new Date(m.date));
+
+    if (tempDailyMasils[0]) {
+      setDailyMasils(tempDailyMasils[0]?.masils);
+    } else {
+      setDailyMasils(null);
+    }
+
+    setMonthlyMasils(tempMothlyMasils);
+  }, [date]);
 
   /**
-   * @func1 탭 클릭 시 상태 변경 (calender, list)
-   * @func2 캘린더 월 이동 시 그 월에 해당하는 산책 기록을 캘린더에 출력
-   * @func3 캘린더 일자 클릭 시 해당 일자의 산책 기록을 담은 바텀시트 출력
-   * @func4 각 산책 기록을 클릭하면 해당 산책 기록 id의 logDetail 페이지로 이동
+   * @function handleSelectDate
+   * @param day
+   * @breif 선택한 날짜를 갱신합니다. 일 단위로 변경되며, BottomSheet를 열어 해당 일자의 산책 기록을 보여줍니다.
    */
+  const handleSelectDate = (day: Date | undefined) => {
+    if (day) {
+      setDate(day);
+    }
+    setIsSheetOpen(true);
+  };
+
+  /**
+   * @function handleChangeMonth
+   * @param day
+   * @breif 선택한 날짜를 갱신합니다. 월 단위로 변경되며, 변경된 값을 Query Params로 넘겨줍니다.
+   * @TODO 디바운싱 적용
+   */
+  const handleChangeMonth = (day: Date | undefined) => {
+    if (day) {
+      setDate(day);
+      const startDate = day.toLocaleDateString("en-CA");
+
+      router.push(`/diary/${id}?startDate=${startDate}`);
+    }
+  };
+
+  // TODO: 쿼리 파라미터를 조회하여 서버에 GET 요청, 해당 기간의 로그 기록 데이터를 받아옴
+  // TODO: View는 로그 기록 데이터를 프롭으로 받고, 내부에서 처리
   return {
     date,
     isSheetOpen,
     currentTabIdx,
     masils,
     dailyMasils,
-
+    monthlyMasils,
     setDate,
     setIsSheetOpen,
     setCurrentTabIdx,
     setDailyMasils,
+    handleSelectDate,
+    handleChangeMonth,
   };
 };
 

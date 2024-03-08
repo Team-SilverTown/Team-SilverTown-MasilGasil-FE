@@ -7,3 +7,5 @@ export const Section = styled.div`
 
   color: ${(props) => props.theme.gray_300};
 `;
+
+export const MonthMasils = { backgroundColor: "#B9DB56", color: "white", borderRadius: "50%" };
