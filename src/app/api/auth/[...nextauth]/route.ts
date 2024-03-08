@@ -31,30 +31,23 @@ export const authOptions: NextAuthOptions = {
     // },
     async jwt({ token, account }) {
       if (account && account.access_token) {
-        const getToken = authenticate.bind(null, { accessToken: account.access_token });
+        const getToken = authenticate.bind(null, { token: account.access_token });
         const data = await getToken();
 
-        // console.log("API", data);
-
+        // console.log("JWT", data?.token);
+        // console.log(account.access_token);
         return {
-          // accessToken: account.access_token,
+          accessToken: account.access_token,
           serviceToken: data?.token,
           // accessTokenExpires: account.expires_at,
           // refreshToken: account.refresh_token,
         };
       }
       return token;
-
-      // 엑세스 코드로 서비스 서버에 요청을 보냄
-      // 서비스 서버는 토큰을 반환함.
-      // session.serviceToken 저장
-      // me 요청을 보냄
-      // me 에 해당하는 사용자가 없다면 서비스 토큰을 내려보내는 것을 거부
-      // 미들웨어에서 서비스 토큰이 없을 경우 갈 수 없는 곳들을 지정
     },
     async session({ session, token }) {
       if (token.serviceToken) {
-        // console.log(token.accessToken);
+        // console.log("serviceToken", token.serviceToken);
         session.accessToken = token.accessToken as string;
         session.serviceToken = token.serviceToken as string;
       }

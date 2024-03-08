@@ -14,6 +14,7 @@ import { GlobalStyle } from "@/styles/GlobalStyle";
 import "src/styles/globals.css";
 
 import { authOptions } from "./api/auth/[...nextauth]/route";
+import { getMe } from "@/lib/api/User/server";
 
 export const metadata: Metadata = {
   title: "마실가실",
@@ -30,11 +31,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-  // useSession 을 통해 서비스 토큰을 가져옴
-  // me 요청을 서버사이드에서 실행
-  // 받아온 me 를 useMe 에 저장하는 하위 컴포넌트에 전달.\\
 
-  // console.log(session);
+  const me = await getMe(session?.serviceToken!);
 
   return (
     <html lang="ko">
@@ -48,7 +46,10 @@ export default async function RootLayout({
               strategy={"beforeInteractive"}
             />
             <AuthContext>
-              <AuthLoader>
+              <AuthLoader
+                serviceToken={session?.serviceToken}
+                me={me}
+              >
                 <TanstackQueryProvider>
                   <main>
                     {children}

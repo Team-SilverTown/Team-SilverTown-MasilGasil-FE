@@ -23,28 +23,28 @@ const POLICY_CONTENT_LIST: Array<{
   content: string;
   // policyView: WINDOW_VIEWS;
   required: boolean;
-  formKey: "policy_personal" | "policy_location" | "policy_age";
+  formKey: "isPersonalInfoConsented" | "isLocationInfoConsented" | "isUnderAgeConsentConfirmed";
   policyView: WINDOW_VIEWS;
   url: string;
 }> = [
   {
     content: "[필수] 개인정보 수집 및 이용 동의",
     required: true,
-    formKey: "policy_personal",
+    formKey: "isPersonalInfoConsented",
     policyView: "POLICY_PERSONAL",
     url: "http://localhost:3000/signin/policy/personal",
   },
   {
     content: "[필수] 위치정보 수집 및 이용 동의",
     required: true,
-    formKey: "policy_location",
+    formKey: "isLocationInfoConsented",
     policyView: "POLICY_LOCATION",
     url: "http://localhost:3000/signin/policy/location",
   },
   {
     content: "[필수] 만 14세 미만 가입 제한",
     required: true,
-    formKey: "policy_age",
+    formKey: "isUnderAgeConsentConfirmed",
     policyView: "POLICY_AGE",
     url: "http://localhost:3000/signin/policy/age",
   },

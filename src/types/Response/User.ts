@@ -5,9 +5,19 @@ export interface AuthResponse {
 }
 
 export interface MeResponse {
-  sex: "MALE" | "FEMALE" | null;
-  birthDate: string | null;
-  height: number | null;
-  weight: number | null;
-  exerciseIntensity: IntensityOption;
+  userId: 1;
+  nickname: string;
+  profileImg?: string;
+  sex?: "MALE" | "FEMALE";
+  birthDate?: string;
+  height?: number;
+  weight?: number;
+  exerciseIntensity?: IntensityOption;
 }
+
+export interface CheckNickNameResponse {
+  isDuplicated: boolean;
+  message: string;
+}
+
+// export interface SignUpResponse {}

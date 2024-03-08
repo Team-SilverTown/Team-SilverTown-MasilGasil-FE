@@ -3,8 +3,10 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { authenticate, getMe } from "@/lib/api/User/client";
+import { useQuery } from "@tanstack/react-query";
+import { getMe } from "@/lib/api/User/client";
+import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+import { MeResponse } from "@/types/Response";
 
 const Kakao = () => {
   /*
@@ -25,32 +27,39 @@ const Kakao = () => {
   const router = useRouter();
 
   const { data: session } = useSession();
-  console.log(session);
+  const [token, setToken] = useLocalStorage("serviceToken");
 
-  const {
-    data: meData,
-    error,
-    isError,
-  } = useQuery({
+  useEffect(() => {
+    if (session) {
+      console.log(session);
+      setToken(session.serviceToken);
+    }
+  }, [session]);
+
+  const { data: meData, isLoading } = useQuery<MeResponse>({
     queryKey: ["me", session?.serviceToken],
     queryFn: getMe,
-    enabled: !!session?.serviceToken,
+    enabled: !!session?.serviceToken && !!token,
+    retry: 1,
   });
 
-  if (isError) {
-    router.push("/signin");
-  }
+  useEffect(() => {
+    if (!meData) return;
 
-  // useEffect(() => {
-  //   if (!authCode) {
-  //     router.push("/signin");
-  //     return;
-  //   }
-  // }, []);
+    if (meData && !meData.nickname) {
+      console.log("가가입 유저->회훤가입뷰");
+      router.push("/signin", { scroll: false });
+    } else {
+      console.log("가입 유저->홈뷰");
+      router.push("/home");
+    }
+  }, [meData]);
 
-  // authCode 가 있는 경우 -> POST 호출
-
-  return <div>Kakao</div>;
+  return (
+    <div className="w-full h-full flex justify-center items-center">
+      <span className="font-semibold text-h2">사용자 인증 중입니다 ...</span>
+    </div>
+  );
 };
 
 export default Kakao;

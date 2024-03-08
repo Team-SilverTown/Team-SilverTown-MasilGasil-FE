@@ -31,7 +31,7 @@ export const request = async <T>(url: string, options: RequestInit): Promise<T |
   // }
 };
 
-export const SERVER_GET = async <T>({
+export const GET = async <T>({
   endPoint,
   options,
 }: {
@@ -41,6 +41,14 @@ export const SERVER_GET = async <T>({
   return await request<T>(endPoint, { method: "GET", ...options });
 };
 
-export const POST = async <T>(url: string, data: any, options?: any): Promise<T | undefined> => {
-  return await request<T>(url, { method: "POST", body: JSON.stringify(data) });
+export const POST = async <T>({
+  endPoint,
+  data,
+  options,
+}: {
+  endPoint: string;
+  data?: unknown;
+  options?: RequestInit;
+}): Promise<T | undefined> => {
+  return await request<T>(endPoint, { method: "POST", body: JSON.stringify(data), ...options });
 };

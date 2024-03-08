@@ -1,6 +1,5 @@
-import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+// import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
-import { useSession } from "next-auth/react";
 
 // client side fetch 의 경우
 // nextjs 의 reverse proxy 를 거쳐야함.
@@ -22,14 +21,9 @@ export const onError = (error: AxiosError) => {
 };
 
 export const onRequest = (config: InternalAxiosRequestConfig) => {
-  const { data: session } = useSession();
-  const serviceToken = useLocalStorage("serviceToken");
+  const serviceToken = localStorage.getItem("serviceToken");
 
-  if (session?.serviceToken) {
-    config.headers.Authorization = `Bearer ${session.serviceToken}`;
-  } else {
-    config.headers.Authorization = `Bearer ${serviceToken}`;
-  }
+  config.headers.Authorization = `Bearer ${serviceToken}`;
 
   return config;
 };
