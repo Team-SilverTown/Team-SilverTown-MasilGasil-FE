@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormGetValues, UseFormRegister } from "react-hook-form";
 
 import useTheme from "@/lib/hooks/useTheme";
 
@@ -10,9 +10,18 @@ import { validation_user } from "@/lib/constants/userConstants";
 interface SignInStep1Props {
   register: UseFormRegister<SignInFormProps>;
   errors: FieldErrors<SignInFormProps>;
+  nickNameConfirm: boolean;
+  isDuplicateLoading: boolean;
+  duplicateRefetch: () => void;
 }
 
-const SignInStep1 = ({ register, errors }: SignInStep1Props) => {
+const SignInStep1 = ({
+  register,
+  errors,
+  nickNameConfirm,
+  isDuplicateLoading,
+  duplicateRefetch,
+}: SignInStep1Props) => {
   const theme = useTheme();
 
   return (
@@ -28,18 +37,31 @@ const SignInStep1 = ({ register, errors }: SignInStep1Props) => {
               lineHeight: "2rem",
             }}
           />
-          <InputLabel
-            type="danger"
-            text={errors?.nickname?.message}
-            fontSize={"1.5rem"}
-            style={{ position: "absolute" }}
-          />
+          {nickNameConfirm && (
+            <InputLabel
+              type="safety"
+              text={"사용가능한 닉네임입니다."}
+              fontSize={"1.5rem"}
+              style={{ position: "absolute" }}
+            />
+          )}
+          {errors?.nickname?.message && (
+            <InputLabel
+              type="danger"
+              text={errors?.nickname?.message}
+              fontSize={"1.5rem"}
+              style={{ position: "absolute" }}
+            />
+          )}
         </div>
         <Button
           buttonColor={theme?.green_500}
           textColor={theme?.text_secondary_color}
           useRipple
           rippleColor={theme?.text_secondary_color + 50}
+          onClickHandler={() => duplicateRefetch()}
+          isLoading={isDuplicateLoading}
+          disabled={isDuplicateLoading}
         >
           <span className="text-2xl font-bold">중복 확인</span>
         </Button>

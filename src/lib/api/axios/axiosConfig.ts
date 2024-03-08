@@ -1,4 +1,4 @@
-import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+// import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 // client side fetch 의 경우
@@ -21,11 +21,9 @@ export const onError = (error: AxiosError) => {
 };
 
 export const onRequest = (config: InternalAxiosRequestConfig) => {
-  const accessToken = useLocalStorage("token");
+  const serviceToken = localStorage.getItem("serviceToken");
 
-  if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`;
-  }
+  config.headers.Authorization = `Bearer ${serviceToken}`;
 
   return config;
 };
