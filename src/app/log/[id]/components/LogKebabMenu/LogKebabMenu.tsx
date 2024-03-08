@@ -1,5 +1,4 @@
 import { MateDropDownMenu } from "@/app/mate/[id]/components/MateInfo/components";
-import { KebabMenu } from "@/components/icons";
 
 const LogKebabMenu = () => {
   return (
