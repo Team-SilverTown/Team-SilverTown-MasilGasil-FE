@@ -46,11 +46,19 @@ export const validation_user = {
     required: "나이는 필수 항목입니다.",
     min: {
       value: 14,
-      message: "14세 이상이어야 합니다",
+      message: "만 13세 이상이어야 합니다",
     },
     max: {
       value: 100,
-      message: "100세 이하여야 합니다",
+      message: "만 100세 이하여야 합니다",
     },
   },
+};
+
+export const USER_INPUT_PLACEHOLDER = {
+  BIRTH_DATE: "나이를 선택해주세요.",
+
+  HEIGHT: "키를 입력해주세요.",
+
+  WEIGHT: "체중을 입력해주세요.",
 };

@@ -12,10 +12,10 @@ const MateActions = () => {
   // 데이터가 확정되지 않아 추후 데이터를 고려하여 제작
 
   // 상태를 변경시키기 위한 임시값
-  const isRequest = false;
+  const isRequest = true;
   const isPending = false;
 
-  const isInvited = true;
+  const isInvited = false;
   const isAuthorAndTimeOver = false;
 
   const isCompleted = false;

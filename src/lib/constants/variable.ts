@@ -9,6 +9,6 @@ export const INTENSITY_OPTIONS = [
 ];
 
 export const SEX_OPTIONS: SexOption[] = [
-  { label: "남성", value: "male" },
-  { label: "여성", value: "female" },
+  { label: "남성", value: "MALE" },
+  { label: "여성", value: "FEMALE" },
 ];
