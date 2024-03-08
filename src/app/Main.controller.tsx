@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { getProviders, signIn, useSession } from "next-auth/react";
 
 import MainView from "./Main.view";
 import useMainModel from "./Main.model";
@@ -13,13 +14,6 @@ const MainController = () => {
   3. 버튼 클릭 시 카카오 Auth 실행
   4. 실행 결과에 따라 HomePage 혹은 SignIn Page 로 이동
    */
-
-  // test //
-  const { data, isLoading, mutation } = useMainModel();
-
-  const handleClick = () => {
-    mutation.mutate("postTest!!!");
-  };
 
   const preload = async () => {};
 
@@ -34,13 +28,25 @@ const MainController = () => {
     prepare();
   }, []); //deps -> [isLogIn, token]
 
-  return (
-    <MainView
-      loading={isLoading}
-      data={data?.serverTime}
-      onClickHandler={handleClick}
-    />
-  );
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const res: any = await getProviders();
+      // console.log(res);
+      setProviders(res);
+    })();
+  }, []);
+
+  // 추가된 부분
+  const handleKakao = async () => {
+    const result = await signIn("kakao", {
+      redirect: true,
+      callbackUrl: "/",
+    });
+  };
+
+  return <MainView onClickHandler={handleKakao} />;
 };
 
 export default MainController;
