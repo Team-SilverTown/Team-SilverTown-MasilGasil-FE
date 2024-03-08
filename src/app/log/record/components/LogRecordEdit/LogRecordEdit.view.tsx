@@ -2,9 +2,8 @@
 
 import * as S from "./LogRecordEdit.styles";
 
-import { Button, SlideButton, Textarea } from "@/components";
+import { Button, PinEditSlideButton, Textarea } from "@/components";
 import Theme, { FONT_WEIGHT, FONT_SIZE, Z_INDEX } from "@/styles/theme";
-import EditPencil from "@/components/icons/EditPencil";
 import Sheet from "@/components/BottomSheet";
 import useTheme from "@/lib/hooks/useTheme";
 import useLogRecordEditController from "./LogRecordEdit.controller";
@@ -65,38 +64,18 @@ const LogRecordEditView = () => {
             <S.LogEditContainer>
               <S.Header>핀</S.Header>
               <S.LogEditPinList>
-                {logData.pins.length > 0
-                  ? logData.pins.map((pin, index) => {
-                      return (
-                        <S.LogEditPinItem key={index}>
-                          <S.PinIndex $backgroundColor={Theme.lightTheme.green_500}>
-                            {index + 1}
-                          </S.PinIndex>
-                          <SlideButton
-                            subChildren={"삭제"}
-                            onButtonClickHandler={() => {
-                              handleClickPin(index);
-                            }}
-                            onSubButtonClickHandler={() => {
-                              handleRemovePin(index);
-                            }}
-                          >
-                            <S.SlideButtonContent
-                              $textColor={
-                                pin.content ? Theme.lightTheme.black : Theme.lightTheme.gray_300
-                              }
-                            >
-                              {pin.content ? pin.content : "내용을 작성해주세요"}
-                              <EditPencil
-                                fill={Theme.lightTheme.gray_300}
-                                width="2.3rem"
-                              />
-                            </S.SlideButtonContent>
-                          </SlideButton>
-                        </S.LogEditPinItem>
-                      );
-                    })
-                  : "저장한 핀이 존재하지 않습니다."}
+                {logData.pins.length > 0 &&
+                  logData.pins.map((pin, index) => (
+                    <PinEditSlideButton
+                      key={index}
+                      pinIndex={index}
+                      pin={pin}
+                      onClickPin={handleClickPin}
+                      removePin={handleRemovePin}
+                    />
+                  ))}
+
+                {logData.pins.length === 0 && "저장한 핀이 존재하지 않습니다."}
               </S.LogEditPinList>
             </S.LogEditContainer>
           </S.LogEditLayout>
