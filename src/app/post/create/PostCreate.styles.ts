@@ -1,3 +1,4 @@
+import { CONTAINER, DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostCreateLayout = styled.section`
@@ -32,11 +33,12 @@ export const PostCreateSheet = styled.article<{ $isOpen: boolean }>`
 
   transition: all 0.3s ease-in-out;
   z-index: 1;
+  overflow: hidden;
 `;
 
 export const PostCreateSheetHeader = styled.div`
   width: 100%;
-  height: 3.2rem;
+  height: 4rem;
 
   display: flex;
   align-items: center;
@@ -45,9 +47,45 @@ export const PostCreateSheetHeader = styled.div`
   cursor: pointer;
 `;
 
+export const PostCreateSheetContentWrapper = styled.div`
+  width: 100%;
+  flex-grow: 1;
+
+  overflow: hidden;
+`;
+
 export const PostCreateSheetContent = styled.div`
   width: 100%;
   height: 100%;
 
-  border: 1px solid red;
+  padding: 0rem ${CONTAINER.PADDING_HORIZONTAL}rem;
+  padding-top: 1rem;
+  padding-bottom: 8rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  overflow: scroll;
+  ${DISPLAY_NONE_SCROLLBAR}
+`;
+
+export const PostCreateButtonWrapper = styled.div`
+  width: 100%;
+  padding: 0rem ${CONTAINER.PADDING_HORIZONTAL}rem;
+
+  position: absolute;
+  bottom: 1rem;
+
+  opacity: 0.9;
+
+  z-index: 2;
+`;
+
+export const PostCreateContentTitle = styled.h6`
+  width: 100%;
+  margin-bottom: 1rem;
+
+  font-size: ${FONT_SIZE.H6};
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;
