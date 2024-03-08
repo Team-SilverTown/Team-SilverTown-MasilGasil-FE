@@ -31,7 +31,7 @@ const Kakao = () => {
 
   useEffect(() => {
     if (session) {
-      console.log(session);
+      // console.log(session);
       setToken(session.serviceToken);
     }
   }, [session]);
