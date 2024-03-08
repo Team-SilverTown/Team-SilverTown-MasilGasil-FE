@@ -4,7 +4,7 @@ import * as S from "./EditSex.styles";
 import { UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
 import { InputRadio } from "@/components";
-import { SEX_OPTIONS } from "@/constants/variable";
+import { SEX_OPTIONS } from "@/lib/constants/variable";
 
 interface EditAgeProps {
   register: UseFormRegister<UserEditData>;

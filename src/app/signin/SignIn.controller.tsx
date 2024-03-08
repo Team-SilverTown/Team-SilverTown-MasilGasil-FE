@@ -117,7 +117,7 @@ const SignInController = () => {
     />,
     <SignInStep3
       getValues={getValues}
-      setValue={setValue}
+      register={register}
     />,
     <SignInStep4
       getValues={getValues}

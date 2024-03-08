@@ -27,6 +27,7 @@ const LoadingSpinner = () => {
         options={defaultOptions}
         height={200}
         width={240}
+        isClickToPauseDisabled={true}
       />
     </S.LoadingSpinnerBackground>
   );

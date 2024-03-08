@@ -31,8 +31,14 @@ export const request = async <T>(url: string, options: RequestInit): Promise<T |
   // }
 };
 
-export const SERVER_GET = async <T>({ endPoint, config }: { endPoint: string; config?: any }) => {
-  return await request<T>(endPoint, config);
+export const SERVER_GET = async <T>({
+  endPoint,
+  options,
+}: {
+  endPoint: string;
+  options?: RequestInit;
+}) => {
+  return await request<T>(endPoint, { method: "GET", ...options });
 };
 
 export const POST = async <T>(url: string, data: any, options?: any): Promise<T | undefined> => {

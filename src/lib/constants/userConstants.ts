@@ -54,3 +54,11 @@ export const validation_user = {
     },
   },
 };
+
+export const USER_INPUT_PLACEHOLDER = {
+  BIRTH_DATE: "나이를 선택해주세요.",
+
+  HEIGHT: "키를 입력해주세요.",
+
+  WEIGHT: "체중을 입력해주세요.",
+};
