@@ -32,14 +32,14 @@ interface LogRecordContextValues {
 
   initData: () => void;
 
-  createPin: () => void;
-  removePin: (pinIndex: number) => void;
-  clickPin: (pinIndex: number) => void;
+  handleCreatePin: () => void;
+  handleRemovePin: (pinIndex: number) => void;
+  handleClickPin: (pinIndex: number) => void;
 
   startRecord: (position: GeolocationPosition) => void;
   increaseTimer: () => void;
   updatePath: (position: GeolocationPosition) => void;
-  updateDistance: (polyLine: kakao.maps.Polyline) => void;
+  handleUpdateDistance: (polyLine: kakao.maps.Polyline) => void;
 }
 
 interface LogRecordContextProviderProps {
@@ -59,14 +59,14 @@ const LogRecordContext = createContext<LogRecordContextValues>({
 
   initData: () => {},
 
-  createPin: () => {},
-  removePin: () => {},
-  clickPin: () => {},
+  handleCreatePin: () => {},
+  handleRemovePin: () => {},
+  handleClickPin: () => {},
 
   startRecord: () => {},
   increaseTimer: () => {},
   updatePath: () => {},
-  updateDistance: () => {},
+  handleUpdateDistance: () => {},
 });
 
 export const LogRecordContextProvider = ({ children }: LogRecordContextProviderProps) => {
@@ -83,7 +83,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
    * @params (polyLine: kakao.maps.Polyline)
    * @brief 현재 경로의 거리를 갱신하기위한 dispatch를 실행합니다.
    */
-  const updateDistance = (polyLine: kakao.maps.Polyline) => {
+  const handleUpdateDistance = (polyLine: kakao.maps.Polyline) => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CALCULATE_DISTANCE, payload: { polyLine } });
   };
 
@@ -91,7 +91,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
    * @func createPin
    * @brief 현재 center 위치를 이용해 핀을 생성하기 위한 dispatch를 실행합니다.
    */
-  const createPin = () => {
+  const handleCreatePin = () => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CREATE_PIN, payload: { location: userLocation } });
   };
 
@@ -100,7 +100,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
    * @params (pinIndex: number)
    * @brief 특정 인덱스의 핀을 제거합니다.
    */
-  const removePin = (pinIndex: number) => {
+  const handleRemovePin = (pinIndex: number) => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.REMOVE_PIN, payload: { pinIndex } });
     setCurrentPinIndex(-1);
   };
@@ -112,7 +112,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
    *
    * 각 모달 내부에 함수로 dispatch를 전달합니다.
    */
-  const clickPin = (pinIndex: number) => {
+  const handleClickPin = (pinIndex: number) => {
     setCurrentPinIndex(pinIndex);
     setModalView("PIN_EDIT_VIEW");
 
@@ -130,7 +130,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
         closeModal();
       },
       onClickRemove: (pinIndex: number) => {
-        removePin(pinIndex);
+        handleRemovePin(pinIndex);
         closeModal();
       },
       pinIndex,
@@ -222,14 +222,14 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
 
         initData,
 
-        createPin,
-        removePin,
-        clickPin,
+        handleCreatePin,
+        handleRemovePin,
+        handleClickPin,
 
         startRecord,
         increaseTimer,
         updatePath,
-        updateDistance,
+        handleUpdateDistance,
       }}
     >
       {children}

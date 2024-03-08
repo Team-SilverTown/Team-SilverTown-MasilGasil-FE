@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import LogRecordView from "./LogRecord.view";
 import { LOG_RECORD_MESSAGE } from "./LogRecord.constants";
 import useLogRecordContext from "./context/LogRecordContext";
 import { useUI } from "@/components/uiContext/UiContext";
@@ -10,7 +9,7 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import { useRouter } from "next/navigation";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 
-const LogRecordModel = () => {
+const useLogRecordController = () => {
   const {
     logData,
     pageStep,
@@ -21,9 +20,9 @@ const LogRecordModel = () => {
     isActiveExitAnimation,
     setIsActiveExitAnimation,
 
-    updateDistance,
-    createPin,
-    clickPin,
+    handleUpdateDistance,
+    handleCreatePin,
+    handleClickPin,
 
     initData,
   } = useLogRecordContext();
@@ -62,22 +61,20 @@ const LogRecordModel = () => {
     });
   };
 
-  return (
-    <LogRecordView
-      logData={logData}
-      pageStep={pageStep}
-      userLocation={userLocation}
-      currentPinIndex={currentPinIndex}
-      isActiveExitAnimation={isActiveExitAnimation}
-      setIsActiveExitAnimation={setIsActiveExitAnimation}
-      setIsActiveMapResizing={setIsActiveMapResizing}
-      onCreatePathLine={updateDistance}
-      onClickPin={clickPin}
-      handleClickCreatePin={createPin}
-      handleClickFallback={handleClickFallback}
-      handleOffIsOutCenter={handleOffIsOutCenter}
-    />
-  );
+  return {
+    logData,
+    pageStep,
+    userLocation,
+    currentPinIndex,
+    isActiveExitAnimation,
+    setIsActiveExitAnimation,
+    setIsActiveMapResizing,
+    handleUpdateDistance,
+    handleClickPin,
+    handleCreatePin,
+    handleClickFallback,
+    handleOffIsOutCenter,
+  };
 };
 
-export default LogRecordModel;
+export default useLogRecordController;
