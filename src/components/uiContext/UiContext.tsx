@@ -10,9 +10,9 @@ import Window from "@components/Window";
 import {
   PinEditModal,
   LogRecordAlertModal,
-  LogRecordConfirmModal,
   TestModal,
   MateCreateMapModal,
+  ConfirmModal,
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
@@ -21,7 +21,6 @@ import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 import useWindowStore from "@/stores/ui/useWindowStore";
 import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
 
-import Policy from "../windowViews/Policy";
 import MateLocationMapModal from "../modalViews/MateMapModal/MateLocationMapModal/MapLocationMapModal";
 
 export const useUI = () => {
