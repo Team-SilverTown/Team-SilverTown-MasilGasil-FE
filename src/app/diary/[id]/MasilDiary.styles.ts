@@ -12,7 +12,7 @@ export const MonthMasils = { backgroundColor: "#B9DB56", color: "white", borderR
 
 export const CalenderWrapper = styled.div`
   width: 100%;
-  height: 30rem;
+  height: 28rem;
 `;
 
 export const Wrapper = styled.div`

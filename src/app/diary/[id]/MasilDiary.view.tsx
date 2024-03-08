@@ -58,20 +58,20 @@ const MasilDiaryView = () => {
                 modifiers={{ booked: monthlyMasils }}
                 modifiersStyles={{ booked: S.MonthMasils }}
               />
-              <S.Wrapper>
-                <Return
-                  width={13}
-                  fill={Theme.lightTheme.gray_300}
-                />
-                <S.SubText
-                  onClick={() => {
-                    setDate(new Date());
-                  }}
-                >
-                  Today
-                </S.SubText>
-              </S.Wrapper>
             </S.CalenderWrapper>
+            <S.Wrapper>
+              <Return
+                width={13}
+                fill={Theme.lightTheme.gray_300}
+              />
+              <S.SubText
+                onClick={() => {
+                  setDate(new Date());
+                }}
+              >
+                Today
+              </S.SubText>
+            </S.Wrapper>
 
             <MonthlyStatistics month={date?.getMonth()} />
 
