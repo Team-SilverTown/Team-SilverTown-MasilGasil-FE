@@ -16,14 +16,15 @@ interface CustomInputProps {
 }
 
 const OptionTimePicker = ({ startTime, setStartTime }: OptionTimePickerProps) => {
-  const CustomInput = ({ value, onClick }: CustomInputProps) => (
+  const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
     <S.CustomInput
+      ref={ref}
       onClick={onClick}
       $isSelected={!!startTime}
     >
       {value || "모임 시간을 선택해주세요."}
     </S.CustomInput>
-  );
+  ));
 
   return (
     <DatePicker

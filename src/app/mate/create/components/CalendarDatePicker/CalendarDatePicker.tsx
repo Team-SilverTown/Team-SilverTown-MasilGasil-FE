@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -17,14 +17,15 @@ interface CustomInputProps {
 }
 
 const CalendarDatePicker = ({ startDate, setStartDate }: CalendarDatePickerProps) => {
-  const CustomInput = ({ value, onClick }: CustomInputProps) => (
+  const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
     <S.CustomInput
+      ref={ref}
       onClick={onClick}
       $isSelected={!!startDate}
     >
       {value || "모임 날짜를 선택해주세요."}
     </S.CustomInput>
-  );
+  ));
 
   return (
     <DatePicker

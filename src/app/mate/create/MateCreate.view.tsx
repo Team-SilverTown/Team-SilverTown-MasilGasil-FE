@@ -77,7 +77,7 @@ const MateCreateView = ({
 
       <GS.CommonContainer>
         {regularFields.map((field, index) => (
-          <S.Section>
+          <S.Section key={index}>
             <S.Title>{field.title}</S.Title>
             {field.type === "textarea" && field.name !== "date" && (
               <Textarea
