@@ -11,6 +11,7 @@ export const ButtonWrapper = styled(motion.div)<any>`
   align-items: center;
   overflow: "hidden";
   will-change: "transform";
+  cursor: pointer;
 `;
 
 export const MainButton = styled(motion.div)<any>`
@@ -42,7 +43,7 @@ export const SubButton = styled(motion.div)<any>`
   width: ${(props) => props.$width}px;
   height: 100%;
   border-radius: 8px;
-  z-index: 1; 
+  z-index: 1;
   background-color: ${(props) =>
     props.$subButtonColor ? props.$subButtonColor : props.theme.red_500};
   cursor: pointer;
