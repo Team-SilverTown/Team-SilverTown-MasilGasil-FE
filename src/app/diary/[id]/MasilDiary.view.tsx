@@ -13,6 +13,8 @@ import MonthlyStatistics from "./components/MonthlyStatistics/MonthlyStatistics"
 import MasilDiarySheet from "./components/MasilDiarySheet/MasilDiarySheet";
 import { DaylessCalendar } from "@/components/ShadcnUi/ui/daylessCalender";
 import DiaryItem from "./components/DiaryItem/DiaryItem";
+import Return from "@/components/icons/Return";
+import Theme from "@/styles/theme";
 
 const MasilDiaryView = () => {
   const {
@@ -23,6 +25,7 @@ const MasilDiaryView = () => {
     dailyMasils,
     monthlyMasils,
     setCurrentTabIdx,
+    setDate,
     setIsSheetOpen,
     handleSelectDate,
     handleChangeMonth,
@@ -44,15 +47,31 @@ const MasilDiaryView = () => {
         />
         {currentTabIdx === 0 && (
           <>
-            <Calendar
-              mode="single"
-              onMonthChange={handleChangeMonth}
-              selected={date}
-              onSelect={handleSelectDate}
-              className="rounded-md"
-              modifiers={{ booked: monthlyMasils }}
-              modifiersStyles={{ booked: S.MonthMasils }}
-            />
+            <S.CalenderWrapper>
+              <Calendar
+                mode="single"
+                onMonthChange={handleChangeMonth}
+                selected={date}
+                onSelect={handleSelectDate}
+                className="rounded-md"
+                month={date}
+                modifiers={{ booked: monthlyMasils }}
+                modifiersStyles={{ booked: S.MonthMasils }}
+              />
+              <S.Wrapper>
+                <Return
+                  width={13}
+                  fill={Theme.lightTheme.gray_300}
+                />
+                <S.SubText
+                  onClick={() => {
+                    setDate(new Date());
+                  }}
+                >
+                  Today
+                </S.SubText>
+              </S.Wrapper>
+            </S.CalenderWrapper>
 
             <MonthlyStatistics month={date?.getMonth()} />
 

@@ -12,7 +12,7 @@ export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 function Calendar({ className, classNames, ...props }: CalendarProps) {
   return (
     <DayPicker
-      className={cn("p-5", className)}
+      className={cn("p-5 pt-0", className)}
       classNames={{
         months: "flex flex-col space-y-4 ",
         month: "space-y-4",

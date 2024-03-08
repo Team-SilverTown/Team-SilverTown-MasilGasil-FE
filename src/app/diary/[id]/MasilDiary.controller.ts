@@ -20,15 +20,6 @@ const useMasilDiaryController = () => {
   const [monthlyMasils, setMonthlyMasils] = useState<Date[]>([]);
 
   useEffect(() => {
-    // TODO: 새로고침, 뒤로가기 시 쿼리스트링이 유지되며, 해당 쿼리스트링에 맞춰 캘린더 초기화
-    router.replace(`/diary/${id}`);
-  }, []);
-
-  useEffect(() => {
-    setDate(new Date());
-  }, [currentTabIdx]);
-
-  useEffect(() => {
     const selectedDate = date?.toLocaleDateString("en-CA"); // yyyy-mm-dd
     const tempDailyMasils = masils.contents.filter((m) => m.date === selectedDate);
     const tempMothlyMasils = masils.contents.map((m) => new Date(m.date));
@@ -41,6 +32,12 @@ const useMasilDiaryController = () => {
 
     setMonthlyMasils(tempMothlyMasils);
   }, [date]);
+
+  useEffect(() => {
+    if (startDateParam) {
+      setDate(new Date(startDateParam));
+    }
+  }, [startDateParam]);
 
   /**
    * @function handleSelectDate
