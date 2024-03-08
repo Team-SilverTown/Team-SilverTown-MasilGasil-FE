@@ -14,14 +14,10 @@ interface LogRecordEditViewProps {
   onSubmit: (memo: string) => void;
 }
 
-const LogRecordEditView = ({
-  logData,
-  onClickPin,
-  removePinData,
-  onSubmit,
-}: LogRecordEditViewProps) => {
-  const { register, watch } = useForm();
-  const watchLogMemo = watch("logMemo");
+const LogRecordEditView = () => {
+  const { logData, watchLogMemo, register, handleClickPin, handleRemovePin, handleSubmit } =
+    useLogRecordEditController();
+
   const theme = useTheme();
 
   return (
