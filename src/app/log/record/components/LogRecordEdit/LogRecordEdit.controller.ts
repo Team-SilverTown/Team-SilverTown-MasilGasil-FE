@@ -62,7 +62,7 @@ const useLogRecordEditController = () => {
         { lat: 22, lng: 22 },
         { lat: 22, lng: 22 },
       ],
-      title: "4214",
+      calories: 42141,
       content: getValues("logMemo"),
       distance: 2000,
       totalTime: 50,
