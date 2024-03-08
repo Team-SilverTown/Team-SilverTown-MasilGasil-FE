@@ -10,9 +10,9 @@ import Window from "@components/Window";
 import {
   PinEditModal,
   LogRecordAlertModal,
-  LogRecordConfirmModal,
   TestModal,
   MateCreateMapModal,
+  ConfirmModal,
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";

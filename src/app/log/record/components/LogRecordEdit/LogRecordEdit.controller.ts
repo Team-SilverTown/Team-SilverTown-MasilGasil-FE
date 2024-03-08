@@ -16,9 +16,11 @@ const useLogRecordEditController = () => {
   const { setModalView, openModal, closeModal } = useUI();
   const { setUserLocation } = useUserLocationStore();
   const { logData, handleRemovePin, handleClickPin } = useLogRecordContext();
+
   const { register, getValues } = useForm<{ logMemo: string }>({
     defaultValues: { logMemo: logData.content },
   });
+
   const router = useRouter();
 
   const mutation = useMutation({
