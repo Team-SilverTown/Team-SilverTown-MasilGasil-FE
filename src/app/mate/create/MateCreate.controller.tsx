@@ -26,7 +26,22 @@ const MateCreateController = () => {
   });
 
   const onValid = (data: MateCreateProps) => {
-    console.log("Form Data:", data);
+    const date = startDate
+      ? new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000)
+          .toISOString()
+          .substring(0, 10)
+      : ""; // startDate는 00시 기준이니까 한국에 맞게 수정
+    const time = startTime ? startTime.toISOString().substring(11, 19) : "";
+    const gatheringAt = `${date}T${time}.000Z`;
+
+    const completeData = {
+      ...data,
+      startDate,
+      startTime,
+      gatheringAt,
+      selectedPersonnel,
+    };
+    console.log("Complete Form Data:", completeData);
   };
 
   const onInvalid = (errors: any) => {
