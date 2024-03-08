@@ -39,7 +39,7 @@ export default withMDX(
     async rewrites() {
       return [
         {
-          source: "/api/:path*",
+          source: "/call/:path*",
           destination: `${process.env.DB_BASE_URL}/:path*`,
         },
       ];
