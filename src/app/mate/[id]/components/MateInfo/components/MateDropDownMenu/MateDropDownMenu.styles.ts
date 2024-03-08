@@ -15,7 +15,7 @@ export const MateMenuLayout = styled.div`
   cursor: pointer;
 `;
 
-export const MateToggleMenuLayout = styled(motion.div)`
+export const MateDropDownMenuLayout = styled(motion.div)`
   width: 9rem;
   height: 10.6rem;
 
@@ -26,7 +26,7 @@ export const MateToggleMenuLayout = styled(motion.div)`
   z-index: ${Z_INDEX.MATE_TOGGLE_MENU};
 `;
 
-export const MateToggleMenuContainer = styled(motion.ul)`
+export const MateDropDownMenuContainer = styled(motion.ul)`
   width: 100%;
   height: 100%;
   padding: 1rem;
@@ -44,7 +44,7 @@ export const MateToggleMenuContainer = styled(motion.ul)`
   overflow: hidden;
 `;
 
-export const MateToggleMenuItem = styled.li`
+export const MateDropDownMenuItem = styled.li`
   width: 100%;
 
   display: flex;

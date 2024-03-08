@@ -129,9 +129,9 @@ const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
             strokeWidth={3.5}
           />
         </Button>
-        <S.PolicyLable htmlFor="checkAll">
+        <S.PolicyLabel htmlFor="checkAll">
           <S.PolicyH2>모든 약관 동의하기</S.PolicyH2>
-        </S.PolicyLable>
+        </S.PolicyLabel>
       </GS.Row>
       <GS.Col className="flex flex-col mt-4 mb-5 ml-[3px]">
         <ul className="space-y-8">
