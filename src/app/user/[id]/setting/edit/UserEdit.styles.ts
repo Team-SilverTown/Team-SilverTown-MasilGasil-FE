@@ -5,7 +5,8 @@ import styled from "styled-components";
 export const UserEditLayout = styled(motion.form)`
   width: 100%;
   height: 100%;
-  padding: 2rem 0;
+  padding: 2rem;
+  padding-bottom: 4rem;
 
   display: flex;
   flex-direction: column;
@@ -36,4 +37,13 @@ export const UserEditWarning = styled.div`
 
   display: flex;
   align-items: center;
+`;
+
+export const UserEditButtonWrapper = styled.div`
+  width: 100%;
+
+  position: absolute;
+  bottom: 7rem;
+
+  opacity: 0.9;
 `;
