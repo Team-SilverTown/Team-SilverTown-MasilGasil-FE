@@ -75,7 +75,7 @@ const ModalView = ({
   return (
     <Modal onClose={closeModal}>
       {modalView === "INIT_VIEW" && <TestModal />}
-      {modalView === "LOG_RECORD_CONFIRM_VIEW" && <LogRecordConfirmModal props={props} />}
+      {modalView === "CONFIRM_VIEW" && <ConfirmModal props={props} />}
       {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
       {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
       {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
