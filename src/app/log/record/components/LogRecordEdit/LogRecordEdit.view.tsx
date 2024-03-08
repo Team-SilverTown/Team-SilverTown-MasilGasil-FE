@@ -1,21 +1,16 @@
-import { Button, SlideButton, Textarea } from "@/components";
+"use client";
+
 import * as S from "./LogRecordEdit.styles";
+
+import { Button, SlideButton, Textarea } from "@/components";
 import Theme, { FONT_WEIGHT, FONT_SIZE, Z_INDEX } from "@/styles/theme";
-import { useForm } from "react-hook-form";
 import EditPencil from "@/components/icons/EditPencil";
-import { MasilRecordRequest } from "@/types/Request";
 import Sheet from "@/components/BottomSheet";
 import useTheme from "@/lib/hooks/useTheme";
-
-interface LogRecordEditViewProps {
-  logData: MasilRecordRequest;
-  onClickPin: (pinIndex: number) => void;
-  removePinData: (pinIndex: number) => void;
-  onSubmit: (memo: string) => void;
-}
+import useLogRecordEditController from "./LogRecordEdit.controller";
 
 const LogRecordEditView = () => {
-  const { logData, watchLogMemo, register, handleClickPin, handleRemovePin, handleSubmit } =
+  const { logData, register, handleClickPin, handleRemovePin, handleSubmit } =
     useLogRecordEditController();
 
   const theme = useTheme();
@@ -74,16 +69,16 @@ const LogRecordEditView = () => {
                   ? logData.pins.map((pin, index) => {
                       return (
                         <S.LogEditPinItem key={index}>
-                          <S.PinIndex $backgroundcolor={Theme.lightTheme.green_500}>
+                          <S.PinIndex $backgroundColor={Theme.lightTheme.green_500}>
                             {index + 1}
                           </S.PinIndex>
                           <SlideButton
                             subChildren={"삭제"}
                             onButtonClickHandler={() => {
-                              onClickPin(index);
+                              handleClickPin(index);
                             }}
                             onSubButtonClickHandler={() => {
-                              removePinData(index);
+                              handleRemovePin(index);
                             }}
                           >
                             <S.SlideButtonContent
@@ -124,9 +119,7 @@ const LogRecordEditView = () => {
           transform: "translateX(-50%)",
         }}
         width={"90%"}
-        onClickHandler={() => {
-          onSubmit(watchLogMemo);
-        }}
+        onClickHandler={handleSubmit}
       >
         산책 기록하기
       </Button>

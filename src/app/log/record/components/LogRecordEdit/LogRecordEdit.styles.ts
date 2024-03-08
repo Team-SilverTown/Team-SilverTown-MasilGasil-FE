@@ -63,8 +63,8 @@ export const LogEditPinItem = styled.div`
   gap: 1.5rem;
 `;
 
-export const PinIndex = styled.div<{ $backgroundcolor: string }>`
-  background-color: ${(props) => props.$backgroundcolor};
+export const PinIndex = styled.div<{ $backgroundColor: string }>`
+  background-color: ${(props) => props.$backgroundColor};
   width: 3rem;
   height: 3rem;
   display: flex;

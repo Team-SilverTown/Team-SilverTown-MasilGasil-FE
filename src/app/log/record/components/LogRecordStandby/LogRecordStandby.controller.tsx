@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import LogRecordStandbyView from "./LogRecordStandby.view";
 import { useUI } from "@/components/uiContext/UiContext";
 
 import useLogRecordContext from "../../context/LogRecordContext";
