@@ -1,39 +1,50 @@
-"use client";
-
 import { FONT_WEIGHT } from "@/styles/theme";
+import { MutableRefObject } from "react";
 import styled from "styled-components";
 
 interface PinDetailCardLayoutProps {
-  width: number;
-  height: number;
-  borderRadius: number;
+  ref?: MutableRefObject<HTMLElement | null>;
+  $borderRadius: number | string;
+}
+
+interface PinDetailCardWrapperProps {
+  $borderRadius: number | string;
 }
 
 interface PinDetailCardThumbnailProps {
-  width: number;
-  borderRadius: number;
-  thumbnailURL: string;
+  $borderRadius: number | string;
+  $thumbnail: string | null;
 }
 
 interface PinDetailCardContentProps {
-  width: number;
-  borderRadius: number;
+  $borderRadius: number | string;
 }
 
 export const PinDetailCardLayout = styled.div<PinDetailCardLayoutProps>`
+  position: relative;
+
+  width: 100%;
+  max-height: 17rem;
+  border-radius: ${(props) => `${props.$borderRadius}px`};
+`;
+
+export const PinDetailCardWrapper = styled.article<PinDetailCardWrapperProps>`
+  position: absolute;
   display: flex;
-  width: ${(props) => `${props.width}px`};
-  height: ${(props) => `${props.height}px`};
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: ${(props) => props.theme.white};
-  border-radius: ${(props) => `${props.borderRadius}px`};
+  border-radius: ${(props) => `${props.$borderRadius}px`};
   box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 11px;
 `;
 
 export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`
-  width: ${(props) => `${props.width / 2}px`};
-  border-top-left-radius: ${(props) => `${props.borderRadius}px`};
-  border-bottom-left-radius: ${(props) => `${props.borderRadius}px`};
-  background-image: ${(props) => `url(${props.thumbnailURL})`};
+  width: 50%;
+  border-top-left-radius: ${(props) => `${props.$borderRadius}px`};
+  border-bottom-left-radius: ${(props) => `${props.$borderRadius}px`};
+  background-image: ${(props) => `url(${props.$thumbnail})`};
   background-size: cover;
 
   span {
@@ -44,25 +55,11 @@ export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`
 `;
 
 export const PinDetailCardContent = styled.div<PinDetailCardContentProps>`
-  width: ${(props) => `${props.width / 2}px`};
+  width: 50%;
   padding: 1.5rem;
-  border-top-right-radius: ${(props) => `${props.borderRadius}px`};
-  border-bottom-right-radius: ${(props) => `${props.borderRadius}px`};
+  border-top-right-radius: ${(props) => `${props.$borderRadius}px`};
+  border-bottom-right-radius: ${(props) => `${props.$borderRadius}px`};
   line-height: 2rem;
   box-sizing: border-box;
-
-  h5 {
-    margin-bottom: 1.5rem;
-    font-weight: ${FONT_WEIGHT.SEMIBOLD};
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  p {
-    display: -webkit-box;
-    -webkit-line-clamp: 7;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+  overflow-y: auto;
 `;
