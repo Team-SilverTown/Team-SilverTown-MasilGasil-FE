@@ -1,9 +1,10 @@
 "use client";
 
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import dummyMasils from "./dummyMasils.json";
 import { MasilProps } from "./components/MasilDiarySheet/MasilDiarySheet";
+import { debounce } from "lodash";
 
 const useMasilDiaryController = () => {
   const router = useRouter();
@@ -51,18 +52,25 @@ const useMasilDiaryController = () => {
     setIsSheetOpen(true);
   };
 
+  const delayedPush = useCallback(
+    debounce((id, startDate) => {
+      console.log(startDate);
+      return router.push(`/diary/${id}?startDate=${startDate}`);
+    }, 600),
+    [],
+  );
+
   /**
    * @function handleChangeMonth
    * @param day
    * @breif 선택한 날짜를 갱신합니다. 월 단위로 변경되며, 변경된 값을 Query Params로 넘겨줍니다.
-   * @TODO 디바운싱 적용
    */
   const handleChangeMonth = (day: Date | undefined) => {
     if (day) {
       setDate(day);
       const startDate = day.toLocaleDateString("en-CA");
 
-      router.push(`/diary/${id}?startDate=${startDate}`);
+      delayedPush(id, startDate);
     }
   };
 
