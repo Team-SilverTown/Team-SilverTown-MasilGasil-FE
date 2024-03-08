@@ -8,3 +8,7 @@ export const TEST_ENDPOINT = {
 };
 
 export const USER = {};
+
+export const MASIL_ENDPOINT = {
+  PERIODIC_GET: "/v1/masils/period",
+};

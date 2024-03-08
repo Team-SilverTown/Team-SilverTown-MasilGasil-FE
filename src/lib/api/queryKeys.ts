@@ -11,3 +11,7 @@ export const USER_KEY = {
   AUTH: "user_auth",
   SIGN_UP: "user_signup",
 };
+
+export const MASIL_KEY = {
+  PERIODIC_GET: "periodic_get",
+};
