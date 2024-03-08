@@ -20,7 +20,7 @@ const useLogRecordController = () => {
     isActiveExitAnimation,
     setIsActiveExitAnimation,
 
-    handleUpdateDistance,
+    updateDistance,
     handleCreatePin,
     handleClickPin,
 
@@ -69,7 +69,7 @@ const useLogRecordController = () => {
     isActiveExitAnimation,
     setIsActiveExitAnimation,
     setIsActiveMapResizing,
-    handleUpdateDistance,
+    updateDistance,
     handleClickPin,
     handleCreatePin,
     handleClickFallback,

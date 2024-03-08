@@ -1,3 +1,5 @@
+"use client";
+
 import React, {
   Dispatch,
   SetStateAction,
@@ -39,7 +41,7 @@ interface LogRecordContextValues {
   startRecord: (position: GeolocationPosition) => void;
   increaseTimer: () => void;
   updatePath: (position: GeolocationPosition) => void;
-  handleUpdateDistance: (polyLine: kakao.maps.Polyline) => void;
+  updateDistance: (polyLine: kakao.maps.Polyline) => void;
 }
 
 interface LogRecordContextProviderProps {
@@ -66,7 +68,7 @@ const LogRecordContext = createContext<LogRecordContextValues>({
   startRecord: () => {},
   increaseTimer: () => {},
   updatePath: () => {},
-  handleUpdateDistance: () => {},
+  updateDistance: () => {},
 });
 
 export const LogRecordContextProvider = ({ children }: LogRecordContextProviderProps) => {
@@ -83,7 +85,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
    * @params (polyLine: kakao.maps.Polyline)
    * @brief 현재 경로의 거리를 갱신하기위한 dispatch를 실행합니다.
    */
-  const handleUpdateDistance = (polyLine: kakao.maps.Polyline) => {
+  const updateDistance = (polyLine: kakao.maps.Polyline) => {
     dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.CALCULATE_DISTANCE, payload: { polyLine } });
   };
 
@@ -229,7 +231,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
         startRecord,
         increaseTimer,
         updatePath,
-        handleUpdateDistance,
+        updateDistance,
       }}
     >
       {children}

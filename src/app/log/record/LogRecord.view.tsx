@@ -1,3 +1,5 @@
+"use client";
+
 import * as S from "./LogRecord.styles";
 
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
@@ -20,9 +22,10 @@ const LogRecordView = () => {
     setIsActiveExitAnimation,
     setIsActiveMapResizing,
 
+    updateDistance,
+
     handleCreatePin,
     handleClickPin,
-    handleUpdateDistance,
 
     handleClickFallback,
     handleOffIsOutCenter,
@@ -48,7 +51,7 @@ const LogRecordView = () => {
           center={userLocation}
           path={logData.path}
           pins={logData.pins}
-          onCreatePathLine={handleUpdateDistance}
+          onCreatePathLine={updateDistance}
           isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
           onClickPin={handleClickPin}
           selectedPinIndex={currentPinIndex}
