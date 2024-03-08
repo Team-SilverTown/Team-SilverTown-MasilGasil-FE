@@ -1,6 +1,7 @@
 import * as GS from "@/styles/GlobalStyle";
 
 import { UserSettingAccount, UserSettingMember, UserSettingOptions } from "./components";
+import Divider from "@/components/Divider/Divider";
 
 const UserSettingView = () => {
   return (
@@ -11,15 +12,15 @@ const UserSettingView = () => {
       >
         <UserSettingOptions />
 
-        <S.Divider />
+        <Divider />
 
         <UserSettingMember />
 
-        <S.Divider />
+        <Divider />
 
         <UserSettingAccount />
 
-        <S.Divider />
+        <Divider />
       </S.UserSettingLayout>
     </GS.CommonContainer>
   );

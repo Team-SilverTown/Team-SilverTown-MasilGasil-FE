@@ -72,15 +72,14 @@ export const ExerciseIntensityTitleSection = styled.ul`
   margin: 3rem 0;
 `;
 
-export const ExerciseIntensityOption = styled.li`
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  margin: 1.6rem 1.2rem;
-`;
+export const ExerciseIntensityOptionList = styled.ul`
+  width: 100%;
 
-export const RadioCircle = styled.label`
-  cursor: "pointer";
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  user-select: none;
 `;
 
 export const PolicyLabel = styled.label`
