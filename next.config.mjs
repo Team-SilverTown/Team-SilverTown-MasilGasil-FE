@@ -44,5 +44,21 @@ export default withMDX(
         },
       ];
     },
+    images: {
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "github.com",
+          port: "",
+          pathname: "/**",
+        },
+        {
+          protocol: "https",
+          hostname: "res.cloudinary.com",
+          port: "",
+          pathname: "/**",
+        },
+      ],
+    },
   }),
 );

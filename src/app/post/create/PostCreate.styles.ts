@@ -1,4 +1,4 @@
-import { CONTAINER, DISPLAY_NONE_SCROLLBAR } from "@/styles/theme";
+import { CONTAINER, DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostCreateLayout = styled.section`
@@ -38,7 +38,7 @@ export const PostCreateSheet = styled.article<{ $isOpen: boolean }>`
 
 export const PostCreateSheetHeader = styled.div`
   width: 100%;
-  height: 3.2rem;
+  height: 4rem;
 
   display: flex;
   align-items: center;
@@ -68,4 +68,24 @@ export const PostCreateSheetContent = styled.div`
 
   overflow: scroll;
   ${DISPLAY_NONE_SCROLLBAR}
+`;
+
+export const PostCreateButtonWrapper = styled.div`
+  width: 100%;
+  padding: 0rem ${CONTAINER.PADDING_HORIZONTAL}rem;
+
+  position: absolute;
+  bottom: 1rem;
+
+  opacity: 0.9;
+
+  z-index: 2;
+`;
+
+export const PostCreateContentTitle = styled.h6`
+  width: 100%;
+  margin-bottom: 1rem;
+
+  font-size: ${FONT_SIZE.H6};
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;

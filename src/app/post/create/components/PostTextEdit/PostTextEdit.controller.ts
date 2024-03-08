@@ -4,7 +4,8 @@ import usePostCreateContext from "../../context/PostCreateContext";
 import { useEffect, useMemo, useState } from "react";
 
 const usePostTextEditController = () => {
-  const { postData, pageStep, setPageStep, handleCompleteStepOne } = usePostCreateContext();
+  const { postData, defaultData, pageStep, setPageStep, handleCompleteStepOne } =
+    usePostCreateContext();
 
   const [isPublic, setIsPublic] = useState(() => {
     return postData.isPublic;
@@ -29,19 +30,38 @@ const usePostTextEditController = () => {
     return true;
   }, [watch(), errors]);
 
-  const handleValid = ({ title, content }: PostCreateInputValue) => {
+  const handleValid = ({ title, content, thumbnail }: PostCreateInputValue) => {
+    if (!thumbnail) {
+      handleCompleteStepOne({
+        title,
+        content,
+        isPublic: isPublic,
+        thumbnailUrl: defaultData.thumbnailUrl,
+      });
+
+      setPageStep("POST_CREATE_PIN_EDIT");
+      return;
+    }
+
+    console.log(thumbnail);
+    // 추후 업로드 후 반환받은 URL을 넣어줌
     handleCompleteStepOne({
       title,
       content,
       isPublic: isPublic,
+      // URL을 넣어야함
+      // mutation Success에서 handleCompleteStepOne넣기
+      thumbnailUrl: "URL을 추가",
     });
 
     setPageStep("POST_CREATE_PIN_EDIT");
   };
 
   return {
+    postData,
     pageStep,
     register,
+    setValue,
     errors,
     isPublic,
     setIsPublic,

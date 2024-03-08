@@ -9,8 +9,17 @@ type ReducerActionType =
   | { type: "POST_CREATE_INIT"; payload: { defaultData: PostCreateRequest } }
   | {
       type: "POST_CREATE_COMPLETE_STEP_ONE";
-      payload: { content: string; title: string; isPublic: boolean };
-    };
+      payload: { content: string; title: string; isPublic: boolean; thumbnailUrl: string | null };
+    }
+  | {
+      type: "POST_CREATE_PIN_UPDATE";
+      payload: {
+        pinIndex: number;
+        imageUrl: string | null;
+        pinContent: string | null;
+      };
+    }
+  | { type: "POST_CREATE_PIN_REMOVE"; payload: { pinIndex: number } };
 
 const postCreateReducer = (state: PostCreateRequest, action: ReducerActionType) => {
   switch (action.type) {
@@ -20,12 +29,39 @@ const postCreateReducer = (state: PostCreateRequest, action: ReducerActionType) 
     }
 
     case POST_CREATE_REDUCER_ACTION.COMPLETE_STEP_ONE: {
-      const { content, title, isPublic } = action.payload;
+      const { content, title, isPublic, thumbnailUrl } = action.payload;
       return {
         ...state,
         content,
         title,
         isPublic,
+        thumbnailUrl,
+      };
+    }
+
+    case POST_CREATE_REDUCER_ACTION.PIN_UPDATE: {
+      const { pinIndex, imageUrl, pinContent } = action.payload;
+      const newPins = [...state.pins];
+
+      if (imageUrl) {
+        newPins[pinIndex].thumbnailUrl = imageUrl;
+      }
+
+      if (pinContent) {
+        newPins[pinIndex].content = pinContent;
+      }
+
+      return {
+        ...state,
+        pins: newPins,
+      };
+    }
+
+    case POST_CREATE_REDUCER_ACTION.PIN_REMOVE: {
+      const { pinIndex } = action.payload;
+      return {
+        ...state,
+        pins: state.pins.filter((_, index) => index !== pinIndex),
       };
     }
 

@@ -2,6 +2,7 @@
 
 import { InputLabel, Textarea } from "@/components";
 import * as GS from "../../PostTextEdit.styles";
+import * as TGS from "../../../../PostCreate.styles";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { PostCreateInputValue } from "@/app/post/create/PostCreate.types";
@@ -15,7 +16,7 @@ interface PostContentEditProps {
 const PostContentEdit = ({ register, errors }: PostContentEditProps) => {
   return (
     <GS.PostTextEditInputContainer>
-      <GS.PostTextEditInputTitle>설명</GS.PostTextEditInputTitle>
+      <TGS.PostCreateContentTitle>설명</TGS.PostCreateContentTitle>
       <Textarea
         register={register("content", postCreateValidation.content)}
         placeholder="설명을 입력해주세요."

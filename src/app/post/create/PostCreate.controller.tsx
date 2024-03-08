@@ -7,13 +7,14 @@ import useTheme from "@/lib/hooks/useTheme";
 
 const usePostCreateController = () => {
   const [isOpenBottom, setIsOpenBottom] = useState(false);
-  const { pageStep, setPageStep } = usePostCreateContext();
+  const { pageStep, setPageStep, postData, currentPinIndex, handleClickPin } =
+    usePostCreateContext();
   const { setModalView, openModal } = useUI();
   const router = useRouter();
   const theme = useTheme();
 
   // 추후 중앙값 계산하여 추가
-  const center = useMemo<GeoPosition>(() => ({ lat: 37.497, lng: 127.0254 }), []);
+  const center = useMemo<GeoPosition>(() => postData.path[0], [postData.path]);
 
   const handleFallback = () => {
     if (pageStep === "POST_CREATE_TEXT_EDIT") {
@@ -38,11 +39,14 @@ const usePostCreateController = () => {
     isOpenBottom,
     handleToggleBottomSheet,
 
+    postData,
     pageStep,
     center,
+    currentPinIndex,
     theme,
 
     handleFallback,
+    handleClickPin,
   };
 };
 
