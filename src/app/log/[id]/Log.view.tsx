@@ -19,35 +19,23 @@ import * as S from "./Log.styles";
 
 interface LogViewProps {
   masilsData: MasilsDataType;
-  baseLocation: GeoPosition;
+  tabIndex: number;
+  currentPinIndex: number;
+  mapCenter: GeoPosition;
+  setTabIndex: React.Dispatch<React.SetStateAction<number>>;
+  handlePinIndex: (pinIndex: number) => void;
+  handleClickCenter: () => void;
 }
 
-const LogView = ({ masilsData, baseLocation }: LogViewProps) => {
-  const [tabIndex, setTabIndex] = useState(0);
-  const [currentPinIndex, setCurrentPinIndex] = useState(0);
-  const [mapCenter, setMapCenter] = useState<GeoPosition>(baseLocation);
-  const { setIsOutCenter } = useMasilMapStore();
-
-  const handlePinIndex = (PinIndex: number) => {
-    setCurrentPinIndex(PinIndex);
-    setTabIndex(1);
-
-    if (masilsData.pins.length === 0) {
-      return;
-    }
-
-    const { lat, lng } = masilsData.pins[PinIndex].point;
-    setMapCenter({ lat, lng });
-    setIsOutCenter(false);
-  };
-
-  const handleClickCenter = () => {
-    setCurrentPinIndex(0);
-    setTabIndex(0);
-    setMapCenter(baseLocation);
-    setIsOutCenter(false);
-  };
-
+const LogView = ({
+  masilsData,
+  tabIndex,
+  currentPinIndex,
+  mapCenter,
+  setTabIndex,
+  handlePinIndex,
+  handleClickCenter,
+}: LogViewProps) => {
   return (
     <>
       <TopNavigator
