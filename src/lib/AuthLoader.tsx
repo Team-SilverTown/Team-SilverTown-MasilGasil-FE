@@ -21,7 +21,7 @@ const AuthLoader = ({
   const { setMe, initMe } = useMeStore();
   const [_, setToken] = useLocalStorage("serviceToken");
 
-  console.log(serviceToken, me);
+  // console.log(serviceToken, me);
 
   useEffect(() => {
     if (serviceToken && me && me.nickname) {
