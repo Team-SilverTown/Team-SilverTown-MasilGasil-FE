@@ -1,5 +1,6 @@
 import nextMdx from "@next/mdx";
 import withTwin from "./withTwin.mjs";
+import withPWAInit from "@ducanh2912/next-pwa";
 
 // /** @type {import('next').NextConfig} */
 // const nextConfig = {
@@ -21,6 +22,17 @@ import withTwin from "./withTwin.mjs";
 
 // module.exports = withMDX(nextConfig);
 
+const withPWA = withPWAInit({
+  dest: "public",
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  disable: false,
+  workboxOptions: {
+    disableDevLogs: true,
+  },
+});
+
 const withMDX = nextMdx({
   extension: /\.mdx?$/,
   options: {
@@ -32,17 +44,19 @@ const withMDX = nextMdx({
 /**
  * @type {import('next').NextConfig}
  */
-export default withMDX(
-  withTwin({
-    reactStrictMode: true,
-    pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-    async rewrites() {
-      return [
-        {
-          source: "/call/:path*",
-          destination: `${process.env.DB_BASE_URL}/:path*`,
-        },
-      ];
-    },
-  }),
+export default withPWA(
+  withMDX(
+    withTwin({
+      reactStrictMode: true,
+      pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+      async rewrites() {
+        return [
+          {
+            source: "/call/:path*",
+            destination: `${process.env.DB_BASE_URL}/:path*`,
+          },
+        ];
+      },
+    }),
+  ),
 );

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { getServerSession } from "next-auth";
 
@@ -19,6 +19,11 @@ import { getMe } from "@/lib/api/User/server";
 export const metadata: Metadata = {
   title: "마실가실",
   description: "",
+  manifest: "/manifest.json",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#81BB26",
 };
 
 const KAKAO_API_KEY = process.env.DB_KAKAO_API_KEY;
@@ -31,7 +36,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-
   const me = await getMe(session?.serviceToken!);
 
   return (
