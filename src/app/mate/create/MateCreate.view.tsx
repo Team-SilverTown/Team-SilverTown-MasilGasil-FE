@@ -1,5 +1,6 @@
 "use client";
 
+import { Dispatch, SetStateAction } from "react";
 import { UseFormRegister } from "react-hook-form";
 
 import { Input, Textarea, Button } from "@/components";
@@ -20,11 +21,11 @@ interface MateCreateViewProps {
   isFormFilled: boolean;
   handlePersonnelChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   startDate: Date | null;
-  setStartDate: (date: Date | null) => void;
+  setStartDate: Dispatch<SetStateAction<Date | null>>;
   startTime: Date | null;
-  setStartTime: (date: Date | null) => void;
+  setStartTime: Dispatch<SetStateAction<Date | null>>;
   selectedPersonnel: string;
-  setSelectedPersonnel: (value: string) => void;
+  setSelectedPersonnel: Dispatch<SetStateAction<string>>;
 }
 
 interface MateCreateButtonProps {
@@ -36,7 +37,7 @@ interface MateCreateButtonProps {
 const regularFields = [
   { title: "제목", placeholder: "제목을 입력해주세요.", name: "title" },
   { title: "설명", type: "textarea", placeholder: "설명을 입력해주세요.", name: "content" },
-  { title: "위치", placeholder: "모이는 위치를 입력해주세요.", name: "location" },
+  { title: "위치", placeholder: "상세 위치를 입력해주세요.", name: "location" },
   { title: "희망 날짜", placeholder: "날짜를 입력해주세요.", name: "date" },
 ];
 
