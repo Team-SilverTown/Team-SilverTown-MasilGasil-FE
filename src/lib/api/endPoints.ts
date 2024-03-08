@@ -17,3 +17,5 @@ export const USER = {
 export const MASIL = {
   POST: "/api/v1/masils",
 };
+
+export const IMAGE = "/api/v1/images";
