@@ -6,7 +6,7 @@ import { useUI } from "@/components/uiContext/UiContext";
 import useLogRecordContext from "../../context/LogRecordContext";
 import { useMutation } from "@tanstack/react-query";
 import { MASIL_KEY } from "@/lib/api/queryKeys";
-import { postMasil } from "@/lib/api/masil/server";
+import { postMasil } from "@/lib/api/masil/client";
 import { MasilRecordRequest } from "@/types/Request";
 import { drawPath } from "@/utils/drawPath";
 import { useRouter } from "next/navigation";
@@ -62,8 +62,8 @@ const useLogRecordEditController = () => {
       ],
       title: "4214",
       content: getValues("logMemo"),
-      distance: 0,
-      totalTime: 0,
+      distance: 2000,
+      totalTime: 50,
       startedAt: new Date().toISOString(),
       pins: [],
       thumbnailUrl: "ㅇㅇㅇ",
@@ -72,9 +72,8 @@ const useLogRecordEditController = () => {
 
     mutation.mutate(test, {
       onSuccess: (res) => {
-        if (!res) {
-          return;
-        }
+        console.log(res);
+
         const { id } = res;
         router.push(`/log/${id}`);
 
