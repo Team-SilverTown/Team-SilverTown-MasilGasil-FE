@@ -9,7 +9,7 @@ export const postMasil = async ({ data }: { data: MasilRecordRequest }) => {
 
 // 임시 테스트
 export const getMasilList = async ({ size }: { size: number }) => {
-  return await GET<{ data: MasilList }>({
+  return await GET<MasilList>({
     endPoint: `${MASIL.GET_LIST}?size=${size}`,
     auth: true,
   });
