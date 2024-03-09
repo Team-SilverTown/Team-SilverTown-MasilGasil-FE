@@ -10,4 +10,5 @@ export const TEST_KEY = {
 export const USER_KEY = {
   AUTH: "user_auth",
   SIGN_UP: "user_signup",
+  CHECK_NICKNAME: "check_nickname",
 };

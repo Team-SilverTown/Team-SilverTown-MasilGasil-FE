@@ -1,6 +1,5 @@
-"use client";
-
 import React from "react";
+import { signIn } from "next-auth/react";
 
 import useTheme from "@/lib/hooks/useTheme";
 import * as GS from "@/styles/GlobalStyle";
@@ -8,20 +7,13 @@ import { Button } from "@/components";
 
 import * as S from "./Main.styles";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import Link from "next/link";
 
 interface MainViewProps {
-  loading: boolean;
-  data?: string;
-  onClickHandler: () => void;
+  isLogIn: boolean;
 }
 
-const MainView = ({ loading, data, onClickHandler }: MainViewProps) => {
+const MainView = ({ isLogIn }: MainViewProps) => {
   const theme = useTheme();
-
-  console.log("client: ", data);
-
-  console.log(loading);
 
   return (
     <GS.CommonContainer>
@@ -31,15 +23,14 @@ const MainView = ({ loading, data, onClickHandler }: MainViewProps) => {
       <S.TitleWrapper>
         <S.H1>마실가실</S.H1>
       </S.TitleWrapper>
-      {!loading && (
+      {!isLogIn && (
         <S.AuthButtonWrapper>
           <Button
             buttonColor={theme?.yellow_500}
             width={"calc(100% - 30px)"}
             style={{ margin: "auto" }}
-            onClickHandler={onClickHandler}
+            onClickHandler={() => signIn("kakao", { redirect: true, callbackUrl: "/auth/kakao" })}
           >
-            {/* <Link href={"/home"}> */}
             <span
               style={{
                 fontSize: FONT_SIZE.LARGE,
@@ -49,7 +40,6 @@ const MainView = ({ loading, data, onClickHandler }: MainViewProps) => {
             >
               카카오로 시작하기
             </span>
-            {/* </Link> */}
           </Button>
         </S.AuthButtonWrapper>
       )}
