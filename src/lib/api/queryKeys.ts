@@ -14,5 +14,5 @@ export const USER_KEY = {
 };
 
 export const MASIL_KEY = {
-  PERIODIC_GET: "periodic_get",
+  MASILS_PERIOD_GET: "masils_period_get",
 };

@@ -8,6 +8,7 @@ import { debounce } from "lodash";
 import { useQuery } from "@tanstack/react-query";
 import getMasilsByPeriod from "@/lib/api/MasilDiary/getMasilsByPeriod";
 import { MasilsByPeriodResponse } from "@/types/Response";
+import { MASIL_KEY } from "@/lib/api/queryKeys";
 
 const useMasilDiaryController = () => {
   const router = useRouter();
@@ -24,8 +25,8 @@ const useMasilDiaryController = () => {
   const [monthlyMasils, setMonthlyMasils] = useState<Date[]>([]);
 
   const { data: masilData, isLoading } = useQuery<MasilsByPeriodResponse>({
-    queryKey: [],
-    queryFn: getMasilsByPeriod({ startDate: startDateParam, endDate: "" }),
+    queryKey: [MASIL_KEY.MASILS_PERIOD_GET],
+    queryFn: () => getMasilsByPeriod({ startDate: "", endDate: "" }),
   });
 
   useEffect(() => {
