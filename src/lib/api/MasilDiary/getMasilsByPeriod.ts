@@ -1,4 +1,3 @@
-import React from "react";
 import { MASIL_ENDPOINT } from "../endPoints";
 import { GET } from "../clientRootAPI";
 import { MasilsByPeriodResponse } from "@/types/Response";
@@ -10,10 +9,11 @@ const getMasilsByPeriod = async ({
   startDate: string | null;
   endDate: string | null;
 }) => {
-  console.log(`${MASIL_ENDPOINT.PERIODIC_GET}?startDate=${startDate}&endDate=${endDate}`);
-
+  console.log(
+    `/api${MASIL_ENDPOINT.PERIODIC_GET}?startDate=${startDate ? startDate : ""}&endDate=${endDate ? endDate : ""}`,
+  );
   return await GET<MasilsByPeriodResponse>({
-    endPoint: `/api/${MASIL_ENDPOINT.PERIODIC_GET}?startDate=${startDate}&endDate=${endDate}`,
+    endPoint: `/api${MASIL_ENDPOINT.PERIODIC_GET}?startDate=${startDate ? startDate : ""}&endDate=${endDate ? endDate : ""}`,
     auth: true,
   });
 };

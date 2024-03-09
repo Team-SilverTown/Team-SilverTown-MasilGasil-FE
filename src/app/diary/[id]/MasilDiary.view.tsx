@@ -29,6 +29,7 @@ const MasilDiaryView = () => {
     setIsSheetOpen,
     handleSelectDate,
     handleChangeMonth,
+    handleClickToday
   } = useMasilDiaryController();
 
   return (
@@ -65,9 +66,7 @@ const MasilDiaryView = () => {
                 fill={Theme.lightTheme.gray_300}
               />
               <S.SubText
-                onClick={() => {
-                  setDate(new Date());
-                }}
+                onClick={handleClickToday}
               >
                 Today
               </S.SubText>

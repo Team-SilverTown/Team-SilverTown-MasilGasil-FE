@@ -25,8 +25,10 @@ const useMasilDiaryController = () => {
   const [monthlyMasils, setMonthlyMasils] = useState<Date[]>([]);
 
   const { data: masilData, isLoading } = useQuery<MasilsByPeriodResponse>({
-    queryKey: [MASIL_KEY.MASILS_PERIOD_GET],
-    queryFn: () => getMasilsByPeriod({ startDate: "", endDate: "" }),
+    queryKey: [MASIL_KEY.MASILS_PERIOD_GET, startDateParam],
+    queryFn: () => getMasilsByPeriod({ startDate: startDateParam, endDate: null }),
+    refetchOnMount: true,
+    staleTime: 0,
   });
 
   useEffect(() => {
@@ -46,6 +48,8 @@ const useMasilDiaryController = () => {
   useEffect(() => {
     if (startDateParam) {
       setDate(new Date(startDateParam));
+    } else {
+      setDate(new Date());
     }
   }, [startDateParam]);
 
@@ -63,7 +67,6 @@ const useMasilDiaryController = () => {
 
   const delayedPush = useCallback(
     debounce((id, startDate) => {
-      console.log(startDate);
       return router.push(`/diary/${id}?startDate=${startDate}`);
     }, 600),
     [],
@@ -83,6 +86,11 @@ const useMasilDiaryController = () => {
     }
   };
 
+  const handleClickToday = () => {
+    setDate(new Date());
+    router.push(`/diary/${id}`);
+  };
+
   // TODO: 쿼리 파라미터를 조회하여 서버에 GET 요청, 해당 기간의 로그 기록 데이터를 받아옴
   // TODO: View는 로그 기록 데이터를 프롭으로 받고, 내부에서 처리
   return {
@@ -98,6 +106,7 @@ const useMasilDiaryController = () => {
     setDailyMasils,
     handleSelectDate,
     handleChangeMonth,
+    handleClickToday,
   };
 };
 
