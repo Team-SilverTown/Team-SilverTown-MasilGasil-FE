@@ -10,8 +10,9 @@ import Window from "@components/Window";
 import {
   PinEditModal,
   LogRecordAlertModal,
-  LogRecordConfirmModal,
   TestModal,
+  MateCreateMapModal,
+  ConfirmModal,
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
@@ -20,7 +21,7 @@ import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 import useWindowStore from "@/stores/ui/useWindowStore";
 import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
 
-import Policy from "../windowViews/Policy";
+import MateLocationMapModal from "../modalViews/MateMapModal/MateLocationMapModal/MapLocationMapModal";
 
 export const useUI = () => {
   const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
@@ -73,10 +74,12 @@ const ModalView = ({
   return (
     <Modal onClose={closeModal}>
       {modalView === "INIT_VIEW" && <TestModal />}
-      {modalView === "LOG_RECORD_CONFIRM_VIEW" && <LogRecordConfirmModal props={props} />}
+      {modalView === "CONFIRM_VIEW" && <ConfirmModal props={props} />}
       {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
       {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
       {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
+      {modalView === "MATE_CREATE_MAP_VIEW" && <MateCreateMapModal props={props} />}
+      {modalView === "MATE_LOCATION_MAP_VIEW" && <MateLocationMapModal props={props} />}
     </Modal>
   );
 };
@@ -120,7 +123,7 @@ const WindowView = ({
   );
 };
 
-export const WindowUI= () => {
+export const WindowUI = () => {
   const { displayWindow, closeWindow, windowView, windowURL } = useUI();
   return displayWindow ? (
     <WindowView

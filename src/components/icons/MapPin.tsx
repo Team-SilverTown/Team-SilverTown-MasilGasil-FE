@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { OnClickPin } from "../MasilMap/MasilMap.types";
 
 interface MapPinProp {
@@ -8,6 +9,7 @@ interface MapPinProp {
   onClickPin?: OnClickPin;
   isSelected?: boolean;
   selectColor?: string;
+  style?: CSSProperties;
 }
 
 const MapPin = ({
@@ -18,6 +20,7 @@ const MapPin = ({
   onClickPin,
   selectColor = "red",
   isSelected = false,
+  style,
 }: MapPinProp) => {
   const handleClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     if (onClickPin && pinIndex !== undefined) {
@@ -33,6 +36,7 @@ const MapPin = ({
       fill={isSelected ? selectColor : fill}
       xmlns="http://www.w3.org/2000/svg"
       onClick={handleClick}
+      style={style}
     >
       <path
         fillRule="evenodd"
