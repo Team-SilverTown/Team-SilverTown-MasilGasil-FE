@@ -51,50 +51,65 @@ const useLogRecordEditController = () => {
   const handleSubmit = () => {
     // TODO
     // 1. 칼로리
-    // 2. 썸네일
 
     const newData: MasilRecordRequest = {
       ...logData,
       content: getValues("logMemo"),
       calories: 9999,
-      // thumbnailUrl: drawPath(logData.path),
 
-      // 테스트를 위한 경로 추가
-
-      // path: [
-      //   { lat: 22.22, lng: 33.33 },
-      //   { lat: 22.22, lng: 33.33 },
-      //   { lat: 22.22, lng: 33.33 },
-      //   { lat: 22.22, lng: 33.33 },
-      // ],
+      path: [
+        { lat: 22.22, lng: 83.33 },
+        { lat: 42.22, lng: 33.33 },
+        { lat: 22.22, lng: 33.33 },
+        { lat: 22.22, lng: 153.33 },
+        { lat: 32.22, lng: 33.33 },
+        { lat: 22.22, lng: 33.33 },
+        { lat: 22.22, lng: 23.33 },
+      ],
     };
 
-    logUploadMutation.mutate(newData, {
-      onSuccess: (res) => {
-        const { id } = res;
-        router.push(`/log/${id}`);
+    const canvas = drawPath(logData.path);
 
-        setModalView("LOG_RECORD_DONE_VIEW");
-        openModal({
-          onClickUploadPost: () => {
-            const startPoint = JSON.stringify(logData.path[0]);
+    // Canvas 이미지 업로드 정상 동작 안함
+    canvas?.canvas.toBlob((file) => {
+      if (!file) {
+        return;
+      }
 
-            router.push(`/post/create?id=${id}&point=${startPoint}`);
-            closeModal();
-          },
-          onClickCancel: () => {
-            closeModal();
-          },
-          logData,
-        });
-      },
+      imageMutation.mutate(file, {
+        onSuccess: ({ imageUrl }) => {
+          newData["thumbnailUrl"] = imageUrl;
+          console.log(newData);
 
-      onError: () => {
-        setModalView("LOG_RECORD_ALERT_VIEW");
-        openModal({
-          message: `산책로 저장에 오류가 발생하였습니다. 잠시 후 다시 시도해주세요.`,
-        });
-      },
+          logUploadMutation.mutate(newData, {
+            onSuccess: (res) => {
+              const { id } = res;
+              router.push(`/log/${id}`);
+
+              setModalView("LOG_RECORD_DONE_VIEW");
+              openModal({
+                onClickUploadPost: () => {
+                  const startPoint = JSON.stringify(logData.path[0]);
+
+                  router.push(`/post/create?id=${id}&point=${startPoint}`);
+                  closeModal();
+                },
+                onClickCancel: () => {
+                  closeModal();
+                },
+                logData,
+              });
+            },
+
+            onError: () => {
+              setModalView("LOG_RECORD_ALERT_VIEW");
+              openModal({
+                message: `산책로 저장에 오류가 발생하였습니다. 잠시 후 다시 시도해주세요.`,
+              });
+            },
+          });
+        },
+      });
     });
   };
 

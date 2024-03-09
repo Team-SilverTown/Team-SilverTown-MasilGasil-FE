@@ -77,6 +77,8 @@ export const drawPath = (path: GeoPosition[]) => {
     pathCanvas.fillText("⛳️", endX, endY);
   }
 
-  const dataUrl = canvas.toDataURL("image/webp");
-  return dataUrl;
+  // const dataUrl = canvas.toDataURL("image/webp");
+  // return dataUrl;
+
+  return pathCanvas;
 };
