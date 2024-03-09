@@ -11,6 +11,7 @@ import { MasilRecordRequest } from "@/types/Request";
 import { drawPath } from "@/utils/drawPath";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import useImageUpload from "@/lib/hooks/useImageUpload";
 
 const useLogRecordEditController = () => {
   const { setModalView, openModal, closeModal } = useUI();
@@ -20,10 +21,11 @@ const useLogRecordEditController = () => {
   const { register, getValues } = useForm<{ logMemo: string }>({
     defaultValues: { logMemo: logData.content },
   });
+  const imageMutation = useImageUpload();
 
   const router = useRouter();
 
-  const mutation = useMutation({
+  const logUploadMutation = useMutation({
     mutationKey: [MASIL_KEY.RECORD_SUBMIT],
     mutationFn: async (data: MasilRecordRequest) => postMasil({ data }),
   });
@@ -47,35 +49,28 @@ const useLogRecordEditController = () => {
    * 이후, 서버에 전송 성공시 Done Modal이 제공되어지고, 공유를 선택시 시작지점과 성성된 log id 를 post 생성 페이지에 전달합니다.
    */
   const handleSubmit = () => {
-    // const pathThumbnailUrl = drawPath(logData.path);
+    // TODO
+    // 1. 칼로리
+    // 2. 썸네일
 
-    // TODO: logData API 통신
-
-    const test = {
-      depth1: "세종",
-      depth2: "대평",
-      depth3: "24",
-      depth4: "12421",
-      path: [
-        { lat: 22, lng: 22 },
-        { lat: 22, lng: 22 },
-        { lat: 22, lng: 22 },
-        { lat: 22, lng: 22 },
-      ],
-      calories: 42141,
+    const newData: MasilRecordRequest = {
+      ...logData,
       content: getValues("logMemo"),
-      distance: 2000,
-      totalTime: 50,
-      startedAt: new Date().toISOString(),
-      pins: [],
-      thumbnailUrl: "ㅇㅇㅇ",
-      postId: null,
+      calories: 9999,
+      // thumbnailUrl: drawPath(logData.path),
+
+      // 테스트를 위한 경로 추가
+
+      // path: [
+      //   { lat: 22.22, lng: 33.33 },
+      //   { lat: 22.22, lng: 33.33 },
+      //   { lat: 22.22, lng: 33.33 },
+      //   { lat: 22.22, lng: 33.33 },
+      // ],
     };
 
-    mutation.mutate(test, {
+    logUploadMutation.mutate(newData, {
       onSuccess: (res) => {
-        console.log(res);
-
         const { id } = res;
         router.push(`/log/${id}`);
 

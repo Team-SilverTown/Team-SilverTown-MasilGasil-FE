@@ -5,5 +5,5 @@ export const postImage = async ({ file }: { file: File }) => {
   const formData = new FormData();
   formData.append("file", file);
 
-  return await POST<{ id: string }>({ endPoint: IMAGE, data: formData, auth: true });
+  return await POST<{ imageUrl: string }>({ endPoint: IMAGE, data: formData, auth: true });
 };
