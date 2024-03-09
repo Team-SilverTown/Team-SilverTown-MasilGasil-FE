@@ -15,7 +15,7 @@ export const GET = async <T>({
 }) => {
   const API = getRootAPI(auth);
 
-  return await API.get<T>(`/api${endPoint}`, config)
+  return await API.get<T>(`/call${endPoint}`, config)
     .then((response) => response)
     .catch((error) => {
       throw Error(error);
@@ -35,8 +35,8 @@ export const POST = async <T>({
 }) => {
   const API = getRootAPI(auth);
 
-  return await API.post<T>(`/api${endPoint}`, data, config)
-    .then((res) => res)
+  return await API.post<T>(`/call${endPoint}`, data, config)
+    .then((response) => response)
     .catch((e) => {
       throw Error(e.response.data.message);
     });
@@ -55,9 +55,10 @@ export const PUT = async <T>({
 }) => {
   const API = getRootAPI(auth);
 
-  return await API.put<T>(`/api${endPoint}`, data, config)
+  return await API.put<T>(`/call${endPoint}`, data, config)
     .then((response) => response)
     .catch((error) => {
+      console.log("error", error.response);
       throw Error(error);
     });
 };
@@ -73,7 +74,7 @@ export const DELETE = async <T>({
 }) => {
   const API = getRootAPI(auth);
 
-  return await API.delete<T>(`/api${endPoint}`, config)
+  return await API.delete<T>(`/call${endPoint}`, config)
     .then((response) => response)
     .catch((error) => {
       throw Error(error);

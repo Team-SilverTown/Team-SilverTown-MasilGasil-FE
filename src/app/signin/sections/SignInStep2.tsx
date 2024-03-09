@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { FieldErrors, UseFormSetValue, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormSetValue, UseFormRegister, UseFormGetValues } from "react-hook-form";
 
 import useTheme from "@/lib/hooks/useTheme";
 
@@ -14,20 +14,28 @@ import { SEX_OPTIONS } from "@/lib/constants/variable";
 import { USER_INPUT_PLACEHOLDER, validation_user } from "@/lib/constants/userConstants";
 
 interface SignInStep2Props {
+  getValues: UseFormGetValues<SignInFormProps>;
   setValue: UseFormSetValue<SignInFormProps>;
   register: UseFormRegister<SignInFormProps>;
   errors: FieldErrors<SignInFormProps>;
 }
 
-const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
+const SignInStep2 = ({ getValues, setValue, register, errors }: SignInStep2Props) => {
   const theme = useTheme();
+
+  useEffect(() => {
+    const initState = getValues("sex");
+    if (initState) {
+      setSelectedSex(initState);
+    }
+  }, []);
 
   const { selectedSex, setSelectedSex } = useSignInModel();
   useEffect(() => {
     if (selectedSex) setValue("sex", selectedSex);
   }, [setValue, selectedSex]);
 
-  const handleSexSelect = (sex: "male" | "female") => {
+  const handleSexSelect = (sex: "MALE" | "FEMALE") => {
     setSelectedSex(sex);
     setValue("sex", sex);
   };
@@ -57,10 +65,10 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
       <S.BirthDateSection>
         <UserEditInput
           title={"나이"}
-          description="14세 이상부터 이용 가능합니다."
+          description="만 13세 이상부터 이용 가능합니다."
           inputType={"date"}
           placeholder={USER_INPUT_PLACEHOLDER.BIRTH_DATE}
-          register={register("birthDate", validation_user.birthDate)}
+          register={register("birthDate")}
           errorsMessage={errors.birthDate && errors.birthDate.message}
         />
       </S.BirthDateSection>

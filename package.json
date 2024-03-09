@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.23.9",
+    "@ducanh2912/next-pwa": "^10.2.5",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.1.0",
@@ -32,6 +33,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "next": "14.1.0",
+    "next-auth": "^4.24.6",
     "nuka-carousel": "^7.0.0",
     "prettier": "^3.2.5",
     "react": "^18",

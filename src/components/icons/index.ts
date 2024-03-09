@@ -32,3 +32,12 @@ export { default as Sun } from "./Sun";
 export { default as Trash } from "./Trash";
 export { default as Pin } from "./Pin";
 export { default as Center } from "./Center";
+
+export { default as AccountManager } from "./AccountManager";
+export { default as AccountDelete } from "./AccountDelete";
+export { default as LogOut } from "./LogOut";
+export { default as NotificationActive } from "./NotificationActive";
+export { default as NotificationOff } from "./NotificationOff";
+export { default as PersonSearch } from "./PersonSearch";
+export { default as PersonOff } from "./PersonOff";
+export { default as ArrowForward } from "./ArrowForward";
