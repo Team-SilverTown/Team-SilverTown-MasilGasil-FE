@@ -2,9 +2,9 @@ import * as S from "./EditBodyInfo.styles";
 
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
-import { USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
-import { UserEditInput } from "..";
-import { validation_user } from "@/constants/userValidate";
+
+import { UserEditInput } from "@/components";
+import { USER_INPUT_PLACEHOLDER, validation_user } from "@/lib/constants/userConstants";
 
 interface EditBodyInfoProps {
   register: UseFormRegister<UserEditData>;
@@ -17,8 +17,9 @@ const EditBodyInfo = ({ register, errors }: EditBodyInfoProps) => {
       <S.EditBodyInfoContainer>
         <UserEditInput
           title={"키"}
+          unit={"cm"}
           inputType={"number"}
-          placeholder={USER_EDIT_PLACEHOLDER.HEIGHT}
+          placeholder={USER_INPUT_PLACEHOLDER.HEIGHT}
           errorsMessage={errors.height && errors.height.message}
           register={register("height", validation_user.height)}
         />
@@ -27,8 +28,9 @@ const EditBodyInfo = ({ register, errors }: EditBodyInfoProps) => {
       <S.EditBodyInfoContainer>
         <UserEditInput
           title={"몸무게"}
+          unit={"kg"}
           inputType={"number"}
-          placeholder={USER_EDIT_PLACEHOLDER.WEIGHT}
+          placeholder={USER_INPUT_PLACEHOLDER.WEIGHT}
           errorsMessage={errors.weight && errors.weight.message}
           register={register("weight", validation_user.weight)}
         />
