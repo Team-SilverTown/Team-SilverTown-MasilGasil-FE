@@ -1,5 +1,3 @@
-"use client";
-
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
