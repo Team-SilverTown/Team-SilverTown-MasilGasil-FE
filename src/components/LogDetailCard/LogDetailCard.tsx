@@ -1,10 +1,11 @@
 "use client";
 
 import { CSSProperties, useState } from "react";
-import * as S from "./LogDetailCard.style";
-import { Heart, KebabMenu } from "../icons";
-import { UserInfoType } from "@/app/user/[id]/MyPage.types";
+import Image from "next/image";
 import { calculateWalkingCalories } from "@/utils";
+import { UserInfoType } from "@/app/user/[id]/MyPage.types";
+import { Heart, KebabMenu } from "../icons";
+import * as S from "./LogDetailCard.style";
 
 export interface LogDetailCardProps {
   title: string;
@@ -75,7 +76,13 @@ const LogDetailCard = ({
       style={style}
       onClick={handleDetailViewClick}
     >
-      <S.LogDetailCardThumbnail $thumbnailUrl={thumbnailUrl} />
+      <S.LogDetailCardThumbnail>
+        <Image
+          src={thumbnailUrl}
+          alt={title}
+          fill
+        />
+      </S.LogDetailCardThumbnail>
       <S.LogDetailCardInfo $isSettingLayout={isSettingLayout}>
         <div className="infoTopSection">
           <div className="infoTitle">
