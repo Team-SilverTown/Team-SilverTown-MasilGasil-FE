@@ -1,8 +1,8 @@
-import { UserInfoType } from "@/app/user/[id]/MyPage.types";
+import { MeResponse } from "@/types/Response";
 import { calculateAge } from ".";
 
 interface calculateWalkingCaloriesProps {
-  userInfo: UserInfoType;
+  userInfo: MeResponse;
   distance: number;
   walkingMET?: number;
 }
