@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { RECORDLIST_DUMMY_DATA, USERINFO_DUMMY_DATA } from "./Mypage.constants";
+import { RECORDLIST_DUMMY_DATA, USERINFO_DUMMY_DATA } from "./MyPage.constants";
 import MypageView from "./MyPage.view";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import Setting from "@/components/icons/Setting";
 
-const MypageController = () => {
+const MyPageController = () => {
   return (
     <>
       <TopNavigator
@@ -30,4 +30,4 @@ const MypageController = () => {
   );
 };
 
-export default MypageController;
+export default MyPageController;

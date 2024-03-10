@@ -1,7 +1,7 @@
-import MypageController from "./Mypage.controller";
+import MypageController from "./MyPage.controller";
 
-const Mypage = () => {
+const MyPage = () => {
   return <MypageController />;
 };
 
-export default Mypage;
+export default MyPage;

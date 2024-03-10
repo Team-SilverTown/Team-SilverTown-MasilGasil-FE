@@ -1,13 +1,13 @@
 import { UserProfileInfo, UserWalkRecord, MyRecordList } from "./components";
-import { MyRecordListType, UserInfoType } from "./Mypage.types";
-import * as S from "./Mypage.styles";
+import { MyRecordListType, UserInfoType } from "./MyPage.types";
+import * as S from "./MyPage.styles";
 
-interface MypageViewProps {
+interface MyPageViewProps {
   boardList: MyRecordListType[];
   userInfo: UserInfoType;
 }
 
-const MypageView = ({ boardList, userInfo }: MypageViewProps) => {
+const MyPageView = ({ boardList, userInfo }: MyPageViewProps) => {
   return (
     <S.UserProfileContainer>
       <S.UserProfileLayout className="scrollbar-hide">
@@ -34,4 +34,4 @@ const MypageView = ({ boardList, userInfo }: MypageViewProps) => {
   );
 };
 
-export default MypageView;
+export default MyPageView;
