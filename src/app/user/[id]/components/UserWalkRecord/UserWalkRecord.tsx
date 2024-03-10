@@ -1,6 +1,6 @@
 "use client";
 
-import { UserInfoType } from "../../Mypage.types";
+import { UserInfoType } from "../../MyPage.types";
 import * as S from "./UserWalkRecord.styles";
 import { convertMeter } from "@/utils";
 import useCalculateCalories from "@/lib/hooks/useCalculateCalories";

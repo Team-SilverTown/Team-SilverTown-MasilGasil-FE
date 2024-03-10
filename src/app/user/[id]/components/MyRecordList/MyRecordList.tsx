@@ -1,9 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/utils";
 import { LogDetailCard, LogSimpleCard } from "@/components";
-import { MasilsListType, PostsListType, UserInfoType } from "../../Mypage.types";
+import { MasilsListType, PostsListType, UserInfoType } from "../../MyPage.types";
 import * as S from "./MyRecordList.styles";
 
 interface MyRecordListProps {
@@ -15,6 +16,8 @@ interface MyRecordListProps {
 }
 
 const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordListProps) => {
+  const router = useRouter();
+
   return (
     <S.BorderContainer>
       <S.BorderTitleSection>
@@ -39,7 +42,7 @@ const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordLi
                     distance={convertMeter(distance)}
                     totalTime={convertSeconds(totalTime)}
                     startedAt={convertDateToYearMonthDay(startedAt)}
-                    onClick={() => console.log(`${id}로 이동~~`)}
+                    onClick={() => router.push(`/log/${id}`)}
                   />
                 </li>
               ),
@@ -61,7 +64,7 @@ const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordLi
                     isLikeLayout={true}
                     isSettingLayout={true}
                     userInfo={userInfo}
-                    onDetailClick={() => console.log("Detail View 클릭!")}
+                    onDetailClick={() => router.push(`/post/${id}`)}
                     onLikeClick={(event) => {
                       event.stopPropagation();
                       console.log("like 클릭 !!");

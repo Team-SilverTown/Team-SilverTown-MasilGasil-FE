@@ -13,7 +13,7 @@ const MyPageView = ({ boardList, userInfo }: MyPageViewProps) => {
       <S.UserProfileLayout className="scrollbar-hide">
         <UserProfileInfo
           profileImage=""
-          profileName="김개똥"
+          profileName="달려라댕댕아"
         />
         <UserWalkRecord
           totalWalkDistance={11000}
