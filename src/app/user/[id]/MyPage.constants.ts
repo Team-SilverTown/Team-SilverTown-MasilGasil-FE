@@ -1,4 +1,4 @@
-import { MasilsListType, PostsListType, MyRecordListType, UserInfoType } from "./Mypage.types";
+import { MasilsListType, PostsListType, MyRecordListType, UserInfoType } from "./MyPage.types";
 
 export const MASILS_DUMMY_DATA: MasilsListType[] = [
   {
