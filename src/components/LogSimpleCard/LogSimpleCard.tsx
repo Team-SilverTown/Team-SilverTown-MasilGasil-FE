@@ -1,11 +1,7 @@
 "use client";
 
 import { CSSProperties } from "react";
-import {
-  LogSimpleCardContainer,
-  LogSimpleCardBottom,
-  LogSimpleCardInfo,
-} from "./LogSimpleCard.style";
+import * as S from "./LogSimpleCard.style";
 
 export interface LogSimpleCardProps {
   width?: number | string;
@@ -35,7 +31,7 @@ const LogSimpleCard = ({
   onClick,
 }: LogSimpleCardProps) => {
   return (
-    <LogSimpleCardContainer
+    <S.LogSimpleCardContainer
       $width={width}
       $height={height}
       $radius={radius}
@@ -43,19 +39,19 @@ const LogSimpleCard = ({
       style={style}
       onClick={onClick}
     >
-      <LogSimpleCardBottom>
+      <S.LogSimpleCardBottom>
         <strong>
           {depth1} {depth2}
         </strong>
-        <LogSimpleCardInfo>
+        <S.LogSimpleCardInfo>
           <ul>
             <li>{totalTime}</li>
             <li>{distance}</li>
           </ul>
           <strong>{startedAt}</strong>
-        </LogSimpleCardInfo>
-      </LogSimpleCardBottom>
-    </LogSimpleCardContainer>
+        </S.LogSimpleCardInfo>
+      </S.LogSimpleCardBottom>
+    </S.LogSimpleCardContainer>
   );
 };
 
