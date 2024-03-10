@@ -36,10 +36,6 @@ export const UserWalkRecordList = styled.ul`
       align-items: end;
       span {
         font-size: ${FONT_SIZE.BASIC};
-        padding-right: 0.1rem;
-      }
-      small {
-        font-size: ${FONT_SIZE.MINI};
       }
     }
   }

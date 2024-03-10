@@ -1,7 +1,15 @@
-import MypageController from "./Mypage.controller";
+import MypageController from "./MyPage.controller";
 
-const Mypage = () => {
-  return <MypageController />;
+interface MyPageProps {
+  params: {
+    id: number;
+  };
+}
+
+const MyPage = ({ params }: MyPageProps) => {
+  const { id } = params;
+
+  return <MypageController userId={id} />;
 };
 
-export default Mypage;
+export default MyPage;
