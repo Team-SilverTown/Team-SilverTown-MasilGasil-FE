@@ -71,6 +71,8 @@ const LogView = ({
                 distance={1100}
                 totalTime={3600}
                 userInfo={userInfo}
+                address={`${masilsData.depth1} ${masilsData.depth2}`}
+                masilDate={masilsData.startedAt}
               />
             )}
             {tabIndex === TabType.Pin && (
