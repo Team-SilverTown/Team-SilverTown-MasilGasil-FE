@@ -15,6 +15,7 @@ export const HeaderTitle = styled.span`
   font-size: ${FONT_SIZE.H4};
   font-weight: ${FONT_WEIGHT.BOLD};
   text-align: center;
+  margin-bottom: 1rem;
 
   display: flex;
   justify-content: center;

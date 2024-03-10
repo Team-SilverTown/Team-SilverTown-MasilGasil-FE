@@ -1,4 +1,4 @@
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { BORDER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const LogRecordActionLayout = styled.div`
@@ -20,8 +20,11 @@ export const LogRecordActionContainer = styled.div`
   padding: 1.6rem;
 
   background-color: ${({ theme }) => theme.white};
-  border-radius: 0.8rem;
-  box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_50};
+  border-width: ${BORDER.TINE_WIDTH}px;
+  border-color: ${(props) => props.theme.transparent_10};
+  border-radius: 8px;
+
+  box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_10};
 `;
 
 export const LogRecordInfoContainer = styled.div`
@@ -35,16 +38,22 @@ export const LogRecordInfoContainer = styled.div`
 
 export const LogRecordInfo = styled.p`
   width: calc(50% - 0.8rem);
-  height: 4rem;
+  height: 5rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.3rem;
 
   background-color: ${({ theme }) => theme.green_100};
   border-radius: 0.8rem;
-  box-shadow: 0 2px 7.8px 0 ${(props) => props.theme.transparent_50};
 
   font-size: ${FONT_SIZE.LARGE};
+  font-weight: ${FONT_WEIGHT.BOLD};
+`;
+
+export const LogRecordInfoUnit = styled.span`
+  color: ${({ theme }) => theme.gray_500};
+  font-size: ${FONT_SIZE.MEDIUM};
   font-weight: ${FONT_WEIGHT.BOLD};
 `;

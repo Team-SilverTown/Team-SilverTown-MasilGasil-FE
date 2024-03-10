@@ -1,10 +1,5 @@
 // Source: https://github.com/adobe/react-spectrum/blob/main/packages/@react-aria/overlays/src/usePreventScroll.ts
-import {
-  chain,
-  getScrollParent,
-  isIOS,
-  useLayoutEffect,
-} from '@react-aria/utils';
+import { chain, getScrollParent, isIOS, useLayoutEffect } from "@react-aria/utils";
 
 interface PreventScrollOptions {
   /** Whether the scroll lock is disabled. */
@@ -12,19 +7,19 @@ interface PreventScrollOptions {
 }
 
 // @ts-ignore
-const visualViewport = typeof window !== 'undefined' && window.visualViewport;
+const visualViewport = typeof window !== "undefined" && window.visualViewport;
 
 // HTML input types that do not cause the software keyboard to appear.
 const nonTextInputTypes = new Set([
-  'checkbox',
-  'radio',
-  'range',
-  'color',
-  'file',
-  'image',
-  'button',
-  'submit',
-  'reset',
+  "checkbox",
+  "radio",
+  "range",
+  "color",
+  "file",
+  "image",
+  "button",
+  "submit",
+  "reset",
 ]);
 
 // The number of active usePreventScroll calls. Used to determine whether to revert back to the original page style/scroll position
@@ -68,10 +63,10 @@ function preventScrollStandard() {
   return chain(
     setStyle(
       document.documentElement,
-      'paddingRight',
-      `${window.innerWidth - document.documentElement.clientWidth}px`
+      "paddingRight",
+      `${window.innerWidth - document.documentElement.clientWidth}px`,
     ),
-    setStyle(document.documentElement, 'overflow', 'hidden')
+    setStyle(document.documentElement, "overflow", "hidden"),
   );
 }
 
@@ -107,10 +102,7 @@ function preventScrollMobileSafari() {
   let onTouchStart = (e: TouchEvent) => {
     // Store the nearest scrollable parent element from the element that the user touched.
     scrollable = getScrollParent(e.target as Element);
-    if (
-      scrollable === document.documentElement &&
-      scrollable === document.body
-    ) {
+    if (scrollable === document.documentElement && scrollable === document.body) {
       return;
     }
 
@@ -119,10 +111,7 @@ function preventScrollMobileSafari() {
 
   let onTouchMove = (e: TouchEvent) => {
     // Prevent scrolling the window.
-    if (
-      scrollable === document.documentElement ||
-      scrollable === document.body
-    ) {
+    if (scrollable === document.documentElement || scrollable === document.body) {
       e.preventDefault();
       return;
     }
@@ -157,10 +146,10 @@ function preventScrollMobileSafari() {
       // Apply a transform to trick Safari into thinking the input is at the top of the page
       // so it doesn't try to scroll it into view. When tapping on an input, this needs to
       // be done before the "focus" event, so we have to focus the element ourselves.
-      target.style.transform = 'translateY(-2000px)';
+      target.style.transform = "translateY(-2000px)";
       target.focus();
       requestAnimationFrame(() => {
-        target.style.transform = '';
+        target.style.transform = "";
       });
     }
   };
@@ -172,9 +161,9 @@ function preventScrollMobileSafari() {
       // other than tapping on an input directly, e.g. the next/previous buttons in the
       // software keyboard. In these cases, it seems applying the transform in the focus event
       // is good enough, whereas when tapping an input, it must be done before the focus event. 🤷‍♂️
-      target.style.transform = 'translateY(-2000px)';
+      target.style.transform = "translateY(-2000px)";
       requestAnimationFrame(() => {
-        target.style.transform = '';
+        target.style.transform = "";
 
         // This will have prevented the browser from scrolling the focused element into view,
         // so we need to do this ourselves in a way that doesn't cause the whole page to scroll.
@@ -188,11 +177,7 @@ function preventScrollMobileSafari() {
           } else {
             // Otherwise, wait for the visual viewport to resize before scrolling so we can
             // measure the correct position to scroll to.
-            visualViewport.addEventListener(
-              'resize',
-              () => scrollIntoView(target),
-              { once: true }
-            );
+            visualViewport.addEventListener("resize", () => scrollIntoView(target), { once: true });
           }
         }
       });
@@ -214,31 +199,31 @@ function preventScrollMobileSafari() {
   let restoreStyles = chain(
     setStyle(
       document.documentElement,
-      'paddingRight',
-      `${window.innerWidth - document.documentElement.clientWidth}px`
+      "paddingRight",
+      `${window.innerWidth - document.documentElement.clientWidth}px`,
     ),
-    setStyle(document.documentElement, 'overflow', 'hidden'),
-    setStyle(document.body, 'marginTop', `-${scrollY}px`)
+    setStyle(document.documentElement, "overflow", "hidden"),
+    setStyle(document.body, "marginTop", `-${scrollY}px`),
   );
 
   // Scroll to the top. The negative margin on the body will make this appear the same.
   window.scrollTo(0, 0);
 
   let removeEvents = chain(
-    addEvent(document, 'touchstart', onTouchStart, {
+    addEvent(document, "touchstart", onTouchStart, {
       passive: false,
       capture: true,
     }),
-    addEvent(document, 'touchmove', onTouchMove, {
+    addEvent(document, "touchmove", onTouchMove, {
       passive: false,
       capture: true,
     }),
-    addEvent(document, 'touchend', onTouchEnd, {
+    addEvent(document, "touchend", onTouchEnd, {
       passive: false,
       capture: true,
     }),
-    addEvent(document, 'focus', onFocus, true),
-    addEvent(window, 'scroll', onWindowScroll)
+    addEvent(document, "focus", onFocus, true),
+    addEvent(window, "scroll", onWindowScroll),
   );
 
   return () => {
@@ -264,7 +249,7 @@ function addEvent<K extends keyof GlobalEventHandlersEventMap>(
   target: EventTarget,
   event: K,
   handler: (this: Document, ev: GlobalEventHandlersEventMap[K]) => any,
-  options?: boolean | AddEventListenerOptions
+  options?: boolean | AddEventListenerOptions,
 ) {
   target.addEventListener(event, handler as any, options);
   return () => {
@@ -295,8 +280,7 @@ function scrollIntoView(target: Element) {
 
 function willOpenKeyboard(target: Element) {
   return (
-    (target instanceof HTMLInputElement &&
-      !nonTextInputTypes.has(target.type)) ||
+    (target instanceof HTMLInputElement && !nonTextInputTypes.has(target.type)) ||
     target instanceof HTMLTextAreaElement ||
     (target instanceof HTMLElement && target.isContentEditable)
   );
