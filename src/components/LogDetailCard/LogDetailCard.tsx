@@ -3,21 +3,17 @@
 import { CSSProperties, useState } from "react";
 import * as S from "./LogDetailCard.style";
 import { Heart, KebabMenu } from "../icons";
-import useCalculateCalories from "@/lib/hooks/useCalculateCalories";
-import { UserInfoType } from "@/app/user/[id]/Mypage.types";
 
 export interface LogDetailCardProps {
   title: string;
   content: string;
   thumbnailUrl: string;
   distance: string;
-  totalDistance: number;
   totalTime: string;
   likeCount: number;
   isLiked: boolean;
   isLikeLayout: boolean;
   isSettingLayout: boolean;
-  userInfo: UserInfoType;
   style?: CSSProperties;
   onDetailClick: () => void;
   onLikeClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -28,22 +24,16 @@ const LogDetailCard = ({
   content,
   thumbnailUrl,
   distance,
-  totalDistance,
   totalTime,
   likeCount,
   isLiked,
   isLikeLayout,
   isSettingLayout,
-  userInfo,
   style,
   onDetailClick,
   onLikeClick,
 }: LogDetailCardProps) => {
   const [isSettingToggle, setIsSetingToggle] = useState(false);
-  const { isUserInfoCheck, calories } = useCalculateCalories({
-    userInfo,
-    totalWalkDistance: totalDistance,
-  });
 
   const handleDetailViewClick = () => {
     if (isSettingToggle) {
@@ -88,7 +78,7 @@ const LogDetailCard = ({
           <ul className="walkInfo">
             <li>{totalTime}</li>
             <li>{distance}</li>
-            {isUserInfoCheck && <li>{calories}kcal</li>}
+            <li>244kcal</li>
           </ul>
           {isLikeLayout && (
             <div
