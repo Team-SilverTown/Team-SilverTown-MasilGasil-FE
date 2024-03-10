@@ -1,10 +1,11 @@
 "use client";
 
-import useLogModel from "./Log.medel";
+import useLogModel from "./Log.model";
 import LogView from "./Log.view";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 import { MASILS_DATA } from "./Log.constants";
 import { GeoPosition } from "@/types/OriginDataType";
+import { TabType } from "./Log.types";
 
 interface LogControllerProps {
   baseLocation: GeoPosition;
@@ -17,7 +18,7 @@ const LogController = ({ baseLocation }: LogControllerProps) => {
 
   const handlePinIndex = (PinIndex: number) => {
     setCurrentPinIndex(PinIndex);
-    setTabIndex(1);
+    setTabIndex(TabType.Pin);
 
     if (MASILS_DATA.pins.length === 0) {
       return;
@@ -30,7 +31,7 @@ const LogController = ({ baseLocation }: LogControllerProps) => {
 
   const handleClickCenter = () => {
     setCurrentPinIndex(0);
-    setTabIndex(0);
+    setTabIndex(TabType.Memo);
     setMapCenter(baseLocation);
     setIsOutCenter(false);
   };

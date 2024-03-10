@@ -1,13 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 
 import { MasilsDataType, TAB_CONTENTS } from "./Log.constants";
 
-import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
-
 import { GeoPosition } from "@/types/OriginDataType";
+import { TabType } from "./Log.types";
 
 import { Button, Tab } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
@@ -22,7 +20,7 @@ interface LogViewProps {
   tabIndex: number;
   currentPinIndex: number;
   mapCenter: GeoPosition;
-  setTabIndex: React.Dispatch<React.SetStateAction<number>>;
+  setTabIndex: React.Dispatch<React.SetStateAction<TabType>>;
   handlePinIndex: (pinIndex: number) => void;
   handleClickCenter: () => void;
 }
@@ -64,8 +62,8 @@ const LogView = ({
           />
 
           <S.LogContentSection className="scrollbar-hide">
-            {tabIndex === 0 && <LogMemo />}
-            {tabIndex === 1 && (
+            {tabIndex === TabType.Memo && <LogMemo />}
+            {tabIndex === TabType.Pin && (
               <LogPin
                 pins={masilsData.pins}
                 currentPinIndex={currentPinIndex}
