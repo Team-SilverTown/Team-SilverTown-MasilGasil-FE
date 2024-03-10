@@ -1,27 +1,37 @@
+import { Location } from "@/components/icons";
+import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/utils";
+import { MeResponse } from "@/types/Response";
 import * as S from "./LogMemo.styles";
 
 interface LogMemoProps {
-  distance?: number;
-  totalTime?: number;
+  distance: number;
+  totalTime: number;
+  userInfo: MeResponse;
 }
 
-const LogMemo = ({ distance, totalTime }: LogMemoProps) => {
+const LogMemo = ({ distance, totalTime, userInfo }: LogMemoProps) => {
+  const { isUserInfoCheck, calories } = calculateWalkingCalories({ userInfo, distance });
+
   return (
     <>
-      <S.LogMemoLocation>경남 진주시 호탄동</S.LogMemoLocation>
+      <S.LogMemoLocation>
+        <Location /> 경남 진주시 호탄동
+      </S.LogMemoLocation>
       <S.LogMemoWalkInfo>
         <li>
           <strong>산책 거리</strong>
-          <span>1.1km</span>
+          <span>{convertMeter(distance)}</span>
         </li>
         <li>
           <strong>소요 시간</strong>
-          <span>30분</span>
+          <span>{convertSeconds(totalTime)}</span>
         </li>
-        <li>
-          <strong>칼로리 소모</strong>
-          <span>200kcal</span>
-        </li>
+        {isUserInfoCheck && (
+          <li>
+            <strong>칼로리 소모</strong>
+            <span>{calories}kcal</span>
+          </li>
+        )}
       </S.LogMemoWalkInfo>
       <S.LogMemoContent>
         진주시에서 가장 큰 강이 남강변을 따라 걷는 산책로에요. 주변을 걷다보면 수달을 만날 수도

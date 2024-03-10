@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MasilsDataType, TAB_CONTENTS } from "./Log.constants";
 
 import { GeoPosition } from "@/types/OriginDataType";
+import { MeResponse } from "@/types/Response";
 import { TabType } from "./Log.types";
 
 import { Button, Tab } from "@/components";
@@ -14,9 +15,11 @@ import { LogMapSection, LogKebabMenu, LogMemo, LogPin } from "./components";
 
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./Log.styles";
+import { userInfo } from "os";
 
 interface LogViewProps {
   masilsData: MasilsDataType;
+  userInfo: MeResponse;
   tabIndex: number;
   currentPinIndex: number;
   mapCenter: GeoPosition;
@@ -27,6 +30,7 @@ interface LogViewProps {
 
 const LogView = ({
   masilsData,
+  userInfo,
   tabIndex,
   currentPinIndex,
   mapCenter,
@@ -62,7 +66,13 @@ const LogView = ({
           />
 
           <S.LogContentSection className="scrollbar-hide">
-            {tabIndex === TabType.Memo && <LogMemo />}
+            {tabIndex === TabType.Memo && (
+              <LogMemo
+                distance={1100}
+                totalTime={3600}
+                userInfo={userInfo}
+              />
+            )}
             {tabIndex === TabType.Pin && (
               <LogPin
                 pins={masilsData.pins}

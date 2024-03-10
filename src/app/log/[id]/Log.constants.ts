@@ -1,4 +1,5 @@
 import { GeoPosition, Pin } from "@/types/OriginDataType";
+import { MeResponse } from "@/types/Response";
 
 export interface MasilsDataType {
   id: number;
@@ -74,6 +75,18 @@ export const MASILS_DATA: MasilsDataType = {
         "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
     },
   ],
+};
+
+export const USER_DUMMY_DATA: MeResponse = {
+  userId: 1,
+  nickname: "nickname",
+  profileImg: "profileImg",
+  sex: "MALE",
+  birthDate: "1999-03-21",
+  height: 168,
+  weight: 68,
+  exerciseIntensity: "SUPER_LOW",
+  isPublic: true,
 };
 
 export const TAB_CONTENTS = ["메모", "핀", ""];

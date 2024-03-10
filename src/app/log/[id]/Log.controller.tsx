@@ -3,7 +3,7 @@
 import useLogModel from "./Log.model";
 import LogView from "./Log.view";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
-import { MASILS_DATA } from "./Log.constants";
+import { MASILS_DATA, USER_DUMMY_DATA } from "./Log.constants";
 import { GeoPosition } from "@/types/OriginDataType";
 import { TabType } from "./Log.types";
 
@@ -38,6 +38,7 @@ const LogController = ({ baseLocation }: LogControllerProps) => {
   return (
     <LogView
       masilsData={MASILS_DATA}
+      userInfo={USER_DUMMY_DATA}
       tabIndex={tabIndex}
       setTabIndex={setTabIndex}
       currentPinIndex={currentPinIndex}

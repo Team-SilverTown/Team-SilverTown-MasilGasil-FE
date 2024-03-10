@@ -2,7 +2,13 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const LogMemoLocation = styled.article`
+  display: flex;
+  align-items: center;
   font-weight: ${FONT_WEIGHT.MEDIUM};
+
+  svg {
+    margin-right: 0.5rem;
+  }
 `;
 
 export const LogMemoWalkInfo = styled.ul`
