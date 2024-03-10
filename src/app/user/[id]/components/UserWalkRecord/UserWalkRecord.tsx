@@ -1,9 +1,6 @@
-"use client";
-
+import { calculateWalkingCalories, convertMeter } from "@/utils";
 import { UserInfoType } from "../../MyPage.types";
 import * as S from "./UserWalkRecord.styles";
-import { convertMeter } from "@/utils";
-import useCalculateCalories from "@/lib/hooks/useCalculateCalories";
 
 interface UserWalkRecordProps {
   totalWalkDistance: number;
@@ -12,7 +9,10 @@ interface UserWalkRecordProps {
 }
 
 const UserWalkRecord = ({ totalWalkDistance, totalWalkCount, userInfo }: UserWalkRecordProps) => {
-  const { isUserInfoCheck, calories } = useCalculateCalories({ userInfo, totalWalkDistance });
+  const { isUserInfoCheck, calories } = calculateWalkingCalories({
+    userInfo,
+    distance: totalWalkDistance,
+  });
 
   return (
     <S.UserWalkRecordContainer>
