@@ -1,12 +1,8 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
-interface LogDetailCardThumbnailProps {
-  thumbnailURL: string;
-}
-
 interface LogDetailCardInfoProps {
-  isSettingLayout: boolean;
+  $isSettingLayout: boolean;
 }
 
 export const LogDetailCardContainer = styled.div`
@@ -18,14 +14,17 @@ export const LogDetailCardContainer = styled.div`
   cursor: pointer;
 `;
 
-export const LogDetailCardThumbnail = styled.div<LogDetailCardThumbnailProps>`
+export const LogDetailCardThumbnail = styled.div`
+  position: relative;
   width: 12rem;
   height: 12rem;
-  background-image: ${(props) => `url(${props.thumbnailURL})`};
-  background-position: center;
-  background-size: cover;
   border-top-left-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
@@ -41,7 +40,7 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
     justify-content: space-between;
     align-items: center;
     h3 {
-      width: ${(props) => (props.isSettingLayout ? "calc(100% - 1.5rem)" : "100%")};
+      width: ${(props) => (props.$isSettingLayout ? "calc(100% - 1.5rem)" : "100%")};
       font-size: ${FONT_SIZE.LARGE};
       font-weight: ${FONT_WEIGHT.BOLD};
       overflow: hidden;
@@ -108,10 +107,10 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
       &:hover,
       &.liked {
         svg {
-          stroke: ${(props) => props.theme.yellow_500};
+          stroke: ${(props) => props.theme.pink_100};
         }
         .like {
-          color: ${(props) => props.theme.yellow_500};
+          color: ${(props) => props.theme.pink_100};
         }
       }
     }

@@ -35,7 +35,7 @@ const LogRecordRecordingModel = () => {
    * @summary 기록을 완료할때 Modal을 제공합니다.
    */
   const handleClickCompleteRecord = () => {
-    setModalView("LOG_RECORD_CONFIRM_VIEW");
+    setModalView("CONFIRM_VIEW");
     openModal({
       onClickAccept: () => {
         setIsActiveExitAnimation(true);

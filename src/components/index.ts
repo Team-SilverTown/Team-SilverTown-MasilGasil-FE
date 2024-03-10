@@ -14,5 +14,6 @@ export { default as PinDetailCard } from "./PinDetailCard";
 export { default as Window } from "./Window";
 export { default as Textarea } from "./Textarea";
 export { default as InputRadio } from "./InputRadio/InputRadio";
+export { default as PinEditSlideButton } from "./PinEditSlideButton/PinEditSlideButton";
 export { default as UserEditInput } from "./UserEditInput/UserEditInput";
 export { default as UserIntensityItem } from "./UserIntensityItem/UserIntensityItem";
