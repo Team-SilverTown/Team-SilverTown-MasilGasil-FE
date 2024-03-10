@@ -19,8 +19,6 @@ interface ModalProps {
   props: LogRecordDoneModalProps;
 }
 
-// TODO: Close 버튼 제거 및 background를 클릭해도 모달이 닫히지 않게
-
 const LogRecordDoneModal = ({ props }: ModalProps) => {
   const { onClickCancel, onClickUploadPost, logData } = props;
 

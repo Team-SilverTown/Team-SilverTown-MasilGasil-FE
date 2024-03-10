@@ -18,7 +18,7 @@ export const drawPath = (path: GeoPosition[]) => {
   canvas.height = CANVAS_SIZE;
 
   const scaleX = (canvas.width - CANVAS_OFFSET * 2) / (maxLng - minLng);
-  const scaleY = (canvas.height - CANVAS_OFFSET) / (maxLat - minLat);
+  const scaleY = (canvas.height - CANVAS_OFFSET * 1.5) / (maxLat - minLat);
 
   const pathCanvas = canvas.getContext("2d");
 
@@ -76,9 +76,6 @@ export const drawPath = (path: GeoPosition[]) => {
     pathCanvas.fillText("👟", startX, startY);
     pathCanvas.fillText("⛳️", endX, endY);
   }
-
-  // const dataUrl = canvas.toDataURL("image/webp");
-  // return dataUrl;
 
   return pathCanvas;
 };

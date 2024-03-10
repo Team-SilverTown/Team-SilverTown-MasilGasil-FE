@@ -56,22 +56,11 @@ const useLogRecordEditController = () => {
       ...logData,
       content: getValues("logMemo"),
       calories: 9999,
-
-      path: [
-        { lat: 22.22, lng: 83.33 },
-        { lat: 42.22, lng: 33.33 },
-        { lat: 22.22, lng: 33.33 },
-        { lat: 22.22, lng: 153.33 },
-        { lat: 32.22, lng: 33.33 },
-        { lat: 22.22, lng: 33.33 },
-        { lat: 22.22, lng: 23.33 },
-      ],
     };
 
-    const canvas = drawPath(logData.path);
+    const pathCanvas = drawPath(newData.path);
 
-    // Canvas 이미지 업로드 정상 동작 안함
-    canvas?.canvas.toBlob((file) => {
+    pathCanvas?.canvas.toBlob((file) => {
       if (!file) {
         return;
       }
@@ -79,7 +68,6 @@ const useLogRecordEditController = () => {
       imageMutation.mutate(file, {
         onSuccess: ({ imageUrl }) => {
           newData["thumbnailUrl"] = imageUrl;
-          console.log(newData);
 
           logUploadMutation.mutate(newData, {
             onSuccess: (res) => {
