@@ -80,7 +80,9 @@ const LogDetailCard = ({
         <Image
           src={thumbnailUrl}
           alt={title}
+          sizes="100%"
           fill
+          priority
         />
       </S.LogDetailCardThumbnail>
       <S.LogDetailCardInfo $isSettingLayout={isSettingLayout}>

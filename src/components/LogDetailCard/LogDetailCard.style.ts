@@ -21,6 +21,10 @@ export const LogDetailCardThumbnail = styled.div`
   border-top-left-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
   overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
