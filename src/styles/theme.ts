@@ -1,3 +1,5 @@
+import { css } from "styled-components";
+
 export const lightTheme = {
   theme_mode: "light",
 
@@ -115,6 +117,7 @@ export const Z_INDEX = {
   SEARCH_BAR: 30,
   BOTTOM_SHEET: 40,
   NAVIGATOR: 50,
+  MATE_TOGGLE_MENU: 100,
   MODAL: 800,
   MODAL_BACKGROUND: 800,
   MODAL_LAYOUT: 850,
@@ -145,3 +148,12 @@ export const FONT_SIZE = {
   MINI: "1.2rem",
   MICRO: "1rem",
 };
+
+export const DISPLAY_NONE_SCROLLBAR = css`
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;

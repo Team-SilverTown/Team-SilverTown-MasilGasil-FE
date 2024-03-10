@@ -27,8 +27,6 @@ const UserSettingContent = ({
   isCheckedSwitch,
 }: UserSettingContentProps) => {
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-
     if (disable) {
       return;
     }
@@ -38,6 +36,7 @@ const UserSettingContent = ({
       return;
     }
 
+    e.preventDefault();
     onClick();
   };
 

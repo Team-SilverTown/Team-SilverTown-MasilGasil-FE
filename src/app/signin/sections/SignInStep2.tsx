@@ -1,91 +1,44 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { FieldErrors, UseFormSetValue, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormSetValue, UseFormRegister, UseFormGetValues } from "react-hook-form";
 
 import useTheme from "@/lib/hooks/useTheme";
 
-import { Button, Input, InputLabel } from "@/components";
+import { Button, UserEditInput } from "@/components";
 import { SignInFormProps } from "../SignIn.controller";
 import useSignInModel from "../SignIn.model";
-import { SEX_OPTIONS, signInValidation } from "../SignIn.constants";
 import * as S from "../SignIn.styles";
 
+import { SEX_OPTIONS } from "@/lib/constants/variable";
+import { USER_INPUT_PLACEHOLDER, validation_user } from "@/lib/constants/userConstants";
+
 interface SignInStep2Props {
+  getValues: UseFormGetValues<SignInFormProps>;
   setValue: UseFormSetValue<SignInFormProps>;
   register: UseFormRegister<SignInFormProps>;
   errors: FieldErrors<SignInFormProps>;
 }
 
-interface CreateInputProps {
-  register: UseFormRegister<SignInFormProps>;
-  name: keyof SignInFormProps;
-  validation: {};
-  placeholder: string;
-  unit?: string;
-}
-
-const createInput = ({ register, name, validation, placeholder, unit }: CreateInputProps) => (
-  <S.InputWrapper>
-    <Input
-      type="number"
-      register={register(name, validation)}
-      placeholder={placeholder}
-      style={{
-        lineHeight: "2rem",
-        margin: "1.4rem 0",
-        width: "100%",
-        fontSize: "1.5rem",
-      }}
-    />
-    {unit && <S.UnitLabel>{unit}</S.UnitLabel>}
-  </S.InputWrapper>
-);
-
-const renderInputLabel = (error?: any, text?: string, style?: any) => {
-  return (
-    <InputLabel
-      type={error ? "danger" : undefined}
-      text={error ? error.message : text}
-      fontSize="1.5rem"
-      style={{ position: "absolute", ...style }}
-    />
-  );
-};
-
-const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
+const SignInStep2 = ({ getValues, setValue, register, errors }: SignInStep2Props) => {
   const theme = useTheme();
+
+  useEffect(() => {
+    const initState = getValues("sex");
+    if (initState) {
+      setSelectedSex(initState);
+    }
+  }, []);
 
   const { selectedSex, setSelectedSex } = useSignInModel();
   useEffect(() => {
     if (selectedSex) setValue("sex", selectedSex);
   }, [setValue, selectedSex]);
 
-  const handleSexSelect = (sex: "male" | "female") => {
+  const handleSexSelect = (sex: "MALE" | "FEMALE") => {
     setSelectedSex(sex);
     setValue("sex", sex);
   };
-
-  const birthDateInput = createInput({
-    register,
-    name: "birthDate",
-    validation: signInValidation.birthDate,
-    placeholder: "만 나이를 입력해주세요.",
-  });
-  const heightInput = createInput({
-    register,
-    name: "height",
-    validation: signInValidation.height,
-    placeholder: "키를 입력해주세요.",
-    unit: "cm",
-  });
-  const weightInput = createInput({
-    register,
-    name: "weight",
-    validation: signInValidation.weight,
-    placeholder: "체중을 입력해주세요.",
-    unit: "kg",
-  });
 
   return (
     <div className="h-full">
@@ -110,27 +63,36 @@ const SignInStep2 = ({ setValue, register, errors }: SignInStep2Props) => {
       </S.GenderSection>
 
       <S.BirthDateSection>
-        <S.BirthDateTitleWrapper>
-          <S.Title style={{ width: "4.5rem" }}>나이</S.Title>
-          {renderInputLabel(null, "14 ~ 100 사이의 값만 입력할 수 있어요!", {
-            color: theme?.gray_200,
-            marginLeft: "4.5rem",
-          })}
-        </S.BirthDateTitleWrapper>
-        {birthDateInput}
-        {renderInputLabel(errors?.birthDate)}
+        <UserEditInput
+          title={"나이"}
+          description="만 13세 이상부터 이용 가능합니다."
+          inputType={"date"}
+          placeholder={USER_INPUT_PLACEHOLDER.BIRTH_DATE}
+          register={register("birthDate")}
+          errorsMessage={errors.birthDate && errors.birthDate.message}
+        />
       </S.BirthDateSection>
 
       <S.PhysicalSection>
         <S.PhysicalGroup>
-          <S.Title>키</S.Title>
-          {heightInput}
-          {renderInputLabel(errors?.height)}
+          <UserEditInput
+            title={"키"}
+            unit={"cm"}
+            inputType={"number"}
+            placeholder={USER_INPUT_PLACEHOLDER.HEIGHT}
+            errorsMessage={errors.height && errors.height.message}
+            register={register("height", validation_user.height)}
+          />
         </S.PhysicalGroup>
         <S.PhysicalGroup>
-          <S.Title>체중</S.Title>
-          {weightInput}
-          {renderInputLabel(errors?.weight)}
+          <UserEditInput
+            title={"몸무게"}
+            unit={"kg"}
+            inputType={"number"}
+            placeholder={USER_INPUT_PLACEHOLDER.WEIGHT}
+            errorsMessage={errors.weight && errors.weight.message}
+            register={register("weight", validation_user.weight)}
+          />
         </S.PhysicalGroup>
       </S.PhysicalSection>
     </div>

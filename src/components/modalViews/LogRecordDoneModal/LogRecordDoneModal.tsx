@@ -6,6 +6,8 @@ import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import TimeChecker from "@/components/icons/TimeChecker";
 import FootPrint from "@/components/icons/FootPrint";
 import { LOG_RECORD_MESSAGE } from "@/app/log/record/LogRecord.constants";
+import Lottie from "react-lottie";
+import animationData from "./animationData.json";
 
 interface LogRecordDoneModalProps {
   logData: MasilRecordRequest;
@@ -22,9 +24,24 @@ interface ModalProps {
 const LogRecordDoneModal = ({ props }: ModalProps) => {
   const { onClickCancle, onClickUploadPost, logData } = props;
 
+  const defaultOptions = {
+    loop: false,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   return (
     <ModalLayout>
       <S.RecordDoneLayout>
+        <Lottie
+          options={defaultOptions}
+          height={150}
+          width={250}
+          isClickToPauseDisabled={true}
+        />
         <S.RecordDoneContainer>
           <S.HeaderTitle>{LOG_RECORD_MESSAGE.RECORD_DONE.MESSAGE}</S.HeaderTitle>
           <S.Text>{LOG_RECORD_MESSAGE.RECORD_DONE.PROPOSAL}</S.Text>

@@ -1,4 +1,4 @@
-import { SERVER_GET } from "../serverRootAPI";
+import { GET } from "../serverRootAPI";
 import { TEST_ENDPOINT } from "../endPoints";
 
 interface GetTest {
@@ -6,5 +6,5 @@ interface GetTest {
 }
 
 export const serverGetTest = async () => {
-  return await SERVER_GET<GetTest>({ endPoint: TEST_ENDPOINT.TEST });
+  return await GET<GetTest>({ endPoint: TEST_ENDPOINT.TEST });
 };

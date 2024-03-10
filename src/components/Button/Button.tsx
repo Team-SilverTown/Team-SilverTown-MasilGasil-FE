@@ -18,7 +18,7 @@ interface ButtonProps {
   disabled?: boolean;
   useRipple?: boolean;
   rippleColor?: string;
-  onClickHandler?: () => void;
+  onClickHandler?: (event: MouseEvent<HTMLButtonElement>) => void;
   handlerDelay?: number;
   [key: string]: any;
 }
@@ -60,9 +60,16 @@ const Button: React.FC<ButtonProps> = forwardRef(
 
     const handleClick = useCallback(
       (event: MouseEvent<HTMLButtonElement>) => {
-        rippleRef.current && rippleRef.current.createRipple(event);
+        const { current } = rippleRef;
+        current && current.createRipple(event);
+
+        if (handlerDelay === 0) {
+          onClickHandler(event);
+          return;
+        }
+
         setTimeout(() => {
-          onClickHandler();
+          onClickHandler(event);
         }, handlerDelay);
       },
       [onClickHandler, handlerDelay],
@@ -85,7 +92,7 @@ const Button: React.FC<ButtonProps> = forwardRef(
         {...rest}
       >
         {!isLoading ? <>{children}</> : <i className="pl-2 m-0 flex">{<LoadingDots />}</i>}
-        {useRipple && variant !== "neumorp" && !disabled && <RippleEffect ref={rippleRef} />}
+        {useRipple && !disabled && <RippleEffect ref={rippleRef} />}
       </ButtonWrapper>
     );
   },

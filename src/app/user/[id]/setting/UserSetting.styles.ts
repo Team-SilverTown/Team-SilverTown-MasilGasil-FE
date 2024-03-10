@@ -26,11 +26,3 @@ export const UserSettingTitle = styled.h6`
   font-size: ${FONT_SIZE.H6};
   font-weight: ${FONT_WEIGHT.BOLD};
 `;
-
-export const UserSettingDivideLine = styled.div`
-  width: 100%;
-  height: 2px;
-
-  background-color: ${({ theme }) => theme.gray_200};
-  border-radius: 2px;
-`;

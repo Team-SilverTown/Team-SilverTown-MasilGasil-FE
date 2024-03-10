@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import Sheet from "@/components/BottomSheet/sheet";
 
 export const LogEditLayout = styled.div`
   width: 100%;
@@ -54,36 +55,4 @@ export const LogEditPinList = styled.div`
   color: ${(props) => props.theme.gray_300};
 `;
 
-export const LogEditPinItem = styled.div`
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-`;
-
-export const PinIndex = styled.div<{ $backgroundcolor: string }>`
-  background-color: ${(props) => props.$backgroundcolor};
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: ${FONT_SIZE.H6};
-  font-weight: ${FONT_WEIGHT.BOLD};
-  color: ${(props) => props.theme.text_secondary_color};
-  flex-shrink: 0;
-  border-radius: 50%;
-`;
-
-export const SlideButtonContent = styled.div<{ $textColor: string }>`
-  width: 100%;
-  height: 100%;
-  padding: 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.6rem;
-  font-size: ${FONT_SIZE.LARGE};
-  color: ${({ $textColor }) => $textColor};
-`;
+export const MotionSheet = styled(Sheet)``;

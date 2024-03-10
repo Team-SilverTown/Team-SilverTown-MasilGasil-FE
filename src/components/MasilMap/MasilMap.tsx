@@ -7,13 +7,13 @@ import CustomPin from "./components/CustomPin/CustomPin";
 import Theme from "@/styles/theme";
 
 import { debounce, throttle } from "lodash";
-import { useEffect, useRef, useState } from "react";
-import useMapCenterStore from "./store/useMapCenterStore";
+import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
+import useMasilMapStore from "./store/useMasilMapStore";
 
 interface MasilMapProps {
   center: GeoPosition;
-  path: GeoPosition[];
-  pins: Pin[];
+  path?: GeoPosition[];
+  pins?: Pin[];
 
   mapWidth?: string;
   mapHeight?: string;
@@ -32,12 +32,15 @@ interface MasilMapProps {
   pathOpacity?: number;
   pathWeight?: PathLineWeight;
 
-  onClickPin: OnClickPin;
+  onClickPin?: OnClickPin;
   pinSize?: number;
   pinColor?: string;
   pinSelectColor?: string;
   pinFontColor?: string;
   selectedPinIndex?: number;
+
+  style?: CSSProperties;
+  innerElement?: ReactNode;
 }
 
 /**
@@ -67,6 +70,9 @@ interface MasilMapProps {
  * @param pinSelectColor 선택된 핀의 색상을 변경 - type : string
  * @param pinFontColor 핀 내부 폰트의 색상을 변경 - type : string
  * @param selectedPinIndex 현재 선택된 핀의 index 번호 - type : number
+ *
+ * @param style map의 스타일을 지정
+ * @param innerElement 별도의 원하는 Custom Map 요소
  */
 const MasilMap = ({
   center,
@@ -96,9 +102,13 @@ const MasilMap = ({
   pinSelectColor,
   pinFontColor,
   selectedPinIndex,
+
+  style,
+  innerElement,
 }: MasilMapProps) => {
   const [outCenterPosition, setOutCenterPosition] = useState<GeoPosition>({ lat: 0, lng: 0 });
-  const { isOutCenter, setIsOutCenter } = useMapCenterStore();
+  const { isOutCenter, setIsOutCenter, isActiveMapResizing, setIsActiveMapResizing } =
+    useMasilMapStore();
   const mapRef = useRef<kakao.maps.Map | null>(null);
 
   /**
@@ -137,9 +147,12 @@ const MasilMap = ({
     const { current } = mapRef;
 
     if (current) {
-      current.relayout();
+      setTimeout(() => {
+        current.relayout();
+      }, 200);
     }
-  }, [mapHeight, mapWidth]);
+    setIsActiveMapResizing(false);
+  }, [mapHeight, mapWidth, isActiveMapResizing]);
 
   return (
     <Map
@@ -155,7 +168,9 @@ const MasilMap = ({
         height: mapHeight,
         zIndex: 0,
         position: "relative",
+        ...style,
       }}
+      isPanto
     >
       {isShowCenterMarker && (
         <CenterMarker
@@ -165,7 +180,7 @@ const MasilMap = ({
         />
       )}
 
-      {path.length !== 0 && (
+      {path && path.length !== 0 && (
         <PathLine
           path={path}
           onCreatePathLine={onCreatePathLine}
@@ -175,14 +190,15 @@ const MasilMap = ({
         />
       )}
 
-      {pins.length !== 0 &&
+      {pins &&
+        pins.length !== 0 &&
         pins.map(({ point }, index) => (
           <CustomPin
             key={`${point.lat}${point.lng}${index}`}
             position={point}
             size={pinSize}
             onClickPin={() => {
-              onClickPin(index);
+              onClickPin && onClickPin(index);
             }}
             pinIndex={index + 1}
             pinColor={
@@ -193,6 +209,8 @@ const MasilMap = ({
             isSelected={selectedPinIndex === index}
           />
         ))}
+
+      {innerElement}
     </Map>
   );
 };

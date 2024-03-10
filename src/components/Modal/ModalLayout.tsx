@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect, useCallback } from "react";
+import { FC, useRef, useEffect, useCallback, CSSProperties } from "react";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 
 import { useUI } from "@components/uiContext/UiContext";
@@ -19,6 +19,7 @@ interface ModalLayoutProps {
   children?: any;
   modalTitle?: string;
   onHandleClose?: () => void | null;
+  style?: CSSProperties;
   // onEnter?: () => void | null;
 }
 
@@ -27,6 +28,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
   children,
   onHandleClose,
   modalTitle = "",
+  style,
 }) => {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
@@ -64,6 +66,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
       ref={ref}
       role="dialog"
       className={className}
+      style={style}
     >
       <ModalLayoutHeader>
         <ModalHeaderTitle>{modalTitle}</ModalHeaderTitle>

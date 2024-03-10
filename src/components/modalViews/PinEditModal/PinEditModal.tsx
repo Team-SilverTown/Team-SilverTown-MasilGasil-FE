@@ -6,14 +6,14 @@ import Image from "@/components/icons/Image";
 import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
 import { Button, Textarea } from "@/components";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { Trash } from "@/components/icons";
+import InputUpload from "@/components/InputUpload/InputUpload";
 
 interface PinEditModalProps {
   onClickAccept: (imageUrl: string | null, pinContent: string | null) => void;
   pin: Pin;
   pinIndex: number;
-  onUploadThumbnail: (pinIndex: number, image: File) => void;
+  // onUploadThumbnail: (pinIndex: number, image: File) => void;
   onClickRemove: (pinIndex: number) => void;
 }
 
@@ -21,13 +21,17 @@ interface ModalProp {
   props: PinEditModalProps;
 }
 
+interface PinEditType {
+  pinContent: string;
+  pinImage: File | null;
+}
+
 const PinEditModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
-  const { onClickAccept, pin, pinIndex, onUploadThumbnail, onClickRemove } = props;
-  const { register, watch } = useForm();
-  const watchPinMemo = watch("pinContent");
-
-  const [imageURL, setImageURL] = useState(null);
+  const { onClickAccept, pin, pinIndex, onClickRemove } = props;
+  const { register, setValue, getValues, handleSubmit } = useForm<PinEditType>({
+    defaultValues: { pinContent: pin.content, pinImage: null },
+  });
 
   if (!onClickAccept) {
     closeModal();
@@ -41,26 +45,29 @@ const PinEditModal = ({ props }: ModalProp) => {
     // TODO: ImageURL State를 반환받은 URL로 갱신
   };
 
+  const handleValid = ({ pinContent, pinImage }: PinEditType) => {
+    // Image 업로드 후 Url 반ㅌ환 작업
+
+    onClickAccept(null, pinContent);
+  };
   return (
     <ModalLayout modalTitle="핀 수정하기">
       <S.PinEditLayout>
-        <S.PinEditThumbnail onClick={handleImageUpload}>
-          {imageURL ? (
-            <S.Image $src={imageURL} />
-          ) : (
-            <>
-              <Image
-                width={40}
-                fill={Theme.lightTheme.gray_300}
-              />
-              클릭하여 썸네일 업로드
-            </>
-          )}
-        </S.PinEditThumbnail>
+        <InputUpload
+          updateFile={(image: File | null) => setValue("pinImage", image)}
+          previewValue={pin.thumbnailUrl}
+        >
+          <S.PinEditThumbnail>
+            <Image
+              width={40}
+              fill={Theme.lightTheme.gray_300}
+            />
+            클릭하여 썸네일 업로드
+          </S.PinEditThumbnail>
+        </InputUpload>
         <S.PinEditContainer>
           <S.Header>핀 메모</S.Header>
 
-          {/* TODO: TextArea로 변경? */}
           <Textarea
             register={register("pinContent")}
             placeholder={pin.content ? pin.content : "핀에 대한 간단한 메모를 작성해주세요."}
@@ -74,9 +81,7 @@ const PinEditModal = ({ props }: ModalProp) => {
             fontWeight: FONT_WEIGHT.BOLD,
             fontSize: FONT_SIZE.LARGE,
           }}
-          onClickHandler={() => {
-            onClickAccept(imageURL, watchPinMemo);
-          }}
+          onClickHandler={handleSubmit(handleValid)}
         >
           수정 완료
         </Button>
