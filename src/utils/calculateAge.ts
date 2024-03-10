@@ -4,7 +4,7 @@ const calculateAge = (birthDate: string): number => {
 
   let age = today.getFullYear() - birthday.getFullYear();
   const monthDifference = today.getMonth() - birthday.getMonth();
-  birthday;
+
   if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthday.getDate())) {
     age--;
   }
