@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { ModalLayout } from "@/components/Modal";
 import Image from "@/components/icons/Image";
 import { Button } from "@/components";
@@ -17,14 +16,10 @@ interface ModalProp {
 
 const PinEditModal = ({ props }: ModalProp) => {
   const { onClickAccept } = props;
-  const { register, setValue, watch } = useForm();
-
   const [profileImage, setProfileImage] = useState("");
 
-  const imageFile = watch("profile");
-
-  useEffect(() => {
-    if (!(imageFile instanceof File)) {
+  const handleProfileImage = (file: File | null) => {
+    if (!(file instanceof File)) {
       return;
     }
 
@@ -36,8 +31,8 @@ const PinEditModal = ({ props }: ModalProp) => {
       }
     };
 
-    reader.readAsDataURL(imageFile);
-  }, [imageFile]);
+    reader.readAsDataURL(file);
+  };
 
   const handleChangeProfileImage = () => {
     if (profileImage) {
@@ -51,11 +46,7 @@ const PinEditModal = ({ props }: ModalProp) => {
   return (
     <ModalLayout modalTitle="프로필 이미지 수정">
       <S.ProfileEditLayout>
-        <InputUpload
-          register={register("profile")}
-          name="profile"
-          setValue={setValue}
-        >
+        <InputUpload updateFile={handleProfileImage}>
           <S.ProfileEditThumbnail>
             {profileImage ? (
               <S.ProfileImage $src={profileImage} />
