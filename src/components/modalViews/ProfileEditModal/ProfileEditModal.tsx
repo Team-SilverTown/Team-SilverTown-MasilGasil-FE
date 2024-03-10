@@ -39,6 +39,15 @@ const PinEditModal = ({ props }: ModalProp) => {
     reader.readAsDataURL(imageFile);
   }, [imageFile]);
 
+  const handleChangeProfileImage = () => {
+    if (profileImage) {
+      onClickAccept(profileImage);
+      return;
+    }
+
+    alert("업로드한 이미지가 존재하지 않습니다.");
+  };
+
   return (
     <ModalLayout modalTitle="프로필 이미지 수정">
       <S.ProfileEditLayout>
@@ -69,13 +78,7 @@ const PinEditModal = ({ props }: ModalProp) => {
             fontWeight: FONT_WEIGHT.BOLD,
             fontSize: FONT_SIZE.LARGE,
           }}
-          onClickHandler={() => {
-            if (profileImage) {
-              onClickAccept(profileImage);
-            } else {
-              alert("업로드한 이미지가 존재하지 않습니다.");
-            }
-          }}
+          onClickHandler={handleChangeProfileImage}
         >
           수정 완료
         </Button>
