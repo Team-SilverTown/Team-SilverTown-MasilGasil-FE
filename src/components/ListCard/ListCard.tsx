@@ -3,8 +3,7 @@
 import * as S from "./ListCard.styles";
 import { Heart } from "../icons";
 import { CSSProperties } from "react";
-import { convertSeconds } from "@/utils/convertSeconds";
-import { convertMeter } from "@/utils/convertMeter";
+import { convertSeconds, convertMeter } from "@/utils";
 
 export interface ListCardProps {
   isRecruit: boolean;

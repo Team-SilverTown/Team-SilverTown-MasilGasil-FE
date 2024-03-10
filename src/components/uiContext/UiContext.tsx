@@ -11,6 +11,7 @@ import {
   PinEditModal,
   LogRecordAlertModal,
   TestModal,
+  ProfileEditModal,
   MateCreateMapModal,
   ConfirmModal,
 } from "@components/modalViews";
@@ -78,6 +79,7 @@ const ModalView = ({
       {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
       {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
       {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
+      {modalView === "PROFILE_EDIT_VIEW" && <ProfileEditModal props={props} />}
       {modalView === "MATE_CREATE_MAP_VIEW" && <MateCreateMapModal props={props} />}
       {modalView === "MATE_LOCATION_MAP_VIEW" && <MateLocationMapModal props={props} />}
     </Modal>
