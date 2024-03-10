@@ -1,6 +1,11 @@
+import { MeResponse } from "@/types/Response";
 import S from "./MyWalkRecord.module.css";
 
-const MyWalkRecord = () => {
+interface MyWalkRecordProps {
+  userInfo: MeResponse;
+}
+
+const MyWalkRecord = ({ userInfo }: MyWalkRecordProps) => {
   return (
     <article className={S.MyWalkRecordContainer}>
       <h3>000님, 먹어서 응원해요!</h3>
