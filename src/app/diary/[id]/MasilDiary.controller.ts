@@ -2,12 +2,10 @@
 
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import dummyMasils from "./dummyMasils.json";
-import { MasilProps } from "./components/MasilDiarySheet/MasilDiarySheet";
 import { debounce } from "lodash";
 import { useQuery } from "@tanstack/react-query";
 import getMasilsByPeriod from "@/lib/api/MasilDiary/getMasilsByPeriod";
-import { MasilsByPeriodResponse } from "@/types/Response";
+import { MasilsByPeriod, MasilsByPeriodResponse } from "@/types/Response";
 import { MASIL_KEY } from "@/lib/api/queryKeys";
 
 const useMasilDiaryController = () => {
@@ -20,9 +18,9 @@ const useMasilDiaryController = () => {
   const [currentTabIdx, setCurrentTabIdx] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [masils, setMasils] = useState(dummyMasils);
-  const [dailyMasils, setDailyMasils] = useState<MasilProps[] | null>(null);
-  const [monthlyMasils, setMonthlyMasils] = useState<Date[]>([]);
+  const [dailyMasils, setDailyMasils] = useState<MasilsByPeriod[] | null>(null);
+  const [monthlyMasils, setMonthlyMasils] = useState<MasilsByPeriod[] | null>(null);
+  const [monthlyMasilsDate, setMonthlyMasilsDate] = useState<Date[]>([]);
 
   const { data: masilData, isLoading } = useQuery<MasilsByPeriodResponse>({
     queryKey: [MASIL_KEY.MASILS_PERIOD_GET, startDateParam],
@@ -31,20 +29,36 @@ const useMasilDiaryController = () => {
     staleTime: 0,
   });
 
+  /**
+   * @useEffect
+   * @deps masilData
+   * @brief 서버에서 조회한 기간별 마실 기록을 일,월 기준으로 필터링합니다. 필터링한 결과를 dailyMasils, monthlyMasils에 할당합니다.
+   */
   useEffect(() => {
     const selectedDate = date?.toLocaleDateString("en-CA"); // yyyy-mm-dd
-    const tempDailyMasils = masils.contents.filter((m) => m.date === selectedDate);
-    const tempMothlyMasils = masils.contents.map((m) => new Date(m.date));
 
-    if (tempDailyMasils[0]) {
-      setDailyMasils(tempDailyMasils[0]?.masils);
-    } else {
-      setDailyMasils(null);
+    if (masilData && masilData.masils.length > 0) {
+      // 데이터가 정상적으로 수신되었고, 해당 월에 마실 기록이 존재할 때 (산책을 했을 때)
+      const tempDailyMasils = masilData.masils.filter((m) => m.date === selectedDate)[0].masils;
+      const tempMonthlyMasils = masilData.masils
+        .map((m) => m.masils)
+        .flat()
+        .filter((e): e is MasilsByPeriod => e !== undefined);
+      const tempMothlyMasilsDate = masilData.masils
+        .map((m) => m.date && new Date(m.date))
+        .filter((e): e is Date => e !== undefined && e !== "");
+
+      if (tempDailyMasils) setDailyMasils(tempDailyMasils);
+      if (tempMonthlyMasils) setMonthlyMasils(tempMonthlyMasils);
+      if (tempMothlyMasilsDate) setMonthlyMasilsDate(tempMothlyMasilsDate);
     }
+  }, [masilData]);
 
-    setMonthlyMasils(tempMothlyMasils);
-  }, [date]);
-
+  /**
+   * @useEffect
+   * @deps startDateParam
+   * @brief 쿼리스트링을 통해 받아오는 startDateParam가 변경될 때마다 date를 갱신합니다. date는 캘린더 컴포넌트가 표시할 날짜를 결정합니다.
+   */
   useEffect(() => {
     if (startDateParam) {
       setDate(new Date(startDateParam));
@@ -86,20 +100,23 @@ const useMasilDiaryController = () => {
     }
   };
 
+  /**
+   * @function handleClickToday
+   * @breif 현재 시각으로 날짜를 갱신합니다.
+   */
   const handleClickToday = () => {
     setDate(new Date());
     router.push(`/diary/${id}`);
   };
 
-  // TODO: 쿼리 파라미터를 조회하여 서버에 GET 요청, 해당 기간의 로그 기록 데이터를 받아옴
-  // TODO: View는 로그 기록 데이터를 프롭으로 받고, 내부에서 처리
   return {
+    masilData,
     date,
     isSheetOpen,
     currentTabIdx,
-    masils,
     dailyMasils,
     monthlyMasils,
+    monthlyMasilsDate,
     setDate,
     setIsSheetOpen,
     setCurrentTabIdx,

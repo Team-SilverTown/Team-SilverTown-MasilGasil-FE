@@ -8,7 +8,7 @@ export const Section = styled.div`
   color: ${(props) => props.theme.gray_300};
 `;
 
-export const MonthMasils = { backgroundColor: "#B9DB56", color: "white", borderRadius: "50%" };
+export const MonthlyMasils = { backgroundColor: "#B9DB56", color: "white", borderRadius: "50%" };
 
 export const CalenderWrapper = styled.div`
   width: 100%;

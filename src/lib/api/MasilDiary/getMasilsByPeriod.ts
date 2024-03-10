@@ -9,9 +9,6 @@ const getMasilsByPeriod = async ({
   startDate: string | null;
   endDate: string | null;
 }) => {
-  console.log(
-    `/api${MASIL_ENDPOINT.PERIODIC_GET}?startDate=${startDate ? startDate : ""}&endDate=${endDate ? endDate : ""}`,
-  );
   return await GET<MasilsByPeriodResponse>({
     endPoint: `/api${MASIL_ENDPOINT.PERIODIC_GET}?startDate=${startDate ? startDate : ""}&endDate=${endDate ? endDate : ""}`,
     auth: true,

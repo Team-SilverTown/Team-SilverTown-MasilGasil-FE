@@ -4,11 +4,12 @@ import { Z_INDEX } from "@/styles/theme";
 import DiaryItem from "../DiaryItem/DiaryItem";
 import * as S from "./MasilDiarySheet.styles";
 import { easeIn } from "framer-motion";
+import { MasilsByPeriod } from "@/types/Response";
 
 interface MasilDiarySheetProps {
   isSheetOpen: boolean;
   setIsSheetOpen: (value: boolean) => void;
-  masils: MasilProps[] | null;
+  masils: MasilsByPeriod[] | null;
   date: Date | undefined;
 }
 

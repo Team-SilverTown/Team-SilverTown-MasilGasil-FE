@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import useMasilDiaryController from "./MasilDiary.controller";
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "./MasilDiary.styles";
@@ -18,18 +18,18 @@ import Theme from "@/styles/theme";
 
 const MasilDiaryView = () => {
   const {
+    masilData,
     currentTabIdx,
     date,
     isSheetOpen,
-    masils,
     dailyMasils,
     monthlyMasils,
+    monthlyMasilsDate,
     setCurrentTabIdx,
-    setDate,
     setIsSheetOpen,
     handleSelectDate,
     handleChangeMonth,
-    handleClickToday
+    handleClickToday,
   } = useMasilDiaryController();
 
   return (
@@ -56,8 +56,8 @@ const MasilDiaryView = () => {
                 onSelect={handleSelectDate}
                 className="rounded-md"
                 month={date}
-                modifiers={{ booked: monthlyMasils }}
-                modifiersStyles={{ booked: S.MonthMasils }}
+                modifiers={{ booked: monthlyMasilsDate ? monthlyMasilsDate : [] }}
+                modifiersStyles={{ booked: S.MonthlyMasils }}
               />
             </S.CalenderWrapper>
             <S.Wrapper>
@@ -65,11 +65,7 @@ const MasilDiaryView = () => {
                 width={13}
                 fill={Theme.lightTheme.gray_300}
               />
-              <S.SubText
-                onClick={handleClickToday}
-              >
-                Today
-              </S.SubText>
+              <S.SubText onClick={handleClickToday}>Today</S.SubText>
             </S.Wrapper>
 
             <MonthlyStatistics month={date?.getMonth()} />
@@ -88,19 +84,17 @@ const MasilDiaryView = () => {
           <>
             <DaylessCalendar
               mode="single"
+              month={date}
               onMonthChange={handleChangeMonth}
             />
-            {/* TODO: 쿼리스트링에 따른 masils 데이터를 받아와, 해당 월의 기록을 출력*/}
-            {masils.contents ? (
-              masils.contents.map((masil) => {
-                return masil.masils.map((m, i) => {
-                  return (
-                    <DiaryItem
-                      masil={m}
-                      key={m.id}
-                    />
-                  );
-                });
+            {monthlyMasils && monthlyMasils.length > 0 ? (
+              monthlyMasils.map((masil) => {
+                return (
+                  <DiaryItem
+                    masil={masil}
+                    key={masil.id}
+                  />
+                );
               })
             ) : (
               <S.Section>기록이 존재하지 않습니다</S.Section>
