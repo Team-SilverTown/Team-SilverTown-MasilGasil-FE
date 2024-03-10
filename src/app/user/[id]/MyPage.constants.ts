@@ -274,7 +274,7 @@ export const USERINFO_DUMMY_DATA: UserInfoType = {
 export const RECORDLIST_DUMMY_DATA: MyRecordListType[] = [
   {
     title: "내 최근 산책 기록",
-    urlLink: "/more?keyword=my_log&order=latest",
+    urlLink: "/diary/test",
     recordList: MASILS_DUMMY_DATA, // 이 값은 추후 API 데이터로 변경
     type: "Masils",
   },
