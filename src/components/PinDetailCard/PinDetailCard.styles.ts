@@ -24,7 +24,8 @@ export const PinDetailCardLayout = styled.div<PinDetailCardLayoutProps>`
   position: relative;
 
   width: 100%;
-  max-height: 17rem;
+  aspect-ratio: 390 / 200;
+  max-height: 18rem;
   border-radius: ${(props) => `${props.$borderRadius}px`};
 `;
 
