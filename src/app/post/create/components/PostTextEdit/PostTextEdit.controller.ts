@@ -7,9 +7,7 @@ const usePostTextEditController = () => {
   const { postData, thumbnail, setThumbnail, pageStep, setPageStep, handleCompleteStepOne } =
     usePostCreateContext();
 
-  const [isPublic, setIsPublic] = useState(() => {
-    return postData.isPublic;
-  });
+  const [isPublic, setIsPublic] = useState(postData.isPublic);
   const { register, setValue, watch, formState, handleSubmit } = useForm<PostCreateInputValue>({
     defaultValues: { content: "", title: "" },
     mode: "onChange",
@@ -45,7 +43,6 @@ const usePostTextEditController = () => {
     postData,
     pageStep,
     register,
-    setValue,
     errors,
     isPublic,
     setIsPublic,

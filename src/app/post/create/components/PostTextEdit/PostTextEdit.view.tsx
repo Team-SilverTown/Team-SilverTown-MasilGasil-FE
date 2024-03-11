@@ -1,7 +1,6 @@
 "use client";
 
 import * as GS from "../../PostCreate.styles";
-import * as S from "./PostTextEdit.styles";
 
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
@@ -14,7 +13,6 @@ const PostTextEditView = () => {
   const {
     postData,
     register,
-    setValue,
     errors,
     isPublic,
     setIsPublic,
