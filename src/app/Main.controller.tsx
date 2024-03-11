@@ -19,14 +19,6 @@ const MainController = () => {
   //   })();
   // }, []);
 
-  // 추가된 부분
-  const handleKakao = async () => {
-    const result = await signIn("kakao", {
-      redirect: true,
-      callbackUrl: "/",
-    });
-  };
-
   return <MainView isLogIn={isLogIn} />;
 };
 

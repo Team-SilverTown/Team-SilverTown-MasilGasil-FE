@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import useEventQuery from "@/lib/hooks/useEventQuery";
 import { checkDuplicateNickname } from "@/lib/api/User/client";
 import { SignUpRequest } from "@/types/Request/User";
+import { CheckNickNameResponse } from "@/types/Response";
 
 export interface SignInFormProps extends SignUpRequest {}
 
@@ -58,7 +59,7 @@ const SignInController = () => {
     data: duplicatedResult,
     isLoading: isDuplicateLoading,
     refetch: duplicateRefetch,
-  } = useEventQuery({
+  } = useEventQuery<CheckNickNameResponse>({
     key: ["me"],
     queryFn: async () => await checkDuplicateNickname(name),
   });

@@ -1,12 +1,16 @@
 "use client";
 
+import { PropsWithChildren, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+
 import useAuthStore from "@/stores/useAuthStore";
 import useMeStore from "@/stores/useMeStore";
 import { MeResponse } from "@/types/Response";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { PropsWithChildren, useEffect } from "react";
+
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { pathAbleCheck } from "@/utils/pathAbleCheck";
+
+export const REDIRECT_INABLE_PATHS = ["/", "/signin*", "/auth*"];
 
 const AuthLoader = ({
   children,
@@ -16,29 +20,37 @@ const AuthLoader = ({
   // me 데이터 패치
   // zustand 에 필요한 상태 갱신
   const route = useRouter();
+  const currentPathName = usePathname();
 
   const { setAuth } = useAuthStore();
   const { setMe, initMe } = useMeStore();
   const [_, setToken] = useLocalStorage("serviceToken");
 
-  // console.log(serviceToken, me);
+  const redirectInable = pathAbleCheck(REDIRECT_INABLE_PATHS, currentPathName);
 
   useEffect(() => {
+    console.log("authLoader (토큰, me)", serviceToken, me);
+
     if (serviceToken && me && me.nickname) {
+      // 인증된 유저인 경우
       setAuth({ isLogIn: true, serviceToken });
       setMe({ ...me });
       setToken(serviceToken);
-      setTimeout(() => {
-        route.push("/home");
-      }, 2000);
+      if (redirectInable) {
+        currentPathName === "/"
+          ? setTimeout(() => {
+              route.replace("/home");
+            }, 2000)
+          : route.replace("/home");
+      }
     } else {
+      // 인증 실패, 가인증 유저인 경우 
       setAuth({ isLogIn: false, serviceToken: undefined });
       initMe();
       setToken(null);
+      route.replace("/");
     }
   }, [serviceToken, me]);
-
-  // console.log("LAYOUT", session);
 
   return <>{children}</>;
 };
