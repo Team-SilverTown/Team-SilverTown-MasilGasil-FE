@@ -1,9 +1,8 @@
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import * as S from "./Post.styles";
-import { PostsDataType, TAB_CONTENTS } from "./Post.constants";
-import { MeResponse } from "@/types/Response";
-import { PostTabType } from "./Post.types";
+import { TAB_CONTENTS } from "./Post.constants";
+import { MateDummyType, PostTabType, UserDummyType } from "./Post.types";
 import { GeoPosition } from "@/types/OriginDataType";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Button, Tab } from "@/components";
@@ -13,35 +12,35 @@ import PostMemo from "./components/PostMemo/PostMemo";
 import PostMate from "./components/PostMate/PostMate";
 import PostKebabMenu from "./components/PostKebabMenu/PostKebabMenu";
 import Link from "next/link";
-import useMeStore from "@/stores/useMeStore";
+import { PostDetailResponse } from "@/types/Response/Post";
 
 interface PostViewProps {
-  postId: number;
-  postsData: PostsDataType;
-  userInfo: MeResponse;
+  postId: string;
+  postData: PostDetailResponse;
+  userInfo: UserDummyType;
   tabIndex: PostTabType;
   currentPinIndex: number;
   mapCenter: GeoPosition;
-  setTabIndex: React.Dispatch<React.SetStateAction<PostTabType>>;
   handlePinIndex: (index: number) => void;
   handleClickCenter: () => void;
+  handleClickTab: (index: number) => void;
+  mateData: MateDummyType[];
 }
 
 const PostView = ({
   postId,
-  postsData,
+  postData,
   userInfo,
   tabIndex,
   currentPinIndex,
   mapCenter,
-  setTabIndex,
   handlePinIndex,
   handleClickCenter,
+  handleClickTab,
+  mateData,
 }: PostViewProps) => {
-  const { userId, nickname, profileImg, sex, birthDate, height, weight, exerciseIntensity } =
-    useMeStore();
+  const { lat: firstLat, lng: firstLng } = postData.path[0];
 
-  console.log(userId);
   return (
     <>
       <TopNavigator
@@ -50,7 +49,7 @@ const PostView = ({
       />
       <S.PostContainer>
         <PostMapSection
-          postsData={postsData}
+          postData={postData}
           currentPinIndex={currentPinIndex}
           mapCenter={mapCenter}
           handlePinIndex={handlePinIndex}
@@ -63,32 +62,28 @@ const PostView = ({
               fontWeight: `${FONT_WEIGHT.BOLD}`,
             }}
             tabContents={TAB_CONTENTS}
-            tabClickHandler={(index) => {
-              setTabIndex(index);
-            }}
+            tabClickHandler={handleClickTab}
             focusedTab={tabIndex}
           />
 
           <S.PostContentSection className="scrollbar-hide">
             {tabIndex === PostTabType.Memo && (
               <PostMemo
-                distance={1100}
-                totalTime={3600}
                 userInfo={userInfo}
-                address={`${postsData.depth1} ${postsData.depth2}`}
+                postData={postData}
               />
             )}
             {tabIndex === PostTabType.Pin && (
               <PostPin
-                pins={postsData.pins}
+                pins={postData.pins}
                 currentPinIndex={currentPinIndex}
                 handlePinIndex={handlePinIndex}
               />
             )}
-            {tabIndex === PostTabType.Mate && <PostMate />}
+            {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
           </S.PostContentSection>
           {(tabIndex === PostTabType.Memo || tabIndex === PostTabType.Pin) && (
-            <Link href="/post/:id">
+            <Link href={`/log/record?postId=${postId}`}>
               <Button
                 width="calc(100% - 3rem)"
                 textColor={Theme.lightTheme.white}
@@ -107,7 +102,7 @@ const PostView = ({
             </Link>
           )}
           {tabIndex === PostTabType.Mate && (
-            <Link href="/mate/create?lat=lat&lng=lng">
+            <Link href={`/mate/create?lat=${firstLat}&lng=${firstLng}`}>
               <Button
                 width="calc(100% - 3rem)"
                 textColor={Theme.lightTheme.white}
