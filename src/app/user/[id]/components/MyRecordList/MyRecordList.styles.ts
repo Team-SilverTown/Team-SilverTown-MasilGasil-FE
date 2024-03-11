@@ -1,3 +1,4 @@
+import { FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const BorderContainer = styled.div`
@@ -9,13 +10,13 @@ export const BorderTitleSection = styled.div`
   align-items: center;
   h3 {
     font-size: 1.8rem;
-    font-weight: 900;
+    font-weight: ${FONT_WEIGHT.BLACK};
     color: ${(props) => props.theme.black};
   }
 
   a {
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: ${FONT_WEIGHT.MEDIUM};
     color: ${(props) => props.theme.gray_500};
   }
 `;
@@ -23,7 +24,7 @@ export const BorderContentSection = styled.div`
   margin-top: 1.2rem;
 `;
 
-export const BorderContentListWrapper = styled.div`
+export const BorderContentListWrapper = styled.ul`
   display: flex;
   overflow-x: auto;
   -ms-overflow-style: none; /* IE, Edge */
@@ -32,10 +33,10 @@ export const BorderContentListWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
-  & > div:not(:last-child) {
+  & > li:not(:last-child) {
     margin-right: 1.5rem;
   }
-  & > div {
+  & > li {
     flex-shrink: 0;
   }
 `;

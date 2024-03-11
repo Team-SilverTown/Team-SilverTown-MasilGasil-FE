@@ -57,6 +57,14 @@ export default withPWA(
           },
         ];
       },
+      images: {
+        remotePatterns: [
+          {
+            protocol: "https",
+            hostname: "github.com",
+          },
+        ],
+      },
       images: { domains: ["masilgasil-s3.s3.amazonaws.com"] },
     }),
   ),

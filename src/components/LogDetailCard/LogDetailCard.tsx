@@ -1,19 +1,24 @@
 "use client";
 
 import { CSSProperties, useState } from "react";
-import * as S from "./LogDetailCard.style";
+import Image from "next/image";
+import { calculateWalkingCalories } from "@/utils";
+import { MeResponse } from "@/types/Response";
 import { Heart, KebabMenu } from "../icons";
+import * as S from "./LogDetailCard.style";
 
 export interface LogDetailCardProps {
   title: string;
   content: string;
-  thumbnailURL: string;
+  thumbnailUrl: string | null;
   distance: string;
+  totalDistance: number;
   totalTime: string;
   likeCount: number;
   isLiked: boolean;
   isLikeLayout: boolean;
   isSettingLayout: boolean;
+  userInfo: MeResponse;
   style?: CSSProperties;
   onDetailClick: () => void;
   onLikeClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -22,18 +27,24 @@ export interface LogDetailCardProps {
 const LogDetailCard = ({
   title,
   content,
-  thumbnailURL,
+  thumbnailUrl,
   distance,
+  totalDistance,
   totalTime,
   likeCount,
   isLiked,
   isLikeLayout,
   isSettingLayout,
+  userInfo,
   style,
   onDetailClick,
   onLikeClick,
 }: LogDetailCardProps) => {
   const [isSettingToggle, setIsSetingToggle] = useState(false);
+  const { isUserInfoCheck, calories } = calculateWalkingCalories({
+    userInfo,
+    distance: totalDistance,
+  });
 
   const handleDetailViewClick = () => {
     if (isSettingToggle) {
@@ -65,8 +76,18 @@ const LogDetailCard = ({
       style={style}
       onClick={handleDetailViewClick}
     >
-      <S.LogDetailCardThumbnail thumbnailURL={thumbnailURL} />
-      <S.LogDetailCardInfo isSettingLayout={isSettingLayout}>
+      <S.LogDetailCardThumbnail>
+        {thumbnailUrl && (
+          <Image
+            src={thumbnailUrl}
+            alt={title}
+            sizes="100%"
+            fill
+            priority
+          />
+        )}
+      </S.LogDetailCardThumbnail>
+      <S.LogDetailCardInfo $isSettingLayout={isSettingLayout}>
         <div className="infoTopSection">
           <div className="infoTitle">
             <h3>{title}</h3>
@@ -78,7 +99,7 @@ const LogDetailCard = ({
           <ul className="walkInfo">
             <li>{totalTime}</li>
             <li>{distance}</li>
-            <li>244kcal</li>
+            {isUserInfoCheck && <li>{calories}kcal</li>}
           </ul>
           {isLikeLayout && (
             <div
