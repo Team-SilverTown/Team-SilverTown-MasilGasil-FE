@@ -53,28 +53,30 @@ const MasilDiarySheet = ({ isSheetOpen, setIsSheetOpen, masils, date }: MasilDia
           }}
         >
           <Sheet.Header />
-          <S.HeaderContainer>
-            <S.Text>{dateArr && `${dateArr[0]}년 ${dateArr[1]}월 ${dateArr[2]}일`}</S.Text>
-            <S.SubText
-              onClick={() => {
-                setIsSheetOpen(false);
-              }}
-            >
-              닫기
-            </S.SubText>
-          </S.HeaderContainer>
-          <S.ItemWrapper>
-            {masils
-              ? masils.map((masil) => {
-                  return (
-                    <DiaryItem
-                      masil={masil}
-                      key={masil.id}
-                    />
-                  );
-                })
-              : "기록이 존재하지 않습니다"}
-          </S.ItemWrapper>
+          <Sheet.Content>
+            <S.HeaderContainer>
+              <S.Text>{dateArr && `${dateArr[0]}년 ${dateArr[1]}월 ${dateArr[2]}일`}</S.Text>
+              <S.SubText
+                onClick={() => {
+                  setIsSheetOpen(false);
+                }}
+              >
+                닫기
+              </S.SubText>
+            </S.HeaderContainer>
+            <S.ItemWrapper>
+              {masils
+                ? masils.map((masil) => {
+                    return (
+                      <DiaryItem
+                        masil={masil}
+                        key={masil.id}
+                      />
+                    );
+                  })
+                : "기록이 존재하지 않습니다"}
+            </S.ItemWrapper>
+          </Sheet.Content>
         </Sheet.Container>
       </Sheet>
     </>

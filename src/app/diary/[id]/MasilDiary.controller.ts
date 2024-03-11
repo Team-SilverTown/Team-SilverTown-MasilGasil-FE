@@ -39,7 +39,9 @@ const useMasilDiaryController = () => {
 
     if (masilData && masilData.masils.length > 0) {
       // 데이터가 정상적으로 수신되었고, 해당 월에 마실 기록이 존재할 때 (산책을 했을 때)
-      const tempDailyMasils = masilData.masils.filter((m) => m.date === selectedDate)[0].masils;
+      const tempDailyMasils = masilData.masils.filter((m) => m.date === selectedDate)[0]
+        ? masilData.masils.filter((m) => m.date === selectedDate)[0].masils
+        : undefined;
       const tempMonthlyMasils = masilData.masils
         .map((m) => m.masils)
         .flat()
@@ -48,11 +50,25 @@ const useMasilDiaryController = () => {
         .map((m) => m.date && new Date(m.date))
         .filter((e): e is Date => e !== undefined && e !== "");
 
-      if (tempDailyMasils) setDailyMasils(tempDailyMasils);
-      if (tempMonthlyMasils) setMonthlyMasils(tempMonthlyMasils);
-      if (tempMothlyMasilsDate) setMonthlyMasilsDate(tempMothlyMasilsDate);
+      if (tempDailyMasils) {
+        setDailyMasils(tempDailyMasils);
+      } else {
+        setDailyMasils(null);
+      }
+      if (tempMonthlyMasils) {
+        setMonthlyMasils(tempMonthlyMasils);
+      } else {
+        setMonthlyMasils(null);
+      }
+      if (tempMothlyMasilsDate) {
+        setMonthlyMasilsDate(tempMothlyMasilsDate);
+      }
+    } else {
+      setDailyMasils(null);
+      setMonthlyMasils(null);
+      setMonthlyMasilsDate([]);
     }
-  }, [masilData]);
+  }, [masilData, date]);
 
   /**
    * @useEffect
@@ -82,7 +98,7 @@ const useMasilDiaryController = () => {
   const delayedPush = useCallback(
     debounce((id, startDate) => {
       return router.push(`/diary/${id}?startDate=${startDate}`);
-    }, 600),
+    }, 300),
     [],
   );
 
@@ -94,8 +110,8 @@ const useMasilDiaryController = () => {
   const handleChangeMonth = (day: Date | undefined) => {
     if (day) {
       setDate(day);
-      const startDate = day.toLocaleDateString("en-CA");
 
+      const startDate = day.toLocaleDateString("en-CA");
       delayedPush(id, startDate);
     }
   };
