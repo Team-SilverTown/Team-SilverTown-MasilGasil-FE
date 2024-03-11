@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 interface AvatarProps {
   size?: "xs" | "sm" | "md" | "lg";
   name?: string;
-  src?: string;
+  src?: string | null;
   style?: CSSProperties;
   imageStyle?: CSSProperties;
 
