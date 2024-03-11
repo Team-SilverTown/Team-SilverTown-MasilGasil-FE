@@ -4,8 +4,15 @@ import usePostCreateContext from "../../context/PostCreateContext";
 import { useEffect, useMemo, useState } from "react";
 
 const usePostTextEditController = () => {
-  const { postData, thumbnail, setThumbnail, pageStep, setPageStep, handleCompleteStepOne } =
-    usePostCreateContext();
+  const {
+    postData,
+    thumbnail,
+    setThumbnail,
+    pageStep,
+    setPageStep,
+    handleCompleteStepOne,
+    handleCreatePost,
+  } = usePostCreateContext();
 
   const [isPublic, setIsPublic] = useState(postData.isPublic);
   const { register, setValue, watch, formState, handleSubmit } = useForm<PostCreateInputValue>({
@@ -51,6 +58,7 @@ const usePostTextEditController = () => {
     handleSubmit,
     thumbnail,
     setThumbnail,
+    handleCreatePost,
   };
 };
 
