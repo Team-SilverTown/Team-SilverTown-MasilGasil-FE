@@ -1,7 +1,7 @@
-import React from "react";
+import HomeController from "./Home.controller";
 
 const Home = () => {
-  return <div>Home</div>;
+  return <HomeController />;
 };
 
 export default Home;

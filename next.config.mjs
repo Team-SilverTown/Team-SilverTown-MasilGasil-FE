@@ -57,7 +57,8 @@ export default withPWA(
           },
         ];
       },
-      images: { domains: ["masilgasil-s3.s3.amazonaws.com"] },
+
+      images: { domains: ["masilgasil-s3.s3.amazonaws.com", "github.com"] },
     }),
   ),
 );
