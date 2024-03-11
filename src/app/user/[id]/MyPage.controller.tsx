@@ -1,4 +1,5 @@
-import { RECORDLIST_DUMMY_DATA, USERINFO_DUMMY_DATA } from "./MyPage.constants";
+import { USER_DUMMY_DATA } from "@/app/home/Home.constants";
+import { RECORDLIST_DUMMY_DATA } from "./MyPage.constants";
 import MypageView from "./MyPage.view";
 
 interface MyPageControllerProps {
@@ -8,9 +9,9 @@ interface MyPageControllerProps {
 const MyPageController = ({ userId }: MyPageControllerProps) => {
   return (
     <MypageView
-      boardList={RECORDLIST_DUMMY_DATA}
-      userInfo={USERINFO_DUMMY_DATA}
       userId={userId}
+      userInfo={USER_DUMMY_DATA}
+      boardList={RECORDLIST_DUMMY_DATA}
     />
   );
 };
