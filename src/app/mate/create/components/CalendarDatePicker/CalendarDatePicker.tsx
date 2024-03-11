@@ -17,15 +17,17 @@ interface CustomInputProps {
 }
 
 const CalendarDatePicker = ({ startDate, setStartDate }: CalendarDatePickerProps) => {
-  const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
-    <S.CustomInput
-      ref={ref}
-      onClick={onClick}
-      $isSelected={!!startDate}
-    >
-      {value || "모임 날짜를 선택해주세요."}
-    </S.CustomInput>
-  ));
+  const CustomInput = React.forwardRef<HTMLButtonElement, CustomInputProps>(
+    ({ value, onClick }, ref) => (
+      <S.CustomInput
+        ref={ref}
+        onClick={onClick}
+        $isSelected={!!startDate}
+      >
+        {value || "모임 날짜를 선택해주세요."}
+      </S.CustomInput>
+    ),
+  );
 
   return (
     <DatePicker

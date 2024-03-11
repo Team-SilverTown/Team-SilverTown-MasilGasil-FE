@@ -34,7 +34,12 @@ interface MateCreateButtonProps {
   theme: DefaultTheme | undefined;
 }
 
-const regularFields = [
+const regularFields: {
+  title: string;
+  placeholder: string;
+  type?: string;
+  name: "title" | "content" | "location" | "date";
+}[] = [
   { title: "제목", placeholder: "제목을 입력해주세요.", name: "title" },
   { title: "설명", type: "textarea", placeholder: "설명을 입력해주세요.", name: "content" },
   { title: "위치", placeholder: "상세 위치를 입력해주세요.", name: "location" },
@@ -82,7 +87,7 @@ const MateCreateView = ({
             {field.type === "textarea" && field.name !== "date" && (
               <Textarea
                 placeholder={field.placeholder}
-                register={register(field.name as keyof MateCreateProps)}
+                register={register(field.name)}
                 style={{
                   fontSize: "1.5rem",
                 }}
@@ -91,7 +96,7 @@ const MateCreateView = ({
             {field.type !== "textarea" && field.name !== "date" && (
               <Input
                 placeholder={field.placeholder}
-                register={register(field.name as keyof MateCreateProps)}
+                register={register(field.name)}
                 style={{
                   lineHeight: "2rem",
                   fontSize: "1.5rem",
@@ -124,6 +129,7 @@ const MateCreateView = ({
               $isSelected={selectedPersonnel !== ""}
             >
               <option value="">인원을 선택해주세요.</option>
+              <option value="0">상관 없음</option>
               {Array.from({ length: 10 }, (_, i) => (
                 <option
                   key={i + 1}
