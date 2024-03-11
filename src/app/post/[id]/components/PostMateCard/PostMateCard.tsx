@@ -1,18 +1,32 @@
+import convertFormatDate from "@/utils/convertFormatDate";
 import Avatar from "@/components/Avatar/Avatar";
 import * as S from "./PostMateCard.styles";
-
 interface PostMateCardProps {
+  profileImage: string | null;
+  nickName: string;
+  content: string;
+  date: string;
+  capacity: number;
   isRecruit: boolean;
 }
 
-const PostMateCard = ({ isRecruit }: PostMateCardProps) => {
+const PostMateCard = ({
+  profileImage,
+  nickName,
+  content,
+  date,
+  capacity,
+  isRecruit,
+}: PostMateCardProps) => {
   return (
     <S.PostMateCardLayout>
       <S.PostMateCardInfo>
-        <Avatar /> <span>닉네임</span>
+        <Avatar src={profileImage} /> <span>{nickName}</span>
       </S.PostMateCardInfo>
-      <S.PostMateCardContent>빡쌔게 달리실 속도광 모십니다. 인간 카트 ㄱㄱ</S.PostMateCardContent>
-      <S.PostMateCardDate>2024/02/04 오후 8시 예정 • 4명 희망</S.PostMateCardDate>
+      <S.PostMateCardContent>{content}</S.PostMateCardContent>
+      <S.PostMateCardDate>
+        {convertFormatDate(date)} 예정 • {capacity}명 희망
+      </S.PostMateCardDate>
       <S.PostMateRecruit $isRecruit={isRecruit}>
         {isRecruit ? "모집중" : "마감됨"}
       </S.PostMateRecruit>
