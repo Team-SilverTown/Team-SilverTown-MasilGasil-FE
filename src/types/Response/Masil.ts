@@ -18,16 +18,3 @@ export interface MasilResponse {
   thumbnailUrl: string | null;
   pins: Pin[];
 }
-
-// 임시 데이터 타입 추후 삭제
-export interface MasilListItem {
-  id: number;
-  thumbnailUrl: string;
-  startedAt: string;
-}
-
-// 임시 데이터 타입 추후 삭제
-export interface MasilList {
-  masils: MasilListItem[];
-  isEmpty: boolean;
-}
