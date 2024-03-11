@@ -18,7 +18,7 @@ export const ThumbnailContainer = styled.div`
   width: 10rem;
   height: 10rem;
 
-  background-color: lightblue;
+  background-color: ${(props) => props.theme.gray_500};
   flex-shrink: 0;
 `;
 
