@@ -48,9 +48,9 @@ interface MasilMapProps {
 /**
  * @summary MasilGasil 프로젝트에서 내에서  사용가능한 Map!
  *
- * @param center 지도의 center 위치 - type : GeoJSONPoint
- * @param path 이동 경로의 좌표값들  - type : GeoJSONLineString
- * @param pins 핀 리스트 - type : Pin
+ * @param center 지도의 center 위치 - type : GeoPosition
+ * @param path 이동 경로의 좌표값들  - type : GeoPosition[]
+ * @param pins 핀 리스트 - type : Pin[]
  *
  * @param draggable 지도의 드래그 허용 여부 - type : boolean
  * @param zoomable 지도의 확대 여부 - type : boolean
@@ -72,6 +72,10 @@ interface MasilMapProps {
  * @param pinSelectColor 선택된 핀의 색상을 변경 - type : string
  * @param pinFontColor 핀 내부 폰트의 색상을 변경 - type : string
  * @param selectedPinIndex 현재 선택된 핀의 index 번호 - type : number
+ *
+ * @param navigationPath 네비게이션 경로를 보여줍니다. - type : GeoPosition[]
+ * @param navigationPins 네비게이션에 등록된 핀을 보여줍니다. - type : Pin[]
+ * @param onClickNavigationPin 네비게이션 핀을 클릭했을때 실행할 함수를 전달합니다. - type : (pinIndex : number) => void
  *
  * @param style map의 스타일을 지정
  * @param innerElement 별도의 원하는 Custom Map 요소
