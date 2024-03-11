@@ -22,14 +22,16 @@ const PostTextEditView = () => {
     handleValid,
 
     handleSubmit,
+    setThumbnail,
+    thumbnail,
   } = usePostTextEditController();
 
   return (
     <>
       <GS.PostCreateSheetContent>
         <PostThumbnailEdit
-          postData={postData}
-          updateImage={(file: File | null) => setValue("thumbnail", file)}
+          image={thumbnail ? thumbnail : postData.thumbnailUrl}
+          updateImage={(file: File | null) => setThumbnail(file)}
         />
 
         <PostTitleEdit

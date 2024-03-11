@@ -65,7 +65,7 @@ const getDefaultData = async ({
       content: fetchData.content,
       distance: fetchData.distance,
       totalTime: fetchData.totalTime,
-      isPublic: true,
+      isPublic: fetchData.isPublic,
       pins: fetchData.pins,
       thumbnailUrl: fetchData.thumbnailUrl,
     };
@@ -75,6 +75,8 @@ const getDefaultData = async ({
 
   if (logId) {
     const fetchData = await getMasilDetail({ id: logId });
+
+    console.log(fetchData);
 
     const defaultData: PostCreateRequest = {
       depth1: fetchData.depth1,

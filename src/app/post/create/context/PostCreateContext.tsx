@@ -36,6 +36,8 @@ interface PostCreateContextValues {
   pageStep: PostCreatePageStep;
   currentPinIndex: number;
   defaultData: PostCreateRequest;
+  thumbnail: File | null;
+  setThumbnail: Dispatch<SetStateAction<File | null>>;
   setPageStep: Dispatch<SetStateAction<PostCreatePageStep>>;
   handleCompleteStepOne: HandleCompleteStepOne;
   handleClickPin: HandleClickPin;
@@ -49,6 +51,8 @@ const PostCreateContext = createContext<PostCreateContextValues>({
   pageStep: "POST_CREATE_TEXT_EDIT",
   currentPinIndex: -1,
   defaultData: POST_CREATE_DEFAULT_REQUEST_VALUE,
+  thumbnail: null,
+  setThumbnail: () => {},
   setPageStep: () => {},
   handleCompleteStepOne: () => {},
   handleClickPin: () => {},
@@ -61,12 +65,16 @@ export const PostCreateContextProvider = ({
   defaultData,
 }: PostCreateContextProviderProps) => {
   const [postData, dispatch] = useReducer(postCreateReducer, defaultData);
+
   const [pageStep, setPageStep] = useState<PostCreatePageStep>("POST_CREATE_TEXT_EDIT");
   const [currentPinIndex, setCurrentPinIndex] = useState(-1);
   const [mapCenter, setMapCenter] = useState<GeoPosition>(calculatePathCenter(defaultData.path));
 
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
+
   const { setModalView, openModal, closeModal } = useUI();
   const { setIsOutCenter } = useMasilMapStore();
+
   const pathCenter = useMemo(() => calculatePathCenter(defaultData.path), [defaultData.path]);
 
   useEffect(() => {
@@ -125,6 +133,8 @@ export const PostCreateContextProvider = ({
         setPageStep,
         postData,
         currentPinIndex,
+        thumbnail,
+        setThumbnail,
         handleCompleteStepOne,
         handleClickPin,
         handleRemovePin,

@@ -5,7 +5,6 @@ import { POST_KEY } from "@/lib/api/queryKeys";
 import { postPostCreate } from "@/lib/api/Post/client";
 import { PostCreateRequest } from "@/types/Request";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 const usePostPinEditController = () => {
   const { postData, handleClickPin, handleRemovePin } = usePostCreateContext();

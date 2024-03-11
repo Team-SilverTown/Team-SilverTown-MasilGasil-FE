@@ -7,19 +7,44 @@ import InputUpload from "@/components/InputUpload/InputUpload";
 import { PostCreateRequest } from "@/types/Request";
 import Image from "@/components/icons/Image";
 import useTheme from "@/lib/hooks/useTheme";
+import { useEffect, useState } from "react";
 
 interface PostThumbnailEditProps {
-  postData: PostCreateRequest;
+  image: File | string | null;
   updateImage: (file: null | File) => void;
 }
 
-const PostThumbnailEdit = ({ postData, updateImage }: PostThumbnailEditProps) => {
+const PostThumbnailEdit = ({ image, updateImage }: PostThumbnailEditProps) => {
   const theme = useTheme();
+  const [preview, setPreview] = useState("");
+
+  useEffect(() => {
+    if (!image) {
+      return;
+    }
+
+    if (typeof image !== "string") {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        if (typeof reader.result === "string") {
+          setPreview(reader.result);
+          return;
+        }
+      };
+
+      reader.readAsDataURL(image);
+      return;
+    }
+
+    setPreview(image);
+  }, [image]);
+
   return (
     <GS.PostTextEditInputContainer>
       <TGS.PostCreateContentTitle>메인 사진</TGS.PostCreateContentTitle>
       <InputUpload
-        previewValue={postData.thumbnailUrl}
+        previewValue={preview}
         updateFile={updateImage}
       >
         <S.PostThumbnailWrapper>
