@@ -14,6 +14,10 @@ export const USER = {
   SIGNUP: "/api/v1/users/extra-info",
 };
 
-export const MASIL_ENDPOINT = {
+export const MASIL = {
+  POST: "/api/v1/masils",
+  GET_LIST: "/api/v1/masils/recent",
   PERIODIC_GET: "/v1/masils/period",
 };
+
+export const IMAGE = "/api/v1/images";

@@ -1,12 +1,12 @@
 "use client";
 
-import LogRecordModel from "./LogRecord.model";
+import LogRecordView from "./LogRecord.view";
 import { LogRecordContextProvider } from "./context/LogRecordContext";
 
 const LogRecord = () => {
   return (
     <LogRecordContextProvider>
-      <LogRecordModel />
+      <LogRecordView />
     </LogRecordContextProvider>
   );
 };

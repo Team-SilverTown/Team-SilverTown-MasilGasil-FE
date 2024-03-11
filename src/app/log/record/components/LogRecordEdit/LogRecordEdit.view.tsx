@@ -4,34 +4,14 @@ import * as S from "./LogRecordEdit.styles";
 
 import { Button, PinEditSlideButton, Textarea } from "@/components";
 import Theme, { FONT_WEIGHT, FONT_SIZE, Z_INDEX } from "@/styles/theme";
-import { MasilRecordRequest } from "@/types/Request";
 import Sheet from "@/components/BottomSheet";
 import useTheme from "@/lib/hooks/useTheme";
-import { useForm } from "react-hook-form";
+import useLogRecordEditController from "./LogRecordEdit.controller";
 
-interface LogRecordEditViewProps {
-  logData: MasilRecordRequest;
-  currentPinIndex: number;
+const LogRecordEditView = () => {
+  const { logData, register, handleClickPin, handleRemovePin, handleSubmit } =
+    useLogRecordEditController();
 
-  onClickPin: (pinIndex: number) => void;
-  removePinData: (pinIndex: number) => void;
-  onImageUpload: (pinIndex: number, image: File) => void;
-  onSubmit: (memo: string) => void;
-  setCurrentPinIndex: (pinIndex: number) => void;
-}
-
-const LogRecordEditView = ({
-  logData,
-  currentPinIndex,
-
-  onClickPin,
-  removePinData,
-  onImageUpload,
-  onSubmit,
-  setCurrentPinIndex,
-}: LogRecordEditViewProps) => {
-  const { register, watch } = useForm();
-  const watchLogMemo = watch("logMemo");
   const theme = useTheme();
 
   return (
@@ -42,7 +22,7 @@ const LogRecordEditView = ({
         exit={{ y: "100%" }}
         isOpen={true}
         onClose={() => null}
-        fixedHeight={0.4}
+        fixedHeight={0.61}
         initialSnap={1}
         snapPoints={[0.9, 0.5]}
         style={{
@@ -90,8 +70,8 @@ const LogRecordEditView = ({
                       key={index}
                       pinIndex={index}
                       pin={pin}
-                      onClickPin={onClickPin}
-                      removePin={removePinData}
+                      onClickPin={handleClickPin}
+                      removePin={handleRemovePin}
                     />
                   ))}
 
@@ -112,16 +92,13 @@ const LogRecordEditView = ({
           fontSize: FONT_SIZE.LARGE,
           position: "fixed",
           bottom: "1.5rem",
-          zIndex: 999,
+          zIndex: Z_INDEX.BOTTOM_SHEET + 1,
           maxWidth: "56rem",
           left: "50%",
           transform: "translateX(-50%)",
         }}
         width={"90%"}
-        onClickHandler={() => {
-          onSubmit(watchLogMemo);
-          console.log("d");
-        }}
+        onClickHandler={handleSubmit}
       >
         산책 기록하기
       </Button>

@@ -14,5 +14,8 @@ export const USER_KEY = {
 };
 
 export const MASIL_KEY = {
+  RECORD_SUBMIT: "masil_log_record_submit",
   MASILS_PERIOD_GET: "masils_period_get",
 };
+
+export const IMAGE_UPLOAD_KEY = "image_upload_key_0221";

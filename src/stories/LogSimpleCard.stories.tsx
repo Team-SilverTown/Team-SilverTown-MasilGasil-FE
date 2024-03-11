@@ -1,5 +1,5 @@
 import { LogSimpleCard } from "@/components";
-import { LogSimpleCardProps } from "@/components/LogSimpleCard";
+import { LogSimpleCardProps } from "@/components/LogSimpleCard/LogSimpleCard";
 
 export default {
   title: "Component/LogSimpleCard",

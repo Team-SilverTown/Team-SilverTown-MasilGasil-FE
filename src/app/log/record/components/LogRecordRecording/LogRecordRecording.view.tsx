@@ -1,17 +1,14 @@
-import { Button } from "@/components";
+"use client";
+
 import * as S from "./LogRecordRecording.styles";
+
+import { Button } from "@/components";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { MasilRecordRequest } from "@/types/Request";
+import useLogRecordRecordingController from "./LogRecordRecording.controller";
 
-interface LogRecordRecordingViewProps {
-  logData: MasilRecordRequest;
-  handleClickCompleteRecord: () => void;
-}
+const LogRecordRecordingView = () => {
+  const { logData, handleClickCompleteRecord } = useLogRecordRecordingController();
 
-const LogRecordRecordingView = ({
-  handleClickCompleteRecord,
-  logData,
-}: LogRecordRecordingViewProps) => {
   const calcHour = Math.floor(logData.totalTime / 3600);
   const calcMin = Math.floor((logData.totalTime % 3600) / 60);
   const calcSec = logData.totalTime % 60;
