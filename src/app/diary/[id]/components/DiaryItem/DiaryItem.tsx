@@ -1,14 +1,18 @@
 import Image from "next/image";
-import { masilProps } from "../MasilDiarySheet/MasilDiarySheet";
 import * as S from "./DiaryItem.styles";
 import { useRouter } from "next/navigation";
+import { MasilsByPeriod } from "@/types/Response";
+import { Location } from "@/components/icons";
+import Theme from "@/styles/theme";
+import useTheme from "@/lib/hooks/useTheme";
 
-// thumbnailUrl, memo, location, time, length, kcal
-
-const DiaryItem = ({ masil }: { masil: masilProps; key?: number | string }) => {
-  const { id, address, content, thumbnailUrl, distance, totalTime, calorie } = masil;
+const DiaryItem = ({ masil }: { masil: MasilsByPeriod; key?: number | string }) => {
+  const { id, address, content, thumbnailUrl, distance, totalTime, calories } = masil;
+  const formattedAddress = `${address.depth1} ${address.depth2} ${address.depth3} ${address.depth4}`;
+  const formattedStatistics = `${distance}m ∙ ${totalTime}s ∙ ${calories}kcal`;
 
   const route = useRouter();
+  const theme = useTheme();
 
   const handleClickItem = () => {
     route.push(`/log/${id}`);
@@ -17,7 +21,6 @@ const DiaryItem = ({ masil }: { masil: masilProps; key?: number | string }) => {
   return (
     <S.Layout onClick={handleClickItem}>
       <S.ThumbnailContainer>
-        {/* TODO: 이미지 */}
         {/* <Image
           src={thumbnailUrl}
           alt="masilThumbnail"
@@ -26,9 +29,11 @@ const DiaryItem = ({ masil }: { masil: masilProps; key?: number | string }) => {
         /> */}
       </S.ThumbnailContainer>
       <S.ContentContainer>
-        <S.SubTitle>위치정보</S.SubTitle>
-        <S.Title>메모내용메모내용메모내용메모내용메모내용메모내용메모내용</S.Title>
-        <S.TextContainer>1시간1분 | 4.2km | 422kcal</S.TextContainer>
+        <S.Title>{content ? content : "내 산책기록"}</S.Title>
+        <S.TextContainer>
+          <S.SubText>{formattedAddress}</S.SubText>
+          <S.SubText>{formattedStatistics}</S.SubText>
+        </S.TextContainer>
       </S.ContentContainer>
     </S.Layout>
   );

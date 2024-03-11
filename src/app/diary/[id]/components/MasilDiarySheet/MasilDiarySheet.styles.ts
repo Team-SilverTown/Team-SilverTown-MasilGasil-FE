@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const ItemWrapper = styled.div`
   padding: 1rem 3rem;
   text-align: center;
-
   font-size: ${FONT_SIZE.MEDIUM};
   color: ${(props) => props.theme.gray_300};
   height: 100%;

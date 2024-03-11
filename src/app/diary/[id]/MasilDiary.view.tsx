@@ -69,7 +69,10 @@ const MasilDiaryView = () => {
               <S.SubText onClick={handleClickToday}>Today</S.SubText>
             </S.Wrapper>
 
-            <MonthlyStatistics month={date?.getMonth()} />
+            <MonthlyStatistics
+              month={date?.getMonth()}
+              masils={masilData}
+            />
 
             <S.Section>조회를 원하는 날짜를 선택해주세요</S.Section>
 
