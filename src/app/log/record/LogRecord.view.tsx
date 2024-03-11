@@ -11,16 +11,12 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { AnimatePresence } from "framer-motion";
 import useLogRecordController from "./LogRecord.controller";
-import { NavigationData } from "./LogRecord.types";
 
-interface LogRecordViewProps {
-  navigationData?: NavigationData;
-}
-
-const LogRecordView = ({ navigationData }: LogRecordViewProps) => {
+const LogRecordView = () => {
   const {
     pageStep,
     logData,
+    navigationData,
     userLocation,
     currentPinIndex,
     isActiveExitAnimation,
@@ -34,6 +30,7 @@ const LogRecordView = ({ navigationData }: LogRecordViewProps) => {
 
     handleClickFallback,
     handleOffIsOutCenter,
+    handleClickNavigationPin,
   } = useLogRecordController();
   const mapAnimation = {
     initial: { height: "100%" },
@@ -62,6 +59,7 @@ const LogRecordView = ({ navigationData }: LogRecordViewProps) => {
           selectedPinIndex={currentPinIndex}
           navigationPath={navigationData?.path}
           navigationPins={navigationData?.pins}
+          onClickNavigationPin={handleClickNavigationPin}
         />
       </S.LogRecordMapContainer>
 

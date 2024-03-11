@@ -17,7 +17,7 @@ interface NavigationPinProps {
 
 const NavigationPin = ({ position, onClickPin, pinIndex }: NavigationPinProps) => {
   const handleClick = () => {
-    if (!onClickPin || !pinIndex) {
+    if (!onClickPin || typeof pinIndex === "undefined") {
       return;
     }
 

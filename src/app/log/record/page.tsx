@@ -32,8 +32,8 @@ const LogRecord = () => {
   });
 
   return (
-    <LogRecordContextProvider>
-      <LogRecordView navigationData={data} />
+    <LogRecordContextProvider navigationData={data}>
+      <LogRecordView />
     </LogRecordContextProvider>
   );
 };

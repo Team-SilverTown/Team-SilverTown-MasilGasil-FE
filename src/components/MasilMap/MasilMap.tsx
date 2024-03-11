@@ -39,6 +39,7 @@ interface MasilMapProps {
 
   navigationPath?: GeoPosition[];
   navigationPins?: Pin[];
+  onClickNavigationPin?: (pinIndex: number) => void;
 
   style?: CSSProperties;
   innerElement?: ReactNode;
@@ -106,6 +107,7 @@ const MasilMap = ({
 
   navigationPath = [],
   navigationPins = [],
+  onClickNavigationPin,
 
   style,
   innerElement,
@@ -157,8 +159,6 @@ const MasilMap = ({
     }
     setIsActiveMapResizing(false);
   }, [mapHeight, mapWidth, isActiveMapResizing]);
-
-  console.log(navigationPins);
 
   return (
     <Map
@@ -230,9 +230,7 @@ const MasilMap = ({
           <NavigationPin
             key={index + 1}
             position={navPin.point}
-            onClickPin={(pinIndex) => {
-              console.log(pinIndex);
-            }}
+            onClickPin={onClickNavigationPin}
             pinIndex={index}
           />
         ))}
