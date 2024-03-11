@@ -17,7 +17,7 @@ export const CalenderWrapper = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
-  padding: 0rem 3rem;
+  padding: 0rem 2rem 2rem 3rem;
   gap: 0.3rem;
   display: flex;
   justify-content: end;

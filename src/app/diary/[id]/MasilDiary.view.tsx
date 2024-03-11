@@ -15,6 +15,7 @@ import { DaylessCalendar } from "@/components/ShadcnUi/ui/daylessCalender";
 import DiaryItem from "./components/DiaryItem/DiaryItem";
 import Return from "@/components/icons/Return";
 import Theme from "@/styles/theme";
+import { TabIndex } from "./MasilDiary.type";
 
 const MasilDiaryView = () => {
   const {
@@ -46,7 +47,7 @@ const MasilDiaryView = () => {
           }}
           focusedTab={currentTabIdx}
         />
-        {currentTabIdx === 0 && (
+        {currentTabIdx === TabIndex.Calendar && (
           <>
             <S.CalenderWrapper>
               <Calendar
@@ -80,13 +81,20 @@ const MasilDiaryView = () => {
             />
           </>
         )}
-        {currentTabIdx === 1 && (
+        {currentTabIdx === TabIndex.List && (
           <>
             <DaylessCalendar
               mode="single"
               month={date}
               onMonthChange={handleChangeMonth}
             />
+            <S.Wrapper>
+              <Return
+                width={13}
+                fill={Theme.lightTheme.gray_300}
+              />
+              <S.SubText onClick={handleClickToday}>Today</S.SubText>
+            </S.Wrapper>
             {monthlyMasils && monthlyMasils.length > 0 ? (
               monthlyMasils.map((masil) => {
                 return (
