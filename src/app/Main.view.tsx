@@ -29,6 +29,7 @@ const MainView = ({ isLogIn }: MainViewProps) => {
             buttonColor={theme?.yellow_500}
             width={"calc(100% - 30px)"}
             style={{ margin: "auto" }}
+            useRipple
             onClickHandler={() => signIn("kakao", { redirect: true, callbackUrl: "/auth/kakao" })}
           >
             <span

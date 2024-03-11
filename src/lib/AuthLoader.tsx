@@ -17,8 +17,6 @@ const AuthLoader = ({
   serviceToken,
   me,
 }: PropsWithChildren<{ serviceToken?: string; me?: MeResponse }>) => {
-  // me 데이터 패치
-  // zustand 에 필요한 상태 갱신
   const route = useRouter();
   const currentPathName = usePathname();
 
@@ -29,8 +27,6 @@ const AuthLoader = ({
   const redirectInable = pathAbleCheck(REDIRECT_INABLE_PATHS, currentPathName);
 
   useEffect(() => {
-    console.log("authLoader (토큰, me)", serviceToken, me);
-
     if (serviceToken && me && me.nickname) {
       // 인증된 유저인 경우
       setAuth({ isLogIn: true, serviceToken });
@@ -44,7 +40,7 @@ const AuthLoader = ({
           : route.replace("/home");
       }
     } else {
-      // 인증 실패, 가인증 유저인 경우 
+      // 인증 실패, 가인증 유저인 경우
       setAuth({ isLogIn: false, serviceToken: undefined });
       initMe();
       setToken(null);
