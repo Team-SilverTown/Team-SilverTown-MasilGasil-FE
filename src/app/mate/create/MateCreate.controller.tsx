@@ -17,6 +17,17 @@ export interface MateCreateProps {
 
 const MateCreateController = () => {
   const {
+    isFormFilled,
+    setIsFormFilled,
+    selectedPersonnel,
+    setSelectedPersonnel,
+    startDate,
+    setStartDate,
+    startTime,
+    setStartTime,
+  } = useMateCreateModel();
+
+  const {
     register,
     handleSubmit,
     watch,
@@ -24,6 +35,24 @@ const MateCreateController = () => {
   } = useForm<MateCreateProps>({
     mode: "onChange",
   });
+
+  const watchedFields = watch();
+
+  useEffect(() => {
+    const allFieldsFilled = !!(
+      watchedFields.title &&
+      watchedFields.content &&
+      watchedFields.location &&
+      startDate &&
+      startTime &&
+      selectedPersonnel
+    );
+    setIsFormFilled(allFieldsFilled);
+  }, [watchedFields, startDate, startTime, selectedPersonnel]);
+
+  const handlePersonnelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedPersonnel(event.target.value);
+  };
 
   const onValid = (data: MateCreateProps) => {
     const date = startDate
@@ -48,35 +77,6 @@ const MateCreateController = () => {
     console.log("Form Errors:", errors);
   };
 
-  const {
-    isFormFilled,
-    setIsFormFilled,
-    selectedPersonnel,
-    setSelectedPersonnel,
-    startDate,
-    setStartDate,
-    startTime,
-    setStartTime,
-  } = useMateCreateModel();
-
-  const watchedFields = watch();
-
-  useEffect(() => {
-    const allFieldsFilled = !!(
-      watchedFields.title &&
-      watchedFields.content &&
-      watchedFields.location &&
-      startDate &&
-      startTime &&
-      selectedPersonnel
-    );
-    setIsFormFilled(allFieldsFilled);
-  }, [watchedFields, startDate, startTime, selectedPersonnel]);
-
-  const handlePersonnelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPersonnel(event.target.value);
-  };
-
   return (
     <MateCreateView
       register={register}
@@ -88,7 +88,6 @@ const MateCreateController = () => {
       startTime={startTime}
       setStartTime={setStartTime}
       selectedPersonnel={selectedPersonnel}
-      setSelectedPersonnel={setSelectedPersonnel}
     />
   );
 };
