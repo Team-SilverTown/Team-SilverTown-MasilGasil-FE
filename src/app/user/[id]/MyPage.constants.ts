@@ -1,4 +1,4 @@
-import { MasilsListType, PostsListType, MyRecordListType, UserInfoType } from "./MyPage.types";
+import { MasilsListType, PostsListType, MyRecordListType } from "./MyPage.types";
 
 export const MASILS_DUMMY_DATA: MasilsListType[] = [
   {
@@ -34,7 +34,7 @@ export const MASILS_DUMMY_DATA: MasilsListType[] = [
         },
         content:
           "산책로 매력 포인트 1 <br> 이러쿵 저러쿵 뭔가 이쁜 부분이 있어서 사진이랑 남겨봅니다. 으하하하",
-        thumbnail: "url",
+        thumbnailUrl: "url",
       },
     ],
   },
@@ -71,7 +71,7 @@ export const MASILS_DUMMY_DATA: MasilsListType[] = [
         },
         content:
           "산책로 매력 포인트 1 <br> 이러쿵 저러쿵 뭔가 이쁜 부분이 있어서 사진이랑 남겨봅니다. 으하하하",
-        thumbnail: "url",
+        thumbnailUrl: "url",
       },
     ],
   },
@@ -108,7 +108,7 @@ export const MASILS_DUMMY_DATA: MasilsListType[] = [
         },
         content:
           "산책로 매력 포인트 1 <br> 이러쿵 저러쿵 뭔가 이쁜 부분이 있어서 사진이랑 남겨봅니다. 으하하하",
-        thumbnail: "url",
+        thumbnailUrl: "url",
       },
     ],
   },
@@ -145,7 +145,7 @@ export const MASILS_DUMMY_DATA: MasilsListType[] = [
         },
         content:
           "산책로 매력 포인트 1 <br> 이러쿵 저러쿵 뭔가 이쁜 부분이 있어서 사진이랑 남겨봅니다. 으하하하",
-        thumbnail: "url",
+        thumbnailUrl: "url",
       },
     ],
   },
@@ -180,7 +180,7 @@ export const POSTS_DUMMY_DATA: PostsListType[] = [
         },
         content:
           "산책로 매력 포인트 1 <br> 이러쿵 저러쿵 뭔가 이쁜 부분이 있어서 사진이랑 남겨봅니다. 으하하하",
-        thumbnail: "url",
+        thumbnailUrl: "url",
       },
     ],
     authorId: 1,
@@ -216,7 +216,7 @@ export const POSTS_DUMMY_DATA: PostsListType[] = [
         },
         content:
           "산책로 매력 포인트 1 <br> 이러쿵 저러쿵 뭔가 이쁜 부분이 있어서 사진이랑 남겨봅니다. 으하하하",
-        thumbnail: "url",
+        thumbnailUrl: "url",
       },
     ],
     authorId: 1,
@@ -253,7 +253,7 @@ export const POSTS_DUMMY_DATA: PostsListType[] = [
         },
         content:
           "산책로 매력 포인트 1 <br> 이러쿵 저러쿵 뭔가 이쁜 부분이 있어서 사진이랑 남겨봅니다. 으하하하",
-        thumbnail: "url",
+        thumbnailUrl: "url",
       },
     ],
     authorId: 1,
@@ -262,14 +262,6 @@ export const POSTS_DUMMY_DATA: PostsListType[] = [
       "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
   },
 ];
-
-export const USERINFO_DUMMY_DATA: UserInfoType = {
-  sex: "MALE",
-  birthDate: "1994.12.26",
-  height: 171,
-  weight: 77,
-  exerciseIntensity: "LOW",
-};
 
 export const RECORDLIST_DUMMY_DATA: MyRecordListType[] = [
   {
