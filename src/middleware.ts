@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
   const currentPath = request.nextUrl.pathname;
 
-  console.log("middleware", token);
+  // console.log("middleware", token);
 
   // if (!token && protectedRoutes.includes(currentPath)) {
   //   const url = request.nextUrl.clone();

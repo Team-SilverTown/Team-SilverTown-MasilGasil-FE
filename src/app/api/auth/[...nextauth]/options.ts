@@ -35,7 +35,7 @@ export const authOptions: NextAuthOptions = {
 
         const me = data && (await getMe(data?.token));
 
-        console.log("JWT", data?.token, me);
+        // console.log("JWT", data?.token, me);
 
         return {
           // accessToken: account.access_token,
@@ -49,7 +49,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token.serviceToken) {
-        console.log("session", token);
+        // console.log("session", token);
         // session.accessToken = token.accessToken as string;
         session.serviceToken = token.serviceToken as string;
         session.nickname = token.nickname as string;
