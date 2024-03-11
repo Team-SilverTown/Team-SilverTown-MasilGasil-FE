@@ -1,27 +1,33 @@
+"use client";
+
+import * as S from "./NavigationPin.styles";
+
 import { GeoPosition } from "@/types/OriginDataType";
 import { OnClickPin } from "../../MasilMap.types";
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
-import { Flag } from "@/components/icons";
 
 interface NavigationPinProps {
   position: GeoPosition;
-  size?: number;
 
   onClickPin?: OnClickPin;
   pinIndex?: number;
 
-  key?: string;
+  key?: string | number;
 }
 
-const NavigationPin = ({ position, size, onClickPin, pinIndex }: NavigationPinProps) => {
+const NavigationPin = ({ position, onClickPin, pinIndex }: NavigationPinProps) => {
+  const handleClick = () => {
+    if (!onClickPin || !pinIndex) {
+      return;
+    }
+
+    onClickPin(pinIndex);
+  };
   return (
     <CustomOverlayMap position={position}>
-      <Flag
-        size={size}
-        fill={"#909090"}
-        onClick={onClickPin}
-        pinIndex={pinIndex}
-      />
+      <S.NavigationPinBackground onClick={handleClick}>
+        <S.NavigationPinBody />
+      </S.NavigationPinBackground>
     </CustomOverlayMap>
   );
 };

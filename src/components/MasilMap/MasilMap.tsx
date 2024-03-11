@@ -6,7 +6,7 @@ import Theme from "@/styles/theme";
 import { debounce, throttle } from "lodash";
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
 import useMasilMapStore from "./store/useMasilMapStore";
-import { CenterMarker, CustomPin, PathLine } from "./components";
+import { CenterMarker, CustomPin, NavigationPin, PathLine } from "./components";
 
 interface MasilMapProps {
   center: GeoPosition;
@@ -158,6 +158,8 @@ const MasilMap = ({
     setIsActiveMapResizing(false);
   }, [mapHeight, mapWidth, isActiveMapResizing]);
 
+  console.log(navigationPins);
+
   return (
     <Map
       ref={mapRef}
@@ -223,7 +225,17 @@ const MasilMap = ({
         />
       )}
 
-      {}
+      {navigationPins.length !== 0 &&
+        navigationPins.map((navPin, index) => (
+          <NavigationPin
+            key={index + 1}
+            position={navPin.point}
+            onClickPin={(pinIndex) => {
+              console.log(pinIndex);
+            }}
+            pinIndex={index}
+          />
+        ))}
 
       {innerElement}
     </Map>

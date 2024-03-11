@@ -38,6 +38,10 @@ const CustomPin = ({
         selectColor={pinSelectColor}
         isSelected={isSelected}
         fontColor={pinFontColor}
+        style={{
+          position: "relative",
+          zIndex: 10,
+        }}
       />
     </CustomOverlayMap>
   );
