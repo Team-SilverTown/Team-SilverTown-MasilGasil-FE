@@ -1,15 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { MasilsListType, PostsListType } from "../../Home.types";
+import { PostsDataType } from "../../Home.types";
 import { LogDetailCard } from "@/components";
 import * as S from "./WalkList.styles";
+import { convertMeter, convertSeconds } from "@/utils";
+import { MeResponse } from "@/types/Response";
 
 interface WalkListProps {
-  walkList: MasilsListType[] | PostsListType[];
+  walkList: PostsDataType[];
+  userInfo: MeResponse;
 }
 
-const WalkList = ({ walkList }: WalkListProps) => {
+const WalkList = ({ walkList, userInfo }: WalkListProps) => {
   return (
     <ul className={S.WalkListContainer}>
       {walkList.map((list) => (
@@ -19,11 +22,13 @@ const WalkList = ({ walkList }: WalkListProps) => {
             style={{ display: "flex" }}
           >
             <LogDetailCard
-              title="오산시"
-              content="내용"
-              thumbnailURL="https://github.com/SeungHyune/first-script/assets/114329713/34992788-3558-40cd-940c-81f7f2b94551"
-              distance="1.5km"
-              totalTime="30분"
+              title={list.title}
+              content={list.content}
+              thumbnailUrl={list.thumbnailUrl}
+              distance={convertMeter(list.distance)}
+              totalTime={convertSeconds(list.totalTime)}
+              totalDistance={list.distance}
+              userInfo={userInfo}
               likeCount={1000}
               isLiked={true}
               isLikeLayout={true}
