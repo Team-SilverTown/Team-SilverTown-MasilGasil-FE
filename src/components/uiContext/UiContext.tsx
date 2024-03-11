@@ -23,6 +23,7 @@ import useWindowStore from "@/stores/ui/useWindowStore";
 import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
 
 import MateLocationMapModal from "../modalViews/MateMapModal/MateLocationMapModal/MapLocationMapModal";
+import PostCreateDoneModal from "../modalViews/PostCreateDoneModal/PostCreateDoneModal";
 
 export const useUI = () => {
   const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
@@ -82,6 +83,7 @@ const ModalView = ({
       {modalView === "PROFILE_EDIT_VIEW" && <ProfileEditModal props={props} />}
       {modalView === "MATE_CREATE_MAP_VIEW" && <MateCreateMapModal props={props} />}
       {modalView === "MATE_LOCATION_MAP_VIEW" && <MateLocationMapModal props={props} />}
+      {modalView === "POST_CREATE_DONE_VIEW" && <PostCreateDoneModal />}
     </Modal>
   );
 };
