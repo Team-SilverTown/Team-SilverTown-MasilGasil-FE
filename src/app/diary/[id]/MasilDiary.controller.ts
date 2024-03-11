@@ -12,8 +12,7 @@ const useMasilDiaryController = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const startDateParam = searchParams.get("startDate");
-  const params = useParams<{ id: string }>();
-  const id = params.id;
+  const { id } = useParams<{ id: string }>();
 
   const [currentTabIdx, setCurrentTabIdx] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -37,36 +36,38 @@ const useMasilDiaryController = () => {
   useEffect(() => {
     const selectedDate = date?.toLocaleDateString("en-CA"); // yyyy-mm-dd
 
-    if (masilData && masilData.masils.length > 0) {
-      // 데이터가 정상적으로 수신되었고, 해당 월에 마실 기록이 존재할 때 (산책을 했을 때)
-      const tempDailyMasils = masilData.masils.filter((m) => m.date === selectedDate)[0]
-        ? masilData.masils.filter((m) => m.date === selectedDate)[0].masils
-        : undefined;
-      const tempMonthlyMasils = masilData.masils
-        .map((m) => m.masils)
-        .flat()
-        .filter((e): e is MasilsByPeriod => e !== undefined);
-      const tempMothlyMasilsDate = masilData.masils
-        .map((m) => m.date && new Date(m.date))
-        .filter((e): e is Date => e !== undefined && e !== "");
-
-      if (tempDailyMasils) {
-        setDailyMasils(tempDailyMasils);
-      } else {
-        setDailyMasils(null);
-      }
-      if (tempMonthlyMasils) {
-        setMonthlyMasils(tempMonthlyMasils);
-      } else {
-        setMonthlyMasils(null);
-      }
-      if (tempMothlyMasilsDate) {
-        setMonthlyMasilsDate(tempMothlyMasilsDate);
-      }
-    } else {
+    if (!masilData || masilData.masils.length <= 0) {
       setDailyMasils(null);
       setMonthlyMasils(null);
       setMonthlyMasilsDate([]);
+      return;
+    }
+
+    const tempDailyMasils = masilData.masils.filter((m) => m.date === selectedDate)[0]
+      ? masilData.masils.filter((m) => m.date === selectedDate)[0].masils
+      : undefined;
+
+    const tempMonthlyMasils = masilData.masils
+      .map((m) => m.masils)
+      .flat()
+      .filter((e): e is MasilsByPeriod => e !== undefined);
+
+    const tempMothlyMasilsDate = masilData.masils
+      .map((m) => m.date && new Date(m.date))
+      .filter((e): e is Date => e !== undefined && e !== "");
+
+    if (tempDailyMasils) {
+      setDailyMasils(tempDailyMasils);
+    } else {
+      setDailyMasils(null);
+    }
+    if (tempMonthlyMasils) {
+      setMonthlyMasils(tempMonthlyMasils);
+    } else {
+      setMonthlyMasils(null);
+    }
+    if (tempMothlyMasilsDate) {
+      setMonthlyMasilsDate(tempMothlyMasilsDate);
     }
   }, [masilData, date]);
 
@@ -76,11 +77,7 @@ const useMasilDiaryController = () => {
    * @brief 쿼리스트링을 통해 받아오는 startDateParam가 변경될 때마다 date를 갱신합니다. date는 캘린더 컴포넌트가 표시할 날짜를 결정합니다.
    */
   useEffect(() => {
-    if (startDateParam) {
-      setDate(new Date(startDateParam));
-    } else {
-      setDate(new Date());
-    }
+    setDate(startDateParam ? new Date(startDateParam) : new Date());
   }, [startDateParam]);
 
   /**
@@ -88,18 +85,18 @@ const useMasilDiaryController = () => {
    * @param day
    * @breif 선택한 날짜를 갱신합니다. 일 단위로 변경되며, BottomSheet를 열어 해당 일자의 산책 기록을 보여줍니다.
    */
-  const handleSelectDate = (day: Date | undefined) => {
+  const handleSelectDate = useCallback((day: Date | undefined) => {
     if (day) {
       setDate(day);
     }
     setIsSheetOpen(true);
-  };
+  }, []);
 
   const delayedPush = useCallback(
     debounce((id, startDate) => {
       return router.push(`/diary/${id}?startDate=${startDate}`);
     }, 300),
-    [],
+    [router],
   );
 
   /**
@@ -107,23 +104,25 @@ const useMasilDiaryController = () => {
    * @param day
    * @breif 선택한 날짜를 갱신합니다. 월 단위로 변경되며, 변경된 값을 Query Params로 넘겨줍니다.
    */
-  const handleChangeMonth = (day: Date | undefined) => {
-    if (day) {
-      setDate(day);
-
-      const startDate = day.toLocaleDateString("en-CA");
-      delayedPush(id, startDate);
-    }
-  };
+  const handleChangeMonth = useCallback(
+    (day: Date | undefined) => {
+      if (day) {
+        setDate(day);
+        delayedPush(id, day.toLocaleDateString("en-CA"));
+      }
+    },
+    [delayedPush, id],
+  );
 
   /**
    * @function handleClickToday
    * @breif 현재 시각으로 날짜를 갱신합니다.
    */
-  const handleClickToday = () => {
-    setDate(new Date());
-    router.push(`/diary/${id}`);
-  };
+  const handleClickToday = useCallback(() => {
+    const today = new Date();
+    setDate(today);
+    router.push(`/diary/${id}?startDate=${today.toLocaleDateString("en-CA")}`);
+  }, [router, id]);
 
   return {
     masilData,
