@@ -3,14 +3,14 @@
 import { CSSProperties, useState } from "react";
 import Image from "next/image";
 import { calculateWalkingCalories } from "@/utils";
-import { UserInfoType } from "@/app/user/[id]/MyPage.types";
+import { MeResponse } from "@/types/Response";
 import { Heart, KebabMenu } from "../icons";
 import * as S from "./LogDetailCard.style";
 
 export interface LogDetailCardProps {
   title: string;
   content: string;
-  thumbnailUrl: string;
+  thumbnailUrl: string | null;
   distance: string;
   totalDistance: number;
   totalTime: string;
@@ -18,7 +18,7 @@ export interface LogDetailCardProps {
   isLiked: boolean;
   isLikeLayout: boolean;
   isSettingLayout: boolean;
-  userInfo: UserInfoType;
+  userInfo: MeResponse;
   style?: CSSProperties;
   onDetailClick: () => void;
   onLikeClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -77,13 +77,15 @@ const LogDetailCard = ({
       onClick={handleDetailViewClick}
     >
       <S.LogDetailCardThumbnail>
-        <Image
-          src={thumbnailUrl}
-          alt={title}
-          sizes="100%"
-          fill
-          priority
-        />
+        {thumbnailUrl && (
+          <Image
+            src={thumbnailUrl}
+            alt={title}
+            sizes="100%"
+            fill
+            priority
+          />
+        )}
       </S.LogDetailCardThumbnail>
       <S.LogDetailCardInfo $isSettingLayout={isSettingLayout}>
         <div className="infoTopSection">
