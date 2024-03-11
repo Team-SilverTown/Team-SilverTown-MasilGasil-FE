@@ -1,5 +1,6 @@
+"use client";
+
 import { useEffect } from "react";
-import LogRecordRecordingView from "./LogRecordRecording.view";
 
 import { useUI } from "@/components/uiContext/UiContext";
 
@@ -7,7 +8,7 @@ import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
 import useLogRecordContext from "../../context/LogRecordContext";
 import useGeoLocationUtils from "../../../../../hooks/useGeoLocationUtils";
 
-const LogRecordRecordingModel = () => {
+const useLogRecordRecordingController = () => {
   const { openModal, setModalView, closeModal } = useUI();
   const { onErrorWatch, updateUserLocation } = useGeoLocationUtils();
   const { increaseTimer, updatePath, logData, setPageStep, setIsActiveExitAnimation } =
@@ -48,12 +49,10 @@ const LogRecordRecordingModel = () => {
     });
   };
 
-  return (
-    <LogRecordRecordingView
-      logData={logData}
-      handleClickCompleteRecord={handleClickCompleteRecord}
-    />
-  );
+  return {
+    logData,
+    handleClickCompleteRecord,
+  };
 };
 
-export default LogRecordRecordingModel;
+export default useLogRecordRecordingController;

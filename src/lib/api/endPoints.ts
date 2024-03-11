@@ -13,3 +13,10 @@ export const USER = {
   CHECK_NICKNAME: "/api/v1/users/check-nickname",
   SIGNUP: "/api/v1/users/extra-info",
 };
+
+export const MASIL = {
+  POST: "/api/v1/masils",
+  GET_LIST: "/api/v1/masils/recent",
+};
+
+export const IMAGE = "/api/v1/images";
