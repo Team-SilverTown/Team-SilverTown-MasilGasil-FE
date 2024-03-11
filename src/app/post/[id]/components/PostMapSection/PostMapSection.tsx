@@ -1,4 +1,4 @@
-import { PostsDataType } from "../../Post.constants";
+import { PostDetailResponse } from "@/types/Response/Post";
 import { GeoPosition } from "@/types/OriginDataType";
 
 import MasilMap from "@/components/MasilMap/MasilMap";
@@ -8,7 +8,7 @@ import { Center } from "@/components/icons";
 import * as S from "./PostMapSection.styles";
 
 interface PostMapSectionProps {
-  postsData: PostsDataType;
+  postData: PostDetailResponse;
   currentPinIndex: number;
   mapCenter: GeoPosition;
   handlePinIndex: (pinIndex: number) => void;
@@ -16,7 +16,7 @@ interface PostMapSectionProps {
 }
 
 const PostMapSection = ({
-  postsData,
+  postData,
   mapCenter,
   currentPinIndex,
   handlePinIndex,
@@ -26,8 +26,8 @@ const PostMapSection = ({
     <S.MapContainer>
       <MasilMap
         center={mapCenter}
-        path={postsData.path}
-        pins={postsData.pins}
+        path={postData.path}
+        pins={postData.pins}
         onClickPin={handlePinIndex}
         selectedPinIndex={currentPinIndex}
         isShowCenterMarker={false}
