@@ -18,3 +18,7 @@ export const MASIL_KEY = {
 };
 
 export const IMAGE_UPLOAD_KEY = "image_upload_key_0221";
+
+export const POST_KEY = {
+  POST_CREATE: "post_create",
+};

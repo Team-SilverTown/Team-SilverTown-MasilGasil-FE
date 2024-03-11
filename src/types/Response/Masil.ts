@@ -7,8 +7,6 @@ export interface MasilResponse {
   depth3: string;
   depth4: string;
 
-  // delete 예정
-  title: string;
   content: string;
   path: GeoPosition[];
 

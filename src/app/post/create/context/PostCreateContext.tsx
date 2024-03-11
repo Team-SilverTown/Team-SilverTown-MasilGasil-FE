@@ -97,7 +97,6 @@ export const PostCreateContextProvider = ({
   const handleRemovePin: HandleRemovePin = (pinIndex: number) => {
     dispatch({ type: POST_CREATE_REDUCER_ACTION.PIN_REMOVE, payload: { pinIndex } });
   };
-  console.log(postData);
 
   return (
     <PostCreateContext.Provider
