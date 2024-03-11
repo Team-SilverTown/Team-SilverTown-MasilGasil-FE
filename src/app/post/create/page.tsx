@@ -19,8 +19,10 @@ const PostCreate = () => {
   const { setModalView, openModal } = useUI();
 
   const { data, isLoading } = useQuery({
-    queryKey: [POST_KEY.GET_POST_CREATE],
+    queryKey: [POST_KEY.GET_CREATE_POST],
     queryFn: () => getDefaultData({ postId: postId, logId: logId }),
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
   });
 
   if (!isLoading && !data) {
@@ -75,8 +77,6 @@ const getDefaultData = async ({
 
   if (logId) {
     const fetchData = await getMasilDetail({ id: logId });
-
-    console.log(fetchData);
 
     const defaultData: PostCreateRequest = {
       depth1: fetchData.depth1,

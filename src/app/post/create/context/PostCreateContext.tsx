@@ -85,7 +85,7 @@ export const PostCreateContextProvider = ({
   const pathCenter = useMemo(() => calculatePathCenter(defaultData.path), [defaultData.path]);
   const imageMutation = useImageUpload();
   const postMutation = useMutation({
-    mutationKey: [POST_KEY.POST_POST_CREATE],
+    mutationKey: [POST_KEY.POST_CREATE_POST],
     mutationFn: (postData: PostCreateRequest) => postPostCreate({ postData }),
   });
 
