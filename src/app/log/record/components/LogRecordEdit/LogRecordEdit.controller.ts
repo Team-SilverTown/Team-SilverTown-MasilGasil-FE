@@ -74,9 +74,7 @@ const useLogRecordEditController = () => {
               setModalView("LOG_RECORD_DONE_VIEW");
               openModal({
                 onClickUploadPost: () => {
-                  const startPoint = JSON.stringify(logData.path[0]);
-
-                  router.push(`/post/create?id=${id}&point=${startPoint}`);
+                  router.push(`/post/create?logId=${id}`);
                   closeModal();
                 },
                 onClickCancel: () => {

@@ -6,20 +6,31 @@ import PostCreateView from "./PostCreate.view";
 import { useQuery } from "@tanstack/react-query";
 import { getPostDetail } from "@/lib/api/Post/client";
 import { POST_KEY } from "@/lib/api/queryKeys";
-import { useSearchParams } from "next/navigation";
-import { POST_CREATE_DEFAULT_REQUEST_VALUE } from "./PostCreate.constants";
+import { useRouter, useSearchParams } from "next/navigation";
 import { PostCreateRequest } from "@/types/Request";
 import { getMasilDetail } from "@/lib/api/masil/client";
+import { useUI } from "@/components/uiContext/UiContext";
 
 const PostCreate = () => {
   const searchParams = useSearchParams();
   const postId = searchParams.get("postId");
   const logId = searchParams.get("logId");
+  const router = useRouter();
+  const { setModalView, openModal } = useUI();
 
   const { data, isLoading } = useQuery({
     queryKey: [POST_KEY.GET_POST_CREATE],
     queryFn: () => getDefaultData({ postId: postId, logId: logId }),
   });
+
+  if (!isLoading && !data) {
+    router.push("/home");
+    setModalView("LOG_RECORD_ALERT_VIEW");
+    openModal({
+      message: "문제가 발생하였습니다. 잠시 후 다시 시도해주세요.",
+    });
+    return;
+  }
 
   if (isLoading || !data) {
     return;
@@ -83,5 +94,5 @@ const getDefaultData = async ({
     return defaultData;
   }
 
-  return POST_CREATE_DEFAULT_REQUEST_VALUE;
+  return false;
 };
