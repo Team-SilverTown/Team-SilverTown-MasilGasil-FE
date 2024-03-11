@@ -1,14 +1,12 @@
 import { GeoPosition, Pin } from "@/types/OriginDataType";
 import { Map } from "react-kakao-maps-sdk";
-import CenterMarker from "./components/CenterMarker/CenterMarker";
-import PathLine from "./components/PathLine/PathLine";
 import { OnClickPin, OnCreatePathLine, PathLineWeight } from "./MasilMap.types";
-import CustomPin from "./components/CustomPin/CustomPin";
 import Theme from "@/styles/theme";
 
 import { debounce, throttle } from "lodash";
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
 import useMasilMapStore from "./store/useMasilMapStore";
+import { CenterMarker, CustomPin, PathLine } from "./components";
 
 interface MasilMapProps {
   center: GeoPosition;
@@ -220,7 +218,7 @@ const MasilMap = ({
         <PathLine
           path={navigationPath}
           pathColor={"#F7BC01"}
-          pathOpacity={pathOpacity}
+          pathOpacity={0.5}
           pathWeight={pathWeight}
         />
       )}

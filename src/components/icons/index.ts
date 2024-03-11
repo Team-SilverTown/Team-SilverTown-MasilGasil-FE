@@ -51,3 +51,5 @@ export { default as Sleet } from "./Sleet";
 export { default as Snowy } from "./Snowy";
 export { default as FineDust } from "./FineDust";
 export { default as ArrowForward } from "./ArrowForward";
+
+export { default as Flag } from "./Flag";
