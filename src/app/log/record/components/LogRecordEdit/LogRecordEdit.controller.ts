@@ -12,6 +12,7 @@ import { drawPath } from "@/utils/drawPath";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import useImageUpload from "@/lib/hooks/useImageUpload";
+import calculatePathCenter from "@/lib/utils/calculatePathCenter";
 
 const useLogRecordEditController = () => {
   const { setModalView, openModal, closeModal } = useUI();
@@ -31,14 +32,10 @@ const useLogRecordEditController = () => {
   });
 
   useEffect(() => {
-    const pathLength = logData.path.length;
-    const latAvg = logData.path.reduce((total, point) => total + point.lat, 0) / pathLength;
-    const lngAvg = logData.path.reduce((total, point) => total + point.lng, 0) / pathLength;
+    const { lat, lng } = calculatePathCenter(logData.path);
 
     // TODO: 배포 후 테스트 필요
-    if (latAvg && lngAvg) {
-      setUserLocation({ lat: latAvg, lng: lngAvg });
-    }
+    setUserLocation({ lat, lng });
   }, []);
 
   /**

@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useMemo,
   useReducer,
   useState,
 } from "react";
@@ -20,6 +21,9 @@ import {
 } from "../PostCreate.constants";
 import { PostCreateRequest } from "@/types/Request";
 import { useUI } from "@/components/uiContext/UiContext";
+import { GeoPosition } from "@/types/OriginDataType";
+import calculatePathCenter from "@/lib/utils/calculatePathCenter";
+import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 
 interface PostCreateContextProviderProps {
   defaultData: PostCreateRequest;
@@ -27,6 +31,7 @@ interface PostCreateContextProviderProps {
 }
 
 interface PostCreateContextValues {
+  mapCenter: GeoPosition;
   postData: PostCreateRequest;
   pageStep: PostCreatePageStep;
   currentPinIndex: number;
@@ -35,9 +40,11 @@ interface PostCreateContextValues {
   handleCompleteStepOne: HandleCompleteStepOne;
   handleClickPin: HandleClickPin;
   handleRemovePin: HandleRemovePin;
+  handleClickCenterButton: () => void;
 }
 
 const PostCreateContext = createContext<PostCreateContextValues>({
+  mapCenter: { lat: 0, lng: 0 },
   postData: POST_CREATE_DEFAULT_REQUEST_VALUE,
   pageStep: "POST_CREATE_TEXT_EDIT",
   currentPinIndex: -1,
@@ -46,6 +53,7 @@ const PostCreateContext = createContext<PostCreateContextValues>({
   handleCompleteStepOne: () => {},
   handleClickPin: () => {},
   handleRemovePin: () => {},
+  handleClickCenterButton: () => {},
 });
 
 export const PostCreateContextProvider = ({
@@ -55,8 +63,11 @@ export const PostCreateContextProvider = ({
   const [postData, dispatch] = useReducer(postCreateReducer, defaultData);
   const [pageStep, setPageStep] = useState<PostCreatePageStep>("POST_CREATE_TEXT_EDIT");
   const [currentPinIndex, setCurrentPinIndex] = useState(-1);
+  const [mapCenter, setMapCenter] = useState<GeoPosition>(calculatePathCenter(defaultData.path));
 
   const { setModalView, openModal, closeModal } = useUI();
+  const { setIsOutCenter } = useMasilMapStore();
+  const pathCenter = useMemo(() => calculatePathCenter(defaultData.path), [defaultData.path]);
 
   useEffect(() => {
     dispatch({ type: POST_CREATE_REDUCER_ACTION.INIT, payload: { defaultData } });
@@ -69,6 +80,8 @@ export const PostCreateContextProvider = ({
   const handleClickPin: HandleClickPin = (pinIndex) => {
     setCurrentPinIndex(pinIndex);
     setModalView("PIN_EDIT_VIEW");
+    setMapCenter(postData.pins[pinIndex].point);
+    setIsOutCenter(false);
 
     openModal({
       onClickAccept: (imageUrl: string | null, pinContent: string | null) => {
@@ -98,9 +111,15 @@ export const PostCreateContextProvider = ({
     dispatch({ type: POST_CREATE_REDUCER_ACTION.PIN_REMOVE, payload: { pinIndex } });
   };
 
+  const handleClickCenterButton = () => {
+    setMapCenter(pathCenter);
+    setIsOutCenter(false);
+  };
+
   return (
     <PostCreateContext.Provider
       value={{
+        mapCenter,
         defaultData,
         pageStep,
         setPageStep,
@@ -109,6 +128,7 @@ export const PostCreateContextProvider = ({
         handleCompleteStepOne,
         handleClickPin,
         handleRemovePin,
+        handleClickCenterButton,
       }}
     >
       {children}

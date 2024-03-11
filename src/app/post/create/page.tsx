@@ -10,7 +10,6 @@ import { useSearchParams } from "next/navigation";
 import { POST_CREATE_DEFAULT_REQUEST_VALUE } from "./PostCreate.constants";
 import { PostCreateRequest } from "@/types/Request";
 import { getMasilDetail } from "@/lib/api/masil/client";
-import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 const PostCreate = () => {
   const searchParams = useSearchParams();
