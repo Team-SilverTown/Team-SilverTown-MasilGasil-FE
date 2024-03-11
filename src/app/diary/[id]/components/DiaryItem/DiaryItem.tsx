@@ -21,12 +21,12 @@ const DiaryItem = ({ masil }: { masil: MasilsByPeriod; key?: number | string }) 
   return (
     <S.Layout onClick={handleClickItem}>
       <S.ThumbnailContainer>
-        {/* <Image
+        <Image
           src={thumbnailUrl}
           alt="masilThumbnail"
-          width={50}
-          height={50}
-        /> */}
+          width={100}
+          height={100}
+        />
       </S.ThumbnailContainer>
       <S.ContentContainer>
         <S.Title>{content ? content : "내 산책기록"}</S.Title>
