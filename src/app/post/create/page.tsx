@@ -17,7 +17,7 @@ const PostCreate = () => {
   const logId = searchParams.get("logId");
 
   const { data, isLoading } = useQuery({
-    queryKey: [POST_KEY.POST_CREATE],
+    queryKey: [POST_KEY.GET_POST_CREATE],
     queryFn: () => getDefaultData({ postId: postId, logId: logId }),
   });
 

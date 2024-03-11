@@ -2,6 +2,7 @@ import { FieldErrors, useForm } from "react-hook-form";
 import { PostCreateInputValue } from "../../PostCreate.types";
 import usePostCreateContext from "../../context/PostCreateContext";
 import { useEffect, useMemo, useState } from "react";
+import useImageUpload from "@/lib/hooks/useImageUpload";
 
 const usePostTextEditController = () => {
   const { postData, defaultData, pageStep, setPageStep, handleCompleteStepOne } =
@@ -15,6 +16,7 @@ const usePostTextEditController = () => {
     mode: "onChange",
   });
   const { errors } = formState;
+  const imageMutation = useImageUpload();
 
   useEffect(() => {
     setIsPublic(postData.isPublic);
@@ -43,18 +45,18 @@ const usePostTextEditController = () => {
       return;
     }
 
-    console.log(thumbnail);
-    // 추후 업로드 후 반환받은 URL을 넣어줌
-    handleCompleteStepOne({
-      title,
-      content,
-      isPublic: isPublic,
-      // URL을 넣어야함
-      // mutation Success에서 handleCompleteStepOne넣기
-      thumbnailUrl: "URL을 추가",
-    });
+    imageMutation.mutate(thumbnail, {
+      onSuccess: ({ imageUrl }) => {
+        handleCompleteStepOne({
+          title,
+          content,
+          isPublic: isPublic,
+          thumbnailUrl: imageUrl,
+        });
 
-    setPageStep("POST_CREATE_PIN_EDIT");
+        setPageStep("POST_CREATE_PIN_EDIT");
+      },
+    });
   };
 
   return {
