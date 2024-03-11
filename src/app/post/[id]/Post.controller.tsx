@@ -1,31 +1,42 @@
 "use client";
 
-import { GeoPosition } from "@/types/OriginDataType";
 import usePostModel from "./Post.model";
 import PostView from "./Post.view";
-import { POSTS_DATA, USER_DUMMY_DATA } from "./Post.constants";
 import { PostTabType } from "./Post.types";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 
 interface PostControllerProps {
-  postId: number;
-  baseLocation: GeoPosition;
+  postId: string;
 }
 
-const PostController = ({ postId, baseLocation }: PostControllerProps) => {
-  const { tabIndex, setTabIndex, currentPinIndex, setCurrentPinIndex, mapCenter, setMapCenter } =
-    usePostModel({ baseLocation });
+const PostController = ({ postId }: PostControllerProps) => {
+  const {
+    tabIndex,
+    setTabIndex,
+    currentPinIndex,
+    setCurrentPinIndex,
+    mapCenter,
+    setMapCenter,
+    postData,
+    baseLocation,
+    userInfo,
+    mateData,
+  } = usePostModel({ postId });
   const { setIsOutCenter } = useMasilMapStore();
+
+  if (!postData) {
+    return;
+  }
 
   const handlePinIndex = (PinIndex: number) => {
     setCurrentPinIndex(PinIndex);
     setTabIndex(PostTabType.Pin);
 
-    if (POSTS_DATA.pins.length === 0) {
+    if (postData.pins.length === 0) {
       return;
     }
 
-    const { lat, lng } = POSTS_DATA.pins[PinIndex].point;
+    const { lat, lng } = postData.pins[PinIndex].point;
     setMapCenter({ lat, lng });
     setIsOutCenter(false);
   };
@@ -37,17 +48,28 @@ const PostController = ({ postId, baseLocation }: PostControllerProps) => {
     setIsOutCenter(false);
   };
 
+  const handleClickTab = (index: number) => {
+    if (PostTabType.Pin === index) {
+      const { lat, lng } = postData.pins[0].point;
+      setCurrentPinIndex(0);
+      setMapCenter({ lat, lng });
+      setIsOutCenter(false);
+    }
+    setTabIndex(index);
+  };
+
   return (
     <PostView
       postId={postId}
-      postsData={POSTS_DATA}
-      userInfo={USER_DUMMY_DATA}
+      postData={postData}
       tabIndex={tabIndex}
       currentPinIndex={currentPinIndex}
       mapCenter={mapCenter}
-      setTabIndex={setTabIndex}
       handlePinIndex={handlePinIndex}
       handleClickCenter={handleClickCenter}
+      handleClickTab={handleClickTab}
+      userInfo={userInfo}
+      mateData={mateData}
     />
   );
 };
