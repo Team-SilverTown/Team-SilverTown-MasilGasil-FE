@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import useImageUpload from "@/lib/hooks/useImageUpload";
 import calculatePathCenter from "@/lib/utils/calculatePathCenter";
+import useMeStore from "@/stores/useMeStore";
+import { calculateWalkingCalories } from "@/utils";
 
 const useLogRecordEditController = () => {
   const { setModalView, openModal, closeModal } = useUI();
@@ -23,12 +25,12 @@ const useLogRecordEditController = () => {
     defaultValues: { logMemo: logData.content },
   });
   const imageMutation = useImageUpload();
-
   const router = useRouter();
+  const { sex, height, weight, birthDate, exerciseIntensity } = useMeStore();
 
   const logUploadMutation = useMutation({
     mutationKey: [MASIL_KEY.RECORD_SUBMIT],
-    mutationFn: async (data: MasilRecordRequest) => postMasil({ data }),
+    mutationFn: async (data: MasilRecordRequest) => await postMasil({ data }),
   });
 
   useEffect(() => {
@@ -46,13 +48,21 @@ const useLogRecordEditController = () => {
    * 이후, 서버에 전송 성공시 Done Modal이 제공되어지고, 공유를 선택시 시작지점과 성성된 log id 를 post 생성 페이지에 전달합니다.
    */
   const handleSubmit = () => {
-    // TODO
-    // 1. 칼로리
+    const newCalories = calculateWalkingCalories({
+      userInfo: {
+        sex,
+        height,
+        weight,
+        exerciseIntensity,
+        birthDate,
+      },
+      distance: logData.distance,
+    });
 
     const newData: MasilRecordRequest = {
       ...logData,
       content: getValues("logMemo"),
-      calories: 9999,
+      calories: newCalories.calories ? newCalories.calories : 0,
     };
 
     const pathCanvas = drawPath(newData.path);
