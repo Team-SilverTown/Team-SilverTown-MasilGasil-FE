@@ -39,6 +39,9 @@ interface MasilMapProps {
   pinFontColor?: string;
   selectedPinIndex?: number;
 
+  navigationPath?: GeoPosition[];
+  navigationPins?: Pin[];
+
   style?: CSSProperties;
   innerElement?: ReactNode;
 }
@@ -102,6 +105,9 @@ const MasilMap = ({
   pinSelectColor,
   pinFontColor,
   selectedPinIndex,
+
+  navigationPath = [],
+  navigationPins = [],
 
   style,
   innerElement,
@@ -209,6 +215,17 @@ const MasilMap = ({
             isSelected={selectedPinIndex === index}
           />
         ))}
+
+      {navigationPath.length !== 0 && (
+        <PathLine
+          path={navigationPath}
+          pathColor={"#F7BC01"}
+          pathOpacity={pathOpacity}
+          pathWeight={pathWeight}
+        />
+      )}
+
+      {}
 
       {innerElement}
     </Map>

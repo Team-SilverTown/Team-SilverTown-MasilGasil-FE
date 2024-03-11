@@ -11,8 +11,13 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { AnimatePresence } from "framer-motion";
 import useLogRecordController from "./LogRecord.controller";
+import { NavigationData } from "./LogRecord.types";
 
-const LogRecordView = () => {
+interface LogRecordViewProps {
+  navigationData?: NavigationData;
+}
+
+const LogRecordView = ({ navigationData }: LogRecordViewProps) => {
   const {
     pageStep,
     logData,
@@ -55,6 +60,8 @@ const LogRecordView = () => {
           isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
           onClickPin={handleClickPin}
           selectedPinIndex={currentPinIndex}
+          navigationPath={navigationData?.path}
+          navigationPins={navigationData?.pins}
         />
       </S.LogRecordMapContainer>
 
