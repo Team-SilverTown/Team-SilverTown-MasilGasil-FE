@@ -2,7 +2,6 @@ import { useState } from "react";
 import usePostCreateContext from "./context/PostCreateContext";
 import { useRouter } from "next/navigation";
 import { useUI } from "@/components/uiContext/UiContext";
-import useTheme from "@/lib/hooks/useTheme";
 
 const usePostCreateController = () => {
   const [isOpenBottom, setIsOpenBottom] = useState(false);
@@ -17,7 +16,6 @@ const usePostCreateController = () => {
   } = usePostCreateContext();
   const { setModalView, openModal } = useUI();
   const router = useRouter();
-  const theme = useTheme();
 
   const handleFallback = () => {
     if (pageStep === "POST_CREATE_TEXT_EDIT") {
@@ -46,7 +44,6 @@ const usePostCreateController = () => {
     postData,
     pageStep,
     currentPinIndex,
-    theme,
 
     handleFallback,
     handleClickPin,

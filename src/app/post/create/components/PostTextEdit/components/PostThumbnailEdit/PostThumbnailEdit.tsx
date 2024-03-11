@@ -4,7 +4,6 @@ import * as S from "./PostThumbnailEdit.styles";
 import * as GS from "../../PostTextEdit.styles";
 import * as TGS from "../../../../PostCreate.styles";
 import InputUpload from "@/components/InputUpload/InputUpload";
-import { PostCreateRequest } from "@/types/Request";
 import Image from "@/components/icons/Image";
 import useTheme from "@/lib/hooks/useTheme";
 import { useEffect, useState } from "react";

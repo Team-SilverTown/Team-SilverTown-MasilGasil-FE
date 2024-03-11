@@ -17,8 +17,8 @@ const PostTextEditView = () => {
     handleValid,
 
     handleSubmit,
-    setThumbnail,
     thumbnail,
+    setThumbnail,
     handleCreatePost,
   } = usePostTextEditController();
 

@@ -8,7 +8,6 @@ const usePostTextEditController = () => {
     postData,
     thumbnail,
     setThumbnail,
-    pageStep,
     setPageStep,
     handleCompleteStepOne,
     handleCreatePost,
@@ -48,7 +47,6 @@ const usePostTextEditController = () => {
 
   return {
     postData,
-    pageStep,
     register,
     errors,
     isPublic,
