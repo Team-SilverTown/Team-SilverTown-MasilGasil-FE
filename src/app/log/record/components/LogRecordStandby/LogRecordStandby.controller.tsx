@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import LogRecordStandbyView from "./LogRecordStandby.view";
 import { useUI } from "@/components/uiContext/UiContext";
 
 import useLogRecordContext from "../../context/LogRecordContext";
 import useGeoLocationUtils from "../../../../../hooks/useGeoLocationUtils";
 
-const LogRecordStandbyModel = () => {
+const useLogRecordStandbyController = () => {
   const { onErrorWatch, updateUserLocation } = useGeoLocationUtils();
   const { startRecord } = useLogRecordContext();
   const { showLoadingSpinner } = useUI();
@@ -36,7 +35,9 @@ const LogRecordStandbyModel = () => {
     });
   };
 
-  return <LogRecordStandbyView onClick={handleStartRecord} />;
+  return {
+    handleStartRecord,
+  };
 };
 
-export default LogRecordStandbyModel;
+export default useLogRecordStandbyController;

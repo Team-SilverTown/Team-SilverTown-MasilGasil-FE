@@ -1,4 +1,5 @@
-import { MyRecordListType, UserInfoType } from "./MyPage.types";
+import { MeResponse } from "@/types/Response";
+import { MyRecordListType } from "./MyPage.types";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { UserProfileInfo, UserWalkRecord, MyRecordList, MyPageSetting } from "./components";
@@ -6,7 +7,7 @@ import * as S from "./MyPage.styles";
 
 interface MyPageViewProps {
   boardList: MyRecordListType[];
-  userInfo: UserInfoType;
+  userInfo: MeResponse;
   userId: number;
 }
 

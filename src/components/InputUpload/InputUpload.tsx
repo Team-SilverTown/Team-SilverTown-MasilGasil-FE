@@ -28,6 +28,10 @@ const InputUpload = ({
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
+    setPreview(previewValue ?? null);
+  }, [previewValue]);
+
+  useEffect(() => {
     if (!previewValue) {
       return;
     }
