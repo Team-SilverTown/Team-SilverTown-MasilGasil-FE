@@ -1,41 +1,48 @@
-"use client";
+import { MeResponse } from "@/types/Response";
+import { MyRecordListType } from "./MyPage.types";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { GoBackButton } from "@/components/navigators/TopNavigator/components";
+import { UserProfileInfo, UserWalkRecord, MyRecordList, MyPageSetting } from "./components";
+import * as S from "./MyPage.styles";
 
-import * as GS from "@/styles/GlobalStyle";
-import { UserInfo, UserWalkRecord, MyRecordList } from "./components";
-import { MyRecordListProps } from "./components/MyRecordList";
-
-interface MypageViewProps {
-  boardList: MyRecordListProps[];
+interface MyPageViewProps {
+  boardList: MyRecordListType[];
+  userInfo: MeResponse;
+  userId: number;
 }
 
-const MypageView = ({ boardList }: MypageViewProps) => {
+const MyPageView = ({ boardList, userInfo, userId }: MyPageViewProps) => {
   return (
-    <GS.CommonContainer>
-      <UserInfo
-        profileImage=""
-        profileName="김개똥"
-        profileMessage="간단한 자기소개!!"
+    <>
+      <TopNavigator
+        leftChildren={<GoBackButton />}
+        title="프로필"
+        rightChildren={<MyPageSetting userId={userId} />}
       />
-      <UserWalkRecord
-        totalWalkDistance={104.2}
-        totalWalkCount={50}
-        exerciseIntensity="1"
-        userAge="1994.12.26"
-        userWeight={71}
-        userHeight={177}
-        gender="male"
-      />
-      {boardList.map(({ title, urlLink, recordList, type }) => (
-        <MyRecordList
-          key={title}
-          title={title}
-          urlLink={urlLink}
-          recordList={recordList}
-          type={type}
-        />
-      ))}
-    </GS.CommonContainer>
+      <S.UserProfileContainer>
+        <S.UserProfileLayout className="scrollbar-hide">
+          <UserProfileInfo
+            profileImage=""
+            profileName="달려라댕댕아"
+          />
+          <UserWalkRecord
+            totalWalkDistance={11000}
+            totalWalkCount={50}
+            userInfo={userInfo}
+          />
+          {boardList.map(({ title, urlLink, recordList, type }) => (
+            <MyRecordList
+              title={title}
+              urlLink={urlLink}
+              recordList={recordList}
+              type={type}
+              userInfo={userInfo}
+            />
+          ))}
+        </S.UserProfileLayout>
+      </S.UserProfileContainer>
+    </>
   );
 };
 
-export default MypageView;
+export default MyPageView;

@@ -52,6 +52,7 @@ export const authOptions: NextAuthOptions = {
         console.log("session", token);
         // session.accessToken = token.accessToken as string;
         session.serviceToken = token.serviceToken as string;
+        session.nickname = token.nickname as string;
       } else {
         session.serviceToken = undefined;
       }
