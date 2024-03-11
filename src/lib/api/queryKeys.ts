@@ -23,3 +23,9 @@ export const POST_KEY = {
   GET_CREATE_POST: "get_create_post_key",
   POST_CREATE_POST: "post_create_post_key",
 };
+
+export const GET_KEY = {
+  GET_LOG: "get_log",
+  GET_POST: "get_post",
+  GET_MATE: "get_mate",
+};
