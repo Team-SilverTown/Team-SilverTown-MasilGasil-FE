@@ -1,7 +1,9 @@
 import React from "react";
 
+import MateCreateController from "./MateCreate.controller";
+
 const MateCreate = () => {
-  return <div>MateCreate</div>;
+  return <MateCreateController />;
 };
 
 export default MateCreate;
