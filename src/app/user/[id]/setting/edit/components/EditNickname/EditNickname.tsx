@@ -47,7 +47,7 @@ const EditNickname = ({
           style={{
             lineHeight: "2rem",
             width: "100%",
-            fontSize: "1.5rem",
+            fontSize: `${FONT_SIZE.MEDIUM}`,
             fontWeight: FONT_WEIGHT.SEMIBOLD,
           }}
         />
@@ -60,7 +60,7 @@ const EditNickname = ({
           rippleColor={theme?.text_secondary_color + 50}
           style={{
             whiteSpace: "nowrap",
-            fontSize: FONT_SIZE.H5,
+            fontSize: FONT_SIZE.LARGE,
             fontWeight: FONT_WEIGHT.SEMIBOLD,
             userSelect: "none",
           }}

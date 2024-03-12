@@ -5,7 +5,7 @@ export const UserEditInputTitle = styled.h6`
   margin-bottom: 1.6rem;
   padding-left: 0.6rem;
 
-  font-size: ${FONT_SIZE.H5};
+  font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.BOLD};
 
   user-select: none;

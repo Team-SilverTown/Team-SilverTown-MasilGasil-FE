@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 
 import useUserEditModel from "./UserEdit.model";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { MeResponse } from "@/types/Response";
 import { useMutation } from "@tanstack/react-query";
 import { USER_KEY } from "@/lib/api/queryKeys";
@@ -52,7 +52,10 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
     }
   }, [newNickname]);
 
-  // 닉네임 중복 확인을 진행해주세요.
+  const changeUserData = useMemo(() => {
+    return userDataChangeChecker(userDefaultData, watch());
+  }, [watch()]);
+
   const handleValid = (data: MeResponse) => {
     if (!isCheckedNickname) {
       setModalView("ANIMATION_ALERT_VIEW");
@@ -68,7 +71,7 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
       최종 검증 후 업데이트 로직 수행
     */
 
-    console.log("등록되어야함");
+    console.log("등록되어야함", data);
   };
 
   const handleCheckSameNickName = useRef(
@@ -103,6 +106,7 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
     register,
     errors,
     nickNameButtonDisabled,
+    changeUserData,
     handleValid,
 
     handleSubmit,
@@ -114,3 +118,14 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
 };
 
 export default useUserEditController;
+
+const userDataChangeChecker = (prevData: MeResponse, currentData: MeResponse) => {
+  const prev = JSON.stringify(prevData);
+  const curr = JSON.stringify(currentData);
+
+  if (prev === curr) {
+    return false;
+  }
+
+  return true;
+};

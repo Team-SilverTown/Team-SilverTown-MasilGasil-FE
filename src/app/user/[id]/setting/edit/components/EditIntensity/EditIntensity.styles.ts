@@ -5,7 +5,7 @@ export const IntensityTitle = styled.h6`
   padding-left: 0.6rem;
   margin-bottom: 1.2rem;
 
-  font-size: ${FONT_SIZE.H5};
+  font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.BOLD};
 
   user-select: none;

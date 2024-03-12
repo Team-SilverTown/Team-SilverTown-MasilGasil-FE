@@ -24,6 +24,7 @@ const UserEditView = ({ userDefaultData }: UserEditViewProps) => {
     selectedSex,
     selectedIntensity,
     handleCheckSameNickName,
+    changeUserData,
     handleSubmit,
     handleValid,
   } = useUserEditController({ userDefaultData });
@@ -79,13 +80,14 @@ const UserEditView = ({ userDefaultData }: UserEditViewProps) => {
           textColor={theme?.text_secondary_color}
           style={{
             width: "90%",
-            fontSize: FONT_SIZE.H4,
+            fontSize: FONT_SIZE.H6,
             fontWeight: FONT_WEIGHT.BOLD,
             minHeight: "5rem",
           }}
           onClickHandler={handleSubmit(handleValid)}
+          disabled={!changeUserData}
         >
-          수정 완료
+          {changeUserData ? "수정 완료" : "변경사항이 없습니다."}
         </Button>
       </S.UserEditButtonWrapper>
     </GS.CommonContainer>
