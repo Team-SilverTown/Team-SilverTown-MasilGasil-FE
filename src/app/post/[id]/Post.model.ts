@@ -19,7 +19,7 @@ interface usePostModelProp {
 
 const usePostModel = ({ postId }: usePostModelProp) => {
   const [tabIndex, setTabIndex] = useState(PostTabType.Memo);
-  const [currentPinIndex, setCurrentPinIndex] = useState(0);
+  const [currentPinIndex, setCurrentPinIndex] = useState(-1);
   const [mapCenter, setMapCenter] = useState<GeoPosition>({
     lat: 0,
     lng: 0,

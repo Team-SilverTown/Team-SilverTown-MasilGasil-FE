@@ -28,7 +28,7 @@ const PostController = ({ postId }: PostControllerProps) => {
     return;
   }
 
-  const handlePinIndex = (PinIndex: number) => {
+  const handleCurrentPinIndex = (PinIndex: number) => {
     setCurrentPinIndex(PinIndex);
     setTabIndex(PostTabType.Pin);
 
@@ -42,7 +42,7 @@ const PostController = ({ postId }: PostControllerProps) => {
   };
 
   const handleClickCenter = () => {
-    setCurrentPinIndex(0);
+    setCurrentPinIndex(-1);
     setTabIndex(PostTabType.Memo);
     setMapCenter(baseLocation);
     setIsOutCenter(false);
@@ -65,7 +65,7 @@ const PostController = ({ postId }: PostControllerProps) => {
       tabIndex={tabIndex}
       currentPinIndex={currentPinIndex}
       mapCenter={mapCenter}
-      handlePinIndex={handlePinIndex}
+      handleCurrentPinIndex={handleCurrentPinIndex}
       handleClickCenter={handleClickCenter}
       handleClickTab={handleClickTab}
       userInfo={userInfo}
