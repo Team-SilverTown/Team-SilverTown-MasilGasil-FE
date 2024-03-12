@@ -7,7 +7,7 @@ export const LogContainer = styled.section`
 `;
 
 export const LogContentLayout = styled.section`
-  height: 45%;
+  height: 55%;
   padding: 0 1.5rem;
 `;
 

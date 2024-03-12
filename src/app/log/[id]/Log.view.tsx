@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 
-import { MasilsDataType, TAB_CONTENTS } from "./Log.constants";
+import { TAB_CONTENTS } from "./Log.constants";
 
 import { GeoPosition } from "@/types/OriginDataType";
-import { MeResponse } from "@/types/Response";
-import { TabType } from "./Log.types";
+import { MasilDetailResponse } from "@/types/Response";
+import { TabType, UserInfoType } from "./Log.types";
 
 import { Button, Tab } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
@@ -15,28 +15,30 @@ import { LogMapSection, LogKebabMenu, LogMemo, LogPin } from "./components";
 
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./Log.styles";
-import { userInfo } from "os";
 
 interface LogViewProps {
-  masilsData: MasilsDataType;
-  userInfo: MeResponse;
+  masilData: MasilDetailResponse;
+  logId: string;
+  userInfo: UserInfoType;
   tabIndex: number;
   currentPinIndex: number;
   mapCenter: GeoPosition;
   setTabIndex: React.Dispatch<React.SetStateAction<TabType>>;
-  handlePinIndex: (pinIndex: number) => void;
+  handleCurrentPinIndex: (pinIndex: number) => void;
   handleClickCenter: () => void;
+  handleClickTab: (index: number) => void;
 }
 
 const LogView = ({
-  masilsData,
+  masilData,
+  logId,
   userInfo,
   tabIndex,
   currentPinIndex,
   mapCenter,
-  setTabIndex,
-  handlePinIndex,
+  handleCurrentPinIndex,
   handleClickCenter,
+  handleClickTab,
 }: LogViewProps) => {
   return (
     <>
@@ -46,10 +48,10 @@ const LogView = ({
       />
       <S.LogContainer>
         <LogMapSection
-          masilsData={masilsData}
+          masilData={masilData}
           currentPinIndex={currentPinIndex}
           mapCenter={mapCenter}
-          handlePinIndex={handlePinIndex}
+          handlePinIndex={handleCurrentPinIndex}
           handleClickCenter={handleClickCenter}
         />
         <S.LogContentLayout>
@@ -59,32 +61,27 @@ const LogView = ({
               fontWeight: `${FONT_WEIGHT.BOLD}`,
             }}
             tabContents={TAB_CONTENTS}
-            tabClickHandler={(index) => {
-              setTabIndex(index);
-            }}
+            tabClickHandler={handleClickTab}
             focusedTab={tabIndex}
           />
 
           <S.LogContentSection className="scrollbar-hide">
             {tabIndex === TabType.Memo && (
               <LogMemo
-                distance={1100}
-                totalTime={3600}
+                masilData={masilData}
                 userInfo={userInfo}
-                address={`${masilsData.depth1} ${masilsData.depth2}`}
-                masilDate={masilsData.startedAt}
               />
             )}
             {tabIndex === TabType.Pin && (
               <LogPin
-                pins={masilsData.pins}
+                pins={masilData.pins}
                 currentPinIndex={currentPinIndex}
-                handlePinIndex={handlePinIndex}
+                handlePinIndex={handleCurrentPinIndex}
               />
             )}
           </S.LogContentSection>
 
-          <Link href="/post/:id">
+          <Link href={`/post/create?logId=${logId}`}>
             <Button
               width="calc(100% - 3rem)"
               textColor={Theme.lightTheme.white}
