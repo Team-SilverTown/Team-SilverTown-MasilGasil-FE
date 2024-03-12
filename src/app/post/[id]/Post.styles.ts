@@ -1,3 +1,4 @@
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostContainer = styled.section`
@@ -7,8 +8,19 @@ export const PostContainer = styled.section`
 `;
 
 export const PostContentLayout = styled.section`
-  height: 45%;
-  padding: 0 1.5rem;
+  height: 55%;
+  padding: 0 2rem;
+
+  .postTab {
+    font-size: ${FONT_SIZE.H6};
+    font-weight: ${FONT_WEIGHT.BOLD};
+  }
+
+  @media (max-width: 380px) {
+    .postTab {
+      font-size: ${FONT_SIZE.LARGE};
+    }
+  }
 `;
 
 export const PostContentSection = styled.section`

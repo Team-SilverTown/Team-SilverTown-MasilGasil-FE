@@ -21,7 +21,7 @@ interface PostViewProps {
   tabIndex: PostTabType;
   currentPinIndex: number;
   mapCenter: GeoPosition;
-  handlePinIndex: (index: number) => void;
+  handleCurrentPinIndex: (index: number) => void;
   handleClickCenter: () => void;
   handleClickTab: (index: number) => void;
   mateData: MateDummyType[];
@@ -34,7 +34,7 @@ const PostView = ({
   tabIndex,
   currentPinIndex,
   mapCenter,
-  handlePinIndex,
+  handleCurrentPinIndex,
   handleClickCenter,
   handleClickTab,
   mateData,
@@ -52,15 +52,12 @@ const PostView = ({
           postData={postData}
           currentPinIndex={currentPinIndex}
           mapCenter={mapCenter}
-          handlePinIndex={handlePinIndex}
+          handlePinIndex={handleCurrentPinIndex}
           handleClickCenter={handleClickCenter}
         />
         <S.PostContentLayout>
           <Tab
-            style={{
-              fontSize: `${FONT_SIZE.H6}`,
-              fontWeight: `${FONT_WEIGHT.BOLD}`,
-            }}
+            className="postTab"
             tabContents={TAB_CONTENTS}
             tabClickHandler={handleClickTab}
             focusedTab={tabIndex}
@@ -77,7 +74,7 @@ const PostView = ({
               <PostPin
                 pins={postData.pins}
                 currentPinIndex={currentPinIndex}
-                handlePinIndex={handlePinIndex}
+                handlePinIndex={handleCurrentPinIndex}
               />
             )}
             {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
@@ -91,7 +88,7 @@ const PostView = ({
             }
           >
             <Button
-              width="calc(100% - 3rem)"
+              width="calc(100% - 4rem)"
               textColor={Theme.lightTheme.white}
               buttonColor={Theme.lightTheme.green_500}
               style={{

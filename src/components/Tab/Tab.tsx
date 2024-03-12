@@ -8,6 +8,7 @@ interface TabProps {
   tabContents: Array<string>;
   tabClickHandler: (index: number) => void;
   focusedTab: number;
+  className?: string;
   style?: CSSProperties;
   width?: string | number;
   height?: string | number;
@@ -20,11 +21,15 @@ const Tab = ({
   focusedTab = -1,
   width = "100%",
   height = `${NAV_HEIGHT}rem`,
+  className,
   style,
   TabComponent,
 }: TabProps) => {
   return (
-    <S.Tabs style={{ width, height, ...style }}>
+    <S.Tabs
+      style={{ width, height, ...style }}
+      className={className}
+    >
       {tabContents.map((item, index) => (
         <S.Tab
           key={index}
