@@ -3,16 +3,16 @@ import { UseFormGetValues, UseFormRegister } from "react-hook-form";
 
 import { UserIntensityItem } from "@/components";
 
-import { SignInFormProps } from "../SignIn.controller";
-import * as S from "../SignIn.styles";
+import { SignUpFormProps } from "../SignUp.controller";
+import * as S from "../SignUp.styles";
 import { INTENSITY_OPTIONS } from "@/lib/constants/variable";
 
-interface SignInStep3Props {
-  register: UseFormRegister<SignInFormProps>;
-  getValues: UseFormGetValues<SignInFormProps>;
+interface SignUpStep3Props {
+  register: UseFormRegister<SignUpFormProps>;
+  getValues: UseFormGetValues<SignUpFormProps>;
 }
 
-const SignInStep3 = ({ getValues, register }: SignInStep3Props) => {
+const SignUpStep3 = ({ getValues, register }: SignUpStep3Props) => {
   const selectedIntensity = getValues("exerciseIntensity");
 
   return (
@@ -37,4 +37,4 @@ const SignInStep3 = ({ getValues, register }: SignInStep3Props) => {
   );
 };
 
-export default SignInStep3;
+export default SignUpStep3;

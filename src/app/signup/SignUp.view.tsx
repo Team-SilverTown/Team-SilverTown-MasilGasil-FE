@@ -5,23 +5,22 @@ import { FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 
 import * as GS from "@/styles/GlobalStyle";
 import { StepLayout } from "@/components";
-import { NAV_HEIGHT } from "@/styles/theme";
 
-import { SignInHelper, StepButton } from "./components";
-import { SignInFormProps } from "./SignIn.controller";
+import { SignUpHelper, StepButton } from "./components";
+import { SignUpFormProps } from "./SignUp.controller";
 
-interface SignInViewProps {
+interface SignUpViewProps {
   stepViews: ReactNode[];
   focusedStep: number;
   prevFocusedStep: number;
   onNextButtonHandler: () => void;
-  handleSubmit: UseFormHandleSubmit<SignInFormProps, SignInFormProps>;
-  onValid: (data: SignInFormProps) => void;
+  handleSubmit: UseFormHandleSubmit<SignUpFormProps, SignUpFormProps>;
+  onValid: (data: SignUpFormProps) => void;
   onInvalid: (errors: FieldErrors) => void;
   stepValidations: boolean[];
 }
 
-const SignInView = ({
+const SignUpView = ({
   stepViews,
   focusedStep,
   prevFocusedStep,
@@ -30,10 +29,10 @@ const SignInView = ({
   onValid,
   onInvalid,
   stepValidations,
-}: SignInViewProps) => {
+}: SignUpViewProps) => {
   return (
     <GS.CommonContainer>
-      <SignInHelper index={focusedStep} />
+      <SignUpHelper index={focusedStep} />
       {stepViews && (
         <StepLayout
           focusedStep={focusedStep}
@@ -51,4 +50,4 @@ const SignInView = ({
   );
 };
 
-export default SignInView;
+export default SignUpView;

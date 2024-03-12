@@ -91,7 +91,11 @@ const LogDetailCard = ({
         <div className="infoTopSection">
           <div className="infoTitle">
             <h3>{title}</h3>
-            {isSettingLayout && <KebabMenu onClick={handleSettingToggle} />}
+            {isSettingLayout && (
+              <button onClick={handleSettingToggle}>
+                <KebabMenu />
+              </button>
+            )}
           </div>
           <p>{content}</p>
         </div>

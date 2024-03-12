@@ -6,21 +6,21 @@ import { FieldErrors, UseFormSetValue, UseFormRegister, UseFormGetValues } from 
 import useTheme from "@/lib/hooks/useTheme";
 
 import { Button, UserEditInput } from "@/components";
-import { SignInFormProps } from "../SignIn.controller";
-import useSignInModel from "../SignIn.model";
-import * as S from "../SignIn.styles";
+import { SignUpFormProps } from "../SignUp.controller";
+import useSignUpModel from "../SignUp.model";
+import * as S from "../SignUp.styles";
 
 import { SEX_OPTIONS } from "@/lib/constants/variable";
 import { USER_INPUT_PLACEHOLDER, validation_user } from "@/lib/constants/userConstants";
 
-interface SignInStep2Props {
-  getValues: UseFormGetValues<SignInFormProps>;
-  setValue: UseFormSetValue<SignInFormProps>;
-  register: UseFormRegister<SignInFormProps>;
-  errors: FieldErrors<SignInFormProps>;
+interface SignUpStep2Props {
+  getValues: UseFormGetValues<SignUpFormProps>;
+  setValue: UseFormSetValue<SignUpFormProps>;
+  register: UseFormRegister<SignUpFormProps>;
+  errors: FieldErrors<SignUpFormProps>;
 }
 
-const SignInStep2 = ({ getValues, setValue, register, errors }: SignInStep2Props) => {
+const SignUpStep2 = ({ getValues, setValue, register, errors }: SignUpStep2Props) => {
   const theme = useTheme();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const SignInStep2 = ({ getValues, setValue, register, errors }: SignInStep2Props
     }
   }, []);
 
-  const { selectedSex, setSelectedSex } = useSignInModel();
+  const { selectedSex, setSelectedSex } = useSignUpModel();
   useEffect(() => {
     if (selectedSex) setValue("sex", selectedSex);
   }, [setValue, selectedSex]);
@@ -99,4 +99,4 @@ const SignInStep2 = ({ getValues, setValue, register, errors }: SignInStep2Props
   );
 };
 
-export default SignInStep2;
+export default SignUpStep2;

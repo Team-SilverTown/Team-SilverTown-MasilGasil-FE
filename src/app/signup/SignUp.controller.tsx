@@ -12,20 +12,20 @@ import { SignUpRequest } from "@/types/Request/User";
 import { CheckNickNameResponse } from "@/types/Response";
 import { calculateAge } from "@/utils";
 
-import useSignInModel from "./SignIn.model";
-import SignInView from "./SignIn.view";
-import { SignInStep1, SignInStep2, SignInStep3, SignInStep4 } from "./sections";
+import useSignUpModel from "./SignUp.model";
+import SignUpView from "./SignUp.view";
+import { SignUpStep1, SignUpStep2, SignUpStep3, SignUpStep4 } from "./sections";
 import { validation_user } from "@/lib/constants/userConstants";
 
-export interface SignInFormProps extends SignUpRequest {}
+export interface SignUpFormProps extends SignUpRequest {}
 
 const LAST_STEP_INDEX = 3;
 
-const SignInController = () => {
+const SignUpController = () => {
   const router = useRouter();
 
   const { focusedStep, setFocusedStep, nickNameConfirm, setNickNameConfirm, signUpMutation } =
-    useSignInModel();
+    useSignUpModel();
   const prevFocusedStep = useRef(focusedStep);
 
   const {
@@ -36,7 +36,7 @@ const SignInController = () => {
     watch,
     setError,
     formState: { errors },
-  } = useForm<SignInFormProps>({
+  } = useForm<SignUpFormProps>({
     mode: "onChange",
     shouldUnregister: false,
     defaultValues: {
@@ -47,7 +47,7 @@ const SignInController = () => {
     },
   });
 
-  const onValid = (data: SignInFormProps) => {
+  const onValid = (data: SignUpFormProps) => {
     console.log("valid Action", data);
     signUpMutation.mutate(data);
   };
@@ -175,24 +175,24 @@ const SignInController = () => {
   };
 
   const stepViews = [
-    <SignInStep1
+    <SignUpStep1
       register={register}
       errors={errors}
       nickNameConfirm={nickNameConfirm}
       isDuplicateLoading={isDuplicateLoading}
       duplicateRefetch={duplicateRefetch}
     />,
-    <SignInStep2
+    <SignUpStep2
       getValues={getValues}
       setValue={setValue}
       register={register}
       errors={errors}
     />,
-    <SignInStep3
+    <SignUpStep3
       getValues={getValues}
       register={register}
     />,
-    <SignInStep4
+    <SignUpStep4
       getValues={getValues}
       setValue={setValue}
     />,
@@ -210,7 +210,7 @@ const SignInController = () => {
         }
         title="회원가입"
       />
-      <SignInView
+      <SignUpView
         stepViews={stepViews}
         focusedStep={focusedStep}
         prevFocusedStep={prevFocusedStep.current}
@@ -224,4 +224,4 @@ const SignInController = () => {
   );
 };
 
-export default SignInController;
+export default SignUpController;

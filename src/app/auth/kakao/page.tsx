@@ -38,7 +38,7 @@ const Kakao = () => {
 
     if (meData && !meData.nickname) {
       console.log("가가입 유저->회훤가입뷰");
-      router.replace("/signin", { scroll: false });
+      router.replace("/signup", { scroll: false });
     } else {
       console.log("가입 유저->홈뷰");
       router.replace("/home");

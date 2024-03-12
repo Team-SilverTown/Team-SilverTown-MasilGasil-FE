@@ -15,7 +15,6 @@ import { LogMapSection, LogKebabMenu, LogMemo, LogPin } from "./components";
 
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./Log.styles";
-import { userInfo } from "os";
 
 interface LogViewProps {
   masilsData: MasilsDataType;
