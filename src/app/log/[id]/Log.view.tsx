@@ -56,10 +56,7 @@ const LogView = ({
         />
         <S.LogContentLayout>
           <Tab
-            style={{
-              fontSize: `${FONT_SIZE.H6}`,
-              fontWeight: `${FONT_WEIGHT.BOLD}`,
-            }}
+            className="logTab"
             tabContents={TAB_CONTENTS}
             tabClickHandler={handleClickTab}
             focusedTab={tabIndex}
@@ -83,7 +80,7 @@ const LogView = ({
 
           <Link href={`/post/create?logId=${logId}`}>
             <Button
-              width="calc(100% - 3rem)"
+              width="calc(100% - 4rem)"
               textColor={Theme.lightTheme.white}
               buttonColor={Theme.lightTheme.green_500}
               style={{
