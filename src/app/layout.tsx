@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#81BB26",
+  themeColor: "#F8F8F8",
 };
 
 const KAKAO_API_KEY = process.env.DB_KAKAO_API_KEY;

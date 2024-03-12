@@ -1,7 +1,7 @@
 import { BORDER, CONTAINER, FONT_SIZE, FONT_WEIGHT, NAV_HEIGHT, Z_INDEX } from "@/styles/theme";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const TopNavigatorContainer = styled.nav`
+export const TopNavigatorContainer = styled.nav<any>`
   width: 100%;
   max-width: ${CONTAINER.MAX_WIDTH}rem;
   height: ${NAV_HEIGHT}rem;
@@ -13,9 +13,15 @@ export const TopNavigatorContainer = styled.nav`
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  /* border-bottom: ${BORDER.TINE_WIDTH}px solid ${(props) => props.theme.transparent_10}; */
 
-  background-color: ${(props) => props.theme.background_color};
+  ${(props) => {
+    if (props.$scrolled) {
+      return css`
+        background-color: ${(props) => props.theme.background_color};
+        border-bottom: ${BORDER.TINE_WIDTH}px solid ${(props) => props.theme.transparent_10};
+      `;
+    }
+  }}
 `;
 
 export const TopNavLeftSection = styled.section`
