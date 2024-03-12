@@ -82,44 +82,30 @@ const PostView = ({
             )}
             {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
           </S.PostContentSection>
-          {(tabIndex === PostTabType.Memo || tabIndex === PostTabType.Pin) && (
-            <Link href={`/log/record?postId=${postId}`}>
-              <Button
-                width="calc(100% - 3rem)"
-                textColor={Theme.lightTheme.white}
-                buttonColor={Theme.lightTheme.green_500}
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  bottom: "7rem",
-                  transform: "translateX(-50%)",
-                  fontSize: `${FONT_SIZE.LARGE}`,
-                  fontWeight: `${FONT_WEIGHT.BOLD}`,
-                }}
-              >
-                산책하기
-              </Button>
-            </Link>
-          )}
-          {tabIndex === PostTabType.Mate && (
-            <Link href={`/mate/create?lat=${firstLat}&lng=${firstLng}`}>
-              <Button
-                width="calc(100% - 3rem)"
-                textColor={Theme.lightTheme.white}
-                buttonColor={Theme.lightTheme.green_500}
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  bottom: "7rem",
-                  transform: "translateX(-50%)",
-                  fontSize: `${FONT_SIZE.LARGE}`,
-                  fontWeight: `${FONT_WEIGHT.BOLD}`,
-                }}
-              >
-                메이트 모집하기
-              </Button>
-            </Link>
-          )}
+
+          <Link
+            href={
+              tabIndex === PostTabType.Mate
+                ? `/mate/create?lat=${firstLat}&lng=${firstLng}`
+                : `/log/record?postId=${postId}`
+            }
+          >
+            <Button
+              width="calc(100% - 3rem)"
+              textColor={Theme.lightTheme.white}
+              buttonColor={Theme.lightTheme.green_500}
+              style={{
+                position: "absolute",
+                left: "50%",
+                bottom: "7rem",
+                transform: "translateX(-50%)",
+                fontSize: `${FONT_SIZE.LARGE}`,
+                fontWeight: `${FONT_WEIGHT.BOLD}`,
+              }}
+            >
+              {tabIndex === PostTabType.Mate ? "메이트 모집하기" : "산책하기"}
+            </Button>
+          </Link>
         </S.PostContentLayout>
       </S.PostContainer>
     </>
