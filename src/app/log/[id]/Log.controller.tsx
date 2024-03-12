@@ -3,28 +3,39 @@
 import useLogModel from "./Log.model";
 import LogView from "./Log.view";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
-import { MASILS_DATA, USER_DUMMY_DATA } from "./Log.constants";
-import { GeoPosition } from "@/types/OriginDataType";
 import { TabType } from "./Log.types";
 
 interface LogControllerProps {
-  baseLocation: GeoPosition;
+  logId: string;
 }
 
-const LogController = ({ baseLocation }: LogControllerProps) => {
-  const { tabIndex, setTabIndex, currentPinIndex, setCurrentPinIndex, mapCenter, setMapCenter } =
-    useLogModel({ baseLocation });
+const LogController = ({ logId }: LogControllerProps) => {
+  const {
+    masilData,
+    tabIndex,
+    setTabIndex,
+    currentPinIndex,
+    setCurrentPinIndex,
+    mapCenter,
+    setMapCenter,
+    baseLocation,
+    userInfo,
+  } = useLogModel({ logId });
   const { setIsOutCenter } = useMasilMapStore();
 
-  const handlePinIndex = (PinIndex: number) => {
+  if (!masilData) {
+    return;
+  }
+
+  const handleCurrentPinIndex = (PinIndex: number) => {
     setCurrentPinIndex(PinIndex);
     setTabIndex(TabType.Pin);
 
-    if (MASILS_DATA.pins.length === 0) {
+    if (masilData.pins.length === 0) {
       return;
     }
 
-    const { lat, lng } = MASILS_DATA.pins[PinIndex].point;
+    const { lat, lng } = masilData.pins[PinIndex].point;
     setMapCenter({ lat, lng });
     setIsOutCenter(false);
   };
@@ -35,16 +46,34 @@ const LogController = ({ baseLocation }: LogControllerProps) => {
     setMapCenter(baseLocation);
     setIsOutCenter(false);
   };
+
+  const handleClickTab = (index: number) => {
+    if (TabType.Pin === index) {
+      const { lat, lng } = masilData.pins[0].point;
+      setCurrentPinIndex(0);
+      setMapCenter({ lat, lng });
+      setIsOutCenter(false);
+    }
+
+    if (index > 1) {
+      return;
+    }
+
+    setTabIndex(index);
+  };
+
   return (
     <LogView
-      masilsData={MASILS_DATA}
-      userInfo={USER_DUMMY_DATA}
+      masilData={masilData}
+      logId={logId}
+      userInfo={userInfo}
       tabIndex={tabIndex}
       setTabIndex={setTabIndex}
       currentPinIndex={currentPinIndex}
       mapCenter={mapCenter}
-      handlePinIndex={handlePinIndex}
+      handleCurrentPinIndex={handleCurrentPinIndex}
       handleClickCenter={handleClickCenter}
+      handleClickTab={handleClickTab}
     />
   );
 };
