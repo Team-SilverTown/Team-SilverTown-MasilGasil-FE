@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 
 interface KebabMenuProps {
-  style: CSSProperties;
+  style?: CSSProperties;
 }
 
 const KebabMenu = ({ style, ...props }: KebabMenuProps) => {
@@ -12,7 +12,7 @@ const KebabMenu = ({ style, ...props }: KebabMenuProps) => {
       viewBox="0 0 3 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={style}
+      style={{ ...style }}
       {...props}
     >
       <path

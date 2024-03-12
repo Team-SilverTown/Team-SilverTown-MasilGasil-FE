@@ -7,7 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const useSignInModel = () => {
+const useSignUpModel = () => {
   const router = useRouter();
 
   const [selectedSex, setSelectedSex] = useState<"MALE" | "FEMALE" | null>(null);
@@ -45,4 +45,4 @@ const useSignInModel = () => {
   };
 };
 
-export default useSignInModel;
+export default useSignUpModel;

@@ -8,7 +8,7 @@ export const config = {
 };
 
 // const protectedPaths = ["/map"]; // 로그인이 필요한 페이지 목록
-const publicPaths = ["/signin*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
+const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
 
   // if (!token && protectedRoutes.includes(currentPath)) {
   //   const url = request.nextUrl.clone();
-  //   url.pathname = "/signin";
+  //   url.pathname = "/signup";
   //   return NextResponse.redirect(url);
   // }
 

@@ -4,24 +4,24 @@ import { FieldErrors, UseFormGetValues, UseFormRegister } from "react-hook-form"
 import useTheme from "@/lib/hooks/useTheme";
 
 import { Button, Input, InputLabel } from "@/components";
-import { SignInFormProps } from "../SignIn.controller";
+import { SignUpFormProps } from "../SignUp.controller";
 import { validation_user } from "@/lib/constants/userConstants";
 
-interface SignInStep1Props {
-  register: UseFormRegister<SignInFormProps>;
-  errors: FieldErrors<SignInFormProps>;
+interface SignUpStep1Props {
+  register: UseFormRegister<SignUpFormProps>;
+  errors: FieldErrors<SignUpFormProps>;
   nickNameConfirm: boolean;
   isDuplicateLoading: boolean;
   duplicateRefetch: () => void;
 }
 
-const SignInStep1 = ({
+const SignUpStep1 = ({
   register,
   errors,
   nickNameConfirm,
   isDuplicateLoading,
   duplicateRefetch,
-}: SignInStep1Props) => {
+}: SignUpStep1Props) => {
   const theme = useTheme();
 
   return (
@@ -70,4 +70,4 @@ const SignInStep1 = ({
   );
 };
 
-export default SignInStep1;
+export default SignUpStep1;

@@ -10,7 +10,7 @@ import { MeResponse } from "@/types/Response";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { pathAbleCheck } from "@/utils/pathAbleCheck";
 
-export const REDIRECT_INABLE_PATHS = ["/", "/signin*", "/auth*"];
+export const REDIRECT_INABLE_PATHS = ["/", "/signup*", "/auth*"];
 
 const AuthLoader = ({
   children,
@@ -39,6 +39,8 @@ const AuthLoader = ({
             }, 2000)
           : route.replace("/home");
       }
+    } else if (currentPathName.includes("policy")) {
+      return;
     } else {
       // 인증 실패, 가인증 유저인 경우
       setAuth({ isLogIn: false, serviceToken: undefined });

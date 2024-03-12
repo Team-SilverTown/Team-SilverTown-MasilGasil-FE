@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
+import { SubTitle, Title } from "./SignUpHelper.style";
 
-import { SubTitle, Title } from "./SignInHelper.style";
-
-interface SignInHelperProps {
+interface SignUpHelperProps {
   index: number;
 }
 
@@ -29,7 +28,7 @@ const helperContent = [
   },
 ];
 
-const SignInHelper = ({ index }: SignInHelperProps) => {
+const SignUpHelper = ({ index }: SignUpHelperProps) => {
   const { title, subTitle } = helperContent[index];
 
   return (
@@ -43,4 +42,4 @@ const SignInHelper = ({ index }: SignInHelperProps) => {
   );
 };
 
-export default SignInHelper;
+export default SignUpHelper;

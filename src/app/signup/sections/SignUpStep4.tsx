@@ -7,16 +7,16 @@ import { Button } from "@/components";
 import { Check } from "@/components/icons";
 import useTheme from "@/lib/hooks/useTheme";
 
-import { SignInFormProps } from "../SignIn.controller";
-import useSignInModel from "../SignIn.model";
+import { SignUpFormProps } from "../SignUp.controller";
+import useSignUpModel from "../SignUp.model";
 import * as GS from "@/styles/GlobalStyle";
-import * as S from "../SignIn.styles";
+import * as S from "../SignUp.styles";
 import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
 import { useUI } from "@/components/uiContext/UiContext";
 
-interface SignInStep4Props {
-  getValues: UseFormGetValues<SignInFormProps>;
-  setValue: UseFormSetValue<SignInFormProps>;
+interface SignUpStep4Props {
+  getValues: UseFormGetValues<SignUpFormProps>;
+  setValue: UseFormSetValue<SignUpFormProps>;
 }
 
 const POLICY_CONTENT_LIST: Array<{
@@ -32,29 +32,29 @@ const POLICY_CONTENT_LIST: Array<{
     required: true,
     formKey: "isPersonalInfoConsented",
     policyView: "POLICY_PERSONAL",
-    url: `${process.env.DB_DEPLOY_URL}/signin/policy/personal`,
+    url: "/policy/personal",
   },
   {
     content: "[필수] 위치정보 수집 및 이용 동의",
     required: true,
     formKey: "isLocationInfoConsented",
     policyView: "POLICY_LOCATION",
-    url: `${process.env.DB_DEPLOY_URL}/signin/policy/location`,
+    url: "/policy/location",
   },
   {
     content: "[필수] 만 14세 미만 가입 제한",
     required: true,
     formKey: "isUnderAgeConsentConfirmed",
     policyView: "POLICY_AGE",
-    url: `${process.env.DB_DEPLOY_URL}/signin/policy/age`,
+    url: "/policy/age",
   },
 ];
 
-const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
+const SignUpStep4 = ({ getValues, setValue }: SignUpStep4Props) => {
   const theme = useTheme();
   const { setWindowView, closeWindow, openWindow, displayWindow, setWindowURL } = useUI();
 
-  const { checkAllPolicy, setCheckAllPolicy, policyCheck, setPolicyCheck } = useSignInModel();
+  const { checkAllPolicy, setCheckAllPolicy, policyCheck, setPolicyCheck } = useSignUpModel();
 
   useEffect(() => {
     const initState = POLICY_CONTENT_LIST.map(({ formKey }) => getValues(formKey));
@@ -174,4 +174,4 @@ const SignInStep4 = ({ getValues, setValue }: SignInStep4Props) => {
   );
 };
 
-export default SignInStep4;
+export default SignUpStep4;
