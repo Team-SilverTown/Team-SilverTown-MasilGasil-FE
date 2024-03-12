@@ -7,7 +7,7 @@ import { SettingContent } from "..";
 import useUserSettingAccountController from "./UserSettingAccount.controller";
 
 const UserSettingAccountView = () => {
-  const {} = useUserSettingAccountController();
+  const { handleLogout } = useUserSettingAccountController();
 
   return (
     <GS.UserSettingInnerLayout>
@@ -17,7 +17,7 @@ const UserSettingAccountView = () => {
       <SettingContent
         icon={<LogOut />}
         text={"로그아웃"}
-        onClick={() => {}}
+        onClick={handleLogout}
       />
 
       {/* TODO - 탈퇴 Confirm  */}
