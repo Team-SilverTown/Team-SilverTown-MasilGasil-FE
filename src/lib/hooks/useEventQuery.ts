@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useEffect } from "react";
 
-export const useEventQuery = ({
+export const useEventQuery = <T>({
   key,
   queryFn,
   onSuccessFn,
@@ -11,7 +11,7 @@ export const useEventQuery = ({
   queryFn: Function;
   onSuccessFn?: (data: any) => void;
 }) => {
-  const { data, isLoading, isError, error, refetch } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery<T>({
     queryKey: key,
     queryFn: async () => await queryFn(),
     enabled: false,

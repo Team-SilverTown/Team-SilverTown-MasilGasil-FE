@@ -1,8 +1,6 @@
 "use client";
 
-import { checkDuplicateNickname, signUp } from "@/lib/api/User/client";
-import { USER_KEY } from "@/lib/api/queryKeys";
-import useEventQuery from "@/lib/hooks/useEventQuery";
+import { signUp } from "@/lib/api/User/client";
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 import useAuthStore from "@/stores/useAuthStore";
 import { useMutation } from "@tanstack/react-query";
@@ -25,10 +23,9 @@ const useSignInModel = () => {
   const signUpMutation = useMutation({
     mutationKey: ["signUp"],
     mutationFn: signUp,
-    onSuccess: (data) => {
-      console.log("success", data);
+    onSuccess: () => {
       setAuth({ isLogIn: true, serviceToken: token! });
-      router.push("/home");
+      router.replace("/home");
     },
     onError: (error) => console.log("error", error),
   });

@@ -23,11 +23,11 @@ interface UseMeStoreProps extends OriginProps {
     weight,
     exerciseIntensity,
   }: OriginProps) => void;
-
+  getMe: () => OriginProps;
   initMe: () => void;
 }
 
-const useMeStore = create<UseMeStoreProps>((set) => ({
+const useMeStore = create<UseMeStoreProps>((set, get) => ({
   userId: undefined,
   nickname: undefined,
   profileImg: undefined,
@@ -39,6 +39,20 @@ const useMeStore = create<UseMeStoreProps>((set) => ({
 
   setMe: (data) => {
     set(() => ({ ...data }));
+  },
+  getMe: () => {
+    const { userId, nickname, profileImg, sex, birthDate, height, weight, exerciseIntensity } =
+      get();
+    return {
+      userId,
+      nickname,
+      profileImg,
+      sex,
+      birthDate,
+      height,
+      weight,
+      exerciseIntensity,
+    };
   },
   initMe: () => {
     set(() => ({

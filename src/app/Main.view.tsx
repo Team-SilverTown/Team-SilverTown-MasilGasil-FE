@@ -9,7 +9,7 @@ import * as S from "./Main.styles";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 interface MainViewProps {
-  isLogIn: boolean;
+  isLogIn?: boolean;
 }
 
 const MainView = ({ isLogIn }: MainViewProps) => {
@@ -23,12 +23,13 @@ const MainView = ({ isLogIn }: MainViewProps) => {
       <S.TitleWrapper>
         <S.H1>마실가실</S.H1>
       </S.TitleWrapper>
-      {!isLogIn && (
+      {typeof isLogIn === "boolean" && !isLogIn && (
         <S.AuthButtonWrapper>
           <Button
             buttonColor={theme?.yellow_500}
             width={"calc(100% - 30px)"}
             style={{ margin: "auto" }}
+            useRipple
             onClickHandler={() => signIn("kakao", { redirect: true, callbackUrl: "/auth/kakao" })}
           >
             <span

@@ -26,6 +26,7 @@ const StepButton = ({ onClickHandler, isDisabled, buttonText }: StepButtonProps)
         textColor={theme?.text_secondary_color}
         width={"100%"}
         disabled={isDisabled}
+        useRipple
       >
         <span className="text-3xl font-bold">{buttonText}</span>
       </Button>
