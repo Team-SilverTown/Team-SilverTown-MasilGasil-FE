@@ -5,14 +5,14 @@ import * as S from "./AnimationAlertModal.styles";
 
 import { ModalLayout } from "@/components/Modal";
 import AlertAnimationData from "./AlertAnimationData.json";
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect } from "react";
 import { Button } from "@/components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
 import { useUI } from "@/components/uiContext/UiContext";
 
 interface AnimationAlertModalProps {
-  message: React.ReactNode;
+  message: string;
   cancelButtonText?: string;
   textStyle?: CSSProperties;
 }
@@ -34,6 +34,14 @@ const AnimationAlertModal = ({ props }: ModalProp) => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
+  useEffect(() => {
+    const messageElement = document.querySelector("#messageBox");
+
+    if (messageElement) {
+      messageElement.innerHTML = message;
+    }
+  }, [message]);
   return (
     <ModalLayout>
       <S.AnimationAlertModalLayout>
@@ -44,7 +52,10 @@ const AnimationAlertModal = ({ props }: ModalProp) => {
           isClickToPauseDisabled={true}
         />
 
-        <S.AnimationAlertModalMessage style={textStyle}>{message}</S.AnimationAlertModalMessage>
+        <S.AnimationAlertModalMessage
+          id={"messageBox"}
+          style={textStyle}
+        />
 
         <Button
           buttonColor={theme?.green_500}

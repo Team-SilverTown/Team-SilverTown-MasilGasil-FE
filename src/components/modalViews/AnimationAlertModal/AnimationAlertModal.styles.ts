@@ -18,6 +18,6 @@ export const AnimationAlertModalMessage = styled.h6`
   font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.5;
   word-break: keep-all;
 `;
