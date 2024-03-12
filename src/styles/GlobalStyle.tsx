@@ -54,7 +54,7 @@ export const GlobalStyle = createGlobalStyle<any>`
     }
 `;
 
-export const CommonContainer = styled.section`
+export const CommonContainer = styled.div`
   padding: ${NAV_HEIGHT + 2}rem ${CONTAINER.PADDING_HORIZONTAL}rem;
   box-sizing: border-box;
   width: 100%;
