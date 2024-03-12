@@ -5,10 +5,11 @@ import { UseFormRegister } from "react-hook-form";
 import { UserEditData } from "../../UserEdit.types";
 import { InputRadio } from "@/components";
 import { SEX_OPTIONS } from "@/lib/constants/variable";
+import { MeResponse } from "@/types/Response";
 
 interface EditAgeProps {
-  register: UseFormRegister<UserEditData>;
-  selectedSex: string;
+  register: UseFormRegister<MeResponse>;
+  selectedSex: string | undefined;
 }
 
 const EditSex = ({ register, selectedSex }: EditAgeProps) => {

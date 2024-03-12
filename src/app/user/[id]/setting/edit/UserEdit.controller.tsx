@@ -4,18 +4,18 @@ import { FieldErrors, useForm } from "react-hook-form";
 import UserEditView from "./UserEdit.view";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import { UserEditData } from "./UserEdit.types";
 import useUserEditModel from "./UserEdit.model";
 import { useEffect } from "react";
+import { MeResponse } from "@/types/Response";
 
 interface UserEditControllerProps {
-  userData: UserEditData;
+  userData: MeResponse;
 }
 
 // userId 는 추후 유저의 데이터를 불러올때 사용
 const UserEditController = ({ userData }: UserEditControllerProps) => {
   const { isCheckedNickname, setIsCheckedNickname } = useUserEditModel();
-  const { register, handleSubmit, watch, formState, getValues } = useForm<UserEditData>({
+  const { register, handleSubmit, watch, formState, getValues } = useForm<MeResponse>({
     mode: "onChange",
     defaultValues: userData,
   });
@@ -23,7 +23,7 @@ const UserEditController = ({ userData }: UserEditControllerProps) => {
 
   const newNickname = watch("nickname");
   const selectedSex = watch("sex");
-  const selectedIntensity = watch("intensity");
+  const selectedIntensity = watch("exerciseIntensity");
 
   useEffect(() => {
     if (userData.nickname === newNickname) {
@@ -36,7 +36,7 @@ const UserEditController = ({ userData }: UserEditControllerProps) => {
     }
   }, [newNickname]);
 
-  const handleValid = (data: UserEditData) => {
+  const handleValid = (data: MeResponse) => {
     console.log(data);
     /*
       TODO

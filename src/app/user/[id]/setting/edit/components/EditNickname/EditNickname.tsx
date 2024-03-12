@@ -2,7 +2,6 @@ import * as S from "./EditNickname.styles";
 import * as GS from "../../UserEdit.styles";
 
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { UserEditData } from "../../UserEdit.types";
 import { Button, Input, InputLabel } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
@@ -10,10 +9,11 @@ import { USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
 
 import { MouseEvent } from "react";
 import { validation_user } from "@/lib/constants/userConstants";
+import { MeResponse } from "@/types/Response";
 
 interface EditNicknameProps {
-  register: UseFormRegister<UserEditData>;
-  errors: FieldErrors<UserEditData>;
+  register: UseFormRegister<MeResponse>;
+  errors: FieldErrors<MeResponse>;
 
   isCheckedNickname: boolean;
   onCheckSameNickname: () => void;

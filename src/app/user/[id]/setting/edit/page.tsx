@@ -1,23 +1,22 @@
+import { getMe } from "@/lib/api/User/server";
 import UserEditController from "./UserEdit.controller";
-import { UserEditData } from "./UserEdit.types";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
 
-interface UserEditParams {
-  id: string;
-}
+const UserEdit = async () => {
+  const session = await getServerSession(authOptions);
 
-const FORM_DEFAULT_VALUE: UserEditData = {
-  nickname: "임시값닉네임",
-  sex: "female",
-  birthDate: "1994-12-26",
-  height: 182,
-  weight: 150,
-  intensity: "",
-};
+  if (!session?.serviceToken) {
+    return;
+  }
 
-const UserEdit = ({ params }: { params: UserEditParams }) => {
-  const { id } = params;
+  const defaultData = await getMe(session.serviceToken);
 
-  return <UserEditController userData={FORM_DEFAULT_VALUE} />;
+  if (!defaultData) {
+    return;
+  }
+
+  return <UserEditController userData={defaultData} />;
 };
 
 export default UserEdit;
