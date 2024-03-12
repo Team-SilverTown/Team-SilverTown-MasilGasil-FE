@@ -78,7 +78,7 @@ const UserEditView = ({ userDefaultData }: UserEditViewProps) => {
           buttonColor={theme?.green_500}
           textColor={theme?.text_secondary_color}
           style={{
-            width: "100%",
+            width: "90%",
             fontSize: FONT_SIZE.H4,
             fontWeight: FONT_WEIGHT.BOLD,
             minHeight: "5rem",

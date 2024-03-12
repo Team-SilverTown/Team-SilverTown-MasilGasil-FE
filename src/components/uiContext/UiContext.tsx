@@ -14,6 +14,7 @@ import {
   ProfileEditModal,
   MateCreateMapModal,
   ConfirmModal,
+  AnimationAlertModal,
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
@@ -84,6 +85,7 @@ const ModalView = ({
       {modalView === "MATE_CREATE_MAP_VIEW" && <MateCreateMapModal props={props} />}
       {modalView === "MATE_LOCATION_MAP_VIEW" && <MateLocationMapModal props={props} />}
       {modalView === "POST_CREATE_DONE_VIEW" && <PostCreateDoneModal />}
+      {modalView === "ANIMATION_ALERT_VIEW" && <AnimationAlertModal props={props} />}
     </Modal>
   );
 };

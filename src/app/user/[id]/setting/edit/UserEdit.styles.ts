@@ -42,6 +42,9 @@ export const UserEditWarning = styled.div`
 export const UserEditButtonWrapper = styled.div`
   width: 100%;
 
+  display: flex;
+  justify-content: center;
+
   position: absolute;
   bottom: 7rem;
 

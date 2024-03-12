@@ -4,3 +4,4 @@ export { default as LogRecordAlertModal } from "./LogRecordAlertModal/LogRecordA
 export { default as PinEditModal } from "./PinEditModal/PinEditModal";
 export { default as ProfileEditModal } from "./ProfileEditModal/ProfileEditModal";
 export { default as MateCreateMapModal } from "./MateMapModal/MateCreateMapModal/MateCreateMapModal";
+export { default as AnimationAlertModal } from "./AnimationAlertModal/AnimationAlertModal";
