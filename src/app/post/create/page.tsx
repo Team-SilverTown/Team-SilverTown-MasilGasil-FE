@@ -3,30 +3,43 @@
 import React from "react";
 import { PostCreateContextProvider } from "./context/PostCreateContext";
 import PostCreateView from "./PostCreate.view";
+import { useQuery } from "@tanstack/react-query";
+import { getPostDetail } from "@/lib/api/Post/client";
+import { POST_KEY } from "@/lib/api/queryKeys";
+import { useRouter, useSearchParams } from "next/navigation";
+import { PostCreateRequest } from "@/types/Request";
+import { getMasilDetail } from "@/lib/api/masil/client";
+import { useUI } from "@/components/uiContext/UiContext";
 
 const PostCreate = () => {
-  // TODO
-  // 추후 이곳에서 LogData 에 대해 fetch를 받아온 후 전달하기
+  const searchParams = useSearchParams();
+  const postId = searchParams.get("postId");
+  const logId = searchParams.get("logId");
+  const router = useRouter();
+  const { setModalView, openModal } = useUI();
 
-  // 현재 Init 부분을 tanstack 가공에서 처리가능다면 추후 반영하기
+  const { data, isLoading } = useQuery({
+    queryKey: [POST_KEY.GET_CREATE_POST],
+    queryFn: () => getDefaultData({ postId: postId, logId: logId }),
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
+  });
 
-  const defaultData = {
-    depth1: DUMMY.depth1,
-    depth2: DUMMY.depth2,
-    depth3: DUMMY.depth3,
-    depth4: DUMMY.depth4,
-    path: DUMMY.path,
-    title: DUMMY.title,
-    content: DUMMY.content,
-    distance: DUMMY.distance,
-    totalTime: DUMMY.totalTime,
-    isPublic: true,
-    pins: DUMMY.pins,
-    thumbnailUrl: DUMMY.thumbnailUrl,
-  };
+  if (!isLoading && !data) {
+    router.push("/home");
+    setModalView("LOG_RECORD_ALERT_VIEW");
+    openModal({
+      message: "문제가 발생하였습니다. 잠시 후 다시 시도해주세요.",
+    });
+    return;
+  }
+
+  if (isLoading || !data) {
+    return;
+  }
 
   return (
-    <PostCreateContextProvider defaultData={defaultData}>
+    <PostCreateContextProvider defaultData={data}>
       <PostCreateView />
     </PostCreateContextProvider>
   );
@@ -34,84 +47,54 @@ const PostCreate = () => {
 
 export default PostCreate;
 
-const DUMMY = {
-  id: 9999,
-  depth1: "지역1",
-  depth2: "지역2",
-  depth3: "지역3",
-  depth4: "지역4",
+const getDefaultData = async ({
+  postId,
+  logId,
+}: {
+  postId: string | null;
+  logId: string | null;
+}) => {
+  if (postId) {
+    const fetchData = await getPostDetail({ id: postId });
 
-  title: "로그에서는 제목없어져야 합니다.",
-  content:
-    "이것은 로그에서 전해져온 내용으로 이 로그를 본 사용자는 즉시 PR을 5개 날릴 작업을 진행해야합니다.",
-  path: [{ lat: 37.497, lng: 127.0254 }],
+    const defaultData: PostCreateRequest = {
+      depth1: fetchData.depth1,
+      depth2: fetchData.depth2,
+      depth3: fetchData.depth3,
+      depth4: fetchData.depth4,
+      path: fetchData.path,
+      title: fetchData.title,
+      content: fetchData.content,
+      distance: fetchData.distance,
+      totalTime: fetchData.totalTime,
+      isPublic: fetchData.isPublic,
+      pins: fetchData.pins,
+      thumbnailUrl: fetchData.thumbnailUrl,
+    };
 
-  distance: 0,
-  totalTime: 0,
-  startedAt: "2024-04-01",
+    return defaultData;
+  }
 
-  postId: null,
-  thumbnailUrl: "",
-  pins: [
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-    {
-      id: 11,
-      content: "핀 컨텐츠임",
-      thumbnailUrl: "",
-      point: { lat: 37.497, lng: 127.0254 },
-    },
-  ],
+  if (logId) {
+    const fetchData = await getMasilDetail({ id: logId });
+
+    const defaultData: PostCreateRequest = {
+      depth1: fetchData.depth1,
+      depth2: fetchData.depth2,
+      depth3: fetchData.depth3,
+      depth4: fetchData.depth4,
+      path: fetchData.path,
+      title: "",
+      content: fetchData.content,
+      distance: fetchData.distance,
+      totalTime: fetchData.totalTime,
+      isPublic: true,
+      pins: fetchData.pins,
+      thumbnailUrl: fetchData.thumbnailUrl,
+    };
+
+    return defaultData;
+  }
+
+  return false;
 };

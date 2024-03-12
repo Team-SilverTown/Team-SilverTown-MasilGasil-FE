@@ -47,6 +47,7 @@ const UserInfoProfile = ({
             alt={profileName}
             width={width}
             height={height}
+            priority
           />
         )}
         <S.CameraIconLayout>

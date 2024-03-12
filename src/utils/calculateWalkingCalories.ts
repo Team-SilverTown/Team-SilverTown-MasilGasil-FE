@@ -1,8 +1,17 @@
 import { MeResponse } from "@/types/Response";
 import { calculateAge } from ".";
+import { IntensityOption } from "@/types/OriginDataType";
+
+interface UserInfo {
+  sex?: "MALE" | "FEMALE";
+  birthDate?: string;
+  height?: number;
+  weight?: number;
+  exerciseIntensity?: IntensityOption;
+}
 
 interface calculateWalkingCaloriesProps {
-  userInfo: MeResponse;
+  userInfo: UserInfo;
   distance: number;
   walkingMET?: number;
 }

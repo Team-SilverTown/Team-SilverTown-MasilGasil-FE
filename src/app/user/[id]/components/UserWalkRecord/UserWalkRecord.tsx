@@ -1,11 +1,11 @@
 import { calculateWalkingCalories, convertMeter } from "@/utils";
-import { UserInfoType } from "../../MyPage.types";
+import { MeResponse } from "@/types/Response";
 import * as S from "./UserWalkRecord.styles";
 
 interface UserWalkRecordProps {
   totalWalkDistance: number;
   totalWalkCount: number;
-  userInfo: UserInfoType;
+  userInfo: MeResponse;
 }
 
 const UserWalkRecord = ({ totalWalkDistance, totalWalkCount, userInfo }: UserWalkRecordProps) => {

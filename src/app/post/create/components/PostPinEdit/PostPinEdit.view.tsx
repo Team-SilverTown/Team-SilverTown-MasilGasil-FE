@@ -3,13 +3,11 @@
 import * as S from "./PostPinEdit.styles";
 import * as GS from "../../PostCreate.styles";
 
-import { Button, PinEditSlideButton } from "@/components";
-import useTheme from "@/lib/hooks/useTheme";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { PinEditSlideButton } from "@/components";
 import usePostPinEditController from "./PostPinEdit.controller";
+import { PostCreateButton } from "..";
 
 const PostPinEditView = () => {
-  const theme = useTheme();
   const { postData, handleClickPin, handleRemovePin, handleCreatePost } =
     usePostPinEditController();
   return (
@@ -32,22 +30,10 @@ const PostPinEditView = () => {
       </GS.PostCreateSheetContent>
 
       <GS.PostCreateButtonWrapper>
-        <Button
-          width={"100%"}
-          useRipple
-          buttonColor={theme?.green_500}
-          textColor={theme?.text_secondary_color}
-          rippleColor={theme?.text_secondary_color + 50}
-          style={{
-            whiteSpace: "nowrap",
-            fontSize: FONT_SIZE.H6,
-            fontWeight: FONT_WEIGHT.SEMIBOLD,
-            userSelect: "none",
-          }}
-          onClickHandler={handleCreatePost}
-        >
-          산책로 등록하기
-        </Button>
+        <PostCreateButton
+          text="산책로 등록하기"
+          onClick={handleCreatePost}
+        />
       </GS.PostCreateButtonWrapper>
     </>
   );

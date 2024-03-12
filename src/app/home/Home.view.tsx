@@ -1,22 +1,27 @@
 import Link from "next/link";
 
-import { WALKLIST_DUMMY_DATA } from "./Home.constants";
-
 import { More } from "@/components/icons";
 import { WalkList, MyWalkRecord, MyLocationWeather } from "./components";
 
 import * as S from "./Home.styles";
 import WalkStartButton from "./components/WalkStartButton/WalkStartButton";
+import { MeResponse } from "@/types/Response";
+import { WalkListProps } from "./Home.types";
 
-const HomeView = () => {
+interface HomeViewProps {
+  userInfo: MeResponse;
+  walkData: WalkListProps[];
+}
+
+const HomeView = ({ userInfo, walkData }: HomeViewProps) => {
   return (
     <div className={S.HomePageContainer}>
       <section className={S.MyInfoSection}>
         <MyLocationWeather />
-        <MyWalkRecord />
+        <MyWalkRecord userInfo={userInfo} />
       </section>
       <section className={S.WalkListSection}>
-        {WALKLIST_DUMMY_DATA.map(({ title, walkList, urlLink }) => (
+        {walkData.map(({ title, walkList, urlLink }) => (
           <section
             className={S.HomeWalkListSection}
             key={title}
@@ -27,7 +32,10 @@ const HomeView = () => {
                 <More />
               </Link>
             </article>
-            <WalkList walkList={walkList} />
+            <WalkList
+              userInfo={userInfo}
+              walkList={walkList}
+            />
           </section>
         ))}
       </section>

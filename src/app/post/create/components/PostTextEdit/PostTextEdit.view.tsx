@@ -1,20 +1,15 @@
 "use client";
 
 import * as GS from "../../PostCreate.styles";
-import * as S from "./PostTextEdit.styles";
 
-import { Button } from "@/components";
-import useTheme from "@/lib/hooks/useTheme";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import usePostTextEditController from "./PostTextEdit.controller";
 import { PostContentEdit, PostPublicEdit, PostThumbnailEdit, PostTitleEdit } from "./components";
+import { PostCreateButton } from "..";
 
 const PostTextEditView = () => {
-  const theme = useTheme();
   const {
     postData,
     register,
-    setValue,
     errors,
     isPublic,
     setIsPublic,
@@ -22,14 +17,17 @@ const PostTextEditView = () => {
     handleValid,
 
     handleSubmit,
+    thumbnail,
+    setThumbnail,
+    handleCreatePost,
   } = usePostTextEditController();
 
   return (
     <>
       <GS.PostCreateSheetContent>
         <PostThumbnailEdit
-          postData={postData}
-          updateImage={(file: File | null) => setValue("thumbnail", file)}
+          image={thumbnail ? thumbnail : postData.thumbnailUrl}
+          updateImage={(file: File | null) => setThumbnail(file)}
         />
 
         <PostTitleEdit
@@ -49,23 +47,21 @@ const PostTextEditView = () => {
       </GS.PostCreateSheetContent>
 
       <GS.PostCreateButtonWrapper>
-        <Button
-          width={"100%"}
-          useRipple
-          buttonColor={theme?.green_500}
-          textColor={theme?.text_secondary_color}
-          rippleColor={theme?.text_secondary_color + 50}
-          style={{
-            whiteSpace: "nowrap",
-            fontSize: FONT_SIZE.H6,
-            fontWeight: FONT_WEIGHT.SEMIBOLD,
-            userSelect: "none",
-          }}
-          onClickHandler={handleSubmit(handleValid)}
-          disabled={!isFullField}
-        >
-          다음
-        </Button>
+        {postData.pins.length > 0 && (
+          <PostCreateButton
+            text="다음"
+            onClick={handleSubmit(handleValid)}
+            disabled={!isFullField}
+          />
+        )}
+
+        {postData.pins.length === 0 && (
+          <PostCreateButton
+            text="포스트 생성하기"
+            onClick={handleCreatePost}
+            disabled={!isFullField}
+          />
+        )}
       </GS.PostCreateButtonWrapper>
     </>
   );

@@ -5,7 +5,7 @@ export const POST_CREATE_DEFAULT_REQUEST_VALUE: PostCreateRequest = {
   depth2: "",
   depth3: "",
   depth4: "",
-  path: [],
+  path: [{ lat: 0, lng: 0 }],
 
   title: "",
   content: "",
