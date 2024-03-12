@@ -1,12 +1,13 @@
-import { AccountManager } from "@/components/icons";
+"use client";
+
 import * as GS from "../../UserSetting.styles";
+
+import { AccountManager } from "@/components/icons";
 import { SettingContent } from "..";
+import useUserSettingMemberController from "./UserSettingMember.controller";
 
-interface UserSettingMemberViewProps {
-  onClick: () => void;
-}
-
-const UserSettingMemberView = ({ onClick }: UserSettingMemberViewProps) => {
+const UserSettingMemberView = () => {
+  const { handleClick } = useUserSettingMemberController();
   return (
     <GS.UserSettingInnerLayout>
       <GS.UserSettingTitle>회원</GS.UserSettingTitle>
@@ -14,7 +15,7 @@ const UserSettingMemberView = ({ onClick }: UserSettingMemberViewProps) => {
       <SettingContent
         icon={<AccountManager />}
         text={"회원 수정"}
-        onClick={onClick}
+        onClick={handleClick}
       />
     </GS.UserSettingInnerLayout>
   );

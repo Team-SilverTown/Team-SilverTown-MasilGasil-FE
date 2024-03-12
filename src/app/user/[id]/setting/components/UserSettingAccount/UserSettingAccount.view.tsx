@@ -1,8 +1,14 @@
-import { AccountDelete, LogOut } from "@/components/icons";
+"use client";
+
 import * as GS from "../../UserSetting.styles";
+
+import { AccountDelete, LogOut } from "@/components/icons";
 import { SettingContent } from "..";
+import useUserSettingAccountController from "./UserSettingAccount.controller";
 
 const UserSettingAccountView = () => {
+  const {} = useUserSettingAccountController();
+
   return (
     <GS.UserSettingInnerLayout>
       <GS.UserSettingTitle>계정 관리</GS.UserSettingTitle>
