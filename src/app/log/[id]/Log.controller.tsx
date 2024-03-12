@@ -41,7 +41,7 @@ const LogController = ({ logId }: LogControllerProps) => {
   };
 
   const handleClickCenter = () => {
-    setCurrentPinIndex(0);
+    setCurrentPinIndex(-1);
     setTabIndex(TabType.Memo);
     setMapCenter(baseLocation);
     setIsOutCenter(false);

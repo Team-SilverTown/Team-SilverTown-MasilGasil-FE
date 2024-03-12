@@ -18,7 +18,7 @@ interface useLogModelProps {
 
 const useLogModel = ({ logId }: useLogModelProps) => {
   const [tabIndex, setTabIndex] = useState(TabType.Memo);
-  const [currentPinIndex, setCurrentPinIndex] = useState(0);
+  const [currentPinIndex, setCurrentPinIndex] = useState(-1);
   const [mapCenter, setMapCenter] = useState<GeoPosition>({ lat: 0, lng: 0 });
 
   const { data: masilData } = useQuery({
