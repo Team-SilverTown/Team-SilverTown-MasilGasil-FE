@@ -3,8 +3,12 @@
 import { FieldErrors, useForm } from "react-hook-form";
 
 import useUserEditModel from "./UserEdit.model";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { MeResponse } from "@/types/Response";
+import { useMutation } from "@tanstack/react-query";
+import { USER_KEY } from "@/lib/api/queryKeys";
+import { checkDuplicateNickname } from "@/lib/api/User/client";
+import { throttle } from "lodash";
 
 interface UserEditControllerProps {
   userDefaultData: MeResponse;
@@ -12,8 +16,13 @@ interface UserEditControllerProps {
 
 // userId 는 추후 유저의 데이터를 불러올때 사용
 const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => {
-  const { isCheckedNickname, setIsCheckedNickname } = useUserEditModel();
-  const { register, handleSubmit, watch, formState, getValues } = useForm<MeResponse>({
+  const {
+    isCheckedNickname,
+    setIsCheckedNickname,
+    nickNameButtonDisabled,
+    setNickNameButtonDisabled,
+  } = useUserEditModel();
+  const { register, handleSubmit, watch, formState, getValues, setError } = useForm<MeResponse>({
     mode: "onChange",
     defaultValues: userDefaultData,
   });
@@ -23,14 +32,21 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
   const selectedSex = watch("sex");
   const selectedIntensity = watch("exerciseIntensity");
 
+  const nickNameMutation = useMutation({
+    mutationKey: [USER_KEY.CHECK_NICKNAME],
+    mutationFn: (nickName: string) => checkDuplicateNickname(nickName),
+  });
+
   useEffect(() => {
     if (userDefaultData.nickname === newNickname) {
       setIsCheckedNickname(true);
+      setNickNameButtonDisabled(true);
       return;
     }
 
     if (isCheckedNickname) {
       setIsCheckedNickname(false);
+      setNickNameButtonDisabled(false);
     }
   }, [newNickname]);
 
@@ -43,21 +59,38 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
     */
   };
 
-  const handleCheckSameNickName = () => {
-    const newNickname = getValues("nickname");
+  const handleCheckSameNickName = useRef(
+    throttle(() => {
+      const newNickname = getValues("nickname");
+      console.log(newNickname);
+      if (errors.nickname) {
+        return;
+      }
 
-    // TODO - API 연결로 인해 중복 닉네임 체크후 없는 닉네임이라면 통과처리
+      nickNameMutation.mutate(newNickname, {
+        onSuccess: ({ isDuplicated, nickname }) => {
+          if (newNickname !== nickname) {
+            setError("nickname", { message: "닉네임 중복검사 과정에서 문제가 발생하였습니다." });
+            return;
+          }
 
-    // if(){
-    //   console.log(newNickname);
-    // }
+          if (isDuplicated) {
+            setError("nickname", { message: "이미 사용중인 닉네임 입니다." });
+            return;
+          }
 
-    setIsCheckedNickname(true);
-  };
+          setIsCheckedNickname(true);
+        },
+      });
+
+      setNickNameButtonDisabled(true);
+    }, 2000),
+  ).current;
 
   return {
     register,
     errors,
+    nickNameButtonDisabled,
     handleValid,
 
     handleSubmit,

@@ -15,6 +15,7 @@ interface EditNicknameProps {
   register: UseFormRegister<MeResponse>;
   errors: FieldErrors<MeResponse>;
 
+  nickNameButtonDisabled: boolean;
   isCheckedNickname: boolean;
   onCheckSameNickname: () => void;
 }
@@ -23,6 +24,7 @@ const EditNickname = ({
   register,
   errors,
 
+  nickNameButtonDisabled,
   isCheckedNickname,
   onCheckSameNickname,
 }: EditNicknameProps) => {
@@ -63,9 +65,9 @@ const EditNickname = ({
             userSelect: "none",
           }}
           onClickHandler={handleClick}
-          disabled={isCheckedNickname}
+          disabled={nickNameButtonDisabled}
         >
-          중복 확인
+          {isCheckedNickname ? "확인 완료" : "중복 확인"}
         </Button>
       </S.EditNicknameActions>
 

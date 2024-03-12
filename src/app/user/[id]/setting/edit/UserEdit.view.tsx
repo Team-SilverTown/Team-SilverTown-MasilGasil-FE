@@ -20,6 +20,7 @@ const UserEditView = ({ userDefaultData }: UserEditViewProps) => {
     register,
     errors,
     isCheckedNickname,
+    nickNameButtonDisabled,
     selectedSex,
     selectedIntensity,
     handleCheckSameNickName,
@@ -43,6 +44,7 @@ const UserEditView = ({ userDefaultData }: UserEditViewProps) => {
         <EditNickname
           register={register}
           errors={errors}
+          nickNameButtonDisabled={nickNameButtonDisabled}
           isCheckedNickname={isCheckedNickname}
           onCheckSameNickname={handleCheckSameNickName}
         />
