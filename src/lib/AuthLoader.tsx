@@ -27,6 +27,8 @@ const AuthLoader = ({
   const redirectInable = pathAbleCheck(REDIRECT_INABLE_PATHS, currentPathName);
 
   useEffect(() => {
+    console.log("autoLoader", serviceToken, me);
+
     if (serviceToken && me && me.nickname) {
       // 인증된 유저인 경우
       setAuth({ isLogIn: true, serviceToken });
