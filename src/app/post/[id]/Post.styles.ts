@@ -5,6 +5,8 @@ export const PostContainer = styled.section`
   position: relative;
   height: 100%;
   min-height: 100vh;
+
+  user-select: none;
 `;
 
 export const PostContentLayout = styled.section`
