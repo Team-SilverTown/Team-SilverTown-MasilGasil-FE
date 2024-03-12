@@ -53,7 +53,7 @@ export const LOG_RECORD_MESSAGE = {
   },
 
   REGION_ERROR: {
-    MESSAGE: "현재 위치의 주소를 불러오는데 실패했습니다. 잠시 후 다시 이용해주세요.",
+    MESSAGE: "현재 주소를 불러오는데 실패했습니다.<br>잠시 후 다시 이용해주세요.",
   },
 
   COMPLETE_RECORD: {

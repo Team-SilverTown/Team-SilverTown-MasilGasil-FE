@@ -153,7 +153,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
     const goe = new kakao.maps.services.Geocoder();
     goe.coord2RegionCode(longitude, latitude, (result, status) => {
       if (status !== kakao.maps.services.Status.OK) {
-        setModalView("LOG_RECORD_ALERT_VIEW");
+        setModalView("ANIMATION_ALERT_VIEW");
         openModal({
           message: LOG_RECORD_MESSAGE.REGION_ERROR.MESSAGE,
         });

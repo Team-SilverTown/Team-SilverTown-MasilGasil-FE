@@ -57,7 +57,7 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
     if (!isCheckedNickname) {
       setModalView("ANIMATION_ALERT_VIEW");
       openModal({
-        message: "산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.",
+        message: "닉네임 중복 확인을 진행해주세요.",
       });
       return;
     }

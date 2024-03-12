@@ -9,7 +9,6 @@ import { Modal } from "@components/Modal";
 import Window from "@components/Window";
 import {
   PinEditModal,
-  LogRecordAlertModal,
   TestModal,
   ProfileEditModal,
   MateCreateMapModal,
@@ -78,7 +77,6 @@ const ModalView = ({
     <Modal onClose={closeModal}>
       {modalView === "INIT_VIEW" && <TestModal />}
       {modalView === "CONFIRM_VIEW" && <ConfirmModal props={props} />}
-      {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
       {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
       {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
       {modalView === "PROFILE_EDIT_VIEW" && <ProfileEditModal props={props} />}
