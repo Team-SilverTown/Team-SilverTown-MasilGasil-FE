@@ -3,7 +3,6 @@ import { MutableRefObject } from "react";
 import styled from "styled-components";
 
 interface PinDetailCardLayoutProps {
-  ref?: MutableRefObject<HTMLElement | null>;
   $borderRadius: number | string;
 }
 
@@ -46,7 +45,9 @@ export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`
   border-top-left-radius: ${(props) => `${props.$borderRadius}px`};
   border-bottom-left-radius: ${(props) => `${props.$borderRadius}px`};
   background-image: ${(props) => `url(${props.$thumbnail})`};
+  background-color: ${(props) => props.theme.gray_200};
   background-size: cover;
+  background-position: center;
 
   span {
     display: inline-block;
