@@ -24,6 +24,7 @@ import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
 
 import MateLocationMapModal from "../modalViews/MateMapModal/MateLocationMapModal/MapLocationMapModal";
 import PostCreateDoneModal from "../modalViews/PostCreateDoneModal/PostCreateDoneModal";
+import DeployAlertModal from "../modalViews/DeployAlertModal/DeployAlertModal";
 
 export const useUI = () => {
   const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
@@ -84,6 +85,7 @@ const ModalView = ({
       {modalView === "MATE_CREATE_MAP_VIEW" && <MateCreateMapModal props={props} />}
       {modalView === "MATE_LOCATION_MAP_VIEW" && <MateLocationMapModal props={props} />}
       {modalView === "POST_CREATE_DONE_VIEW" && <PostCreateDoneModal />}
+      {modalView === "DEPLOY_ALERT_VIEW" && <DeployAlertModal />}
     </Modal>
   );
 };

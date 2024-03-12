@@ -25,7 +25,12 @@ const useUserSettingAccountController = () => {
     });
   };
 
-  return { handleLogout };
+  const handleDeployAlert = () => {
+    setModalView("DEPLOY_ALERT_VIEW");
+    openModal();
+  };
+
+  return { handleLogout, handleDeployAlert };
 };
 
 export default useUserSettingAccountController;
