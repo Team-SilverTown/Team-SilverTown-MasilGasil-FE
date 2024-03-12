@@ -14,7 +14,7 @@ import MasilDiarySheet from "./components/MasilDiarySheet/MasilDiarySheet";
 import { DaylessCalendar } from "@/components/ShadcnUi/ui/daylessCalender";
 import DiaryItem from "./components/DiaryItem/DiaryItem";
 import Return from "@/components/icons/Return";
-import Theme from "@/styles/theme";
+import Theme, { FONT_SIZE } from "@/styles/theme";
 import { TabIndex } from "./MasilDiary.type";
 
 const MasilDiaryView = () => {
@@ -46,6 +46,7 @@ const MasilDiaryView = () => {
             setCurrentTabIdx(index);
           }}
           focusedTab={currentTabIdx}
+          style={{ fontSize: "1.6rem" }}
         />
         {currentTabIdx === TabIndex.Calendar && (
           <>

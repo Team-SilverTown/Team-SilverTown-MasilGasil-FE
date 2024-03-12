@@ -19,7 +19,6 @@ export const ThumbnailContainer = styled.div`
   height: 10rem;
 
   background-color: ${(props) => props.theme.gray_500};
-  flex-shrink: 0;
 `;
 
 export const ContentContainer = styled.div`
@@ -54,13 +53,13 @@ export const SubTitle = styled.div`
 export const Text = styled.p``;
 export const SubText = styled.p`
   color: ${(props) => props.theme.gray_500};
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;

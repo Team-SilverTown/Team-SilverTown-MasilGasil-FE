@@ -25,7 +25,7 @@ const useMasilDiaryController = () => {
     queryKey: [MASIL_KEY.MASILS_PERIOD_GET, startDateParam],
     queryFn: () => getMasilsByPeriod({ startDate: startDateParam, endDate: null }),
     refetchOnMount: true,
-    staleTime: 0,
+    staleTime: 1000 * 60,
   });
 
   /**

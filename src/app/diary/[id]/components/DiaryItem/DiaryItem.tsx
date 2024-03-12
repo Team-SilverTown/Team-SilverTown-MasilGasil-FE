@@ -26,6 +26,7 @@ const DiaryItem = ({ masil }: { masil: MasilsByPeriod; key?: number | string }) 
           alt="masilThumbnail"
           width={100}
           height={100}
+          style={{ borderRadius: "1rem 0rem 0rem 1rem", display: "flex", justifyContent: "center" }}
         />
       </S.ThumbnailContainer>
       <S.ContentContainer>

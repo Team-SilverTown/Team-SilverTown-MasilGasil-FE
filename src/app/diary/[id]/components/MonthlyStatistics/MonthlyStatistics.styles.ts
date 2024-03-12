@@ -51,27 +51,35 @@ export const AccentTitle = styled.span`
 export const Section = styled.section`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
+  gap: 3rem;
 
   @media (max-width: 375px) {
     flex-direction: column;
   }
+
+  @media (min-width: 700px) {
+    padding: 1rem 2rem;
+    gap: 4rem;
+  }
 `;
 
 export const SectionItem = styled.div`
-  padding: 1rem;
+  padding: 1rem 0rem;
   gap: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 5rem;
 
   font-weight: ${FONT_WEIGHT.BOLD};
 
   @media (min-width: 700px) {
-    padding: 1rem 3rem;
+    /* padding: 1rem 2rem; */
+    min-width: 10rem;
   }
 `;
 

@@ -21,7 +21,7 @@ function DaylessCalendar({ className, classNames, ...props }: CalendarProps) {
         nav: "space-x-1 flex items-center py-10",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
-          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
+          "h-10 w-10 bg-transparent p-0 opacity-50 hover:opacity-100",
         ),
         nav_button_previous: "absolute left-1",
         nav_button_next: "absolute right-1",
@@ -40,8 +40,8 @@ function DaylessCalendar({ className, classNames, ...props }: CalendarProps) {
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        IconLeft: ({ ...props }) => <ChevronLeft className="h-6 w-6" />,
+        IconRight: ({ ...props }) => <ChevronRight className="h-6 w-6" />,
       }}
       {...props}
     />
