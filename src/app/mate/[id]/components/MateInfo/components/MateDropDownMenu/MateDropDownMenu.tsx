@@ -12,43 +12,33 @@ import { MateGatheringPlace } from "@/types/OriginDataType";
 import Divider from "@/components/Divider/Divider";
 
 interface MateDropDownMenuProps {
-  postId: string;
+  isEdit?: boolean;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
-const MateDropDownMenu = ({ postId }: MateDropDownMenuProps) => {
+const MateDropDownMenu = ({ onEdit, onDelete, isEdit = true }: MateDropDownMenuProps) => {
   const { isToggle, handleToggle, toggleRef } = useToggle();
   const { setModalView, openModal } = useUI();
 
   const handleClickEdit = (e: MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
 
-    console.log("수정 클릭");
+    if (!onEdit) {
+      return;
+    }
 
-    setModalView("MATE_CREATE_MAP_VIEW");
-    openModal({
-      baseLocation: { lat: 37.497, lng: 127.0254 },
-      onSubmit: ({ detail, point }: MateGatheringPlace) => {
-        console.log(detail, point);
-      },
-    });
-
-    handleToggle();
+    onEdit();
   };
 
-  const handleClickRemove = (e: MouseEvent<HTMLLIElement>) => {
+  const handleClickDelete = (e: MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
 
-    console.log("삭제 클릭");
+    if (!onDelete) {
+      return;
+    }
 
-    setModalView("MATE_LOCATION_MAP_VIEW");
-    openModal({
-      gatherPlace: {
-        point: { lat: 37.497, lng: 127.0254 },
-        detail: "나는 여기가 어딘지 몰라요 강남이래요",
-      },
-    });
-
-    handleToggle();
+    onDelete();
   };
 
   return (
@@ -67,14 +57,18 @@ const MateDropDownMenu = ({ postId }: MateDropDownMenuProps) => {
               animate={{ opacity: 1, height: "100%" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <S.MateDropDownMenuItem onClick={handleClickEdit}>
-                <EditPencil className="w-6 h-6" />
-                수정
-              </S.MateDropDownMenuItem>
+              {isEdit && (
+                <>
+                  {" "}
+                  <S.MateDropDownMenuItem onClick={handleClickEdit}>
+                    <EditPencil className="w-6 h-6" />
+                    수정
+                  </S.MateDropDownMenuItem>
+                  <Divider style={{ margin: "0.3rem 0" }} />
+                </>
+              )}
 
-              <Divider />
-
-              <S.MateDropDownMenuItem onClick={handleClickRemove}>
+              <S.MateDropDownMenuItem onClick={handleClickDelete}>
                 <Trash className="w-6 h-6" />
                 삭제
               </S.MateDropDownMenuItem>

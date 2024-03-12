@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/api/:path*",
+      "source": "/call/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         {

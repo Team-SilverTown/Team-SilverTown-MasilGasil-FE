@@ -1,7 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
 
-import { authenticate } from "@/lib/api/User/server";
+import { authenticate, getMe } from "@/lib/api/User/server";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -33,11 +33,14 @@ export const authOptions: NextAuthOptions = {
         const getToken = authenticate.bind(null, { token: account.access_token });
         const data = await getToken();
 
-        // console.log("JWT", data?.token);
-        // console.log(account.access_token);
+        const me = data && (await getMe(data?.token));
+
+        console.log("JWT", data?.token, me);
+
         return {
-          accessToken: account.access_token,
+          // accessToken: account.access_token,
           serviceToken: data?.token,
+          nickname: me?.nickname,
           // accessTokenExpires: account.expires_at,
           // refreshToken: account.refresh_token,
         };
@@ -46,9 +49,12 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token.serviceToken) {
-        // console.log("serviceToken", token.serviceToken);
-        session.accessToken = token.accessToken as string;
+        console.log("session", token);
+        // session.accessToken = token.accessToken as string;
         session.serviceToken = token.serviceToken as string;
+        session.nickname = token.nickname as string;
+      } else {
+        session.serviceToken = undefined;
       }
       return session;
     },

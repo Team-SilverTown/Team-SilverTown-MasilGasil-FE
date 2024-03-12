@@ -9,6 +9,9 @@ export const Tabs = styled.ul`
   list-style: none;
   border-bottom-width: 1.5px;
   border-color: ${(props) => props.theme.gray_light + 80};
+  text-align: center;
+  font-size: ${FONT_SIZE.MINI};
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
 export const Tab = styled.li`

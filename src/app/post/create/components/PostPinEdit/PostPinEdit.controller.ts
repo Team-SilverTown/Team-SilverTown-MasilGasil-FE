@@ -1,21 +1,10 @@
-import { useUI } from "@/components/uiContext/UiContext";
+"use client";
+
 import usePostCreateContext from "../../context/PostCreateContext";
 
 const usePostPinEditController = () => {
-  const { postData, handleClickPin, handleRemovePin } = usePostCreateContext();
-  const { setModalView, openModal } = useUI();
+  const { postData, handleClickPin, handleRemovePin, handleCreatePost } = usePostCreateContext();
 
-  const handleCreatePost = () => {
-    setModalView("CONFIRM_VIEW");
-
-    openModal({
-      message: "포스트를 등록하시겠나요?",
-      acceptButtonText: "등록",
-      onClickAccept: () => {
-        console.log(postData);
-      },
-    });
-  };
   return {
     postData,
     handleClickPin,
