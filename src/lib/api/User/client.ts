@@ -1,5 +1,5 @@
 import { AuthResponse, CheckNickNameResponse, MeResponse } from "@/types/Response";
-import { AuthRequest, SignUpRequest } from "@/types/Request/User";
+import { AuthRequest, SignUpRequest, UserEditRequest } from "@/types/Request/User";
 
 import { GET, POST, PUT } from "../clientRootAPI";
 import { USER } from "../endPoints";
@@ -29,4 +29,16 @@ export const signUp = async (data: SignUpRequest) => {
     data,
     auth: true,
   });
+};
+
+export const postEditUser = async (newUserData: MeResponse) => {
+  const { nickname, sex, birthDate, height, weight, exerciseIntensity } = newUserData;
+  const newData: UserEditRequest = {
+    nickname,
+    sex,
+    birthDate,
+    height: height ? +height : undefined,
+    weight: weight ? +weight : undefined,
+    exerciseIntensity,
+  };
 };
