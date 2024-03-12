@@ -1,6 +1,6 @@
 "use client";
 
-import { FieldErrors, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import useUserEditModel from "./UserEdit.model";
 import { useEffect, useRef } from "react";
@@ -62,7 +62,7 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
   const handleCheckSameNickName = useRef(
     throttle(() => {
       const newNickname = getValues("nickname");
-      console.log(newNickname);
+
       if (errors.nickname) {
         return;
       }

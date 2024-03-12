@@ -1,5 +1,4 @@
 import { getMe } from "@/lib/api/User/server";
-import UserEditController from "./UserEdit.controller";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
