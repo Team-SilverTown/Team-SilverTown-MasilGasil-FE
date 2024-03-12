@@ -37,7 +37,7 @@ const ConfirmModal = ({ props }: ModalProp) => {
       <S.ConfirmModalLayout>
         <S.ConfirmModalMessage>{message}</S.ConfirmModalMessage>
 
-        {warningMessage && <S.ConfirmModalWarning>{warningMessage}</S.ConfirmModalWarning>}
+        <S.ConfirmModalWarning>{warningMessage}</S.ConfirmModalWarning>
 
         <S.ConfirmModalActionsContainer>
           <ConfirmModalButton
