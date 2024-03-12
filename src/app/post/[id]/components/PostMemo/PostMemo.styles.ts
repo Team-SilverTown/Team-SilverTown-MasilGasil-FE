@@ -5,6 +5,10 @@ export const PostMemoTitle = styled.h3`
   font-size: ${FONT_SIZE.H5};
   font-weight: ${FONT_WEIGHT.BOLD};
   margin-bottom: 1.5rem;
+
+  @media (max-width: 380px) {
+    font-size: ${FONT_SIZE.LARGE};
+  }
 `;
 
 export const PostMemoInfo = styled.article`
