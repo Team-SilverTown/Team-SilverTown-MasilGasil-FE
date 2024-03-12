@@ -1,9 +1,15 @@
 import LogController from "./Log.controller";
 
-const LogDetail = () => {
-  const baseLocation = { lat: 37.15601397875854, lng: 127.07667498944193 };
+interface LogDetailProps {
+  params: {
+    id: string;
+  };
+}
 
-  return <LogController baseLocation={baseLocation} />;
+const LogDetail = ({ params }: LogDetailProps) => {
+  const { id } = params;
+
+  return <LogController logId={id} />;
 };
 
 export default LogDetail;
