@@ -1,43 +1,31 @@
+"use client";
+
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "./UserEdit.styles";
-
-import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 
 import { EditSex, EditNickname, EditBirthDate, EditBodyInfo, EditIntensity } from "./components";
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { IntensityOption } from "@/types/OriginDataType";
 import { MeResponse } from "@/types/Response";
+import useUserEditController from "./UserEdit.controller";
 
 interface UserEditViewProps {
-  register: UseFormRegister<MeResponse>;
-  errors: FieldErrors<MeResponse>;
-
-  onSubmit: UseFormHandleSubmit<MeResponse>;
-  onValid: (data: MeResponse) => void;
-  onInValid: (error: FieldErrors) => void;
-
-  selectedSex: string | undefined;
-  selectedIntensity: IntensityOption;
-  isCheckedNickname: boolean;
-  onCheckSameNickname: () => void;
+  userDefaultData: MeResponse;
 }
 
-const UserEditView = ({
-  register,
-  errors,
-
-  onSubmit,
-  onValid,
-  onInValid,
-
-  selectedSex,
-  selectedIntensity,
-  isCheckedNickname,
-  onCheckSameNickname,
-}: UserEditViewProps) => {
+const UserEditView = ({ userDefaultData }: UserEditViewProps) => {
   const theme = useTheme();
+  const {
+    register,
+    errors,
+    isCheckedNickname,
+    selectedSex,
+    selectedIntensity,
+    handleCheckSameNickName,
+    handleSubmit,
+    handleValid,
+  } = useUserEditController({ userDefaultData });
 
   return (
     <GS.CommonContainer
@@ -56,7 +44,7 @@ const UserEditView = ({
           register={register}
           errors={errors}
           isCheckedNickname={isCheckedNickname}
-          onCheckSameNickname={onCheckSameNickname}
+          onCheckSameNickname={handleCheckSameNickName}
         />
 
         <EditSex
@@ -93,7 +81,7 @@ const UserEditView = ({
             fontWeight: FONT_WEIGHT.BOLD,
             minHeight: "5rem",
           }}
-          onClickHandler={onSubmit(onValid)}
+          onClickHandler={handleSubmit(handleValid)}
         >
           수정 완료
         </Button>

@@ -1,23 +1,21 @@
 "use client";
 
 import { FieldErrors, useForm } from "react-hook-form";
-import UserEditView from "./UserEdit.view";
-import { TopNavigator } from "@/components/navigators/TopNavigator";
-import { GoBackButton } from "@/components/navigators/TopNavigator/components";
+
 import useUserEditModel from "./UserEdit.model";
 import { useEffect } from "react";
 import { MeResponse } from "@/types/Response";
 
 interface UserEditControllerProps {
-  userData: MeResponse;
+  userDefaultData: MeResponse;
 }
 
 // userId 는 추후 유저의 데이터를 불러올때 사용
-const UserEditController = ({ userData }: UserEditControllerProps) => {
+const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => {
   const { isCheckedNickname, setIsCheckedNickname } = useUserEditModel();
   const { register, handleSubmit, watch, formState, getValues } = useForm<MeResponse>({
     mode: "onChange",
-    defaultValues: userData,
+    defaultValues: userDefaultData,
   });
   const { errors } = formState;
 
@@ -26,7 +24,7 @@ const UserEditController = ({ userData }: UserEditControllerProps) => {
   const selectedIntensity = watch("exerciseIntensity");
 
   useEffect(() => {
-    if (userData.nickname === newNickname) {
+    if (userDefaultData.nickname === newNickname) {
       setIsCheckedNickname(true);
       return;
     }
@@ -45,10 +43,6 @@ const UserEditController = ({ userData }: UserEditControllerProps) => {
     */
   };
 
-  const handleInValid = (error: FieldErrors) => {
-    console.log(error);
-  };
-
   const handleCheckSameNickName = () => {
     const newNickname = getValues("nickname");
 
@@ -61,25 +55,17 @@ const UserEditController = ({ userData }: UserEditControllerProps) => {
     setIsCheckedNickname(true);
   };
 
-  return (
-    <>
-      <TopNavigator
-        leftChildren={<GoBackButton />}
-        title={"회원 정보 수정"}
-      />
-      <UserEditView
-        register={register}
-        errors={errors}
-        onValid={handleValid}
-        onInValid={handleInValid}
-        onSubmit={handleSubmit}
-        selectedSex={selectedSex}
-        selectedIntensity={selectedIntensity}
-        isCheckedNickname={isCheckedNickname}
-        onCheckSameNickname={handleCheckSameNickName}
-      />
-    </>
-  );
+  return {
+    register,
+    errors,
+    handleValid,
+
+    handleSubmit,
+    selectedSex,
+    selectedIntensity,
+    isCheckedNickname,
+    handleCheckSameNickName,
+  };
 };
 
-export default UserEditController;
+export default useUserEditController;
