@@ -37,7 +37,7 @@ export const PinDetailCardWrapper = styled.article<PinDetailCardWrapperProps>`
   height: 100%;
   background-color: ${(props) => props.theme.white};
   border-radius: ${(props) => `${props.$borderRadius}px`};
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 11px;
+  box-shadow: rgba(0, 0, 0, 0.1) -1px 2px 5px;
 `;
 
 export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`

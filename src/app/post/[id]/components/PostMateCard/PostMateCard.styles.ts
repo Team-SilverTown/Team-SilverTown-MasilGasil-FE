@@ -12,7 +12,7 @@ export const PostMateCardLayout = styled.div`
   padding: 1rem;
   background-color: ${(props) => props.theme.white};
   border-radius: 0.8rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 11px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 5px;
 `;
 
 export const PostMateCardInfo = styled.div`
