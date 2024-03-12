@@ -7,7 +7,7 @@ const USER_VALIDATE_NUMBER = {
 
 export const validation_user = {
   nickname: {
-    required: "변경하실 닉네임을 입력해주세요.",
+    required: "닉네임을 입력해주세요.",
     minLength: {
       value: USER_VALIDATE_NUMBER.NICKNAME.MIN_LENGTH,
       message: `${USER_VALIDATE_NUMBER.NICKNAME.MIN_LENGTH}글자 이상을 입력해 주세요.`,
@@ -15,6 +15,10 @@ export const validation_user = {
     maxLength: {
       value: USER_VALIDATE_NUMBER.NICKNAME.MAX_LENGTH,
       message: `${USER_VALIDATE_NUMBER.NICKNAME.MAX_LENGTH}글자 이하로 입력해 주세요.`,
+    },
+    pattern: {
+      value: /^[가-힣a-zA-Z0-9]+$/,
+      message: "한글, 영어, 숫자만 사용 가능 합니다.",
     },
   },
 

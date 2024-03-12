@@ -3,9 +3,6 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
-import useSignInModel from "./SignIn.model";
-import SignInView from "./SignIn.view";
-import { SignInStep1, SignInStep2, SignInStep3, SignInStep4 } from "./sections";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavigator/components";
 import { useRouter } from "next/navigation";
@@ -13,6 +10,12 @@ import useEventQuery from "@/lib/hooks/useEventQuery";
 import { checkDuplicateNickname } from "@/lib/api/User/client";
 import { SignUpRequest } from "@/types/Request/User";
 import { CheckNickNameResponse } from "@/types/Response";
+import { calculateAge } from "@/utils";
+
+import useSignInModel from "./SignIn.model";
+import SignInView from "./SignIn.view";
+import { SignInStep1, SignInStep2, SignInStep3, SignInStep4 } from "./sections";
+import { validation_user } from "@/lib/constants/userConstants";
 
 export interface SignInFormProps extends SignUpRequest {}
 
@@ -68,10 +71,10 @@ const SignInController = () => {
     setNickNameConfirm(false);
   }, [name]);
 
-  // console.log(typeof duplicatedResult, duplicatedResult);
-
   useEffect(() => {
-    if (typeof duplicatedResult === "string") {
+    if (!duplicatedResult) return;
+
+    if (!duplicatedResult.isDuplicated) {
       setNickNameConfirm(true);
     } else {
       setError("nickname", { type: "custom", message: "이미 사용중인 닉네임 입니다." });
@@ -81,31 +84,21 @@ const SignInController = () => {
 
   /** 사용자 나이 확인 */
   const birthDate = getValues("birthDate");
+
   const userAgeConfirm = useMemo(() => {
-    // 유틸함수 머지 후 유틸 함수 사용
-    const calculateAge = (birthDate: string): number => {
-      const birthday = new Date(birthDate);
-      const today = new Date();
-
-      let age = today.getFullYear() - birthday.getFullYear();
-      const monthDifference = today.getMonth() - birthday.getMonth();
-      birthday;
-      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthday.getDate())) {
-        age--;
-      }
-
-      return age;
-    };
-
     if (birthDate) {
       const userAge = calculateAge(birthDate);
-      console.log(userAge);
+
       if (userAge >= 13 && userAge <= 100) return true;
 
-      if (userAge < 13)
-        setError("birthDate", { type: "custom", message: "만 13세 이상이어야 합니다." });
-      if (userAge > 100)
-        setError("birthDate", { type: "custom", message: "만 100세 이하이어야 합니다." });
+      if (userAge < 13) {
+        // errors.birthDate?.message !== validation_user.birthDate.min.message &&
+        setError("birthDate", { type: "custom", message: validation_user.birthDate.min.message });
+      }
+      if (userAge > 100) {
+        // errors.birthDate?.message !== validation_user.birthDate.max.message &&
+        setError("birthDate", { type: "custom", message: validation_user.birthDate.max.message });
+      }
 
       return false;
     }

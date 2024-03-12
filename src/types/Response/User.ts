@@ -17,7 +17,7 @@ export interface MeResponse {
 
 export interface CheckNickNameResponse {
   isDuplicated: boolean;
-  message: string;
+  nickname: string;
 }
 
 // export interface SignUpResponse {}

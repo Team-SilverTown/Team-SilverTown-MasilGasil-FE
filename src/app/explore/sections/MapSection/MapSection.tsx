@@ -115,6 +115,7 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
           width: "100%",
           height: "100%",
         }}
+        draggable={true}
       >
         <CenterMarker position={userLocation} />
         <S.ButtonWrapper>
