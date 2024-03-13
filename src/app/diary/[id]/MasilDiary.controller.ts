@@ -43,7 +43,7 @@ const useMasilDiaryController = () => {
       setMonthlyMasilsDate([]);
       return;
     }
-    console.log(masilData);
+    
     const tempDailyMasils = masilData.masils.filter((m) => m.date === selectedDate)[0]
       ? masilData.masils.filter((m) => m.date === selectedDate)[0].masils
       : undefined;
