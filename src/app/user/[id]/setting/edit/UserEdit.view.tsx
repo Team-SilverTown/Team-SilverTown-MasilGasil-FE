@@ -41,7 +41,12 @@ const UserEditView = ({
 
   return (
     <GS.CommonContainer
-      style={{ height: "100%" }}
+      style={{
+        width: "100%",
+        height: "100%",
+        padding: "6rem 0",
+        position: "relative",
+      }}
       onSubmit={onSubmit(onValid, onInValid)}
     >
       <S.UserEditLayout
@@ -74,7 +79,9 @@ const UserEditView = ({
           register={register}
           selectedIntensity={selectedIntensity}
         />
+      </S.UserEditLayout>
 
+      <S.UserEditButtonWrapper>
         <Button
           variant="flat"
           useRipple
@@ -82,6 +89,7 @@ const UserEditView = ({
           buttonColor={theme?.green_500}
           textColor={theme?.text_secondary_color}
           style={{
+            width: "100%",
             fontSize: FONT_SIZE.H4,
             fontWeight: FONT_WEIGHT.BOLD,
             minHeight: "5rem",
@@ -89,7 +97,7 @@ const UserEditView = ({
         >
           수정 완료
         </Button>
-      </S.UserEditLayout>
+      </S.UserEditButtonWrapper>
     </GS.CommonContainer>
   );
 };

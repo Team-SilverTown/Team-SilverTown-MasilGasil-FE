@@ -1,3 +1,5 @@
+import { Pin } from "@/types/OriginDataType";
+
 export interface MasilsListType {
   id: number;
   depth1: string;
@@ -12,7 +14,7 @@ export interface MasilsListType {
   startedAt: string;
   postId: null | number;
   thumbnailUrl: null | string;
-  pins: PinsType[];
+  pins: Pin[];
 }
 
 export interface PostsListType {
@@ -29,7 +31,7 @@ export interface PostsListType {
   isPublic: boolean;
   viewCount: number;
   likeCount: number;
-  pins: PinsType[];
+  pins: Pin[];
   authorId: number;
   authorName: string;
   thumbnailUrl: string;
@@ -38,21 +40,6 @@ export interface PostsListType {
 interface PathType {
   lat: number;
   lng: number;
-}
-
-interface PinsType {
-  id: number;
-  point: PathType;
-  content: string;
-  thumbnail: string;
-}
-
-export interface UserInfoType {
-  sex?: "MALE" | "FEMALE";
-  birthDate?: string;
-  height?: number;
-  weight?: number;
-  exerciseIntensity?: "SUPER_LOW" | "LOW" | "MIDDLE" | "HIGH" | "SUPER_HIGH";
 }
 
 interface RecordType {

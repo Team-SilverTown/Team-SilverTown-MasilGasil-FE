@@ -1,55 +1,37 @@
+"use client";
+
 import * as S from "./LogRecord.styles";
 
-import { LogPageStep, SetIsActiveExitAnimation } from "./LogRecord.types";
 import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
-import { MasilRecordRequest } from "@/types/Request";
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { Button } from "@/components";
 import { Pin } from "@/components/icons";
-import { OnClickPin, OnCreatePathLine } from "@/components/MasilMap/MasilMap.types";
-import { GeoPosition } from "@/types/OriginDataType";
 import Center from "@/components/icons/Center";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { AnimatePresence } from "framer-motion";
+import useLogRecordController from "./LogRecord.controller";
 
-interface LogRecordViewProps {
-  logData: MasilRecordRequest;
-  pageStep: LogPageStep;
-  userLocation: GeoPosition;
-  currentPinIndex: number;
+const LogRecordView = () => {
+  const {
+    pageStep,
+    logData,
+    navigationData,
+    userLocation,
+    currentPinIndex,
+    isActiveExitAnimation,
+    setIsActiveExitAnimation,
+    setIsActiveMapResizing,
 
-  isActiveExitAnimation: boolean;
-  setIsActiveExitAnimation: SetIsActiveExitAnimation;
+    updateDistance,
 
-  setIsActiveMapResizing: (newState: boolean) => void;
+    handleCreatePin,
+    handleClickPin,
 
-  onCreatePathLine: OnCreatePathLine;
-  onClickPin: OnClickPin;
-  handleClickFallback: () => void;
-
-  handleClickCreatePin: () => void;
-  handleOffIsOutCenter: () => void;
-}
-
-const LogRecordView = ({
-  pageStep,
-  logData,
-  userLocation,
-  currentPinIndex,
-
-  isActiveExitAnimation,
-  setIsActiveExitAnimation,
-
-  setIsActiveMapResizing,
-
-  onCreatePathLine,
-  onClickPin,
-  handleClickCreatePin,
-
-  handleClickFallback,
-  handleOffIsOutCenter,
-}: LogRecordViewProps) => {
+    handleClickFallback,
+    handleOffIsOutCenter,
+    handleClickNavigationPin,
+  } = useLogRecordController();
   const mapAnimation = {
     initial: { height: "100%" },
     editing: { height: "50%" },
@@ -71,10 +53,13 @@ const LogRecordView = ({
           center={userLocation}
           path={logData.path}
           pins={logData.pins}
-          onCreatePathLine={onCreatePathLine}
+          onCreatePathLine={updateDistance}
           isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
-          onClickPin={onClickPin}
+          onClickPin={handleClickPin}
           selectedPinIndex={currentPinIndex}
+          navigationPath={navigationData?.path}
+          navigationPins={navigationData?.pins}
+          onClickNavigationPin={handleClickNavigationPin}
         />
       </S.LogRecordMapContainer>
 
@@ -95,7 +80,7 @@ const LogRecordView = ({
                 {pageStep === "LOG_RECORD_RECORDING" && (
                   <Button
                     variant="neumorp"
-                    onClickHandler={handleClickCreatePin}
+                    onClickHandler={handleCreatePin}
                   >
                     <Pin />
                   </Button>

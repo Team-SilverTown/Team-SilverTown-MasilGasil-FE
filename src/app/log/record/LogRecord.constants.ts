@@ -31,7 +31,7 @@ export const DEFAULT_LOG_DATA: MasilRecordRequest = {
   depth3: "",
   depth4: "",
   path: [],
-  title: "",
+  calories: 0,
   content: "",
   distance: 0,
   totalTime: 0,

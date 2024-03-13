@@ -27,7 +27,7 @@ export const POSTS_DATA: PostsDataType[] = [
     likeCount: 1,
     pins: [
       {
-        // id: 1,
+        id: 1,
         point: {
           lat: 37.15601397875854,
           lng: 127.07667498944193,
@@ -37,7 +37,7 @@ export const POSTS_DATA: PostsDataType[] = [
           "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
       },
       {
-        // id: 2,
+        id: 2,
         point: {
           lat: 37.15967325314658,
           lng: 127.07514758834486,
@@ -48,7 +48,7 @@ export const POSTS_DATA: PostsDataType[] = [
           "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
       },
       {
-        // id: 3,
+        id: 3,
         point: {
           lat: 37.15700030255883,
           lng: 127.06993264254544,
@@ -65,7 +65,7 @@ export const POSTS_DATA: PostsDataType[] = [
       "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
   },
   {
-    id: 1,
+    id: 2,
     depth1: "경기도 안양시",
     depth2: "동안구",
     depth3: "관양동",
@@ -89,7 +89,7 @@ export const POSTS_DATA: PostsDataType[] = [
     likeCount: 1,
     pins: [
       {
-        // id: 1,
+        id: 1,
         point: {
           lat: 37.15601397875854,
           lng: 127.07667498944193,
@@ -99,7 +99,7 @@ export const POSTS_DATA: PostsDataType[] = [
           "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
       },
       {
-        // id: 2,
+        id: 2,
         point: {
           lat: 37.15967325314658,
           lng: 127.07514758834486,
@@ -110,7 +110,7 @@ export const POSTS_DATA: PostsDataType[] = [
           "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
       },
       {
-        // id: 3,
+        id: 3,
         point: {
           lat: 37.15700030255883,
           lng: 127.06993264254544,
@@ -127,7 +127,7 @@ export const POSTS_DATA: PostsDataType[] = [
       "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
   },
   {
-    id: 1,
+    id: 3,
     depth1: "경기도 안양시",
     depth2: "동안구",
     depth3: "관양동",
@@ -151,7 +151,7 @@ export const POSTS_DATA: PostsDataType[] = [
     likeCount: 1,
     pins: [
       {
-        // id: 1,
+        id: 1,
         point: {
           lat: 37.15601397875854,
           lng: 127.07667498944193,
@@ -161,7 +161,7 @@ export const POSTS_DATA: PostsDataType[] = [
           "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
       },
       {
-        // id: 2,
+        id: 2,
         point: {
           lat: 37.15967325314658,
           lng: 127.07514758834486,
@@ -172,7 +172,7 @@ export const POSTS_DATA: PostsDataType[] = [
           "https://github.com/SeungHyune/first-script/assets/114329713/7842e910-8956-43f2-86a4-2c953cb4be04",
       },
       {
-        // id: 3,
+        id: 3,
         point: {
           lat: 37.15700030255883,
           lng: 127.06993264254544,
@@ -198,6 +198,7 @@ export const USER_DUMMY_DATA: MeResponse = {
   height: 168,
   weight: 68,
   exerciseIntensity: "SUPER_LOW",
+  isPublic: true,
 };
 
 export const WALKLIST_DUMMY_DATA: WalkListProps[] = [

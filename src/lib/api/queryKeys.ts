@@ -12,3 +12,16 @@ export const USER_KEY = {
   SIGN_UP: "user_signup",
   CHECK_NICKNAME: "check_nickname",
 };
+
+export const MASIL_KEY = {
+  RECORD_SUBMIT: "masil_log_record_submit",
+  MASILS_PERIOD_GET: "masils_period_get",
+};
+
+export const IMAGE_UPLOAD_KEY = "image_upload_key_0221";
+
+export const POST_KEY = {
+  GET_CREATE_POST: "get_create_post_key",
+  POST_CREATE_POST: "post_create_post_key",
+  GET_POST: "get_post_detail",
+};
