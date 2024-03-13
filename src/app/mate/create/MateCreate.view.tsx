@@ -71,7 +71,7 @@ const MateCreateView = ({
         {regularFields.map((field, index) => (
           <S.Section key={index}>
             <S.Title>{field.title}</S.Title>
-            {field.type === "textarea" && field.name !== "date" && (
+            {field.type === "textarea" && (
               <Textarea
                 placeholder={field.placeholder}
                 register={register(field.name)}
