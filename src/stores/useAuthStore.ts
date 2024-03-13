@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 interface OriginProps {
-  isLogIn: boolean;
+  isLogIn?: boolean;
   serviceToken?: string;
 }
 
@@ -10,7 +10,7 @@ interface UseAuthStoreProps extends OriginProps {
 }
 
 const useAuthStore = create<UseAuthStoreProps>((set) => ({
-  isLogIn: false,
+  isLogIn: undefined,
   serviceToken: undefined,
 
   setAuth: ({ isLogIn, serviceToken }) => {

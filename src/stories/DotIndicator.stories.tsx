@@ -95,12 +95,10 @@ export const Default = (args: any) => {
           <PinDetailCard
             content={d.content}
             currentPinindex={i + 1}
-            thumbnailURL={d.thumbnailURL}
+            thumbnailUrl={d.thumbnailURL}
             title={d.title}
             totalPinIndex={data.length}
             borderRadius={8}
-            height={200}
-            width={390}
           />
         ))}
       </Carousel>

@@ -198,6 +198,7 @@ export const USER_DUMMY_DATA: MeResponse = {
   height: 168,
   weight: 68,
   exerciseIntensity: "SUPER_LOW",
+  isPublic: true,
 };
 
 export const WALKLIST_DUMMY_DATA: WalkListProps[] = [

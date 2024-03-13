@@ -5,9 +5,13 @@ export const request = async <T>(url: string, options: RequestInit): Promise<T |
       "Content-Type": "application/json",
       ...(options.headers || {}),
     },
-  })
-    .then((response) => response.json())
-    .catch((error) => console.error(`API ERROR - status ${error}`));
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error("HTTP status " + response.status);
+    }
+    return response.json();
+  });
+  // .catch((error) => console.error(`API ERROR - status ${error}`));
 
   // try {
   //   const response = await fetch(`${process.env.DB_BASE_URL}${url}`, {

@@ -43,6 +43,7 @@ export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`
   width: 50%;
   border-top-left-radius: ${(props) => `${props.$borderRadius}px`};
   border-bottom-left-radius: ${(props) => `${props.$borderRadius}px`};
+  overflow: hidden;
 
   img {
     object-fit: cover;
@@ -52,7 +53,6 @@ export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`
     position: absolute;
     top: 1rem;
     left: 1rem;
-    display: inline-block;
     font-weight: ${FONT_WEIGHT.BOLD};
   }
 `;

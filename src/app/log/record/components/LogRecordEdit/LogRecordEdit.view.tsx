@@ -39,7 +39,7 @@ const LogRecordEditView = () => {
           }}
         >
           <Sheet.Header />
-          <S.LogEditLayout
+          <Sheet.Content
             style={{
               width: "100%",
               height: "100%",
@@ -78,7 +78,7 @@ const LogRecordEditView = () => {
                 {logData.pins.length === 0 && "저장한 핀이 존재하지 않습니다."}
               </S.LogEditPinList>
             </S.LogEditContainer>
-          </S.LogEditLayout>
+          </Sheet.Content>
         </Sheet.Container>
       </S.MotionSheet>
 
