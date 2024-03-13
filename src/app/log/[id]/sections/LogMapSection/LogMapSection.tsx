@@ -1,11 +1,11 @@
 import { GeoPosition } from "@/types/OriginDataType";
+import { MasilDetailResponse } from "@/types/Response";
 
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { Button } from "@/components";
 import { Center } from "@/components/icons";
 
 import * as S from "./LogMapSection.styles";
-import { MasilDetailResponse } from "@/types/Response";
 
 interface LogMapSectionProps {
   masilData: MasilDetailResponse;
