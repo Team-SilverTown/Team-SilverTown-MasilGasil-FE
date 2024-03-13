@@ -10,6 +10,7 @@ interface OriginProps {
   height?: number;
   weight?: number;
   exerciseIntensity?: IntensityOption;
+  isPublic?: boolean;
 }
 
 interface UseMeStoreProps extends OriginProps {
@@ -23,11 +24,11 @@ interface UseMeStoreProps extends OriginProps {
     weight,
     exerciseIntensity,
   }: OriginProps) => void;
-
+  getMe: () => OriginProps;
   initMe: () => void;
 }
 
-const useMeStore = create<UseMeStoreProps>((set) => ({
+const useMeStore = create<UseMeStoreProps>((set, get) => ({
   userId: undefined,
   nickname: undefined,
   profileImg: undefined,
@@ -36,9 +37,34 @@ const useMeStore = create<UseMeStoreProps>((set) => ({
   height: undefined,
   weight: undefined,
   exerciseIntensity: undefined,
+  isPublic: undefined,
 
   setMe: (data) => {
     set(() => ({ ...data }));
+  },
+  getMe: () => {
+    const {
+      userId,
+      nickname,
+      profileImg,
+      sex,
+      birthDate,
+      height,
+      weight,
+      exerciseIntensity,
+      isPublic,
+    } = get();
+    return {
+      userId,
+      nickname,
+      profileImg,
+      sex,
+      birthDate,
+      height,
+      weight,
+      exerciseIntensity,
+      isPublic,
+    };
   },
   initMe: () => {
     set(() => ({
@@ -50,6 +76,7 @@ const useMeStore = create<UseMeStoreProps>((set) => ({
       height: undefined,
       weight: undefined,
       exerciseIntensity: undefined,
+      isPublic: undefined,
     }));
   },
 }));

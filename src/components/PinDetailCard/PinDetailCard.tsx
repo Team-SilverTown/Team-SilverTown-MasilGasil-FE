@@ -1,48 +1,42 @@
 import * as S from "./PinDetailCard.styles";
 
 export interface PinDetailCardProps {
-  width?: number;
-  height?: number;
-  borderRadius?: number;
-  title: string;
+  key?: number;
+  borderRadius?: number | string;
+  title?: string;
   content: string;
-  thumbnailURL: string;
+  thumbnailUrl: string | null;
   currentPinindex: number;
   totalPinIndex: number;
 }
 
 const PinDetailCard = ({
-  width = 390,
-  height = 200,
   borderRadius = 8,
   title,
   content,
-  thumbnailURL,
+  thumbnailUrl,
   currentPinindex,
   totalPinIndex,
 }: PinDetailCardProps) => {
   return (
-    <S.PinDetailCardLayout
-      width={width}
-      height={height}
-      borderRadius={borderRadius}
-    >
-      <S.PinDetailCardThumbnail
-        width={width}
-        thumbnailURL={thumbnailURL}
-        borderRadius={borderRadius}
-      >
-        <span>
-          {currentPinindex}/{totalPinIndex}
-        </span>
-      </S.PinDetailCardThumbnail>
-      <S.PinDetailCardContent
-        width={width}
-        borderRadius={borderRadius}
-      >
-        <h5>{title}</h5>
-        <p>{content}</p>
-      </S.PinDetailCardContent>
+    <S.PinDetailCardLayout $borderRadius={borderRadius}>
+      <S.PinDetailCardWrapper $borderRadius={borderRadius}>
+        <S.PinDetailCardThumbnail
+          $thumbnail={thumbnailUrl}
+          $borderRadius={borderRadius}
+        >
+          <span>
+            {currentPinindex}/{totalPinIndex}
+          </span>
+        </S.PinDetailCardThumbnail>
+        <S.PinDetailCardContent
+          className="scrollbar-hide"
+          $borderRadius={borderRadius}
+        >
+          <h5>{title}</h5>
+          <p>{content}</p>
+        </S.PinDetailCardContent>
+      </S.PinDetailCardWrapper>
     </S.PinDetailCardLayout>
   );
 };

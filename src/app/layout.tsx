@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#81BB26",
+  themeColor: "#F8F8F8",
 };
 
 const KAKAO_API_KEY = process.env.DB_KAKAO_API_KEY;
@@ -35,10 +35,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-  const me = await getMe(session?.serviceToken!);
+  const me = session?.serviceToken ? await getMe(session.serviceToken) : undefined;
 
   return (
     <html lang="ko">
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
+      />
+      <meta
+        httpEquiv="Content-Security-Policy"
+        content="upgrade-insecure-requests"
+      />
       <ManagedUIContext>
         <StyledComponentsRegistry>
           <GlobalStyle />

@@ -21,3 +21,19 @@ export interface MasilDetailResponse {
   postId: null | string;
   thumbnailUrl: string | null;
 }
+
+export interface MasilsByPeriod {
+  id: string | number;
+  address: { depth1: string; depth2: string; depth3: string; depth4: string };
+  content: string;
+  thumbnailUrl: string;
+  distance: number;
+  totalTime: number;
+  calories: number;
+}
+export interface MasilsByPeriodResponse {
+  totalDistance: number;
+  totalCounts: number;
+  totalCalories: number;
+  masils: [{ date?: string; masils?: MasilsByPeriod[] }];
+}

@@ -1,4 +1,10 @@
-const KebabMenu = ({ ...props }) => {
+import { CSSProperties } from "react";
+
+interface KebabMenuProps {
+  style?: CSSProperties;
+}
+
+const KebabMenu = ({ style, ...props }: KebabMenuProps) => {
   return (
     <svg
       width="3"
@@ -6,6 +12,7 @@ const KebabMenu = ({ ...props }) => {
       viewBox="0 0 3 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ ...style }}
       {...props}
     >
       <path

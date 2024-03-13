@@ -1,4 +1,3 @@
-import { MeResponse } from "@/types/Response";
 import { calculateAge } from ".";
 import { IntensityOption } from "@/types/OriginDataType";
 

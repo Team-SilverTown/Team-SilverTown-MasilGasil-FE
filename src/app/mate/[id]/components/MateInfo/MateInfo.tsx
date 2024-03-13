@@ -30,7 +30,8 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
           src={authorThumbnailUrl}
         />
         <p className="grow text-medium font-medium whitespace-nowrap">{authorNickname}</p>
-        <MateDropDownMenu postId={postId} />
+        {/* <MateDropDownMenu postId={postId} /> */}
+        <MateDropDownMenu />
       </div>
 
       <p className="w-full text-medium font-medium leading-normal">{content}</p>

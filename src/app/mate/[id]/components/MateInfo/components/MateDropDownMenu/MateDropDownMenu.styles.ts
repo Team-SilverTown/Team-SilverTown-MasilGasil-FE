@@ -17,11 +17,10 @@ export const MateMenuLayout = styled.div`
 
 export const MateDropDownMenuLayout = styled(motion.div)`
   width: 9rem;
-  height: 10.6rem;
 
   position: absolute;
   right: 0.6rem;
-  bottom: -12rem;
+  top: calc(100% + 1rem);
 
   z-index: ${Z_INDEX.MATE_TOGGLE_MENU};
 `;
@@ -35,7 +34,6 @@ export const MateDropDownMenuContainer = styled(motion.ul)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.6rem;
 
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.background_color};
@@ -46,6 +44,7 @@ export const MateDropDownMenuContainer = styled(motion.ul)`
 
 export const MateDropDownMenuItem = styled.li`
   width: 100%;
+  padding: 1rem 0;
 
   display: flex;
   align-items: center;

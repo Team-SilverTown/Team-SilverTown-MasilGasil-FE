@@ -13,11 +13,12 @@ export interface MeResponse {
   height?: number;
   weight?: number;
   exerciseIntensity?: IntensityOption;
+  isPublic: boolean;
 }
 
 export interface CheckNickNameResponse {
   isDuplicated: boolean;
-  message: string;
+  nickname: string;
 }
 
 // export interface SignUpResponse {}

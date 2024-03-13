@@ -37,6 +37,11 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
 
   const { userLocation, setUserLocation } = useUserLocationStore();
 
+  const [mapCenter, setMapCenter] = useState<GeoPosition>({ lat: 0, lng: 0 });
+
+  const updateMapCenter = ({ coords }: GeolocationPosition) =>
+    setMapCenter({ lat: coords.latitude, lng: coords.longitude });
+
   const updateUserLocation = useRef(
     throttle(({ coords }: GeolocationPosition) => {
       const { latitude, longitude } = coords;
@@ -64,6 +69,11 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
 
   useEffect(() => {
     const watchCode = navigator.geolocation.watchPosition(updateUserLocation, handleWatchError, {
+      enableHighAccuracy: true,
+    });
+
+    // 사용자 위치로 center 초기화
+    navigator.geolocation.getCurrentPosition(updateMapCenter, handleWatchError, {
       enableHighAccuracy: true,
     });
 
@@ -101,6 +111,7 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
   ).current;
 
   const panToUserLocation = () => {
+    setMapCenter({ lat: userLocation.lat, lng: userLocation.lng });
     const moveLatLng = new kakao.maps.LatLng(userLocation.lat, userLocation.lng);
     mapRef.current?.panTo(moveLatLng);
   };
@@ -109,12 +120,13 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
     <S.MapSection>
       <Map
         ref={mapRef}
-        center={userLocation}
+        center={mapCenter}
         onCenterChanged={centerChangehandler}
         style={{
           width: "100%",
           height: "100%",
         }}
+        draggable={true}
       >
         <CenterMarker position={userLocation} />
         <S.ButtonWrapper>

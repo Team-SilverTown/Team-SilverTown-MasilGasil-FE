@@ -14,6 +14,8 @@ export const TopNavigatorContainer = styled.nav`
   justify-content: center;
   align-items: center;
   /* border-bottom: ${BORDER.TINE_WIDTH}px solid ${(props) => props.theme.transparent_10}; */
+
+  background-color: ${(props) => props.theme.background_color};
 `;
 
 export const TopNavLeftSection = styled.section`
