@@ -1,9 +1,28 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+import { getMasilDetail } from "@/lib/api/masil/server";
 import LogController from "./Log.controller";
 
-const LogDetail = () => {
-  const baseLocation = { lat: 37.15601397875854, lng: 127.07667498944193 };
+interface LogDetailProps {
+  params: {
+    id: string;
+  };
+}
 
-  return <LogController baseLocation={baseLocation} />;
+const LogDetail = async ({ params }: LogDetailProps) => {
+  const { id } = params;
+
+  const session = await getServerSession(authOptions);
+  const masilData = await getMasilDetail(session?.serviceToken!, id);
+
+  if (!masilData) return;
+
+  return (
+    <LogController
+      logId={id}
+      masilData={masilData}
+    />
+  );
 };
 
 export default LogDetail;
