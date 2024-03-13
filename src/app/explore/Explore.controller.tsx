@@ -47,6 +47,7 @@ const ExploreController = () => {
           />
         }
         rightSectionStyle={{ width: "calc(100%)" }}
+        containerStyle={{ backgroundColor: "transparent" }}
       />
       <ExploreView>
         <MapSection setLocationData={setLocationData} />
