@@ -4,12 +4,14 @@ import usePostModel from "./Post.model";
 import PostView from "./Post.view";
 import { PostTabType } from "./Post.types";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
+import { PostDetailResponse } from "@/types/Response/Post";
 
 interface PostControllerProps {
   postId: string;
+  postData: PostDetailResponse;
 }
 
-const PostController = ({ postId }: PostControllerProps) => {
+const PostController = ({ postId, postData }: PostControllerProps) => {
   const {
     tabIndex,
     setTabIndex,
@@ -17,11 +19,10 @@ const PostController = ({ postId }: PostControllerProps) => {
     setCurrentPinIndex,
     mapCenter,
     setMapCenter,
-    postData,
     baseLocation,
     userInfo,
     mateData,
-  } = usePostModel({ postId });
+  } = usePostModel({ postData });
   const { setIsOutCenter } = useMasilMapStore();
 
   if (!postData) {
