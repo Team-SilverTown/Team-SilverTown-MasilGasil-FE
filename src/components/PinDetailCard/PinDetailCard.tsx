@@ -1,3 +1,4 @@
+import Image from "next/image";
 import * as S from "./PinDetailCard.styles";
 
 export interface PinDetailCardProps {
@@ -21,10 +22,18 @@ const PinDetailCard = ({
   return (
     <S.PinDetailCardLayout $borderRadius={borderRadius}>
       <S.PinDetailCardWrapper $borderRadius={borderRadius}>
-        <S.PinDetailCardThumbnail
-          $thumbnail={thumbnailUrl}
-          $borderRadius={borderRadius}
-        >
+        <S.PinDetailCardThumbnail $borderRadius={borderRadius}>
+          {thumbnailUrl ? (
+            <Image
+              src={thumbnailUrl}
+              alt={content}
+              sizes="100%"
+              fill
+              priority
+            />
+          ) : (
+            <S.PinDetailCardThumbnailEmpty />
+          )}
           <span>
             {currentPinindex}/{totalPinIndex}
           </span>

@@ -1,5 +1,4 @@
 import { FONT_WEIGHT } from "@/styles/theme";
-import { MutableRefObject } from "react";
 import styled from "styled-components";
 
 interface PinDetailCardLayoutProps {
@@ -12,7 +11,6 @@ interface PinDetailCardWrapperProps {
 
 interface PinDetailCardThumbnailProps {
   $borderRadius: number | string;
-  $thumbnail: string | null;
 }
 
 interface PinDetailCardContentProps {
@@ -41,17 +39,20 @@ export const PinDetailCardWrapper = styled.article<PinDetailCardWrapperProps>`
 `;
 
 export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`
+  position: relative;
   width: 50%;
   border-top-left-radius: ${(props) => `${props.$borderRadius}px`};
   border-bottom-left-radius: ${(props) => `${props.$borderRadius}px`};
-  background-image: ${(props) => `url(${props.$thumbnail})`};
-  background-color: ${(props) => props.theme.gray_200};
-  background-size: cover;
-  background-position: center;
+
+  img {
+    object-fit: cover;
+  }
 
   span {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
     display: inline-block;
-    padding: 1rem 0 0 1rem;
     font-weight: ${FONT_WEIGHT.BOLD};
   }
 `;
@@ -64,4 +65,11 @@ export const PinDetailCardContent = styled.div<PinDetailCardContentProps>`
   line-height: 2rem;
   box-sizing: border-box;
   overflow-y: auto;
+`;
+
+export const PinDetailCardThumbnailEmpty = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.theme.gray_300};
 `;
