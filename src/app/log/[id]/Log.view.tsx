@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { TAB_CONTENTS } from "./Log.constants";
 
+import useTheme from "@/lib/hooks/useTheme";
+
 import { GeoPosition } from "@/types/OriginDataType";
 import { MasilDetailResponse } from "@/types/Response";
 import { TabType, UserInfoType } from "./Log.types";
@@ -11,9 +13,10 @@ import { TabType, UserInfoType } from "./Log.types";
 import { Button, Tab } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import { LogMapSection, LogKebabMenu, LogMemo, LogPin } from "./components";
+import { LogKebabMenu, LogMemo, LogPin } from "./components";
+import { LogMapSection } from "./sections";
 
-import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./Log.styles";
 
 interface LogViewProps {
@@ -40,6 +43,8 @@ const LogView = ({
   handleClickCenter,
   handleClickTab,
 }: LogViewProps) => {
+  const theme = useTheme();
+
   return (
     <>
       <TopNavigator
@@ -81,8 +86,8 @@ const LogView = ({
           <Link href={`/post/create?logId=${logId}`}>
             <Button
               width="calc(100% - 4rem)"
-              textColor={Theme.lightTheme.white}
-              buttonColor={Theme.lightTheme.green_500}
+              textColor={theme?.white}
+              buttonColor={theme?.green_500}
               style={{
                 position: "absolute",
                 left: "50%",

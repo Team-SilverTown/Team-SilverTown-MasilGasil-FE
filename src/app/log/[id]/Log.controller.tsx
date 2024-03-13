@@ -4,14 +4,15 @@ import useLogModel from "./Log.model";
 import LogView from "./Log.view";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 import { TabType } from "./Log.types";
+import { MasilDetailResponse } from "@/types/Response";
 
 interface LogControllerProps {
+  masilData: MasilDetailResponse;
   logId: string;
 }
 
-const LogController = ({ logId }: LogControllerProps) => {
+const LogController = ({ masilData, logId }: LogControllerProps) => {
   const {
-    masilData,
     tabIndex,
     setTabIndex,
     currentPinIndex,
@@ -20,12 +21,8 @@ const LogController = ({ logId }: LogControllerProps) => {
     setMapCenter,
     baseLocation,
     userInfo,
-  } = useLogModel({ logId });
+  } = useLogModel({ masilData });
   const { setIsOutCenter } = useMasilMapStore();
-
-  if (!masilData) {
-    return;
-  }
 
   const handleCurrentPinIndex = (PinIndex: number) => {
     setCurrentPinIndex(PinIndex);
@@ -35,8 +32,8 @@ const LogController = ({ logId }: LogControllerProps) => {
       return;
     }
 
-    const { lat, lng } = masilData.pins[PinIndex].point;
-    setMapCenter({ lat, lng });
+    const { point } = masilData.pins[PinIndex];
+    setMapCenter(point);
     setIsOutCenter(false);
   };
 
@@ -49,9 +46,9 @@ const LogController = ({ logId }: LogControllerProps) => {
 
   const handleClickTab = (index: number) => {
     if (TabType.Pin === index) {
-      const { lat, lng } = masilData.pins[0].point;
+      const { point } = masilData.pins[0];
       setCurrentPinIndex(0);
-      setMapCenter({ lat, lng });
+      setMapCenter(point);
       setIsOutCenter(false);
     }
 
