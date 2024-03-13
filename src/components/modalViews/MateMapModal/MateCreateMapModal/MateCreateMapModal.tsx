@@ -5,9 +5,8 @@ import * as GS from "../MateMapModal.styles";
 import * as S from "./MateCreateMapModal.styles";
 
 import { ModalLayout } from "@/components/Modal";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
-import CustomPin from "@/components/MasilMap/components/CustomPin/CustomPin";
 import { Button, Input, InputLabel } from "@/components";
 import { useForm } from "react-hook-form";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
@@ -15,6 +14,7 @@ import useTheme from "@/lib/hooks/useTheme";
 import { Center, MapPin } from "@/components/icons";
 import { debounce } from "lodash";
 import { useUI } from "@/components/uiContext/UiContext";
+import { CustomPin } from "@/components/MasilMap/components";
 
 interface MateMapModalProps {
   baseLocation: GeoPosition;

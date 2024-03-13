@@ -14,6 +14,7 @@ import {
   ProfileEditModal,
   MateCreateMapModal,
   ConfirmModal,
+  PinDetailModal,
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
@@ -80,6 +81,7 @@ const ModalView = ({
       {modalView === "CONFIRM_VIEW" && <ConfirmModal props={props} />}
       {modalView === "LOG_RECORD_ALERT_VIEW" && <LogRecordAlertModal props={props} />}
       {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
+      {modalView === "PIN_DETAIL_MODAL_VIEW" && <PinDetailModal props={props} />}
       {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
       {modalView === "PROFILE_EDIT_VIEW" && <ProfileEditModal props={props} />}
       {modalView === "MATE_CREATE_MAP_VIEW" && <MateCreateMapModal props={props} />}
