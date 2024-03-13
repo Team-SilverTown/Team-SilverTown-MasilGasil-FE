@@ -1,7 +1,7 @@
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
 import { OnClickPin } from "../../MasilMap.types";
 import { MapPin } from "@/components/icons";
-import Theme from "@/styles/theme";
+import Theme, { Z_INDEX } from "@/styles/theme";
 import { GeoPosition } from "@/types/OriginDataType";
 
 interface CustomPinProps {
@@ -40,7 +40,7 @@ const CustomPin = ({
         fontColor={pinFontColor}
         style={{
           position: "relative",
-          zIndex: 10,
+          zIndex: Z_INDEX.CUSTOM_PIN,
         }}
       />
     </CustomOverlayMap>

@@ -182,13 +182,26 @@ const MasilMap = ({
       }}
       isPanto
     >
-      {isShowCenterMarker && (
-        <CenterMarker
-          position={center}
-          size={centerMarkerSize}
-          fill={centerMarkerFill}
+      {navigationPath.length !== 0 && (
+        <PathLine
+          path={navigationPath}
+          pathColor={"#F7BC01"}
+          pathOpacity={0.5}
+          pathWeight={pathWeight}
         />
       )}
+
+      {navigationPins.length !== 0 &&
+        navigationPins.map((navPin, index) => (
+          <NavigationPin
+            key={index + 1}
+            position={navPin.point}
+            onClickPin={onClickNavigationPin}
+            pinIndex={index}
+          />
+        ))}
+
+      {innerElement}
 
       {path && path.length !== 0 && (
         <PathLine
@@ -220,26 +233,13 @@ const MasilMap = ({
           />
         ))}
 
-      {navigationPath.length !== 0 && (
-        <PathLine
-          path={navigationPath}
-          pathColor={"#F7BC01"}
-          pathOpacity={0.5}
-          pathWeight={pathWeight}
+      {isShowCenterMarker && (
+        <CenterMarker
+          position={center}
+          size={centerMarkerSize}
+          fill={centerMarkerFill}
         />
       )}
-
-      {navigationPins.length !== 0 &&
-        navigationPins.map((navPin, index) => (
-          <NavigationPin
-            key={index + 1}
-            position={navPin.point}
-            onClickPin={onClickNavigationPin}
-            pinIndex={index}
-          />
-        ))}
-
-      {innerElement}
     </Map>
   );
 };
