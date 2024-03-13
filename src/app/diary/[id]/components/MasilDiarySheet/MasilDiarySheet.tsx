@@ -56,7 +56,7 @@ const MasilDiarySheet = ({ isSheetOpen, setIsSheetOpen, masils, date }: MasilDia
           <Sheet.Header />
           <Sheet.Content>
             <S.HeaderContainer>
-              <S.Text>{`${year}년 ${month}월 ${day}일`}</S.Text>
+              <S.Text>{`${year}년 ${month && month + 1}월 ${day}일`}</S.Text>
               <S.SubText
                 onClick={() => {
                   setIsSheetOpen(false);

@@ -119,9 +119,8 @@ const useMasilDiaryController = () => {
    * @breif 현재 시각으로 날짜를 갱신합니다.
    */
   const handleClickToday = useCallback(() => {
-    const today = new Date();
-    setDate(today);
-    router.push(`/diary/${id}?startDate=${today.getFullYear()}-0${today.getMonth() + 1}-01`);
+    router.push(`/diary/${id}?startDate=`);
+    setDate(new Date());
   }, [router, id]);
 
   return {
