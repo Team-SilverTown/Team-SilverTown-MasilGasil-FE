@@ -1,5 +1,5 @@
-import { BORDER, CONTAINER, FONT_SIZE, FONT_WEIGHT, NAV_HEIGHT, Z_INDEX } from "@/styles/theme";
-import styled, { css } from "styled-components";
+import { CONTAINER, FONT_SIZE, FONT_WEIGHT, NAV_HEIGHT, Z_INDEX } from "@/styles/theme";
+import styled from "styled-components";
 
 export const TopNavigatorContainer = styled.nav<any>`
   width: 100%;

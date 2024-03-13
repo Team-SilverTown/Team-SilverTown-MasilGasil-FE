@@ -1,7 +1,6 @@
 "use client";
 
-import React, { CSSProperties, ReactNode, useEffect, useState } from "react";
-import throttle from "lodash.throttle";
+import React, { CSSProperties, ReactNode } from "react";
 
 import * as S from "./TopNavigator.styles";
 
