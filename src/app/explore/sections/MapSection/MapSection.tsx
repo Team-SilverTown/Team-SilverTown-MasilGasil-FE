@@ -37,6 +37,7 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
 
   const { userLocation, setUserLocation } = useUserLocationStore();
 
+
   const [mapCenter, setMapCenter] = useState<GeoPosition>({ lat: 0, lng: 0 });
 
   const updateMapCenter = ({ coords }: GeolocationPosition) =>

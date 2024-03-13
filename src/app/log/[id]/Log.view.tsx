@@ -62,6 +62,7 @@ const LogView = ({
               setTabIndex(index);
             }}
             focusedTab={tabIndex}
+            layoutId="log-underline"
           />
 
           <S.LogContentSection className="scrollbar-hide">

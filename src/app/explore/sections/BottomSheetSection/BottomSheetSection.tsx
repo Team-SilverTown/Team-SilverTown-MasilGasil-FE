@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useMemo, useRef, useState } from "react";
-import * as _ from "lodash";
+import React, { Dispatch, ReactNode, SetStateAction, useMemo, useRef, useState } from "react";
 
 import useTheme from "@/lib/hooks/useTheme";
 import { CONTAINER, Z_INDEX } from "@/styles/theme";
@@ -11,6 +10,7 @@ import LoadingDots from "@/components/LoadingDots";
 
 import * as S from "./BottomSheetSection.styles";
 import { TabItem } from "../../components";
+import parseLocationObject from "@/utils/parseLocation";
 
 interface BottomSheetSectionProps {
   locationData: {
@@ -19,20 +19,20 @@ interface BottomSheetSectionProps {
     depth3: string;
     depth4: string;
   } | null;
+
+  setOrderMode: Dispatch<SetStateAction<"LATEST" | "MOST_POPULAR">>;
+  listViews: ReactNode[];
 }
 
 const tabTitles = ["산책로", "메이트"];
 
-const BottomSheetSection = ({ locationData }: BottomSheetSectionProps) => {
+const BottomSheetSection = ({ locationData, setOrderMode, listViews }: BottomSheetSectionProps) => {
   const theme = useTheme();
 
   const locationContent = useMemo(() => {
     if (!locationData) return null;
 
-    return _.reduce(locationData, (acc, curr) => {
-      if (!curr) return acc;
-      return acc + " " + curr;
-    });
+    return parseLocationObject(locationData);
   }, [locationData]);
 
   const [focusedTab, setFocusedTab] = useState(0);
@@ -43,28 +43,14 @@ const BottomSheetSection = ({ locationData }: BottomSheetSectionProps) => {
     setFocusedTab(index);
   };
 
-  const stepViews = [
-    <div>
-      {Array.from({ length: 10 }, (_, i) => i + 1).map((index) => (
-        <div
-          key={index}
-          className="w-full h-[150px] bg-gray-300 mb-5 scrollbar-hide"
-        >
-          {index}
-        </div>
-      ))}
-    </div>,
-    <div>메이트</div>,
-  ];
-
   return (
     <>
       <Sheet
         isOpen={true}
         onClose={() => null}
-        fixedHeight={0.51}
+        fixedHeight={0.6}
         initialSnap={1}
-        snapPoints={[0.915, 0.415]}
+        snapPoints={[0.915, 0.5]}
         style={{
           zIndex: Z_INDEX.BOTTOM_SHEET,
           display: "flex",
@@ -102,17 +88,21 @@ const BottomSheetSection = ({ locationData }: BottomSheetSectionProps) => {
             <S.UtilGroupWrapper className="_util mt-5 flex justify-between">
               {locationContent ? <span>{locationContent}</span> : <LoadingDots />}
               <OrderTab
-                latestHandleFunction={() => null}
-                popularHandlerFunction={() => null}
+                latestHandleFunction={() => setOrderMode("LATEST")}
+                popularHandlerFunction={() => setOrderMode("MOST_POPULAR")}
               />
             </S.UtilGroupWrapper>
           </Sheet.Header>
           <Sheet.Content style={{ marginTop: "2.5rem" }}>
-            <Sheet.Scroller style={{ height: `calc(100% - 60px)` }}>
+            <Sheet.Scroller
+              style={{ height: `calc(100% - 60px)` }}
+              draggableAt="top"
+              className="scrollbar-hide"
+            >
               <StepLayout
                 focusedStep={focusedTab}
                 prevFocusedStep={prevFocusedTab.current}
-                stepViews={stepViews}
+                stepViews={listViews}
                 style={{ height: `calc(100%)`, position: "relative" }}
               />
             </Sheet.Scroller>

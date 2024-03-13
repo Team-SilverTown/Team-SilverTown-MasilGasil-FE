@@ -23,4 +23,5 @@ export const IMAGE_UPLOAD_KEY = "image_upload_key_0221";
 export const POST_KEY = {
   GET_CREATE_POST: "get_create_post_key",
   POST_CREATE_POST: "post_create_post_key",
+  POST_LIST: "post_list",
 };

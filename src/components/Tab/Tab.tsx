@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import * as S from "./Tab.styles";
 import { NAV_HEIGHT } from "@/styles/theme";
@@ -12,6 +12,7 @@ interface TabProps {
   width?: string | number;
   height?: string | number;
   TabComponent?: React.ComponentType<any>;
+  layoutId?: string;
 }
 
 const Tab = ({
@@ -22,38 +23,44 @@ const Tab = ({
   height = `${NAV_HEIGHT}rem`,
   style,
   TabComponent,
+  layoutId,
 }: TabProps) => {
   return (
-    <S.Tabs style={{ width, height, ...style }}>
-      {tabContents.map((item, index) => (
-        <S.Tab
-          key={index}
-          onClick={() => tabClickHandler(index)}
-        >
-          {TabComponent ? (
-            <TabComponent
-              item={item}
-              index={index}
-            />
-          ) : (
-            <>
-              <S.TabText
-                $focused={index === focusedTab}
-                className="z-20"
-              >
-                {item}
-              </S.TabText>
-              {index === focusedTab ? (
-                <motion.div
-                  className="underline"
-                  layoutId="underline"
-                />
-              ) : null}
-            </>
-          )}
-        </S.Tab>
-      ))}
-    </S.Tabs>
+    <AnimatePresence
+      mode="popLayout"
+      initial={false}
+    >
+      <S.Tabs style={{ width, height, ...style }}>
+        {tabContents.map((item, index) => (
+          <S.Tab
+            key={index}
+            onClick={() => tabClickHandler(index)}
+          >
+            {TabComponent ? (
+              <TabComponent
+                item={item}
+                index={index}
+              />
+            ) : (
+              <>
+                <S.TabText
+                  $focused={index === focusedTab}
+                  className="z-20"
+                >
+                  {item}
+                </S.TabText>
+                {index === focusedTab ? (
+                  <motion.div
+                    className="underline"
+                    layoutId={layoutId}
+                  />
+                ) : null}
+              </>
+            )}
+          </S.Tab>
+        ))}
+      </S.Tabs>
+    </AnimatePresence>
   );
 };
 
