@@ -121,7 +121,7 @@ const useMasilDiaryController = () => {
   const handleClickToday = useCallback(() => {
     const today = new Date();
     setDate(today);
-    router.push(`/diary/${id}?startDate=${today.toLocaleDateString("en-CA")}`);
+    router.push(`/diary/${id}?startDate=${today.getFullYear()}-0${today.getMonth() + 1}-01`);
   }, [router, id]);
 
   return {
