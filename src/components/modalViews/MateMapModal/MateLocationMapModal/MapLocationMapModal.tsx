@@ -6,13 +6,13 @@ import * as S from "./MapLocationMapModal.styles";
 
 import { ModalLayout } from "@/components/Modal";
 import { MateGatheringPlace } from "@/types/OriginDataType";
-import CustomPin from "@/components/MasilMap/components/CustomPin/CustomPin";
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Center } from "@/components/icons";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 import { useUI } from "@/components/uiContext/UiContext";
+import { CustomPin } from "@/components/MasilMap/components";
 
 interface MateLocationMapModalProps {
   gatherPlace: MateGatheringPlace;

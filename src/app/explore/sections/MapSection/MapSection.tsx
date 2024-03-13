@@ -9,9 +9,9 @@ import { useUI } from "@/components/uiContext/UiContext";
 import { LOG_RECORD_MESSAGE } from "@/app/log/record/LogRecord.constants";
 import { Button } from "@/components";
 import { Center } from "@/components/icons";
-import CenterMarker from "@/components/MasilMap/components/CenterMarker/CenterMarker";
 
 import * as S from "./MapSection.styles";
+import { CenterMarker } from "@/components/MasilMap/components";
 
 declare global {
   interface Window {
