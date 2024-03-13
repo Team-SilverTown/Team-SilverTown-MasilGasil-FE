@@ -26,6 +26,7 @@ export interface MasilProps {
 const MasilDiarySheet = ({ isSheetOpen, setIsSheetOpen, masils, date }: MasilDiarySheetProps) => {
   const theme = useTheme();
   const dateArr = date?.toLocaleDateString("en-CA").split("-");
+  const [year, month, day] = [date?.getFullYear(), date?.getMonth(), date?.getDate()];
 
   return (
     <>
@@ -55,7 +56,7 @@ const MasilDiarySheet = ({ isSheetOpen, setIsSheetOpen, masils, date }: MasilDia
           <Sheet.Header />
           <Sheet.Content>
             <S.HeaderContainer>
-              <S.Text>{dateArr && `${dateArr[0]}년 ${dateArr[1]}월 ${dateArr[2]}일`}</S.Text>
+              <S.Text>{`${year}년 ${month}월 ${day}일`}</S.Text>
               <S.SubText
                 onClick={() => {
                   setIsSheetOpen(false);
