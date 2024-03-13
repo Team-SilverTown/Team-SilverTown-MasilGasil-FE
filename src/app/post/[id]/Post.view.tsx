@@ -46,6 +46,7 @@ const PostView = ({
       <TopNavigator
         leftChildren={<GoBackButton />}
         rightChildren={<PostKebabMenu />}
+        containerStyle={{ backgroundColor: "transparent" }}
       />
       <S.PostContainer>
         <PostMapSection
