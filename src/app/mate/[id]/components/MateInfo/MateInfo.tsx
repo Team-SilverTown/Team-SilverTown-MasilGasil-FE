@@ -1,8 +1,8 @@
 import * as GS from "../../MateDetail.styles";
 import style from "./MateInfo.styles.module.css";
 
-import Avatar from "@/components/Avatar/Avatar";
-import { MateActions, MateDropDownMenu } from "./components";
+import { Avatar, DropDownMenu } from "@/components";
+import { MateActions } from "./components";
 import { MatePost } from "../../MateDetail.types";
 import Divider from "@/components/Divider/Divider";
 
@@ -30,7 +30,7 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
           src={authorThumbnailUrl}
         />
         <p className="grow text-medium font-medium whitespace-nowrap">{authorNickname}</p>
-        <MateDropDownMenu postId={postId} />
+        {/* <DropDownMenu postId={postId} /> */}
       </div>
 
       <p className="w-full text-medium font-medium leading-normal">{content}</p>
