@@ -80,6 +80,7 @@
     "@types/node": "^20",
     "@types/proj4": "^2.5.5",
     "@types/react": "^18",
+    "@types/react-datepicker": "^6",
     "@types/react-dom": "^18",
     "@types/react-lottie": "^1",
     "@typescript-eslint/eslint-plugin": "^6.4.0",

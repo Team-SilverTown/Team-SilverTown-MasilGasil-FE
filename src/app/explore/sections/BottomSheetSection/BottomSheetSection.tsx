@@ -64,7 +64,7 @@ const BottomSheetSection = ({ locationData }: BottomSheetSectionProps) => {
         onClose={() => null}
         fixedHeight={0.51}
         initialSnap={1}
-        snapPoints={[0.91, 0.41]}
+        snapPoints={[0.915, 0.415]}
         style={{
           zIndex: Z_INDEX.BOTTOM_SHEET,
           display: "flex",

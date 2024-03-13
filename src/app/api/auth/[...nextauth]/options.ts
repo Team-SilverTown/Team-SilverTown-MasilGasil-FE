@@ -30,6 +30,7 @@ export const authOptions: NextAuthOptions = {
     // },
     async jwt({ token, account }) {
       if (account && account.access_token) {
+        console.log(token, account);
         const getToken = authenticate.bind(null, { token: account.access_token });
         const data = await getToken();
 

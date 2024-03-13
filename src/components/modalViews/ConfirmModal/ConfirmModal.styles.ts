@@ -10,7 +10,7 @@ export const ConfirmModalLayout = styled.div`
 
 export const ConfirmModalMessage = styled.p`
   width: 100%;
-  padding: 1rem 0;
+  padding: 4rem 0 1rem 0;
 
   font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
@@ -20,6 +20,7 @@ export const ConfirmModalMessage = styled.p`
 
 export const ConfirmModalWarning = styled.p`
   width: 100%;
+  padding-bottom: 2rem;
 
   font-size: ${FONT_SIZE.MINI};
   font-weight: ${FONT_WEIGHT.MEDIUM};

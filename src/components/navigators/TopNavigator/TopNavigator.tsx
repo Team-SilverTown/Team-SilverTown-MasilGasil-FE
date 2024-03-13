@@ -5,6 +5,7 @@ import React, { CSSProperties, ReactNode } from "react";
 import * as S from "./TopNavigator.styles";
 
 interface TopNavigatorProps {
+  containerStyle?: CSSProperties;
   leftChildren?: ReactNode;
   rightChildren?: ReactNode;
   leftSectionStyle?: CSSProperties;
@@ -13,6 +14,7 @@ interface TopNavigatorProps {
 }
 
 const TopNavigator = ({
+  containerStyle,
   leftChildren,
   rightChildren,
   leftSectionStyle,
@@ -20,7 +22,7 @@ const TopNavigator = ({
   title,
 }: TopNavigatorProps) => {
   return (
-    <S.TopNavigatorContainer>
+    <S.TopNavigatorContainer style={{ ...containerStyle }}>
       <S.TopNavLeftSection style={{ ...leftSectionStyle }}>{leftChildren}</S.TopNavLeftSection>
       {title && (
         <S.TopNavCenterSection>

@@ -1,8 +1,12 @@
+"use client";
+
 import { NotificationActive, PersonOff } from "@/components/icons";
 import * as GS from "../../UserSetting.styles";
 import { SettingContent } from "..";
+import useUserSettingOptionsController from "./UserSettingOptions.controller";
 
 const UserSettingOptionsView = () => {
+  const {} = useUserSettingOptionsController();
   return (
     <GS.UserSettingInnerLayout>
       <GS.UserSettingTitle>설정</GS.UserSettingTitle>
@@ -19,13 +23,13 @@ const UserSettingOptionsView = () => {
 
       {/* TODO - 상태에따라 아이콘 변경 예정 */}
       {/* <NotificationOff /> */}
-      <SettingContent
+      {/* <SettingContent
         icon={<NotificationActive />}
         text={"알림 설정"}
         onClick={() => {}}
         isSwitch={true}
         switchType="NOTIFICATION"
-      />
+      /> */}
     </GS.UserSettingInnerLayout>
   );
 };
