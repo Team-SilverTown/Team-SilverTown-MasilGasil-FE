@@ -2,11 +2,11 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import * as S from "./Post.styles";
 import { TAB_CONTENTS } from "./Post.constants";
-import { MateDummyType, PostTabType, UserDummyType } from "./Post.types";
+import { MateDummyContents, MateDummyType, PostTabType, UserDummyType } from "./Post.types";
 import { GeoPosition } from "@/types/OriginDataType";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Button, Tab } from "@/components";
-import PostMapSection from "./components/PostMapSection/PostMapSection";
+import PostMapSection from "./sections/PostMapSection/PostMapSection";
 import PostPin from "./components/PostPin/PostPin";
 import PostMemo from "./components/PostMemo/PostMemo";
 import PostMate from "./components/PostMate/PostMate";
@@ -24,7 +24,7 @@ interface PostViewProps {
   handleCurrentPinIndex: (index: number) => void;
   handleClickCenter: () => void;
   handleClickTab: (index: number) => void;
-  mateData: MateDummyType[];
+  mateData: MateDummyContents[];
 }
 
 const PostView = ({

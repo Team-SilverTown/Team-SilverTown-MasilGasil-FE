@@ -1,32 +1,34 @@
 import Link from "next/link";
-import { MateDummyType } from "../../Post.types";
-import PostMateCard from "../PostMateCard/PostMateCard";
+import { MateDummyContents } from "../../Post.types";
+import MateCard from "@/components/MateCard";
 import * as S from "./PostMate.styles";
 
 interface PostMateProps {
-  mateData: MateDummyType[];
+  mateData: MateDummyContents[];
 }
 
 const PostMate = ({ mateData }: PostMateProps) => {
   return (
     <S.PostMateList>
-      {mateData.map(({ id, authorProfileUrl, authorNickname, content, gatherAt, capacity }) => (
-        <li key={id}>
-          <Link
-            href={`/mate/${id}`}
-            title=""
-          >
-            <PostMateCard
-              profileImage={authorProfileUrl}
-              nickName={authorNickname}
-              content={content}
-              date={gatherAt}
-              capacity={capacity}
-              isRecruit={true}
-            />
-          </Link>
-        </li>
-      ))}
+      {mateData.map(
+        ({ id, authorProfileUrl, authorNickname, title, gatheringAt, capacity, status }) => (
+          <li key={id}>
+            <Link
+              href={`/mate/${id}`}
+              title={title}
+            >
+              <MateCard
+                profileImage={authorProfileUrl}
+                nickName={authorNickname}
+                title={title}
+                date={gatheringAt}
+                capacity={capacity}
+                status={status}
+              />
+            </Link>
+          </li>
+        ),
+      )}
     </S.PostMateList>
   );
 };
