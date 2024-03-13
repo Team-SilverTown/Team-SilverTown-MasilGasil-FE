@@ -38,7 +38,7 @@ type ActionsType =
 const MIN_INSERT_PIN_RANGE = 30; // M 단위
 
 const MIN_INSERT_PATH_RAGE = 25; // M 단위
-const MAX_INSERT_PATH_RAGE = 150; // M 단위
+const MAX_INSERT_PATH_RAGE = 50; // M 단위
 
 const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
   switch (action.type) {
