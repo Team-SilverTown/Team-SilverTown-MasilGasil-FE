@@ -3,19 +3,17 @@ import * as S from "./MateDetail.styles";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { CommonContainerTailwind } from "@/styles/GlobalStyle";
 import Divider from "@/components/Divider/Divider";
-import { MateEvaluation, MateInfo, MateMembers } from "./components";
+import { MateInfo, MateMap, MateMembers } from "./components";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import { MatePost, UserEvaluationType } from "./MateDetail.types";
+
+import { MateDetailResponse } from "@/types/Response";
 
 interface MateDetailProps {
   postId: string;
-  matePost: MatePost;
-  authorEvaluation: UserEvaluationType;
+  mateData: MateDetailResponse;
 }
 
-const MateDetail = ({ postId, matePost, authorEvaluation }: MateDetailProps) => {
-  const { members, authorNickname } = matePost;
-
+const MateDetail = ({ postId, mateData }: MateDetailProps) => {
   return (
     <>
       <TopNavigator
@@ -26,19 +24,22 @@ const MateDetail = ({ postId, matePost, authorEvaluation }: MateDetailProps) => 
         <article className={S.MateDetailLayout}>
           <MateInfo
             postId={postId}
-            mateData={matePost}
+            mateData={mateData}
           />
 
           <Divider />
 
-          <MateEvaluation
+          <MateMap />
+
+          {/* <MateEvaluation
             authorEvaluation={authorEvaluation}
             nickName={authorNickname}
-          />
+          /> */}
 
           <Divider />
 
-          <MateMembers members={members} />
+          {/* Todo : participants 로 교체 */}
+          {/* <MateMembers members={members} /> */}
         </article>
       </section>
     </>
