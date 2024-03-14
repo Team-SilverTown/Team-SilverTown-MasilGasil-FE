@@ -29,14 +29,13 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
 
           <Divider />
 
-          <MateMap />
+          <MateMap mateData={mateData} />
 
+          <Divider />
           {/* <MateEvaluation
             authorEvaluation={authorEvaluation}
             nickName={authorNickname}
           /> */}
-
-          <Divider />
 
           {/* Todo : participants 로 교체 */}
           {/* <MateMembers members={members} /> */}

@@ -24,10 +24,10 @@ const DUMMY: MateDetailResponse = {
   title: "title",
   content: "content",
   gatheringPlacePoint: {
-    lat: 10.2,
-    lng: 10.1,
+    lat: 37.498095,
+    lng: 127.02761,
   },
-  gatheringPlaceDetail: "약국 앞",
+  gatheringPlaceDetail: "강남역 앞에서 피자먹고 움직여요.",
   gatheringAt: "2024-03-14T07:47:07.486Z",
   participants: [
     {
