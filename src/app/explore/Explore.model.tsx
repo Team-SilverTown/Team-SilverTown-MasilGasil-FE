@@ -29,7 +29,7 @@ const useExploreModel = () => {
     return data;
   };
 
-  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
     queryKey: [
       POST_KEY.POST_LIST,
       locationData?.depth1,
