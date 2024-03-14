@@ -26,3 +26,28 @@ export interface PostDetailResponse {
 
   thumbnailUrl: string;
 }
+
+export interface PostMoreListResponse {
+  isEmpty: boolean;
+  contents: PostMoreListContent[];
+  nextCursor: string | null;
+}
+
+export interface PostMoreListContent {
+  id: number;
+  address: {
+    depth1: string;
+    depth2: string;
+    depth3: string;
+    depth4: string;
+  };
+  title: string;
+  content: string;
+  totalTime: number;
+  distance: number;
+  viewCount: number;
+  likeCount: number;
+  thumbnailUrl: string | null;
+  isLiked: boolean;
+  hasMate: boolean;
+}
