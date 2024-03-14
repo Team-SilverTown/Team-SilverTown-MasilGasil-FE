@@ -1,12 +1,14 @@
-import { MotionValue } from 'framer-motion';
+"use client";
 
-import Sheet from './sheet';
-import SheetContainer from './SheetContainer';
-import SheetContent from './SheetContent';
-import SheetHeader from './SheetHeader';
-import SheetBackdrop from './SheetBackdrop';
-import SheetScroller from './SheetScroller';
-import { SheetCompound } from './types';
+import { MotionValue } from "framer-motion";
+
+import Sheet from "./sheet";
+import SheetContainer from "./SheetContainer";
+import SheetContent from "./SheetContent";
+import SheetHeader from "./SheetHeader";
+import SheetBackdrop from "./SheetBackdrop";
+import SheetScroller from "./SheetScroller";
+import { SheetCompound } from "./types";
 
 export type SheetRef = {
   y: MotionValue<number>;

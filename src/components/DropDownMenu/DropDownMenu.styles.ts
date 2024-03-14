@@ -1,3 +1,5 @@
+"use client";
+
 import { FONT_SIZE, FONT_WEIGHT, Z_INDEX } from "@/styles/theme";
 import { motion } from "framer-motion";
 import styled from "styled-components";

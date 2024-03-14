@@ -1,29 +1,23 @@
-import * as React from 'react';
-import { SheetScrollerContextType, SheetContextType } from './types';
+"use client";
 
-export const SheetContext = React.createContext<SheetContextType | undefined>(
-  undefined
-);
+import * as React from "react";
+import { SheetScrollerContextType, SheetContextType } from "./types";
+
+export const SheetContext = React.createContext<SheetContextType | undefined>(undefined);
 
 export const useSheetContext = () => {
   const context = React.useContext(SheetContext);
-  if (!context) throw Error('Sheet context error');
+  if (!context) throw Error("Sheet context error");
   return context;
 };
 
-export const SheetScrollerContext = React.createContext<
-  SheetScrollerContextType | undefined
->(undefined);
+export const SheetScrollerContext = React.createContext<SheetScrollerContextType | undefined>(
+  undefined,
+);
 
-export function SheetScrollerContextProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function SheetScrollerContextProvider({ children }: { children: React.ReactNode }) {
   const sheetContext = useSheetContext();
-  const [disableDrag, setDisableDrag] = React.useState(
-    !!sheetContext.disableDrag
-  );
+  const [disableDrag, setDisableDrag] = React.useState(!!sheetContext.disableDrag);
 
   function setDragEnabled() {
     if (!sheetContext.disableDrag) setDisableDrag(false);
@@ -34,9 +28,7 @@ export function SheetScrollerContextProvider({
   }
 
   return (
-    <SheetScrollerContext.Provider
-      value={{ disableDrag, setDragEnabled, setDragDisabled }}
-    >
+    <SheetScrollerContext.Provider value={{ disableDrag, setDragEnabled, setDragDisabled }}>
       {children}
     </SheetScrollerContext.Provider>
   );
@@ -44,6 +36,6 @@ export function SheetScrollerContextProvider({
 
 export const useSheetScrollerContext = () => {
   const context = React.useContext(SheetScrollerContext);
-  if (!context) throw Error('Sheet scroller context error');
+  if (!context) throw Error("Sheet scroller context error");
   return context;
 };
