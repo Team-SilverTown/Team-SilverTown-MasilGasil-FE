@@ -1,12 +1,14 @@
-import * as React from 'react';
+"use client";
 
-import { useSheetScrollerContext } from './context';
-import { SheetScrollerProps } from './types';
-import { isTouchDevice } from './utils';
-import styles from './styles';
+import * as React from "react";
+
+import { useSheetScrollerContext } from "./context";
+import { SheetScrollerProps } from "./types";
+import { isTouchDevice } from "./utils";
+import styles from "./styles";
 
 const SheetScroller = React.forwardRef<any, SheetScrollerProps>(
-  ({ draggableAt = 'top', children, style, className = '', ...rest }, ref) => {
+  ({ draggableAt = "top", children, style, className = "", ...rest }, ref) => {
     const sheetScrollerContext = useSheetScrollerContext();
 
     function determineDragState(element: HTMLDivElement) {
@@ -19,9 +21,9 @@ const SheetScroller = React.forwardRef<any, SheetScrollerProps>(
       const isAtBottom = scrollHeight - scrollTop === clientHeight;
 
       const shouldEnable =
-        (draggableAt === 'top' && isAtTop) ||
-        (draggableAt === 'bottom' && isAtBottom) ||
-        (draggableAt === 'both' && (isAtTop || isAtBottom));
+        (draggableAt === "top" && isAtTop) ||
+        (draggableAt === "bottom" && isAtBottom) ||
+        (draggableAt === "both" && (isAtTop || isAtBottom));
 
       if (shouldEnable) {
         sheetScrollerContext.setDragEnabled();
@@ -38,9 +40,7 @@ const SheetScroller = React.forwardRef<any, SheetScrollerProps>(
       determineDragState(e.currentTarget);
     }
 
-    const scrollProps = isTouchDevice()
-      ? { onScroll, onTouchStart }
-      : undefined;
+    const scrollProps = isTouchDevice() ? { onScroll, onTouchStart } : undefined;
 
     return (
       <div
@@ -53,7 +53,7 @@ const SheetScroller = React.forwardRef<any, SheetScrollerProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 export default SheetScroller;

@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef, useImperativeHandle, useRef, MouseEvent } from "react";
 
 import rippleStyle from "./RippleEffect.module.css";

@@ -1,5 +1,7 @@
+"use client";
+
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { styled } from "twin.macro";
+import styled from "styled-components";
 
 export const PinEditItem = styled.li`
   width: 100%;
