@@ -44,6 +44,9 @@ const config = {
       },
     },
     extend: {
+      boxShadow: {
+        sheet: "0px -2px 16px rgba(0, 0, 0, 0.3)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -97,6 +100,11 @@ const config = {
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
+        },
+        shimmer: {
+          "100%": {
+            transform: "translateX(100%)",
+          },
         },
       },
       animation: {
