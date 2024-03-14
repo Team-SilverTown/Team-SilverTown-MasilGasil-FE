@@ -17,6 +17,8 @@ export interface MateCreateProps {
 
 const MateCreateController = () => {
   const {
+    thumbnail,
+    setThumbnail,
     isFormFilled,
     setIsFormFilled,
     selectedPersonnel,
@@ -43,12 +45,17 @@ const MateCreateController = () => {
       watchedFields.title &&
       watchedFields.content &&
       watchedFields.location &&
+      thumbnail &&
       startDate &&
       startTime &&
       selectedPersonnel
     );
     setIsFormFilled(allFieldsFilled);
-  }, [watchedFields, startDate, startTime, selectedPersonnel]);
+  }, [watchedFields, thumbnail, startDate, startTime, selectedPersonnel]);
+
+  const handleUpdateThumbnail = (file: File | null) => {
+    setThumbnail(file);
+  };
 
   const handlePersonnelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPersonnel(event.target.value);
@@ -65,8 +72,7 @@ const MateCreateController = () => {
 
     const completeData = {
       ...data,
-      startDate,
-      startTime,
+      thumbnail,
       gatheringAt,
       selectedPersonnel,
     };
@@ -82,6 +88,7 @@ const MateCreateController = () => {
       register={register}
       handleSubmit={handleSubmit(onValid, onInvalid)}
       isFormFilled={isFormFilled}
+      updateThumbnail={handleUpdateThumbnail}
       handlePersonnelChange={handlePersonnelChange}
       startDate={startDate}
       setStartDate={setStartDate}

@@ -12,6 +12,7 @@ export const Section = styled.section`
   margin-top: 3rem;
   width: 100%;
 `;
+
 export const FlexContainer = styled.div`
   display: flex;
   margin-bottom: 3.5rem;
@@ -38,4 +39,17 @@ export const PersonnelSelect = styled.select<{ $isSelected: boolean }>`
     outline-offset: 2px;
     border-color: ${(props) => props.theme.green_500};
   }
+`;
+
+export const PinEditThumbnail = styled.div`
+  width: 100%;
+  height: 25rem;
+  background-color: ${(props) => props.theme.gray_100};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: ${(props) => props.theme.gray_300};
+  position: relative;
 `;

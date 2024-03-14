@@ -6,6 +6,8 @@ import { UseFormRegister } from "react-hook-form";
 import { Input, Textarea, Button } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
+import Image from "@/components/icons/Image";
+import Theme from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
 import * as GS from "@/styles/GlobalStyle";
 
@@ -15,11 +17,13 @@ import { regularFields } from "./MateCreate.constants";
 
 import { CalendarDatePicker, OptionTimePicker } from "./components";
 import { DefaultTheme } from "styled-components";
+import InputUpload from "@/components/InputUpload/InputUpload";
 
 interface MateCreateViewProps {
   register: UseFormRegister<MateCreateProps>;
   handleSubmit: () => void;
   isFormFilled: boolean;
+  updateThumbnail: (file: File | null) => void;
   handlePersonnelChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   startDate: Date | null;
   setStartDate: Dispatch<SetStateAction<Date | null>>;
@@ -51,6 +55,7 @@ const MateCreateView = ({
   register,
   handleSubmit,
   isFormFilled,
+  updateThumbnail,
   handlePersonnelChange,
   startDate,
   setStartDate,
@@ -71,21 +76,33 @@ const MateCreateView = ({
         {regularFields.map((field, index) => (
           <S.Section key={index}>
             <S.Title>{field.title}</S.Title>
-            {field.type === "textarea" && (
-              <Textarea
-                placeholder={field.placeholder}
-                register={register(field.name)}
-                style={{
-                  fontSize: "1.5rem",
-                }}
-              />
-            )}
-            {field.type !== "textarea" && field.name !== "date" && (
+            {field.name !== "content" && field.name !== "date" && field.name !== "thumbnail" && (
+              // {field.name === "title" && (
               <Input
                 placeholder={field.placeholder}
                 register={register(field.name)}
                 style={{
                   lineHeight: "2rem",
+                  fontSize: "1.5rem",
+                }}
+              />
+            )}
+            {field.name === "thumbnail" && (
+              <InputUpload updateFile={updateThumbnail}>
+                <S.PinEditThumbnail>
+                  <Image
+                    width={40}
+                    fill={Theme.lightTheme.gray_300}
+                  />
+                  클릭하여 썸네일 업로드
+                </S.PinEditThumbnail>
+              </InputUpload>
+            )}
+            {field.name === "content" && (
+              <Textarea
+                placeholder={field.placeholder}
+                register={register(field.name)}
+                style={{
                   fontSize: "1.5rem",
                 }}
               />
