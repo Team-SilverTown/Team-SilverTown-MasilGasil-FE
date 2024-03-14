@@ -17,7 +17,7 @@ const PostPin = ({ pins, currentPinIndex, handlePinIndex }: PostPinProps) => {
           <Carousel
             withoutControls={true}
             slideIndex={currentPinIndex}
-            afterSlide={handlePinIndex}
+            beforeSlide={(_, v) => handlePinIndex(v)}
             style={{ padding: "1rem 0" }}
           >
             {pins.map((data, index) => (

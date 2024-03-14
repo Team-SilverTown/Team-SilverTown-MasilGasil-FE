@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 import * as S from "./OrderTab.styles";
@@ -25,7 +27,7 @@ const OrderTab = ({ latestHandleFunction, popularHandlerFunction }: OrderTabProp
 
   const toggler = (event: React.MouseEvent<HTMLElement>) => {
     if (event.currentTarget.id === orderMode) return;
-    
+
     const nextOrderMode: OrderType = orderMode === "latest" ? "popular" : "latest";
 
     setOrderMode(nextOrderMode);
