@@ -18,8 +18,6 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
 
   const AcceptedUserList = participants.filter(({ status }) => status === "ACCEPTED");
 
-  const formatter = convertFormatDate(gatheringAt);
-
   return (
     <article className={`${GS.MateInformationContainer} py-4 flex flex-col gap-12`}>
       <div className="w-full flex items-center gap-6">
