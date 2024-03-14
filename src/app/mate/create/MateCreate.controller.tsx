@@ -27,6 +27,8 @@ const MateCreateController = () => {
     setStartDate,
     startTime,
     setStartTime,
+    locationDetail,
+    setLocationDetail,
   } = useMateCreateModel();
 
   const {
@@ -44,14 +46,14 @@ const MateCreateController = () => {
     const allFieldsFilled = !!(
       watchedFields.title &&
       watchedFields.content &&
-      watchedFields.location &&
       thumbnail &&
       startDate &&
       startTime &&
-      selectedPersonnel
+      selectedPersonnel &&
+      locationDetail
     );
     setIsFormFilled(allFieldsFilled);
-  }, [watchedFields, thumbnail, startDate, startTime, selectedPersonnel]);
+  }, [watchedFields, thumbnail, startDate, startTime, selectedPersonnel, locationDetail]);
 
   const handleUpdateThumbnail = (file: File | null) => {
     setThumbnail(file);
@@ -59,6 +61,10 @@ const MateCreateController = () => {
 
   const handlePersonnelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPersonnel(event.target.value);
+  };
+
+  const handleLocationSubmit = ({ detail }: { detail: string }) => {
+    setLocationDetail(detail);
   };
 
   const onValid = (data: MateCreateProps) => {
@@ -75,6 +81,7 @@ const MateCreateController = () => {
       thumbnail,
       gatheringAt,
       selectedPersonnel,
+      locationDetail,
     };
     console.log("Complete Form Data:", completeData);
   };
@@ -95,6 +102,8 @@ const MateCreateController = () => {
       startTime={startTime}
       setStartTime={setStartTime}
       selectedPersonnel={selectedPersonnel}
+      locationDetail={locationDetail}
+      onLocationSubmit={handleLocationSubmit}
     />
   );
 };

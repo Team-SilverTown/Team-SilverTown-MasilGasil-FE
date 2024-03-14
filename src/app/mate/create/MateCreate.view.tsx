@@ -1,12 +1,14 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, MouseEvent } from "react";
 import { UseFormRegister } from "react-hook-form";
 
 import { Input, Textarea, Button } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import Image from "@/components/icons/Image";
+import { useUI } from "@/components/uiContext/UiContext";
+import { MateGatheringPlace } from "@/types/OriginDataType";
 import Theme from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
 import * as GS from "@/styles/GlobalStyle";
@@ -30,6 +32,8 @@ interface MateCreateViewProps {
   startTime: Date | null;
   setStartTime: Dispatch<SetStateAction<Date | null>>;
   selectedPersonnel: string;
+  locationDetail: string;
+  onLocationSubmit: (location: MateGatheringPlace) => void;
 }
 
 interface MateCreateButtonProps {
@@ -62,8 +66,20 @@ const MateCreateView = ({
   startTime,
   setStartTime,
   selectedPersonnel,
+  locationDetail,
+  onLocationSubmit,
 }: MateCreateViewProps) => {
   const theme = useTheme();
+
+  const { setModalView, openModal } = useUI();
+
+  const handleOpenLocationModal = () => {
+    setModalView("MATE_CREATE_MAP_VIEW");
+    openModal({
+      baseLocation: { lat: 37.497, lng: 127.0254 },
+      onSubmit: onLocationSubmit,
+    });
+  };
 
   return (
     <S.MateCreateContainer>
@@ -76,8 +92,7 @@ const MateCreateView = ({
         {regularFields.map((field, index) => (
           <S.Section key={index}>
             <S.Title>{field.title}</S.Title>
-            {field.name !== "content" && field.name !== "date" && field.name !== "thumbnail" && (
-              // {field.name === "title" && (
+            {field.name === "title" && (
               <Input
                 placeholder={field.placeholder}
                 register={register(field.name)}
@@ -106,6 +121,14 @@ const MateCreateView = ({
                   fontSize: "1.5rem",
                 }}
               />
+            )}
+            {field.name === "location" && (
+              <S.OpenModal
+                onClick={handleOpenLocationModal}
+                $isSelected={!!locationDetail}
+              >
+                {locationDetail || field.placeholder}
+              </S.OpenModal>
             )}
             {field.name === "date" && (
               <CalendarDatePicker

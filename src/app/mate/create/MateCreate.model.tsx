@@ -8,6 +8,7 @@ const useMateCreateModel = () => {
   const [selectedPersonnel, setSelectedPersonnel] = useState<string>("");
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [startTime, setStartTime] = useState<Date | null>(null);
+  const [locationDetail, setLocationDetail] = useState("");
 
   return {
     thumbnail,
@@ -20,6 +21,8 @@ const useMateCreateModel = () => {
     setStartDate,
     startTime,
     setStartTime,
+    locationDetail,
+    setLocationDetail,
   };
 };
 
