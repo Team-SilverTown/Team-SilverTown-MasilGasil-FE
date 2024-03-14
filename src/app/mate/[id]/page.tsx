@@ -28,7 +28,7 @@ const DUMMY: MateDetailResponse = {
     lng: 10.1,
   },
   gatheringPlaceDetail: "약국 앞",
-  gatheringAt: "2024-03-04T10:05:493.000+09:00",
+  gatheringAt: "2024-03-14T07:47:07.486Z",
   participants: [
     {
       id: 1,

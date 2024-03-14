@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
   const currentPath = request.nextUrl.pathname;
 
-  console.log("middleware", token);
+  // console.log("middleware", token);
 
   // if (!token && protectedRoutes.includes(currentPath)) {
   //   const url = request.nextUrl.clone();
@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
 
   // 인증된 유저인 경우 publicPaths 에 접근할 수 없도록 함.
   if (token && token.nickname && publicPathsAccessInable) {
-    console.log("middleware block");
+    // console.log("middleware block");
     const url = request.nextUrl.clone();
     url.pathname = "/";
     return NextResponse.redirect(url);

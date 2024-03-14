@@ -1,10 +1,11 @@
 import * as GS from "../../MateDetail.styles";
-import style from "./MateInfo.styles.module.css";
+import * as S from "./MateInfo.styles";
 
 import { MateActions, MateDropDownMenu } from "./components";
 import Divider from "@/components/Divider/Divider";
 import Avatar from "@/components/Avatar";
 import { MateDetailResponse } from "@/types/Response";
+import convertFormatDate from "@/utils/convertFormatDate";
 
 interface MateInfoProps {
   postId: string;
@@ -15,7 +16,9 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
   const { authorProfileUrl, authorNickname, content, gatheringAt, capacity, participants } =
     mateData;
 
-  const AcceptedUser = participants.filter(({ status }) => status === "ACCEPTED");
+  const AcceptedUserList = participants.filter(({ status }) => status === "ACCEPTED");
+
+  const formatter = convertFormatDate(gatheringAt);
 
   return (
     <article className={`${GS.MateInformationContainer} py-4 flex flex-col gap-12`}>
@@ -30,17 +33,17 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
 
       <p className="w-full text-medium font-medium leading-normal">{content}</p>
 
-      <ul className={style.mate_info__list}>
-        <li className={style.mate_info__item}>
-          <p className={style.mate_info__item_title}>모임 시간</p>
-          <p className={style.mate_info__item_text}>{gatheringAt}</p>
+      <ul className={S.MateInfoList}>
+        <li className={S.MateInfoItem}>
+          <p className={S.MateInfoItemTitle}>모임 시간</p>
+          <p className={S.MateInfoItemContent}>{convertFormatDate(gatheringAt)}</p>
         </li>
 
         <Divider isColumn />
 
-        <li className={style.mate_info__item}>
-          <p className={style.mate_info__item_title}>모임 인원</p>
-          <p className={style.mate_info__item_text}>{`${AcceptedUser.length}/${capacity}명`}</p>
+        <li className={S.MateInfoItem}>
+          <p className={S.MateInfoItemTitle}>모임 인원</p>
+          <p className={S.MateInfoItemContent}>{`${AcceptedUserList.length}/${capacity}명`}</p>
         </li>
       </ul>
 
