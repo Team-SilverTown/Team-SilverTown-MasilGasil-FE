@@ -1,3 +1,4 @@
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const LogContainer = styled.section`
@@ -7,12 +8,22 @@ export const LogContainer = styled.section`
 `;
 
 export const LogContentLayout = styled.section`
-  height: 45%;
-  padding: 0 1.5rem;
+  height: 55%;
+  padding: 0 2rem;
+
+  .logTab {
+    font-size: ${FONT_SIZE.H6};
+    font-weight: ${FONT_WEIGHT.BOLD};
+  }
+  @media (max-width: 380px) {
+    .logTab {
+      font-size: ${FONT_SIZE.LARGE};
+    }
+  }
 `;
 
 export const LogContentSection = styled.section`
   height: calc(100% - 18rem);
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
   overflow-y: auto;
 `;

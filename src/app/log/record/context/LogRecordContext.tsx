@@ -211,7 +211,7 @@ export const LogRecordContextProvider = ({
       const newPoint = { lat: latitude, lng: longitude };
 
       dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.UPDATE_PATH, payload: { location: newPoint } });
-    }, 5000),
+    }, 3000),
   ).current;
 
   /**

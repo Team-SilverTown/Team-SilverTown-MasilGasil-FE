@@ -13,7 +13,6 @@ interface PinDetailCardWrapperProps {
 
 interface PinDetailCardThumbnailProps {
   $borderRadius: number | string;
-  $thumbnail: string | null;
 }
 
 interface PinDetailCardContentProps {
@@ -38,19 +37,24 @@ export const PinDetailCardWrapper = styled.article<PinDetailCardWrapperProps>`
   height: 100%;
   background-color: ${(props) => props.theme.white};
   border-radius: ${(props) => `${props.$borderRadius}px`};
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 11px;
+  box-shadow: rgba(0, 0, 0, 0.1) -1px 1px 5px;
 `;
 
 export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`
+  position: relative;
   width: 50%;
   border-top-left-radius: ${(props) => `${props.$borderRadius}px`};
   border-bottom-left-radius: ${(props) => `${props.$borderRadius}px`};
-  background-image: ${(props) => `url(${props.$thumbnail})`};
-  background-size: cover;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
 
   span {
-    display: inline-block;
-    padding: 1rem 0 0 1rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
     font-weight: ${FONT_WEIGHT.BOLD};
   }
 `;
@@ -63,4 +67,11 @@ export const PinDetailCardContent = styled.div<PinDetailCardContentProps>`
   line-height: 2rem;
   box-sizing: border-box;
   overflow-y: auto;
+`;
+
+export const PinDetailCardThumbnailEmpty = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.theme.gray_300};
 `;

@@ -1,24 +1,23 @@
 import { Location } from "@/components/icons";
 import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/utils";
-import { MeResponse } from "@/types/Response";
+import { MasilDetailResponse } from "@/types/Response";
+import { UserInfoType } from "../../Log.types";
 import * as S from "./LogMemo.styles";
 import convertFormatDate from "@/utils/convertFormatDate";
 
 interface LogMemoProps {
-  distance: number;
-  totalTime: number;
-  userInfo: MeResponse;
-  address: string;
-  masilDate: string;
+  masilData: MasilDetailResponse;
+  userInfo: UserInfoType;
 }
 
-const LogMemo = ({ distance, totalTime, userInfo, address, masilDate }: LogMemoProps) => {
+const LogMemo = ({ masilData, userInfo }: LogMemoProps) => {
+  const { distance, totalTime, depth1, depth2, startedAt, content } = masilData;
   const { isUserInfoCheck, calories } = calculateWalkingCalories({ userInfo, distance });
 
   return (
     <>
       <S.LogMemoLocation>
-        <Location /> {address}
+        <Location /> {depth1} {depth2}
       </S.LogMemoLocation>
       <S.LogMemoWalkInfo>
         <li>
@@ -36,11 +35,8 @@ const LogMemo = ({ distance, totalTime, userInfo, address, masilDate }: LogMemoP
           </li>
         )}
       </S.LogMemoWalkInfo>
-      <S.LogMemoContent>
-        진주시에서 가장 큰 강이 남강변을 따라 걷는 산책로에요. 주변을 걷다보면 수달을 만날 수도
-        있답니다. 행운의 수달을 만나면 소원을 빌어보아요! #데이트코스 #가볍게걷기좋은 #사계절 #수달
-      </S.LogMemoContent>
-      <S.LogMemoDate>{convertFormatDate(masilDate)}</S.LogMemoDate>
+      <S.LogMemoContent>{content}</S.LogMemoContent>
+      <S.LogMemoDate>{convertFormatDate(startedAt)}</S.LogMemoDate>
     </>
   );
 };
