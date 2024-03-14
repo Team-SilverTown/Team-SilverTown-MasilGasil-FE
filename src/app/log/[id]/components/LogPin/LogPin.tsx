@@ -17,7 +17,7 @@ const LogPin = ({ pins, currentPinIndex, handlePinIndex }: LogPinProps) => {
           <Carousel
             withoutControls={true}
             slideIndex={currentPinIndex}
-            afterSlide={handlePinIndex}
+            beforeSlide={(_, v) => handlePinIndex(v)}
             style={{ padding: "1rem 0" }}
           >
             {pins.map((data, index) => (

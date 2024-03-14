@@ -1,15 +1,17 @@
-import * as React from 'react';
-import { motion } from 'framer-motion';
+"use client";
 
-import { SheetBackdropProps } from './types';
-import styles from './styles';
+import * as React from "react";
+import { motion } from "framer-motion";
+
+import { SheetBackdropProps } from "./types";
+import styles from "./styles";
 
 const isClickable = (props: any) => !!props.onClick || !!props.onTap;
 
 const SheetBackdrop = React.forwardRef<any, SheetBackdropProps>(
-  ({ style = {}, className = '', ...rest }, ref) => {
+  ({ style = {}, className = "", ...rest }, ref) => {
     const Comp = isClickable(rest) ? motion.button : motion.div;
-    const pointerEvents = isClickable(rest) ? 'auto' : 'none';
+    const pointerEvents = isClickable(rest) ? "auto" : "none";
 
     return (
       <Comp
@@ -22,7 +24,7 @@ const SheetBackdrop = React.forwardRef<any, SheetBackdropProps>(
         exit={{ opacity: 0 }}
       />
     );
-  }
+  },
 );
 
 export default SheetBackdrop;

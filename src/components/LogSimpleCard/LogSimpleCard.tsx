@@ -1,6 +1,7 @@
 "use client";
 
 import { CSSProperties } from "react";
+import Image from "next/image";
 import * as S from "./LogSimpleCard.style";
 
 export interface LogSimpleCardProps {
@@ -35,10 +36,20 @@ const LogSimpleCard = ({
       $width={width}
       $height={height}
       $radius={radius}
-      $thumbnailUrl={thumbnailUrl}
       style={style}
       onClick={onClick}
     >
+      {thumbnailUrl ? (
+        <Image
+          src={thumbnailUrl}
+          alt={`${depth1} ${depth2} 산책로`}
+          sizes="100%"
+          fill
+          priority
+        />
+      ) : (
+        <S.LogSimpleCardThumbnailEmpty />
+      )}
       <S.LogSimpleCardBottom>
         <strong>
           {depth1} {depth2}

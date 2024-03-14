@@ -5,7 +5,6 @@ interface LogSimpleCardProps {
   $width: string | number;
   $height: string | number;
   $radius: string | number;
-  $thumbnailUrl: string | null;
 }
 
 export const LogSimpleCardContainer = styled.div<LogSimpleCardProps>`
@@ -13,11 +12,14 @@ export const LogSimpleCardContainer = styled.div<LogSimpleCardProps>`
   width: ${(props) => `${props.$width}px`};
   height: ${(props) => `${props.$height}px`};
   border-radius: ${(props) => `${props.$radius}px`};
-  background-image: ${(props) => (props.$thumbnailUrl ? `url(${props.$thumbnailUrl})` : "")};
-  background-position: center;
-  background-size: cover;
-  box-shadow: inset gray 0px -50px 50px -12px;
   cursor: pointer;
+  overflow: hidden;
+  box-shadow: inset 0 -5px 50px rgba(0, 0, 0, 0.5);
+
+  img {
+    object-fit: cover;
+    z-index: -1;
+  }
 `;
 
 export const LogSimpleCardBottom = styled.div`
@@ -74,4 +76,8 @@ export const LogSimpleCardInfo = styled.div`
     font-size: ${FONT_SIZE.MICRO};
     color: ${({ theme }) => theme.white};
   }
+`;
+
+export const LogSimpleCardThumbnailEmpty = styled.div`
+  background-color: ${(props) => props.theme.gray_300};
 `;

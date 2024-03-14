@@ -1,5 +1,5 @@
-import { MasilsDataType } from "../../Log.constants";
 import { GeoPosition } from "@/types/OriginDataType";
+import { MasilDetailResponse } from "@/types/Response";
 
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { Button } from "@/components";
@@ -8,7 +8,7 @@ import { Center } from "@/components/icons";
 import * as S from "./LogMapSection.styles";
 
 interface LogMapSectionProps {
-  masilsData: MasilsDataType;
+  masilData: MasilDetailResponse;
   currentPinIndex: number;
   mapCenter: GeoPosition;
   handlePinIndex: (pinIndex: number) => void;
@@ -16,7 +16,7 @@ interface LogMapSectionProps {
 }
 
 const LogMapSection = ({
-  masilsData,
+  masilData,
   mapCenter,
   currentPinIndex,
   handlePinIndex,
@@ -26,8 +26,8 @@ const LogMapSection = ({
     <S.MapContainer>
       <MasilMap
         center={mapCenter}
-        path={masilsData.path}
-        pins={masilsData.pins}
+        path={masilData.path}
+        pins={masilData.pins}
         onClickPin={handlePinIndex}
         selectedPinIndex={currentPinIndex}
         isShowCenterMarker={false}

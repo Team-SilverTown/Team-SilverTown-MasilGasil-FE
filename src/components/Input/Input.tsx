@@ -1,3 +1,5 @@
+"use client";
+
 import React, { CSSProperties, InputHTMLAttributes } from "react";
 import type { UseFormRegisterReturn } from "react-hook-form";
 

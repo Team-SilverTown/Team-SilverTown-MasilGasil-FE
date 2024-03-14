@@ -1,10 +1,10 @@
 import * as GS from "../../MateDetail.styles";
 import style from "./MateInfo.styles.module.css";
 
-import Avatar from "@/components/Avatar/Avatar";
-import { MateActions, MateDropDownMenu } from "./components";
+import { MateActions } from "./components";
 import { MatePost } from "../../MateDetail.types";
 import Divider from "@/components/Divider/Divider";
+import Avatar from "@/components/Avatar";
 
 interface MateInfoProps {
   postId: string;
@@ -25,13 +25,9 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
   return (
     <article className={`${GS.MateInformationContainer} py-4 flex flex-col gap-12`}>
       <div className="w-full flex items-center gap-6">
-        <Avatar
-          size="sm"
-          src={authorThumbnailUrl}
-        />
+        <Avatar src={authorThumbnailUrl} />
         <p className="grow text-medium font-medium whitespace-nowrap">{authorNickname}</p>
-        {/* <MateDropDownMenu postId={postId} /> */}
-        <MateDropDownMenu />
+        {/* <DropDownMenu postId={postId} /> */}
       </div>
 
       <p className="w-full text-medium font-medium leading-normal">{content}</p>
