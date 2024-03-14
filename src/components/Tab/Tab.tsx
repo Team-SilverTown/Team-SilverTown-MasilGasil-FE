@@ -26,41 +26,36 @@ const Tab = ({
   layoutId,
 }: TabProps) => {
   return (
-    <AnimatePresence
-      mode="popLayout"
-      initial={false}
-    >
-      <S.Tabs style={{ width, height, ...style }}>
-        {tabContents.map((item, index) => (
-          <S.Tab
-            key={index}
-            onClick={() => tabClickHandler(index)}
-          >
-            {TabComponent ? (
-              <TabComponent
-                item={item}
-                index={index}
-              />
-            ) : (
-              <>
-                <S.TabText
-                  $focused={index === focusedTab}
-                  className="z-20"
-                >
-                  {item}
-                </S.TabText>
-                {index === focusedTab ? (
-                  <motion.div
-                    className="underline"
-                    layoutId={layoutId}
-                  />
-                ) : null}
-              </>
-            )}
-          </S.Tab>
-        ))}
-      </S.Tabs>
-    </AnimatePresence>
+    <S.Tabs style={{ width, height, ...style }}>
+      {tabContents.map((item, index) => (
+        <S.Tab
+          key={index}
+          onClick={() => tabClickHandler(index)}
+        >
+          {TabComponent ? (
+            <TabComponent
+              item={item}
+              index={index}
+            />
+          ) : (
+            <>
+              <S.TabText
+                $focused={index === focusedTab}
+                className="z-20"
+              >
+                {item}
+              </S.TabText>
+              {index === focusedTab ? (
+                <motion.div
+                  className="underline"
+                  layoutId={layoutId}
+                />
+              ) : null}
+            </>
+          )}
+        </S.Tab>
+      ))}
+    </S.Tabs>
   );
 };
 
