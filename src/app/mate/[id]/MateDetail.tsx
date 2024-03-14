@@ -37,8 +37,7 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
             nickName={authorNickname}
           /> */}
 
-          {/* Todo : participants 로 교체 */}
-          {/* <MateMembers members={members} /> */}
+          <MateMembers mateData={mateData} />
         </article>
       </section>
     </>
