@@ -21,9 +21,6 @@ export const MateInfoItem = `
   gap-4
 
   text-center
-
-  border-2
-  border-red
 `;
 
 export const MateInfoItemTitle = `
