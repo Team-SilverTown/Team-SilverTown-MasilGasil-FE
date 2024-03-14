@@ -3,14 +3,17 @@ import styled from "styled-components";
 
 export const BorderContainer = styled.div`
   margin-top: 3rem;
+  padding: 0rem 1.25rem;
 `;
 export const BorderTitleSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  user-select: none;
+
   h3 {
     font-size: 1.8rem;
-    font-weight: ${FONT_WEIGHT.BLACK};
+    font-weight: ${FONT_WEIGHT.SEMIBOLD};
     color: ${(props) => props.theme.black};
   }
 
@@ -44,4 +47,6 @@ export const BorderContentListWrapper = styled.ul`
 export const EmptyAlert = styled.div`
   padding: 4rem;
   margin: 0 auto;
+  user-select: none;
+  color: ${(props) => props.theme.gray_300};
 `;

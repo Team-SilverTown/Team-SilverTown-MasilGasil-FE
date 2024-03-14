@@ -15,31 +15,30 @@ const UserWalkRecord = ({ totalWalkDistance, totalWalkCount, userInfo }: UserWal
   });
 
   return (
-    <S.UserWalkRecordContainer>
-      <h3>나의 총 산책 기록</h3>
-      <S.UserWalkRecordList>
-        <li>
-          <strong>거리</strong>
-          <div className="walkItemInfo">
-            <span>{convertMeter(totalWalkDistance)}</span>
-          </div>
-        </li>
-        <li>
-          <strong>총 산책 횟수</strong>
-          <div className="walkItemInfo">
-            <span>{totalWalkCount}번</span>
-          </div>
-        </li>
-        {isUserInfoCheck && (
-          <li>
-            <strong>총 소모 열량</strong>
-            <div className="walkItemInfo">
-              <span>{calories}kacl</span>
-            </div>
-          </li>
-        )}
-      </S.UserWalkRecordList>
-    </S.UserWalkRecordContainer>
+    <S.Layout>
+      <S.Container>
+        <S.Section>
+          <S.SectionItem>
+            <S.Text>총 거리</S.Text>
+            <S.AccentTitle>
+              {totalWalkDistance ? convertMeter(totalWalkDistance) : "- m"}
+            </S.AccentTitle>
+          </S.SectionItem>
+          <S.ColDivider />
+          <S.SectionItem>
+            <S.Text>산책 횟수</S.Text>
+            <S.AccentTitle>{totalWalkCount ? totalWalkCount : "- "}회</S.AccentTitle>
+          </S.SectionItem>
+          <S.ColDivider />
+          {isUserInfoCheck && (
+            <S.SectionItem>
+              <S.Text>소모 칼로리</S.Text>
+              <S.AccentTitle>{calories ? calories : "- "}kcal</S.AccentTitle>
+            </S.SectionItem>
+          )}
+        </S.Section>
+      </S.Container>
+    </S.Layout>
   );
 };
 
