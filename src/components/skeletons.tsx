@@ -27,7 +27,7 @@ export const LogSimpleCardSkeleton = () => {};
 export const ListPreviewSkeleton = () => {
   return (
     <>
-      <div className={`${shimmer} relative w-full h-[20px] rounded-lg mt-10 bg-gray-200`} />
+      <div className={`${shimmer} relative w-[30%] h-[20px] rounded-lg mt-10 bg-gray-200`} />
       <div className="flex w-full space-x-9 mt-5 overflow-x-hidden">
         <LogDetailCardSkeleton />
         <LogDetailCardSkeleton />
