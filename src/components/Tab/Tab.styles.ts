@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 export const Tabs = styled.ul`
@@ -41,8 +41,6 @@ export const Tab = styled.li`
 
 export const TabText = styled.a<any>`
   width: 100%;
-  text-align: center;
-  font-weight: ${FONT_WEIGHT.BOLD};
 
   color: ${(props) => (props.$focused ? props.theme.text_primary_color : props.theme.gray_300)};
 `;

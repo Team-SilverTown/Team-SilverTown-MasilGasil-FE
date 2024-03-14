@@ -26,7 +26,7 @@ const PinDetailCard = ({
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
-              alt="테스트"
+              alt={content}
               sizes="100%"
               fill
               priority
@@ -34,7 +34,6 @@ const PinDetailCard = ({
           ) : (
             <S.PinDetailCardThumbnailEmpty />
           )}
-
           <span>
             {currentPinindex}/{totalPinIndex}
           </span>

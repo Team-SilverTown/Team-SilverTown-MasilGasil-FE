@@ -1,6 +1,6 @@
 import { DropDownMenu } from "@/components";
 
-const LogKebabMenu = () => {
+const PostKebabMenu = () => {
   return (
     <div style={{ marginRight: "1.5rem", cursor: "pointer" }}>
       <DropDownMenu />
@@ -8,4 +8,4 @@ const LogKebabMenu = () => {
   );
 };
 
-export default LogKebabMenu;
+export default PostKebabMenu;

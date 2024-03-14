@@ -2,7 +2,7 @@ import { FONT_SIZE, FONT_WEIGHT, Z_INDEX } from "@/styles/theme";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const MateMenuLayout = styled.div`
+export const DropDownMenuContainer = styled.div`
   width: 2.6rem;
   height: 2.6rem;
 
@@ -15,7 +15,7 @@ export const MateMenuLayout = styled.div`
   cursor: pointer;
 `;
 
-export const MateDropDownMenuLayout = styled(motion.div)`
+export const DropDownMenuLayout = styled(motion.div)`
   width: 9rem;
 
   position: absolute;
@@ -25,7 +25,7 @@ export const MateDropDownMenuLayout = styled(motion.div)`
   z-index: ${Z_INDEX.MATE_TOGGLE_MENU};
 `;
 
-export const MateDropDownMenuContainer = styled(motion.ul)`
+export const DropDownMenulist = styled(motion.ul)`
   width: 100%;
   height: 100%;
   padding: 1rem;
@@ -42,7 +42,7 @@ export const MateDropDownMenuContainer = styled(motion.ul)`
   overflow: hidden;
 `;
 
-export const MateDropDownMenuItem = styled.li`
+export const DropDownMenuItem = styled.li`
   width: 100%;
   padding: 1rem 0;
 

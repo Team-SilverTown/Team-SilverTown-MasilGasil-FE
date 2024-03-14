@@ -50,6 +50,7 @@ const LogView = ({
       <TopNavigator
         leftChildren={<GoBackButton />}
         rightChildren={<LogKebabMenu />}
+        containerStyle={{ backgroundColor: "transparent" }}
       />
       <S.LogContainer>
         <LogMapSection
