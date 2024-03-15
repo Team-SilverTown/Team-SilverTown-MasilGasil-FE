@@ -37,7 +37,6 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
 
   const { userLocation, setUserLocation } = useUserLocationStore();
 
-
   const [mapCenter, setMapCenter] = useState<GeoPosition>({ lat: 0, lng: 0 });
 
   const updateMapCenter = ({ coords }: GeolocationPosition) =>
@@ -93,6 +92,8 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
 
       const { region_1depth_name, region_2depth_name, region_3depth_name, region_4depth_name } =
         result[0];
+
+      console.log("updateLocation", result[0]);
 
       setLocationData(() => ({
         depth1: region_1depth_name,
