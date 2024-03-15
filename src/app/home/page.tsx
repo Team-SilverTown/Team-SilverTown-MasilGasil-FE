@@ -11,17 +11,16 @@ const Home = async () => {
   });
 
   const session = await getServerSession(authOptions);
-
   const popularWalkingTrails = await getPopularWalkingTrails(session?.serviceToken!);
-  const user = await getMe(session?.serviceToken!);
+  const userInfo = await getMe(session?.serviceToken!).then((user) => {
+    if (!user) {
+      return;
+    }
 
-  if (!user || !popularWalkingTrails) {
-    return;
-  }
+    return getUserProfile(user.userId);
+  });
 
-  const userInfo = await getUserProfile(user.userId);
-
-  if (!userInfo) {
+  if (!userInfo || !popularWalkingTrails) {
     return;
   }
 
