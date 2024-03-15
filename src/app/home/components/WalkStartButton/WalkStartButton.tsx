@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "@/components";
 import Theme, { CONTAINER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
