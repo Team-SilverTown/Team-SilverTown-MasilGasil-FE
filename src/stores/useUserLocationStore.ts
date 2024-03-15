@@ -2,10 +2,9 @@ import { GeoPosition } from "@/types/OriginDataType";
 import { UserAddressType } from "@/types/OriginDataType/Location";
 import { create } from "zustand";
 
-// 강남역
 const DEFAULT_USER_LOCATION: GeoPosition = {
-  lat: 37.498095,
-  lng: 127.02761,
+  lat: 0,
+  lng: 0,
 };
 
 interface UseUserLocationStore {
