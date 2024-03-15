@@ -77,6 +77,7 @@ const MateCreateView = ({
     setModalView("MATE_CREATE_MAP_VIEW");
     openModal({
       baseLocation: { lat: 37.497, lng: 127.0254 },
+      locationDetail: locationDetail,
       onSubmit: onLocationSubmit,
     });
   };

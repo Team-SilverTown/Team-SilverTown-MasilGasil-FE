@@ -19,6 +19,7 @@ import { CustomPin } from "@/components/MasilMap/components";
 interface MateMapModalProps {
   baseLocation: GeoPosition;
   onSubmit: (placeInfo: MateGatheringPlace) => void;
+  locationDetail: string;
 }
 
 interface ModalProp {
@@ -26,16 +27,20 @@ interface ModalProp {
 }
 
 const MateCreateMapModal = ({ props }: ModalProp) => {
-  const { baseLocation, onSubmit } = props;
+  const { baseLocation, onSubmit, locationDetail } = props;
   const [center, setCenter] = useState(baseLocation);
   const [address, setAddress] = useState("");
   const mapRef = useRef<kakao.maps.Map>(null);
   const theme = useTheme();
   const { closeModal } = useUI();
-  const { register, formState, handleSubmit } = useForm({
-    defaultValues: { detail: "" },
+  const { register, formState, handleSubmit, setValue } = useForm({
+    defaultValues: { detail: props.locationDetail },
   });
   const { errors } = formState;
+
+  useEffect(() => {
+    setValue("detail", locationDetail);
+  }, [locationDetail, setValue]);
 
   /**
    * @function handleChangeCenter
@@ -172,7 +177,7 @@ const MateCreateMapModal = ({ props }: ModalProp) => {
           <S.MateCreateMapTitle>모임장소 상세정보 입력</S.MateCreateMapTitle>
           <Input
             type="text"
-            placeholder="장소에대한 추가정보를 입력해주세요!"
+            placeholder="장소에 대한 추가정보를 입력해주세요!"
             style={{ fontWeight: FONT_WEIGHT.MEDIUM }}
             register={register("detail", {
               minLength: { value: 2, message: "2글자 이상 입력해주세요." },
