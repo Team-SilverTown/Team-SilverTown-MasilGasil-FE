@@ -7,3 +7,8 @@ export const MateMembers = styled.article`
 
   user-select: none;
 `;
+
+export const MateTabContent = styled.div`
+  width: 100%;
+  min-height: 30rem;
+`;

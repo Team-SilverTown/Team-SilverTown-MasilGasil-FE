@@ -1,7 +1,6 @@
 "use client";
 
-import { MateDetailResponse } from "@/types/Response";
-import * as GS from "../MateListCommon.styles";
+import * as S from "./MembersList.styles";
 import { MemberItem } from "..";
 import { Participant } from "@/types/OriginDataType";
 
@@ -12,9 +11,15 @@ interface MembersListProps {
 
 const MembersList = ({ participants, isApplicantList = false }: MembersListProps) => {
   return (
-    <GS.MateUserList>
-      {participants && participants.map((user) => <MemberItem participants={user} />)}
-    </GS.MateUserList>
+    <S.MateMemberList>
+      {participants &&
+        participants.map((user) => (
+          <MemberItem
+            participants={user}
+            key={user.id}
+          />
+        ))}
+    </S.MateMemberList>
   );
 };
 

@@ -39,21 +39,23 @@ const MateMembers = ({ mateData }: MateMembersProps) => {
         tabContents={isAuthor ? AUTHOR_TAB_CONTENT : USER_TAB_CONTENT}
         tabClickHandler={handleClickTab}
         focusedTab={focusTab}
-        layoutId="memberList"
+        layoutId="member_list"
         style={{
           fontSize: FONT_SIZE.LARGE,
           fontWeight: FONT_WEIGHT.BOLD,
         }}
       />
 
-      {focusTab === 0 && <MembersList participants={mateData.participants} />}
+      <S.MateTabContent>
+        {focusTab === 0 && <MembersList participants={mateData.participants} />}
 
-      {focusTab === 1 && (
-        <MembersList
-          participants={mateData.participants}
-          isApplicantList
-        />
-      )}
+        {focusTab === 1 && (
+          <MembersList
+            participants={mateData.participants}
+            isApplicantList={true}
+          />
+        )}
+      </S.MateTabContent>
     </S.MateMembers>
   );
 };

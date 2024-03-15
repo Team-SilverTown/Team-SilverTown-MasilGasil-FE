@@ -7,6 +7,7 @@ import { Participant } from "@/types/OriginDataType";
 
 interface MemberItemProps {
   participants: Participant;
+  key?: string | number;
 }
 
 const MemberItem = ({ participants }: MemberItemProps) => {
