@@ -3,8 +3,6 @@ import MyLikeWalkingTrails from "./components/MyLikeWalkingTrails/MyLikeWalkingT
 import PopularTrailsInOurTown from "./components/PopularTrailsInOurTown/PopularTrailsInOurTown";
 import PopularWalkingTrails from "./components/PopularWalkingTrails/PopularWalkingTrails";
 
-import * as S from "./WalkList.styles";
-
 interface WalkListProps {
   MyLikeWalkingTrailsList: PostMoreListResponse;
   PopularWalkingTrailsList: PostMoreListResponse;
@@ -14,16 +12,16 @@ const WalkList = ({ MyLikeWalkingTrailsList, PopularWalkingTrailsList }: WalkLis
   return (
     <>
       <PopularTrailsInOurTown />
-      {PopularWalkingTrailsList.isEmpty ? (
-        <div className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</div>
-      ) : (
-        <PopularWalkingTrails PopularWalkingTrailsList={PopularWalkingTrailsList.contents} />
-      )}
-      {MyLikeWalkingTrailsList.isEmpty ? (
-        <div className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</div>
-      ) : (
-        <MyLikeWalkingTrails MyLikeWalkingTrailsList={MyLikeWalkingTrailsList.contents} />
-      )}
+
+      <PopularWalkingTrails
+        PopularWalkingTrailsList={PopularWalkingTrailsList.contents}
+        isEmpty={PopularWalkingTrailsList.isEmpty}
+      />
+
+      <MyLikeWalkingTrails
+        MyLikeWalkingTrailsList={MyLikeWalkingTrailsList.contents}
+        isEmpty={MyLikeWalkingTrailsList.isEmpty}
+      />
     </>
   );
 };
