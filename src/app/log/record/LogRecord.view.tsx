@@ -16,6 +16,7 @@ const LogRecordView = () => {
   const {
     pageStep,
     logData,
+    navigationData,
     userLocation,
     currentPinIndex,
     isActiveExitAnimation,
@@ -29,6 +30,7 @@ const LogRecordView = () => {
 
     handleClickFallback,
     handleOffIsOutCenter,
+    handleClickNavigationPin,
   } = useLogRecordController();
   const mapAnimation = {
     initial: { height: "100%" },
@@ -37,7 +39,10 @@ const LogRecordView = () => {
 
   return (
     <S.LogRecordLayout>
-      <TopNavigator leftChildren={<GoBackButton onGoBackHandler={handleClickFallback} />} />
+      <TopNavigator
+        leftChildren={<GoBackButton onGoBackHandler={handleClickFallback} />}
+        containerStyle={{ backgroundColor: "transparent" }}
+      />
 
       <S.LogRecordMapContainer
         initial="initial"
@@ -55,6 +60,9 @@ const LogRecordView = () => {
           isShowCenterMarker={pageStep !== "LOG_RECORD_EDITING"}
           onClickPin={handleClickPin}
           selectedPinIndex={currentPinIndex}
+          navigationPath={navigationData?.path}
+          navigationPins={navigationData?.pins}
+          onClickNavigationPin={handleClickNavigationPin}
         />
       </S.LogRecordMapContainer>
 

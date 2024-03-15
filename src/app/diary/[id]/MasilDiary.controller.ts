@@ -34,7 +34,8 @@ const useMasilDiaryController = () => {
    * @brief 서버에서 조회한 기간별 마실 기록을 일,월 기준으로 필터링합니다. 필터링한 결과를 dailyMasils, monthlyMasils에 할당합니다.
    */
   useEffect(() => {
-    const selectedDate = date?.toLocaleDateString("en-CA"); // yyyy-mm-dd
+    const [year, month, day] = [date?.getFullYear(), date?.getMonth(), date?.getDate()];
+    const selectedDate = `${year}-0${month !== undefined && month + 1}-${day}`;
 
     if (!masilData || masilData.masils.length <= 0) {
       setDailyMasils(null);
@@ -42,7 +43,7 @@ const useMasilDiaryController = () => {
       setMonthlyMasilsDate([]);
       return;
     }
-
+    
     const tempDailyMasils = masilData.masils.filter((m) => m.date === selectedDate)[0]
       ? masilData.masils.filter((m) => m.date === selectedDate)[0].masils
       : undefined;
@@ -119,9 +120,8 @@ const useMasilDiaryController = () => {
    * @breif 현재 시각으로 날짜를 갱신합니다.
    */
   const handleClickToday = useCallback(() => {
-    const today = new Date();
-    setDate(today);
-    router.push(`/diary/${id}?startDate=${today.toLocaleDateString("en-CA")}`);
+    router.push(`/diary/${id}?startDate=`);
+    setDate(new Date());
   }, [router, id]);
 
   return {

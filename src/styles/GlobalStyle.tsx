@@ -36,6 +36,8 @@ export const GlobalStyle = createGlobalStyle<any>`
   
       font-size : 1.4rem;
       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
 
     main {
@@ -59,6 +61,7 @@ export const CommonContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
 `;
 
 export const CommonContainerTailwind = `

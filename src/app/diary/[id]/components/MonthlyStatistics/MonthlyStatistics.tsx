@@ -1,5 +1,6 @@
 import { MasilsByPeriodResponse } from "@/types/Response";
 import * as S from "./MonthlyStatistics.styles";
+import { convertMeter } from "@/utils";
 
 interface MonthlyStatisticsProps {
   month: number | undefined;
@@ -26,7 +27,7 @@ const MonthlyStatistics = ({ month, masils }: MonthlyStatisticsProps) => {
               <S.SectionItem>
                 <S.Text>총 거리</S.Text>
                 <S.AccentTitle>
-                  {masils?.totalDistance ? masils?.totalDistance : "- "}m
+                  {masils?.totalDistance ? convertMeter(masils?.totalDistance) : "- m"}
                 </S.AccentTitle>
               </S.SectionItem>
               <S.ColDivider />

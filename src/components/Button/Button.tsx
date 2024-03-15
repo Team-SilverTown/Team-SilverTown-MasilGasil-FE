@@ -1,3 +1,5 @@
+"use client";
+
 import { CSSProperties, MouseEvent, ReactNode, forwardRef, useCallback, useRef } from "react";
 import { mergeRefs } from "react-merge-refs";
 

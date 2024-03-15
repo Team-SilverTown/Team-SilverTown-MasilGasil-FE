@@ -16,7 +16,7 @@ const Kakao = () => {
 
   useEffect(() => {
     if (session) {
-      // console.log("kakao (session)", session);
+      console.log("kakao (session)", session);
       setServiceToken(session.serviceToken ? session.serviceToken : null);
     }
   }, [session]);
@@ -32,9 +32,9 @@ const Kakao = () => {
   });
 
   useEffect(() => {
-    if (!meData) return;
+    console.log("kakao 분기처리 (meData)", meData);
 
-    // console.log("kakao 분기처리 (meData)", meData);
+    if (!meData) return;
 
     if (meData && !meData.nickname) {
       console.log("가가입 유저->회훤가입뷰");

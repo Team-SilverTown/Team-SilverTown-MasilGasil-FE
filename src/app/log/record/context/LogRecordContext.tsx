@@ -9,7 +9,12 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { LogPageStep, SetCurrentPinIndex, SetIsActiveExitAnimation } from "../LogRecord.types";
+import {
+  LogPageStep,
+  NavigationData,
+  SetCurrentPinIndex,
+  SetIsActiveExitAnimation,
+} from "../LogRecord.types";
 import { MasilRecordRequest } from "@/types/Request";
 import {
   DEFAULT_LOG_DATA,
@@ -23,6 +28,7 @@ import { throttle } from "lodash";
 
 interface LogRecordContextValues {
   logData: MasilRecordRequest;
+  navigationData?: NavigationData;
   pageStep: LogPageStep;
   setPageStep: Dispatch<SetStateAction<LogPageStep>>;
 
@@ -46,10 +52,12 @@ interface LogRecordContextValues {
 
 interface LogRecordContextProviderProps {
   children: React.ReactNode;
+  navigationData?: NavigationData;
 }
 
 const LogRecordContext = createContext<LogRecordContextValues>({
   logData: DEFAULT_LOG_DATA,
+  navigationData: { path: [], pins: [] },
   pageStep: "LOG_RECORD_STANDBY",
   setPageStep: () => {},
 
@@ -71,7 +79,10 @@ const LogRecordContext = createContext<LogRecordContextValues>({
   updateDistance: () => {},
 });
 
-export const LogRecordContextProvider = ({ children }: LogRecordContextProviderProps) => {
+export const LogRecordContextProvider = ({
+  children,
+  navigationData,
+}: LogRecordContextProviderProps) => {
   const [logData, dispatch] = useReducer(logRecordReducer, DEFAULT_LOG_DATA);
   const [pageStep, setPageStep] = useState<LogPageStep>("LOG_RECORD_STANDBY");
   const [currentPinIndex, setCurrentPinIndex] = useState(-1);
@@ -200,7 +211,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
       const newPoint = { lat: latitude, lng: longitude };
 
       dispatch({ type: LOG_RECORD_REDUCER_ACTIONS.UPDATE_PATH, payload: { location: newPoint } });
-    }, 5000),
+    }, 3000),
   ).current;
 
   /**
@@ -215,6 +226,7 @@ export const LogRecordContextProvider = ({ children }: LogRecordContextProviderP
     <LogRecordContext.Provider
       value={{
         logData,
+        navigationData,
         pageStep,
         setPageStep,
         currentPinIndex,

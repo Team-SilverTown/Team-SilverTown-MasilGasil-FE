@@ -22,7 +22,7 @@ const MapPin = ({
   isSelected = false,
   style,
 }: MapPinProp) => {
-  const handleClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+  const handleClick = () => {
     if (onClickPin && pinIndex !== undefined) {
       onClickPin(pinIndex);
     }

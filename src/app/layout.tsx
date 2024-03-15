@@ -22,7 +22,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#81BB26",
+  themeColor: "#F8F8F8",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 const KAKAO_API_KEY = process.env.DB_KAKAO_API_KEY;
@@ -39,6 +42,10 @@ export default async function RootLayout({
 
   return (
     <html lang="ko">
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
+      />
       <meta
         httpEquiv="Content-Security-Policy"
         content="upgrade-insecure-requests"

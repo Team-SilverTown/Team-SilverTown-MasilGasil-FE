@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
 import { TopNavigator } from "@/components/navigators/TopNavigator";
@@ -9,13 +9,14 @@ import ExploreView from "./Explore.view";
 import { BottomSheetSection, MapSection } from "./sections";
 import { SearchBar } from "./components";
 import useExploreModel from "./Explore.model";
+import ListSection from "./sections/ListSection/ListSection";
 
 export interface SearchProps {
   keyword: string;
 }
 
 const ExploreController = () => {
-  const { locationData, setLocationData } = useExploreModel();
+  const { locationData, setLocationData, postsData, setOrderMode } = useExploreModel();
 
   const { register, handleSubmit, watch, setValue, setFocus } = useForm<SearchProps>({
     mode: "onChange",
@@ -33,6 +34,17 @@ const ExploreController = () => {
     setFocus("keyword");
   };
 
+  const listViews = [
+    <ListSection
+      id="post"
+      data={postsData}
+    />,
+    <ListSection
+      id="mate"
+      data={[]}
+    />,
+  ];
+
   return (
     <>
       <TopNavigator
@@ -47,10 +59,15 @@ const ExploreController = () => {
           />
         }
         rightSectionStyle={{ width: "calc(100%)" }}
+        containerStyle={{ backgroundColor: "transparent" }}
       />
       <ExploreView>
         <MapSection setLocationData={setLocationData} />
-        <BottomSheetSection locationData={locationData} />
+        <BottomSheetSection
+          locationData={locationData}
+          listViews={listViews}
+          setOrderMode={setOrderMode}
+        />
       </ExploreView>
     </>
   );

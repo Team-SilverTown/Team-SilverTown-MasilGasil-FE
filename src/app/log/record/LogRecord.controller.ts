@@ -12,6 +12,7 @@ import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 const useLogRecordController = () => {
   const {
     logData,
+    navigationData,
     pageStep,
     setPageStep,
     currentPinIndex,
@@ -61,8 +62,16 @@ const useLogRecordController = () => {
     });
   };
 
+  const handleClickNavigationPin = (pinIndex: number) => {
+    setModalView("PIN_DETAIL_MODAL_VIEW");
+    openModal({
+      pin: navigationData?.pins[pinIndex],
+    });
+  };
+
   return {
     logData,
+    navigationData,
     pageStep,
     userLocation,
     currentPinIndex,
@@ -74,6 +83,7 @@ const useLogRecordController = () => {
     handleCreatePin,
     handleClickFallback,
     handleOffIsOutCenter,
+    handleClickNavigationPin,
   };
 };
 

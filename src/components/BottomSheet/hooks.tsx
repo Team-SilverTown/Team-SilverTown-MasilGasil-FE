@@ -1,13 +1,13 @@
-import * as React from 'react';
+"use client";
 
-import { IS_SSR } from './constants';
-import { SheetEvents } from './types';
-import { applyRootStyles, cleanupRootStyles } from './utils';
-import { BoundingBox } from 'framer-motion';
+import * as React from "react";
 
-export const useIsomorphicLayoutEffect = IS_SSR
-  ? React.useEffect
-  : React.useLayoutEffect;
+import { IS_SSR } from "./constants";
+import { SheetEvents } from "./types";
+import { applyRootStyles, cleanupRootStyles } from "./utils";
+import { BoundingBox } from "framer-motion";
+
+export const useIsomorphicLayoutEffect = IS_SSR ? React.useEffect : React.useLayoutEffect;
 
 export function useModalEffect(isOpen: boolean, rootId?: string) {
   const prevOpen = usePrevious(isOpen);
@@ -29,10 +29,7 @@ export function useModalEffect(isOpen: boolean, rootId?: string) {
   }, [isOpen]); // eslint-disable-line
 }
 
-export function useEventCallbacks(
-  isOpen: boolean,
-  callbacks: React.MutableRefObject<SheetEvents>
-) {
+export function useEventCallbacks(isOpen: boolean, callbacks: React.MutableRefObject<SheetEvents>) {
   const prevOpen = usePrevious(isOpen);
   const didOpen = React.useRef(false);
 
@@ -65,9 +62,9 @@ export function useWindowHeight() {
 
   useIsomorphicLayoutEffect(() => {
     const updateHeight = () => setWindowHeight(window.innerHeight);
-    window.addEventListener('resize', updateHeight);
+    window.addEventListener("resize", updateHeight);
     updateHeight();
-    return () => window.removeEventListener('resize', updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
   return windowHeight;
