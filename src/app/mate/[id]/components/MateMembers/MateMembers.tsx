@@ -6,7 +6,7 @@ import * as S from "./MateMembers.styles";
 import { Tab } from "@/components";
 import { useMemo, useState } from "react";
 import useMeStore from "@/stores/useMeStore";
-import { ApplicantList, MembersList } from "./components";
+import { MembersList } from "./components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 interface MateMembersProps {
@@ -39,18 +39,21 @@ const MateMembers = ({ mateData }: MateMembersProps) => {
         tabContents={isAuthor ? AUTHOR_TAB_CONTENT : USER_TAB_CONTENT}
         tabClickHandler={handleClickTab}
         focusedTab={focusTab}
+        layoutId="memberList"
         style={{
-          height: "10rem",
-          padding: "2rem 0",
           fontSize: FONT_SIZE.LARGE,
           fontWeight: FONT_WEIGHT.BOLD,
-          border: "1px solid red",
         }}
       />
 
-      {focusTab === 0 && <MembersList />}
+      {focusTab === 0 && <MembersList participants={mateData.participants} />}
 
-      {focusTab === 1 && <ApplicantList />}
+      {focusTab === 1 && (
+        <MembersList
+          participants={mateData.participants}
+          isApplicantList
+        />
+      )}
     </S.MateMembers>
   );
 };
