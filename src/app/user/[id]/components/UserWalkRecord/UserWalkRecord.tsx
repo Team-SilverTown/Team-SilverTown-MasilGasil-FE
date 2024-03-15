@@ -20,20 +20,20 @@ const UserWalkRecord = ({ totalWalkDistance, totalWalkCount, userInfo }: UserWal
         <S.Section>
           <S.SectionItem>
             <S.Text>총 거리</S.Text>
-            <S.AccentTitle>
+            <S.AccentText>
               {totalWalkDistance ? convertMeter(totalWalkDistance) : "- m"}
-            </S.AccentTitle>
+            </S.AccentText>
           </S.SectionItem>
           <S.ColDivider />
           <S.SectionItem>
             <S.Text>산책 횟수</S.Text>
-            <S.AccentTitle>{totalWalkCount ? totalWalkCount : "- "}회</S.AccentTitle>
+            <S.AccentText>{totalWalkCount ? totalWalkCount : "- "}회</S.AccentText>
           </S.SectionItem>
           <S.ColDivider />
           {isUserInfoCheck && (
             <S.SectionItem>
               <S.Text>소모 칼로리</S.Text>
-              <S.AccentTitle>{calories ? calories : "- "}kcal</S.AccentTitle>
+              <S.AccentText>{calories ? calories : "- "}kcal</S.AccentText>
             </S.SectionItem>
           )}
         </S.Section>

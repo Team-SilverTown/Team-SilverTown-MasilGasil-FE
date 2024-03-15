@@ -4,6 +4,7 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { UserProfileInfo, UserWalkRecord, MyRecordList, MyPageSetting } from "./components";
 import * as S from "./MyPage.styles";
+import Divider from "@/components/Divider/Divider";
 
 interface MyPageViewProps {
   boardList: MyRecordListType[];
@@ -25,11 +26,20 @@ const MyPageView = ({ boardList, userInfo, userId }: MyPageViewProps) => {
             profileImage=""
             profileName="달려라댕댕아"
           />
+          <S.HeaderContainer>
+            <h3>통계</h3>
+            <Divider />
+          </S.HeaderContainer>
           <UserWalkRecord
             totalWalkDistance={11000}
             totalWalkCount={50}
             userInfo={userInfo}
           />
+
+          <S.HeaderContainer>
+            <h3>산책</h3>
+            <Divider />
+          </S.HeaderContainer>
           {boardList.map(({ title, urlLink, recordList, type }) => (
             <MyRecordList
               title={title}

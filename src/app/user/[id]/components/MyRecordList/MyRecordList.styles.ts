@@ -1,9 +1,9 @@
-import { FONT_WEIGHT } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const BorderContainer = styled.div`
-  margin-top: 3rem;
   padding: 0rem 1.25rem;
+  margin-bottom: 3rem;
 `;
 export const BorderTitleSection = styled.div`
   display: flex;
@@ -12,8 +12,8 @@ export const BorderTitleSection = styled.div`
   user-select: none;
 
   h3 {
-    font-size: 1.8rem;
-    font-weight: ${FONT_WEIGHT.SEMIBOLD};
+    font-size: ${FONT_SIZE.LARGE};
+    font-weight: ${FONT_WEIGHT.REGULAR};
     color: ${(props) => props.theme.black};
   }
 

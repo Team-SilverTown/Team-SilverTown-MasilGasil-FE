@@ -6,6 +6,21 @@ interface MyPageControllerProps {
   userId: number;
 }
 
+/**
+ * @TODO
+ * 1. Query Param으로부터 userId를 받아옴
+ * 2. userId에 대한 get 요청을 보내 userInfo 데이터를 받아옴
+ * 3. userId에 대한 관련 get 요청을 보내 PostData를 받아옴
+ */
+
+/**
+ * 내 통계
+ * 내 산책
+ * - 나의 산책일지 (최근 산책로)
+ * - 내가 작성한 산책로
+ * - 내가 좋아하는 산책로
+ */
+
 const MyPageController = ({ userId }: MyPageControllerProps) => {
   return (
     <MypageView

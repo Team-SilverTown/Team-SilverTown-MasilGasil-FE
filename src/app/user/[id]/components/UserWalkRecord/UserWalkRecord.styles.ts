@@ -5,7 +5,7 @@ import { BORDER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 export const Layout = styled.div`
   width: 100%;
-  padding: 1.25rem;
+  padding: 0rem 1.25rem;
 `;
 
 export const Container = styled.div`
@@ -31,20 +31,11 @@ export const Header = styled.div`
   }
 `;
 
-export const Title = styled.span`
-  /* font-size: ${FONT_SIZE.LARGE}; */
-  font-size: ${FONT_SIZE.H5};
-  font-weight: ${FONT_WEIGHT.BOLD};
-`;
+export const HeaderText = styled.span``;
 
 export const Text = styled.span``;
 
 export const AccentText = styled.span`
-  font-weight: ${FONT_WEIGHT.BOLD};
-  color: ${(props) => props.theme.green_300};
-`;
-
-export const AccentTitle = styled.span`
   font-weight: ${FONT_WEIGHT.BOLD};
   color: ${(props) => props.theme.green_300};
   font-size: ${FONT_SIZE.H5};

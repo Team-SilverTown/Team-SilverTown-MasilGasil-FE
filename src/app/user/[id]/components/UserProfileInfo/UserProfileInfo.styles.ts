@@ -41,7 +41,7 @@ export const CameraIconLayout = styled.div`
 export const UserInfoProfileText = styled.div`
   strong {
     display: inline-block;
-    margin: 1.6rem 0 2rem;
+    margin: 1.6rem 0 0;
     font-size: 1.8rem;
     color: ${(props) => props.theme.black};
   }
