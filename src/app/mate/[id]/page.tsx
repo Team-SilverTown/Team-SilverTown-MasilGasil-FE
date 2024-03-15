@@ -69,7 +69,7 @@ const DUMMY: MateDetailResponse = {
     },
   ],
   capacity: 3,
-  authorId: 5,
+  authorId: 29,
   authorNickname: "산책쌉고수",
   authorProfileUrl: null,
 };

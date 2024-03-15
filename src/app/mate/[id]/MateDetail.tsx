@@ -56,5 +56,3 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
 };
 
 export default MateDetail;
-
-// 신청 => 신청 중 ( 취소 액션이 가능) => 승락됨 나갈 수 있음
