@@ -1,4 +1,4 @@
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { BORDER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 interface LogSimpleCardProps {
@@ -14,7 +14,9 @@ export const LogSimpleCardContainer = styled.div<LogSimpleCardProps>`
   border-radius: ${(props) => `${props.$radius}px`};
   cursor: pointer;
   overflow: hidden;
-  box-shadow: inset 0 -5px 50px rgba(0, 0, 0, 0.5);
+
+  border-width: ${BORDER.TINE_WIDTH}px;
+  border-color: ${(props) => props.theme.transparent_10};
 
   img {
     object-fit: cover;
@@ -74,7 +76,6 @@ export const LogSimpleCardInfo = styled.div`
   }
   strong {
     font-size: ${FONT_SIZE.MICRO};
-    color: ${({ theme }) => theme.white};
   }
 `;
 

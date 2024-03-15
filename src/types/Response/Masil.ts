@@ -37,3 +37,14 @@ export interface MasilsByPeriodResponse {
   totalCalories: number;
   masils: [{ date?: string; masils?: MasilsByPeriod[] }];
 }
+
+export interface RecentMasil {
+  id: number;
+  thumbnailUrl: string;
+  startedAt: string;
+}
+
+export interface RecentMasilsResponse {
+  masils: RecentMasil[];
+  isEmpty: boolean;
+}

@@ -1,4 +1,4 @@
-import { DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -6,14 +6,13 @@ export const UserEditLayout = styled(motion.form)`
   width: 100%;
   height: 100%;
   padding: 2rem;
-  padding-bottom: 4rem;
+  padding-bottom: 8rem;
 
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
   overflow-y: scroll;
-  ${DISPLAY_NONE_SCROLLBAR}
 `;
 
 export const UserEditSectionContainer = styled.article`
@@ -24,7 +23,7 @@ export const UserEditTitle = styled.h6`
   margin-bottom: 1.6rem;
   padding-left: 0.6rem;
 
-  font-size: ${FONT_SIZE.H5};
+  font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.BOLD};
 
   user-select: none;
@@ -42,8 +41,9 @@ export const UserEditWarning = styled.div`
 export const UserEditButtonWrapper = styled.div`
   width: 100%;
 
+  display: flex;
+  justify-content: center;
+
   position: absolute;
   bottom: 7rem;
-
-  opacity: 0.9;
 `;

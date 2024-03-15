@@ -5,30 +5,48 @@ import * as S from "./MateActions.styles";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { DefaultTheme } from "styled-components";
+import { Participant } from "@/types/OriginDataType";
+import { MateDetailResponse } from "@/types/Response";
+import { useMemo } from "react";
+import useMeStore from "@/stores/useMeStore";
 
-const MateActions = () => {
+interface MateActionsProps {
+  mateData: MateDetailResponse;
+  acceptedUserList: Participant[];
+  requestedUserList: Participant[];
+}
+
+const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActionsProps) => {
+  const { userId } = useMeStore();
   const theme = useTheme();
 
-  // 데이터가 확정되지 않아 추후 데이터를 고려하여 제작
+  const userStatus = useMemo(() => {
+    if (mateData.authorId === userId) {
+      return "AUTHOR";
+    }
 
-  // 상태를 변경시키기 위한 임시값
-  const isRequest = true;
-  const isPending = false;
+    if (mateData.status === "CLOSED") {
+      return "CLOSE";
+    }
 
-  const isInvited = false;
-  const isAuthorAndTimeOver = false;
+    const isAccept = acceptedUserList.find((acceptedUser) => acceptedUser.userId === userId);
 
-  const isCompleted = false;
-  const isRecording = false;
+    if (isAccept) {
+      return "ACCEPTED";
+    }
+
+    const isRequested = requestedUserList.find((acceptedUser) => acceptedUser.userId === userId);
+
+    if (isRequested) {
+      return "REQUESTED";
+    }
+
+    return "NO_ACTION";
+  }, [requestedUserList, acceptedUserList, mateData]);
 
   if (!theme) {
     return;
   }
-
-  /* 
-  TODO
-  merge 전 dev pull 후 버튼 수정 사항 반영하여 e.preventDefault 적용
-*/
 
   const handleClickRequest = () => {
     // 추후 요청하기에 대한 로직
@@ -40,30 +58,6 @@ const MateActions = () => {
     console.log("click Cancel button");
   };
 
-  const handleClickChatting = () => {
-    // 추후 취소에대한 모달 추가 제공
-    console.log("click Cancel button");
-  };
-
-  const handleClickStart = () => {
-    // 추후 메이트 산책을 시작
-
-    // 해당 기능에 대한 정확한 논의가 이루어진 상태는 아니지만 필요할것 같아서 임시로 구현
-    console.log("click Start button");
-  };
-
-  const handleClickEnd = () => {
-    // 추후 메이트 산책을 종료
-
-    // 해당 기능에 대한 정확한 논의가 이루어진 상태는 아니지만 필요할것 같아서 임시로 구현
-    console.log("click End button");
-  };
-
-  const handleClickCompletedChatting = () => {
-    // 추후 종료된 대화방으로 이동
-    console.log("click Completed Chatting List button");
-  };
-
   const ButtonList = {
     Request: createButton({ theme, text: "메이트 신청하기", onClick: handleClickRequest }),
     Pending: createButton({ theme, text: "요청중", disabled: true }),
@@ -73,43 +67,42 @@ const MateActions = () => {
       onClick: handleClickCancel,
       isSecondButton: true,
     }),
-    Chatting: createButton({ theme, text: "대화하기", onClick: handleClickChatting }),
-    Start: createButton({ theme, text: "산책 시작하기", onClick: handleClickEnd }),
-    End: createButton({ theme, text: "산책 종료하기", onClick: () => {} }),
-    Completed: createButton({ theme, text: "메이트 산책 완료", disabled: true }),
+    // Chatting: createButton({ theme, text: "대화하기", onClick: handleClickChatting }),
+    Accepted: createButton({ theme, text: "참여중 입니다.", disabled: true }),
+    Completed: createButton({ theme, text: "종료된 메이트", disabled: true }),
   };
 
   return (
     <S.MateActionsLayout>
-      {isRequest && ButtonList.Request}
+      {userStatus === "NO_ACTION" && ButtonList.Request}
 
-      {isPending && (
+      {userStatus === "REQUESTED" && (
         <>
           {ButtonList.Pending}
           {ButtonList.Cancel}
         </>
       )}
 
-      {isInvited && (
+      {userStatus === "ACCEPTED" && (
         <>
-          {isAuthorAndTimeOver && ButtonList.Start}
-          {ButtonList.Chatting}
+          {ButtonList.Accepted}
           {ButtonList.Cancel}
         </>
       )}
 
-      {isRecording && ButtonList.End}
-
-      {isCompleted && (
+      {userStatus === "CLOSE" && (
         <>
           {ButtonList.Completed}
 
-          <Button
+          {/* <Button
             variant="naked"
             onClickHandler={handleClickCompletedChatting}
+            style={{
+              padding: "1rem",
+            }}
           >
             지난 대화 확인하기
-          </Button>
+          </Button> */}
         </>
       )}
     </S.MateActionsLayout>
@@ -117,8 +110,6 @@ const MateActions = () => {
 };
 
 export default MateActions;
-
-// MateActions 에서만 사용되어지는 버튼
 
 interface CreateButtonProps {
   text: string;

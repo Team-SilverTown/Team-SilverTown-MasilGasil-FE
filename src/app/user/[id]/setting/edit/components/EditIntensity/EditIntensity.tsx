@@ -3,13 +3,13 @@
 import * as GS from "../../UserEdit.styles";
 import * as S from "./EditIntensity.styles";
 import { UseFormRegister } from "react-hook-form";
-import { UserEditData } from "../../UserEdit.types";
 import { INTENSITY_OPTIONS } from "@/lib/constants/variable";
 import { IntensityOption } from "@/types/OriginDataType";
 import { UserIntensityItem } from "@/components";
+import { MeResponse } from "@/types/Response";
 
 interface EditIntensityProps {
-  register: UseFormRegister<UserEditData>;
+  register: UseFormRegister<MeResponse>;
   selectedIntensity: IntensityOption;
 }
 
@@ -28,7 +28,7 @@ const EditIntensity = ({ register, selectedIntensity }: EditIntensityProps) => {
             value={value}
             optionDescription={label}
             isSelected={selectedIntensity === value}
-            register={register("intensity")}
+            register={register("exerciseIntensity")}
           />
         ))}
       </S.IntensityOptionList>

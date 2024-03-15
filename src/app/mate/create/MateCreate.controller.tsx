@@ -17,6 +17,8 @@ export interface MateCreateProps {
 
 const MateCreateController = () => {
   const {
+    thumbnail,
+    setThumbnail,
     isFormFilled,
     setIsFormFilled,
     selectedPersonnel,
@@ -25,6 +27,8 @@ const MateCreateController = () => {
     setStartDate,
     startTime,
     setStartTime,
+    locationDetail,
+    setLocationDetail,
   } = useMateCreateModel();
 
   const {
@@ -42,16 +46,25 @@ const MateCreateController = () => {
     const allFieldsFilled = !!(
       watchedFields.title &&
       watchedFields.content &&
-      watchedFields.location &&
+      thumbnail &&
       startDate &&
       startTime &&
-      selectedPersonnel
+      selectedPersonnel &&
+      locationDetail
     );
     setIsFormFilled(allFieldsFilled);
-  }, [watchedFields, startDate, startTime, selectedPersonnel]);
+  }, [watchedFields, thumbnail, startDate, startTime, selectedPersonnel, locationDetail]);
+
+  const handleUpdateThumbnail = (file: File | null) => {
+    setThumbnail(file);
+  };
 
   const handlePersonnelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPersonnel(event.target.value);
+  };
+
+  const handleLocationSubmit = ({ detail }: { detail: string }) => {
+    setLocationDetail(detail);
   };
 
   const onValid = (data: MateCreateProps) => {
@@ -65,10 +78,10 @@ const MateCreateController = () => {
 
     const completeData = {
       ...data,
-      startDate,
-      startTime,
+      thumbnail,
       gatheringAt,
       selectedPersonnel,
+      locationDetail,
     };
     console.log("Complete Form Data:", completeData);
   };
@@ -82,12 +95,15 @@ const MateCreateController = () => {
       register={register}
       handleSubmit={handleSubmit(onValid, onInvalid)}
       isFormFilled={isFormFilled}
+      updateThumbnail={handleUpdateThumbnail}
       handlePersonnelChange={handlePersonnelChange}
       startDate={startDate}
       setStartDate={setStartDate}
       startTime={startTime}
       setStartTime={setStartTime}
       selectedPersonnel={selectedPersonnel}
+      locationDetail={locationDetail}
+      onLocationSubmit={handleLocationSubmit}
     />
   );
 };

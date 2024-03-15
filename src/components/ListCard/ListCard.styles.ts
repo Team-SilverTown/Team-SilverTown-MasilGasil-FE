@@ -4,10 +4,10 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 interface ListCardThumbnailProps {
-  thumbnailURL: string;
-  isRecruit: boolean;
-  isLiked: boolean;
-  likeCount: number;
+  $thumbnailURL: string;
+  $isRecruit: boolean;
+  $isLiked: boolean;
+  $likeCount: number;
 }
 
 export const ListCardContainer = styled.div`
@@ -23,7 +23,7 @@ export const ListCardContainer = styled.div`
 
 export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
   height: 16rem;
-  background-image: ${(props) => `url(${props.thumbnailURL})`};
+  background-image: ${(props) => `url(${props.$thumbnailURL})`};
   background-size: cover;
   background-position: center;
   border-top-left-radius: 0.8rem;
@@ -53,8 +53,8 @@ export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
       cursor: pointer;
 
       svg {
-        stroke: ${(props) => (props.isLiked ? props.theme.pink_100 : props.theme.black)};
-        fill: ${(props) => props.isLiked && props.theme.pink_100};
+        stroke: ${(props) => (props.$isLiked ? props.theme.pink_100 : props.theme.black)};
+        fill: ${(props) => props.$isLiked && props.theme.pink_100};
         transition: all 0.1s;
       }
 
@@ -65,13 +65,13 @@ export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
         transform: translateX(-50%);
         display: inline-block;
         font-size: ${FONT_SIZE.MICRO};
-        color: ${(props) => (props.isLiked ? props.theme.pink_100 : props.theme.black)};
+        color: ${(props) => (props.$isLiked ? props.theme.pink_100 : props.theme.black)};
         transition: all 0.1s;
       }
 
       &:hover {
         svg {
-          stroke: ${(props) => !props.isLiked && props.theme.pink_100};
+          stroke: ${(props) => !props.$isLiked && props.theme.pink_100};
           fill: ${(props) => props.theme.pink_100};
         }
 

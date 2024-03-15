@@ -1,6 +1,6 @@
 "use client";
 
-import { DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const IntensityItemContainer = styled.li`
@@ -35,10 +35,8 @@ export const IntensityItemCircle = styled.i<{ $isSelected: boolean }>`
 export const IntensityOptionDescription = styled.p`
   flex-grow: 1;
 
-  font-size: ${FONT_SIZE.LARGE};
+  font-size: ${FONT_SIZE.MEDIUM};
   font-weight: ${FONT_WEIGHT.MEDIUM};
   white-space: nowrap;
   overflow: scroll;
-
-  ${DISPLAY_NONE_SCROLLBAR}
 `;

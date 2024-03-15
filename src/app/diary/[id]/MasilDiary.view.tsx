@@ -46,6 +46,7 @@ const MasilDiaryView = () => {
             setCurrentTabIdx(index);
           }}
           focusedTab={currentTabIdx}
+          layoutId="diary-underline"
           style={{ fontSize: "1.6rem" }}
         />
         {currentTabIdx === TabIndex.Calendar && (

@@ -72,7 +72,7 @@ const MoreListView = ({ keyword, order }: MoreListViewProps) => {
               content={`${order}${list.id}`}
               totalTime={10000}
               distance={100}
-              thumbnailURL="test"
+              thumbnailUrl="test"
               address="테스트"
               style={{ marginBottom: "2rem" }}
             />
