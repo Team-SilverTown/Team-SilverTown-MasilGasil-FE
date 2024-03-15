@@ -1,4 +1,4 @@
-import { CONTAINER, DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { CONTAINER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostCreateLayout = styled.section`
@@ -67,7 +67,6 @@ export const PostCreateSheetContent = styled.div`
   gap: 2rem;
 
   overflow: scroll;
-  ${DISPLAY_NONE_SCROLLBAR}
 `;
 
 export const PostCreateButtonWrapper = styled.div`

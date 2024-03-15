@@ -14,12 +14,12 @@ import { calculateAge } from "@/utils";
 
 import useSignUpModel from "./SignUp.model";
 import SignUpView from "./SignUp.view";
-import { SignUpStep1, SignUpStep2, SignUpStep3, SignUpStep4 } from "./sections";
+import { SignUpStep1, SignUpStep2, SignUpStep3, SignUpStep4, SignUpStep5 } from "./sections";
 import { validation_user } from "@/lib/constants/userConstants";
 
 export interface SignUpFormProps extends SignUpRequest {}
 
-const LAST_STEP_INDEX = 3;
+export const LAST_STEP_INDEX = 4;
 
 const SignUpController = () => {
   const router = useRouter();
@@ -112,22 +112,28 @@ const SignUpController = () => {
   }, [getValues(), errors, nickNameConfirm]);
 
   const isStep2Validate = useMemo(() => {
-    const checkSex = !getValues("sex") || !!errors?.sex?.message;
     const checkBirthDate =
       !getValues("birthDate") || !userAgeConfirm || !!errors?.birthDate?.message;
-    const checkHeight = !getValues("height") || !!errors?.height?.message;
-    const checkWeight = !getValues("weight") || !!errors?.weight?.message;
 
-    if (checkSex || checkBirthDate || checkHeight || checkWeight) return false;
+    if (checkBirthDate) return false;
     return true;
   }, [getValues(), errors]);
 
   const isStep3Validate = useMemo(() => {
-    if (!getValues("exerciseIntensity")) return false;
+    const checkSex = !getValues("sex") || !!errors?.sex?.message;
+    const checkHeight = !getValues("height") || !!errors?.height?.message;
+    const checkWeight = !getValues("weight") || !!errors?.weight?.message;
+
+    if (checkSex || checkHeight || checkWeight) return false;
     return true;
   }, [getValues(), errors]);
 
   const isStep4Validate = useMemo(() => {
+    if (!getValues("exerciseIntensity")) return false;
+    return true;
+  }, [getValues(), errors]);
+
+  const isStep5Validate = useMemo(() => {
     if (
       !getValues("isPersonalInfoConsented") ||
       !getValues("isLocationInfoConsented") ||
@@ -138,7 +144,13 @@ const SignUpController = () => {
   }, [watch()]);
 
   // 각 step 별 유효성 검사 결과 boolean 값을 가지고 있습니다.
-  const stepValidations = [isStep1Validate, isStep2Validate, isStep3Validate, isStep4Validate];
+  const stepValidations = [
+    isStep1Validate,
+    isStep2Validate,
+    isStep3Validate,
+    isStep4Validate,
+    isStep5Validate,
+  ];
 
   const nextButtonClickHandler = (isSkip = false) => {
     if (focusedStep >= LAST_STEP_INDEX) return;
@@ -153,13 +165,12 @@ const SignUpController = () => {
   };
 
   const skipFunctions = {
-    1: () => {
+    2: () => {
       setValue("sex", undefined);
-      setValue("birthDate", undefined);
       setValue("height", undefined);
       setValue("weight", undefined);
     },
-    2: () => {
+    3: () => {
       setValue("exerciseIntensity", undefined);
     },
   };
@@ -183,16 +194,20 @@ const SignUpController = () => {
       duplicateRefetch={duplicateRefetch}
     />,
     <SignUpStep2
-      getValues={getValues}
-      setValue={setValue}
       register={register}
       errors={errors}
     />,
     <SignUpStep3
       getValues={getValues}
+      setValue={setValue}
       register={register}
+      errors={errors}
     />,
     <SignUpStep4
+      getValues={getValues}
+      register={register}
+    />,
+    <SignUpStep5
       getValues={getValues}
       setValue={setValue}
     />,
@@ -204,6 +219,7 @@ const SignUpController = () => {
         leftChildren={<GoBackButton onGoBackHandler={prevButtonClickHandler} />}
         rightChildren={
           focusedStep === 0 ||
+          focusedStep === 1 ||
           (focusedStep !== LAST_STEP_INDEX && (
             <StepSkipButton onSkipHandler={() => nextButtonClickHandler(true)} />
           ))

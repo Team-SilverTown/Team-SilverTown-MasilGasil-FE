@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { BORDER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import Divider from "@/components/Divider/Divider";
 
 export const Layout = styled.div`
   width: 100%;
@@ -18,7 +17,7 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
   padding: 0rem 0.5rem;
   display: flex;
   justify-content: space-between;
@@ -54,7 +53,7 @@ export const Section = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  gap: 3rem;
+  gap: 2rem;
 
   @media (max-width: 375px) {
     flex-direction: column;
@@ -78,7 +77,6 @@ export const SectionItem = styled.div`
   font-weight: ${FONT_WEIGHT.BOLD};
 
   @media (min-width: 700px) {
-    /* padding: 1rem 2rem; */
     min-width: 10rem;
   }
 `;

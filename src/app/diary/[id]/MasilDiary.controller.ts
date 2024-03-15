@@ -35,7 +35,7 @@ const useMasilDiaryController = () => {
    */
   useEffect(() => {
     const [year, month, day] = [date?.getFullYear(), date?.getMonth(), date?.getDate()];
-    const selectedDate = `${year}-0${month !== undefined && month + 1}-${day}`;
+    const selectedDate = `${year}-${month !== undefined && month + 1 < 10 ? "0" : ""}${month !== undefined && month + 1}-${day !== undefined && day < 10 ? "0" : ""}${day}`;
 
     if (!masilData || masilData.masils.length <= 0) {
       setDailyMasils(null);
@@ -43,7 +43,7 @@ const useMasilDiaryController = () => {
       setMonthlyMasilsDate([]);
       return;
     }
-    
+
     const tempDailyMasils = masilData.masils.filter((m) => m.date === selectedDate)[0]
       ? masilData.masils.filter((m) => m.date === selectedDate)[0].masils
       : undefined;
@@ -106,10 +106,13 @@ const useMasilDiaryController = () => {
    * @breif 선택한 날짜를 갱신합니다. 월 단위로 변경되며, 변경된 값을 Query Params로 넘겨줍니다.
    */
   const handleChangeMonth = useCallback(
-    (day: Date | undefined) => {
-      if (day) {
-        setDate(day);
-        delayedPush(id, day.toLocaleDateString("en-CA"));
+    (changedMonth: Date | undefined) => {
+      if (changedMonth) {
+        const [year, month] = [changedMonth?.getFullYear(), changedMonth?.getMonth()];
+        const selectedDate = `${year}-${month !== undefined && month + 1 < 10 ? "0" : ""}${month !== undefined && month + 1}-01`;
+
+        setDate(changedMonth);
+        delayedPush(id, selectedDate);
       }
     },
     [delayedPush, id],

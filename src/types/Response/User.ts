@@ -16,6 +16,14 @@ export interface MeResponse {
   isPublic: boolean;
 }
 
+export interface ProfileResponse {
+  nickname: string;
+  profileImg: string;
+  totalDistance: number;
+  totalCount: number;
+  totalCalories: number;
+}
+
 export interface CheckNickNameResponse {
   isDuplicated: boolean;
   nickname: string;

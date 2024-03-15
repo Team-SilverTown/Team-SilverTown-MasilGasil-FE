@@ -22,6 +22,6 @@ export interface PostListRequest {
   depth2: string;
   depth3: string;
   order: "LATEST" | "MOST_POPULAR";
-  cursor: string;
-  size: number;
+  cursor?: string;
+  size?: number;
 }

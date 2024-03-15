@@ -34,6 +34,7 @@ export const BirthDateTitleWrapper = styled.div`
 
 export const PhysicalSection = styled.section`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 3rem;
   gap: 1.2rem;
