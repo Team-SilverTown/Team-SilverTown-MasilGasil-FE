@@ -11,7 +11,7 @@ const WalkStartButton = () => {
         variant="neumorp"
         buttonColor={Theme.lightTheme.green_500}
         textColor={Theme.lightTheme.white}
-        width="100%"
+        width="calc(100% - 3rem)"
         style={{
           position: "fixed",
           left: "50%",
