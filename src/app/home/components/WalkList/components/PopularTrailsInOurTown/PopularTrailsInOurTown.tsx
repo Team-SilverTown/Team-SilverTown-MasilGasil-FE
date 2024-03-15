@@ -1,18 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
 import useUserLocationStore from "@/stores/useUserLocationStore";
 
-import getDetailedAddress from "@/app/home/utils/getAddress";
+import getDetailedAddress from "@/app/home/utils/getDetailedAddress";
 import showErrorMessage from "@/app/home/utils/showErrorMessage";
 
-import { More } from "@/components/icons";
 import PopularWalkList from "./components/PopularWalkList";
-
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import * as S from "./PopularTrailsInOurTown.styles";
 
 const PopularTrailsInOurTown = () => {
   const [location, setLocation] = useState({
@@ -25,9 +20,7 @@ const PopularTrailsInOurTown = () => {
     const lat = coords.latitude;
     const lng = coords.longitude;
 
-    if (lat > 0 && lng > 0) {
-      setLocation({ lat, lng });
-    }
+    setLocation({ lat, lng });
   };
 
   useEffect(() => {
@@ -52,19 +45,7 @@ const PopularTrailsInOurTown = () => {
     GetDetailedAddress();
   }, [GetDetailedAddress]);
 
-  return (
-    <section className={S.WalkListSection}>
-      <article className={S.HomeWalkListArticle}>
-        <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>
-          우리 동네 인기 산책로
-        </h3>
-        <Link href="/more?keyword=area_popular&order=popular">
-          <More />
-        </Link>
-      </article>
-      <PopularWalkList userAddress={userAddress} />
-    </section>
-  );
+  return <PopularWalkList userAddress={userAddress} />;
 };
 
 export default PopularTrailsInOurTown;
