@@ -11,6 +11,7 @@ import { checkDuplicateNickname, postEditUser } from "@/lib/api/User/client";
 import { throttle } from "lodash";
 import { useUI } from "@/components/uiContext/UiContext";
 import useMeStore from "@/stores/useMeStore";
+import { useRouter } from "next/navigation";
 
 interface UserEditControllerProps {
   userDefaultData: MeResponse;
@@ -34,7 +35,8 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
   const selectedIntensity = watch("exerciseIntensity");
 
   const { setModalView, openModal } = useUI();
-  const { setMe } = useMeStore();
+  const { setMe, userId } = useMeStore();
+  const router = useRouter();
 
   const nickNameMutation = useMutation({
     mutationKey: [USER_KEY.CHECK_NICKNAME],
@@ -72,17 +74,21 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
       return;
     }
 
-    /*
-      TODO
-
-      최종 검증 후 업데이트 로직 수행
-    */
-
     editUserMutation.mutate(data, {
       onSuccess: (editedData) => {
         setMe(editedData);
 
         setModalView("DONE_VIEW");
+        openModal({ message: "성공적으로 변경되었습니다!" });
+
+        router.replace(`/user/${userId}`);
+      },
+
+      onError: () => {
+        setModalView("ANIMATION_ALERT_VIEW");
+        openModal({
+          message: "업로드 과정에서 문제가 발생하였습니다.<br>잠시 후 다시 시도해주세요.",
+        });
       },
     });
   };

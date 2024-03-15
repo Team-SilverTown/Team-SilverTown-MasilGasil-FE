@@ -8,7 +8,7 @@ import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { useUI } from "@/components/uiContext/UiContext";
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect } from "react";
 
 const defaultOptions = {
   loop: false,
@@ -32,7 +32,16 @@ interface ModalProp {
 const DoneModal = ({ props }: ModalProp) => {
   const theme = useTheme();
   const { closeModal } = useUI();
-  const {} = props;
+  const { message, cancelButtonText = "닫기", textStyle } = props;
+
+  useEffect(() => {
+    const messageElement = document.querySelector("#done_modal_message_box");
+
+    if (messageElement) {
+      messageElement.innerHTML = message;
+    }
+  }, [message]);
+
   return (
     <ModalLayout>
       <S.DoneLayout>
@@ -43,7 +52,12 @@ const DoneModal = ({ props }: ModalProp) => {
           isClickToPauseDisabled={true}
         />
 
-        <S.DoneTitle>산책로가 등록되었습니다!</S.DoneTitle>
+        <S.DoneTitle
+          id={"done_modal_message_box"}
+          style={textStyle}
+        >
+          {message}
+        </S.DoneTitle>
 
         <Button
           buttonColor={theme?.green_500}
@@ -55,7 +69,7 @@ const DoneModal = ({ props }: ModalProp) => {
           }}
           onClickHandler={closeModal}
         >
-          닫기
+          {cancelButtonText}
         </Button>
       </S.DoneLayout>
     </ModalLayout>

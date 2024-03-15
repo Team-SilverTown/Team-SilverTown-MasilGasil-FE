@@ -201,7 +201,7 @@ export const PostCreateContextProvider = ({
             router.push(`/post/${id}`);
 
             setModalView("DONE_VIEW");
-            openModal();
+            openModal({ message: "산책로가 등록되었습니다!" });
           },
 
           onError: () => {
