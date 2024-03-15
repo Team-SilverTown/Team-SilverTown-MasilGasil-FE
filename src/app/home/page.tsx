@@ -1,14 +1,31 @@
 import dynamic from "next/dynamic";
 import { HomeSkeleton } from "@/components/skeletons";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/options";
+import { getPopularWalkingTrails } from "@/lib/api/home/server";
+import { getMe } from "@/lib/api/User/server";
 
-const Home = () => {
-  // 서버사이드 컴포넌트이고 데이터 패칭 작업이 없어서 로딩 여부를 알 수 없는 경우 다음과 같이
-  // 스켈레톤을 보여줄 수 있습니다.
-  const HomeController = dynamic(() => import("./Home.controller"), {
+const Home = async () => {
+  const HomeView = dynamic(() => import("./Home.view"), {
     loading: () => <HomeSkeleton />,
   });
 
-  return <HomeController />;
+  const session = await getServerSession(authOptions);
+
+  const popularWalkingTrails = await getPopularWalkingTrails(session?.serviceToken!);
+  const userInfo = await getMe(session?.serviceToken!);
+
+  if (!userInfo || !popularWalkingTrails) {
+    return;
+  }
+
+  return (
+    <HomeView
+      MyLikeWalkingTrailsList={popularWalkingTrails}
+      PopularWalkingTrailsList={popularWalkingTrails}
+      userInfo={userInfo}
+    />
+  );
 };
 
 export default Home;
