@@ -13,7 +13,7 @@ export const BorderTitleSection = styled.div`
 
   h3 {
     font-size: ${FONT_SIZE.LARGE};
-    font-weight: ${FONT_WEIGHT.REGULAR};
+    font-weight: ${FONT_WEIGHT.SEMIBOLD};
     color: ${(props) => props.theme.black};
   }
 

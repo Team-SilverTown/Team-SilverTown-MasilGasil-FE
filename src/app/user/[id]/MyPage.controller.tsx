@@ -16,9 +16,9 @@ interface MyPageControllerProps {
 /**
  * 내 통계
  * 내 산책
- * - 나의 산책일지 (최근 산책로)
- * - 내가 작성한 산책로
- * - 내가 좋아하는 산책로
+ * - 최근에 다녀온 산책
+ * - 작성한 산책로
+ * - 좋아요한 산책로
  */
 
 const MyPageController = ({ userId }: MyPageControllerProps) => {

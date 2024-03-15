@@ -14,6 +14,7 @@ interface MyRecordListProps {
   recordList: MasilsListType[] | PostsListType[];
   type: "Masils" | "Posts";
   userInfo: MeResponse;
+  key?: string | number;
 }
 
 const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordListProps) => {

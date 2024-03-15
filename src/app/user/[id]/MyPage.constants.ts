@@ -265,7 +265,7 @@ export const POSTS_DUMMY_DATA: PostsListType[] = [
 
 export const RECORDLIST_DUMMY_DATA: MyRecordListType[] = [
   {
-    title: "내 최근 산책 기록",
+    title: "최근에 다녀온 산책",
     urlLink: "/diary/test",
     recordList: MASILS_DUMMY_DATA, // 이 값은 추후 API 데이터로 변경
     type: "Masils",

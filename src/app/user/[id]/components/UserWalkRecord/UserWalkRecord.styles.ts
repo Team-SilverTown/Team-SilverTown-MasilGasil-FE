@@ -14,7 +14,6 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.white};
   border-width: ${BORDER.TINE_WIDTH}px;
   border-color: ${(props) => props.theme.transparent_10};
-  box-shadow: 0 2px 7.8px 0 rgba(0, 0, 0, 0.02);
 `;
 
 export const Header = styled.div`
@@ -37,8 +36,7 @@ export const Text = styled.span``;
 
 export const AccentText = styled.span`
   font-weight: ${FONT_WEIGHT.BOLD};
-  color: ${(props) => props.theme.green_300};
-  font-size: ${FONT_SIZE.H5};
+  font-size: ${FONT_SIZE.H6};
 `;
 
 export const Section = styled.section`
@@ -47,14 +45,13 @@ export const Section = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  gap: 2rem;
+  gap: 3rem;
 
   @media (max-width: 375px) {
     flex-direction: column;
   }
 
-  @media (min-width: 700px) {
-    padding: 1rem 2rem;
+  @media (min-width: 500px) {
     gap: 4rem;
   }
 `;
@@ -70,18 +67,18 @@ export const SectionItem = styled.div`
 
   font-weight: ${FONT_WEIGHT.BOLD};
 
-  @media (min-width: 700px) {
-    min-width: 10rem;
+  @media (min-width: 500px) {
+    min-width: 8rem;
   }
 `;
 
 export const ColDivider = styled.div`
   width: 1px;
-  height: 3rem;
+  height: 6rem;
   background-color: ${(props) => props.theme.gray_100};
 
   @media (max-width: 375px) {
-    width: 3rem;
+    width: 10rem;
     height: 1px;
   }
 `;

@@ -27,7 +27,7 @@ export const HeaderContainer = styled.div`
   font-size: ${FONT_SIZE.H6};
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
   padding: 0rem 1.25rem;
-  margin: 4rem 0rem 1rem 0rem;
+  margin: 4rem 0rem 2rem 0rem;
   user-select: none;
 
   display: flex;

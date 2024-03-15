@@ -28,7 +28,7 @@ const MyPageView = ({ boardList, userInfo, userId }: MyPageViewProps) => {
           />
           <S.HeaderContainer>
             <h3>통계</h3>
-            <Divider />
+            <Divider style={{ backgroundColor: "#EFEFEF" }} />
           </S.HeaderContainer>
           <UserWalkRecord
             totalWalkDistance={11000}
@@ -38,10 +38,11 @@ const MyPageView = ({ boardList, userInfo, userId }: MyPageViewProps) => {
 
           <S.HeaderContainer>
             <h3>산책</h3>
-            <Divider />
+            <Divider style={{ backgroundColor: "#EFEFEF" }} />
           </S.HeaderContainer>
-          {boardList.map(({ title, urlLink, recordList, type }) => (
+          {boardList.map(({ title, urlLink, recordList, type }, index) => (
             <MyRecordList
+              key={index}
               title={title}
               urlLink={urlLink}
               recordList={recordList}
