@@ -11,19 +11,12 @@ import { Participant } from "@/types/OriginDataType";
 interface MateInfoProps {
   postId: string;
   acceptedUserList: Participant[];
+  requestedUserList: Participant[];
   mateData: MateDetailResponse;
 }
 
-const MateInfo = ({ mateData, postId, acceptedUserList }: MateInfoProps) => {
-  const {
-    authorProfileUrl,
-    authorNickname,
-    content,
-    gatheringAt,
-    capacity,
-    participants,
-    authorId,
-  } = mateData;
+const MateInfo = ({ mateData, postId, acceptedUserList, requestedUserList }: MateInfoProps) => {
+  const { authorProfileUrl, authorNickname, content, gatheringAt, capacity, authorId } = mateData;
 
   return (
     <article className={`${GS.MateInformationContainer} py-4 flex flex-col gap-12`}>
@@ -53,7 +46,11 @@ const MateInfo = ({ mateData, postId, acceptedUserList }: MateInfoProps) => {
         </li>
       </ul>
 
-      <MateActions />
+      <MateActions
+        acceptedUserList={acceptedUserList}
+        requestedUserList={requestedUserList}
+        mateData={mateData}
+      />
     </article>
   );
 };

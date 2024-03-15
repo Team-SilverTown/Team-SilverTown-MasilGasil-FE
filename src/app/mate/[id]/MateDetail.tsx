@@ -31,6 +31,7 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
             postId={postId}
             mateData={mateData}
             acceptedUserList={acceptedUserList}
+            requestedUserList={requestedUserList}
           />
 
           <Divider />

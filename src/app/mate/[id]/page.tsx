@@ -22,6 +22,8 @@ export default Mate;
 const DUMMY: MateDetailResponse = {
   id: 1,
   title: "title",
+  postId: 5,
+  status: "OPEN",
   content: "content",
   gatheringPlacePoint: {
     lat: 37.498095,
@@ -32,25 +34,42 @@ const DUMMY: MateDetailResponse = {
   participants: [
     {
       id: 1,
+      userId: 1,
       nickname: "산책초보",
       profileUrl: null,
       status: "ACCEPTED",
     },
     {
       id: 2,
+      userId: 2,
       nickname: "산책개고수",
       profileUrl: null,
       status: "ACCEPTED",
     },
     {
       id: 3,
+      userId: 29,
+      nickname: "이상한 사람",
+      profileUrl: null,
+      status: "ACCEPTED",
+    },
+    {
+      id: 3,
+      userId: 4,
+      nickname: "이상한 사람",
+      profileUrl: null,
+      status: "REQUESTED",
+    },
+    {
+      id: 3,
+      userId: 88,
       nickname: "이상한 사람",
       profileUrl: null,
       status: "REQUESTED",
     },
   ],
   capacity: 3,
-  authorId: 29,
+  authorId: 5,
   authorNickname: "산책쌉고수",
   authorProfileUrl: null,
 };
