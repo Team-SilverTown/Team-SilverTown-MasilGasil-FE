@@ -28,7 +28,7 @@ const MembersList = ({ participants, isApplicantList = false }: MembersListProps
       {participants &&
         participants.map((user) => (
           <MemberItem
-            key={user.id}
+            key={user.userId}
             participants={user}
             isApplicantItem={isApplicantList}
             onAccept={handleAccept}

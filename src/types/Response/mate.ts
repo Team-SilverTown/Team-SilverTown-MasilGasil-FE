@@ -2,6 +2,8 @@ import { GeoPosition, Participant } from "../OriginDataType";
 
 export interface MateDetailResponse {
   id: number;
+  postId: number;
+
   title: string;
   content: string;
 
