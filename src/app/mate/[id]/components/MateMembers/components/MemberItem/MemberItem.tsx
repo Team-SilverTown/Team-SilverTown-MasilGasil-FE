@@ -9,10 +9,17 @@ import { Participant } from "@/types/OriginDataType";
 interface MemberItemProps {
   participants: Participant;
   isApplicantItem?: boolean;
+  onAccept: () => void;
+  onCancel: () => void;
   key?: string | number;
 }
 
-const MemberItem = ({ participants, isApplicantItem = false }: MemberItemProps) => {
+const MemberItem = ({
+  participants,
+  onAccept,
+  onCancel,
+  isApplicantItem = false,
+}: MemberItemProps) => {
   const { profileUrl, nickname, id } = participants;
 
   return (
@@ -28,13 +35,13 @@ const MemberItem = ({ participants, isApplicantItem = false }: MemberItemProps) 
         <S.MemberAction>
           <MateButton
             text={"수락"}
-            onClick={() => {}}
+            onClick={onAccept}
           />
 
           <MateButton
             text={"거절"}
             isCancelButton={true}
-            onClick={() => {}}
+            onClick={onCancel}
           />
         </S.MemberAction>
       )}
