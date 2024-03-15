@@ -1,11 +1,15 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, MouseEvent } from "react";
 import { UseFormRegister } from "react-hook-form";
 
 import { Input, Textarea, Button } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
+import Image from "@/components/icons/Image";
+import { useUI } from "@/components/uiContext/UiContext";
+import { MateGatheringPlace } from "@/types/OriginDataType";
+import Theme from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
 import * as GS from "@/styles/GlobalStyle";
 
@@ -15,17 +19,21 @@ import { regularFields } from "./MateCreate.constants";
 
 import { CalendarDatePicker, OptionTimePicker } from "./components";
 import { DefaultTheme } from "styled-components";
+import InputUpload from "@/components/InputUpload/InputUpload";
 
 interface MateCreateViewProps {
   register: UseFormRegister<MateCreateProps>;
   handleSubmit: () => void;
   isFormFilled: boolean;
+  updateThumbnail: (file: File | null) => void;
   handlePersonnelChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   startDate: Date | null;
   setStartDate: Dispatch<SetStateAction<Date | null>>;
   startTime: Date | null;
   setStartTime: Dispatch<SetStateAction<Date | null>>;
   selectedPersonnel: string;
+  locationDetail: string;
+  onLocationSubmit: (location: MateGatheringPlace) => void;
 }
 
 interface MateCreateButtonProps {
@@ -51,14 +59,28 @@ const MateCreateView = ({
   register,
   handleSubmit,
   isFormFilled,
+  updateThumbnail,
   handlePersonnelChange,
   startDate,
   setStartDate,
   startTime,
   setStartTime,
   selectedPersonnel,
+  locationDetail,
+  onLocationSubmit,
 }: MateCreateViewProps) => {
   const theme = useTheme();
+
+  const { setModalView, openModal } = useUI();
+
+  const handleOpenLocationModal = () => {
+    setModalView("MATE_CREATE_MAP_VIEW");
+    openModal({
+      baseLocation: { lat: 37.497, lng: 127.0254 },
+      locationDetail: locationDetail,
+      onSubmit: onLocationSubmit,
+    });
+  };
 
   return (
     <S.MateCreateContainer>
@@ -71,16 +93,7 @@ const MateCreateView = ({
         {regularFields.map((field, index) => (
           <S.Section key={index}>
             <S.Title>{field.title}</S.Title>
-            {field.type === "textarea" && (
-              <Textarea
-                placeholder={field.placeholder}
-                register={register(field.name)}
-                style={{
-                  fontSize: "1.5rem",
-                }}
-              />
-            )}
-            {field.type !== "textarea" && field.name !== "date" && (
+            {field.name === "title" && (
               <Input
                 placeholder={field.placeholder}
                 register={register(field.name)}
@@ -89,6 +102,34 @@ const MateCreateView = ({
                   fontSize: "1.5rem",
                 }}
               />
+            )}
+            {field.name === "thumbnail" && (
+              <InputUpload updateFile={updateThumbnail}>
+                <S.PinEditThumbnail>
+                  <Image
+                    width={40}
+                    fill={Theme.lightTheme.gray_300}
+                  />
+                  클릭하여 썸네일 업로드
+                </S.PinEditThumbnail>
+              </InputUpload>
+            )}
+            {field.name === "content" && (
+              <Textarea
+                placeholder={field.placeholder}
+                register={register(field.name)}
+                style={{
+                  fontSize: "1.5rem",
+                }}
+              />
+            )}
+            {field.name === "location" && (
+              <S.OpenModal
+                onClick={handleOpenLocationModal}
+                $isSelected={!!locationDetail}
+              >
+                {locationDetail || field.placeholder}
+              </S.OpenModal>
             )}
             {field.name === "date" && (
               <CalendarDatePicker
