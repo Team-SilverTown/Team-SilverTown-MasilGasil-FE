@@ -61,15 +61,7 @@ const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordLi
                     distance={convertMeter(distance)}
                     totalTime={convertSeconds(totalTime)}
                     totalDistance={distance}
-                    likeCount={likeCount}
-                    isLiked={true}
-                    isLikeLayout={true}
-                    isSettingLayout={true}
                     onDetailClick={() => router.push(`/post/${id}`)}
-                    onLikeClick={(event) => {
-                      event.stopPropagation();
-                      console.log("like 클릭 !!");
-                    }}
                   />
                 </li>
               ),

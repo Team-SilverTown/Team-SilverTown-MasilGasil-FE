@@ -1,29 +1,26 @@
 "use client";
-
 import { CSSProperties, useState } from "react";
 import Image from "next/image";
 import { calculateWalkingCalories } from "@/utils";
 import { MeResponse } from "@/types/Response";
 import { Heart, KebabMenu } from "../icons";
 import * as S from "./LogDetailCard.style";
-
 export interface LogDetailCardProps {
   title: string;
   content: string;
   thumbnailUrl: string | null;
   distance: string;
-  totalDistance: number;
+  totalDistance?: number;
   totalTime: string;
-  likeCount: number;
-  isLiked: boolean;
-  isLikeLayout: boolean;
-  isSettingLayout: boolean;
+  likeCount?: number;
+  isLiked?: boolean;
+  isLikeLayout?: boolean;
+  isSettingLayout?: boolean;
   userInfo?: MeResponse;
   style?: CSSProperties;
-  onDetailClick: () => void;
+  onDetailClick?: () => void;
   onLikeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
-
 const LogDetailCard = ({
   title,
   content,
@@ -33,8 +30,8 @@ const LogDetailCard = ({
   totalTime,
   likeCount,
   isLiked,
-  isLikeLayout,
-  isSettingLayout,
+  isLikeLayout = false,
+  isSettingLayout = false,
   userInfo,
   style,
   onDetailClick,
@@ -45,32 +42,27 @@ const LogDetailCard = ({
   //   userInfo,
   //   distance: totalDistance,
   // });
-
   const handleDetailViewClick = () => {
     if (isSettingToggle) {
       setIsSetingToggle(false);
       return;
     }
-    onDetailClick();
+    onDetailClick && onDetailClick();
   };
-
   const handleSettingToggle = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     setIsSetingToggle(true);
   };
-
   const handleLogDetailCardEdit = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     console.log("Log Detail 수정 !!");
     setIsSetingToggle(false);
   };
-
   const handleLogDetailCardDelete = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     console.log("Log Detail 삭제 !!");
     setIsSetingToggle(false);
   };
-
   return (
     <S.LogDetailCardContainer
       style={style}
@@ -114,7 +106,7 @@ const LogDetailCard = ({
                 width={11}
                 height={10}
               />
-              <div className="like">{likeCount < 999 ? likeCount : "+999"}</div>
+              <div className="like">{likeCount && likeCount < 999 ? likeCount : "+999"}</div>
             </div>
           )}
         </div>
@@ -144,5 +136,4 @@ const LogDetailCard = ({
     </S.LogDetailCardContainer>
   );
 };
-
 export default LogDetailCard;
