@@ -6,7 +6,6 @@ import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/utils
 import { LogDetailCard, LogSimpleCard } from "@/components";
 import { ProfileResponse, RecentMasil } from "@/types/Response";
 import * as S from "./MyRecordList.styles";
-import { PostListItemResponse } from "@/types/Response/Post";
 import { PostListItem } from "@/types/OriginDataType/Post";
 
 interface MyRecordListProps {

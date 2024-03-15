@@ -1,6 +1,5 @@
 import { PostListItem } from "@/types/OriginDataType/Post";
 import { RecentMasil } from "@/types/Response";
-import { PostListItemResponse } from "@/types/Response/Post";
 
 export interface PostsListType {
   id: number;

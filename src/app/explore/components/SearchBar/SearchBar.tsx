@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { UseFormHandleSubmit, UseFormRegister, UseFormWatch } from "react-hook-form";
+import { UseFormRegister, UseFormWatch } from "react-hook-form";
 
 import { Input } from "@/components";
 import { Cross, Search } from "@/components/icons";

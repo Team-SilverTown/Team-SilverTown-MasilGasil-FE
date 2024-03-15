@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { FieldErrors, UseFormSetValue, UseFormRegister, UseFormGetValues } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 import { UserEditInput } from "@/components";
 import { SignUpFormProps } from "../SignUp.controller";
-import * as S from "../SignUp.styles";
 
 import { USER_INPUT_PLACEHOLDER } from "@/lib/constants/userConstants";
 
