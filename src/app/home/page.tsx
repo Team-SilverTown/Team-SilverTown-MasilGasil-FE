@@ -25,8 +25,6 @@ const Home = async () => {
     return;
   }
 
-  console.log(userInfo);
-
   return (
     <HomeView
       MyLikeWalkingTrailsList={popularWalkingTrails}
