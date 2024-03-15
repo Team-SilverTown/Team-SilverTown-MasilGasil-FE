@@ -12,13 +12,15 @@ export const USER = {
   ME: "/api/v1/users/me",
   CHECK_NICKNAME: "/api/v1/users/check-nickname",
   SIGNUP: "/api/v1/users/extra-info",
+  PROFILE: "/api/v1/users",
 };
 
 export const MASIL = {
   POST: "/api/v1/masils",
   GET_DETAIL: "/api/v1/masils",
   GET_LIST: "/api/v1/masils/recent",
-  PERIODIC_GET: "/v1/masils/period",
+  GET_PERIOD: "/api/v1/masils/period",
+  GET_RECENT: "/api/v1/masils/recent",
 };
 
 export const IMAGE = "/api/v1/images";

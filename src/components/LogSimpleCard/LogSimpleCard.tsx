@@ -9,10 +9,10 @@ export interface LogSimpleCardProps {
   height?: number | string;
   radius?: string;
   thumbnailUrl: string | null;
-  depth1: string;
-  depth2: string;
-  totalTime: string;
-  distance: string;
+  depth1?: string;
+  depth2?: string;
+  totalTime?: string;
+  distance?: string;
   startedAt: string;
   style?: CSSProperties;
   onClick: () => void;
