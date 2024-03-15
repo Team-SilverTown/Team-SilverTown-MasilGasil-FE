@@ -1,49 +1,39 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 
 import useUserLocationStore from "@/stores/useUserLocationStore";
 
 import getDetailedAddress from "@/app/home/utils/getDetailedAddress";
-import showErrorMessage from "@/app/home/utils/showErrorMessage";
 
 import PopularWalkList from "./components/PopularWalkList";
+import useGeoLocationUtils from "@/hooks/useGeoLocationUtils";
 
 const PopularTrailsInOurTown = () => {
-  const [location, setLocation] = useState({
-    lat: 0,
-    lng: 0,
-  });
-  const { userAddress, setUserAddress } = useUserLocationStore();
-
-  const showYourLocation = async ({ coords }: GeolocationPosition) => {
-    const lat = coords.latitude;
-    const lng = coords.longitude;
-
-    setLocation({ lat, lng });
-  };
+  const { userLocation, userAddress, setUserAddress } = useUserLocationStore();
+  const { updateUserLocation, onErrorWatch } = useGeoLocationUtils();
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMessage);
+    navigator.geolocation.getCurrentPosition(updateUserLocation, onErrorWatch);
   }, []);
 
-  const GetDetailedAddress = useCallback(async () => {
-    if (!location.lat || !location.lng) {
+  const getAddress = useCallback(async () => {
+    if (!userLocation.lat || !userLocation.lng) {
       return;
     }
 
-    const MyAddress = await getDetailedAddress({ lat: location.lat, lng: location.lng });
+    const MyAddress = await getDetailedAddress({ lat: userLocation.lat, lng: userLocation.lng });
 
     if (!MyAddress) {
       return;
     }
 
     setUserAddress(MyAddress);
-  }, [location.lat, location.lng]);
+  }, [userLocation.lat, userLocation.lng]);
 
   useEffect(() => {
-    GetDetailedAddress();
-  }, [GetDetailedAddress]);
+    getAddress();
+  }, [getAddress]);
 
   return <PopularWalkList userAddress={userAddress} />;
 };
