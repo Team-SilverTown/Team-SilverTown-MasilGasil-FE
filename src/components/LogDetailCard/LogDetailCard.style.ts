@@ -1,6 +1,6 @@
 "use client";
 
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { BORDER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 interface LogDetailCardInfoProps {
@@ -14,6 +14,9 @@ export const LogDetailCardContainer = styled.div`
   border-radius: 0.8rem;
   background-color: ${(props) => props.theme.white};
   cursor: pointer;
+
+  border-width: ${BORDER.TINE_WIDTH}px;
+  border-color: ${(props) => props.theme.transparent_10};
 `;
 
 export const LogDetailCardThumbnail = styled.div`

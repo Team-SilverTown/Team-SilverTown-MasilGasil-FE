@@ -1,3 +1,4 @@
+import { FONT_SIZE } from "@/styles/theme";
 import styled from "styled-components";
 
 interface UserInfoProfileImageProps {
@@ -41,8 +42,8 @@ export const CameraIconLayout = styled.div`
 export const UserInfoProfileText = styled.div`
   strong {
     display: inline-block;
-    margin: 1.6rem 0 0.6rem;
-    font-size: 1.8rem;
+    margin: 1.6rem 0 0;
+    font-size: ${FONT_SIZE.H4};
     color: ${(props) => props.theme.black};
   }
 `;

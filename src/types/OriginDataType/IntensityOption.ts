@@ -1,1 +1,1 @@
-export type IntensityOption = "SUPER_LOW" | "LOW" | "MIDDLE" | "HIGH" | "SUPER_HIGH" | "";
+export type IntensityOption = "SUPER_LOW" | "LOW" | "MIDDLE" | "HIGH" | "SUPER_HIGH" | undefined;

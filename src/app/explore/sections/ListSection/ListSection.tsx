@@ -5,25 +5,33 @@ import { ListCard } from "@/components";
 import { PostListItem } from "@/types/OriginDataType/Post";
 import parseLocationObject from "@/utils/parseLocation";
 import { useRouter } from "next/navigation";
-import useExploreModel from "../../Explore.model";
 
 interface ListSectionProps {
   id: "post" | "mate";
   data?: PostListItem[];
+  fetchNextPage?: Function;
+  isFetchingNextPage?: boolean;
+  hasNextPage?: boolean;
 }
 
-const ListSection = memo(function List({ id, data }: ListSectionProps) {
+const ListSection = memo(function List({
+  id,
+  data,
+  fetchNextPage,
+  isFetchingNextPage,
+  hasNextPage,
+}: ListSectionProps) {
   const router = useRouter();
-
-  const { fetchNextPage, isFetchingNextPage } = useExploreModel();
 
   const [ref, inView] = useInView({
     rootMargin: "20%",
   });
 
+  // console.log(hasNextPage);
+
   useEffect(() => {
-    if (inView && !isFetchingNextPage) {
-      // fetchNextPage();
+    if (inView && !isFetchingNextPage && hasNextPage) {
+      fetchNextPage && fetchNextPage();
       console.log("inview");
     }
   }, [inView]);
@@ -50,26 +58,25 @@ const ListSection = memo(function List({ id, data }: ListSectionProps) {
       id={id}
       className="w-full h-full"
     >
-      {data && (
+      {data && data.length > 0 && (
         <>
           <ul className="p-4 space-y-8">
-            {data.length > 0 &&
-              data.map((item) => (
-                <li key={item.id}>
-                  <ListCard
-                    isRecruit={item.hasMate}
-                    isLiked={item.liked}
-                    likeCount={item.likeCount}
-                    title={item.title}
-                    content={item.content}
-                    totalTime={item.totalTime}
-                    distance={item.distance}
-                    thumbnailUrl={item.thumbnailUrl}
-                    address={parseLocationObject(item.address) ?? ""}
-                    onCardClickHandler={() => cardClickHandler(item.id)}
-                  />
-                </li>
-              ))}
+            {data.map((item) => (
+              <li key={item.id}>
+                <ListCard
+                  isRecruit={item.hasMate}
+                  isLiked={item.liked}
+                  likeCount={item.likeCount}
+                  title={item.title}
+                  content={item.content}
+                  totalTime={item.totalTime}
+                  distance={item.distance}
+                  thumbnailUrl={item.thumbnailUrl}
+                  address={parseLocationObject(item.address) ?? ""}
+                  onCardClickHandler={() => cardClickHandler(item.id)}
+                />
+              </li>
+            ))}
           </ul>
           <div
             ref={ref}

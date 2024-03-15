@@ -7,7 +7,7 @@ export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)"],
 };
 
-// const protectedPaths = ["/map"]; // 로그인이 필요한 페이지 목록
+const protectedPaths = ["/setting*"]; // 로그인이 필요한 페이지 목록
 const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 export async function middleware(request: NextRequest) {
@@ -16,11 +16,14 @@ export async function middleware(request: NextRequest) {
 
   // console.log("middleware", token);
 
-  // if (!token && protectedRoutes.includes(currentPath)) {
-  //   const url = request.nextUrl.clone();
-  //   url.pathname = "/signup";
-  //   return NextResponse.redirect(url);
-  // }
+  const protectedAcceesInable = pathAbleCheck(protectedPaths, currentPath);
+
+  if (!token || (!token.nickname && protectedAcceesInable)) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+
+    return NextResponse.redirect(url);
+  }
 
   const publicPathsAccessInable = pathAbleCheck(publicPaths, currentPath);
 

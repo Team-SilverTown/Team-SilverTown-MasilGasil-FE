@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldErrors, UseFormGetValues, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 import useTheme from "@/lib/hooks/useTheme";
 
@@ -54,6 +54,7 @@ const SignUpStep1 = ({
             />
           )}
         </div>
+
         <Button
           buttonColor={theme?.green_500}
           textColor={theme?.text_secondary_color}

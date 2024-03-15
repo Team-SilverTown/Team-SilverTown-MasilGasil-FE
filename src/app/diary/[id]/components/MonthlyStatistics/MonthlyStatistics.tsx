@@ -32,7 +32,7 @@ const MonthlyStatistics = ({ month, masils }: MonthlyStatisticsProps) => {
               </S.SectionItem>
               <S.ColDivider />
               <S.SectionItem>
-                <S.Text>총 횟수</S.Text>
+                <S.Text>산책 횟수</S.Text>
                 <S.AccentTitle>{masils?.totalCounts ? masils?.totalCounts : "- "}회</S.AccentTitle>
               </S.SectionItem>
               <S.ColDivider />

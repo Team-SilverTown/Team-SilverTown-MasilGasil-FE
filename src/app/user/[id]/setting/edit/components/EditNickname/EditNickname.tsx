@@ -2,7 +2,6 @@ import * as S from "./EditNickname.styles";
 import * as GS from "../../UserEdit.styles";
 
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { UserEditData } from "../../UserEdit.types";
 import { Button, Input, InputLabel } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
@@ -10,11 +9,13 @@ import { USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
 
 import { MouseEvent } from "react";
 import { validation_user } from "@/lib/constants/userConstants";
+import { MeResponse } from "@/types/Response";
 
 interface EditNicknameProps {
-  register: UseFormRegister<UserEditData>;
-  errors: FieldErrors<UserEditData>;
+  register: UseFormRegister<MeResponse>;
+  errors: FieldErrors<MeResponse>;
 
+  nickNameButtonDisabled: boolean;
   isCheckedNickname: boolean;
   onCheckSameNickname: () => void;
 }
@@ -23,6 +24,7 @@ const EditNickname = ({
   register,
   errors,
 
+  nickNameButtonDisabled,
   isCheckedNickname,
   onCheckSameNickname,
 }: EditNicknameProps) => {
@@ -45,7 +47,7 @@ const EditNickname = ({
           style={{
             lineHeight: "2rem",
             width: "100%",
-            fontSize: "1.5rem",
+            fontSize: `${FONT_SIZE.MEDIUM}`,
             fontWeight: FONT_WEIGHT.SEMIBOLD,
           }}
         />
@@ -58,14 +60,14 @@ const EditNickname = ({
           rippleColor={theme?.text_secondary_color + 50}
           style={{
             whiteSpace: "nowrap",
-            fontSize: FONT_SIZE.H5,
+            fontSize: FONT_SIZE.LARGE,
             fontWeight: FONT_WEIGHT.SEMIBOLD,
             userSelect: "none",
           }}
           onClickHandler={handleClick}
-          disabled={isCheckedNickname}
+          disabled={nickNameButtonDisabled}
         >
-          중복 확인
+          {isCheckedNickname ? "확인 완료" : "중복 확인"}
         </Button>
       </S.EditNicknameActions>
 

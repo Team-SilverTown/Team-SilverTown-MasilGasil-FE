@@ -4,19 +4,21 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/utils";
 import { LogDetailCard, LogSimpleCard } from "@/components";
-import { MeResponse } from "@/types/Response";
-import { MasilsListType, PostsListType } from "../../MyPage.types";
+import { ProfileResponse, RecentMasil } from "@/types/Response";
 import * as S from "./MyRecordList.styles";
+import { PostListItemResponse } from "@/types/Response/Post";
+import { PostListItem } from "@/types/OriginDataType/Post";
 
 interface MyRecordListProps {
   title: string;
   urlLink: string;
-  recordList: MasilsListType[] | PostsListType[];
+  recordList: RecentMasil[] | PostListItem[];
   type: "Masils" | "Posts";
-  userInfo: MeResponse;
+  userInfo?: ProfileResponse;
+  key?: string | number;
 }
 
-const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordListProps) => {
+const MyRecordList = ({ title, urlLink, recordList, type }: MyRecordListProps) => {
   const router = useRouter();
 
   return (
@@ -33,25 +35,19 @@ const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordLi
       <S.BorderContentSection>
         <S.BorderContentListWrapper>
           {type === "Masils" &&
-            (recordList as MasilsListType[]).map(
-              ({ thumbnailUrl, depth1, depth2, distance, totalTime, startedAt, id }) => (
-                <li key={id}>
-                  <LogSimpleCard
-                    thumbnailUrl={thumbnailUrl}
-                    depth1={depth1}
-                    depth2={depth2}
-                    distance={convertMeter(distance)}
-                    totalTime={convertSeconds(totalTime)}
-                    startedAt={convertDateToYearMonthDay(startedAt)}
-                    onClick={() => router.push(`/log/${id}`)}
-                  />
-                </li>
-              ),
-            )}
+            (recordList as RecentMasil[]).map(({ thumbnailUrl, startedAt, id }) => (
+              <li key={id}>
+                <LogSimpleCard
+                  thumbnailUrl={thumbnailUrl}
+                  startedAt={convertDateToYearMonthDay(startedAt)}
+                  onClick={() => router.push(`/log/${id}`)}
+                />
+              </li>
+            ))}
 
           {type === "Posts" &&
-            (recordList as PostsListType[]).map(
-              ({ title, content, thumbnailUrl, distance, totalTime, likeCount, id }) => (
+            (recordList as PostListItem[]).map(
+              ({ title, content, thumbnailUrl, distance, totalTime, id }) => (
                 <li key={id}>
                   <LogDetailCard
                     title={title}
@@ -60,26 +56,13 @@ const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordLi
                     distance={convertMeter(distance)}
                     totalTime={convertSeconds(totalTime)}
                     totalDistance={distance}
-                    likeCount={likeCount}
-                    isLiked={true}
-                    isLikeLayout={true}
-                    isSettingLayout={true}
-                    userInfo={userInfo}
                     onDetailClick={() => router.push(`/post/${id}`)}
-                    onLikeClick={(event) => {
-                      event.stopPropagation();
-                      console.log("like 클릭 !!");
-                    }}
                   />
                 </li>
               ),
             )}
 
-          {recordList.length === 0 && (
-            <S.EmptyAlert>
-              <strong>산책로가 비어있어요.</strong>
-            </S.EmptyAlert>
-          )}
+          {recordList.length === 0 && <S.EmptyAlert>산책로가 비어있어요</S.EmptyAlert>}
         </S.BorderContentListWrapper>
       </S.BorderContentSection>
     </S.BorderContainer>
