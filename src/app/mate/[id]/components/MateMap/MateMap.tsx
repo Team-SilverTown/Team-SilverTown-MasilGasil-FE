@@ -26,6 +26,7 @@ const MateMap = ({ mateData }: MateMapProps) => {
 
   return (
     <>
+      <S.MateMapTitle>모임 장소</S.MateMapTitle>
       <S.MateMapWrapper>
         <MasilMap center={mapCenter} />
         <Button

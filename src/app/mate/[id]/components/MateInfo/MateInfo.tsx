@@ -13,8 +13,15 @@ interface MateInfoProps {
 }
 
 const MateInfo = ({ mateData, postId }: MateInfoProps) => {
-  const { authorProfileUrl, authorNickname, content, gatheringAt, capacity, participants } =
-    mateData;
+  const {
+    authorProfileUrl,
+    authorNickname,
+    content,
+    gatheringAt,
+    capacity,
+    participants,
+    authorId,
+  } = mateData;
 
   const AcceptedUserList = participants.filter(({ status }) => status === "ACCEPTED");
 
@@ -24,6 +31,7 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
         <Avatar
           src={authorProfileUrl}
           size="sm"
+          userId={authorId.toString()}
         />
         <p className="grow text-medium font-medium whitespace-nowrap">{authorNickname}</p>
         <MateDropDownMenu postId={postId} />

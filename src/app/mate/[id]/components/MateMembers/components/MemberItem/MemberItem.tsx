@@ -26,7 +26,7 @@ const MemberItem = ({
     <S.MemberItemLayout>
       <Avatar
         src={profileUrl}
-        userId={`${id}`}
+        userId={id.toString()}
       />
 
       <S.MemberNickName>{nickname}</S.MemberNickName>
