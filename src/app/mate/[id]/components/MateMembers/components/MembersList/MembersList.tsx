@@ -17,6 +17,7 @@ const MembersList = ({ participants, isApplicantList = false }: MembersListProps
           <MemberItem
             participants={user}
             key={user.id}
+            isApplicantItem={isApplicantList}
           />
         ))}
     </S.MateMemberList>
