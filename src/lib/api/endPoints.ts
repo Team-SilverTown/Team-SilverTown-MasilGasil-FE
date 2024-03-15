@@ -32,3 +32,7 @@ export const POST = {
   POST: "/api/v1/posts",
   GET_LIST: "/api/v1/posts",
 };
+
+export const MATE = {
+  GET_DETAIL: "/api/v1/mates",
+};

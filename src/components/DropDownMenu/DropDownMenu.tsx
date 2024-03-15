@@ -7,8 +7,6 @@ import { DotMenu, Trash } from "@/components/icons";
 import EditPencil from "@/components/icons/EditPencil";
 import useToggle from "@/hooks/useToggle";
 import { AnimatePresence } from "framer-motion";
-import { useUI } from "@/components/uiContext/UiContext";
-import { MateGatheringPlace } from "@/types/OriginDataType";
 import Divider from "@/components/Divider/Divider";
 
 interface DropDownMenuProps {
@@ -19,7 +17,6 @@ interface DropDownMenuProps {
 
 const DropDownMenu = ({ onEdit, onDelete, isEdit = true }: DropDownMenuProps) => {
   const { isToggle, handleToggle, toggleRef } = useToggle();
-  const { setModalView, openModal } = useUI();
 
   const handleClickEdit = (e: MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
