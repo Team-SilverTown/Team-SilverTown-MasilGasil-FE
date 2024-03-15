@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { convertMeter, convertSeconds } from "@/utils";
 
-import { PostMoreListContent } from "@/types/Response/Post";
+import { PostListItemResponse } from "@/types/Response/Post";
 
 import LogDetailCard from "@/components/LogDetailCard";
 import { More } from "@/components/icons";
@@ -11,7 +11,7 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./PopularWalkingTrails.style";
 
 interface PopularWalkingTrailsProps {
-  PopularWalkingTrailsList: PostMoreListContent[];
+  PopularWalkingTrailsList: PostListItemResponse[];
 }
 
 const PopularWalkingTrails = ({ PopularWalkingTrailsList }: PopularWalkingTrailsProps) => {
@@ -21,7 +21,7 @@ const PopularWalkingTrails = ({ PopularWalkingTrailsList }: PopularWalkingTrails
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>
           요즘 인기 있는 전국 산책로
         </h3>
-        <Link href="">
+        <Link href="/more?keyword=total_popular&order=popular">
           <More />
         </Link>
       </article>

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { convertMeter, convertSeconds } from "@/utils";
 
-import { PostMoreListContent } from "@/types/Response/Post";
+import { PostListItemResponse } from "@/types/Response/Post";
 
 import { More } from "@/components/icons";
 import LogDetailCard from "@/components/LogDetailCard";
@@ -11,7 +11,7 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./MyLikeWalkingTrails.style";
 
 interface MyLikeWalkingTrailsProps {
-  MyLikeWalkingTrailsList: PostMoreListContent[];
+  MyLikeWalkingTrailsList: PostListItemResponse[];
 }
 
 const MyLikeWalkingTrails = ({ MyLikeWalkingTrailsList }: MyLikeWalkingTrailsProps) => {
@@ -21,7 +21,7 @@ const MyLikeWalkingTrails = ({ MyLikeWalkingTrailsList }: MyLikeWalkingTrailsPro
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>
           내가 좋아하는 산책로
         </h3>
-        <Link href="">
+        <Link href="/more?keyword=my_like&order=latest">
           <More />
         </Link>
       </article>

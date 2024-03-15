@@ -58,7 +58,7 @@ const PopularTrailsInOurTown = () => {
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>
           우리 동네 인기 산책로
         </h3>
-        <Link href="">
+        <Link href="/more?keyword=area_popular&order=popular">
           <More />
         </Link>
       </article>
