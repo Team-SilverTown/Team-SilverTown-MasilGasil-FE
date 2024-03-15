@@ -172,7 +172,6 @@ export const LogRecordContextProvider = ({
         return;
       }
 
-      result[0];
       dispatch({
         type: LOG_RECORD_REDUCER_ACTIONS.UPDATE_ADDRESS,
         payload: {
