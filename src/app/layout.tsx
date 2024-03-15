@@ -23,6 +23,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#F8F8F8",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 const KAKAO_API_KEY = process.env.DB_KAKAO_API_KEY;

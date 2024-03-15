@@ -39,7 +39,10 @@ const LogRecordView = () => {
 
   return (
     <S.LogRecordLayout>
-      <TopNavigator leftChildren={<GoBackButton onGoBackHandler={handleClickFallback} />} />
+      <TopNavigator
+        leftChildren={<GoBackButton onGoBackHandler={handleClickFallback} />}
+        containerStyle={{ backgroundColor: "transparent" }}
+      />
 
       <S.LogRecordMapContainer
         initial="initial"
