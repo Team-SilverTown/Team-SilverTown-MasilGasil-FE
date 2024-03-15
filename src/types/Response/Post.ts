@@ -44,6 +44,6 @@ export interface PostListItemResponse {
 
 export interface PostListResponse {
   isEmpty: boolean;
-  contents: PostListItemResponse[] | PostListItem[];
+  contents: PostListItem[];
   nextCursor: string;
 }

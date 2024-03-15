@@ -5,14 +5,14 @@ import Link from "next/link";
 import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/utils";
 import { LogDetailCard, LogSimpleCard } from "@/components";
 import { ProfileResponse, RecentMasil } from "@/types/Response";
-import { PostsListType } from "../../MyPage.types";
 import * as S from "./MyRecordList.styles";
 import { PostListItemResponse } from "@/types/Response/Post";
+import { PostListItem } from "@/types/OriginDataType/Post";
 
 interface MyRecordListProps {
   title: string;
   urlLink: string;
-  recordList: RecentMasil[] | PostListItemResponse[];
+  recordList: RecentMasil[] | PostListItem[];
   type: "Masils" | "Posts";
   userInfo?: ProfileResponse;
   key?: string | number;
@@ -46,7 +46,7 @@ const MyRecordList = ({ title, urlLink, recordList, type }: MyRecordListProps) =
             ))}
 
           {type === "Posts" &&
-            (recordList as PostListItemResponse[]).map(
+            (recordList as PostListItem[]).map(
               ({ title, content, thumbnailUrl, distance, totalTime, id }) => (
                 <li key={id}>
                   <LogDetailCard
