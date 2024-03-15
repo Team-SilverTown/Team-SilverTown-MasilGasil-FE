@@ -12,6 +12,8 @@ export const USER_KEY = {
   SIGN_UP: "user_signup",
   CHECK_NICKNAME: "check_nickname",
   EDIT_USER: "user_edit",
+  TOGGLE_PUBLIC: "toggle_public",
+  ME: "get_me",
 };
 
 export const MASIL_KEY = {

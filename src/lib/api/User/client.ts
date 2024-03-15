@@ -6,7 +6,7 @@ import {
 } from "@/types/Response";
 import { AuthRequest, SignUpRequest, UserEditRequest } from "@/types/Request/User";
 
-import { GET, POST, PUT } from "../clientRootAPI";
+import { GET, PATCH, POST, PUT } from "../clientRootAPI";
 import { USER } from "../endPoints";
 
 export const getAuthToken = async () => {
@@ -48,4 +48,8 @@ export const postEditUser = async (newUserData: MeResponse) => {
   };
 
   return await PUT<EditUserResponse>({ endPoint: USER.EDIT_USER, data: newData, auth: true });
+};
+
+export const patchIsPublic = async () => {
+  return PATCH({ endPoint: USER.TOGGLE_PUBLIC, auth: true });
 };

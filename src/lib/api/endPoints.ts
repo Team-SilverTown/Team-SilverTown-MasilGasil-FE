@@ -13,6 +13,7 @@ export const USER = {
   CHECK_NICKNAME: "/api/v1/users/check-nickname",
   SIGNUP: "/api/v1/users/extra-info",
   EDIT_USER: "/api/v1/users",
+  TOGGLE_PUBLIC: "/api/v1/users/is-public",
 };
 
 export const MASIL = {

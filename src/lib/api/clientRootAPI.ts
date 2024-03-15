@@ -80,3 +80,21 @@ export const DELETE = async <T>({
       throw Error(error);
     });
 };
+
+export const PATCH = async <T>({
+  endPoint,
+  config,
+  auth,
+}: {
+  endPoint: string;
+  config?: AxiosRequestConfig;
+  auth?: boolean;
+}) => {
+  const API = getRootAPI(auth);
+
+  return await API.patch<T>(`/call${endPoint}`, config)
+    .then((response) => response)
+    .catch((error) => {
+      throw Error(error);
+    });
+};
