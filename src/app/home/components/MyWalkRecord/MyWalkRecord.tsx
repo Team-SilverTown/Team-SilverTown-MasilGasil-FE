@@ -6,9 +6,11 @@ interface MyWalkRecordProps {
 }
 
 const MyWalkRecord = ({ userInfo }: MyWalkRecordProps) => {
+  const { nickname } = userInfo;
+
   return (
     <article className={S.MyWalkRecordContainer}>
-      <h3>000님, 먹어서 응원해요!</h3>
+      <h3>{nickname}님, 산책을 시작해 보세요!</h3>
       <ul className={S.MyWalkRecordList}>
         <li>
           <strong>총 거리</strong>
