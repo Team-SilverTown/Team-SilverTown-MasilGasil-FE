@@ -12,6 +12,7 @@ export const USER = {
   ME: "/api/v1/users/me",
   CHECK_NICKNAME: "/api/v1/users/check-nickname",
   SIGNUP: "/api/v1/users/extra-info",
+  PROFILE: "/api/v1/users",
 };
 
 export const MASIL = {

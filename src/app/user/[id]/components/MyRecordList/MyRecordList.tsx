@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/utils";
 import { LogDetailCard, LogSimpleCard } from "@/components";
-import { MeResponse } from "@/types/Response";
+import { ProfileResponse } from "@/types/Response";
 import { MasilsListType, PostsListType } from "../../MyPage.types";
 import * as S from "./MyRecordList.styles";
 
@@ -13,7 +13,7 @@ interface MyRecordListProps {
   urlLink: string;
   recordList: MasilsListType[] | PostsListType[];
   type: "Masils" | "Posts";
-  userInfo: MeResponse;
+  userInfo: ProfileResponse;
   key?: string | number;
 }
 

@@ -1,6 +1,7 @@
 import { USER_DUMMY_DATA } from "@/app/home/Home.constants";
 import { RECORDLIST_DUMMY_DATA } from "./MyPage.constants";
 import MypageView from "./MyPage.view";
+import { getUserProfile } from "@/lib/api/User/server";
 
 interface MyPageControllerProps {
   userId: number;
@@ -21,11 +22,14 @@ interface MyPageControllerProps {
  * - 좋아요한 산책로
  */
 
-const MyPageController = ({ userId }: MyPageControllerProps) => {
+const MyPageController = async ({ userId }: MyPageControllerProps) => {
+  const userProfile = await getUserProfile(userId);
+
+
   return (
     <MypageView
       userId={userId}
-      userInfo={USER_DUMMY_DATA}
+      userInfo={userProfile}
       boardList={RECORDLIST_DUMMY_DATA}
     />
   );

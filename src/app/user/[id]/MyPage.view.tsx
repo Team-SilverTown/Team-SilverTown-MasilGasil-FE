@@ -1,4 +1,4 @@
-import { MeResponse } from "@/types/Response";
+import { MeResponse, ProfileResponse } from "@/types/Response";
 import { MyRecordListType } from "./MyPage.types";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
@@ -8,7 +8,7 @@ import Divider from "@/components/Divider/Divider";
 
 interface MyPageViewProps {
   boardList: MyRecordListType[];
-  userInfo: MeResponse;
+  userInfo: ProfileResponse;
   userId: number;
 }
 
@@ -23,18 +23,14 @@ const MyPageView = ({ boardList, userInfo, userId }: MyPageViewProps) => {
       <S.UserProfileContainer>
         <S.UserProfileLayout className="scrollbar-hide">
           <UserProfileInfo
-            profileImage=""
-            profileName="달려라댕댕아"
+            profileImage={userInfo.profileImg}
+            profileName={userInfo.nickname}
           />
           <S.HeaderContainer>
             <h3>통계</h3>
             <Divider style={{ backgroundColor: "#EFEFEF" }} />
           </S.HeaderContainer>
-          <UserWalkRecord
-            totalWalkDistance={11000}
-            totalWalkCount={50}
-            userInfo={userInfo}
-          />
+          <UserWalkRecord userInfo={userInfo} />
 
           <S.HeaderContainer>
             <h3>산책</h3>

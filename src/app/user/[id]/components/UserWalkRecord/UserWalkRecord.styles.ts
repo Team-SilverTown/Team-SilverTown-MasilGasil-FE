@@ -32,7 +32,11 @@ export const Header = styled.div`
 
 export const HeaderText = styled.span``;
 
-export const Text = styled.span``;
+export const Text = styled.span`
+  @media (max-width: 415px) {
+    font-size: ${FONT_SIZE.MINI};
+  }
+`;
 
 export const AccentText = styled.span`
   font-weight: ${FONT_WEIGHT.BOLD};
@@ -49,6 +53,11 @@ export const Section = styled.section`
 
   @media (max-width: 375px) {
     flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 400px) {
+    gap: 2rem;
   }
 
   @media (min-width: 500px) {
@@ -78,7 +87,7 @@ export const ColDivider = styled.div`
   background-color: ${(props) => props.theme.gray_100};
 
   @media (max-width: 375px) {
-    width: 10rem;
+    width: 25rem;
     height: 1px;
   }
 `;
