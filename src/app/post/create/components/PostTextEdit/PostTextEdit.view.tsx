@@ -24,7 +24,7 @@ const PostTextEditView = () => {
 
   return (
     <>
-      <GS.PostCreateSheetContent>
+      <GS.PostCreateSheetContent className="scrollbar-hide">
         <PostThumbnailEdit
           image={thumbnail ? thumbnail : postData.thumbnailUrl}
           updateImage={(file: File | null) => setThumbnail(file)}

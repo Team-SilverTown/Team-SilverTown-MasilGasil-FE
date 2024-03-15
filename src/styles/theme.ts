@@ -1,5 +1,3 @@
-import { css } from "styled-components";
-
 export const lightTheme = {
   theme_mode: "light",
 
@@ -149,12 +147,3 @@ export const FONT_SIZE = {
   MINI: "1.2rem",
   MICRO: "1rem",
 };
-
-export const DISPLAY_NONE_SCROLLBAR = css`
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;

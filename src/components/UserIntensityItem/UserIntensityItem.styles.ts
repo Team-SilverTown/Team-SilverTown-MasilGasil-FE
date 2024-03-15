@@ -1,6 +1,6 @@
 "use client";
 
-import { DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const IntensityItemContainer = styled.li`
@@ -39,6 +39,4 @@ export const IntensityOptionDescription = styled.p`
   font-weight: ${FONT_WEIGHT.MEDIUM};
   white-space: nowrap;
   overflow: scroll;
-
-  ${DISPLAY_NONE_SCROLLBAR}
 `;

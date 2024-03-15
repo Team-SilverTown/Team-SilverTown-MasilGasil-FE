@@ -1,4 +1,4 @@
-import { DISPLAY_NONE_SCROLLBAR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -13,7 +13,6 @@ export const UserEditLayout = styled(motion.form)`
   gap: 2rem;
 
   overflow-y: scroll;
-  ${DISPLAY_NONE_SCROLLBAR}
 `;
 
 export const UserEditSectionContainer = styled.article`
