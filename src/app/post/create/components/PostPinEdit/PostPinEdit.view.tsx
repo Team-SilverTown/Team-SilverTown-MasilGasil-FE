@@ -12,7 +12,7 @@ const PostPinEditView = () => {
     usePostPinEditController();
   return (
     <>
-      <GS.PostCreateSheetContent>
+      <GS.PostCreateSheetContent className="scrollbar-hide">
         <GS.PostCreateContentTitle>핀 수정하기</GS.PostCreateContentTitle>
         <S.PostPinEditPinList>
           {postData.pins.length > 0 &&

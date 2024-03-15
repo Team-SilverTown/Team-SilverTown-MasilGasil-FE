@@ -52,6 +52,7 @@ const UserEditView = ({
       <S.UserEditLayout
         initial={{ x: "-120%" }}
         animate={{ x: 0 }}
+        className="scrollbar-hide"
       >
         <EditNickname
           register={register}

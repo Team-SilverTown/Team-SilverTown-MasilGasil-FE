@@ -39,7 +39,9 @@ const UserIntensityItem = ({
             strokeWidth={3.5}
           />
         </S.IntensityItemCircle>
-        <S.IntensityOptionDescription>{optionDescription}</S.IntensityOptionDescription>
+        <S.IntensityOptionDescription className="scrollbar-hide">
+          {optionDescription}
+        </S.IntensityOptionDescription>
       </S.IntensityItemLabel>
     </S.IntensityItemContainer>
   );
