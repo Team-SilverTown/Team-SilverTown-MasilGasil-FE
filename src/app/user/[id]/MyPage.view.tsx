@@ -1,4 +1,4 @@
-import { MeResponse, ProfileResponse } from "@/types/Response";
+import { ProfileResponse } from "@/types/Response";
 import { MyRecordListType } from "./MyPage.types";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";

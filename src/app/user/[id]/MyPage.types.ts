@@ -1,45 +1,18 @@
-import { Pin } from "@/types/OriginDataType";
-
-export interface MasilsListType {
-  id: number;
-  depth1: string;
-  depth2: string;
-  depth3: string;
-  depth4: string;
-  title: string;
-  content: string;
-  path: PathType[];
-  distance: number;
-  totalTime: number;
-  startedAt: string;
-  postId: null | number;
-  thumbnailUrl: null | string;
-  pins: Pin[];
-}
+import { RecentMasil } from "@/types/Response";
+import { PostListItemResponse } from "@/types/Response/Post";
 
 export interface PostsListType {
   id: number;
-  depth1: string;
-  depth2: string;
-  depth3: string;
-  depth4: string;
+  address: { depth1: string; depth2: string; depth3: string; depth4: string };
   title: string;
   content: string;
-  path: PathType[];
-  distance: number;
   totalTime: number;
-  isPublic: boolean;
+  distance: number;
   viewCount: number;
   likeCount: number;
-  pins: Pin[];
-  authorId: number;
-  authorName: string;
   thumbnailUrl: string;
-}
-
-interface PathType {
-  lat: number;
-  lng: number;
+  hasMate: boolean;
+  liked: boolean;
 }
 
 interface RecordType {
@@ -47,14 +20,16 @@ interface RecordType {
   urlLink: string;
 }
 
-interface RecordMasilsType extends RecordType {
+interface RecentMasilsType extends RecordType {
   type: "Masils";
-  recordList: MasilsListType[];
+  recordList: RecentMasil[];
+  isEmpty?: boolean;
 }
 
 interface RecordPostsType extends RecordType {
   type: "Posts";
-  recordList: PostsListType[];
+  recordList: PostListItemResponse[];
+  isEmpty?: boolean;
 }
 
-export type MyRecordListType = RecordMasilsType | RecordPostsType;
+export type MyRecordListType = RecentMasilsType | RecordPostsType;

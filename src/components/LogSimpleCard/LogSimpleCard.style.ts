@@ -76,7 +76,6 @@ export const LogSimpleCardInfo = styled.div`
   }
   strong {
     font-size: ${FONT_SIZE.MICRO};
-    color: ${({ theme }) => theme.white};
   }
 `;
 
