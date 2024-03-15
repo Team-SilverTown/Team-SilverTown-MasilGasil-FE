@@ -1,12 +1,13 @@
-import { MeResponse } from "@/types/Response";
+import { ProfileResponse } from "@/types/Response";
 import S from "./MyWalkRecord.module.css";
+import { convertMeter } from "@/utils";
 
 interface MyWalkRecordProps {
-  userInfo: MeResponse;
+  userInfo: ProfileResponse;
 }
 
 const MyWalkRecord = ({ userInfo }: MyWalkRecordProps) => {
-  const { nickname } = userInfo;
+  const { nickname, totalDistance, totalCount, totalCalories } = userInfo;
 
   return (
     <article className={S.MyWalkRecordContainer}>
@@ -14,15 +15,15 @@ const MyWalkRecord = ({ userInfo }: MyWalkRecordProps) => {
       <ul className={S.MyWalkRecordList}>
         <li>
           <strong>총 거리</strong>
-          <span>104.2km</span>
+          <span>{convertMeter(totalDistance)}</span>
         </li>
         <li>
           <strong>산책 횟수</strong>
-          <span>50번</span>
+          <span>{totalCount}번</span>
         </li>
         <li>
           <strong>총 소모 열량</strong>
-          <span>1400kcal</span>
+          <span>{totalCalories}kcal</span>
         </li>
       </ul>
     </article>

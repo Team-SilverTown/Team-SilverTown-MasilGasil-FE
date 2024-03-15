@@ -3,7 +3,7 @@ import { HomeSkeleton } from "@/components/skeletons";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/options";
 import { getPopularWalkingTrails } from "@/lib/api/home/server";
-import { getMe } from "@/lib/api/User/server";
+import { getMe, getUserProfile } from "@/lib/api/User/server";
 
 const Home = async () => {
   const HomeView = dynamic(() => import("./Home.view"), {
@@ -13,11 +13,19 @@ const Home = async () => {
   const session = await getServerSession(authOptions);
 
   const popularWalkingTrails = await getPopularWalkingTrails(session?.serviceToken!);
-  const userInfo = await getMe(session?.serviceToken!);
+  const user = await getMe(session?.serviceToken!);
 
-  if (!userInfo || !popularWalkingTrails) {
+  if (!user || !popularWalkingTrails) {
     return;
   }
+
+  const userInfo = await getUserProfile(user.userId);
+
+  if (!userInfo) {
+    return;
+  }
+
+  console.log(userInfo);
 
   return (
     <HomeView

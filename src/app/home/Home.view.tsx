@@ -1,5 +1,5 @@
 import { PostMoreListResponse } from "@/types/Response/Post";
-import { MeResponse } from "@/types/Response";
+import { MeResponse, ProfileResponse } from "@/types/Response";
 
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import {
@@ -15,7 +15,7 @@ import * as S from "./Home.styles";
 interface HomeViewProps {
   MyLikeWalkingTrailsList: PostMoreListResponse;
   PopularWalkingTrailsList: PostMoreListResponse;
-  userInfo: MeResponse;
+  userInfo: ProfileResponse;
 }
 
 const HomeView = ({
