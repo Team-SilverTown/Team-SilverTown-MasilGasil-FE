@@ -6,19 +6,36 @@ import { MateDetailResponse } from "@/types/Response";
 import { Button } from "@/components";
 import { Center } from "@/components/icons";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface MateMapProps {
   mateData: MateDetailResponse;
 }
+
+const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
+const URL = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&libraries=services,clusterer,drawing&autoload=false`;
 
 const MateMap = ({ mateData }: MateMapProps) => {
   const { gatheringPlacePoint, gatheringPlaceDetail } = mateData;
 
   const { setIsOutCenter } = useMasilMapStore();
   const [mapCenter, setMapCenter] = useState(gatheringPlacePoint);
+  const [region, setRegion] = useState("");
 
-  // 추후 path pin 데이터 추가시 활용 예정
+  useEffect(() => {
+    kakao.maps.load(() => {
+      const geo = new kakao.maps.services.Geocoder();
+
+      geo.coord2RegionCode(gatheringPlacePoint.lng, gatheringPlacePoint.lat, (result, status) => {
+        if (status !== kakao.maps.services.Status.OK) {
+          return;
+        }
+
+        setRegion(result[0].address_name);
+      });
+    });
+  }, []);
+
   const handleClickCenterButton = () => {
     setIsOutCenter(false);
     setMapCenter(gatheringPlacePoint);
@@ -27,6 +44,7 @@ const MateMap = ({ mateData }: MateMapProps) => {
   return (
     <>
       <S.MateMapTitle>모임 장소</S.MateMapTitle>
+      <S.MateMapRegion>{region}</S.MateMapRegion>
       <S.MateMapWrapper>
         <MasilMap center={mapCenter} />
         <Button

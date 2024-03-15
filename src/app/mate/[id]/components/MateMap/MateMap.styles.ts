@@ -8,6 +8,14 @@ export const MateMapTitle = styled.h6`
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
 `;
 
+export const MateMapRegion = styled.p`
+  width: 100%;
+  min-height: 2rem;
+
+  font-weight: ${FONT_WEIGHT.MEDIUM};
+  color: ${({ theme }) => theme.gray_500};
+`;
+
 export const MateMapWrapper = styled.div`
   width: 100%;
   height: 40%;
