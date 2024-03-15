@@ -1,13 +1,17 @@
 import React from "react";
 import MateDetail from "./MateDetail";
 import { MateDetailResponse } from "@/types/Response";
+import { getMateDetail } from "@/lib/api/Mate/server";
 
 interface MateProps {
   params: { id: string };
 }
 
-const Mate = ({ params }: MateProps) => {
+const Mate = async ({ params }: MateProps) => {
   const { id } = params;
+  const data = await getMateDetail(id);
+
+  console.log(data);
 
   return (
     <MateDetail
