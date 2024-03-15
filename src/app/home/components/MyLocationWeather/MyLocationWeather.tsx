@@ -1,13 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { FineDust, Location } from "@/components/icons";
-import * as S from "./MyLocationWeather.styles";
-import convertLatLonToTM from "../../utils/convertLatLonToTM";
+import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 import useUserLocationStore from "@/stores/useUserLocationStore";
-import { ClearSky, Overcast, PartlyCloudy, Rainy, Sleet, Snowy } from "@/components/icons";
-import { PrecipitationType, WeatherType } from "../../Home.types";
+
 import fetchNearbyStation from "../../api/fetchNearbyStation";
+import { WEATHER_KEY } from "@/lib/api/queryKeys";
+
+import getDetailedAddress from "../../utils/getAddress";
+import convertLatLonToTM from "../../utils/convertLatLonToTM";
+import showErrorMessage from "../../utils/showErrorMessage";
+
+import {
+  ClearSky,
+  Overcast,
+  PartlyCloudy,
+  Rainy,
+  Sleet,
+  Snowy,
+  FineDust,
+  Location,
+} from "@/components/icons";
+import { HomeWeatherSkeleton } from "@/components/skeletons";
+
+import * as S from "./MyLocationWeather.styles";
 
 const WEATHER_ICON = {
   맑음: <ClearSky />,
@@ -35,73 +52,68 @@ const findDust = (pm10: number | null) => {
   }
 };
 
-interface weatherDataType {
-  address: string;
-  pm10: number | null;
-  precipitation: PrecipitationType | null;
-  temperature: string | null;
-  weather: WeatherType | null;
+interface LocationType {
+  lat: number | null;
+  lng: number | null;
+  tmX: number | null;
+  tmY: number | null;
 }
 
 const MyLocationWeather = () => {
-  const [weatherData, setWeatherData] = useState<weatherDataType>({
-    address: "",
-    pm10: null,
-    precipitation: null,
-    temperature: null,
-    weather: null,
+  const [location, setLocation] = useState<LocationType>({
+    lat: null,
+    lng: null,
+    tmX: null,
+    tmY: null,
   });
-  const { setUserLocation } = useUserLocationStore();
 
-  const showYourLocation = async ({ coords }: GeolocationPosition) => {
+  const { userAddress, setUserLocation, setUserAddress } = useUserLocationStore();
+
+  const { data: weatherData, isLoading } = useQuery({
+    queryKey: [WEATHER_KEY.GET_WEATHER_DATA],
+    queryFn: () => fetchNearbyStation(location),
+    enabled: !!location.lat && !!location.lng && !!location.tmX && !!location.tmY,
+    staleTime: 60 * 1000 * 10,
+    gcTime: 60 * 1000 * 15,
+  });
+
+  const showYourLocation = ({ coords }: GeolocationPosition) => {
     const lat = coords.latitude;
     const lng = coords.longitude;
 
-    setUserLocation({
-      lat,
-      lng,
-    });
+    const { x: tmX, y: tmY } = convertLatLonToTM(lat, lng);
 
-    if (lat <= 0 || lng <= 0) {
-      return;
-    }
-
-    const tmCoords = convertLatLonToTM(lat, lng); // 위도와 경도를 TM 좌표계로 변환
-
-    const tmX = tmCoords.x;
-    const tmY = tmCoords.y;
-
-    if (tmX && tmY && tmX > 0 && tmY > 0) {
-      const weatherInfo = await fetchNearbyStation(tmX, tmY, lat, lng);
-      if (weatherInfo) {
-        setWeatherData(weatherInfo);
-      }
-    }
-  };
-
-  const showErrorMsg = (error: GeolocationPositionError) => {
-    switch (error.code) {
-      case error.PERMISSION_DENIED:
-        throw new Error("이 문장은 사용자가 Geolocation API의 사용 요청을 거부했을 때 나타납니다!");
-
-      case error.POSITION_UNAVAILABLE:
-        throw new Error("이 문장은 가져온 위치 정보를 사용할 수 없을 때 나타납니다!");
-
-      case error.TIMEOUT:
-        throw new Error(
-          "이 문장은 위치 정보를 가져오기 위한 요청이 허용 시간을 초과했을 때 나타납니다!",
-        );
-
-      default:
-        throw new Error("이 문장은 알 수 없는 오류가 발생했을 때 나타납니다!");
-    }
+    setLocation({ lat, lng, tmX, tmY });
+    setUserLocation({ lat, lng });
   };
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMsg);
+    navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMessage);
   }, []);
 
-  const { precipitation, weather, pm10, address, temperature } = weatherData;
+  const GetDetailedAddress = useCallback(async () => {
+    if (!location.lat || !location.lng) {
+      return;
+    }
+
+    const MyAddress = await getDetailedAddress({ lat: location.lat, lng: location.lng });
+
+    if (!MyAddress) {
+      return;
+    }
+
+    setUserAddress(MyAddress);
+  }, [location.lat, location.lng]);
+
+  useEffect(() => {
+    GetDetailedAddress();
+  }, [GetDetailedAddress]);
+
+  if (!weatherData || isLoading) {
+    return <HomeWeatherSkeleton />;
+  }
+
+  const { precipitation, weather, pm10, temperature } = weatherData;
 
   const weatherIcon =
     precipitation && weather ? WEATHER_ICON[precipitation] || WEATHER_ICON[weather] : null;
@@ -110,10 +122,12 @@ const MyLocationWeather = () => {
   return (
     <S.MyLocationWeatherLayout>
       <S.MyLocation>
-        {address && (
+        {userAddress && (
           <>
             <Location style={{ marginRight: "0.5rem" }} />
-            <span>{address}</span>
+            <span>
+              {userAddress.depth1} {userAddress.depth2} {userAddress.depth3}
+            </span>
           </>
         )}
       </S.MyLocation>
