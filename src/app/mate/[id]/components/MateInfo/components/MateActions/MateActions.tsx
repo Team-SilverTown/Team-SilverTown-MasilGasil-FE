@@ -20,10 +20,6 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   const { userId } = useMeStore();
   const theme = useTheme();
 
-  // 데이터가 확정되지 않아 추후 데이터를 고려하여 제작
-
-  // 상태를 변경시키기 위한 임시값
-
   const userStatus = useMemo(() => {
     if (mateData.authorId === userId) {
       return "AUTHOR";
