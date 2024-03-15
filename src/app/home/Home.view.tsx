@@ -1,5 +1,5 @@
 import { PostMoreListResponse } from "@/types/Response/Post";
-import { MeResponse, ProfileResponse } from "@/types/Response";
+import { ProfileResponse } from "@/types/Response";
 
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import {
