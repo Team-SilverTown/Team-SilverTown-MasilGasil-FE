@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 export const ConfirmModalLayout = styled.div`
-  width: 28rem;
+  width: 26rem;
   padding: 0 2rem;
 
   user-select: none;
@@ -16,6 +16,7 @@ export const ConfirmModalMessage = styled.p`
   font-weight: ${FONT_WEIGHT.SEMIBOLD};
   line-height: 1.4;
   word-break: keep-all;
+  text-align: center;
 `;
 
 export const ConfirmModalWarning = styled.p`
@@ -25,6 +26,7 @@ export const ConfirmModalWarning = styled.p`
   font-size: ${FONT_SIZE.MINI};
   font-weight: ${FONT_WEIGHT.MEDIUM};
   color: red;
+  text-align: center;
 `;
 
 export const ConfirmModalActionsContainer = styled.div`

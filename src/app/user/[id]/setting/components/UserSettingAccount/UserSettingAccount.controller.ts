@@ -15,7 +15,7 @@ const useUserSettingAccountController = () => {
   const handleLogout = () => {
     setModalView("CONFIRM_VIEW");
     openModal({
-      message: "로그아웃하시겠어요?",
+      message: "로그아웃 하시겠어요?",
       onClickAccept: () => {
         initMe();
         setAuth({ isLogIn: false, serviceToken: undefined });
