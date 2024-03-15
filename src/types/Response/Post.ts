@@ -1,4 +1,5 @@
 import { GeoPosition, Pin } from "../OriginDataType";
+import { PostListItem } from "../OriginDataType/Post";
 
 export interface PostDetailResponse {
   id: number;
@@ -25,4 +26,10 @@ export interface PostDetailResponse {
   authorName: string;
 
   thumbnailUrl: string;
+}
+
+export interface PostListResponse {
+  isEmpty: boolean;
+  contents: PostListItem[];
+  nextCursor: string;
 }
