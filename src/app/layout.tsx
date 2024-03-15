@@ -14,6 +14,7 @@ import { GlobalStyle } from "@/styles/GlobalStyle";
 
 import "src/styles/globals.css";
 import { authOptions } from "./api/auth/[...nextauth]/options";
+import { Toaster } from "@/components/ShadcnUi/ui/toaster";
 
 export const metadata: Metadata = {
   title: "마실가실",
@@ -75,6 +76,7 @@ export default async function RootLayout({
                 </TanstackQueryProvider>
               </AuthLoader>
             </AuthContext>
+            <Toaster />
           </body>
         </StyledComponentsRegistry>
       </ManagedUIContext>

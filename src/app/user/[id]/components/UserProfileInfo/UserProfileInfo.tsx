@@ -11,6 +11,8 @@ import InputUpload from "@/components/InputUpload/InputUpload";
 import { useMutation } from "@tanstack/react-query";
 import { changeProfileImage } from "@/lib/api/User/client";
 import { USER_KEY } from "@/lib/api/queryKeys";
+import { useToast } from "@/components/ShadcnUi/ui/useToast";
+import { ToastAction } from "@/components/ShadcnUi/ui/toast";
 
 interface UserInfoProfileProps {
   profileImage: string | null;
@@ -26,6 +28,7 @@ const UserInfoProfile = ({
   height = 120,
 }: UserInfoProfileProps) => {
   const [profile, setProfile] = useState(profileImage);
+  const { toast } = useToast();
 
   const uploadImageMutation = useMutation({
     mutationKey: [USER_KEY.UPLOAD_IMAGE],
@@ -47,7 +50,10 @@ const UserInfoProfile = ({
                   { image },
                   {
                     onSuccess: () => {
-                      console.log("completed");
+                      toast({
+                        title: "프로필 사진이 성공적으로 등록되었어요!",
+                        duration: 2000,
+                      });
                       setProfile(URL.createObjectURL(image));
                     },
                   },
@@ -59,7 +65,12 @@ const UserInfoProfile = ({
               alt={" "}
               width={width}
               height={height}
-              style={{ borderRadius: "50%", width: "120px", height: "120px" }}
+              style={{
+                borderRadius: "50%",
+                width: "120px",
+                height: "120px",
+                backgroundColor: "white",
+              }}
               priority
             />
           </InputUpload>
