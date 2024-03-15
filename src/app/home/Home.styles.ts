@@ -2,8 +2,8 @@ export const HomePageContainer = `
   w-full
   min-h-screen
 
-  pt-32
-  pb-56
+  pt-40
+  pb-72
 
   box-border
 `;

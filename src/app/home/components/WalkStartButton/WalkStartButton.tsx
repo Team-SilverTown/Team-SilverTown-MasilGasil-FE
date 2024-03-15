@@ -15,16 +15,15 @@ const WalkStartButton = () => {
         style={{
           position: "fixed",
           left: "50%",
-          bottom: "7rem",
+          bottom: "10.5rem",
           transform: "translateX(-50%)",
           maxWidth: `${CONTAINER.MAX_WIDTH}rem`,
           height: "6rem",
           fontSize: `${FONT_SIZE.H6}`,
           fontWeight: `${FONT_WEIGHT.BOLD}`,
-          opacity: "0.9",
         }}
       >
-        산책 기록 하기
+        산책하기
       </Button>
     </Link>
   );

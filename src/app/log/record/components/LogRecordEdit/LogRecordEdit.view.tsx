@@ -100,7 +100,7 @@ const LogRecordEditView = () => {
         width={"90%"}
         onClickHandler={handleSubmit}
       >
-        산책 기록하기
+        산책 저장하기
       </Button>
     </>
   );
