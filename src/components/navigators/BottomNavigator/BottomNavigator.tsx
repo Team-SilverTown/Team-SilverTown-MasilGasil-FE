@@ -19,14 +19,14 @@ const BottomNavigator = () => {
 
   if (navInable) return null;
 
-  const isPathActive = (path: string) => currentPathName === path;
+  const isPathActive = (path: string) => currentPathName.includes(path);
   const { userId } = useMeStore();
 
   return (
     <S.BottomNavContainer>
       {BOTTOM_NAV_ITEMS.map(({ path, icon, activeIcon, label, isProfile, isIdRequired }) => (
         <Link
-          href={`${path}${isIdRequired ? `/${userId}` : ""}`}
+          href={`${path}${isIdRequired && userId ? `/${userId}` : ""}`}
           key={path}
           title={label}
         >
@@ -42,3 +42,5 @@ const BottomNavigator = () => {
 };
 
 export default BottomNavigator;
+
+BottomNavigator.__isStatic = true;
