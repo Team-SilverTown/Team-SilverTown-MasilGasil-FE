@@ -66,6 +66,7 @@ const LogView = ({
             tabContents={TAB_CONTENTS}
             tabClickHandler={handleClickTab}
             focusedTab={tabIndex}
+            layoutId="log-underline"
           />
 
           <S.LogContentSection className="scrollbar-hide">

@@ -1,4 +1,5 @@
 import { GeoPosition, Pin } from "../OriginDataType";
+import { PostListItem } from "../OriginDataType/Post";
 
 export interface PostDetailResponse {
   id: number;
@@ -43,6 +44,6 @@ export interface PostListItemResponse {
 
 export interface PostListResponse {
   isEmpty: boolean;
-  contents: PostListItemResponse[];
+  contents: PostListItemResponse[] | PostListItem[];
   nextCursor: string;
 }

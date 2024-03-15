@@ -1,7 +1,7 @@
 "use client";
 
 import React, { CSSProperties } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import * as S from "./Tab.styles";
 import { NAV_HEIGHT } from "@/styles/theme";
@@ -15,6 +15,7 @@ interface TabProps {
   width?: string | number;
   height?: string | number;
   TabComponent?: React.ComponentType<any>;
+  layoutId?: string;
 }
 
 const Tab = ({
@@ -26,6 +27,7 @@ const Tab = ({
   className,
   style,
   TabComponent,
+  layoutId,
 }: TabProps) => {
   return (
     <S.Tabs
@@ -53,7 +55,7 @@ const Tab = ({
               {index === focusedTab ? (
                 <motion.div
                   className="underline"
-                  layoutId="underline"
+                  layoutId={layoutId}
                 />
               ) : null}
             </>
