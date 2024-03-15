@@ -6,13 +6,15 @@ import Divider from "@/components/Divider/Divider";
 import Avatar from "@/components/Avatar";
 import { MateDetailResponse } from "@/types/Response";
 import convertFormatDate from "@/utils/convertFormatDate";
+import { Participant } from "@/types/OriginDataType";
 
 interface MateInfoProps {
   postId: string;
+  acceptedUserList: Participant[];
   mateData: MateDetailResponse;
 }
 
-const MateInfo = ({ mateData, postId }: MateInfoProps) => {
+const MateInfo = ({ mateData, postId, acceptedUserList }: MateInfoProps) => {
   const {
     authorProfileUrl,
     authorNickname,
@@ -22,8 +24,6 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
     participants,
     authorId,
   } = mateData;
-
-  const AcceptedUserList = participants.filter(({ status }) => status === "ACCEPTED");
 
   return (
     <article className={`${GS.MateInformationContainer} py-4 flex flex-col gap-12`}>
@@ -49,7 +49,7 @@ const MateInfo = ({ mateData, postId }: MateInfoProps) => {
 
         <li className={S.MateInfoItem}>
           <p className={S.MateInfoItemTitle}>모임 인원</p>
-          <p className={S.MateInfoItemContent}>{`${AcceptedUserList.length}/${capacity}명`}</p>
+          <p className={S.MateInfoItemContent}>{`${acceptedUserList.length}/${capacity}명`}</p>
         </li>
       </ul>
 

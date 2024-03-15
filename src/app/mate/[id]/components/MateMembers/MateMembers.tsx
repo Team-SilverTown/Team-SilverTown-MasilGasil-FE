@@ -8,17 +8,21 @@ import { useMemo, useState } from "react";
 import useMeStore from "@/stores/useMeStore";
 import { MembersList } from "./components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { Participant } from "@/types/OriginDataType";
 
 interface MateMembersProps {
   mateData: MateDetailResponse;
+  acceptedUserList: Participant[];
+  requestUserList: Participant[];
 }
 
 const AUTHOR_TAB_CONTENT = ["참가자", "신청자"];
 const USER_TAB_CONTENT = ["참가자", ""];
 
-const MateMembers = ({ mateData }: MateMembersProps) => {
+const MateMembers = ({ mateData, acceptedUserList, requestUserList }: MateMembersProps) => {
   const { userId } = useMeStore();
   const [focusTab, setFocusTab] = useState(0);
+
   const isAuthor = useMemo(() => userId === mateData.authorId, [userId, mateData.authorId]);
 
   const handleClickTab = (index: number) => {
@@ -47,11 +51,11 @@ const MateMembers = ({ mateData }: MateMembersProps) => {
       />
 
       <S.MateTabContent>
-        {focusTab === 0 && <MembersList participants={mateData.participants} />}
+        {focusTab === 0 && <MembersList participants={acceptedUserList} />}
 
         {focusTab === 1 && (
           <MembersList
-            participants={mateData.participants}
+            participants={requestUserList}
             isApplicantList={true}
           />
         )}

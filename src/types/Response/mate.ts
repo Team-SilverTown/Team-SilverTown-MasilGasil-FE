@@ -3,6 +3,7 @@ import { GeoPosition, Participant } from "../OriginDataType";
 export interface MateDetailResponse {
   id: number;
   postId: number;
+  status: "CLOSED" | "OPEN";
 
   title: string;
   content: string;

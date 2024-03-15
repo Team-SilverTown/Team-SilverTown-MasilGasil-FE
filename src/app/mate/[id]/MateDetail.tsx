@@ -14,6 +14,11 @@ interface MateDetailProps {
 }
 
 const MateDetail = ({ postId, mateData }: MateDetailProps) => {
+  const { participants } = mateData;
+
+  const acceptedUserList = participants.filter(({ status }) => status === "ACCEPTED");
+  const requestedUserList = participants.filter(({ status }) => status === "REQUESTED");
+
   return (
     <>
       <TopNavigator
@@ -25,6 +30,7 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
           <MateInfo
             postId={postId}
             mateData={mateData}
+            acceptedUserList={acceptedUserList}
           />
 
           <Divider />
@@ -37,7 +43,11 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
             nickName={authorNickname}
           /> */}
 
-          <MateMembers mateData={mateData} />
+          <MateMembers
+            mateData={mateData}
+            acceptedUserList={acceptedUserList}
+            requestUserList={requestedUserList}
+          />
         </article>
       </section>
     </>
@@ -45,3 +55,5 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
 };
 
 export default MateDetail;
+
+// 신청 => 신청 중 ( 취소 액션이 가능) => 승락됨 나갈 수 있음
