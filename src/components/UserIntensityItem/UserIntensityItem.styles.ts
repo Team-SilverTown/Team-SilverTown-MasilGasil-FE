@@ -35,7 +35,7 @@ export const IntensityItemCircle = styled.i<{ $isSelected: boolean }>`
 export const IntensityOptionDescription = styled.p`
   flex-grow: 1;
 
-  font-size: ${FONT_SIZE.LARGE};
+  font-size: ${FONT_SIZE.MEDIUM};
   font-weight: ${FONT_WEIGHT.MEDIUM};
   white-space: nowrap;
   overflow: scroll;

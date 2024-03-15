@@ -1,43 +1,33 @@
+"use client";
+
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "./UserEdit.styles";
-
-import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
-import { UserEditData } from "./UserEdit.types";
 
 import { EditSex, EditNickname, EditBirthDate, EditBodyInfo, EditIntensity } from "./components";
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { IntensityOption } from "@/types/OriginDataType";
+import { MeResponse } from "@/types/Response";
+import useUserEditController from "./UserEdit.controller";
 
 interface UserEditViewProps {
-  register: UseFormRegister<UserEditData>;
-  errors: FieldErrors<UserEditData>;
-
-  onSubmit: UseFormHandleSubmit<UserEditData>;
-  onValid: (data: UserEditData) => void;
-  onInValid: (error: FieldErrors) => void;
-
-  selectedSex: string;
-  selectedIntensity: IntensityOption;
-  isCheckedNickname: boolean;
-  onCheckSameNickname: () => void;
+  userDefaultData: MeResponse;
 }
 
-const UserEditView = ({
-  register,
-  errors,
-
-  onSubmit,
-  onValid,
-  onInValid,
-
-  selectedSex,
-  selectedIntensity,
-  isCheckedNickname,
-  onCheckSameNickname,
-}: UserEditViewProps) => {
+const UserEditView = ({ userDefaultData }: UserEditViewProps) => {
   const theme = useTheme();
+  const {
+    register,
+    errors,
+    isCheckedNickname,
+    nickNameButtonDisabled,
+    selectedSex,
+    selectedIntensity,
+    handleCheckSameNickName,
+    changeUserData,
+    handleSubmit,
+    handleValid,
+  } = useUserEditController({ userDefaultData });
 
   return (
     <GS.CommonContainer
@@ -47,7 +37,6 @@ const UserEditView = ({
         padding: "6rem 0",
         position: "relative",
       }}
-      onSubmit={onSubmit(onValid, onInValid)}
     >
       <S.UserEditLayout
         initial={{ x: "-120%" }}
@@ -57,8 +46,9 @@ const UserEditView = ({
         <EditNickname
           register={register}
           errors={errors}
+          nickNameButtonDisabled={nickNameButtonDisabled}
           isCheckedNickname={isCheckedNickname}
-          onCheckSameNickname={onCheckSameNickname}
+          onCheckSameNickname={handleCheckSameNickName}
         />
 
         <EditSex
@@ -90,13 +80,15 @@ const UserEditView = ({
           buttonColor={theme?.green_500}
           textColor={theme?.text_secondary_color}
           style={{
-            width: "100%",
-            fontSize: FONT_SIZE.H4,
+            width: "90%",
+            fontSize: FONT_SIZE.H6,
             fontWeight: FONT_WEIGHT.BOLD,
             minHeight: "5rem",
           }}
+          onClickHandler={handleSubmit(handleValid)}
+          disabled={!changeUserData}
         >
-          수정 완료
+          {changeUserData ? "수정 완료" : "변경사항이 없습니다."}
         </Button>
       </S.UserEditButtonWrapper>
     </GS.CommonContainer>

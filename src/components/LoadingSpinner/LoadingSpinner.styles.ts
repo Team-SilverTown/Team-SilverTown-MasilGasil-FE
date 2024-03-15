@@ -1,5 +1,6 @@
 "use client";
 
+import { Z_INDEX } from "@/styles/theme";
 import styled from "styled-components";
 
 export const LoadingSpinnerBackground = styled.section`
@@ -14,4 +15,5 @@ export const LoadingSpinnerBackground = styled.section`
   top: 0;
 
   background-color: ${({ theme }) => theme.transparent_50};
+  z-index: ${Z_INDEX.SPINNER};
 `;

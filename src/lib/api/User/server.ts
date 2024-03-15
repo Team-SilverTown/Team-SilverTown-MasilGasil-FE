@@ -1,6 +1,6 @@
 "use server";
 
-import { AuthRequest, MeRequest } from "@/types/Request/User";
+import { AuthRequest } from "@/types/Request/User";
 import { USER } from "../endPoints";
 import { GET, POST } from "../serverRootAPI";
 import { MeResponse, ProfileResponse } from "@/types/Response";

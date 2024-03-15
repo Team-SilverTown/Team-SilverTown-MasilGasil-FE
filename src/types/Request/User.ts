@@ -20,3 +20,12 @@ export interface SignUpRequest {
   isLocationInfoConsented: boolean;
   isUnderAgeConsentConfirmed: boolean;
 }
+
+export interface UserEditRequest {
+  nickname: string;
+  sex?: string;
+  birthDate?: string;
+  height?: number;
+  weight?: number;
+  exerciseIntensity?: IntensityOption;
+}
