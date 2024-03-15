@@ -4,18 +4,22 @@ import styled from "styled-components";
 interface UserInfoProfileImageProps {
   width: number;
   height: number;
-  $profile: string | null;
 }
 
 export const UserInfoProfile = styled.div`
   text-align: center;
 `;
 
+export const UploadContainer = styled.div`
+  overflow: hidden;
+  position: absolute;
+  border-radius: 50%;
+`;
+
 export const UserInfoProfileImage = styled.div<UserInfoProfileImageProps>`
   position: relative;
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};
-  background-image: ${(props) => `url(${props.$profile})`};
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
