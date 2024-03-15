@@ -18,7 +18,7 @@ export interface LogDetailCardProps {
   isLiked: boolean;
   isLikeLayout: boolean;
   isSettingLayout: boolean;
-  userInfo: MeResponse;
+  userInfo?: MeResponse;
   style?: CSSProperties;
   onDetailClick: () => void;
   onLikeClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -41,10 +41,10 @@ const LogDetailCard = ({
   onLikeClick,
 }: LogDetailCardProps) => {
   const [isSettingToggle, setIsSetingToggle] = useState(false);
-  const { isUserInfoCheck, calories } = calculateWalkingCalories({
-    userInfo,
-    distance: totalDistance,
-  });
+  // const { isUserInfoCheck, calories } = calculateWalkingCalories({
+  //   userInfo,
+  //   distance: totalDistance,
+  // });
 
   const handleDetailViewClick = () => {
     if (isSettingToggle) {
@@ -103,7 +103,7 @@ const LogDetailCard = ({
           <ul className="walkInfo">
             <li>{totalTime}</li>
             <li>{distance}</li>
-            {isUserInfoCheck && <li>{calories}kcal</li>}
+            {/* {isUserInfoCheck && <li>{calories}kcal</li>} */}
           </ul>
           {isLikeLayout && (
             <div

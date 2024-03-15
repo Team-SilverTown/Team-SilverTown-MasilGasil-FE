@@ -13,7 +13,7 @@ interface MyRecordListProps {
   urlLink: string;
   recordList: MasilsListType[] | PostsListType[];
   type: "Masils" | "Posts";
-  userInfo: ProfileResponse;
+  userInfo?: ProfileResponse;
   key?: string | number;
 }
 
@@ -65,7 +65,6 @@ const MyRecordList = ({ title, urlLink, recordList, type, userInfo }: MyRecordLi
                     isLiked={true}
                     isLikeLayout={true}
                     isSettingLayout={true}
-                    userInfo={userInfo}
                     onDetailClick={() => router.push(`/post/${id}`)}
                     onLikeClick={(event) => {
                       event.stopPropagation();

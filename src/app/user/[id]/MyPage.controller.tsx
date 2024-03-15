@@ -1,5 +1,5 @@
 import { USER_DUMMY_DATA } from "@/app/home/Home.constants";
-import { RECORDLIST_DUMMY_DATA } from "./MyPage.constants";
+import { RECORDLIST_DUMMY_DATA, USER_PROFILE_EXCEPTION } from "./MyPage.constants";
 import MypageView from "./MyPage.view";
 import { getUserProfile } from "@/lib/api/User/server";
 
@@ -25,11 +25,10 @@ interface MyPageControllerProps {
 const MyPageController = async ({ userId }: MyPageControllerProps) => {
   const userProfile = await getUserProfile(userId);
 
-
   return (
     <MypageView
       userId={userId}
-      userInfo={userProfile}
+      userInfo={userProfile !== undefined ? userProfile : USER_PROFILE_EXCEPTION}
       boardList={RECORDLIST_DUMMY_DATA}
     />
   );
