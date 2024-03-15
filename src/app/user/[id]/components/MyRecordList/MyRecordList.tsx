@@ -7,6 +7,7 @@ import { LogDetailCard, LogSimpleCard } from "@/components";
 import { ProfileResponse, RecentMasil } from "@/types/Response";
 import * as S from "./MyRecordList.styles";
 import { PostListItem } from "@/types/OriginDataType/Post";
+import { toast } from "@/components/ShadcnUi/ui/useToast";
 
 interface MyRecordListProps {
   title: string;
@@ -24,12 +25,19 @@ const MyRecordList = ({ title, urlLink, recordList, type }: MyRecordListProps) =
     <S.BorderContainer>
       <S.BorderTitleSection>
         <h3>{title}</h3>
-        <Link
+        {/* <Link
           href={urlLink}
           title={title}
         >
           더 보기
-        </Link>
+        </Link> */}
+        <span
+          onClick={() => {
+            toast({ title: "준비 중인 기능이에요!", duration: 2000 });
+          }}
+        >
+          더보기
+        </span>
       </S.BorderTitleSection>
       <S.BorderContentSection>
         <S.BorderContentListWrapper>
