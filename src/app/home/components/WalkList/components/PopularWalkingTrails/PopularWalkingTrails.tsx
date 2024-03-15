@@ -1,46 +1,19 @@
-import Link from "next/link";
-
-import { convertMeter, convertSeconds } from "@/utils";
-
+import { WALK_LIST } from "@/app/home/Home.constants";
 import { PostListItemResponse } from "@/types/Response/Post";
-
-import LogDetailCard from "@/components/LogDetailCard";
-import { More } from "@/components/icons";
-
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import * as S from "./PopularWalkingTrails.style";
+import WalkListDisplay from "../WalkListDisplay/WalkListDisplay";
 
 interface PopularWalkingTrailsProps {
   PopularWalkingTrailsList: PostListItemResponse[];
+  isEmpty: boolean;
 }
 
-const PopularWalkingTrails = ({ PopularWalkingTrailsList }: PopularWalkingTrailsProps) => {
+const PopularWalkingTrails = ({ PopularWalkingTrailsList, isEmpty }: PopularWalkingTrailsProps) => {
   return (
-    <section className={S.WalkListSection}>
-      <article className={S.HomeWalkListArticle}>
-        <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>
-          요즘 인기 있는 전국 산책로
-        </h3>
-        <Link href="/more?keyword=total_popular&order=popular">
-          <More />
-        </Link>
-      </article>
-      <ul className={S.WalkListContainer}>
-        {PopularWalkingTrailsList.map((list) => (
-          <li key={list.id}>
-            <Link href={`/post/${list.id}`}>
-              <LogDetailCard
-                title={list.title}
-                content={list.content}
-                thumbnailUrl={list.thumbnailUrl}
-                distance={convertMeter(list.distance)}
-                totalTime={convertSeconds(list.totalTime)}
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <WalkListDisplay
+      title={WALK_LIST.POPULAR_TRAILS}
+      walkList={PopularWalkingTrailsList}
+      isEmpty={isEmpty}
+    />
   );
 };
 

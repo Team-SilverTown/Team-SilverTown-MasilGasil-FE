@@ -18,9 +18,7 @@ export const PostCardsSkeleton = () => {
 
 export const LogDetailCardSkeleton = () => {
   return (
-    <div
-      className={`${shimmer} relative w-[30rem] h-[12rem] rounded-lg bg-gray-200 basis-0 grow`}
-    />
+    <div className={`${shimmer} relative w-[30rem] h-[12rem] rounded-lg bg-gray-200 shrink-0`} />
   );
 };
 
@@ -60,10 +58,12 @@ export const HomeWeatherSkeleton = () => {
 
 export const HomeDetailCardSkeleton = () => {
   return (
-    <div className="inline-flex gap-8 overflow-x-auto scrollbar-hide">
-      <LogDetailCardSkeleton />
-      <LogDetailCardSkeleton />
-      <LogDetailCardSkeleton />
+    <div className="mt-8 px-6 overflow-hidden">
+      <div className="flex gap-8 overflow-x-auto scrollbar-hide">
+        <LogDetailCardSkeleton />
+        <LogDetailCardSkeleton />
+        <LogDetailCardSkeleton />
+      </div>
     </div>
   );
 };
