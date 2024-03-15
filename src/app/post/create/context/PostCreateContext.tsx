@@ -200,7 +200,7 @@ export const PostCreateContextProvider = ({
           onSuccess: ({ id }) => {
             router.push(`/post/${id}`);
 
-            setModalView("POST_CREATE_DONE_VIEW");
+            setModalView("DONE_VIEW");
             openModal();
           },
 

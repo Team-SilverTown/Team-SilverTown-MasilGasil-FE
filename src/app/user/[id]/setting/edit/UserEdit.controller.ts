@@ -81,6 +81,8 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
     editUserMutation.mutate(data, {
       onSuccess: (editedData) => {
         setMe(editedData);
+
+        setModalView("DONE_VIEW");
       },
     });
   };
