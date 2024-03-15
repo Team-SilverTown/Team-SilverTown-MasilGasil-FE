@@ -26,4 +26,5 @@ export const IMAGE = "/api/v1/images";
 export const POST = {
   GET_DETAIL: "/api/v1/posts",
   POST: "/api/v1/posts",
+  GET_LIST: "/api/v1/posts",
 };
