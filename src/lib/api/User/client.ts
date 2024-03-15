@@ -1,4 +1,9 @@
-import { AuthResponse, CheckNickNameResponse, MeResponse } from "@/types/Response";
+import {
+  AuthResponse,
+  CheckNickNameResponse,
+  EditUserResponse,
+  MeResponse,
+} from "@/types/Response";
 import { AuthRequest, SignUpRequest, UserEditRequest } from "@/types/Request/User";
 
 import { GET, POST, PUT } from "../clientRootAPI";
@@ -41,4 +46,6 @@ export const postEditUser = async (newUserData: MeResponse) => {
     weight: weight ? +weight : undefined,
     exerciseIntensity,
   };
+
+  return await PUT<EditUserResponse>({ endPoint: USER.EDIT_USER, data: newData, auth: true });
 };

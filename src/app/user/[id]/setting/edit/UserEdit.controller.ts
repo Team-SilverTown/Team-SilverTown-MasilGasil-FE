@@ -7,9 +7,10 @@ import { useEffect, useMemo, useRef } from "react";
 import { MeResponse } from "@/types/Response";
 import { useMutation } from "@tanstack/react-query";
 import { USER_KEY } from "@/lib/api/queryKeys";
-import { checkDuplicateNickname } from "@/lib/api/User/client";
+import { checkDuplicateNickname, postEditUser } from "@/lib/api/User/client";
 import { throttle } from "lodash";
 import { useUI } from "@/components/uiContext/UiContext";
+import useMeStore from "@/stores/useMeStore";
 
 interface UserEditControllerProps {
   userDefaultData: MeResponse;
@@ -33,10 +34,16 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
   const selectedIntensity = watch("exerciseIntensity");
 
   const { setModalView, openModal } = useUI();
+  const { setMe } = useMeStore();
 
   const nickNameMutation = useMutation({
     mutationKey: [USER_KEY.CHECK_NICKNAME],
     mutationFn: (nickName: string) => checkDuplicateNickname(nickName),
+  });
+
+  const editUserMutation = useMutation({
+    mutationKey: [USER_KEY.EDIT_USER],
+    mutationFn: (newData: MeResponse) => postEditUser(newData),
   });
 
   useEffect(() => {
@@ -71,7 +78,11 @@ const useUserEditController = ({ userDefaultData }: UserEditControllerProps) => 
       최종 검증 후 업데이트 로직 수행
     */
 
-    console.log("등록되어야함", data);
+    editUserMutation.mutate(data, {
+      onSuccess: (editedData) => {
+        setMe(editedData);
+      },
+    });
   };
 
   const handleCheckSameNickName = useRef(

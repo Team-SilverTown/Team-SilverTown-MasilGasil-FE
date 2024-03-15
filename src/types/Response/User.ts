@@ -22,3 +22,11 @@ export interface CheckNickNameResponse {
 }
 
 // export interface SignUpResponse {}
+export interface EditUserResponse {
+  nickname: string;
+  sex: "MALE" | "FEMALE";
+  birthDate: string;
+  height: number;
+  weight: number;
+  exerciseIntensity: IntensityOption;
+}
