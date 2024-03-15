@@ -2,8 +2,6 @@ import Image from "next/image";
 import * as S from "./DiaryItem.styles";
 import { useRouter } from "next/navigation";
 import { MasilsByPeriod } from "@/types/Response";
-import { Location } from "@/components/icons";
-import Theme from "@/styles/theme";
 import useTheme from "@/lib/hooks/useTheme";
 import { convertMeter, convertSeconds } from "@/utils";
 

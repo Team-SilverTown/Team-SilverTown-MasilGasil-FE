@@ -3,18 +3,21 @@ import * as S from "./MateDetail.styles";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { CommonContainerTailwind } from "@/styles/GlobalStyle";
 import Divider from "@/components/Divider/Divider";
-import { MateEvaluation, MateInfo, MateMembers } from "./components";
+import { MateInfo, MateMap, MateMembers } from "./components";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import { MatePost, UserEvaluationType } from "./MateDetail.types";
+
+import { MateDetailResponse } from "@/types/Response";
 
 interface MateDetailProps {
   postId: string;
-  matePost: MatePost;
-  authorEvaluation: UserEvaluationType;
+  mateData: MateDetailResponse;
 }
 
-const MateDetail = ({ postId, matePost, authorEvaluation }: MateDetailProps) => {
-  const { members, authorNickname } = matePost;
+const MateDetail = ({ postId, mateData }: MateDetailProps) => {
+  const { participants } = mateData;
+
+  const acceptedUserList = participants.filter(({ status }) => status === "ACCEPTED");
+  const requestedUserList = participants.filter(({ status }) => status === "REQUESTED");
 
   return (
     <>
@@ -26,19 +29,27 @@ const MateDetail = ({ postId, matePost, authorEvaluation }: MateDetailProps) => 
         <article className={S.MateDetailLayout}>
           <MateInfo
             postId={postId}
-            mateData={matePost}
+            mateData={mateData}
+            acceptedUserList={acceptedUserList}
+            requestedUserList={requestedUserList}
           />
 
           <Divider />
 
-          <MateEvaluation
+          <MateMap mateData={mateData} />
+
+          <Divider />
+
+          {/* <MateEvaluation
             authorEvaluation={authorEvaluation}
             nickName={authorNickname}
+          /> */}
+
+          <MateMembers
+            mateData={mateData}
+            acceptedUserList={acceptedUserList}
+            requestUserList={requestedUserList}
           />
-
-          <Divider />
-
-          <MateMembers members={members} />
         </article>
       </section>
     </>

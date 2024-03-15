@@ -15,15 +15,13 @@ const UserSettingView = () => {
       >
         <UserSettingOptions />
 
-        <Divider />
+        <Divider className="h-[0.1rem] min-h-[0.1rem]" />
 
         <UserSettingMember />
 
-        <Divider />
+        <Divider className="h-[0.1rem] min-h-[0.1rem]" />
 
         <UserSettingAccount />
-
-        <Divider />
       </S.UserSettingLayout>
     </GS.CommonContainer>
   );

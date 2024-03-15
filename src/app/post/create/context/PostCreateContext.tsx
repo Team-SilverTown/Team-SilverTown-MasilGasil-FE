@@ -200,14 +200,14 @@ export const PostCreateContextProvider = ({
           onSuccess: ({ id }) => {
             router.push(`/post/${id}`);
 
-            setModalView("POST_CREATE_DONE_VIEW");
-            openModal();
+            setModalView("DONE_VIEW");
+            openModal({ message: "산책로가 등록되었습니다!" });
           },
 
           onError: () => {
-            setModalView("LOG_RECORD_ALERT_VIEW");
+            setModalView("ANIMATION_ALERT_VIEW");
             openModal({
-              message: `산책로 저장에 오류가 발생하였습니다. 잠시 후 다시 시도해주세요.`,
+              message: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
             });
           },
         });

@@ -1,7 +1,7 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
-export const PostCreateDoneLayout = styled.section`
+export const DoneLayout = styled.section`
   width: 28rem;
   padding: 2rem 0;
 
@@ -10,7 +10,7 @@ export const PostCreateDoneLayout = styled.section`
   gap: 2rem;
 `;
 
-export const PostCreateDoneTitle = styled.h6`
+export const DoneTitle = styled.h6`
   width: 100%;
   margin-bottom: 2rem;
 

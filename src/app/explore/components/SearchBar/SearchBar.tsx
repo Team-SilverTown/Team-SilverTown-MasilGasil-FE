@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FieldErrors, UseFormHandleSubmit, UseFormRegister, UseFormWatch } from "react-hook-form";
+import { UseFormRegister, UseFormWatch } from "react-hook-form";
 
 import { Input } from "@/components";
 import { Cross, Search } from "@/components/icons";
@@ -13,31 +13,31 @@ import * as S from "./SearchBar.styles";
 interface SearchBarProps {
   id?: string;
   register: UseFormRegister<SearchProps>;
-  handleSubmit: UseFormHandleSubmit<SearchProps>;
   watch: UseFormWatch<SearchProps>;
   clearHandler: Function;
-  onValid: (data: SearchProps) => void;
-  onInvalid: (data: FieldErrors) => void;
+  // handleSubmit: UseFormHandleSubmit<SearchProps>;
+  // onValid: (data: SearchProps) => void;
+  // onInvalid: (data: FieldErrors) => void;
+  onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchBar = ({
   id = "search",
   register,
-  handleSubmit,
   watch,
   clearHandler,
-  onValid,
-  onInvalid,
+  // handleSubmit,
+  // onValid,
+  // onInvalid,
+  onChangeHandler,
 }: SearchBarProps) => {
   const theme = useTheme();
 
   return (
     <S.SearchBarContainer>
-      <S.SearchForm onSubmit={handleSubmit(onValid, onInvalid)}>
+      <S.SearchForm>
         <Input
-          register={register("keyword", {
-            required: "Keyword is required",
-          })}
+          register={register("keyword")}
           id={id}
           type="text"
           style={{
@@ -45,7 +45,8 @@ const SearchBar = ({
             padding: "1.5rem 3rem",
             boxShadow: `0px 2px 7.8px 0px ${theme?.transparent_30}`,
           }}
-          placeholder="지도 범위 내 검색 결과 키워드로 찾기."
+          placeholder="지도 범위 내 검색 결과 키워드로 찾기"
+          onChange={onChangeHandler}
           // required={false}
           // onFocus={(e) => handleFocus(e)}
           // onBlur={(e) => handleBlur(e)}

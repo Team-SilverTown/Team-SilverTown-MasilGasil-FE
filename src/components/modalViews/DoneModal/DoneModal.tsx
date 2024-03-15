@@ -1,13 +1,14 @@
 "use client";
 
 import Lottie from "react-lottie";
-import * as S from "./PostCreateDoneModal.styles";
+import * as S from "./DoneModal.styles";
 import { ModalLayout } from "@/components/Modal";
 import animationData from "./animationData.json";
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { useUI } from "@/components/uiContext/UiContext";
+import { CSSProperties, useEffect } from "react";
 
 const defaultOptions = {
   loop: false,
@@ -18,12 +19,32 @@ const defaultOptions = {
   },
 };
 
-const PostCreateDoneModal = () => {
+interface AnimationAlertModalProps {
+  message: string;
+  cancelButtonText?: string;
+  textStyle?: CSSProperties;
+}
+
+interface ModalProp {
+  props: AnimationAlertModalProps;
+}
+
+const DoneModal = ({ props }: ModalProp) => {
   const theme = useTheme();
   const { closeModal } = useUI();
+  const { message, cancelButtonText = "닫기", textStyle } = props;
+
+  useEffect(() => {
+    const messageElement = document.querySelector("#done_modal_message_box");
+
+    if (messageElement) {
+      messageElement.innerHTML = message;
+    }
+  }, [message]);
+
   return (
     <ModalLayout>
-      <S.PostCreateDoneLayout>
+      <S.DoneLayout>
         <Lottie
           options={defaultOptions}
           height={150}
@@ -31,7 +52,12 @@ const PostCreateDoneModal = () => {
           isClickToPauseDisabled={true}
         />
 
-        <S.PostCreateDoneTitle>산책로가 등록되었습니다!</S.PostCreateDoneTitle>
+        <S.DoneTitle
+          id={"done_modal_message_box"}
+          style={textStyle}
+        >
+          {message}
+        </S.DoneTitle>
 
         <Button
           buttonColor={theme?.green_500}
@@ -43,11 +69,11 @@ const PostCreateDoneModal = () => {
           }}
           onClickHandler={closeModal}
         >
-          닫기
+          {cancelButtonText}
         </Button>
-      </S.PostCreateDoneLayout>
+      </S.DoneLayout>
     </ModalLayout>
   );
 };
 
-export default PostCreateDoneModal;
+export default DoneModal;

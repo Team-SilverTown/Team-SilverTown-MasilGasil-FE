@@ -1,23 +1,25 @@
 "use client";
 
-import { NotificationActive, PersonOff } from "@/components/icons";
+import { PersonOff, PersonSearch } from "@/components/icons";
 import * as GS from "../../UserSetting.styles";
 import { SettingContent } from "..";
 import useUserSettingOptionsController from "./UserSettingOptions.controller";
 
 const UserSettingOptionsView = () => {
-  const {} = useUserSettingOptionsController();
+  const { isPublic, handleTogglePublic } = useUserSettingOptionsController();
+
   return (
     <GS.UserSettingInnerLayout>
       <GS.UserSettingTitle>설정</GS.UserSettingTitle>
 
       {/* TODO - 상태에따라 아이콘 변경 예정 */}
-      {/* <PersonSearch /> */}
+
       <SettingContent
-        icon={<PersonOff />}
+        icon={isPublic ? <PersonSearch /> : <PersonOff />}
         text={"계정 공개여부"}
-        onClick={() => {}}
+        onClick={handleTogglePublic}
         isSwitch={true}
+        isCheckedSwitch={isPublic}
         switchType="ACCOUNT"
       />
 

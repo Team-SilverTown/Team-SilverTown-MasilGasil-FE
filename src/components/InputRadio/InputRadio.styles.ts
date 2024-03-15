@@ -15,7 +15,7 @@ export const InputRadioLabel = styled.label<{ $isSelected: boolean }>`
   background-color: ${({ theme, $isSelected }) =>
     $isSelected ? theme.green_500 : theme.transparent_10};
 
-  font-size: ${FONT_SIZE.H5};
+  font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.BOLD};
   letter-spacing: 1px;
   white-space: nowrap;
