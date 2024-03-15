@@ -8,6 +8,7 @@ import { pathAbleCheck } from "@/utils/pathAbleCheck";
 import * as S from "./BottomNavigator.styles";
 import { BOTTOM_NAV_INABLE } from "../navInablePath";
 import { BOTTOM_NAV_ITEMS } from "./BottomNavigator.constants";
+import useMeStore from "@/stores/useMeStore";
 
 const BottomNavigator = () => {
   const currentPathName = usePathname();
@@ -19,12 +20,13 @@ const BottomNavigator = () => {
   if (navInable) return null;
 
   const isPathActive = (path: string) => currentPathName === path;
+  const { userId } = useMeStore();
 
   return (
     <S.BottomNavContainer>
-      {BOTTOM_NAV_ITEMS.map(({ path, icon, activeIcon, label, isProfile }) => (
+      {BOTTOM_NAV_ITEMS.map(({ path, icon, activeIcon, label, isProfile, isIdRequired }) => (
         <Link
-          href={path}
+          href={`${path}${isIdRequired ? `/${userId}` : ""}`}
           key={path}
           title={label}
         >

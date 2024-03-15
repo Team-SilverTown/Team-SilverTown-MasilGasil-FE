@@ -37,8 +37,6 @@ const useMasilDiaryController = () => {
     const [year, month, day] = [date?.getFullYear(), date?.getMonth(), date?.getDate()];
     const selectedDate = `${year}-${month !== undefined && month + 1 < 10 ? "0" : ""}${month !== undefined && month + 1}-${day !== undefined && day < 10 ? "0" : ""}${day}`;
 
-    console.log(selectedDate);
-
     if (!masilData || masilData.masils.length <= 0) {
       setDailyMasils(null);
       setMonthlyMasils(null);
