@@ -24,4 +24,13 @@ export const POST_KEY = {
   GET_CREATE_POST: "get_create_post_key",
   POST_CREATE_POST: "post_create_post_key",
   GET_POST: "get_post_detail",
+  GET_MORE_LIST: "get_more_list",
+};
+
+export const WEATHER_KEY = {
+  GET_WEATHER_DATA: "get_weather_data",
+};
+
+export const MAP_KEY = {
+  GET_LOCATION_DATA: "get_location_data",
 };
