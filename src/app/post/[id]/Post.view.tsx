@@ -18,6 +18,7 @@ interface PostViewProps {
   postId: string;
   postData: PostDetailResponse;
   userInfo: UserDummyType;
+  nickname: string | undefined;
   tabIndex: PostTabType;
   currentPinIndex: number;
   mapCenter: GeoPosition;
@@ -31,6 +32,7 @@ const PostView = ({
   postId,
   postData,
   userInfo,
+  nickname,
   tabIndex,
   currentPinIndex,
   mapCenter,
@@ -45,7 +47,7 @@ const PostView = ({
     <>
       <TopNavigator
         leftChildren={<GoBackButton />}
-        rightChildren={<PostKebabMenu />}
+        rightChildren={nickname === postData.authorName && <PostKebabMenu />}
         containerStyle={{ backgroundColor: "transparent" }}
       />
       <S.PostContainer>
