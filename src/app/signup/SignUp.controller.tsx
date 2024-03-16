@@ -78,7 +78,6 @@ const SignUpController = () => {
     }
   }, [duplicatedResult]);
 
-  /** 사용자 나이 확인 */
   const birthDate = getValues("birthDate");
 
   const userAgeConfirm = useMemo(() => {

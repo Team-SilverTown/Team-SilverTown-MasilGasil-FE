@@ -31,11 +31,11 @@ export const BorderContentSection = styled.div`
 export const BorderContentListWrapper = styled.ul`
   display: flex;
   overflow-x: auto;
-  -ms-overflow-style: none; /* IE, Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
   }
   & > li:not(:last-child) {
     margin-right: 1.5rem;

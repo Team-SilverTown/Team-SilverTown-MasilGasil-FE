@@ -47,8 +47,8 @@ export const GlobalStyle = createGlobalStyle<any>`
       overflow-x: hidden;
       margin: 0 auto;
       position: relative;
-      -ms-overflow-style: none; /* 인터넷 익스플로러 */
-      scrollbar-width: none; /* 파이어폭스 */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     main::-webkit-scrollbar {
