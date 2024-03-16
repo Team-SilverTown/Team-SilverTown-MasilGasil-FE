@@ -48,7 +48,7 @@ export const LOG_RECORD_MESSAGE = {
   },
 
   FALL_BACK: {
-    MESSAGE: "모든 기록이 사라집니다. 처음으로 돌아가시겠어요?",
+    MESSAGE: "모든 기록이 사라집니다.<br>처음으로 돌아가시겠어요?",
     WARNING_MESSAGE: "현재의 기록은 저장되지 않고 사라집니다.",
   },
 

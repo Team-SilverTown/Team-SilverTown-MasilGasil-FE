@@ -22,9 +22,9 @@ const LogRecordEditView = () => {
         exit={{ y: "100%" }}
         isOpen={true}
         onClose={() => null}
-        fixedHeight={0.61}
+        fixedHeight={0.66}
         initialSnap={1}
-        snapPoints={[0.9, 0.5]}
+        snapPoints={[0.9, 0.552]}
         style={{
           zIndex: Z_INDEX.BOTTOM_SHEET,
         }}
@@ -91,7 +91,7 @@ const LogRecordEditView = () => {
           opacity: 0.9,
           fontSize: FONT_SIZE.LARGE,
           position: "fixed",
-          bottom: "1.5rem",
+          bottom: "3.2rem",
           zIndex: Z_INDEX.BOTTOM_SHEET + 1,
           maxWidth: "56rem",
           left: "50%",

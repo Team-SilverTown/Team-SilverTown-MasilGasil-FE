@@ -15,11 +15,13 @@ import useImageUpload from "@/lib/hooks/useImageUpload";
 import calculatePathCenter from "@/lib/utils/calculatePathCenter";
 import useMeStore from "@/stores/useMeStore";
 import { calculateWalkingCalories } from "@/utils";
+import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 
 const useLogRecordEditController = () => {
   const { setModalView, openModal, closeModal } = useUI();
   const { setUserLocation } = useUserLocationStore();
   const { logData, handleRemovePin, handleClickPin } = useLogRecordContext();
+  const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
 
   const { register, getValues } = useForm<{ logMemo: string }>({
     defaultValues: { logMemo: logData.content },
@@ -36,18 +38,28 @@ const useLogRecordEditController = () => {
   useEffect(() => {
     const { lat, lng } = calculatePathCenter(logData.path);
 
-    // TODO: 배포 후 테스트 필요
     setUserLocation({ lat, lng });
   }, []);
+  const handleSubmit = () => {
+    setModalView("CONFIRM_VIEW");
+    openModal({
+      message: "현재의 기록을 등록하시겠어요?",
+      onClickAccept: () => {
+        closeModal();
+        showLoadingSpinner();
+        updateLog();
+      },
+    });
+  };
 
   /**
-   * @func handleSubmit
+   * @func updateLog
    *
    * @brief 폼을 통해 입력받은 Memo를 logData의 content에 저장한 후, 서버에 전송합니다.
    *
    * 이후, 서버에 전송 성공시 Done Modal이 제공되어지고, 공유를 선택시 시작지점과 성성된 log id 를 post 생성 페이지에 전달합니다.
    */
-  const handleSubmit = () => {
+  const updateLog = () => {
     const newCalories = calculateWalkingCalories({
       userInfo: {
         sex,
@@ -80,6 +92,7 @@ const useLogRecordEditController = () => {
             onSuccess: (res) => {
               const { id } = res;
               router.push(`/log/${id}`);
+              closeLoadingSpinner();
 
               setModalView("LOG_RECORD_DONE_VIEW");
               openModal({
@@ -96,6 +109,7 @@ const useLogRecordEditController = () => {
 
             onError: () => {
               setModalView("ANIMATION_ALERT_VIEW");
+              closeLoadingSpinner();
               openModal({
                 message: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
               });
