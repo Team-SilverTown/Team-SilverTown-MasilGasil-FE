@@ -86,29 +86,25 @@ const PostView = ({
             {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
           </S.PostContentSection>
 
-          <Link
-            href={
-              tabIndex === PostTabType.Mate
-                ? `/mate/create?lat=${firstLat}&lng=${firstLng}`
-                : `/log/record?postId=${postId}`
-            }
-          >
-            <Button
-              width="calc(100% - 4rem)"
-              textColor={Theme.lightTheme.white}
-              buttonColor={Theme.lightTheme.green_500}
-              style={{
-                position: "absolute",
-                left: "50%",
-                bottom: "10rem",
-                transform: "translateX(-50%)",
-                fontSize: `${FONT_SIZE.LARGE}`,
-                fontWeight: `${FONT_WEIGHT.BOLD}`,
-              }}
-            >
-              {tabIndex === PostTabType.Mate ? "메이트 모집하기" : "산책하기"}
-            </Button>
-          </Link>
+          {tabIndex !== PostTabType.Mate && (
+            <Link href={`/log/record?postId=${postId}`}>
+              <Button
+                width="calc(100% - 4rem)"
+                textColor={Theme.lightTheme.white}
+                buttonColor={Theme.lightTheme.green_500}
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  bottom: "10rem",
+                  transform: "translateX(-50%)",
+                  fontSize: `${FONT_SIZE.LARGE}`,
+                  fontWeight: `${FONT_WEIGHT.BOLD}`,
+                }}
+              >
+                {"산책하기"}
+              </Button>
+            </Link>
+          )}
         </S.PostContentLayout>
       </S.PostContainer>
     </>
