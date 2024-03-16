@@ -19,11 +19,11 @@ const MyWalkRecord = ({ userInfo }: MyWalkRecordProps) => {
         </li>
         <li>
           <strong>산책 횟수</strong>
-          <span>{totalCount}번</span>
+          <span>{totalCount ?? 0}번</span>
         </li>
         <li>
           <strong>총 소모 열량</strong>
-          <span>{totalCalories}kcal</span>
+          <span>{totalCalories ?? 0}kcal</span>
         </li>
       </ul>
     </article>

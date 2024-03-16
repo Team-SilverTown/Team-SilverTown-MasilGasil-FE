@@ -6,7 +6,7 @@
  */
 const convertMeter = (meter: number): string => {
   if (!meter) {
-    return "0";
+    return "0m";
   }
 
   const distance = Number((meter / 1000).toFixed(1));
