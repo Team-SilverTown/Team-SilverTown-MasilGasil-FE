@@ -22,7 +22,7 @@ const usePostModel = ({ postData }: usePostModelProp) => {
     lng: 0,
   });
 
-  const { sex, birthDate, weight, height, exerciseIntensity, nickname } = useMeStore();
+  const { sex, birthDate, weight, height, exerciseIntensity, userId } = useMeStore();
   const userInfo = { sex, birthDate, weight, height, exerciseIntensity };
 
   const baseLocation = useMemo(() => {
@@ -45,7 +45,7 @@ const usePostModel = ({ postData }: usePostModelProp) => {
     setMapCenter,
     baseLocation,
     userInfo,
-    nickname,
+    userId,
     mateData: MATE_DUMMY_DATA.contents,
   };
 };

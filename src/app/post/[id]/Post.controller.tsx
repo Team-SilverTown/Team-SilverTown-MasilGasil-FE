@@ -21,7 +21,7 @@ const PostController = ({ postId, postData }: PostControllerProps) => {
     setMapCenter,
     baseLocation,
     userInfo,
-    nickname,
+    userId,
     mateData,
   } = usePostModel({ postData });
   const { setIsOutCenter } = useMasilMapStore();
@@ -70,7 +70,7 @@ const PostController = ({ postId, postData }: PostControllerProps) => {
       handleCurrentPinIndex={handleCurrentPinIndex}
       handleClickCenter={handleClickCenter}
       handleClickTab={handleClickTab}
-      nickname={nickname}
+      userId={userId}
       userInfo={userInfo}
       mateData={mateData}
     />
