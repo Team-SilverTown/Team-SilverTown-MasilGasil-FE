@@ -10,7 +10,6 @@ export const onError = (error: AxiosError) => {
   const response = error.response as AxiosResponse;
 
   if (response?.data) {
-    console.error(response.data);
   }
 
   return Promise.reject(error);

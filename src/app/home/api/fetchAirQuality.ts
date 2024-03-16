@@ -7,7 +7,6 @@ const fetchAirQuality = async (stationName: string) => {
   try {
     const response = await fetch(URL);
     if (!response.ok) {
-      console.error("네트워크 응답에 문제가 발생했습니다." + response.status);
     }
 
     const data = await response.json();
@@ -19,9 +18,7 @@ const fetchAirQuality = async (stationName: string) => {
     } else {
       throw new Error("해당 측정소의 미세먼지 정보가 없습니다.");
     }
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 };
 
 export default fetchAirQuality;
