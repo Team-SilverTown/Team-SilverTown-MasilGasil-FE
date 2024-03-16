@@ -10,7 +10,7 @@ interface MyLikeWalkingTrailsProps {
 const MyLikeWalkingTrails = ({ MyLikeWalkingTrailsList, isEmpty }: MyLikeWalkingTrailsProps) => {
   return (
     <WalkListDisplay
-      title={WALK_LIST.POPULAR_TRAILS}
+      title={WALK_LIST.LIKE_TRAILS}
       walkList={MyLikeWalkingTrailsList}
       isEmpty={isEmpty}
       url="/more?keyword=my_like&order=latest"
