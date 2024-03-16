@@ -48,9 +48,9 @@ const BottomSheetSection = ({ locationData, setOrderMode, listViews }: BottomShe
       <Sheet
         isOpen={true}
         onClose={() => null}
-        fixedHeight={0.6}
+        fixedHeight={0.605}
         initialSnap={1}
-        snapPoints={[0.915, 0.5]}
+        snapPoints={[0.915, 0.51]}
         style={{
           zIndex: Z_INDEX.BOTTOM_SHEET,
           display: "flex",
@@ -61,9 +61,10 @@ const BottomSheetSection = ({ locationData, setOrderMode, listViews }: BottomShe
           layout
           style={{
             maxWidth: 600,
-            backgroundColor: theme?.background_color,
-            padding: `${CONTAINER.PADDING_VERTICAL}rem ${CONTAINER.PADDING_HORIZONTAL}rem`,
             paddingTop: 0,
+            padding: `${CONTAINER.PADDING_VERTICAL}rem ${CONTAINER.PADDING_HORIZONTAL}rem`,
+            backgroundColor: theme?.background_color,
+            boxShadow: "0 2px 7.8px 0 rgba(0, 0, 0, 0.2)",
           }}
         >
           <Sheet.Header style={{ width: "100%" }}>
