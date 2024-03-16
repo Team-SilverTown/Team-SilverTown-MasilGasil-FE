@@ -36,7 +36,10 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
         {/* <Link href={url}>
           <More />
         </Link> */}
-        <a onClick={handleClickAlert}>
+        <a
+          onClick={handleClickAlert}
+          style={{ cursor: "pointer" }}
+        >
           <More />
         </a>
       </article>

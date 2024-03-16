@@ -133,6 +133,9 @@ const InputUpload = ({
             width={imageSize.width}
             height={imageSize.height}
             onClick={handleImageClick}
+            style={{
+              objectFit: "cover",
+            }}
           />
         </S.InputUploadPreview>
       )}

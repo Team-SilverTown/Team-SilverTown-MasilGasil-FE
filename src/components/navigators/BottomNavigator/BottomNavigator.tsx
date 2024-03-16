@@ -19,9 +19,9 @@ const BottomNavigator = () => {
   /**
    * @description BOTTOM_NAV_INDABLE 에 포함된 path 인 경우 BottomNav 를 렌더링 하지 않습니다.
    */
-  const navInable = pathAbleCheck(BOTTOM_NAV_INABLE, currentPathName);
+  const navInAble = pathAbleCheck(BOTTOM_NAV_INABLE, currentPathName);
 
-  if (navInable) return null;
+  if (navInAble) return null;
 
   const isPathActive = (path: string) => currentPathName.includes(path);
 
@@ -44,6 +44,9 @@ const BottomNavigator = () => {
                   <Avatar
                     size="ms"
                     src={profileImg ? profileImg : userProfile}
+                    style={{
+                      pointerEvents: "none",
+                    }}
                   />
                 </S.ProfileCircle>
               )}

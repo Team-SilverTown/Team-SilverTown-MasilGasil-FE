@@ -28,7 +28,7 @@ const useLogRecordEditController = () => {
   });
   const imageMutation = useImageUpload();
   const router = useRouter();
-  const { sex, height, weight, birthDate, exerciseIntensity } = useMeStore();
+  const { getMe } = useMeStore();
 
   const logUploadMutation = useMutation({
     mutationKey: [MASIL_KEY.RECORD_SUBMIT],
@@ -61,13 +61,7 @@ const useLogRecordEditController = () => {
    */
   const updateLog = () => {
     const newCalories = calculateWalkingCalories({
-      userInfo: {
-        sex,
-        height,
-        weight,
-        exerciseIntensity,
-        birthDate,
-      },
+      userInfo: getMe(),
       distance: logData.distance,
     });
 
