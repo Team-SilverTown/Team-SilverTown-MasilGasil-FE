@@ -71,7 +71,7 @@ const LogView = ({
 
           <S.LogContentSection
             className="scrollbar-hide"
-            style={{ overflowY: tabIndex === TabType.Pin ? "hidden" : "auto" }}
+            style={{ overflowY: tabIndex === TabType.Pin ? "auto" : "hidden" }}
           >
             {tabIndex === TabType.Memo && (
               <LogMemo

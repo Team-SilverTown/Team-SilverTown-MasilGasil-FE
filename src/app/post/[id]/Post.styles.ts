@@ -1,4 +1,4 @@
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT, NAV_HEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostContainer = styled.section`
@@ -12,6 +12,10 @@ export const PostContainer = styled.section`
 export const PostContentLayout = styled.section`
   height: 55%;
   padding: 0 2rem;
+  padding-bottom: ${NAV_HEIGHT + 2}rem;
+
+  display: flex;
+  flex-direction: column;
 
   .postTab {
     font-size: ${FONT_SIZE.H6};
@@ -26,7 +30,8 @@ export const PostContentLayout = styled.section`
 `;
 
 export const PostContentSection = styled.section`
-  height: calc(100% - 24rem);
+  height: 100%;
   padding: 1rem 0.5rem 2rem 0.5rem;
+
   overflow-y: auto;
 `;
