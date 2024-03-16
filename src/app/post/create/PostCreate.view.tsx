@@ -27,7 +27,10 @@ const PostCreateView = () => {
 
   return (
     <S.PostCreateLayout>
-      <TopNavigator leftChildren={<GoBackButton onGoBackHandler={handleFallback} />} />
+      <TopNavigator
+        containerStyle={{ backgroundColor: "transparent" }}
+        leftChildren={<GoBackButton onGoBackHandler={handleFallback} />}
+      />
 
       <S.PostCreateMapWrapper>
         <MasilMap
@@ -45,7 +48,7 @@ const PostCreateView = () => {
             position: "absolute",
             bottom: "1.6rem",
             right: "0.8rem",
-            boxShadow: "0 0 7px 2px rgba(0,0,0,0.2)",
+            boxShadow: "0 2px 7.8px 0 rgba(0, 0, 0, 0.2)",
           }}
           onClickHandler={handleClickCenterButton}
         >

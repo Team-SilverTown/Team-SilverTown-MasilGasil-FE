@@ -17,7 +17,7 @@ interface AvatarProps {
 }
 
 const AvatarSize = {
-  ms: 21,
+  ms: 22,
   xs: 30,
   sm: 50,
   md: 100,

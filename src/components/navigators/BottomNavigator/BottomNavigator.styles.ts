@@ -9,11 +9,12 @@ export const BottomNavContainer = styled.nav`
   bottom: 0;
   width: 100%;
   max-width: ${CONTAINER.MAX_WIDTH}rem;
-  height: ${NAV_HEIGHT}rem;
+  height: ${NAV_HEIGHT + 2}rem;
   padding: ${CONTAINER.PADDING_HORIZONTAL}rem;
   background-color: ${({ theme }) => theme.background_color};
   border-top: ${BORDER.TINE_WIDTH}px solid ${(props) => props.theme.transparent_10};
   align-items: start;
+
   z-index: ${Z_INDEX.NAVIGATOR};
 `;
 
@@ -49,10 +50,11 @@ export const ProfileCircle = styled.div<{ $active: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.4rem;
+  height: 2.4rem;
   border-radius: 50%;
   background-color: ${({ $active, theme }) => ($active ? theme.green_500 : theme.gray_300)};
+
   display: flex;
   justify-content: center;
   align-items: center;

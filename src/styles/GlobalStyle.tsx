@@ -57,7 +57,8 @@ export const GlobalStyle = createGlobalStyle<any>`
 `;
 
 export const CommonContainer = styled.div`
-  padding: ${NAV_HEIGHT + 2}rem ${CONTAINER.PADDING_HORIZONTAL}rem;
+  padding: ${NAV_HEIGHT}rem ${CONTAINER.PADDING_HORIZONTAL}rem ${NAV_HEIGHT + 2}rem
+    ${CONTAINER.PADDING_HORIZONTAL}rem;
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;

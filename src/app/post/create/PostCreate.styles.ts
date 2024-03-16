@@ -27,7 +27,7 @@ export const PostCreateSheet = styled.article<{ $isOpen: boolean }>`
   bottom: 0;
 
   background-color: ${({ theme }) => theme.background_color};
-  box-shadow: 0 0 1rem 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 7.8px 0 rgba(0, 0, 0, 0.2);
   border-top-right-radius: 0.8rem;
   border-top-left-radius: 0.8rem;
 
@@ -50,6 +50,7 @@ export const PostCreateSheetHeader = styled.div`
 export const PostCreateSheetContentWrapper = styled.div`
   width: 100%;
   flex-grow: 1;
+  padding-bottom: 1rem;
 
   overflow: hidden;
 `;

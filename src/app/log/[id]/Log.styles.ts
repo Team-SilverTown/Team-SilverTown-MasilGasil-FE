@@ -24,6 +24,6 @@ export const LogContentLayout = styled.section`
 
 export const LogContentSection = styled.section`
   height: calc(100% - 24rem);
-  padding: 1rem 0.5rem;
+  padding: 1rem 0.5rem 2rem 0.5rem;
   overflow-y: auto;
 `;
