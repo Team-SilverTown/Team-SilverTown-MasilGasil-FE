@@ -15,7 +15,6 @@ export const BottomNavContainer = styled.nav`
   border-top: ${BORDER.TINE_WIDTH}px solid ${(props) => props.theme.transparent_10};
   align-items: start;
 
-  border: 1px solid red;
   z-index: ${Z_INDEX.NAVIGATOR};
 `;
 

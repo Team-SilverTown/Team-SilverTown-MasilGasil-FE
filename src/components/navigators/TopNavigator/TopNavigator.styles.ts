@@ -14,7 +14,6 @@ export const TopNavigatorContainer = styled.nav<any>`
   justify-content: center;
   align-items: center;
 
-  border: 1px solid red;
   background-color: ${(props) => props.theme.background_color};
 `;
 
