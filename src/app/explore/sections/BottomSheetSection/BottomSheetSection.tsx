@@ -48,9 +48,9 @@ const BottomSheetSection = ({ locationData, setOrderMode, listViews }: BottomShe
       <Sheet
         isOpen={true}
         onClose={() => null}
-        fixedHeight={0.605}
+        fixedHeight={0.6}
         initialSnap={1}
-        snapPoints={[0.915, 0.51]}
+        snapPoints={[0.915, 0.5]}
         style={{
           zIndex: Z_INDEX.BOTTOM_SHEET,
           display: "flex",
