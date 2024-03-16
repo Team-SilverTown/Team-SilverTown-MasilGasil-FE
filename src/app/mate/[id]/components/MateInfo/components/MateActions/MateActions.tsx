@@ -83,21 +83,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
         </>
       )}
 
-      {userStatus === "CLOSE" && (
-        <>
-          {ButtonList.Completed}
-
-          {/* <Button
-            variant="naked"
-            onClickHandler={handleClickCompletedChatting}
-            style={{
-              padding: "1rem",
-            }}
-          >
-            지난 대화 확인하기
-          </Button> */}
-        </>
-      )}
+      {userStatus === "CLOSE" && <>{ButtonList.Completed}</>}
     </S.MateActionsLayout>
   );
 };

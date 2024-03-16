@@ -33,9 +33,7 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
     <section className={S.WalkListSection}>
       <article className={S.HomeWalkListArticle}>
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>{title}</h3>
-        {/* <Link href={url}>
-          <More />
-        </Link> */}
+
         <a
           onClick={handleClickAlert}
           style={{ cursor: "pointer" }}

@@ -265,7 +265,6 @@ const Sheet = React.forwardRef<any, SheetProps>(
           style={{ ...styles.wrapper, zIndex, visibility, ...style }}
         >
           <AnimatePresence>
-            {/* NOTE: AnimatePresence requires us to set keys to children */}
             {isOpen ? (
               <SheetScrollerContextProvider>
                 {React.Children.map(children, (child: any, i) =>

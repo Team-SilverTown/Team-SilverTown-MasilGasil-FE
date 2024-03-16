@@ -25,12 +25,7 @@ const MyRecordList = ({ title, urlLink, recordList, type }: MyRecordListProps) =
     <S.BorderContainer>
       <S.BorderTitleSection>
         <h3>{title}</h3>
-        {/* <Link
-          href={urlLink}
-          title={title}
-        >
-          더 보기
-        </Link> */}
+
         <span
           onClick={() => {
             toast({ title: "준비 중인 기능이에요!", duration: 2000 });
