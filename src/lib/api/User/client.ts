@@ -53,3 +53,10 @@ export const postEditUser = async (newUserData: MeResponse) => {
 export const patchIsPublic = async () => {
   return PATCH({ endPoint: USER.TOGGLE_PUBLIC, auth: true });
 };
+
+export const changeProfileImage = async ({ image }: { image: File }) => {
+  const formData = new FormData();
+  formData.append("profileImg", image);
+
+  return await PUT({ endPoint: USER.UPLOAD_IMAGE, data: formData, auth: true });
+};

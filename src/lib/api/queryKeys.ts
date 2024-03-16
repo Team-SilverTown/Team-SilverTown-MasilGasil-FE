@@ -14,6 +14,7 @@ export const USER_KEY = {
   EDIT_USER: "user_edit",
   TOGGLE_PUBLIC: "toggle_public",
   ME: "get_me",
+  UPLOAD_IMAGE: "upload_image",
 };
 
 export const MASIL_KEY = {
