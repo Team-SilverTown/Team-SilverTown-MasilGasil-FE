@@ -9,6 +9,7 @@ import { useEventCallbacks } from "./hooks";
 import { MAX_HEIGHT } from "./constants";
 import { mergeRefs } from "./utils";
 import styles from "./styles";
+import useTheme from "@/lib/hooks/useTheme";
 
 const SheetContainer = React.forwardRef<any, SheetContainerProps>(
   ({ children, style = {}, className = "", ...rest }, ref) => {
@@ -25,6 +26,8 @@ const SheetContainer = React.forwardRef<any, SheetContainerProps>(
       animationOptions,
       reduceMotion,
     } = useSheetContext();
+
+    const theme = useTheme();
 
     const { handleAnimationComplete } = useEventCallbacks(isOpen, callbacks);
     // const initialY = snapPoints ? snapPoints[0] - snapPoints[initialSnap] : 0;
@@ -44,6 +47,7 @@ const SheetContainer = React.forwardRef<any, SheetContainerProps>(
         ref={mergeRefs([sheetRef, ref])}
         className={`react-modal-sheet-container ${className}`}
         style={{
+          backgroundColor: theme?.background_color,
           ...styles.container,
           ...style,
           ...(detent === "full-height" && { height }),

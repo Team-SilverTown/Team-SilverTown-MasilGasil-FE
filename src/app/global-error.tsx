@@ -1,12 +1,14 @@
 "use client";
 
-export default function Error({
+export default function GlobalError({
   error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  console.log(error);
+
   return (
     <section className="flex h-full flex-col items-center justify-center">
       <h2 className="text-center">앗 문제가 생겼어요!</h2>

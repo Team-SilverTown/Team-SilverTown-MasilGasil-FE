@@ -7,7 +7,7 @@ import * as S from "./Avatar.styles";
 import { useRouter } from "next/navigation";
 
 interface AvatarProps {
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: "ms" | "xs" | "sm" | "md" | "lg";
   name?: string;
   src?: string | null;
   style?: CSSProperties;
@@ -17,6 +17,7 @@ interface AvatarProps {
 }
 
 const AvatarSize = {
+  ms: 21,
   xs: 30,
   sm: 50,
   md: 100,

@@ -46,6 +46,9 @@ export const BottomNavItem = styled.div<{ $active: boolean }>`
 `;
 
 export const ProfileCircle = styled.div<{ $active: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
