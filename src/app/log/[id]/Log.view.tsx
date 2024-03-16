@@ -69,7 +69,10 @@ const LogView = ({
             layoutId="log-underline"
           />
 
-          <S.LogContentSection className="scrollbar-hide">
+          <S.LogContentSection
+            className="scrollbar-hide"
+            style={{ overflowY: tabIndex === TabType.Pin ? "hidden" : "auto" }}
+          >
             {tabIndex === TabType.Memo && (
               <LogMemo
                 masilData={masilData}
