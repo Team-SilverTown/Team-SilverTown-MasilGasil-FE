@@ -13,6 +13,7 @@ const PopularWalkingTrails = ({ PopularWalkingTrailsList, isEmpty }: PopularWalk
       title={WALK_LIST.POPULAR_TRAILS}
       walkList={PopularWalkingTrailsList}
       isEmpty={isEmpty}
+      url="/more?keyword=total_popular&order=popular"
     />
   );
 };

@@ -7,8 +7,9 @@ import {
   MyWalkRecord,
   MyLocationWeather,
   WalkStartButton,
-  Notification,
+  // Notification,
 } from "./components";
+import Notification from "./components/Notification";
 
 import * as S from "./Home.styles";
 

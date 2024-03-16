@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
 
 import { convertMeter, convertSeconds } from "@/utils";
 
 import { PostListItemResponse } from "@/types/Response/Post";
+
+import { useUI } from "@/components/uiContext/UiContext";
 
 import { LogDetailCard } from "@/components";
 import { More } from "@/components/icons";
@@ -14,16 +18,27 @@ interface WalkListItemProps {
   isEmpty: boolean;
   title: string;
   walkList: PostListItemResponse[];
+  url: string;
 }
 
-const WalkListDisplay = ({ isEmpty, title, walkList }: WalkListItemProps) => {
+const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) => {
+  const { openModal, setModalView } = useUI();
+
+  const handleClickAlert = () => {
+    setModalView("DEPLOY_ALERT_VIEW");
+    openModal();
+  };
+
   return (
     <section className={S.WalkListSection}>
       <article className={S.HomeWalkListArticle}>
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>{title}</h3>
-        <Link href="/more?keyword=total_popular&order=popular">
+        {/* <Link href={url}>
           <More />
-        </Link>
+        </Link> */}
+        <a onClick={handleClickAlert}>
+          <More />
+        </a>
       </article>
       {isEmpty ? (
         <div className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</div>

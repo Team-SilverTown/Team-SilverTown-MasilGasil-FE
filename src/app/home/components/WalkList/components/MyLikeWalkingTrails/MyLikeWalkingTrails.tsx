@@ -13,6 +13,7 @@ const MyLikeWalkingTrails = ({ MyLikeWalkingTrailsList, isEmpty }: MyLikeWalking
       title={WALK_LIST.POPULAR_TRAILS}
       walkList={MyLikeWalkingTrailsList}
       isEmpty={isEmpty}
+      url="/more?keyword=my_like&order=latest"
     />
   );
 };

@@ -36,6 +36,7 @@ const PopularWalkList = ({ userAddress }: PopularTrailsInOurTownListProps) => {
         walkList={contents}
         title={WALK_LIST.POPULAR_IN_TOWN}
         isEmpty={isEmpty}
+        url="/more?keyword=area_popular&order=popular"
       />
     </>
   );
