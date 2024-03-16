@@ -15,7 +15,7 @@ export const PostMemoInfo = styled.article`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 `;
 
 export const PostMemoProfile = styled.article`
@@ -41,8 +41,7 @@ export const PostMemoLocation = styled.article`
 export const PostMemoWalkInfo = styled.ul`
   display: flex;
   justify-content: space-between;
-  margin-top: 2.5rem;
-  margin-bottom: 2.8rem;
+  margin: 2rem 0;
 
   li {
     flex: 1;
