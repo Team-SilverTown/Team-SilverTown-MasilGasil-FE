@@ -15,8 +15,6 @@ export const TopNavigatorContainer = styled.nav<any>`
   align-items: center;
 
   background-color: ${(props) => props.theme.background_color};
-
-  border: 1px solid red;
 `;
 
 export const TopNavLeftSection = styled.section`
