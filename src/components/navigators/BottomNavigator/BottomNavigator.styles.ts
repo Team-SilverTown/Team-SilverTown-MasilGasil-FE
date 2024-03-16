@@ -50,14 +50,11 @@ export const ProfileCircle = styled.div<{ $active: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 50%;
   background-color: ${({ $active, theme }) => ($active ? theme.green_500 : theme.gray_300)};
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   margin-bottom: 0.4rem;
 

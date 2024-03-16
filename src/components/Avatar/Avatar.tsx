@@ -63,6 +63,7 @@ const Avatar = ({
         src={src ? src : userProfile}
         width={AvatarSize[size]}
         height={AvatarSize[size]}
+        priority
         alt={name}
         style={imageStyle}
       />
