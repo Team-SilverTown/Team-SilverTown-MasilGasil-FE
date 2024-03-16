@@ -8,9 +8,7 @@ import useUserLocationStore from "@/stores/useUserLocationStore";
 import fetchNearbyStation from "../../api/fetchNearbyStation";
 import { WEATHER_KEY } from "@/lib/api/queryKeys";
 
-import getDetailedAddress from "../../utils/getDetailedAddress";
-import convertLatLonToTM from "../../utils/convertLatLonToTM";
-import showErrorMessage from "../../utils/showErrorMessage";
+import { getDetailedAddress, convertLatLonToTM, showErrorMessage } from "../../utils";
 
 import {
   ClearSky,
