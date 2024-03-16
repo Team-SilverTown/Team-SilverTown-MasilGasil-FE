@@ -45,14 +45,16 @@ const LogController = ({ masilData, logId }: LogControllerProps) => {
   };
 
   const handleClickTab = (index: number) => {
-    if (TabType.Pin === index && masilData.pins.length > 0) {
+    if (TabType.Pin === index) {
+      if (masilData.pins.length === 0) return;
+
       const { point } = masilData.pins[0];
       setCurrentPinIndex(0);
       setMapCenter(point);
       setIsOutCenter(false);
     }
 
-    if (index > 1 || masilData.pins.length === 0) {
+    if (index > 1) {
       return;
     }
 
