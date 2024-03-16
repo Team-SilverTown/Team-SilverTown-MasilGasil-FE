@@ -68,7 +68,7 @@ export const CommonContainerTailwind = `
 w-full
 h-full
 min-h-screen
-py-24 
+py-36 
 px-6 
 
 box-border

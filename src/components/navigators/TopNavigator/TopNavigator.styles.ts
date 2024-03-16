@@ -37,6 +37,8 @@ export const TobNavRightSection = styled.section`
 
 export const TopNavCenterSection = styled.section`
   height: 100%;
+
+  display: flex;
   align-items: center;
   & > h1 {
     font-size: ${FONT_SIZE.LARGE};
