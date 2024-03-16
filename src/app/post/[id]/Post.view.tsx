@@ -95,7 +95,7 @@ const PostView = ({
               style={{
                 position: "absolute",
                 left: "50%",
-                bottom: "7rem",
+                bottom: "10rem",
                 transform: "translateX(-50%)",
                 fontSize: `${FONT_SIZE.LARGE}`,
                 fontWeight: `${FONT_WEIGHT.BOLD}`,
