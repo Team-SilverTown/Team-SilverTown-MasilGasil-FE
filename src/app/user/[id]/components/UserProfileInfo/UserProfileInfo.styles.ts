@@ -7,6 +7,7 @@ interface UserInfoProfileImageProps {
 }
 
 export const UserInfoProfile = styled.div`
+  padding: 1rem 0;
   text-align: center;
 `;
 

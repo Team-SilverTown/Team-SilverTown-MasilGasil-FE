@@ -13,7 +13,7 @@ const WalkStartButton = () => {
         style={{
           position: "fixed",
           left: "50%",
-          bottom: "10.5rem",
+          bottom: "9.5rem",
           transform: "translateX(-50%)",
           maxWidth: `${CONTAINER.MAX_WIDTH - 3}rem`,
           height: "6rem",

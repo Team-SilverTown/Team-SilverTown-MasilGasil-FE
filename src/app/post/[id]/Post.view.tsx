@@ -18,6 +18,7 @@ interface PostViewProps {
   postId: string;
   postData: PostDetailResponse;
   userInfo: UserDummyType;
+  userId: number | undefined;
   tabIndex: PostTabType;
   currentPinIndex: number;
   mapCenter: GeoPosition;
@@ -31,6 +32,7 @@ const PostView = ({
   postId,
   postData,
   userInfo,
+  userId,
   tabIndex,
   currentPinIndex,
   mapCenter,
@@ -45,7 +47,7 @@ const PostView = ({
     <>
       <TopNavigator
         leftChildren={<GoBackButton />}
-        rightChildren={<PostKebabMenu />}
+        rightChildren={userId === postData.authorId && <PostKebabMenu />}
         containerStyle={{ backgroundColor: "transparent" }}
       />
       <S.PostContainer>
@@ -64,7 +66,10 @@ const PostView = ({
             focusedTab={tabIndex}
           />
 
-          <S.PostContentSection className="scrollbar-hide">
+          <S.PostContentSection
+            className="scrollbar-hide"
+            style={{ overflowY: tabIndex === PostTabType.Memo ? "hidden" : "auto" }}
+          >
             {tabIndex === PostTabType.Memo && (
               <PostMemo
                 userInfo={userInfo}

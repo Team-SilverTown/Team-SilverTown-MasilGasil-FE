@@ -1,18 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import * as S from "./UserProfileInfo.styles";
 import Image from "next/image";
-import { useUI } from "@/components/uiContext/UiContext";
+import { useState } from "react";
+
 import userProfile from "@/assets/userProfile.svg";
 import Camera from "@/components/icons/Camera";
-import * as S from "./UserProfileInfo.styles";
-import useImageUpload from "@/lib/hooks/useImageUpload";
 import InputUpload from "@/components/InputUpload/InputUpload";
 import { useMutation } from "@tanstack/react-query";
-import { changeProfileImage } from "@/lib/api/User/client";
+import { changeProfileImage, getMe } from "@/lib/api/User/client";
 import { USER_KEY } from "@/lib/api/queryKeys";
 import { useToast } from "@/components/ShadcnUi/ui/useToast";
-import { ToastAction } from "@/components/ShadcnUi/ui/toast";
+import useMeStore from "@/stores/useMeStore";
 
 interface UserInfoProfileProps {
   profileImage: string | null;
@@ -29,6 +28,7 @@ const UserInfoProfile = ({
 }: UserInfoProfileProps) => {
   const [profile, setProfile] = useState(profileImage);
   const { toast } = useToast();
+  const { setMe } = useMeStore();
 
   const uploadImageMutation = useMutation({
     mutationKey: [USER_KEY.UPLOAD_IMAGE],
@@ -49,12 +49,15 @@ const UserInfoProfile = ({
                 uploadImageMutation.mutate(
                   { image },
                   {
-                    onSuccess: () => {
+                    onSuccess: async () => {
                       toast({
                         title: "프로필 사진이 성공적으로 등록되었어요!",
                         duration: 2000,
                       });
                       setProfile(URL.createObjectURL(image));
+
+                      const newMeData = await getMe();
+                      setMe(newMeData);
                     },
                   },
                 );
