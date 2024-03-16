@@ -7,20 +7,27 @@ import { Button } from "@/components";
 import { Center } from "@/components/icons";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { POST_KEY } from "@/lib/api/queryKeys";
+import { getPostDetail } from "@/lib/api/Post/client";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface MateMapProps {
   mateData: MateDetailResponse;
 }
 
-const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
-const URL = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&libraries=services,clusterer,drawing&autoload=false`;
-
 const MateMap = ({ mateData }: MateMapProps) => {
   const { gatheringPlacePoint, gatheringPlaceDetail } = mateData;
+  const { setModalView, openModal } = useUI();
 
   const { setIsOutCenter } = useMasilMapStore();
   const [mapCenter, setMapCenter] = useState(gatheringPlacePoint);
   const [region, setRegion] = useState("");
+
+  const { data: postData } = useQuery({
+    queryKey: [POST_KEY.GET_POST],
+    queryFn: async () => await getPostDetail({ id: "15" }),
+  });
 
   useEffect(() => {
     kakao.maps.load(() => {
@@ -41,12 +48,32 @@ const MateMap = ({ mateData }: MateMapProps) => {
     setMapCenter(gatheringPlacePoint);
   };
 
+  const handleClickPin = (pinIndex: number) => {
+    if (!postData) {
+      return;
+    }
+    const { pins } = postData;
+
+    setMapCenter(pins[pinIndex].point);
+    setIsOutCenter(false);
+
+    setModalView("PIN_DETAIL_MODAL_VIEW");
+    openModal({
+      pin: pins[pinIndex],
+    });
+  };
+
   return (
     <>
       <S.MateMapTitle>모임 장소</S.MateMapTitle>
       <S.MateMapRegion>{region}</S.MateMapRegion>
       <S.MateMapWrapper>
-        <MasilMap center={mapCenter} />
+        <MasilMap
+          center={mapCenter}
+          path={postData?.path}
+          pins={postData?.pins}
+          onClickPin={handleClickPin}
+        />
         <Button
           style={{
             padding: "0.6rem",

@@ -13,7 +13,7 @@ export const BottomNavContainer = styled.nav`
   padding: ${CONTAINER.PADDING_HORIZONTAL}rem;
   background-color: ${({ theme }) => theme.background_color};
   border-top: ${BORDER.TINE_WIDTH}px solid ${(props) => props.theme.transparent_10};
-  align-items: center;
+  align-items: start;
   z-index: ${Z_INDEX.NAVIGATOR};
 `;
 
@@ -46,6 +46,9 @@ export const BottomNavItem = styled.div<{ $active: boolean }>`
 `;
 
 export const ProfileCircle = styled.div<{ $active: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;

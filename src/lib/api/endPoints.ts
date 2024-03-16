@@ -15,6 +15,7 @@ export const USER = {
   EDIT_USER: "/api/v1/users",
   TOGGLE_PUBLIC: "/api/v1/users/is-public",
   PROFILE: "/api/v1/users",
+  UPLOAD_IMAGE: "/api/v1/users/profiles",
 };
 
 export const MASIL = {

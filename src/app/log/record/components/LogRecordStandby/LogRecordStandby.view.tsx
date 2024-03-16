@@ -19,7 +19,7 @@ const LogRecordStandbyView = () => {
         width={"100%"}
         onClickHandler={handleStartRecord}
       >
-        마실 기록 시작
+        산책 시작하기
       </Button>
     </S.LogRecordStandbyLayout>
   );

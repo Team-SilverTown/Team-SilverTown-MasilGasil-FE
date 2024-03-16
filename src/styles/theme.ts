@@ -2,7 +2,7 @@ export const lightTheme = {
   theme_mode: "light",
 
   white: "#FFFFFF",
-  white_100: "#F8F8F8",
+  white_100: "#FAFAFA",
 
   black: "#232323",
 
@@ -29,7 +29,7 @@ export const lightTheme = {
   green_300: "#B9DB56",
   green_500: "#81BB26",
 
-  background_color: " #F8F8F8",
+  background_color: " #FAFAFA",
   container_color: "#FEFEFE",
 
   text_primary_color: "#232323",
@@ -41,7 +41,7 @@ export const darkTheme = {
   theme_mode: "dark",
 
   white: "#FFFFFF",
-  white_100: "#F8F8F8",
+  white_100: "#FAFAFA",
 
   black: "#232323",
 
@@ -68,7 +68,7 @@ export const darkTheme = {
   green_300: "#B9DB56",
   green_500: "#81BB26",
 
-  background_color: " #F8F8F8",
+  background_color: " #FAFAFA",
   container_color: "#FEFEFE",
 
   text_primary_color: "#232323",
@@ -103,7 +103,7 @@ export const CONTAINER = {
   MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen",
 };
 
-export const NAV_HEIGHT: number = 6; // rem
+export const NAV_HEIGHT: number = 9; // rem
 
 export const MODAL = {
   VERTICAL_PADDING: 3, // rem

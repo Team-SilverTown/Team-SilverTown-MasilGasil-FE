@@ -17,7 +17,8 @@ export const BorderTitleSection = styled.div`
     color: ${(props) => props.theme.black};
   }
 
-  a {
+  a,
+  span {
     font-size: 1.4rem;
     font-weight: ${FONT_WEIGHT.MEDIUM};
     color: ${(props) => props.theme.gray_500};
