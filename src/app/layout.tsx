@@ -71,12 +71,12 @@ export default async function RootLayout({
                     <BottomNavigator />
                   </main>
                   <ModalUI />
+                  <Toaster />
                   <LoadingSpinner />
                   <WindowUI />
                 </TanstackQueryProvider>
               </AuthLoader>
             </AuthContext>
-            <Toaster />
           </body>
         </StyledComponentsRegistry>
       </ManagedUIContext>
