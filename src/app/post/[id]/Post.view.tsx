@@ -66,7 +66,10 @@ const PostView = ({
             focusedTab={tabIndex}
           />
 
-          <S.PostContentSection className="scrollbar-hide">
+          <S.PostContentSection
+            className="scrollbar-hide"
+            style={{ overflowY: tabIndex === PostTabType.Memo ? "hidden" : "auto" }}
+          >
             {tabIndex === PostTabType.Memo && (
               <PostMemo
                 userInfo={userInfo}
