@@ -34,7 +34,7 @@ const LogRecordView = () => {
   } = useLogRecordController();
   const mapAnimation = {
     initial: { height: "100%" },
-    editing: { height: "50%" },
+    editing: { height: "45%" },
   };
 
   return (
