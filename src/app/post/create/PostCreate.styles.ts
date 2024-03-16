@@ -50,6 +50,7 @@ export const PostCreateSheetHeader = styled.div`
 export const PostCreateSheetContentWrapper = styled.div`
   width: 100%;
   flex-grow: 1;
+  padding-bottom: 1rem;
 
   overflow: hidden;
 `;

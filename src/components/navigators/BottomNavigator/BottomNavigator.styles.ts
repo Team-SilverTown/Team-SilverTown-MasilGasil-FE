@@ -9,11 +9,13 @@ export const BottomNavContainer = styled.nav`
   bottom: 0;
   width: 100%;
   max-width: ${CONTAINER.MAX_WIDTH}rem;
-  height: ${NAV_HEIGHT}rem;
+  height: ${NAV_HEIGHT + 2}rem;
   padding: ${CONTAINER.PADDING_HORIZONTAL}rem;
   background-color: ${({ theme }) => theme.background_color};
   border-top: ${BORDER.TINE_WIDTH}px solid ${(props) => props.theme.transparent_10};
   align-items: start;
+
+  border: 1px solid red;
   z-index: ${Z_INDEX.NAVIGATOR};
 `;
 

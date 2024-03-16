@@ -103,7 +103,7 @@ export const CONTAINER = {
   MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen",
 };
 
-export const NAV_HEIGHT: number = 8; // rem
+export const NAV_HEIGHT: number = 6; // rem
 
 export const MODAL = {
   VERTICAL_PADDING: 3, // rem
