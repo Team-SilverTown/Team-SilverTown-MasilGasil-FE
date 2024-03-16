@@ -71,7 +71,9 @@ const LogView = ({
 
           <S.LogContentSection
             className="scrollbar-hide"
-            style={{ overflowY: tabIndex === TabType.Pin ? "hidden" : "auto" }}
+            style={{
+              overflowY: tabIndex === TabType.Pin ? "visible" : "auto",
+            }}
           >
             {tabIndex === TabType.Memo && (
               <LogMemo
@@ -96,7 +98,7 @@ const LogView = ({
               style={{
                 position: "absolute",
                 left: "50%",
-                bottom: "10rem",
+                bottom: "9rem",
                 transform: "translateX(-50%)",
                 fontSize: `${FONT_SIZE.LARGE}`,
                 fontWeight: `${FONT_WEIGHT.BOLD}`,
