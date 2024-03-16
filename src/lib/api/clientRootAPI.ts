@@ -58,7 +58,6 @@ export const PUT = async <T>({
   return await API.put<T>(`/call${endPoint}`, data, config)
     .then((response) => response)
     .catch((error) => {
-      console.log("error", error.response);
       throw Error(error);
     });
 };

@@ -12,15 +12,12 @@ import {
 } from "./Modal.styles";
 import { Cross } from "../icons";
 
-// import FocusTrap from "@lib/focus-trap";
-
 interface ModalLayoutProps {
   className?: string;
   children?: any;
   modalTitle?: string;
   onHandleClose?: () => void | null;
   style?: CSSProperties;
-  // onEnter?: () => void | null;
 }
 
 const ModalLayout: FC<ModalLayoutProps> = ({

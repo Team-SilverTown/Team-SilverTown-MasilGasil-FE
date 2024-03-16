@@ -21,7 +21,6 @@ interface SignUpStep5Props {
 
 const POLICY_CONTENT_LIST: Array<{
   content: string;
-  // policyView: WINDOW_VIEWS;
   required: boolean;
   formKey: "isPersonalInfoConsented" | "isLocationInfoConsented" | "isUnderAgeConsentConfirmed";
   policyView: WINDOW_VIEWS;

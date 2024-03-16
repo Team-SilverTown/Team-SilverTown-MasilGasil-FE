@@ -2,13 +2,7 @@ import { PostMoreListResponse } from "@/types/Response/Post";
 import { ProfileResponse } from "@/types/Response";
 
 import { TopNavigator } from "@/components/navigators/TopNavigator";
-import {
-  WalkList,
-  MyWalkRecord,
-  MyLocationWeather,
-  WalkStartButton,
-  // Notification,
-} from "./components";
+import { WalkList, MyWalkRecord, MyLocationWeather, WalkStartButton } from "./components";
 import Notification from "./components/Notification";
 
 import * as S from "./Home.styles";

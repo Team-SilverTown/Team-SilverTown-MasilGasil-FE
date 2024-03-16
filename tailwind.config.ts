@@ -35,7 +35,6 @@ const config = {
       black: "900",
     },
 
-    // Shadcn UI style --
     container: {
       center: true,
       padding: "2rem",
@@ -112,7 +111,6 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
-    // -- Shadcn UI style
   },
   plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar-hide")],
 } satisfies Config;

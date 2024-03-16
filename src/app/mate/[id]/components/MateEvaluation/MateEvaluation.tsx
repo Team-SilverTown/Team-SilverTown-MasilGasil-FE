@@ -2,7 +2,6 @@ import * as GS from "../../MateDetail.styles";
 import * as S from "./MateEvaluation.styles";
 
 interface MateEvaluationProps {
-  // authorEvaluation: UserEvaluationType;
   nickName: string;
 }
 
@@ -15,7 +14,7 @@ const evaluationList: {
   { type: "bad", text: "부담스러워요 .. 🥹" },
 ];
 
-const MateEvaluation = ({ /* authorEvaluation, */ nickName }: MateEvaluationProps) => {
+const MateEvaluation = ({ nickName }: MateEvaluationProps) => {
   return (
     <article className={GS.MateInformationContainer}>
       <h6 className={GS.MateDetailInformationTitle}>{`${nickName}님이 받은 매너 평가`}</h6>
@@ -28,7 +27,6 @@ const MateEvaluation = ({ /* authorEvaluation, */ nickName }: MateEvaluationProp
           >
             <p className={S.EvaluationTitle}>{text}</p>
             <p className={S.EvaluationText}>
-              {/* authorEvaluation[type] */}
               <span className={S.EvaluationUnit}>명</span>
             </p>
           </li>

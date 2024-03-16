@@ -28,7 +28,7 @@ export const BottomNavItem = styled.div<{ $active: boolean }>`
   font-size: ${FONT_SIZE.MINI};
   cursor: pointer;
 
-  padding-bottom: env(safe-area-inset-bottom); // 배포 후 확인 필요
+  padding-bottom: env(safe-area-inset-bottom);
 
   & > svg {
     stroke: ${({ $active, theme }) => ($active ? "none" : theme.gray_300)};

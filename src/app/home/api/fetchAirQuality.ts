@@ -2,7 +2,6 @@ const fetchAirQuality = async (stationName: string) => {
   const AIR_QUALITY_URL = process.env.NEXT_PUBLIC_AIR_QUALITY_URL;
   const SERVICE_KEY = process.env.NEXT_PUBLIC_SERVICE_KEY;
 
-  // 공공 데이터 포털에서 발급받은 API 키
   const URL = `${AIR_QUALITY_URL}?stationName=${encodeURIComponent(stationName)}&dataTerm=DAILY&pageNo=1&numOfRows=1&returnType=json&serviceKey=${SERVICE_KEY}`;
 
   try {

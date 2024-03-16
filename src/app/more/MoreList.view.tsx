@@ -36,7 +36,6 @@ const MoreListView = ({ keyword, order }: MoreListViewProps) => {
       gcTime: 300 * 1000,
     });
 
-  // 반환 받은 ref를 통해 화면에 닿았는지 체크하는 hook
   const { ref, inView } = useInView({
     threshold: 0,
     delay: 0,

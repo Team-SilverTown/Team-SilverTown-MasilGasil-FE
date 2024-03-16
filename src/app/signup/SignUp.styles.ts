@@ -57,7 +57,7 @@ export const InputWrapper = styled.div`
       -webkit-appearance: none;
       margin: 0;
     }
-  } //Input type=number의 기본 우측 화살표 제거
+  }
 `;
 
 export const UnitLabel = styled.span`

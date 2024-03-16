@@ -37,7 +37,6 @@ export const drawPath = (path: GeoPosition[]) => {
     for (let i = 0; i < path.length; i++) {
       let x, y;
 
-      // 좌표 스케일링
       if (path.length === 1) {
         x = canvas.width / 2;
         y = canvas.height / 2;
@@ -46,7 +45,6 @@ export const drawPath = (path: GeoPosition[]) => {
         y = canvas.height - CANVAS_OFFSET - (path[i].lat - minLat) * scaleY;
       }
 
-      // 경로 그리기
       if (i === 0) {
         pathCanvas.moveTo(x, y);
       } else {

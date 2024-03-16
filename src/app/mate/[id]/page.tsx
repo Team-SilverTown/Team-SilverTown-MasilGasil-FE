@@ -11,8 +11,6 @@ const Mate = async ({ params }: MateProps) => {
   const { id } = params;
   const data = await getMateDetail(id);
 
-  console.log(data);
-
   return (
     <MateDetail
       postId={id}

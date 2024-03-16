@@ -29,7 +29,6 @@ export interface CheckNickNameResponse {
   nickname: string;
 }
 
-// export interface SignUpResponse {}
 export interface EditUserResponse {
   nickname: string;
   sex: "MALE" | "FEMALE";

@@ -8,8 +8,8 @@ export const config = {
 };
 
 const bypassPaths = ["/manifest*", "/swe-worker*", "/sw.js", "/workbox-*", "/icons*", "/fonts*"];
-const protectedPaths = ["/setting*"]; // 로그인이 필요한 페이지 목록
-const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
+const protectedPaths = ["/setting*"];
+const publicPaths = ["/signup*", "/auth*"];
 const NEXT_AUTH_URL = process.env.NEXTAUTH_URL;
 
 export async function middleware(request: NextRequest) {

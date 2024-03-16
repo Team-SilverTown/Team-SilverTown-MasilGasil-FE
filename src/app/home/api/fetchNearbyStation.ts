@@ -79,7 +79,6 @@ const fetchNearbyStation = async ({
 
     results.forEach((result) => {
       if (result.status === "fulfilled") {
-        // 결과 객체에 value를 추가
         finalResult = { ...finalResult, ...result.value };
       } else {
         console.error(result.reason);

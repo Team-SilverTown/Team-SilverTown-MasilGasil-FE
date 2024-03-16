@@ -9,9 +9,8 @@ export interface MasilRecordRequest {
   path: GeoPosition[];
   content: string;
 
-  // M 단위
   distance: number;
-  // S 단위
+
   totalTime: number;
   calories: number;
 

@@ -27,7 +27,7 @@ const useSignUpModel = () => {
       setAuth({ isLogIn: true, serviceToken: token! });
       router.replace("/home");
     },
-    onError: (error) => console.log("error", error),
+    onError: (error) => {},
   });
 
   return {

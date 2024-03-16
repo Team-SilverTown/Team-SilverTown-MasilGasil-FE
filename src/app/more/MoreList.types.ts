@@ -1,4 +1,3 @@
-// 임시 데이터
 export interface Dummy {
   postId: number;
   id: number;

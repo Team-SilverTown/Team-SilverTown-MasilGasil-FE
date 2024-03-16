@@ -42,17 +42,16 @@ export const useUI = () => {
   } = useWindowStore();
 
   const context = {
-    // modal
     displayModal,
     modalView,
     modalProps,
     openModal: (props?: any) => openModal(props),
     closeModal: () => closeModal(),
     setModalView: (view: MODAL_VIEWS) => setModalView(view),
-    // loadingSpinner
+
     showLoadingSpinner,
     closeLoadingSpinner,
-    // window
+
     displayWindow,
     windowView,
     windowURL,
@@ -65,7 +64,6 @@ export const useUI = () => {
   return context;
 };
 
-// Modal ================================================================= //
 const ModalView = ({
   modalView,
   closeModal,
@@ -103,9 +101,7 @@ export const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
     />
   ) : null;
 };
-// ================================================================= Modal //
 
-// Policy Window View //
 const WindowView = ({
   windowView,
   closeWindow,
@@ -141,7 +137,6 @@ export const WindowUI = () => {
     />
   ) : null;
 };
-// ------------------------------------------------------------------------------ //
 
 export const ManagedUIContext = ({ children }: { children: any }) => {
   const [localTheme] = useLocalStorage("theme");

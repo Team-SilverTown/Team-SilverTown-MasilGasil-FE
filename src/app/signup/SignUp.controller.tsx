@@ -48,15 +48,11 @@ const SignUpController = () => {
   });
 
   const onValid = (data: SignUpFormProps) => {
-    console.log("valid Action", data);
     signUpMutation.mutate(data);
   };
 
-  const onInvalid = (errors: FieldErrors) => {
-    console.log("Invalid Action", errors);
-  };
+  const onInvalid = (errors: FieldErrors) => {};
 
-  /** 유저 닉네임 중복 확인 */
   const name = getValues("nickname");
   const {
     data: duplicatedResult,
@@ -92,11 +88,9 @@ const SignUpController = () => {
       if (userAge >= 13 && userAge <= 100) return true;
 
       if (userAge < 13) {
-        // errors.birthDate?.message !== validation_user.birthDate.min.message &&
         setError("birthDate", { type: "custom", message: validation_user.birthDate.min.message });
       }
       if (userAge > 100) {
-        // errors.birthDate?.message !== validation_user.birthDate.max.message &&
         setError("birthDate", { type: "custom", message: validation_user.birthDate.max.message });
       }
 
@@ -104,7 +98,6 @@ const SignUpController = () => {
     }
   }, [birthDate]);
 
-  // step1 - 유저네임의 유효성, 중복 여부를 확인 합니다
   const isStep1Validate = useMemo(() => {
     if (!getValues("nickname") || !!errors.nickname?.message) return false;
     if (!nickNameConfirm) return false;
@@ -143,7 +136,6 @@ const SignUpController = () => {
     else return true;
   }, [watch()]);
 
-  // 각 step 별 유효성 검사 결과 boolean 값을 가지고 있습니다.
   const stepValidations = [
     isStep1Validate,
     isStep2Validate,

@@ -27,12 +27,9 @@ const ListSection = memo(function List({
     rootMargin: "20%",
   });
 
-  // console.log(hasNextPage);
-
   useEffect(() => {
     if (inView && !isFetchingNextPage && hasNextPage) {
       fetchNextPage && fetchNextPage();
-      console.log("inview");
     }
   }, [inView]);
 

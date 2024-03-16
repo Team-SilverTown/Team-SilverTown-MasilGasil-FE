@@ -21,8 +21,6 @@ export const postPostCreate = async ({ postData }: { postData: PostCreateRequest
 export const getPostList = async (params: PostListRequest) => {
   const { cursor, depth1, depth2, depth3, order, size } = params;
 
-  // TODO: Server API 수정 시 cursor 반영F
-
   if (cursor)
     return GET<PostListResponse>({
       endPoint: `${POST_ENDPOINT.GET_LIST}?depth1=${depth1}&depth2=${depth2}&depth3=${depth3}&order=${order}&cursor=${cursor}&size=${size}`,
