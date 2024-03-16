@@ -5,7 +5,6 @@ import { ModalBackground, ModalContainer } from "./Modal.styles";
 interface ModalProps {
   children: ReactNode;
   onClose: () => void;
-  // onEnter?: () => void | null;
 }
 
 const Modal: FC<ModalProps> = ({ children, onClose }) => {

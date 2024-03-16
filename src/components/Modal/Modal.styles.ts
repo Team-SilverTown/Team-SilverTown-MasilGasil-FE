@@ -1,50 +1,82 @@
-import tw from "twin.macro";
 import styled from "styled-components";
 
-import {
-  MODAL,
-  MODAL_BACKGROUND,
-  MODAL_HEADER_MARGIN,
-  MODAL_HORIZONTAL_PADDING,
-  MODAL_LAYOUT,
-  MODAL_VERTICAL_PADDING,
-} from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT, MODAL, Z_INDEX } from "@/styles/theme";
 
 export const ModalContainer = styled.div`
-  z-index: ${MODAL};
-  ${tw`fixed flex items-center inset-0 justify-center`}
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: ${Z_INDEX.MODAL};
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 export const ModalBackground = styled.div<any>`
-  z-index: ${MODAL_BACKGROUND};
-
-  ${tw`fixed bg-black bg-opacity-10 flex items-center inset-0 justify-center backdrop-blur-[1.2px]`}
+  position: absolute;
+  background-color: ${(props) => props.theme.transparent_10};
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(1.2px);
+  z-index: ${Z_INDEX.MODAL_BACKGROUND};
 `;
 
 export const ModalLayoutContainer = styled.div`
-  background-color: ${(props) => props.theme.background_color};
-  padding-top: ${MODAL_VERTICAL_PADDING}rem;
-  padding-bottom: ${MODAL_HORIZONTAL_PADDING}rem;
-  padding-left: ${MODAL_HORIZONTAL_PADDING}rem;
-  padding-right: ${MODAL_HORIZONTAL_PADDING}rem;
-  z-index: ${MODAL_LAYOUT};
-
-  ${tw`relative shadow-md rounded-md`}
+  background-color: ${(props) => props.theme.white_100};
+  padding-top: ${MODAL.VERTICAL_PADDING}rem;
+  padding-bottom: ${MODAL.HORIZONTAL_PADDING}rem;
+  padding-left: ${MODAL.HORIZONTAL_PADDING}rem;
+  padding-right: ${MODAL.HORIZONTAL_PADDING}rem;
+  z-index: ${Z_INDEX.MODAL_LAYOUT};
+  position: relative;
+  box-shadow: 0 2px 4px -2px ${(props) => props.theme.transparent_10};
+  border-radius: 6px;
 `;
 
 export const ModalLayoutHeader = styled.section`
-  margin-top: ${MODAL_HEADER_MARGIN}rem;
-  ${tw`absolute left-0 top-0 w-full`}
+  margin-top: ${MODAL.HEADER_MARGIN}rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
 `;
 
 export const ModalHeaderTitle = styled.span`
-  ${tw`relative text-center w-[70%] truncate m-auto text-lg font-semibold`}
+  position: relative;
+  text-align: center;
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  font-size: ${FONT_SIZE.H4};
+  font-weight: ${FONT_WEIGHT.BOLD};
 `;
 
 export const ModalHeaderButton = styled.button`
-  ${tw`transition ease-in-out duration-150 absolute right-0 top-0 m-6`}
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 1.5rem;
 `;
 
 export const ModalContentWrapper = styled.section`
-  ${tw`outline-none h-full overflow-y-scroll scrollbar-hide`}
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  height: 100%;
+  overflow-y: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

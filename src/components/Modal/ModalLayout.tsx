@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect, useCallback } from "react";
+import { FC, useRef, useEffect, useCallback, CSSProperties } from "react";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 
 import { useUI } from "@components/uiContext/UiContext";
@@ -12,14 +12,12 @@ import {
 } from "./Modal.styles";
 import { Cross } from "../icons";
 
-// import FocusTrap from "@lib/focus-trap";
-
 interface ModalLayoutProps {
   className?: string;
   children?: any;
   modalTitle?: string;
   onHandleClose?: () => void | null;
-  // onEnter?: () => void | null;
+  style?: CSSProperties;
 }
 
 const ModalLayout: FC<ModalLayoutProps> = ({
@@ -27,6 +25,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
   children,
   onHandleClose,
   modalTitle = "",
+  style,
 }) => {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
@@ -64,6 +63,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
       ref={ref}
       role="dialog"
       className={className}
+      style={style}
     >
       <ModalLayoutHeader>
         <ModalHeaderTitle>{modalTitle}</ModalHeaderTitle>
@@ -72,7 +72,10 @@ const ModalLayout: FC<ModalLayoutProps> = ({
         onClick={() => handleClose()}
         aria-label="Close panel"
       >
-        <Cross className="h-6 w-6" />
+        <Cross
+          width="2.5rem"
+          height="2.5rem"
+        />
       </ModalHeaderButton>
       <ModalContentWrapper>{children}</ModalContentWrapper>
     </ModalLayoutContainer>

@@ -1,0 +1,58 @@
+.MyWalkRecordContainer {
+  padding: 2.3rem 1rem;
+  margin-bottom: 3rem;
+  border-radius: 0.8rem;
+
+  background-color: #fff;
+
+  border-width: 1px;
+  border-color: #23232310;
+  box-shadow: 0 2px 7.8px 0 rgba(0, 0, 0, 0.02);
+}
+
+.MyWalkRecordContainer h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.MyWalkRecordList {
+  display: flex;
+}
+
+.MyWalkRecordList li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.MyWalkRecordList li:not(:first-child) {
+  position: relative;
+}
+
+.MyWalkRecordList li:not(:first-child)::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  display: inline-block;
+  width: 0.1rem;
+  height: 100%;
+  background-color: #efefef;
+}
+
+.MyWalkRecordList li strong {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.MyWalkRecordList li span {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #81bb26;
+}

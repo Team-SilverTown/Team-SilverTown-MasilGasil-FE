@@ -1,7 +1,20 @@
-import React from "react";
+import dynamic from "next/dynamic";
+import { ProfileSkeleton } from "@/components/skeletons";
 
-const Profile = () => {
-  return <div>ProfilePage</div>;
+interface MyPageProps {
+  params: {
+    id: number;
+  };
+}
+
+const MyPage = ({ params }: MyPageProps) => {
+  const { id } = params;
+
+  const MypageController = dynamic(() => import("./MyPage.controller"), {
+    loading: () => <ProfileSkeleton />,
+  });
+
+  return <MypageController userId={id} />;
 };
 
-export default Profile;
+export default MyPage;

@@ -1,106 +1,69 @@
 "use client";
 
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import { ThemeProvider } from "styled-components";
 
 import { useLocalStorage } from "@lib/hooks/useLocalStorage";
+import useModalStore from "@/stores/ui/useModalStore";
 import { Modal } from "@components/Modal";
-import { TestModal } from "@components/modalViews";
-import { MODAL_ACTION, MODAL_VIEWS } from "./types/modalType";
+import Window from "@components/Window";
+import {
+  PinEditModal,
+  TestModal,
+  ProfileEditModal,
+  MateCreateMapModal,
+  ConfirmModal,
+  AnimationAlertModal,
+  PinDetailModal,
+  DoneModal,
+} from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
+import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
+import LogRecordDoneModal from "../modalViews/LogRecordDoneModal/LogRecordDoneModal";
+import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
+import useWindowStore from "@/stores/ui/useWindowStore";
+import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
 
-export interface State {
-  displayModal: boolean;
-  modalView: MODAL_VIEWS;
-  modalProps: any | null;
-}
-
-const initialState: State = {
-  displayModal: false,
-  modalView: "INIT_VIEW",
-  modalProps: null,
-};
-
-type Action = MODAL_ACTION & {};
-
-export const UIContext = React.createContext<State | any>(initialState);
-
-UIContext.displayName = "UIContext";
-
-function uiReducer(state: State, action: Action) {
-  switch (action.type) {
-    case "OPEN_MODAL": {
-      return {
-        ...state,
-        modalProps: action.props,
-        displayModal: true,
-      };
-    }
-    case "CLOSE_MODAL": {
-      return {
-        ...state,
-        modalProps: null,
-        displayModal: false,
-      };
-    }
-    case "SET_MODAL_VIEW": {
-      return {
-        ...state,
-        modalProps: null,
-        modalView: action.view,
-      };
-    }
-  }
-}
-
-export const UIProvider: React.FC = (props) => {
-  const [state, dispatch] = React.useReducer(uiReducer, initialState);
-
-  const openModal = useCallback(
-    (props?: any) => dispatch({ type: "OPEN_MODAL", props }),
-    [dispatch],
-  );
-
-  const closeModal = useCallback(() => dispatch({ type: "CLOSE_MODAL" }), [dispatch]);
-
-  const setModalView = useCallback(
-    (view: MODAL_VIEWS) => dispatch({ type: "SET_MODAL_VIEW", view }),
-    [dispatch],
-  );
-
-  const value = useMemo(
-    () => ({
-      ...state,
-      openModal,
-      closeModal,
-      setModalView,
-    }),
-    [state],
-  );
-
-  return (
-    <UIContext.Provider
-      value={value}
-      {...props}
-    />
-  );
-};
-
-interface IUIContext extends State {
-  openModal: any;
-  closeModal: any;
-  setModalView: (view: MODAL_VIEWS) => void;
-}
+import MateLocationMapModal from "../modalViews/MateMapModal/MateLocationMapModal/MapLocationMapModal";
+import DeployAlertModal from "../modalViews/DeployAlertModal/DeployAlertModal";
 
 export const useUI = () => {
-  const context: IUIContext = React.useContext(UIContext);
-  if (context === undefined) {
-    throw new Error(`useUI must be used within a UIProvider`);
-  }
+  const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
+  const { displayModal, modalView, modalProps, setModalView, openModal, closeModal } =
+    useModalStore();
+  const {
+    displayWindow,
+    windowView,
+    setWindowView,
+    openWindow,
+    closeWindow,
+    setWindowURL,
+    windowURL,
+  } = useWindowStore();
+
+  const context = {
+    displayModal,
+    modalView,
+    modalProps,
+    openModal: (props?: any) => openModal(props),
+    closeModal: () => closeModal(),
+    setModalView: (view: MODAL_VIEWS) => setModalView(view),
+
+    showLoadingSpinner,
+    closeLoadingSpinner,
+
+    displayWindow,
+    windowView,
+    windowURL,
+    openWindow: () => openWindow(),
+    closeWindow: () => closeWindow(),
+    setWindowView: (view: WINDOW_VIEWS) => setWindowView(view),
+    setWindowURL: (url: string) => setWindowURL(url),
+  };
+
   return context;
 };
 
-// Modal ================================================================= //
 const ModalView = ({
   modalView,
   closeModal,
@@ -110,10 +73,24 @@ const ModalView = ({
   closeModal: () => void;
   props?: any;
 }) => {
-  return <Modal onClose={closeModal}>{modalView === "INIT_VIEW" && <TestModal />}</Modal>;
+  return (
+    <Modal onClose={closeModal}>
+      {modalView === "INIT_VIEW" && <TestModal />}
+      {modalView === "CONFIRM_VIEW" && <ConfirmModal props={props} />}
+      {modalView === "PIN_EDIT_VIEW" && <PinEditModal props={props} />}
+      {modalView === "PIN_DETAIL_MODAL_VIEW" && <PinDetailModal props={props} />}
+      {modalView === "LOG_RECORD_DONE_VIEW" && <LogRecordDoneModal props={props} />}
+      {modalView === "PROFILE_EDIT_VIEW" && <ProfileEditModal props={props} />}
+      {modalView === "MATE_CREATE_MAP_VIEW" && <MateCreateMapModal props={props} />}
+      {modalView === "MATE_LOCATION_MAP_VIEW" && <MateLocationMapModal props={props} />}
+      {modalView === "ANIMATION_ALERT_VIEW" && <AnimationAlertModal props={props} />}
+      {modalView === "DEPLOY_ALERT_VIEW" && <DeployAlertModal />}
+      {modalView === "DONE_VIEW" && <DoneModal props={props} />}
+    </Modal>
+  );
 };
 
-const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
+export const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
   const { displayModal, closeModal, modalView, modalProps } = useUI();
   return displayModal ? (
     <ModalView
@@ -124,7 +101,42 @@ const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
     />
   ) : null;
 };
-// ================================================================= Modal //
+
+const WindowView = ({
+  windowView,
+  closeWindow,
+  windowURL,
+}: {
+  windowView: string;
+  closeWindow(): any;
+  windowURL: string;
+}) => {
+  const width = Math.min(screen.width, 600);
+  const height = screen.height;
+
+  return (
+    <>
+      {windowView.includes("POLICY") && (
+        <Window
+          windowStyle={`width=${width},height=${height},left=0,top=0,resizable=no`}
+          onClose={closeWindow}
+          url={windowURL}
+        />
+      )}
+    </>
+  );
+};
+
+export const WindowUI = () => {
+  const { displayWindow, closeWindow, windowView, windowURL } = useUI();
+  return displayWindow ? (
+    <WindowView
+      windowView={windowView}
+      closeWindow={closeWindow}
+      windowURL={windowURL}
+    />
+  ) : null;
+};
 
 export const ManagedUIContext = ({ children }: { children: any }) => {
   const [localTheme] = useLocalStorage("theme");
@@ -135,11 +147,6 @@ export const ManagedUIContext = ({ children }: { children: any }) => {
   }, [localTheme]);
 
   return (
-    <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>
-      <UIProvider>
-        {children}
-        <ModalUI />
-      </UIProvider>
-    </ThemeProvider>
+    <ThemeProvider theme={themeMode === "light" ? lightTheme : darkTheme}>{children}</ThemeProvider>
   );
 };
