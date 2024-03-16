@@ -6,6 +6,7 @@ export const UserEditLayout = styled(motion.form)`
   width: 100%;
   height: 100%;
   padding: 2rem;
+  padding-top: 3rem;
   padding-bottom: 8rem;
 
   display: flex;
@@ -45,5 +46,5 @@ export const UserEditButtonWrapper = styled.div`
   justify-content: center;
 
   position: absolute;
-  bottom: 7rem;
+  bottom: 10rem;
 `;

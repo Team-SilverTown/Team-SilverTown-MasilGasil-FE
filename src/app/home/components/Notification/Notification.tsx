@@ -17,7 +17,10 @@ const Notification = ({ isNotification }: NotificationProps) => {
   };
 
   return (
-    <a onClick={handleClickAlert}>
+    <a
+      onClick={handleClickAlert}
+      style={{ marginRight: "1.5rem" }}
+    >
       <NotificationOff />
     </a>
     // <Link

@@ -38,7 +38,7 @@ export const LogMemoWalkInfo = styled.ul`
 `;
 
 export const LogMemoContent = styled.article`
-  font-size: ${FONT_SIZE.MINI};
+  font-size: ${FONT_SIZE.BASIC};
   line-height: 1.6;
 `;
 

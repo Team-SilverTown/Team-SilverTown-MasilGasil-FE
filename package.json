@@ -36,7 +36,7 @@
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
-    "lucide-react": "^0.341.0", 
+    "lucide-react": "^0.341.0",
     "next": "14.1.0",
     "next-auth": "^4.24.6",
     "nuka-carousel": "^7.0.0",

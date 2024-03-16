@@ -14,6 +14,8 @@ import { BOTTOM_NAV_ITEMS } from "./BottomNavigator.constants";
 
 const BottomNavigator = () => {
   const currentPathName = usePathname();
+  const { userId, profileImg } = useMeStore();
+
   /**
    * @description BOTTOM_NAV_INDABLE 에 포함된 path 인 경우 BottomNav 를 렌더링 하지 않습니다.
    */
@@ -22,7 +24,6 @@ const BottomNavigator = () => {
   if (navInable) return null;
 
   const isPathActive = (path: string) => currentPathName.includes(path);
-  const { userId, profileImg } = useMeStore();
 
   return (
     <S.BottomNavContainer>

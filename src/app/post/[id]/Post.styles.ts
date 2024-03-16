@@ -26,7 +26,7 @@ export const PostContentLayout = styled.section`
 `;
 
 export const PostContentSection = styled.section`
-  height: calc(100% - 18rem);
+  height: calc(100% - 24rem);
   padding: 1rem 0.5rem;
   overflow-y: auto;
 `;
