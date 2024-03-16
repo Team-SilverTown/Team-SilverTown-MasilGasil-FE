@@ -1,3 +1,4 @@
+import { PrecipitationType, WeatherType } from "../Home.types";
 import convertLatLonToGrid from "../utils/convertLatLonToGrid";
 import getCurrentDateTime from "../utils/getCurrentDateTime";
 
@@ -17,7 +18,13 @@ interface WeatherDataItemType {
   ny: number;
 }
 
-const fetchWeatherForecast = async ({ lat, lng }: LocationType) => {
+interface APIResponse {
+  precipitation: PrecipitationType | null;
+  temperature: string | null;
+  weather: WeatherType | null;
+}
+
+const fetchWeatherForecast = async ({ lat, lng }: LocationType): Promise<APIResponse> => {
   const currentDateTime = getCurrentDateTime();
 
   const coords = convertLatLonToGrid("toXY", lat, lng);
@@ -57,7 +64,11 @@ const fetchWeatherForecast = async ({ lat, lng }: LocationType) => {
   const weatherData = data.response?.body?.items?.item;
 
   if (!weatherData) {
-    return;
+    return {
+      temperature: null,
+      weather: null,
+      precipitation: null,
+    };
   }
 
   const temperature = weatherData.find(
@@ -70,7 +81,7 @@ const fetchWeatherForecast = async ({ lat, lng }: LocationType) => {
     (item: WeatherDataItemType) => item.category === "PTY",
   )?.fcstValue;
 
-  let weather = null;
+  let weather: WeatherType | null = null;
 
   if (skyStatus) {
     switch (skyStatus) {
@@ -89,7 +100,7 @@ const fetchWeatherForecast = async ({ lat, lng }: LocationType) => {
     }
   }
 
-  let precipitation = null;
+  let precipitation: PrecipitationType | null = null;
 
   if (precipitationValue) {
     switch (precipitationValue) {

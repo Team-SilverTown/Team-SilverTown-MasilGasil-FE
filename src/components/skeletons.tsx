@@ -18,7 +18,7 @@ export const PostCardsSkeleton = () => {
 
 export const LogDetailCardSkeleton = () => {
   return (
-    <div className={`${shimmer} relative flex-1 w-[33rem] h-[13rem] rounded-lg bg-gray-200`} />
+    <div className={`${shimmer} relative w-[30rem] h-[12rem] rounded-lg bg-gray-200 shrink-0`} />
   );
 };
 
@@ -43,6 +43,27 @@ export const HomeSkeleton = () => {
       <ListPreviewSkeleton />
       <ListPreviewSkeleton />
       <ListPreviewSkeleton />
+    </div>
+  );
+};
+
+export const HomeWeatherSkeleton = () => {
+  return (
+    <div className="w-full h-full flex justify-between mb-4">
+      <div className={`${shimmer} relative w-[13rem] h-[2.1rem] rounded-lg bg-gray-200`}></div>
+      <div className={`${shimmer} relative w-[18rem] h-[2.1rem] rounded-lg bg-gray-200`}></div>
+    </div>
+  );
+};
+
+export const HomeDetailCardSkeleton = () => {
+  return (
+    <div className="mt-8 px-6 overflow-hidden">
+      <div className="flex gap-8 overflow-x-auto scrollbar-hide">
+        <LogDetailCardSkeleton />
+        <LogDetailCardSkeleton />
+        <LogDetailCardSkeleton />
+      </div>
     </div>
   );
 };
@@ -74,9 +95,7 @@ export const ProfileSkeleton = () => {
           className={`${shimmer} relative w-[7rem] h-[2.5rem] mt-[1.5rem] rounded-lg bg-gray-200`}
         />
       </div>
-      <div
-        className={`${shimmer} relative w-full h-[12rem] mt-20 rounded-lg bg-gray-200`}
-      />
+      <div className={`${shimmer} relative w-full h-[12rem] mt-20 rounded-lg bg-gray-200`} />
       <ListPreviewSkeleton />
       <ListPreviewSkeleton />
       <ListPreviewSkeleton />
