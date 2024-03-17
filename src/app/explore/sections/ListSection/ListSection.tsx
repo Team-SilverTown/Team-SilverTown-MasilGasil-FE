@@ -1,5 +1,4 @@
-import React, { CSSProperties, memo, useCallback, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import React, { memo, useCallback } from "react";
 import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
 
 import { ListCard } from "@/components";
