@@ -10,6 +10,9 @@ export const config = {
 const bypassPaths = ["/manifest*", "/swe-worker*", "/sw.js", "/workbox-*", "/icons*", "/fonts*"];
 const protectedPaths = ["/setting*"];
 const publicPaths = ["/signup*", "/auth*"];
+
+const test = ["/user*", "/home*"];
+
 const NEXT_AUTH_URL = process.env.NEXTAUTH_URL;
 
 export async function middleware(request: NextRequest) {
@@ -28,7 +31,12 @@ export async function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
 
+    if (pathAbleCheck(test, currentPath)) {
+      return NextResponse.redirect(url);
+    }
+
     if (referer === request.url || (referer && NEXT_AUTH_URL?.endsWith(referer))) return;
+
     return NextResponse.redirect(url);
   }
 
