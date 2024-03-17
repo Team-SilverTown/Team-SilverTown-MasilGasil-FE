@@ -35,7 +35,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(url);
     }
 
-    if (referer === request.url || (referer && NEXT_AUTH_URL?.endsWith(referer))) return;
+    if (referer && NEXT_AUTH_URL?.endsWith(referer)) return;
 
     return NextResponse.redirect(url);
   }
@@ -46,7 +46,7 @@ export async function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
 
-    if (referer === request.url || (referer && NEXT_AUTH_URL?.endsWith(referer))) return;
+    if (referer && NEXT_AUTH_URL?.endsWith(referer)) return;
     return NextResponse.redirect(url);
   }
 
