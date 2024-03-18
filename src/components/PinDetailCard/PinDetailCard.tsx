@@ -1,9 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import * as S from "./PinDetailCard.styles";
-import { Pin } from "@/types/OriginDataType";
+
+import useTheme from "@/lib/hooks/useTheme";
 import { useUI } from "../uiContext/UiContext";
+
+import { Pin } from "@/types/OriginDataType";
+
+import { Image as ImageIcon } from "@/components/icons";
+
+import * as S from "./PinDetailCard.styles";
 
 export interface PinDetailCardProps {
   key?: number;
@@ -27,6 +33,7 @@ const PinDetailCard = ({
   totalPinIndex,
   pin,
 }: PinDetailCardProps) => {
+  const theme = useTheme();
   const { openModal, setModalView } = useUI();
 
   const handleClickNavigationPin = () => {
@@ -39,13 +46,11 @@ const PinDetailCard = ({
   return (
     <S.PinDetailCardLayout
       $borderRadius={borderRadius}
+      onClick={handleClickNavigationPin}
       className={className}
     >
       <S.PinDetailCardWrapper $borderRadius={borderRadius}>
-        <S.PinDetailCardThumbnail
-          $borderRadius={borderRadius}
-          onClick={handleClickNavigationPin}
-        >
+        <S.PinDetailCardThumbnail $borderRadius={borderRadius}>
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
@@ -55,7 +60,12 @@ const PinDetailCard = ({
               priority
             />
           ) : (
-            <S.PinDetailCardThumbnailEmpty />
+            <S.PinDetailCardThumbnailEmpty>
+              <ImageIcon
+                width={40}
+                fill={theme?.gray_300}
+              />
+            </S.PinDetailCardThumbnailEmpty>
           )}
           <span>
             {currentPinindex}/{totalPinIndex}
