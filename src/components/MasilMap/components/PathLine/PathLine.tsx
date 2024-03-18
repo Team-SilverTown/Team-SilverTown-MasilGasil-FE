@@ -18,7 +18,7 @@ const PathLine = ({
   onCreatePathLine,
   pathColor = Theme.lightTheme.green_300,
 
-  pathOpacity = 0.7,
+  pathOpacity = 0.9,
   pathWeight = 8,
 }: PathLineProps) => {
   /**
