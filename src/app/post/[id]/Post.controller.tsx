@@ -52,7 +52,10 @@ const PostController = ({ postId, postData }: PostControllerProps) => {
 
   const handleClickTab = (index: number) => {
     if (PostTabType.Pin === index) {
-      if (postData.pins.length === 0) return;
+      if (postData.pins.length === 0) {
+        setTabIndex(index);
+        return;
+      }
 
       const { point } = postData.pins[0];
       setCurrentPinIndex(0);
