@@ -109,9 +109,10 @@ const useLogRecordEditController = () => {
               });
             },
 
-            onError: () => {
+            onError: (error) => {
               setModalView("ANIMATION_ALERT_VIEW");
               closeLoadingSpinner();
+              console.log(error.message);
               openModal({
                 message: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
               });
