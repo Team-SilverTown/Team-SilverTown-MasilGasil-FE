@@ -15,6 +15,7 @@ export const onError = (error: AxiosError) => {
 
   if (response?.data) {
     console.error(response.data);
+    return Promise.reject(response.data.code);
   }
 
   return Promise.reject(error);

@@ -14,7 +14,7 @@ const usePostCreateController = () => {
     handleClickPin,
     handleClickCenterButton,
   } = usePostCreateContext();
-  const { setModalView, openModal } = useUI();
+  const { setModalView, openModal, closeModal } = useUI();
   const router = useRouter();
 
   const handleFallback = () => {
@@ -23,7 +23,10 @@ const usePostCreateController = () => {
       openModal({
         message: "현재 수정하신 내용이 저장되지 않습니다! 뒤로가실건가요?",
         warningMessage: "작성하신 내용 전부 사라집니다.",
-        onClickAccept: () => router.back(),
+        onClickAccept: () => {
+          router.back();
+          closeModal();
+        },
       });
 
       return;

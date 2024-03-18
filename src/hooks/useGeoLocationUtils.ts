@@ -25,7 +25,7 @@ const useGeoLocationUtils = () => {
       openModal({
         message: LOG_RECORD_MESSAGE.ERROR.WATCH_PERMISSION_DENIED,
       });
-      router.back();
+      router.replace("/home");
       return;
     }
 
