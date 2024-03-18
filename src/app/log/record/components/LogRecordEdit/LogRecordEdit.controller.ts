@@ -16,6 +16,7 @@ import calculatePathCenter from "@/lib/utils/calculatePathCenter";
 import useMeStore from "@/stores/useMeStore";
 import { calculateWalkingCalories } from "@/utils";
 import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
+import checkMasilErrorCode from "../../utils/checkMasilError";
 
 const useLogRecordEditController = () => {
   const { setModalView, openModal, closeModal } = useUI();
@@ -60,6 +61,15 @@ const useLogRecordEditController = () => {
    * 이후, 서버에 전송 성공시 Done Modal이 제공되어지고, 공유를 선택시 시작지점과 성성된 log id 를 post 생성 페이지에 전달합니다.
    */
   const updateLog = () => {
+    if (logData.path.length < 4) {
+      setModalView("ANIMATION_ALERT_VIEW");
+      closeLoadingSpinner();
+
+      openModal({
+        message: "산책하신 경로가 너무 적습니다.<br>100m 이상부터 산책을 기록하실 수 있습니다.",
+      });
+      return;
+    }
     const newCalories = calculateWalkingCalories({
       userInfo: getMe(),
       distance: logData.distance,
@@ -109,12 +119,12 @@ const useLogRecordEditController = () => {
               });
             },
 
-            onError: (error) => {
+            onError: ({ message }) => {
               setModalView("ANIMATION_ALERT_VIEW");
               closeLoadingSpinner();
-              console.log(error.message);
+
               openModal({
-                message: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
+                message: checkMasilErrorCode(message),
               });
             },
           });
