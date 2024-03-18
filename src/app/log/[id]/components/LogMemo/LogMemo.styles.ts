@@ -39,6 +39,7 @@ export const LogMemoWalkInfo = styled.ul`
 export const LogMemoContent = styled.article`
   font-size: ${FONT_SIZE.BASIC};
   line-height: 1.6;
+  padding-bottom: 7rem;
 `;
 
 export const LogMemoDate = styled.article`

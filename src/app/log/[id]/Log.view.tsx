@@ -88,25 +88,25 @@ const LogView = ({
                 handlePinIndex={handleCurrentPinIndex}
               />
             )}
-          </S.LogContentSection>
 
-          <Link href={`/post/create?logId=${logId}`}>
-            <Button
-              width="calc(100% - 4rem)"
-              textColor={theme?.white}
-              buttonColor={theme?.green_500}
-              style={{
-                position: "absolute",
-                left: "50%",
-                bottom: "9rem",
-                transform: "translateX(-50%)",
-                fontSize: `${FONT_SIZE.LARGE}`,
-                fontWeight: `${FONT_WEIGHT.BOLD}`,
-              }}
-            >
-              산책 공유하기
-            </Button>
-          </Link>
+            <Link href={`/post/create?logId=${logId}`}>
+              <Button
+                width="calc(100% - 4rem)"
+                textColor={theme?.white}
+                buttonColor={theme?.green_500}
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  bottom: "9rem",
+                  transform: "translateX(-50%)",
+                  fontSize: `${FONT_SIZE.LARGE}`,
+                  fontWeight: `${FONT_WEIGHT.BOLD}`,
+                }}
+              >
+                산책 공유하기
+              </Button>
+            </Link>
+          </S.LogContentSection>
         </S.LogContentLayout>
       </S.LogContainer>
     </>
