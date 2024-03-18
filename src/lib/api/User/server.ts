@@ -14,12 +14,16 @@ export async function authenticate(data: AuthRequest) {
 }
 
 export async function getMe(serviceToken: string) {
-  const response = await GET<MeResponse>({
-    endPoint: USER.ME,
-    options: { cache: "no-store", headers: { Authorization: `Bearer ${serviceToken}` } },
-  });
-
-  return response;
+  try {
+    const response = await GET<MeResponse>({
+      endPoint: USER.ME,
+      options: { cache: "no-store", headers: { Authorization: `Bearer ${serviceToken}` } },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
 }
 
 export async function getUserProfile(userId: string | number) {
