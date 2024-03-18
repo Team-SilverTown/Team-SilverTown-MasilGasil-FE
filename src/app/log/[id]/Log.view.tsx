@@ -95,7 +95,7 @@ const LogView = ({
                 textColor={theme?.white}
                 buttonColor={theme?.green_500}
                 style={{
-                  position: "absolute",
+                  position: "fixed",
                   left: "50%",
                   bottom: "9rem",
                   transform: "translateX(-50%)",
