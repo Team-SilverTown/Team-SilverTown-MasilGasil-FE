@@ -20,7 +20,7 @@ export interface PinDetailCardProps {
   thumbnailUrl: string | null;
   currentPinindex: number;
   totalPinIndex: number;
-  pin: Pin;
+  pin?: Pin;
 }
 
 const PinDetailCard = ({
