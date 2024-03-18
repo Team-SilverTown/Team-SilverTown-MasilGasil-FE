@@ -23,6 +23,8 @@ const SignUpStep2 = ({ register, errors }: SignUpStep2Props) => {
         placeholder={USER_INPUT_PLACEHOLDER.BIRTH_DATE}
         register={register("birthDate")}
         errorsMessage={errors.birthDate && errors.birthDate.message}
+        onFocus={(e: { target: { type: string } }) => (e.target.type = "date")}
+        onBlur={(e: { target: { type: string } }) => (e.target.type = "text")}
       />
     </div>
   );
