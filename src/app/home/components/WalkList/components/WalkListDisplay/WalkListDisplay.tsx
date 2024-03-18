@@ -9,7 +9,6 @@ import { PostListItemResponse } from "@/types/Response/Post";
 import { useUI } from "@/components/uiContext/UiContext";
 
 import { LogDetailCard } from "@/components";
-import { More } from "@/components/icons";
 
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./WalkListDisplay.styles";
@@ -33,21 +32,21 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
     <section className={S.WalkListSection}>
       <article className={S.HomeWalkListArticle}>
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>{title}</h3>
-        {/* <Link href={url}>
-          <More />
+        {/* <Link href={url} style={{ fontWeight: ${FONT_WEIGHT.MEDIUM, color: "#909090" }}}>
+          더보기
         </Link> */}
         <a
           onClick={handleClickAlert}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", fontWeight: `${FONT_WEIGHT.MEDIUM}`, color: "#909090" }}
         >
-          <More />
+          더보기
         </a>
       </article>
       {isEmpty ? (
         <div className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</div>
       ) : (
         <ul className={S.WalkListContainer}>
-          {walkList.map(({ id, title, content, thumbnailUrl, distance, totalTime }) => (
+          {walkList.map(({ id, title, content, thumbnailUrl, distance, totalTime, address }) => (
             <li key={id}>
               <Link href={`/post/${id}`}>
                 <LogDetailCard
@@ -56,6 +55,8 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
                   thumbnailUrl={thumbnailUrl}
                   distance={convertMeter(distance)}
                   totalTime={convertSeconds(totalTime)}
+                  isLikeLayout={true}
+                  address={address}
                 />
               </Link>
             </li>
