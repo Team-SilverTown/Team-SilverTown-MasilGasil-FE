@@ -25,6 +25,8 @@ export const PinDetailEmptyThumbnail = styled.div`
 
   background-color: ${({ theme }) => theme.gray_200};
   border-radius: 0.8rem;
+
+  overflow: hidden;
 `;
 
 export const PinDetailContentContainer = styled.div`

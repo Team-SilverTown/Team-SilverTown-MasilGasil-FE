@@ -7,7 +7,6 @@ import { convertMeter, convertSeconds } from "@/utils";
 import { PostListItemResponse } from "@/types/Response/Post";
 
 import { LogDetailCard } from "@/components";
-import { More } from "@/components/icons";
 
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./WalkListDisplay.styles";
@@ -32,7 +31,7 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
         <div className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</div>
       ) : (
         <ul className={S.WalkListContainer}>
-          {walkList.map(({ id, title, content, thumbnailUrl, distance, totalTime }) => (
+          {walkList.map(({ id, title, content, thumbnailUrl, distance, totalTime, address }) => (
             <li key={id}>
               <Link href={`/post/${id}`}>
                 <LogDetailCard
@@ -41,6 +40,8 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
                   thumbnailUrl={thumbnailUrl}
                   distance={convertMeter(distance)}
                   totalTime={convertSeconds(totalTime)}
+                  isLikeLayout={true}
+                  address={address}
                 />
               </Link>
             </li>

@@ -3,8 +3,10 @@ import { CSSProperties, useState } from "react";
 import Image from "next/image";
 import { calculateWalkingCalories } from "@/utils";
 import { MeResponse } from "@/types/Response";
+import { UserAddressType } from "@/types/OriginDataType/Location";
 import { Heart, KebabMenu } from "../icons";
 import * as S from "./LogDetailCard.style";
+
 export interface LogDetailCardProps {
   title: string;
   content: string;
@@ -13,13 +15,12 @@ export interface LogDetailCardProps {
   totalDistance?: number;
   totalTime: string;
   likeCount?: number;
-  isLiked?: boolean;
+  address?: UserAddressType;
   isLikeLayout?: boolean;
   isSettingLayout?: boolean;
   userInfo?: MeResponse;
   style?: CSSProperties;
   onDetailClick?: () => void;
-  onLikeClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 const LogDetailCard = ({
   title,
@@ -29,13 +30,12 @@ const LogDetailCard = ({
   totalDistance,
   totalTime,
   likeCount,
-  isLiked,
+  address,
   isLikeLayout = false,
   isSettingLayout = false,
   userInfo,
   style,
   onDetailClick,
-  onLikeClick,
 }: LogDetailCardProps) => {
   const [isSettingToggle, setIsSetingToggle] = useState(false);
   // const { isUserInfoCheck, calories } = calculateWalkingCalories({
@@ -91,17 +91,14 @@ const LogDetailCard = ({
           </div>
           <p>{content}</p>
         </div>
-        <div className="infoContent">
+        <S.LogDetailCardInfoContent>
           <ul className="walkInfo">
             <li>{totalTime}</li>
             <li>{distance}</li>
             {/* {isUserInfoCheck && <li>{calories}kcal</li>} */}
           </ul>
           {isLikeLayout && (
-            <div
-              className={`likeInfo ${isLiked ? "liked" : ""}`}
-              onClick={onLikeClick}
-            >
+            <div className={`likeInfo`}>
               <Heart
                 width={11}
                 height={10}
@@ -109,7 +106,12 @@ const LogDetailCard = ({
               <div className="like">{likeCount && likeCount < 999 ? likeCount : "+999"}</div>
             </div>
           )}
-        </div>
+          {address && (
+            <div className="location">
+              {address.depth1} {address.depth2}
+            </div>
+          )}
+        </S.LogDetailCardInfoContent>
         {isSettingToggle && (
           <S.LogDetailCardSettingModal>
             <ul>

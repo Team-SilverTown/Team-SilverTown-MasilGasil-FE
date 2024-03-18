@@ -11,6 +11,7 @@ import InputUpload from "@/components/InputUpload/InputUpload";
 import useImageUpload from "@/lib/hooks/useImageUpload";
 import LoadingAnimationData from "./LoadingAnimationData.json";
 import Lottie from "react-lottie";
+import { useToast } from "@/components/ShadcnUi/ui/useToast";
 
 interface PinEditModalProps {
   onClickAccept: (imageUrl: string | null, pinContent: string | null) => void;
@@ -39,6 +40,7 @@ const defaultOptions = {
 
 const PinEditModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
+  const { toast } = useToast();
   const { onClickAccept, pin, pinIndex, onClickRemove } = props;
   const { register, setValue, handleSubmit } = useForm<PinEditType>({
     defaultValues: { pinContent: pin.content, pinImage: null },
@@ -61,6 +63,7 @@ const PinEditModal = ({ props }: ModalProp) => {
     imageMutation.mutate(pinImage, {
       onSuccess: ({ imageUrl }) => {
         onClickAccept(imageUrl, pinContent);
+        toast({ title: "핀 이미지가 정상적으로 저장되었습니다!", duration: 2000 });
         closeModal();
       },
     });

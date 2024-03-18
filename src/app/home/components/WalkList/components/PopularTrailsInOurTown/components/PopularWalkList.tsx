@@ -8,7 +8,7 @@ import { POST_KEY } from "@/lib/api/queryKeys";
 import { WALK_LIST } from "@/app/home/Home.constants";
 import { UserAddressType } from "@/types/OriginDataType/Location";
 
-import { ListPreviewSkeleton } from "@/components/skeletons";
+import { HomeWalkListSkeleton } from "@/components/skeletons";
 
 import WalkListDisplay from "../../WalkListDisplay/WalkListDisplay";
 import { PostMoreListResponse } from "@/types/Response/Post";
@@ -25,11 +25,7 @@ const PopularWalkList = ({ userAddress }: PopularTrailsInOurTownListProps) => {
   });
 
   if (!PopularTrailsInOurTown) {
-    return (
-      <div className="px-8">
-        <ListPreviewSkeleton />
-      </div>
-    );
+    return <HomeWalkListSkeleton />;
   }
 
   const { isEmpty, contents } = PopularTrailsInOurTown;
