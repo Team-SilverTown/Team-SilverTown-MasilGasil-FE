@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 
 import { convertMeter, convertSeconds } from "@/utils";
@@ -23,8 +21,12 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
     <section className={S.WalkListSection}>
       <article className={S.HomeWalkListArticle}>
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>{title}</h3>
-        <Link href={url}>
-          <More />
+        <Link
+          href={url}
+          title={`${title} 더보기`}
+          style={{ fontWeight: `${FONT_WEIGHT.MEDIUM}`, color: "#909090" }}
+        >
+          더보기
         </Link>
       </article>
       {isEmpty ? (
