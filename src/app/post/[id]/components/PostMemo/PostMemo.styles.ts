@@ -66,6 +66,7 @@ export const PostMemoWalkInfo = styled.ul`
 export const PostMemoContent = styled.article`
   font-size: ${FONT_SIZE.BASIC};
   line-height: 1.6;
+  padding-bottom: 7rem;
 `;
 
 export const PostMemoDate = styled.article`
