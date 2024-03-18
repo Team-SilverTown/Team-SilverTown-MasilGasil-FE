@@ -23,9 +23,9 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
     <section className={S.WalkListSection}>
       <article className={S.HomeWalkListArticle}>
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>{title}</h3>
-        <Link href={url}>
-          <More />
-        </Link>
+        <a style={{ cursor: "pointer", fontWeight: `${FONT_WEIGHT.MEDIUM}`, color: "#909090" }}>
+          더보기
+        </a>
       </article>
       {isEmpty ? (
         <div className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</div>
