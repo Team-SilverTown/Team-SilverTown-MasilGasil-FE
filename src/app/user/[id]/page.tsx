@@ -15,7 +15,6 @@ const MyPage = ({ params }: MyPageProps) => {
   });
 
   return <MypageController userId={id} />;
-  // return <ProfileSkeleton />;
 };
 
 export default MyPage;

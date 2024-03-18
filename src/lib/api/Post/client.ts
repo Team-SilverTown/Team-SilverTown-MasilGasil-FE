@@ -21,14 +21,14 @@ export const postPostCreate = async ({ postData }: { postData: PostCreateRequest
 export const getPostList = async (params: PostListRequest) => {
   const { cursor, depth1, depth2, depth3, order, size } = params;
 
-  // TODO: Server API 수정 시 cursor 반영F
+  let endPoint = `${POST_ENDPOINT.GET_LIST}?`;
 
-  if (cursor)
-    return GET<PostListResponse>({
-      endPoint: `${POST_ENDPOINT.GET_LIST}?depth1=${depth1}&depth2=${depth2}&depth3=${depth3}&order=${order}&cursor=${cursor}&size=${size}`,
-    });
+  if (depth1) endPoint += `depth1=${depth1}&depth2=${depth2}&depth3=${depth3}&`;
+  if (cursor) endPoint += `cursor=${cursor}&`;
+  if (order) endPoint += `order=${order}&`;
+  if (size) endPoint += `size=${size}`;
 
   return GET<PostListResponse>({
-    endPoint: `${POST_ENDPOINT.GET_LIST}?depth1=${depth1}&depth2=${depth2}&depth3=${depth3}&order=${order}&size=${size}`,
+    endPoint,
   });
 };

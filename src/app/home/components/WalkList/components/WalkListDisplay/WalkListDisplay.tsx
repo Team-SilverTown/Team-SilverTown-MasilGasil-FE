@@ -6,8 +6,6 @@ import { convertMeter, convertSeconds } from "@/utils";
 
 import { PostListItemResponse } from "@/types/Response/Post";
 
-import { useUI } from "@/components/uiContext/UiContext";
-
 import { LogDetailCard } from "@/components";
 
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
@@ -21,26 +19,13 @@ interface WalkListItemProps {
 }
 
 const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) => {
-  const { openModal, setModalView } = useUI();
-
-  const handleClickAlert = () => {
-    setModalView("DEPLOY_ALERT_VIEW");
-    openModal();
-  };
-
   return (
     <section className={S.WalkListSection}>
       <article className={S.HomeWalkListArticle}>
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>{title}</h3>
-        {/* <Link href={url} style={{ fontWeight: ${FONT_WEIGHT.MEDIUM, color: "#909090" }}}>
-          더보기
-        </Link> */}
-        <a
-          onClick={handleClickAlert}
-          style={{ cursor: "pointer", fontWeight: `${FONT_WEIGHT.MEDIUM}`, color: "#909090" }}
-        >
-          더보기
-        </a>
+        <Link href={url}>
+          <More />
+        </Link>
       </article>
       {isEmpty ? (
         <div className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</div>

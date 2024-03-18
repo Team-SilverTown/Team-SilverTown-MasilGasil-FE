@@ -41,14 +41,12 @@ const ListSection = memo(function List({
     );
   }
 
-  if (data && fetchNextPage) {
-    // If there are more items to be loaded then add an extra row to hold a loading indicator.
-    const rowCount = hasNextPage ? data.length + 1 : data.length;
-    // Only load 1 page of items at a time.
-    // Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
-    const loadMoreRows = isFetchingNextPage ? () => {} : fetchNextPage;
-    // Every row is loaded except for our loading indicator row.
-    const isRowLoaded = ({ index }: { index: number }) => !hasNextPage || index < data.length;
+  if (data) {
+    const loadNextPage = () => {
+      if (!isFetchingNextPage && hasNextPage && fetchNextPage) {
+        fetchNextPage();
+      }
+    };
 
     const rowRenderer = useCallback(
       ({ key, index, style }: any) => {
@@ -56,24 +54,20 @@ const ListSection = memo(function List({
 
         let content;
 
-        if (!isRowLoaded({ index })) {
-          content = <LoadingDots />;
-        } else {
-          content = (
-            <ListCard
-              isRecruit={item.hasMate}
-              isLiked={item.liked}
-              likeCount={item.likeCount}
-              title={item.title}
-              content={item.content}
-              totalTime={item.totalTime}
-              distance={item.distance}
-              thumbnailUrl={item.thumbnailUrl}
-              address={parseLocationObject(item.address) ?? ""}
-              onCardClickHandler={() => cardClickHandler(item.id)}
-            />
-          );
-        }
+        content = (
+          <ListCard
+            isRecruit={item.hasMate}
+            isLiked={item.liked}
+            likeCount={item.likeCount}
+            title={item.title}
+            content={item.content}
+            totalTime={item.totalTime}
+            distance={item.distance}
+            thumbnailUrl={item.thumbnailUrl}
+            address={parseLocationObject(item.address) ?? ""}
+            onCardClickHandler={() => cardClickHandler(item.id)}
+          />
+        );
 
         return (
           <div
@@ -98,10 +92,11 @@ const ListSection = memo(function List({
             <AutoSizer>
               {({ height, width }) => (
                 <InfiniteLoader
-                  isRowLoaded={isRowLoaded}
+                  isRowLoaded={({ index }) => !!data[index]}
                   // @ts-ignore
-                  loadMoreRows={loadMoreRows}
-                  rowCount={rowCount}
+                  loadMoreRows={loadNextPage}
+                  rowCount={data ? data.length + 1 : 0}
+                  threshold={1}
                 >
                   {({ onRowsRendered, registerChild }) => (
                     <VList
