@@ -1,5 +1,3 @@
-"use client";
-
 import { FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
@@ -49,6 +47,7 @@ export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`
 
   img {
     object-fit: cover;
+    object-position: center;
   }
 
   span {

@@ -18,13 +18,14 @@ const PostPin = ({ pins, currentPinIndex, handlePinIndex }: PostPinProps) => {
         beforeSlide={(_, v) => handlePinIndex(v)}
         style={{ paddingBottom: "1rem" }}
       >
-        {pins.map((data, index) => (
+        {pins.map((pin, index) => (
           <PinDetailCard
             key={index}
-            content={data.content}
-            thumbnailUrl={data.thumbnailUrl}
+            content={pin.content}
+            thumbnailUrl={pin.thumbnailUrl}
             currentPinindex={currentPinIndex + 1}
             totalPinIndex={pins.length}
+            pin={pin}
             className="pinDetailCard"
           />
         ))}
