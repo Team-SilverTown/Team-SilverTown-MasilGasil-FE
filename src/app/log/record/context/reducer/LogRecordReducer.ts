@@ -27,7 +27,10 @@ type ActionsType =
     }
   | {
       type: "RECORD_UPDATE_ADDRESS";
-      payload: { location: GeoPosition; region: kakao.maps.services.RegionCode };
+      payload: {
+        // location: GeoPosition;
+        region: kakao.maps.services.RegionCode;
+      };
     }
   | { type: "RECORD_INCREASE_TIMER" }
   | {
@@ -38,7 +41,7 @@ type ActionsType =
 const MIN_INSERT_PIN_RANGE = 30; // M 단위
 
 const MIN_INSERT_PATH_RAGE = 25; // M 단위
-const MAX_INSERT_PATH_RAGE = 100; // M 단위
+const MAX_INSERT_PATH_RAGE = 80; // M 단위
 
 const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
   switch (action.type) {
@@ -116,8 +119,8 @@ const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
     }
 
     case LOG_RECORD_REDUCER_ACTIONS.UPDATE_ADDRESS: {
-      const { location, region } = action.payload;
-      const { lat, lng } = location;
+      const { /* location, */ region } = action.payload;
+      // const { lat, lng } = location;
 
       const { region_1depth_name, region_2depth_name, region_3depth_name, region_4depth_name } =
         region;
@@ -129,7 +132,7 @@ const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
         depth3: region_3depth_name,
         depth4: region_4depth_name,
         startedAt: new Date().toISOString(),
-        path: [{ lat, lng }],
+        // path: [{ lat, lng }],
       };
     }
 

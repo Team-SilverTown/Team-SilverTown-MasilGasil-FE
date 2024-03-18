@@ -1,5 +1,3 @@
-"use client";
-
 import { FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
@@ -49,6 +47,7 @@ export const PinDetailCardThumbnail = styled.div<PinDetailCardThumbnailProps>`
 
   img {
     object-fit: cover;
+    object-position: center;
   }
 
   span {
@@ -71,7 +70,10 @@ export const PinDetailCardContent = styled.div<PinDetailCardContentProps>`
 
 export const PinDetailCardThumbnailEmpty = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
-  background-color: ${(props) => props.theme.gray_300};
+  background-color: ${(props) => props.theme.gray_200};
 `;

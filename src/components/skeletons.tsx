@@ -56,9 +56,13 @@ export const HomeWeatherSkeleton = () => {
   );
 };
 
-export const HomeDetailCardSkeleton = () => {
+export const HomeWalkListSkeleton = () => {
   return (
     <div className="mt-8 px-6 overflow-hidden">
+      <div className="flex justify-between items-center mb-4 h-[1.839rem]">
+        <div className={`${shimmer} w-[18rem] h-full rounded-lg bg-gray-200`}></div>
+        <div className={`${shimmer} w-[3.7rem] h-full rounded-lg bg-gray-200`}></div>
+      </div>
       <div className="flex gap-8 overflow-x-auto scrollbar-hide">
         <LogDetailCardSkeleton />
         <LogDetailCardSkeleton />
