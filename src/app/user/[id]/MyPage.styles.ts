@@ -7,6 +7,7 @@ export const UserProfileContainer = styled.section`
   height: 100%;
   min-height: 100vh;
   padding: ${NAV_HEIGHT}rem ${CONTAINER.PADDING_HORIZONTAL}rem;
+  padding-bottom: ${NAV_HEIGHT + 2}rem;
 `;
 
 export const UserProfileLayout = styled.article`
