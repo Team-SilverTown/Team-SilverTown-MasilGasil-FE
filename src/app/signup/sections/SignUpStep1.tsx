@@ -62,7 +62,7 @@ const SignUpStep1 = ({
           rippleColor={theme?.text_secondary_color + 50}
           onClickHandler={() => duplicateRefetch()}
           isLoading={isDuplicateLoading}
-          disabled={isDuplicateLoading}
+          disabled={isDuplicateLoading || !!errors.nickname?.message}
         >
           <span className="text-2xl font-bold">중복 확인</span>
         </Button>
