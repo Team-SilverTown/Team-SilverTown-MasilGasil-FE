@@ -71,6 +71,14 @@ const useLogRecordEditController = () => {
       calories: newCalories.calories ? newCalories.calories : 0,
     };
 
+    if (!newData.content) {
+      const nowDate = new Date();
+      const month = (nowDate.getMonth() + 1).toString().padStart(2, "0");
+      const date = nowDate.getDate().toString().padStart(2, "0");
+
+      newData.content = `${nowDate.getFullYear()}-${month}-${date} 산책기록`;
+    }
+
     const pathCanvas = drawPath(newData.path);
 
     pathCanvas?.canvas.toBlob((file) => {
