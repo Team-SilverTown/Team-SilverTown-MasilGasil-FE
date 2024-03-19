@@ -24,8 +24,7 @@ export const UserInfoProfileImage = styled.div<UserInfoProfileImageProps>`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  cursor: pointer; // 추후 자신의 프로필에 접속 한 경우에만 "pointer"로 조건 처리
-  margin: 0 auto;
+  cursor: pointer;
   border-radius: 50%;
 `;
 

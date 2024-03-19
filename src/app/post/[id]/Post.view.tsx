@@ -89,14 +89,7 @@ const PostView = ({
             {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
 
             {tabIndex !== PostTabType.Mate && (
-              <Link
-                href={`/log/record?postId=${postId}`}
-                // href={
-                //   tabIndex === PostTabType.Mate
-                //     ? `/mate/create?lat=${firstLat}&lng=${firstLng}`
-                //     : `/log/record?postId=${postId}`
-                // }
-              >
+              <Link href={`/log/record?postId=${postId}`}>
                 <Button
                   width="calc(100% - 4rem)"
                   textColor={Theme.lightTheme.white}
@@ -111,7 +104,6 @@ const PostView = ({
                   }}
                 >
                   산책하기
-                  {/* {tabIndex === PostTabType.Mate ? "메이트 모집하기" : "산책하기"} */}
                 </Button>
               </Link>
             )}

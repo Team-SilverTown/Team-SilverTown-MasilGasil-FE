@@ -61,7 +61,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
       onClick: handleClickCancel,
       isSecondButton: true,
     }),
-    // Chatting: createButton({ theme, text: "대화하기", onClick: handleClickChatting }),
+
     Accepted: createButton({ theme, text: "참여중 입니다.", disabled: true }),
     Completed: createButton({ theme, text: "종료된 메이트", disabled: true }),
   };
@@ -84,21 +84,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
         </>
       )}
 
-      {userStatus === "CLOSE" && (
-        <>
-          {ButtonList.Completed}
-
-          {/* <Button
-            variant="naked"
-            onClickHandler={handleClickCompletedChatting}
-            style={{
-              padding: "1rem",
-            }}
-          >
-            지난 대화 확인하기
-          </Button> */}
-        </>
-      )}
+      {userStatus === "CLOSE" && <>{ButtonList.Completed}</>}
     </S.MateActionsLayout>
   );
 };

@@ -28,7 +28,6 @@ const AuthLoader = ({
 
   useEffect(() => {
     if (serviceToken && me && me.nickname) {
-      // 인증된 유저인 경우
       setAuth({ isLogIn: true, serviceToken });
       setMe({ ...me });
       setToken(serviceToken);
@@ -42,7 +41,6 @@ const AuthLoader = ({
     } else if (currentPathName.includes("policy") || currentPathName.includes("auth")) {
       return;
     } else {
-      // 인증 실패, 가인증 유저인 경우
       setAuth({ isLogIn: false, serviceToken: undefined });
       initMe();
       setToken(null);

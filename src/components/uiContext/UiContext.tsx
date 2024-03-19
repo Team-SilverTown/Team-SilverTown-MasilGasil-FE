@@ -42,17 +42,16 @@ export const useUI = () => {
   } = useWindowStore();
 
   const context = {
-    // modal
     displayModal,
     modalView,
     modalProps,
     openModal: (props?: any) => openModal(props),
     closeModal: () => closeModal(),
     setModalView: (view: MODAL_VIEWS) => setModalView(view),
-    // loadingSpinner
+
     showLoadingSpinner,
     closeLoadingSpinner,
-    // window
+
     displayWindow,
     windowView,
     windowURL,
@@ -105,7 +104,6 @@ export const ModalUI: React.FC<{ [key: string]: any }> = (...rest) => {
 };
 // ================================================================= Modal //
 
-// Policy Window View //
 const WindowView = ({
   windowView,
   closeWindow,
