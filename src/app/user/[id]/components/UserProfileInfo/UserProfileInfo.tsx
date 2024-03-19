@@ -123,7 +123,8 @@ const UserInfoProfile = ({
       )}
 
       <S.UserInfoProfileText>
-        <strong>{profileName}</strong>
+        <strong>{profileName ? profileName : "null"}</strong>
+        {isMe && <S.IsMeBadge>me</S.IsMeBadge>}
       </S.UserInfoProfileText>
     </S.UserInfoProfile>
   );
