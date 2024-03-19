@@ -7,8 +7,8 @@ import { TAB_CONTENTS } from "./Log.constants";
 import useTheme from "@/lib/hooks/useTheme";
 
 import { GeoPosition } from "@/types/OriginDataType";
-import { MasilDetailResponse } from "@/types/Response";
-import { TabType, UserInfoType } from "./Log.types";
+import { MasilDetailResponse, UserInfoType } from "@/types/Response";
+import { TabType } from "./Log.types";
 
 import { Button, Tab } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
@@ -95,7 +95,7 @@ const LogView = ({
                 textColor={theme?.white}
                 buttonColor={theme?.green_500}
                 style={{
-                  position: "absolute",
+                  position: "fixed",
                   left: "50%",
                   bottom: "9rem",
                   transform: "translateX(-50%)",

@@ -28,6 +28,10 @@ export const checkDuplicateNickname = async (nickname: string) => {
   });
 };
 
+export const getUserInfo = async (userId: string) => {
+  return await GET<MeResponse>({ endPoint: `${USER.PROFILE}/${userId}` });
+};
+
 export const signUp = async (data: SignUpRequest) => {
   return await PUT({
     endPoint: USER.SIGNUP,

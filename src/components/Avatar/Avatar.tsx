@@ -61,8 +61,8 @@ const Avatar = ({
     >
       <Image
         src={src ? src : userProfile}
-        width={AvatarSize[size]}
-        height={AvatarSize[size]}
+        sizes="100%"
+        fill
         priority
         alt={name}
         style={imageStyle}

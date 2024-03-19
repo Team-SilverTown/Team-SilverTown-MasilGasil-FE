@@ -38,3 +38,11 @@ export interface EditUserResponse {
   weight: number;
   exerciseIntensity: IntensityOption;
 }
+
+export interface UserInfoType {
+  sex?: "MALE" | "FEMALE";
+  birthDate?: string;
+  height?: number;
+  weight?: number;
+  exerciseIntensity?: IntensityOption;
+}

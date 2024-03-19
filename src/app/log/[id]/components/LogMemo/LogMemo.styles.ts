@@ -39,11 +39,11 @@ export const LogMemoWalkInfo = styled.ul`
 export const LogMemoContent = styled.article`
   font-size: ${FONT_SIZE.BASIC};
   line-height: 1.6;
-  padding-bottom: 7rem;
 `;
 
 export const LogMemoDate = styled.article`
   margin-top: 2rem;
+  padding-bottom: 7rem;
   text-align: right;
   font-size: ${FONT_SIZE.MINI};
   color: ${(props) => props.theme.gray_300};
