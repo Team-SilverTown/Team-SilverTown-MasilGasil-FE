@@ -15,6 +15,7 @@ export const USER_KEY = {
   TOGGLE_PUBLIC: "toggle_public",
   ME: "get_me",
   UPLOAD_IMAGE: "upload_image",
+  USER_INFO: "user_info",
 };
 
 export const MASIL_KEY = {
@@ -38,4 +39,8 @@ export const WEATHER_KEY = {
 
 export const MAP_KEY = {
   GET_LOCATION_DATA: "get_location_data",
+};
+
+export const MATE_KEY = {
+  POST_CREATE_MATE: "post_create_mate",
 };

@@ -36,4 +36,5 @@ export const POST = {
 
 export const MATE = {
   GET_DETAIL: "/api/v1/mates",
+  POST_CREATE: "/api/v1/mates",
 };

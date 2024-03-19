@@ -21,6 +21,7 @@ export const PostMemoInfo = styled.article`
 export const PostMemoProfile = styled.article`
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   span {
     font-weight: ${FONT_WEIGHT.BOLD};
@@ -66,7 +67,6 @@ export const PostMemoWalkInfo = styled.ul`
 export const PostMemoContent = styled.article`
   font-size: ${FONT_SIZE.BASIC};
   line-height: 1.6;
-  padding-bottom: 7rem;
 `;
 
 export const PostMemoDate = styled.article`
@@ -74,4 +74,31 @@ export const PostMemoDate = styled.article`
   text-align: right;
   font-size: ${FONT_SIZE.MINI};
   color: ${(props) => props.theme.gray_300};
+`;
+
+export const PostMemoBottomInfo = styled.article`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 2rem;
+  padding-bottom: 7rem;
+`;
+
+export const PostMemoLike = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+
+  svg {
+    height: 1.4rem;
+  }
+`;
+
+export const PostMemoViewCount = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 0.4rem;
+  }
 `;

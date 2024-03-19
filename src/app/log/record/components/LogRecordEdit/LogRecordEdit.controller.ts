@@ -130,7 +130,7 @@ const useLogRecordEditController = () => {
           });
         },
       });
-    });
+    }, "image/webp");
   };
 
   return {

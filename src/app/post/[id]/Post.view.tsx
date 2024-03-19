@@ -2,7 +2,8 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import * as S from "./Post.styles";
 import { TAB_CONTENTS } from "./Post.constants";
-import { MateDummyContents, MateDummyType, PostTabType, UserDummyType } from "./Post.types";
+import { MateDummyContents, PostTabType } from "./Post.types";
+import { UserInfoType } from "@/types/Response";
 import { GeoPosition } from "@/types/OriginDataType";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Button, Tab } from "@/components";
@@ -17,7 +18,7 @@ import { PostDetailResponse } from "@/types/Response/Post";
 interface PostViewProps {
   postId: string;
   postData: PostDetailResponse;
-  userInfo: UserDummyType;
+  userInfo: UserInfoType;
   userId: number | undefined;
   tabIndex: PostTabType;
   currentPinIndex: number;
@@ -101,7 +102,7 @@ const PostView = ({
                   textColor={Theme.lightTheme.white}
                   buttonColor={Theme.lightTheme.green_500}
                   style={{
-                    position: "absolute",
+                    position: "fixed",
                     left: "50%",
                     bottom: "9rem",
                     transform: "translateX(-50%)",
