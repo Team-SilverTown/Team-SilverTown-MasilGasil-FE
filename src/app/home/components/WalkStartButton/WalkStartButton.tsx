@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components";
-import Theme, { CONTAINER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import Theme, { CONTAINER, FONT_SIZE, FONT_WEIGHT, Z_INDEX } from "@/styles/theme";
 
 const WalkStartButton = () => {
   return (
@@ -19,6 +19,7 @@ const WalkStartButton = () => {
           height: "6rem",
           fontSize: `${FONT_SIZE.H6}`,
           fontWeight: `${FONT_WEIGHT.BOLD}`,
+          zIndex: `${Z_INDEX.SEARCH_BAR}`,
         }}
       >
         산책하기
