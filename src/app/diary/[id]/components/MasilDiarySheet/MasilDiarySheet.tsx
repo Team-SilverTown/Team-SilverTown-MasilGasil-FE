@@ -36,9 +36,9 @@ const MasilDiarySheet = ({ isSheetOpen, setIsSheetOpen, masils, date }: MasilDia
         transition={{ duration: 0.4, type: "spring", damping: 14, ease: easeIn }}
         isOpen={isSheetOpen}
         onClose={() => null}
-        fixedHeight={0.53}
+        fixedHeight={0.65}
         initialSnap={1}
-        snapPoints={[0.85, 0.38]}
+        snapPoints={[0.85, 0.49, 0]}
         style={{
           zIndex: Z_INDEX.BOTTOM_SHEET,
         }}
