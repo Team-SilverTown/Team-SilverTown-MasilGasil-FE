@@ -1,3 +1,5 @@
+import { GeoPosition } from "../OriginDataType";
+
 export interface MateCreateRequest {
   postId: number;
   depth1: string;
@@ -6,7 +8,7 @@ export interface MateCreateRequest {
   depth4: string;
   title: string;
   content: string;
-  gatheringPlacePoint: Geolocation;
+  gatheringPlacePoint: GeoPosition;
   gatheringPlaceDetail: string;
   gatheringAt: string;
   capacity: number;

@@ -5,39 +5,32 @@ import { useForm } from "react-hook-form";
 
 import useMateCreateModel from "./MateCreate.model";
 import MateCreateView from "./MateCreate.view";
-
-export interface MateCreateProps {
-  title: string;
-  content: string;
-  location: string;
-  date: string;
-  time: string;
-  personnel: number;
-}
+import { MateCreateRequest } from "@/types/Request";
+import { DEFAULT_MATE_CREATE_VALUE } from "./MateCreate.constants";
 
 const MateCreateController = () => {
   const {
-    thumbnail,
-    setThumbnail,
     isFormFilled,
     setIsFormFilled,
-    selectedPersonnel,
-    setSelectedPersonnel,
+    capacity,
+    setCapacity,
     startDate,
     setStartDate,
     startTime,
     setStartTime,
-    locationDetail,
-    setLocationDetail,
+    gatheringPlaceDetail,
+    setGatheringPlaceDetail,
   } = useMateCreateModel();
 
   const {
     register,
+    setValue,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<MateCreateProps>({
+  } = useForm<MateCreateRequest>({
     mode: "onChange",
+    defaultValues: DEFAULT_MATE_CREATE_VALUE,
   });
 
   const watchedFields = watch();
@@ -46,28 +39,16 @@ const MateCreateController = () => {
     const allFieldsFilled = !!(
       watchedFields.title &&
       watchedFields.content &&
-      thumbnail &&
       startDate &&
       startTime &&
-      selectedPersonnel &&
-      locationDetail
+      capacity &&
+      gatheringPlaceDetail
     );
     setIsFormFilled(allFieldsFilled);
-  }, [watchedFields, thumbnail, startDate, startTime, selectedPersonnel, locationDetail]);
+  }, [watchedFields, startDate, startTime, setCapacity, gatheringPlaceDetail]);
 
-  const handleUpdateThumbnail = (file: File | null) => {
-    setThumbnail(file);
-  };
-
-  const handlePersonnelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPersonnel(event.target.value);
-  };
-
-  const handleLocationSubmit = ({ detail }: { detail: string }) => {
-    setLocationDetail(detail);
-  };
-
-  const onValid = (data: MateCreateProps) => {
+  // TODO : 추후 useEffect가아닌 별도 핸들러로 변경될 수 있또록 변경
+  useEffect(() => {
     const date = startDate
       ? new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000)
           .toISOString()
@@ -76,14 +57,22 @@ const MateCreateController = () => {
     const time = startTime ? startTime.toISOString().substring(11, 19) : "";
     const gatheringAt = `${date}T${time}.000Z`;
 
-    const completeData = {
-      ...data,
-      thumbnail,
-      gatheringAt,
-      selectedPersonnel,
-      locationDetail,
-    };
-    console.log("Complete Form Data:", completeData);
+    setValue("gatheringAt", gatheringAt);
+  }, [startDate, startTime]);
+
+  const handleCapacityChange = ({ target }: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = target;
+    setCapacity(value);
+    setValue("capacity", Number(value));
+  };
+
+  const handleGatheringPlaceSubmit = ({ detail }: { detail: string }) => {
+    setGatheringPlaceDetail(detail);
+    setValue("gatheringPlaceDetail", detail);
+  };
+
+  const onValid = (data: MateCreateRequest) => {
+    console.log(data);
   };
 
   const onInvalid = (errors: any) => {
@@ -95,15 +84,14 @@ const MateCreateController = () => {
       register={register}
       handleSubmit={handleSubmit(onValid, onInvalid)}
       isFormFilled={isFormFilled}
-      updateThumbnail={handleUpdateThumbnail}
-      handlePersonnelChange={handlePersonnelChange}
+      handleCapacityChange={handleCapacityChange}
       startDate={startDate}
       setStartDate={setStartDate}
       startTime={startTime}
       setStartTime={setStartTime}
-      selectedPersonnel={selectedPersonnel}
-      locationDetail={locationDetail}
-      onLocationSubmit={handleLocationSubmit}
+      capacity={capacity}
+      gatheringPlaceDetail={gatheringPlaceDetail}
+      handleGatheringPlaceSubmit={handleGatheringPlaceSubmit}
     />
   );
 };
