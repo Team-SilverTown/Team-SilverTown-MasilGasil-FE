@@ -103,7 +103,7 @@ const PostView = ({
                     fontWeight: `${FONT_WEIGHT.BOLD}`,
                   }}
                 >
-                  산책하기
+                  현재 경로로 산책하기
                 </Button>
               </Link>
             )}
