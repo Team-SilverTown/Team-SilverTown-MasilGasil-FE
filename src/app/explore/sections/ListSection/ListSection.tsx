@@ -112,19 +112,17 @@ const ListSection = memo(function List({
                   threshold={1}
                 >
                   {({ onRowsRendered, registerChild }) => (
-                    <>
-                      <VList
-                        ref={registerChild}
-                        onRowsRendered={onRowsRendered}
-                        width={width}
-                        height={height}
-                        rowCount={data.length}
-                        rowHeight={250 + 20} // card height + padding vertical 20
-                        rowRenderer={rowRenderer}
-                        className="scrollbar-hide"
-                        style={{ paddingBottom: "2rem" }}
-                      />
-                    </>
+                    <VList
+                      ref={registerChild}
+                      onRowsRendered={onRowsRendered}
+                      width={width}
+                      height={height}
+                      rowCount={data.length}
+                      rowHeight={250 + 20} // card height + padding vertical 20
+                      rowRenderer={rowRenderer}
+                      className="scrollbar-hide"
+                      style={{ paddingBottom: "2rem" }}
+                    />
                   )}
                 </InfiniteLoader>
               )}
