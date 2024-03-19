@@ -62,7 +62,7 @@ const ExploreController = () => {
   });
 
   const postsOriginData = useMemo(
-    () => (data && data.pages.flatMap((page) => page.contents)) ?? [],
+    () => (data && data.pages.flatMap((page) => page.contents)) ?? undefined,
     [data],
   );
 
@@ -85,7 +85,9 @@ const ExploreController = () => {
       setPostsData([]);
       return;
     }
-    setPostsData(postsOriginData.filter((item) => item.title.includes(keyword)));
+    if (postsOriginData) {
+      setPostsData(postsOriginData.filter((item) => item.title.includes(keyword)));
+    }
   }, 300);
 
   const searchClearHandler = () => {

@@ -5,7 +5,7 @@ import { ListCard } from "@/components";
 import { PostListItem } from "@/types/OriginDataType/Post";
 import parseLocationObject from "@/utils/parseLocation";
 import { useRouter } from "next/navigation";
-import LoadingDots from "@/components/LoadingDots";
+import { PostCardsSkeleton } from "@/components/skeletons";
 
 interface ListSectionProps {
   id: "post" | "mate";
@@ -36,6 +36,19 @@ const ListSection = memo(function List({
       >
         <div className="flex justify-center">
           <span className="font-medium text-medium">준비중입니다.</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!data) {
+    return (
+      <div
+        id={id}
+        className="w-full h-full overflow-hidden"
+      >
+        <div className="p-4 space-y-8">
+          <PostCardsSkeleton />
         </div>
       </div>
     );
@@ -99,17 +112,19 @@ const ListSection = memo(function List({
                   threshold={1}
                 >
                   {({ onRowsRendered, registerChild }) => (
-                    <VList
-                      ref={registerChild}
-                      onRowsRendered={onRowsRendered}
-                      width={width}
-                      height={height}
-                      rowCount={data.length}
-                      rowHeight={250 + 20} // card height + padding vertical 20
-                      rowRenderer={rowRenderer}
-                      className="scrollbar-hide"
-                      style={{ paddingBottom: "2rem" }}
-                    />
+                    <>
+                      <VList
+                        ref={registerChild}
+                        onRowsRendered={onRowsRendered}
+                        width={width}
+                        height={height}
+                        rowCount={data.length}
+                        rowHeight={250 + 20} // card height + padding vertical 20
+                        rowRenderer={rowRenderer}
+                        className="scrollbar-hide"
+                        style={{ paddingBottom: "2rem" }}
+                      />
+                    </>
                   )}
                 </InfiniteLoader>
               )}
@@ -117,9 +132,11 @@ const ListSection = memo(function List({
           </>
         )}
 
-        {(!data || data.length <= 0) && (
+        {data.length <= 0 && (
           <div className="flex justify-center">
-            <span className="font-medium text-medium">해당 지역에 대한 검색 결과가 없어요.</span>
+            <span className="font-medium text-medium text-gray-300">
+              해당 지역에 대한 검색 결과가 없어요
+            </span>
           </div>
         )}
       </div>
