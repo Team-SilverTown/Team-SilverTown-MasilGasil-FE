@@ -35,6 +35,16 @@ const config = {
       black: "900",
     },
 
+    fontFamily: {
+      maplestory: [
+        "Maplestory",
+        "Pretendard Variable",
+        "Pretendard",
+        "-apple-system",
+        "BlinkMacSystemFont",
+      ],
+    },
+
     container: {
       center: true,
       padding: "2rem",
@@ -50,7 +60,7 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: "#FAFAFA",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -84,6 +94,9 @@ const config = {
           100: "#f1f5eb",
           300: "#B9DB56",
           500: "#81BB26",
+        },
+        gray: {
+          300: "#B3B3B3",
         },
       },
       borderRadius: {

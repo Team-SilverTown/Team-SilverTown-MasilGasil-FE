@@ -9,6 +9,10 @@ interface UserInfoProfileImageProps {
 export const UserInfoProfile = styled.div`
   padding: 1rem 0;
   text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const UploadContainer = styled.div`
@@ -25,7 +29,10 @@ export const UserInfoProfileImage = styled.div<UserInfoProfileImageProps>`
   background-size: cover;
   background-repeat: no-repeat;
   cursor: pointer;
+<<<<<<< HEAD
   margin: 0 auto;
+=======
+>>>>>>> origin/deploy/#270
   border-radius: 50%;
 `;
 

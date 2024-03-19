@@ -7,17 +7,20 @@ export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)"],
 };
 
-const bypassPaths = ["/manifest*", "/swe-worker*", "/sw.js", "/workbox-*", "/icons*", "/fonts*"];
+const bypassPaths = [
+  "/",
+  "/manifest*",
+  "/swe-worker*",
+  "/sw.js",
+  "/workbox-*",
+  "/icons*",
+  "/fonts*",
+  "/favicon*",
+];
 const protectedPaths = ["/setting*"];
 const publicPaths = ["/signup*", "/auth*"];
 
-const test = ["/user*", "/home*"];
-
-const NEXT_AUTH_URL = process.env.NEXTAUTH_URL;
-
 export async function middleware(request: NextRequest) {
-  const referer = request.headers.get("x-forwarded-host");
-
   const currentPath = request.nextUrl.pathname;
 
   const isBypassPaths = pathAbleCheck(bypassPaths, currentPath);
@@ -26,27 +29,18 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
 
   const protectedPathsAccessInable = pathAbleCheck(protectedPaths, currentPath);
-
   if (!token || (!token.nickname && protectedPathsAccessInable)) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
-
-    if (pathAbleCheck(test, currentPath)) {
-      return NextResponse.redirect(url);
-    }
-
-    if (referer && NEXT_AUTH_URL?.endsWith(referer)) return;
 
     return NextResponse.redirect(url);
   }
 
   const publicPathsAccessInable = pathAbleCheck(publicPaths, currentPath);
-
   if (token && token.nickname && publicPathsAccessInable) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
 
-    if (referer && NEXT_AUTH_URL?.endsWith(referer)) return;
     return NextResponse.redirect(url);
   }
 

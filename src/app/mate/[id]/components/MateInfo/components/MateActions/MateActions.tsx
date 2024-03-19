@@ -61,6 +61,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
       onClick: handleClickCancel,
       isSecondButton: true,
     }),
+
     Accepted: createButton({ theme, text: "참여중 입니다.", disabled: true }),
     Completed: createButton({ theme, text: "종료된 메이트", disabled: true }),
   };

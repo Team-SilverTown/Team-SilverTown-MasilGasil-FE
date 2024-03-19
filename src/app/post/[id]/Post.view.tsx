@@ -84,6 +84,29 @@ const PostView = ({
               />
             )}
             {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
+<<<<<<< HEAD
+=======
+
+            {tabIndex !== PostTabType.Mate && (
+              <Link href={`/log/record?postId=${postId}`}>
+                <Button
+                  width="calc(100% - 4rem)"
+                  textColor={Theme.lightTheme.white}
+                  buttonColor={Theme.lightTheme.green_500}
+                  style={{
+                    position: "fixed",
+                    left: "50%",
+                    bottom: "9rem",
+                    transform: "translateX(-50%)",
+                    fontSize: `${FONT_SIZE.LARGE}`,
+                    fontWeight: `${FONT_WEIGHT.BOLD}`,
+                  }}
+                >
+                  현재 경로로 산책하기
+                </Button>
+              </Link>
+            )}
+>>>>>>> origin/deploy/#270
           </S.PostContentSection>
 
           {tabIndex !== PostTabType.Mate && (

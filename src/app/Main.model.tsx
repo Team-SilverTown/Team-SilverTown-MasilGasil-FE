@@ -11,13 +11,11 @@ const useMainModel = () => {
   const { data, isLoading, refetch } = useEventQuery({
     key: [USER_KEY.AUTH],
     queryFn: getAuthToken,
-    onSuccessFn: (data) => {},
   });
 
   const mutation = useMutation({
     mutationKey: [TEST_KEY.POST],
     mutationFn: async (data: string) => postTest({ data }),
-    onSuccess: (data) => {},
   });
 
   return { data, isLoading, refetch, mutation };

@@ -11,10 +11,14 @@ const Mate = async ({ params }: MateProps) => {
   const { id } = params;
   const data = await getMateDetail(id);
 
+  if (!data) {
+    return;
+  }
+
   return (
     <MateDetail
       postId={id}
-      mateData={DUMMY}
+      mateData={data}
     />
   );
 };

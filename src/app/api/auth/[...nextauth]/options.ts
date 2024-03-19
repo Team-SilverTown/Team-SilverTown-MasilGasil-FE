@@ -20,8 +20,8 @@ export const authOptions: NextAuthOptions = {
         const me = data && (await getMe(data?.token));
 
         return {
-          serviceToken: data?.token,
-          nickname: me?.nickname,
+          serviceToken: data?.token ?? null,
+          nickname: me?.nickname ?? null,
         };
       }
       return token;
@@ -32,6 +32,7 @@ export const authOptions: NextAuthOptions = {
         session.nickname = token.nickname as string;
       } else {
         session.serviceToken = undefined;
+        session.nickname = undefined;
       }
       return session;
     },

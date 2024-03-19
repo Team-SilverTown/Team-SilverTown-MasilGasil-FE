@@ -10,6 +10,10 @@ export const onError = (error: AxiosError) => {
   const response = error.response as AxiosResponse;
 
   if (response?.data) {
+<<<<<<< HEAD
+=======
+    return Promise.reject(response.data.code);
+>>>>>>> origin/deploy/#270
   }
 
   return Promise.reject(error);

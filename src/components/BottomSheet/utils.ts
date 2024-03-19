@@ -46,12 +46,18 @@ export function cleanupRootStyles(rootId: string) {
   }
 
   if (root) {
+<<<<<<< HEAD
     // Start animating back
+=======
+>>>>>>> origin/deploy/#270
     root.style.removeProperty("border-top-right-radius");
     root.style.removeProperty("border-top-left-radius");
     root.style.removeProperty("transform");
 
+<<<<<<< HEAD
     // Remove temp properties after animation is finished
+=======
+>>>>>>> origin/deploy/#270
     root.addEventListener("transitionend", onTransitionEnd);
   }
 }
@@ -66,6 +72,14 @@ export function inDescendingOrder(arr: number[]) {
 
 export function validateSnapTo({ snapTo, sheetHeight }: { snapTo: number; sheetHeight: number }) {
   if (snapTo < 0) {
+<<<<<<< HEAD
+=======
+    console.warn(
+      `Snap point is out of bounds. Sheet height is ${sheetHeight} but snap point is ${
+        sheetHeight + Math.abs(snapTo)
+      }.`,
+    );
+>>>>>>> origin/deploy/#270
   }
 
   return Math.max(Math.round(snapTo), 0);
