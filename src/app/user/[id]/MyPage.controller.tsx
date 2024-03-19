@@ -1,6 +1,6 @@
 import { USER_PROFILE_EXCEPTION } from "./MyPage.constants";
 import MypageView from "./MyPage.view";
-import { getUserProfile } from "@/lib/api/User/server";
+import { getMe, getUserProfile } from "@/lib/api/User/server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import { getRecentMasils } from "@/lib/api/masil/server";
@@ -13,7 +13,10 @@ interface MyPageControllerProps {
 
 const MyPageController = async ({ userId }: MyPageControllerProps) => {
   const session = await getServerSession(authOptions);
+  const me = session?.serviceToken ? await getMe(session.serviceToken) : undefined;
+  const isMe = me && me.userId == userId;
 
+  console.log(isMe);
   const userProfile = await getUserProfile(userId);
   const recentMasils = await getRecentMasils(session?.serviceToken!);
   const recentPosts = await getRecentPostsById(session?.serviceToken!, userId);
@@ -25,20 +28,23 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
       recordList: recentMasils !== undefined ? recentMasils.masils : [],
       type: "Masils",
       isEmpty: recentMasils?.isEmpty,
+      visible: "Private",
     },
     {
-      title: "내가 작성한 산책로",
+      title: "작성한 산책로",
       urlLink: `/more?keyword=my_post&order=latest&userId=${userId}`,
       recordList: recentPosts !== undefined ? recentPosts.contents : [],
       type: "Posts",
       isEmpty: recentPosts?.isEmpty,
+      visible: "Public",
     },
     {
-      title: "내가 좋아하는 산책로",
+      title: "좋아하는 산책로",
       urlLink: "/more?keyword=my_like&order=latest",
       recordList: [],
       type: "Posts",
       isEmpty: true,
+      visible: "Private",
     },
   ];
 
@@ -47,6 +53,7 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
       userId={userId}
       userInfo={userProfile !== undefined ? userProfile : USER_PROFILE_EXCEPTION}
       boardList={boardLists}
+      isMe={isMe}
     />
   );
 };
