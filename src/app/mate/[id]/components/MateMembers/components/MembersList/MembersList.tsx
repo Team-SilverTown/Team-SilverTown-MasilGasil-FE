@@ -23,6 +23,8 @@ const MembersList = ({ participants, isApplicantList = false }: MembersListProps
     openModal();
   };
 
+  const handleClickMessage = () => {};
+
   return (
     <S.MateMemberList>
       {participants &&
@@ -33,6 +35,7 @@ const MembersList = ({ participants, isApplicantList = false }: MembersListProps
             isApplicantItem={isApplicantList}
             onAccept={handleAccept}
             onCancel={handleCancel}
+            onClickMessage={handleClickMessage}
           />
         ))}
     </S.MateMemberList>
