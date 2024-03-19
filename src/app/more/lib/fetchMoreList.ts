@@ -13,7 +13,6 @@ interface fetchMoreListProps {
 
 const fetchMoreList = async ({ pageParam, queryKey }: fetchMoreListProps) => {
   const [_1, keyword, order] = queryKey;
-  console.log(pageParam);
   const res = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${pageParam}`, {
     next: {
       tags: ["moreList", keyword, order],

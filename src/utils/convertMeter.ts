@@ -5,6 +5,10 @@
  *          미만인 경우 전달 받은 meter그대로 m 단위로 보여줍니다.
  */
 const convertMeter = (meter: number): string => {
+  if (!meter) {
+    return "0m";
+  }
+
   const distance = Number((meter / 1000).toFixed(1));
   if (meter >= 1000) {
     return `${distance}km`;

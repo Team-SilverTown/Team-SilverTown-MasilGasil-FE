@@ -14,8 +14,7 @@ export const LogMemoLocation = styled.article`
 export const LogMemoWalkInfo = styled.ul`
   display: flex;
   justify-content: space-between;
-  margin-top: 2.5rem;
-  margin-bottom: 2.8rem;
+  margin: 2rem 0;
 
   li {
     flex: 1;
@@ -38,8 +37,9 @@ export const LogMemoWalkInfo = styled.ul`
 `;
 
 export const LogMemoContent = styled.article`
-  font-size: ${FONT_SIZE.MINI};
+  font-size: ${FONT_SIZE.BASIC};
   line-height: 1.6;
+  padding-bottom: 7rem;
 `;
 
 export const LogMemoDate = styled.article`

@@ -14,6 +14,7 @@ import { GlobalStyle } from "@/styles/GlobalStyle";
 
 import "src/styles/globals.css";
 import { authOptions } from "./api/auth/[...nextauth]/options";
+import { Toaster } from "@/components/ShadcnUi/ui/toaster";
 
 export const metadata: Metadata = {
   title: "마실가실",
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F8F8F8",
+  themeColor: "#FAFAFA",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
@@ -70,6 +71,7 @@ export default async function RootLayout({
                     <BottomNavigator />
                   </main>
                   <ModalUI />
+                  <Toaster />
                   <LoadingSpinner />
                   <WindowUI />
                 </TanstackQueryProvider>

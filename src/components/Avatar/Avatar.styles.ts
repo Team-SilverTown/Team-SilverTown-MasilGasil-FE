@@ -12,4 +12,8 @@ export const AvatarLayout = styled.div<AvatarLayoutProps>`
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

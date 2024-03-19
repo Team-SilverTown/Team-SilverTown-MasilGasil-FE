@@ -36,5 +36,4 @@ export const SettingIcon = styled.i`
   padding: 2px;
 
   border-radius: 4px;
-  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.1);
 `;

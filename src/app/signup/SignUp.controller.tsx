@@ -1,21 +1,22 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { FieldErrors, useForm } from "react-hook-form";
 
-import { TopNavigator } from "@/components/navigators/TopNavigator";
-import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavigator/components";
-import { useRouter } from "next/navigation";
 import useEventQuery from "@/lib/hooks/useEventQuery";
 import { checkDuplicateNickname } from "@/lib/api/User/client";
+import { validation_user } from "@/lib/constants/userConstants";
+import { calculateAge } from "@/utils";
+import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 import { SignUpRequest } from "@/types/Request/User";
 import { CheckNickNameResponse } from "@/types/Response";
-import { calculateAge } from "@/utils";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavigator/components";
 
 import useSignUpModel from "./SignUp.model";
 import SignUpView from "./SignUp.view";
 import { SignUpStep1, SignUpStep2, SignUpStep3, SignUpStep4, SignUpStep5 } from "./sections";
-import { validation_user } from "@/lib/constants/userConstants";
 
 export interface SignUpFormProps extends SignUpRequest {}
 
@@ -26,6 +27,8 @@ const SignUpController = () => {
 
   const { focusedStep, setFocusedStep, nickNameConfirm, setNickNameConfirm, signUpMutation } =
     useSignUpModel();
+  const { showLoadingSpinner } = useLoadingSpinnerStore();
+
   const prevFocusedStep = useRef(focusedStep);
 
   const {
@@ -48,7 +51,7 @@ const SignUpController = () => {
   });
 
   const onValid = (data: SignUpFormProps) => {
-    console.log("valid Action", data);
+    showLoadingSpinner();
     signUpMutation.mutate(data);
   };
 

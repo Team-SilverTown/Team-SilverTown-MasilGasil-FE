@@ -54,7 +54,7 @@ const LogRecordRecordingView = () => {
           width={"100%"}
           onClickHandler={handleClickCompleteRecord}
         >
-          마실 기록 완료
+          산책 끝내기
         </Button>
       </S.LogRecordActionContainer>
     </S.LogRecordActionLayout>

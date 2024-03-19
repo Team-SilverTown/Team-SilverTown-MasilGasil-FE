@@ -17,7 +17,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { POST_KEY } from "@/lib/api/queryKeys";
 import { PostListItem } from "@/types/OriginDataType/Post";
 
-const TAKE = 5;
+const TAKE = 8;
 
 export interface SearchProps {
   keyword: string;
@@ -27,12 +27,12 @@ const ExploreController = () => {
   const [locationData, setLocationData] = useState<LocationMap | null>(null);
   const [orderMode, setOrderMode] = useState<"LATEST" | "MOST_POPULAR">("LATEST");
 
-  const fetchHandler = async (d: any) => {
+  const fetchHandler = async ({ pageParam }: any) => {
     const params: PostListRequest = {
       depth1: locationData?.depth1!,
       depth2: locationData?.depth2!,
       depth3: locationData?.depth3!,
-      cursor: d.pageParam ?? null,
+      cursor: pageParam ?? null,
       order: orderMode,
       size: TAKE,
     };
@@ -55,10 +55,9 @@ const ExploreController = () => {
     getNextPageParam: (lastPage) => {
       return lastPage.nextCursor;
     },
-    retry: 1,
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 5,
-    gcTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60,
+    gcTime: 1000 * 60,
     enabled: !!locationData,
   });
 

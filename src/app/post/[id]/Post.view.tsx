@@ -18,6 +18,7 @@ interface PostViewProps {
   postId: string;
   postData: PostDetailResponse;
   userInfo: UserDummyType;
+  userId: number | undefined;
   tabIndex: PostTabType;
   currentPinIndex: number;
   mapCenter: GeoPosition;
@@ -31,6 +32,7 @@ const PostView = ({
   postId,
   postData,
   userInfo,
+  userId,
   tabIndex,
   currentPinIndex,
   mapCenter,
@@ -45,7 +47,7 @@ const PostView = ({
     <>
       <TopNavigator
         leftChildren={<GoBackButton />}
-        rightChildren={<PostKebabMenu />}
+        rightChildren={userId === postData.authorId && <PostKebabMenu />}
         containerStyle={{ backgroundColor: "transparent" }}
       />
       <S.PostContainer>
@@ -64,7 +66,12 @@ const PostView = ({
             focusedTab={tabIndex}
           />
 
-          <S.PostContentSection className="scrollbar-hide">
+          <S.PostContentSection
+            className="scrollbar-hide"
+            style={{
+              overflowY: tabIndex === PostTabType.Pin ? "visible" : "auto",
+            }}
+          >
             {tabIndex === PostTabType.Memo && (
               <PostMemo
                 userInfo={userInfo}
@@ -79,31 +86,35 @@ const PostView = ({
               />
             )}
             {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
-          </S.PostContentSection>
 
-          <Link
-            href={
-              tabIndex === PostTabType.Mate
-                ? `/mate/create?lat=${firstLat}&lng=${firstLng}`
-                : `/log/record?postId=${postId}`
-            }
-          >
-            <Button
-              width="calc(100% - 4rem)"
-              textColor={Theme.lightTheme.white}
-              buttonColor={Theme.lightTheme.green_500}
-              style={{
-                position: "absolute",
-                left: "50%",
-                bottom: "7rem",
-                transform: "translateX(-50%)",
-                fontSize: `${FONT_SIZE.LARGE}`,
-                fontWeight: `${FONT_WEIGHT.BOLD}`,
-              }}
-            >
-              {tabIndex === PostTabType.Mate ? "메이트 모집하기" : "산책하기"}
-            </Button>
-          </Link>
+            {tabIndex !== PostTabType.Mate && (
+              <Link
+                href={`/log/record?postId=${postId}`}
+                // href={
+                //   tabIndex === PostTabType.Mate
+                //     ? `/mate/create?lat=${firstLat}&lng=${firstLng}`
+                //     : `/log/record?postId=${postId}`
+                // }
+              >
+                <Button
+                  width="calc(100% - 4rem)"
+                  textColor={Theme.lightTheme.white}
+                  buttonColor={Theme.lightTheme.green_500}
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    bottom: "9rem",
+                    transform: "translateX(-50%)",
+                    fontSize: `${FONT_SIZE.LARGE}`,
+                    fontWeight: `${FONT_WEIGHT.BOLD}`,
+                  }}
+                >
+                  산책하기
+                  {/* {tabIndex === PostTabType.Mate ? "메이트 모집하기" : "산책하기"} */}
+                </Button>
+              </Link>
+            )}
+          </S.PostContentSection>
         </S.PostContentLayout>
       </S.PostContainer>
     </>

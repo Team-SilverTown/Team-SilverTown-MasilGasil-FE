@@ -48,7 +48,7 @@ export const LOG_RECORD_MESSAGE = {
   },
 
   FALL_BACK: {
-    MESSAGE: "모든 기록이 사라집니다. 처음으로 돌아가시겠어요?",
+    MESSAGE: "모든 기록이 사라집니다.<br>처음으로 돌아가시겠어요?",
     WARNING_MESSAGE: "현재의 기록은 저장되지 않고 사라집니다.",
   },
 
@@ -65,4 +65,10 @@ export const LOG_RECORD_MESSAGE = {
     MESSAGE: "기록을 완료했어요!",
     PROPOSAL: "방금 다녀온 산책을 유저들과 공유해보세요.",
   },
+};
+
+export const LOG_RECORD_ERROR_MESSAGE = {
+  MIN_LENGTH: "산책하신 경로가 너무 적습니다.<br>100m 이상부터 산책을 기록하실 수 있습니다.",
+
+  DEFAULT: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
 };

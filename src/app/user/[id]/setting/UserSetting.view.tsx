@@ -5,10 +5,11 @@ import * as S from "./UserSetting.styles";
 
 import { UserSettingAccount, UserSettingMember, UserSettingOptions } from "./components";
 import Divider from "@/components/Divider/Divider";
+import { NAV_HEIGHT } from "@/styles/theme";
 
 const UserSettingView = () => {
   return (
-    <GS.CommonContainer style={{ height: "100%" }}>
+    <GS.CommonContainer style={{ height: "100%", paddingTop: `${NAV_HEIGHT + 2}rem` }}>
       <S.UserSettingLayout
         initial={{ x: "-100%" }}
         animate={{ x: 0 }}

@@ -28,6 +28,12 @@ export interface PostDetailResponse {
   thumbnailUrl: string;
 }
 
+export interface PostMoreListResponse {
+  isEmpty: boolean;
+  contents: PostListItemResponse[];
+  nextCursor: string | null;
+}
+
 export interface PostListItemResponse {
   id: number;
   address: { depth1: string; depth2: string; depth3: string; depth4: string };
@@ -37,9 +43,9 @@ export interface PostListItemResponse {
   distance: number;
   viewCount: number;
   likeCount: number;
-  thumbnailUrl: string;
+  thumbnailUrl: string | null;
+  isLiked: boolean;
   hasMate: boolean;
-  likes: boolean;
 }
 
 export interface PostListResponse {

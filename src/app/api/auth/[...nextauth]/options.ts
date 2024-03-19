@@ -30,7 +30,7 @@ export const authOptions: NextAuthOptions = {
     // },
     async jwt({ token, account }) {
       if (account && account.access_token) {
-        console.log(token, account);
+        // console.log(token, account);
         const getToken = authenticate.bind(null, { token: account.access_token });
         const data = await getToken();
 
@@ -40,8 +40,8 @@ export const authOptions: NextAuthOptions = {
 
         return {
           // accessToken: account.access_token,
-          serviceToken: data?.token,
-          nickname: me?.nickname,
+          serviceToken: data?.token ?? null,
+          nickname: me?.nickname ?? null,
           // accessTokenExpires: account.expires_at,
           // refreshToken: account.refresh_token,
         };
@@ -56,6 +56,7 @@ export const authOptions: NextAuthOptions = {
         session.nickname = token.nickname as string;
       } else {
         session.serviceToken = undefined;
+        session.nickname = undefined;
       }
       return session;
     },

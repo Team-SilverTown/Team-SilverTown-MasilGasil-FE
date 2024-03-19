@@ -5,7 +5,7 @@ export const LogRecordActionLayout = styled.div`
   width: 100%;
   max-width: 36rem;
   min-width: 24rem;
-  padding-bottom: 1.6rem;
+  padding-bottom: 3.2rem;
 
   display: flex;
   flex-direction: column;

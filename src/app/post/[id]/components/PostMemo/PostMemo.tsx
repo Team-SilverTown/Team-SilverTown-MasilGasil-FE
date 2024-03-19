@@ -11,7 +11,8 @@ interface PostMemoProps {
 }
 
 const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
-  const { authorName, distance, totalTime, content, title, depth1, depth2 } = postData;
+  const { authorName, distance, totalTime, content, title, depth1, depth2, thumbnailUrl } =
+    postData;
   const { isUserInfoCheck, calories } = calculateWalkingCalories({ userInfo, distance });
 
   return (
@@ -19,7 +20,7 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
       <S.PostMemoTitle>{title}</S.PostMemoTitle>
       <S.PostMemoInfo>
         <S.PostMemoProfile>
-          <Avatar /> <span>{authorName}</span>
+          <Avatar src={thumbnailUrl} /> <span>{authorName}</span>
         </S.PostMemoProfile>
         <S.PostMemoLocation>
           <Location /> {depth1} {depth2}
