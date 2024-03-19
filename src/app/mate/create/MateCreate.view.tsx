@@ -8,7 +8,7 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 
 import { useUI } from "@/components/uiContext/UiContext";
-import { MateGatheringPlace } from "@/types/OriginDataType";
+import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
 
 import useTheme from "@/lib/hooks/useTheme";
 import * as GS from "@/styles/GlobalStyle";
@@ -24,7 +24,6 @@ interface MateCreateViewProps {
   register: UseFormRegister<MateCreateRequest>;
   handleSubmit: () => void;
   isFormFilled: boolean;
-
   handleCapacityChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   startDate: Date | null;
   setStartDate: Dispatch<SetStateAction<Date | null>>;
@@ -33,6 +32,7 @@ interface MateCreateViewProps {
   capacity: string;
   gatheringPlaceDetail: string;
   handleGatheringPlaceSubmit: (location: MateGatheringPlace) => void;
+  postStartPoint: GeoPosition;
 }
 
 interface MateCreateButtonProps {
@@ -67,6 +67,7 @@ const MateCreateView = ({
   capacity,
   gatheringPlaceDetail,
   handleGatheringPlaceSubmit,
+  postStartPoint,
 }: MateCreateViewProps) => {
   const theme = useTheme();
 
@@ -75,7 +76,7 @@ const MateCreateView = ({
   const handleOpenLocationModal = () => {
     setModalView("MATE_CREATE_MAP_VIEW");
     openModal({
-      baseLocation: { lat: 37.497, lng: 127.0254 },
+      baseLocation: postStartPoint,
       locationDetail: gatheringPlaceDetail,
       onSubmit: handleGatheringPlaceSubmit,
     });
