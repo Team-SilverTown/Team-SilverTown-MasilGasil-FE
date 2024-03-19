@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useRef } from "react";
+import React, { useCallback } from "react";
 
 import { ListCard } from "@/components";
 
@@ -8,12 +8,12 @@ import { PostListItem } from "@/types/OriginDataType/Post";
 import { useRouter } from "next/navigation";
 import parseLocationObject from "@/utils/parseLocation";
 import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
-import { PostCardSkeleton, PostCardsSkeleton } from "@/components/skeletons";
+import { PostCardsSkeleton } from "@/components/skeletons";
 
 interface MoreListViewProps {
   keyword: string;
   order: string;
-  listData: PostListItem[];
+  listData?: PostListItem[];
   fetchNextPage?: Function;
   isFetchingNextPage?: boolean;
   hasNextPage?: boolean;
@@ -30,6 +30,16 @@ const MoreListView = ({
   const cardClickHandler = (id: number) => {
     router.push(`/post/${id}`);
   };
+
+  if (!listData) {
+    return (
+      <div className="w-full h-full overflow-hidden">
+        <div className="p-4 space-y-8">
+          <PostCardsSkeleton />
+        </div>
+      </div>
+    );
+  }
 
   if (listData) {
     const loadNextPage = () => {
@@ -104,9 +114,9 @@ const MoreListView = ({
           </>
         )}
 
-        {(!listData || listData.length <= 0) && (
-          <div className="p-4 space-y-8">
-            <PostCardsSkeleton />
+        {listData.length <= 0 && (
+          <div className="flex justify-center">
+            <span className="font-medium text-medium text-gray-300">산책로 목록이 비어있어요</span>
           </div>
         )}
       </div>

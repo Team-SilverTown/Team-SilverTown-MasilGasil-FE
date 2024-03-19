@@ -8,9 +8,10 @@ import { useRouter } from "next/navigation";
 interface SortTabProps {
   keyword: string;
   order: string;
+  userId?: number;
 }
 
-const SortTab = ({ keyword, order }: SortTabProps) => {
+const SortTab = ({ keyword, order, userId }: SortTabProps) => {
   const [sort, setSort] = useState(order);
   const router = useRouter();
 
@@ -21,10 +22,12 @@ const SortTab = ({ keyword, order }: SortTabProps) => {
 
     if (sort === "latest") {
       setSort("popular");
-      router.push(`/more?keyword=${keyword}&order=popular`);
+      const url = `/more?keyword=${keyword}&order=popular${userId ? `&userId=${userId}` : ""}`;
+      router.replace(url, { scroll: false });
     } else {
       setSort("latest");
-      router.push(`/more?keyword=${keyword}&order=latest`);
+      const url = `/more?keyword=${keyword}&order=latest${userId ? `&userId=${userId}` : ""}`;
+      router.replace(url, { scroll: false });
     }
   };
 
