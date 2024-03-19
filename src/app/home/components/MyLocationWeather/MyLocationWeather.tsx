@@ -139,7 +139,7 @@ const MyLocationWeather = () => {
           {temperature && `${temperature}˚`}
         </li>
         <li className="fineDust">
-          {pm10 && (
+          {pm10Value && (
             <>
               <FineDust />
               미세먼지 {pm10Value}
