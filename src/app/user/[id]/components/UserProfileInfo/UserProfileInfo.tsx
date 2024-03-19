@@ -1,11 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import * as S from "./UserProfileInfo.styles";
 import Image from "next/image";
-import { useUI } from "@/components/uiContext/UiContext";
+import { useState } from "react";
+
 import userProfile from "@/assets/userProfile.svg";
 import Camera from "@/components/icons/Camera";
-import * as S from "./UserProfileInfo.styles";
+import InputUpload from "@/components/InputUpload/InputUpload";
+import { useMutation } from "@tanstack/react-query";
+import { changeProfileImage, getMe } from "@/lib/api/User/client";
+import { USER_KEY } from "@/lib/api/queryKeys";
+import { useToast } from "@/components/ShadcnUi/ui/useToast";
+import useMeStore from "@/stores/useMeStore";
+import { useUI } from "@/components/uiContext/UiContext";
 
 interface UserInfoProfileProps {
   profileImage: string | null;
@@ -21,39 +28,76 @@ const UserInfoProfile = ({
   height = 120,
 }: UserInfoProfileProps) => {
   const [profile, setProfile] = useState(profileImage);
-  const { openModal, setModalView, closeModal } = useUI();
+  const { toast } = useToast();
+  const { setMe } = useMeStore();
+  const { setModalView, openModal, closeModal } = useUI();
 
-  const handlePropfileEdit = () => {
-    setModalView("PROFILE_EDIT_VIEW");
-    openModal({
-      onClickAccept: (profileImage: string | null) => {
-        setProfile(profileImage);
-        closeModal();
-      },
-    });
-  };
+  const uploadImageMutation = useMutation({
+    mutationKey: [USER_KEY.UPLOAD_IMAGE],
+    mutationFn: ({ image }: { image: File }) => changeProfileImage({ image }),
+  });
 
   return (
     <S.UserInfoProfile>
       <S.UserInfoProfileImage
         width={width}
         height={height}
-        $profile={profile}
-        onClick={handlePropfileEdit}
       >
-        {!profile && (
-          <Image
-            src={profile ? profile : userProfile}
-            alt={profileName}
-            width={width}
-            height={height}
-            priority
-          />
-        )}
+        <S.UploadContainer>
+          <InputUpload
+            isPreview={false}
+            updateFile={(image: File | null) => {
+              if (!image) {
+                return;
+              }
+
+              uploadImageMutation.mutate(
+                { image },
+                {
+                  onSuccess: async () => {
+                    toast({
+                      title: "프로필 사진이 성공적으로 등록되었어요!",
+                      duration: 2000,
+                    });
+                    setProfile(URL.createObjectURL(image));
+
+                    const newMeData = await getMe();
+                    setMe(newMeData);
+                  },
+                  onError: ({ message }) => {
+                    setModalView("ANIMATION_ALERT_VIEW");
+                    openModal({
+                      message:
+                        message === "50016000"
+                          ? "지원하지 않는 파일 형식입니다."
+                          : "이미지 업로드에 실패했습니다. 다시 시도해주세요.",
+                    });
+                  },
+                },
+              );
+            }}
+          >
+            <Image
+              src={profile ? profile : userProfile}
+              alt={" "}
+              width={width}
+              height={height}
+              style={{
+                borderRadius: "50%",
+                width: "120px",
+                height: "120px",
+                backgroundColor: "white",
+              }}
+              priority
+            />
+          </InputUpload>
+        </S.UploadContainer>
+
         <S.CameraIconLayout>
           <Camera />
         </S.CameraIconLayout>
       </S.UserInfoProfileImage>
+
       <S.UserInfoProfileText>
         <strong>{profileName}</strong>
       </S.UserInfoProfileText>

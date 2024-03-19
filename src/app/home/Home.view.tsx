@@ -1,46 +1,44 @@
-import Link from "next/link";
+import { PostMoreListResponse } from "@/types/Response/Post";
+import { ProfileResponse } from "@/types/Response";
 
-import { More } from "@/components/icons";
-import { WalkList, MyWalkRecord, MyLocationWeather } from "./components";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { WalkList, WalkStartButton } from "./components";
 
 import * as S from "./Home.styles";
-import WalkStartButton from "./components/WalkStartButton/WalkStartButton";
-import { MeResponse } from "@/types/Response";
-import { WalkListProps } from "./Home.types";
+import MyInfo from "./components/MyInfo/MyInfo";
 
 interface HomeViewProps {
-  userInfo: MeResponse;
-  walkData: WalkListProps[];
+  MyLikeWalkingTrailsList: PostMoreListResponse;
+  PopularWalkingTrailsList: PostMoreListResponse;
+  userInfo: ProfileResponse;
 }
 
-const HomeView = ({ userInfo, walkData }: HomeViewProps) => {
+const HomeView = ({
+  MyLikeWalkingTrailsList,
+  PopularWalkingTrailsList,
+  userInfo,
+}: HomeViewProps) => {
   return (
-    <div className={S.HomePageContainer}>
-      <section className={S.MyInfoSection}>
-        <MyLocationWeather />
-        <MyWalkRecord userInfo={userInfo} />
-      </section>
-      <section className={S.WalkListSection}>
-        {walkData.map(({ title, walkList, urlLink }) => (
-          <section
-            className={S.HomeWalkListSection}
-            key={title}
+    <>
+      <TopNavigator
+        leftChildren={
+          <h1
+            className={S.HomeLogo}
+            style={{ fontSize: "2.2rem" }}
           >
-            <article className={S.HomeWalkListArticle}>
-              <h3 className={S.HomeWalkListTitle}>{title}</h3>
-              <Link href={urlLink}>
-                <More />
-              </Link>
-            </article>
-            <WalkList
-              userInfo={userInfo}
-              walkList={walkList}
-            />
-          </section>
-        ))}
-      </section>
-      <WalkStartButton />
-    </div>
+            마실가실
+          </h1>
+        }
+      />
+      <div className={S.HomePageContainer}>
+        <MyInfo userInfo={userInfo} />
+        <WalkList
+          MyLikeWalkingTrailsList={MyLikeWalkingTrailsList}
+          PopularWalkingTrailsList={PopularWalkingTrailsList}
+        />
+        <WalkStartButton />
+      </div>
+    </>
   );
 };
 

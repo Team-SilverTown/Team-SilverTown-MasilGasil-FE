@@ -1,14 +1,14 @@
 import * as S from "./EditBodyInfo.styles";
 
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { UserEditData } from "../../UserEdit.types";
 
 import { UserEditInput } from "@/components";
 import { USER_INPUT_PLACEHOLDER, validation_user } from "@/lib/constants/userConstants";
+import { MeResponse } from "@/types/Response";
 
 interface EditBodyInfoProps {
-  register: UseFormRegister<UserEditData>;
-  errors: FieldErrors<UserEditData>;
+  register: UseFormRegister<MeResponse>;
+  errors: FieldErrors<MeResponse>;
 }
 
 const EditBodyInfo = ({ register, errors }: EditBodyInfoProps) => {

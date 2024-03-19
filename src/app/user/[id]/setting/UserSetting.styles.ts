@@ -23,6 +23,6 @@ export const UserSettingInnerLayout = styled.article`
 `;
 
 export const UserSettingTitle = styled.h6`
-  font-size: ${FONT_SIZE.H6};
+  font-size: ${FONT_SIZE.MEDIUM};
   font-weight: ${FONT_WEIGHT.BOLD};
 `;

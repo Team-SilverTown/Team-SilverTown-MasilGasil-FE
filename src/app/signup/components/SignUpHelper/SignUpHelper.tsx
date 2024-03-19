@@ -13,6 +13,10 @@ const helperContent = [
     subTitle: null,
   },
   {
+    title: <Title>생년월일을 입력해주세요.</Title>,
+    subTitle: null,
+  },
+  {
     title: <Title>추가 정보 입력하기</Title>,
     subTitle: (
       <SubTitle>추가 정보를 통해 산책으로 소모한 칼로리 정보를 제공받을 수 있어요.</SubTitle>

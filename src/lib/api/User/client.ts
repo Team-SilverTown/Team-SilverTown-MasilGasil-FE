@@ -1,7 +1,12 @@
-import { AuthResponse, CheckNickNameResponse, MeResponse } from "@/types/Response";
-import { AuthRequest, SignUpRequest } from "@/types/Request/User";
+import {
+  AuthResponse,
+  CheckNickNameResponse,
+  EditUserResponse,
+  MeResponse,
+} from "@/types/Response";
+import { AuthRequest, SignUpRequest, UserEditRequest } from "@/types/Request/User";
 
-import { GET, POST, PUT } from "../clientRootAPI";
+import { GET, PATCH, POST, PUT } from "../clientRootAPI";
 import { USER } from "../endPoints";
 
 export const getAuthToken = async () => {
@@ -23,10 +28,39 @@ export const checkDuplicateNickname = async (nickname: string) => {
   });
 };
 
+export const getUserInfo = async (userId: string) => {
+  return await GET<MeResponse>({ endPoint: `${USER.PROFILE}/${userId}` });
+};
+
 export const signUp = async (data: SignUpRequest) => {
   return await PUT({
     endPoint: USER.SIGNUP,
     data,
     auth: true,
   });
+};
+
+export const postEditUser = async (newUserData: MeResponse) => {
+  const { nickname, sex, birthDate, height, weight, exerciseIntensity } = newUserData;
+  const newData: UserEditRequest = {
+    nickname,
+    sex,
+    birthDate,
+    height: height ? +height : undefined,
+    weight: weight ? +weight : undefined,
+    exerciseIntensity,
+  };
+
+  return await PUT<EditUserResponse>({ endPoint: USER.EDIT_USER, data: newData, auth: true });
+};
+
+export const patchIsPublic = async () => {
+  return PATCH({ endPoint: USER.TOGGLE_PUBLIC, auth: true });
+};
+
+export const changeProfileImage = async ({ image }: { image: File }) => {
+  const formData = new FormData();
+  formData.append("profileImg", image);
+
+  return await PUT({ endPoint: USER.UPLOAD_IMAGE, data: formData, auth: true });
 };

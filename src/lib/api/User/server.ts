@@ -1,9 +1,9 @@
 "use server";
 
-import { AuthRequest, MeRequest } from "@/types/Request/User";
+import { AuthRequest } from "@/types/Request/User";
 import { USER } from "../endPoints";
 import { GET, POST } from "../serverRootAPI";
-import { MeResponse } from "@/types/Response";
+import { MeResponse, ProfileResponse } from "@/types/Response";
 
 export async function authenticate(data: AuthRequest) {
   const response = await POST<AuthRequest>({
@@ -14,9 +14,21 @@ export async function authenticate(data: AuthRequest) {
 }
 
 export async function getMe(serviceToken: string) {
-  const response = await GET<MeResponse>({
-    endPoint: USER.ME,
-    options: { cache: "no-store", headers: { Authorization: `Bearer ${serviceToken}` } },
+  try {
+    const response = await GET<MeResponse>({
+      endPoint: USER.ME,
+      options: { cache: "no-store", headers: { Authorization: `Bearer ${serviceToken}` } },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
+}
+
+export async function getUserProfile(userId: string | number) {
+  const response = await GET<ProfileResponse>({
+    endPoint: `${USER.PROFILE}/${userId}`,
   });
 
   return response;

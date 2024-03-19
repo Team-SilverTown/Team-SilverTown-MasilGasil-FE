@@ -4,6 +4,9 @@ import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { useUI } from "@/components/uiContext/UiContext";
 import { ModalLayout } from "@/components/Modal";
 import useTheme from "@/lib/hooks/useTheme";
+import ConfirmAnimationData from "./ConfirmAnimationData.json";
+import Lottie from "react-lottie";
+import { useEffect } from "react";
 
 interface ConfirmModalProps {
   message: string;
@@ -16,6 +19,15 @@ interface ConfirmModalProps {
 interface ModalProp {
   props: ConfirmModalProps;
 }
+
+const defaultOptions = {
+  loop: false,
+  autoplay: true,
+  animationData: ConfirmAnimationData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 const ConfirmModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
@@ -32,12 +44,33 @@ const ConfirmModal = ({ props }: ModalProp) => {
     return;
   }
 
+  useEffect(() => {
+    const messageElement = document.querySelector("#conform_modal_message");
+    const warningElement = document.querySelector("#conform_modal_warning_message");
+
+    if (messageElement) {
+      messageElement.innerHTML = message;
+    }
+
+    if (warningElement && warningMessage) {
+      warningElement.innerHTML = warningMessage;
+    }
+  }, [message, warningMessage]);
+
   return (
     <ModalLayout>
       <S.ConfirmModalLayout>
-        <S.ConfirmModalMessage>{message}</S.ConfirmModalMessage>
+        <Lottie
+          options={defaultOptions}
+          height={180}
+          width={200}
+          isClickToPauseDisabled={true}
+        />
+        <S.ConfirmModalMessage id="conform_modal_message">{message}</S.ConfirmModalMessage>
 
-        <S.ConfirmModalWarning>{warningMessage}</S.ConfirmModalWarning>
+        <S.ConfirmModalWarning id="conform_modal_warning_message">
+          {warningMessage}
+        </S.ConfirmModalWarning>
 
         <S.ConfirmModalActionsContainer>
           <ConfirmModalButton

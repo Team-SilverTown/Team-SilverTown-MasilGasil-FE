@@ -37,8 +37,8 @@ export const POST = async <T>({
 
   return await API.post<T>(`/call${endPoint}`, data, config)
     .then((response) => response)
-    .catch((e) => {
-      throw Error(e.response.data.message);
+    .catch((error) => {
+      throw Error(error);
     });
 };
 
@@ -75,6 +75,24 @@ export const DELETE = async <T>({
   const API = getRootAPI(auth);
 
   return await API.delete<T>(`/call${endPoint}`, config)
+    .then((response) => response)
+    .catch((error) => {
+      throw Error(error);
+    });
+};
+
+export const PATCH = async <T>({
+  endPoint,
+  config,
+  auth,
+}: {
+  endPoint: string;
+  config?: AxiosRequestConfig;
+  auth?: boolean;
+}) => {
+  const API = getRootAPI(auth);
+
+  return await API.patch<T>(`/call${endPoint}`, config)
     .then((response) => response)
     .catch((error) => {
       throw Error(error);

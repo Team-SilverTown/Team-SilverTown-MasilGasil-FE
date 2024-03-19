@@ -9,6 +9,9 @@ import { useForm } from "react-hook-form";
 import { Trash } from "@/components/icons";
 import InputUpload from "@/components/InputUpload/InputUpload";
 import useImageUpload from "@/lib/hooks/useImageUpload";
+import LoadingAnimationData from "./LoadingAnimationData.json";
+import Lottie from "react-lottie";
+import { useToast } from "@/components/ShadcnUi/ui/useToast";
 
 interface PinEditModalProps {
   onClickAccept: (imageUrl: string | null, pinContent: string | null) => void;
@@ -26,8 +29,18 @@ interface PinEditType {
   pinImage: File | null;
 }
 
+const defaultOptions = {
+  loop: false,
+  autoplay: true,
+  animationData: LoadingAnimationData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
+
 const PinEditModal = ({ props }: ModalProp) => {
   const { closeModal } = useUI();
+  const { toast } = useToast();
   const { onClickAccept, pin, pinIndex, onClickRemove } = props;
   const { register, setValue, handleSubmit } = useForm<PinEditType>({
     defaultValues: { pinContent: pin.content, pinImage: null },
@@ -50,6 +63,7 @@ const PinEditModal = ({ props }: ModalProp) => {
     imageMutation.mutate(pinImage, {
       onSuccess: ({ imageUrl }) => {
         onClickAccept(imageUrl, pinContent);
+        toast({ title: "핀 이미지가 정상적으로 저장되었습니다!", duration: 2000 });
         closeModal();
       },
     });
@@ -63,11 +77,24 @@ const PinEditModal = ({ props }: ModalProp) => {
           previewValue={pin.thumbnailUrl}
         >
           <S.PinEditThumbnail>
-            <Image
-              width={40}
-              fill={Theme.lightTheme.gray_300}
-            />
-            클릭하여 썸네일 업로드
+            {!pin.thumbnailUrl && (
+              <>
+                <Image
+                  width={40}
+                  fill={Theme.lightTheme.gray_300}
+                />
+                클릭하여 썸네일 업로드
+              </>
+            )}
+
+            {pin.thumbnailUrl && (
+              <Lottie
+                options={defaultOptions}
+                height={100}
+                width={100}
+                isClickToPauseDisabled={true}
+              />
+            )}
           </S.PinEditThumbnail>
         </InputUpload>
         <S.PinEditContainer>

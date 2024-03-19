@@ -1,90 +1,127 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
-import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
-import { useInView } from "react-intersection-observer";
-import fetchMoreList from "./lib/fetchMoreList";
-import { REPEAT_NUMBER } from "./MoreList.constants";
-import { Dummy } from "./MoreList.types";
+import React, { useCallback } from "react";
 
-import { ListCard, ListCardSkeleton } from "@/components";
+import { ListCard } from "@/components";
 
-import * as S from "./MoreList.styles";
+import { PostListItem } from "@/types/OriginDataType/Post";
+import { useRouter } from "next/navigation";
+import parseLocationObject from "@/utils/parseLocation";
+import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
+import { PostCardsSkeleton } from "@/components/skeletons";
 
 interface MoreListViewProps {
   keyword: string;
   order: string;
+  listData?: PostListItem[];
+  fetchNextPage?: Function;
+  isFetchingNextPage?: boolean;
+  hasNextPage?: boolean;
 }
 
-const MoreListView = ({ keyword, order }: MoreListViewProps) => {
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isError } =
-    useInfiniteQuery<
-      Dummy[],
-      Object,
-      InfiniteData<Dummy[]>,
-      [_1: string, _2: string, _3: string],
-      number
-    >({
-      queryKey: ["moreList", keyword, order],
-      queryFn: fetchMoreList,
-      initialPageParam: 1,
-      getNextPageParam: (lastPage, allPage) => {
-        if (lastPage.length < REPEAT_NUMBER) return;
-        return (allPage.length * REPEAT_NUMBER) / REPEAT_NUMBER + 1;
-      },
-      staleTime: 60 * 1000,
-      gcTime: 300 * 1000,
-    });
+const MoreListView = ({
+  listData,
+  fetchNextPage,
+  isFetchingNextPage,
+  hasNextPage,
+}: MoreListViewProps) => {
+  const router = useRouter();
 
-  // 반환 받은 ref를 통해 화면에 닿았는지 체크하는 hook
-  const { ref, inView } = useInView({
-    threshold: 0,
-    delay: 0,
-  });
+  const cardClickHandler = (id: number) => {
+    router.push(`/post/${id}`);
+  };
 
-  /**
-   * 화면의 하단에 닿으면 inView 값이 true가 됩니다.
-   * 이때, 패칭 중인 데이터(isFetching)가 없고 다음에 불러올 데이터가 있으면(hasNextPage)
-   * fetchNextPage를 호출합니다.
-   */
-  useEffect(() => {
-    if (inView) {
-      !isFetching && hasNextPage && fetchNextPage();
-    }
-  }, [inView, isFetching, hasNextPage]);
-
-  const moreList = useMemo(() => (data ? data.pages.flatMap((page) => page) : []), [data]);
-
-  if (isError) {
-    return "에러 처리 해라!!";
+  if (!listData) {
+    return (
+      <div className="w-full h-full overflow-hidden">
+        <div className="p-4 space-y-8">
+          <PostCardsSkeleton />
+        </div>
+      </div>
+    );
   }
 
-  return (
-    <S.MoreList>
-      {data &&
-        moreList.map((list) => (
-          <li key={list.id}>
-            <ListCard
-              isRecruit={true}
-              isLiked={true}
-              likeCount={10}
-              title={`${order}${list.id}`}
-              content={`${order}${list.id}`}
-              totalTime={10000}
-              distance={100}
-              thumbnailURL="test"
-              address="테스트"
-              style={{ marginBottom: "2rem" }}
-            />
-          </li>
-        ))}
-      {isFetchingNextPage ? (
-        <ListCardSkeleton repeat={REPEAT_NUMBER} />
-      ) : (
-        <S.ScrollObserver ref={ref} />
-      )}
-    </S.MoreList>
-  );
+  if (listData) {
+    const loadNextPage = () => {
+      if (!isFetchingNextPage && hasNextPage && fetchNextPage) {
+        fetchNextPage();
+      }
+    };
+
+    const rowRenderer = useCallback(
+      ({ key, index, style }: any) => {
+        const item = listData[index];
+
+        let content;
+
+        content = (
+          <ListCard
+            isRecruit={item.hasMate}
+            isLiked={item.liked}
+            likeCount={item.likeCount}
+            title={item.title}
+            content={item.content}
+            totalTime={item.totalTime}
+            distance={item.distance}
+            thumbnailUrl={item.thumbnailUrl}
+            address={parseLocationObject(item.address) ?? ""}
+            onCardClickHandler={() => cardClickHandler(item.id)}
+          />
+        );
+
+        return (
+          <div
+            key={key}
+            style={style}
+            className="p-4"
+          >
+            {content}
+          </div>
+        );
+      },
+      [listData, cardClickHandler],
+    );
+
+    return (
+      <div className="w-full h-full">
+        {listData && listData.length > 0 && (
+          <>
+            <AutoSizer>
+              {({ height, width }) => (
+                <InfiniteLoader
+                  isRowLoaded={({ index }) => !!listData[index]}
+                  // @ts-ignore
+                  loadMoreRows={loadNextPage}
+                  rowCount={listData ? listData.length + 1 : 0}
+                  threshold={1}
+                >
+                  {({ onRowsRendered, registerChild }) => (
+                    <VList
+                      ref={registerChild}
+                      onRowsRendered={onRowsRendered}
+                      width={width}
+                      height={height}
+                      rowCount={listData.length}
+                      rowHeight={250 + 20} // card height + padding vertical 20
+                      rowRenderer={rowRenderer}
+                      className="scrollbar-hide"
+                      style={{ paddingBottom: "2rem" }}
+                    />
+                  )}
+                </InfiniteLoader>
+              )}
+            </AutoSizer>
+          </>
+        )}
+
+        {listData.length <= 0 && (
+          <div className="flex justify-center">
+            <span className="font-medium text-medium text-gray-300">산책로 목록이 비어있어요</span>
+          </div>
+        )}
+      </div>
+    );
+  }
 };
 
 export default MoreListView;

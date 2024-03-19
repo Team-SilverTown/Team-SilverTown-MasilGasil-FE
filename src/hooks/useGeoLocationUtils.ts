@@ -19,13 +19,13 @@ const useGeoLocationUtils = () => {
    * @brief watcher가 오류가 발생했을때 수행할 동작을 위한 함수입니다.
    */
   const onErrorWatch = ({ code, PERMISSION_DENIED }: GeolocationPositionError) => {
-    setModalView("LOG_RECORD_ALERT_VIEW");
+    setModalView("ANIMATION_ALERT_VIEW");
 
     if (code === PERMISSION_DENIED) {
       openModal({
         message: LOG_RECORD_MESSAGE.ERROR.WATCH_PERMISSION_DENIED,
       });
-      router.back();
+      router.replace("/home");
       return;
     }
 

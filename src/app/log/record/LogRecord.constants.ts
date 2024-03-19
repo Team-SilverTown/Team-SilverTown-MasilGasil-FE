@@ -43,17 +43,17 @@ export const DEFAULT_LOG_DATA: MasilRecordRequest = {
 
 export const LOG_RECORD_MESSAGE = {
   ERROR: {
-    WATCH_PERMISSION_DENIED: "현재 위치 서비스에 동의하지 않았습니다. 동의 후 이용 가능합니다.",
-    WATCH_ERROR: "서비스에 문제가 발생했습니다. 잠시 후 이용해주세요.",
+    WATCH_PERMISSION_DENIED: "현재 위치 서비스에 동의하지 않았습니다.<br>동의 후 이용 가능합니다.",
+    WATCH_ERROR: "서비스에 문제가 발생했습니다.<br>잠시 후 이용해주세요.",
   },
 
   FALL_BACK: {
-    MESSAGE: "모든 기록이 사라집니다. 진짜로 뒤로 가쉴...?",
+    MESSAGE: "모든 기록이 사라집니다.<br>처음으로 돌아가시겠어요?",
     WARNING_MESSAGE: "현재의 기록은 저장되지 않고 사라집니다.",
   },
 
   REGION_ERROR: {
-    MESSAGE: "현재 위치의 주소를 불러오는데 실패했습니다. 잠시 후 다시 이용해주세요.",
+    MESSAGE: "현재 주소를 불러오는데 실패했습니다.<br>잠시 후 다시 이용해주세요.",
   },
 
   COMPLETE_RECORD: {
@@ -65,4 +65,10 @@ export const LOG_RECORD_MESSAGE = {
     MESSAGE: "기록을 완료했어요!",
     PROPOSAL: "방금 다녀온 산책을 유저들과 공유해보세요.",
   },
+};
+
+export const LOG_RECORD_ERROR_MESSAGE = {
+  MIN_LENGTH: "산책하신 경로가 너무 적습니다.<br>100m 이상부터 산책을 기록하실 수 있습니다.",
+
+  DEFAULT: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
 };

@@ -7,7 +7,7 @@ import * as GS from "@/styles/GlobalStyle";
 import { StepLayout } from "@/components";
 
 import { SignUpHelper, StepButton } from "./components";
-import { SignUpFormProps } from "./SignUp.controller";
+import { LAST_STEP_INDEX, SignUpFormProps } from "./SignUp.controller";
 
 interface SignUpViewProps {
   stepViews: ReactNode[];
@@ -42,8 +42,10 @@ const SignUpView = ({
         />
       )}
       <StepButton
-        buttonText={focusedStep === 3 ? "마실가실 시작하기" : "다음"}
-        onClickHandler={focusedStep === 3 ? handleSubmit(onValid, onInvalid) : onNextButtonHandler}
+        buttonText={focusedStep === LAST_STEP_INDEX ? "마실가실 시작하기" : "다음"}
+        onClickHandler={
+          focusedStep === LAST_STEP_INDEX ? handleSubmit(onValid, onInvalid) : onNextButtonHandler
+        }
         isDisabled={!stepValidations[focusedStep]}
       />
     </GS.CommonContainer>

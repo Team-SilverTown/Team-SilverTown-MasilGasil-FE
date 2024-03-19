@@ -1,32 +1,66 @@
-import * as GS from "../../MateDetail.styles";
+"use client";
 
-import { MateMemberType } from "../../MateDetail.types";
-import Avatar from "@/components/Avatar/Avatar";
+import { MateDetailResponse } from "@/types/Response";
+
+import * as S from "./MateMembers.styles";
+import { Tab } from "@/components";
+import { useMemo, useState } from "react";
+import useMeStore from "@/stores/useMeStore";
+import { MembersList } from "./components";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { Participant } from "@/types/OriginDataType";
 
 interface MateMembersProps {
-  members: MateMemberType[];
+  mateData: MateDetailResponse;
+  acceptedUserList: Participant[];
+  requestUserList: Participant[];
 }
 
-const MateMembers = ({ members }: MateMembersProps) => {
-  return (
-    <article className={GS.MateInformationContainer}>
-      <h5 className={GS.MateDetailInformationTitle}>참가자</h5>
+const AUTHOR_TAB_CONTENT = ["참가자", "신청자"];
+const USER_TAB_CONTENT = ["참가자", ""];
 
-      <ul className="w-full flex flex-col gap-6 py-6">
-        {members.map(({ thumbnailUrl, nickname, user_id }) => (
-          <li
-            key={user_id}
-            className="w-full flex items-center gap-4"
-          >
-            <Avatar
-              src={thumbnailUrl}
-              userId={user_id}
-            />
-            <p className="grow text-basic font-medium whitespace-nowrap">{nickname}</p>
-          </li>
-        ))}
-      </ul>
-    </article>
+const MateMembers = ({ mateData, acceptedUserList, requestUserList }: MateMembersProps) => {
+  const { userId } = useMeStore();
+  const [focusTab, setFocusTab] = useState(0);
+
+  const isAuthor = useMemo(() => userId === mateData.authorId, [userId, mateData.authorId]);
+
+  const handleClickTab = (index: number) => {
+    if (isAuthor && !AUTHOR_TAB_CONTENT[index]) {
+      return;
+    }
+
+    if (!isAuthor && !USER_TAB_CONTENT[index]) {
+      return;
+    }
+
+    setFocusTab(index);
+  };
+
+  return (
+    <S.MateMembers>
+      <Tab
+        tabContents={isAuthor ? AUTHOR_TAB_CONTENT : USER_TAB_CONTENT}
+        tabClickHandler={handleClickTab}
+        focusedTab={focusTab}
+        layoutId="member_list"
+        style={{
+          fontSize: FONT_SIZE.LARGE,
+          fontWeight: FONT_WEIGHT.BOLD,
+        }}
+      />
+
+      <S.MateTabContent>
+        {focusTab === 0 && <MembersList participants={acceptedUserList} />}
+
+        {focusTab === 1 && (
+          <MembersList
+            participants={requestUserList}
+            isApplicantList={true}
+          />
+        )}
+      </S.MateTabContent>
+    </S.MateMembers>
   );
 };
 

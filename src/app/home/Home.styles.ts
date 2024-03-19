@@ -1,37 +1,3 @@
-export const HomePageContainer = `
-  w-full
-  min-h-screen
+export const HomePageContainer = `w-full pt-24 pb-80 box-border select-none`;
 
-  pt-32
-  pb-56
-
-  box-border
-`;
-
-export const MyInfoSection = `
-  px-6
-`;
-
-export const WalkListSection = `
-  pl-5
-`;
-
-export const HomeWalkListSection = `
-  mt-8
-`;
-
-export const HomeWalkListArticle = `
-  flex
-  justify-between
-  items-center
-  mb-4
-`;
-
-export const HomeWalkListTitle = `
-  text-3xl
-  font-bold
-`;
-
-export const HomeWalkListMoreButton = `
-  pr-6
-`;
+export const HomeLogo = `font-maplestory ml-6 font-bold text-green-500`;

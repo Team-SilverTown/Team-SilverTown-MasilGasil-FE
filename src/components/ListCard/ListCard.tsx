@@ -1,9 +1,11 @@
 "use client";
 
-import * as S from "./ListCard.styles";
-import { Heart } from "../icons";
 import { CSSProperties } from "react";
+
 import { convertSeconds, convertMeter } from "@/utils";
+
+import { Heart } from "../icons";
+import * as S from "./ListCard.styles";
 
 export interface ListCardProps {
   isRecruit: boolean;
@@ -11,11 +13,13 @@ export interface ListCardProps {
   likeCount: number;
   title: string;
   content: string;
-  thumbnailURL: string;
+  thumbnailUrl: string;
   address: string;
   totalTime: number;
   distance: number;
   style?: CSSProperties;
+  onCardClickHandler?: () => void;
+  onLikeClickHandler?: () => void;
 }
 
 const ListCard = ({
@@ -24,28 +28,30 @@ const ListCard = ({
   likeCount,
   title,
   content,
-  thumbnailURL,
+  thumbnailUrl,
   address,
   totalTime,
   distance,
   style,
+  onCardClickHandler,
+  onLikeClickHandler,
 }: ListCardProps) => {
-  // 좋아요 증가 혹은 감소 시켜주는 함수
-  const handleToggleLikes = () => {};
-
   return (
-    <S.ListCardContainer style={style}>
+    <S.ListCardContainer
+      style={style}
+      onClick={onCardClickHandler}
+    >
       <S.ListCardThumbnail
-        thumbnailURL={thumbnailURL}
-        isRecruit={isRecruit}
-        isLiked={isLiked}
-        likeCount={likeCount}
+        $thumbnailURL={thumbnailUrl}
+        $isRecruit={isRecruit}
+        $isLiked={isLiked}
+        $likeCount={likeCount}
       >
         <div className="topInfoSection">
           {isRecruit && <span className="recruit">모집중</span>}
           <div
             className="like"
-            onClick={handleToggleLikes}
+            onClick={onLikeClickHandler}
           >
             <Heart />
             <span>{likeCount > 999 ? "999+" : likeCount}</span>

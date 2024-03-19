@@ -7,7 +7,7 @@ import * as S from "./Avatar.styles";
 import { useRouter } from "next/navigation";
 
 interface AvatarProps {
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: "ms" | "xs" | "sm" | "md" | "lg";
   name?: string;
   src?: string | null;
   style?: CSSProperties;
@@ -17,6 +17,7 @@ interface AvatarProps {
 }
 
 const AvatarSize = {
+  ms: 22,
   xs: 30,
   sm: 50,
   md: 100,
@@ -60,8 +61,9 @@ const Avatar = ({
     >
       <Image
         src={src ? src : userProfile}
-        width={AvatarSize[size]}
-        height={AvatarSize[size]}
+        sizes="100%"
+        fill
+        priority
         alt={name}
         style={imageStyle}
       />

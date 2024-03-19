@@ -16,19 +16,34 @@ interface StationData {
 type PromiseResult<T> = { status: "fulfilled"; value: T } | { status: "rejected"; reason: any };
 
 interface APIResponse {
-  address: string;
   pm10: number | null;
   precipitation: PrecipitationType | null;
   temperature: string | null;
   weather: WeatherType | null;
 }
 
-const fetchNearbyStation = async (
-  tmX: number,
-  tmY: number,
-  lat: number,
-  lng: number,
-): Promise<APIResponse> => {
+interface FetchNearbyStationProps {
+  tmX?: number | null;
+  tmY?: number | null;
+  lat: number | null;
+  lng: number | null;
+}
+
+const fetchNearbyStation = async ({
+  tmX,
+  tmY,
+  lat,
+  lng,
+}: FetchNearbyStationProps): Promise<APIResponse> => {
+  if (!tmX || !tmY || !lat || !lng) {
+    return {
+      pm10: null,
+      precipitation: null,
+      temperature: null,
+      weather: null,
+    };
+  }
+
   const NEAR_BY_STATION_URL = process.env.NEXT_PUBLIC_NEAR_BY_STATION_URL;
   const SERVICE_KEY = process.env.NEXT_PUBLIC_SERVICE_KEY;
 
@@ -45,11 +60,9 @@ const fetchNearbyStation = async (
 
     const data: StationData = await response.json();
 
-    const [_1, address] = data.response.body.items[0].addr.split(" ");
     const stationName = data.response.body.items[0].stationName;
 
     let finalResult: APIResponse = {
-      address: `${address} ${stationName}`,
       pm10: null,
       precipitation: null,
       temperature: null,
@@ -76,12 +89,22 @@ const fetchNearbyStation = async (
     return finalResult;
   } catch (error) {
     console.error(`주변 측정소 데이터를 가져오는 중 오류가 발생했습니다. ${error}`);
+    const weatherData = await fetchWeatherForecast({ lat, lng });
+
+    if (!weatherData) {
+      return {
+        pm10: null,
+        precipitation: null,
+        temperature: null,
+        weather: null,
+      };
+    }
+    const { precipitation, temperature, weather } = weatherData;
     return {
-      address: "",
       pm10: null,
-      precipitation: null,
-      temperature: null,
-      weather: null,
+      precipitation,
+      temperature,
+      weather,
     };
   }
 };

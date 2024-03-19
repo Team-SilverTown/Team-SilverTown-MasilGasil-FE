@@ -1,20 +1,26 @@
+import { FONT_SIZE } from "@/styles/theme";
 import styled from "styled-components";
 
 interface UserInfoProfileImageProps {
   width: number;
   height: number;
-  $profile: string | null;
 }
 
 export const UserInfoProfile = styled.div`
+  padding: 1rem 0;
   text-align: center;
+`;
+
+export const UploadContainer = styled.div`
+  overflow: hidden;
+  position: absolute;
+  border-radius: 50%;
 `;
 
 export const UserInfoProfileImage = styled.div<UserInfoProfileImageProps>`
   position: relative;
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};
-  background-image: ${(props) => `url(${props.$profile})`};
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -41,8 +47,8 @@ export const CameraIconLayout = styled.div`
 export const UserInfoProfileText = styled.div`
   strong {
     display: inline-block;
-    margin: 1.6rem 0 0.6rem;
-    font-size: 1.8rem;
+    margin: 1.6rem 0 0;
+    font-size: ${FONT_SIZE.H4};
     color: ${(props) => props.theme.black};
   }
 `;

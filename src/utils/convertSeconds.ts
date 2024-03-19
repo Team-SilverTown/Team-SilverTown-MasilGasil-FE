@@ -8,6 +8,10 @@
  */
 
 const convertSeconds = (sec: number): string => {
+  if (!sec) {
+    return "0초";
+  }
+
   let minutes = Math.round(sec / 60);
   let hours = Math.floor(minutes / 60);
   minutes = minutes % 60;

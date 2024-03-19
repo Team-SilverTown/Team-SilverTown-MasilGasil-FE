@@ -164,7 +164,7 @@ export const LogRecordContextProvider = ({
     const goe = new kakao.maps.services.Geocoder();
     goe.coord2RegionCode(longitude, latitude, (result, status) => {
       if (status !== kakao.maps.services.Status.OK) {
-        setModalView("LOG_RECORD_ALERT_VIEW");
+        setModalView("ANIMATION_ALERT_VIEW");
         openModal({
           message: LOG_RECORD_MESSAGE.REGION_ERROR.MESSAGE,
         });
@@ -172,11 +172,10 @@ export const LogRecordContextProvider = ({
         return;
       }
 
-      result[0];
       dispatch({
         type: LOG_RECORD_REDUCER_ACTIONS.UPDATE_ADDRESS,
         payload: {
-          location: { lat: latitude, lng: longitude },
+          // location: { lat: latitude, lng: longitude },
           region: result[0],
         },
       });

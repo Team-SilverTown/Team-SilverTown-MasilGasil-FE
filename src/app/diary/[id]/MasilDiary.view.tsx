@@ -39,13 +39,16 @@ const MasilDiaryView = () => {
         leftChildren={<GoBackButton />}
         title="나의 산책일지"
       />
-      <GS.CommonContainer style={{ paddingTop: "6rem" }}>
+      <GS.CommonContainer
+        style={{ paddingTop: "6rem", paddingBottom: "18rem", userSelect: "none" }}
+      >
         <Tab
           tabContents={["캘린더", "리스트"]}
           tabClickHandler={(index) => {
             setCurrentTabIdx(index);
           }}
           focusedTab={currentTabIdx}
+          layoutId="diary-underline"
           style={{ fontSize: "1.6rem" }}
         />
         {currentTabIdx === TabIndex.Calendar && (
