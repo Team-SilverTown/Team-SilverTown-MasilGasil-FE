@@ -28,7 +28,7 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
     },
     {
       title: "내가 작성한 산책로",
-      urlLink: "/more?keyword=my_post&order=latest",
+      urlLink: `/more?keyword=my_post&order=latest&userId=${userId}`,
       recordList: recentPosts !== undefined ? recentPosts.contents : [],
       type: "Posts",
       isEmpty: recentPosts?.isEmpty,

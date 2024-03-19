@@ -6,11 +6,11 @@ import { HEADER_TITLE } from "./MoreList.constants";
 import { KeywordType } from "./MoreList.types";
 
 interface MorePageProps {
-  searchParams: { keyword: KeywordType; order: string };
+  searchParams: { keyword: KeywordType; order: string; userId?: number };
 }
 
 const More = ({ searchParams }: MorePageProps) => {
-  const { keyword, order } = searchParams;
+  const { keyword, order, userId } = searchParams;
 
   const tabVisible = keyword === "my_post" || keyword === "my_like";
 
@@ -28,11 +28,13 @@ const More = ({ searchParams }: MorePageProps) => {
           <SortTab
             keyword={keyword}
             order={order}
+            userId={userId}
           />
         )}
         <MoreListController
           keyword={keyword}
           order={order}
+          userId={userId}
         />
       </div>
     </>
