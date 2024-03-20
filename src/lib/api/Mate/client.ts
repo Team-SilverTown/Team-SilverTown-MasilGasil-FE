@@ -10,7 +10,7 @@ export const postMateParticipantRequest = async ({
 }) => {
   return await POST<{ id: string }>({
     endPoint: MATE.POST_MATE_PARTICIPANT_REQUEST(mateId),
-    data: message,
+    data: { message },
     auth: true,
   });
 };

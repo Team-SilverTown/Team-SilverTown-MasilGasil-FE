@@ -41,7 +41,8 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
       router.replace(`/mate/${mateData.id}`);
     },
 
-    onError: () => {
+    onError: ({ message }) => {
+      // 에러 메세지 추가
       setModalView("ANIMATION_ALERT_VIEW");
       openModal({
         message: "신청 과정에 문제가 발생하였습니다.",
@@ -114,6 +115,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
 
   return (
     <S.MateActionsLayout>
+      {ButtonList.Request}
       {userStatus === "NO_ACTION" && ButtonList.Request}
 
       {userStatus === "REQUESTED" && (
