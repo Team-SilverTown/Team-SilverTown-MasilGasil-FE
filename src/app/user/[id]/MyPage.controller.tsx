@@ -16,10 +16,16 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
   const me = session?.serviceToken ? await getMe(session.serviceToken) : undefined;
   const isMe = me && me.userId == userId;
 
-  console.log(isMe);
   const userProfile = await getUserProfile(userId);
   const recentMasils = await getRecentMasils(session?.serviceToken!);
   const recentPosts = await getRecentPostsById(session?.serviceToken!, userId);
+
+  console.log(userProfile);
+  const isPrivateUser =
+    !isMe &&
+    userProfile?.totalCalories === null &&
+    userProfile?.totalCount === null &&
+    userProfile?.totalDistance === null;
 
   const boardLists: MyRecordListType[] = [
     {
@@ -54,6 +60,7 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
       userInfo={userProfile !== undefined ? userProfile : USER_PROFILE_EXCEPTION}
       boardList={boardLists}
       isMe={isMe}
+      isPrivateUser={isPrivateUser}
     />
   );
 };
