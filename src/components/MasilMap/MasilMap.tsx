@@ -23,7 +23,6 @@ interface MasilMapProps {
 
   isShowCenterMarker?: boolean;
   centerMarkerSize?: number;
-  centerMarkerFill?: string;
 
   onCreatePathLine?: OnCreatePathLine;
   pathColor?: string;
@@ -59,7 +58,6 @@ interface MasilMapProps {
  *
  * @param isShowCenterMarker 현재 사용자의 위치에 중앙 마커가 보일지 여부 - type : boolean
  * @param centerMarkerSize 중앙 마커의 크기 ( 기본값 32px ) - type : number (px)
- * @param centerMarkerFill 중앙 마커의 색상 - type : string
  *
  * @param onCreatePath 이동 경로가 그려질때 마다 발동하는 이벤트 함수 ( 거리 계산에 이용 ) - type : (polyline: kakao.maps.Polyline) => void;
  * @param pathColor 이동 경로의 색상 - type : string
@@ -95,7 +93,6 @@ const MasilMap = ({
 
   isShowCenterMarker = true,
   centerMarkerSize,
-  centerMarkerFill,
 
   onCreatePathLine,
   pathColor,
@@ -237,7 +234,6 @@ const MasilMap = ({
         <CenterMarker
           position={center}
           size={centerMarkerSize}
-          fill={centerMarkerFill}
         />
       )}
     </Map>
