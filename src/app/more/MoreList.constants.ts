@@ -5,7 +5,7 @@ export const HEADER_TITLE: Record<string, string> = {
   my_post: "내가 작성한 산책로",
   my_like: "내가 좋아하는 산책로",
   area_popular: "우리 동네 인기 산책로",
-  total_popular: "인기 있는 전국 산책로",
+  total_popular: "인기 있는 산책로",
   recent_post: "최근에 작성된 산책로",
 };
 
@@ -42,4 +42,4 @@ export const SEARCH_KEYWORD: SearchKeywordType[] = [
   },
 ];
 
-export const TAKE: number = 8;
+export const REPEAT_NUMBER: number = 5;

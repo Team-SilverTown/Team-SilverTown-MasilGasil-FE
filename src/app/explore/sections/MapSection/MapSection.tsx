@@ -72,7 +72,6 @@ const MapSection = ({ setLocationData }: MapSectionProps) => {
       enableHighAccuracy: true,
     });
 
-    // 사용자 위치로 center 초기화
     navigator.geolocation.getCurrentPosition(updateMapCenter, handleWatchError, {
       enableHighAccuracy: true,
     });

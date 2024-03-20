@@ -36,8 +36,8 @@ export type SheetProps = {
   mountPoint?: Element;
   snapPoints?: number[];
   detent?: SheetDetent;
-  fixedHeight?: number; // added
-  initialSnap?: number; // index of snap points array
+  fixedHeight?: number;
+  initialSnap?: number;
   tweenConfig?: SheetTweenConfig;
   disableDrag?: boolean;
   disableScrollLocking?: boolean;
@@ -87,7 +87,7 @@ export type SheetContextType = {
   isOpen: boolean;
   snapPoints: SheetProps["snapPoints"];
   detent: SheetDetent;
-  fixedHeight: SheetProps["fixedHeight"]; // added
+  fixedHeight: SheetProps["fixedHeight"];
   initialSnap: SheetProps["initialSnap"];
   indicatorRotation: MotionValue<number>;
   callbacks: React.MutableRefObject<SheetEvents>;

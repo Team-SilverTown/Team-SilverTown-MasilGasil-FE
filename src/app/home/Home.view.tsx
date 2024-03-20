@@ -2,10 +2,10 @@ import { PostMoreListResponse } from "@/types/Response/Post";
 import { ProfileResponse } from "@/types/Response";
 
 import { TopNavigator } from "@/components/navigators/TopNavigator";
-import { WalkList, WalkStartButton } from "./components";
+import { WalkList, MyWalkRecord, MyLocationWeather, WalkStartButton } from "./components";
+import Notification from "./components/Notification";
 
 import * as S from "./Home.styles";
-import MyInfo from "./components/MyInfo/MyInfo";
 
 interface HomeViewProps {
   MyLikeWalkingTrailsList: PostMoreListResponse;
@@ -20,18 +20,12 @@ const HomeView = ({
 }: HomeViewProps) => {
   return (
     <>
-      <TopNavigator
-        leftChildren={
-          <h1
-            className={S.HomeLogo}
-            style={{ fontSize: "2.2rem" }}
-          >
-            마실가실
-          </h1>
-        }
-      />
+      <TopNavigator rightChildren={<Notification isNotification={true} />} />
       <div className={S.HomePageContainer}>
-        <MyInfo userInfo={userInfo} />
+        <section className={S.MyInfoSection}>
+          <MyLocationWeather />
+          <MyWalkRecord userInfo={userInfo} />
+        </section>
         <WalkList
           MyLikeWalkingTrailsList={MyLikeWalkingTrailsList}
           PopularWalkingTrailsList={PopularWalkingTrailsList}

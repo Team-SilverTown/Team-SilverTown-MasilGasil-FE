@@ -13,8 +13,6 @@ interface UserEditInputProps {
   unit?: string;
 
   register: UseFormRegisterReturn;
-
-  [key: string]: any;
 }
 
 const UserEditInput = ({
@@ -26,7 +24,6 @@ const UserEditInput = ({
   unit,
 
   register,
-  ...rest
 }: UserEditInputProps) => {
   return (
     <>
@@ -46,7 +43,6 @@ const UserEditInput = ({
             fontSize: FONT_SIZE.MEDIUM,
             fontWeight: FONT_WEIGHT.SEMIBOLD,
           }}
-          {...rest}
         />
 
         {unit && <S.UserEditInputUnit>{unit}</S.UserEditInputUnit>}

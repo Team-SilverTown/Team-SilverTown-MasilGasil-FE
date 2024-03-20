@@ -14,7 +14,8 @@ export const LogMemoLocation = styled.article`
 export const LogMemoWalkInfo = styled.ul`
   display: flex;
   justify-content: space-between;
-  margin: 2rem 0;
+  margin-top: 2.5rem;
+  margin-bottom: 2.8rem;
 
   li {
     flex: 1;
@@ -43,7 +44,6 @@ export const LogMemoContent = styled.article`
 
 export const LogMemoDate = styled.article`
   margin-top: 2rem;
-  padding-bottom: 7rem;
   text-align: right;
   font-size: ${FONT_SIZE.MINI};
   color: ${(props) => props.theme.gray_300};

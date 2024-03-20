@@ -7,8 +7,6 @@ export const UserProfileContainer = styled.section`
   height: 100%;
   min-height: 100vh;
   padding: ${NAV_HEIGHT}rem ${CONTAINER.PADDING_HORIZONTAL}rem;
-  padding-bottom: ${NAV_HEIGHT + 2}rem;
-  user-select: none;
 `;
 
 export const UserProfileLayout = styled.article`
@@ -17,11 +15,11 @@ export const UserProfileLayout = styled.article`
   overflow-y: auto;
   overscroll-behavior: contain;
 
-  -ms-overflow-style: none; /* IE, Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
   }
 `;
 

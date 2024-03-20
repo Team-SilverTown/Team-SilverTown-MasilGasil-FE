@@ -1,22 +1,21 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef } from "react";
-import { useRouter } from "next/navigation";
 import { FieldErrors, useForm } from "react-hook-form";
 
-import useEventQuery from "@/lib/hooks/useEventQuery";
-import { checkDuplicateNickname } from "@/lib/api/User/client";
-import { validation_user } from "@/lib/constants/userConstants";
-import { calculateAge } from "@/utils";
-import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
-import { SignUpRequest } from "@/types/Request/User";
-import { CheckNickNameResponse } from "@/types/Response";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavigator/components";
+import { useRouter } from "next/navigation";
+import useEventQuery from "@/lib/hooks/useEventQuery";
+import { checkDuplicateNickname } from "@/lib/api/User/client";
+import { SignUpRequest } from "@/types/Request/User";
+import { CheckNickNameResponse } from "@/types/Response";
+import { calculateAge } from "@/utils";
 
 import useSignUpModel from "./SignUp.model";
 import SignUpView from "./SignUp.view";
 import { SignUpStep1, SignUpStep2, SignUpStep3, SignUpStep4, SignUpStep5 } from "./sections";
+import { validation_user } from "@/lib/constants/userConstants";
 
 export interface SignUpFormProps extends SignUpRequest {}
 
@@ -27,8 +26,6 @@ const SignUpController = () => {
 
   const { focusedStep, setFocusedStep, nickNameConfirm, setNickNameConfirm, signUpMutation } =
     useSignUpModel();
-  const { showLoadingSpinner } = useLoadingSpinnerStore();
-
   const prevFocusedStep = useRef(focusedStep);
 
   const {
@@ -51,15 +48,11 @@ const SignUpController = () => {
   });
 
   const onValid = (data: SignUpFormProps) => {
-    showLoadingSpinner();
     signUpMutation.mutate(data);
   };
 
-  const onInvalid = (errors: FieldErrors) => {
-    console.log("Invalid Action", errors);
-  };
+  const onInvalid = (errors: FieldErrors) => {};
 
-  /** 유저 닉네임 중복 확인 */
   const name = getValues("nickname");
   const {
     data: duplicatedResult,
@@ -85,7 +78,6 @@ const SignUpController = () => {
     }
   }, [duplicatedResult]);
 
-  /** 사용자 나이 확인 */
   const birthDate = getValues("birthDate");
 
   const userAgeConfirm = useMemo(() => {
@@ -95,11 +87,9 @@ const SignUpController = () => {
       if (userAge >= 13 && userAge <= 100) return true;
 
       if (userAge < 13) {
-        // errors.birthDate?.message !== validation_user.birthDate.min.message &&
         setError("birthDate", { type: "custom", message: validation_user.birthDate.min.message });
       }
       if (userAge > 100) {
-        // errors.birthDate?.message !== validation_user.birthDate.max.message &&
         setError("birthDate", { type: "custom", message: validation_user.birthDate.max.message });
       }
 
@@ -107,7 +97,6 @@ const SignUpController = () => {
     }
   }, [birthDate]);
 
-  // step1 - 유저네임의 유효성, 중복 여부를 확인 합니다
   const isStep1Validate = useMemo(() => {
     if (!getValues("nickname") || !!errors.nickname?.message) return false;
     if (!nickNameConfirm) return false;
@@ -146,7 +135,6 @@ const SignUpController = () => {
     else return true;
   }, [watch()]);
 
-  // 각 step 별 유효성 검사 결과 boolean 값을 가지고 있습니다.
   const stepValidations = [
     isStep1Validate,
     isStep2Validate,

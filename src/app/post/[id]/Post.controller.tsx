@@ -38,8 +38,8 @@ const PostController = ({ postId, postData }: PostControllerProps) => {
       return;
     }
 
-    const { point } = postData.pins[PinIndex];
-    setMapCenter(point);
+    const { lat, lng } = postData.pins[PinIndex].point;
+    setMapCenter({ lat, lng });
     setIsOutCenter(false);
   };
 
@@ -52,14 +52,9 @@ const PostController = ({ postId, postData }: PostControllerProps) => {
 
   const handleClickTab = (index: number) => {
     if (PostTabType.Pin === index) {
-      if (postData.pins.length === 0) {
-        setTabIndex(index);
-        return;
-      }
-
-      const { point } = postData.pins[0];
+      const { lat, lng } = postData.pins[0].point;
       setCurrentPinIndex(0);
-      setMapCenter(point);
+      setMapCenter({ lat, lng });
       setIsOutCenter(false);
     }
     setTabIndex(index);

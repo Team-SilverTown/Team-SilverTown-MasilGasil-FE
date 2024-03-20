@@ -11,24 +11,22 @@ interface PostPinProps {
 
 const PostPin = ({ pins, currentPinIndex, handlePinIndex }: PostPinProps) => {
   return (
-    <S.PostPinContainer>
+    <>
       {pins.length > 0 && (
         <>
           <Carousel
             withoutControls={true}
             slideIndex={currentPinIndex}
             beforeSlide={(_, v) => handlePinIndex(v)}
-            style={{ paddingBottom: "1rem" }}
+            style={{ padding: "1rem 0" }}
           >
-            {pins.map((pin, index) => (
+            {pins.map((data, index) => (
               <PinDetailCard
                 key={index}
-                content={pin.content}
-                thumbnailUrl={pin.thumbnailUrl}
+                content={data.content}
+                thumbnailUrl={data.thumbnailUrl}
                 currentPinindex={currentPinIndex + 1}
                 totalPinIndex={pins.length}
-                pin={pin}
-                className="pinDetailCard"
               />
             ))}
           </Carousel>
@@ -38,8 +36,12 @@ const PostPin = ({ pins, currentPinIndex, handlePinIndex }: PostPinProps) => {
           />
         </>
       )}
-      {pins.length === 0 && <S.PostPinEmptyMessage>등록한 핀이 없습니다.</S.PostPinEmptyMessage>}
-    </S.PostPinContainer>
+      {pins.length === 0 && (
+        <S.PostPinEmptyMessage>
+          현재 산책로 경로에 등록된 핀이 존재하지 않습니다.
+        </S.PostPinEmptyMessage>
+      )}
+    </>
   );
 };
 

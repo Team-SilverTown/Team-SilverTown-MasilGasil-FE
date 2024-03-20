@@ -2,8 +2,7 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import * as S from "./Post.styles";
 import { TAB_CONTENTS } from "./Post.constants";
-import { MateDummyContents, PostTabType } from "./Post.types";
-import { UserInfoType } from "@/types/Response";
+import { MateDummyContents, MateDummyType, PostTabType, UserDummyType } from "./Post.types";
 import { GeoPosition } from "@/types/OriginDataType";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Button, Tab } from "@/components";
@@ -18,7 +17,7 @@ import { PostDetailResponse } from "@/types/Response/Post";
 interface PostViewProps {
   postId: string;
   postData: PostDetailResponse;
-  userInfo: UserInfoType;
+  userInfo: UserDummyType;
   userId: number | undefined;
   tabIndex: PostTabType;
   currentPinIndex: number;
@@ -69,9 +68,7 @@ const PostView = ({
 
           <S.PostContentSection
             className="scrollbar-hide"
-            style={{
-              overflowY: tabIndex === PostTabType.Pin ? "visible" : "auto",
-            }}
+            style={{ overflowY: tabIndex === PostTabType.Memo ? "auto" : "hidden" }}
           >
             {tabIndex === PostTabType.Memo && (
               <PostMemo
@@ -87,16 +84,11 @@ const PostView = ({
               />
             )}
             {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
+<<<<<<< HEAD
+=======
 
             {tabIndex !== PostTabType.Mate && (
-              <Link
-                href={`/log/record?postId=${postId}`}
-                // href={
-                //   tabIndex === PostTabType.Mate
-                //     ? `/mate/create?lat=${firstLat}&lng=${firstLng}`
-                //     : `/log/record?postId=${postId}`
-                // }
-              >
+              <Link href={`/log/record?postId=${postId}`}>
                 <Button
                   width="calc(100% - 4rem)"
                   textColor={Theme.lightTheme.white}
@@ -110,12 +102,32 @@ const PostView = ({
                     fontWeight: `${FONT_WEIGHT.BOLD}`,
                   }}
                 >
-                  산책하기
-                  {/* {tabIndex === PostTabType.Mate ? "메이트 모집하기" : "산책하기"} */}
+                  현재 경로로 산책하기
                 </Button>
               </Link>
             )}
+>>>>>>> origin/deploy/#270
           </S.PostContentSection>
+
+          {tabIndex !== PostTabType.Mate && (
+            <Link href={`/log/record?postId=${postId}`}>
+              <Button
+                width="calc(100% - 4rem)"
+                textColor={Theme.lightTheme.white}
+                buttonColor={Theme.lightTheme.green_500}
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  bottom: "10rem",
+                  transform: "translateX(-50%)",
+                  fontSize: `${FONT_SIZE.LARGE}`,
+                  fontWeight: `${FONT_WEIGHT.BOLD}`,
+                }}
+              >
+                {"산책하기"}
+              </Button>
+            </Link>
+          )}
         </S.PostContentLayout>
       </S.PostContainer>
     </>

@@ -11,24 +11,22 @@ interface LogPinProps {
 
 const LogPin = ({ pins, currentPinIndex, handlePinIndex }: LogPinProps) => {
   return (
-    <S.LogPinContainer>
+    <>
       {pins.length > 0 && (
         <>
           <Carousel
             withoutControls={true}
             slideIndex={currentPinIndex}
             beforeSlide={(_, v) => handlePinIndex(v)}
-            style={{ paddingBottom: "1rem" }}
+            style={{ padding: "1rem 0" }}
           >
-            {pins.map((pin, index) => (
+            {pins.map((data, index) => (
               <PinDetailCard
                 key={index}
-                content={pin.content}
-                thumbnailUrl={pin.thumbnailUrl}
+                content={data.content}
+                thumbnailUrl={data.thumbnailUrl}
                 currentPinindex={currentPinIndex + 1}
                 totalPinIndex={pins.length}
-                pin={pin}
-                className="pinDetailCard"
               />
             ))}
           </Carousel>
@@ -38,9 +36,12 @@ const LogPin = ({ pins, currentPinIndex, handlePinIndex }: LogPinProps) => {
           />
         </>
       )}
-
-      {pins.length === 0 && <S.LogPinEmptyMessage>등록된 핀이 없습니다.</S.LogPinEmptyMessage>}
-    </S.LogPinContainer>
+      {pins.length === 0 && (
+        <S.LogPinEmptyMessage>
+          현재 산책로 경로에 등록된 핀이 존재하지 않습니다.
+        </S.LogPinEmptyMessage>
+      )}
+    </>
   );
 };
 

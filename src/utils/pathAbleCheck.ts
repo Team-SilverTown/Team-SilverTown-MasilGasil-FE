@@ -6,7 +6,6 @@
  **/
 export function pathAbleCheck(pathList: string[], currentPathName: string) {
   return pathList.some((path) => {
-    // path 중 마지막에 * 접미사가 있는 경우 해당 경로로 시작하는 모든 경로에 대해 확인
     if (path.endsWith("*")) {
       const prefix = path.slice(0, -1);
       return currentPathName.startsWith(prefix);

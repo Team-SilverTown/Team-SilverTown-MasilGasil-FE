@@ -7,7 +7,6 @@ interface AvatarLayoutProps {
 }
 
 export const AvatarLayout = styled.div<AvatarLayoutProps>`
-  position: relative;
   width: ${(props) => `${props.$size}px`};
   height: ${(props) => `${props.$size}px`};
   border-radius: 50%;
@@ -17,9 +16,4 @@ export const AvatarLayout = styled.div<AvatarLayoutProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  img {
-    object-fit: cover;
-    object-position: 50% 50%;
-  }
 `;

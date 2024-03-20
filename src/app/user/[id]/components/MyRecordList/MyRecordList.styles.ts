@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const BorderContainer = styled.div`
   padding: 0rem 1.25rem;
   margin-bottom: 3rem;
-  overflow-y: hidden;
 `;
 export const BorderTitleSection = styled.div`
   display: flex;
@@ -23,7 +22,6 @@ export const BorderTitleSection = styled.div`
     font-size: 1.4rem;
     font-weight: ${FONT_WEIGHT.MEDIUM};
     color: ${(props) => props.theme.gray_500};
-    cursor: pointer;
   }
 `;
 export const BorderContentSection = styled.div`
@@ -33,11 +31,11 @@ export const BorderContentSection = styled.div`
 export const BorderContentListWrapper = styled.ul`
   display: flex;
   overflow-x: auto;
-  -ms-overflow-style: none; /* IE, Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
   }
   & > li:not(:last-child) {
     margin-right: 1.5rem;

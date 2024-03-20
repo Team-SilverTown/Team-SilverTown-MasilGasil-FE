@@ -82,14 +82,11 @@ export const Default = (args: any) => {
     },
   ];
 
-  // const [slideIdx, setSlideIdx] = useState(0);
-
   return (
     <div style={{ width: 390 }}>
       <Carousel
         withoutControls={true}
         slideIndex={args.slideIdx}
-        // beforeSlide={(_, v) => setSlideIdx(v)}
       >
         {data.map((d, i) => (
           <PinDetailCard
@@ -102,7 +99,7 @@ export const Default = (args: any) => {
           />
         ))}
       </Carousel>
-      {/* CAROUSEL CONTROLLER */}
+
       <div style={{ marginTop: 8 }}>
         <DotIndicator
           current={args.slideIdx}

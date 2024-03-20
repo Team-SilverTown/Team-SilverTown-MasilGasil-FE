@@ -79,16 +79,13 @@ const fetchNearbyStation = async ({
 
     results.forEach((result) => {
       if (result.status === "fulfilled") {
-        // 결과 객체에 value를 추가
         finalResult = { ...finalResult, ...result.value };
       } else {
-        console.error(result.reason);
       }
     });
 
     return finalResult;
   } catch (error) {
-    console.error(`주변 측정소 데이터를 가져오는 중 오류가 발생했습니다. ${error}`);
     const weatherData = await fetchWeatherForecast({ lat, lng });
 
     if (!weatherData) {

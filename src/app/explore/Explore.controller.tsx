@@ -17,7 +17,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { POST_KEY } from "@/lib/api/queryKeys";
 import { PostListItem } from "@/types/OriginDataType/Post";
 
-const TAKE = 8;
+const TAKE = 5;
 
 export interface SearchProps {
   keyword: string;
@@ -27,12 +27,12 @@ const ExploreController = () => {
   const [locationData, setLocationData] = useState<LocationMap | null>(null);
   const [orderMode, setOrderMode] = useState<"LATEST" | "MOST_POPULAR">("LATEST");
 
-  const fetchHandler = async ({ pageParam }: any) => {
+  const fetchHandler = async (d: any) => {
     const params: PostListRequest = {
       depth1: locationData?.depth1!,
       depth2: locationData?.depth2!,
       depth3: locationData?.depth3!,
-      cursor: pageParam ?? null,
+      cursor: d.pageParam ?? null,
       order: orderMode,
       size: TAKE,
     };
@@ -55,14 +55,15 @@ const ExploreController = () => {
     getNextPageParam: (lastPage) => {
       return lastPage.nextCursor;
     },
+    retry: 1,
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60,
-    gcTime: 1000 * 60,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 5,
     enabled: !!locationData,
   });
 
   const postsOriginData = useMemo(
-    () => (data && data.pages.flatMap((page) => page.contents)) ?? undefined,
+    () => (data && data.pages.flatMap((page) => page.contents)) ?? [],
     [data],
   );
 
@@ -72,12 +73,6 @@ const ExploreController = () => {
     mode: "onChange",
   });
 
-  // 추후 키워드를 통한 서버 검색을 위한 코드
-  // const onValid = (data: SearchProps) => {
-  // };
-  // const onInvalid = (errors: FieldErrors) => {
-  // };
-
   const debouncedOnChange = debounce((event: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = event.target.value.trim();
 
@@ -85,9 +80,7 @@ const ExploreController = () => {
       setPostsData([]);
       return;
     }
-    if (postsOriginData) {
-      setPostsData(postsOriginData.filter((item) => item.title.includes(keyword)));
-    }
+    setPostsData(postsOriginData.filter((item) => item.title.includes(keyword)));
   }, 300);
 
   const searchClearHandler = () => {
@@ -118,9 +111,6 @@ const ExploreController = () => {
             register={register}
             watch={watch}
             clearHandler={searchClearHandler}
-            // handleSubmit={handleSubmit}
-            // onValid={onValid}
-            // onInvalid={onInvalid}
             onChangeHandler={debouncedOnChange}
           />
         }

@@ -1,60 +1,25 @@
-import { useRouter } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
-
-import { getUserInfo } from "@/lib/api/User/client";
-
 import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/utils";
 import { PostDetailResponse } from "@/types/Response/Post";
-import { UserInfoType } from "@/types/Response";
-
 import Avatar from "@/components/Avatar/Avatar";
-import { Heart, Location, ViewIcon } from "@/components/icons";
-
+import { Location } from "@/components/icons";
+import { UserDummyType } from "../../Post.types";
 import * as S from "./PostMemo.styles";
-import { USER_KEY } from "@/lib/api/queryKeys";
 
 interface PostMemoProps {
-  userInfo: UserInfoType;
+  userInfo: UserDummyType;
   postData: PostDetailResponse;
 }
 
 const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
-  const {
-    authorId,
-    authorName,
-    distance,
-    totalTime,
-    content,
-    title,
-    depth1,
-    depth2,
-    likeCount,
-    viewCount,
-  } = postData;
+  const { authorName, distance, totalTime, content, title, depth1, depth2 } = postData;
   const { isUserInfoCheck, calories } = calculateWalkingCalories({ userInfo, distance });
-  const router = useRouter();
-
-  const { data: authorData } = useQuery({
-    queryKey: [USER_KEY.USER_INFO, authorId],
-    queryFn: () => getUserInfo(String(authorId)),
-  });
-
-  const handleClickLike = () => {};
-
-  if (!authorData) {
-    return;
-  }
 
   return (
     <>
       <S.PostMemoTitle>{title}</S.PostMemoTitle>
       <S.PostMemoInfo>
-        <S.PostMemoProfile onClick={() => router.push(`/user/${authorId}`)}>
-          <Avatar
-            src={authorData.profileImg}
-            userId={String(authorId)}
-          />
-          <span>{authorName}</span>
+        <S.PostMemoProfile>
+          <Avatar /> <span>{authorName}</span>
         </S.PostMemoProfile>
         <S.PostMemoLocation>
           <Location /> {depth1} {depth2}
@@ -77,16 +42,6 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
         )}
       </S.PostMemoWalkInfo>
       <S.PostMemoContent>{content}</S.PostMemoContent>
-      <S.PostMemoBottomInfo>
-        <S.PostMemoLike onClick={handleClickLike}>
-          <Heart />
-          {likeCount}
-        </S.PostMemoLike>
-        <S.PostMemoViewCount>
-          <ViewIcon />
-          {viewCount}
-        </S.PostMemoViewCount>
-      </S.PostMemoBottomInfo>
     </>
   );
 };

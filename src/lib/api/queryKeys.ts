@@ -15,7 +15,6 @@ export const USER_KEY = {
   TOGGLE_PUBLIC: "toggle_public",
   ME: "get_me",
   UPLOAD_IMAGE: "upload_image",
-  USER_INFO: "user_info",
 };
 
 export const MASIL_KEY = {

@@ -1,10 +1,15 @@
+"use client";
+
 import Link from "next/link";
 
 import { convertMeter, convertSeconds } from "@/utils";
 
 import { PostListItemResponse } from "@/types/Response/Post";
 
+import { useUI } from "@/components/uiContext/UiContext";
+
 import { LogDetailCard } from "@/components";
+import { More } from "@/components/icons";
 
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import * as S from "./WalkListDisplay.styles";
@@ -17,23 +22,30 @@ interface WalkListItemProps {
 }
 
 const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) => {
+  const { openModal, setModalView } = useUI();
+
+  const handleClickAlert = () => {
+    setModalView("DEPLOY_ALERT_VIEW");
+    openModal();
+  };
+
   return (
     <section className={S.WalkListSection}>
       <article className={S.HomeWalkListArticle}>
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>{title}</h3>
-        <Link
-          href={url}
-          title={`${title} 더보기`}
-          style={{ fontWeight: `${FONT_WEIGHT.MEDIUM}`, color: "#909090" }}
+
+        <a
+          onClick={handleClickAlert}
+          style={{ cursor: "pointer" }}
         >
-          더보기
-        </Link>
+          <More />
+        </a>
       </article>
       {isEmpty ? (
         <div className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</div>
       ) : (
         <ul className={S.WalkListContainer}>
-          {walkList.map(({ id, title, content, thumbnailUrl, distance, totalTime, address }) => (
+          {walkList.map(({ id, title, content, thumbnailUrl, distance, totalTime }) => (
             <li key={id}>
               <Link href={`/post/${id}`}>
                 <LogDetailCard
@@ -42,8 +54,6 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
                   thumbnailUrl={thumbnailUrl}
                   distance={convertMeter(distance)}
                   totalTime={convertSeconds(totalTime)}
-                  isLikeLayout={true}
-                  address={address}
                 />
               </Link>
             </li>

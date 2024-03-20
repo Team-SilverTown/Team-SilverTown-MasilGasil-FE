@@ -1,7 +1,7 @@
 import { Location } from "@/components/icons";
 import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/utils";
-import { MasilDetailResponse, UserInfoType } from "@/types/Response";
-
+import { MasilDetailResponse } from "@/types/Response";
+import { UserInfoType } from "../../Log.types";
 import * as S from "./LogMemo.styles";
 import convertFormatDate from "@/utils/convertFormatDate";
 

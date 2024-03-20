@@ -12,7 +12,6 @@ import { changeProfileImage, getMe } from "@/lib/api/User/client";
 import { USER_KEY } from "@/lib/api/queryKeys";
 import { useToast } from "@/components/ShadcnUi/ui/useToast";
 import useMeStore from "@/stores/useMeStore";
-import { useUI } from "@/components/uiContext/UiContext";
 
 interface UserInfoProfileProps {
   profileImage: string | null;
@@ -30,7 +29,6 @@ const UserInfoProfile = ({
   const [profile, setProfile] = useState(profileImage);
   const { toast } = useToast();
   const { setMe } = useMeStore();
-  const { setModalView, openModal, closeModal } = useUI();
 
   const uploadImageMutation = useMutation({
     mutationKey: [USER_KEY.UPLOAD_IMAGE],
@@ -47,34 +45,22 @@ const UserInfoProfile = ({
           <InputUpload
             isPreview={false}
             updateFile={(image: File | null) => {
-              if (!image) {
-                return;
-              }
+              if (image)
+                uploadImageMutation.mutate(
+                  { image },
+                  {
+                    onSuccess: async () => {
+                      toast({
+                        title: "프로필 사진이 성공적으로 등록되었어요!",
+                        duration: 2000,
+                      });
+                      setProfile(URL.createObjectURL(image));
 
-              uploadImageMutation.mutate(
-                { image },
-                {
-                  onSuccess: async () => {
-                    toast({
-                      title: "프로필 사진이 성공적으로 등록되었어요!",
-                      duration: 2000,
-                    });
-                    setProfile(URL.createObjectURL(image));
-
-                    const newMeData = await getMe();
-                    setMe(newMeData);
+                      const newMeData = await getMe();
+                      setMe(newMeData);
+                    },
                   },
-                  onError: ({ message }) => {
-                    setModalView("ANIMATION_ALERT_VIEW");
-                    openModal({
-                      message:
-                        message === "50016000"
-                          ? "지원하지 않는 파일 형식입니다."
-                          : "이미지 업로드에 실패했습니다. 다시 시도해주세요.",
-                    });
-                  },
-                },
-              );
+                );
             }}
           >
             <Image

@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2.3rem;
+  margin-bottom: 3.5rem;
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
@@ -47,12 +47,12 @@
 }
 
 .MyWalkRecordList li strong {
-  margin-bottom: 0.5rem;
-  font-weight: 700;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 
 .MyWalkRecordList li span {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #B9DB56;
+  color: #81bb26;
 }

@@ -46,11 +46,6 @@ const LogController = ({ masilData, logId }: LogControllerProps) => {
 
   const handleClickTab = (index: number) => {
     if (TabType.Pin === index) {
-      if (masilData.pins.length === 0) {
-        setTabIndex(index);
-        return;
-      }
-
       const { point } = masilData.pins[0];
       setCurrentPinIndex(0);
       setMapCenter(point);

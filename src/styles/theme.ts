@@ -83,32 +83,30 @@ const Theme = {
 
 export default Theme;
 
-// 3px 이상 rem
-
 export const APP_SYMBOL = {
   SYMBOL_TEXT: "",
 };
 
 export const BORDER = {
-  TINE_WIDTH: 1, // px
-  BASE_WIDTH: 1.5, // px
+  TINE_WIDTH: 1,
+  BASE_WIDTH: 1.5,
 };
 
 export const CONTAINER = {
-  MAX_WIDTH: 60, // rem
-  PADDING_VERTICAL: 1, // rem
-  PADDING_HORIZONTAL: 1.5, // rem
+  MAX_WIDTH: 60,
+  PADDING_VERTICAL: 1,
+  PADDING_HORIZONTAL: 1.5,
 
   MOBILEABLE_HORIZONTAL_SPACE: "w-[100%] sm:max-w-[420px]",
   MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen",
 };
 
-export const NAV_HEIGHT: number = 6; // rem
+export const NAV_HEIGHT: number = 6;
 
 export const MODAL = {
-  VERTICAL_PADDING: 3, // rem
-  HORIZONTAL_PADDING: 2.5, // rem
-  HEADER_MARGIN: 1.5, // rem
+  VERTICAL_PADDING: 3,
+  HORIZONTAL_PADDING: 2.5,
+  HEADER_MARGIN: 1.5,
 };
 
 export const Z_INDEX = {

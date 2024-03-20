@@ -38,7 +38,7 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
   flex-direction: column;
   justify-content: space-between;
   width: calc(100% - 12rem);
-  padding: 1rem;
+  padding: 1.8rem 1rem 1rem;
 
   .infoTitle {
     display: flex;
@@ -66,64 +66,59 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
   p {
     margin: 1rem 0;
     font-size: ${FONT_SIZE.MINI};
-    line-height: 1.5rem;
+    line-height: 1.6rem;
     white-space: normal;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-`;
 
-export const LogDetailCardInfoContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  ul.walkInfo {
+  .infoContent {
     display: flex;
-    align-items: center;
-    li {
-      font-size: ${FONT_SIZE.MICRO};
-      color: ${(props) => props.theme.gray_300};
-    }
-    li:not(:first-child) {
-      position: relative;
-      margin-left: 0.5rem;
-      &::before {
-        position: absolute;
-        left: -0.35rem;
-        top: 50%;
-        transform: translateY(-50%);
-        content: "";
-        display: inline-block;
-        width: 0.2rem;
-        height: 0.2rem;
-        border-radius: 50%;
-        background-color: ${(props) => props.theme.gray_500};
+    justify-content: space-between;
+    color: ${(props) => props.theme.gray_500};
+    ul.walkInfo {
+      display: flex;
+      align-items: center;
+      li {
+        font-size: ${FONT_SIZE.MICRO};
+      }
+      li:not(:first-child) {
+        position: relative;
+        margin-left: 0.5rem;
+        &::before {
+          position: absolute;
+          left: -0.35rem;
+          top: 50%;
+          transform: translateY(-50%);
+          content: "";
+          display: inline-block;
+          width: 0.2rem;
+          height: 0.2rem;
+          border-radius: 50%;
+          background-color: ${(props) => props.theme.gray_500};
+        }
       }
     }
-  }
 
-  .likeInfo {
-    display: flex;
-    align-items: center;
-    font-size: 0.8rem;
-    svg {
-      margin-right: 0.1rem;
-      stroke: ${(props) => props.theme.pink_100};
+    .likeInfo {
+      display: flex;
+      align-items: center;
+      font-size: 0.8rem;
+      svg {
+        margin-right: 0.1rem;
+      }
+      &:hover,
+      &.liked {
+        svg {
+          stroke: ${(props) => props.theme.pink_100};
+        }
+        .like {
+          color: ${(props) => props.theme.pink_100};
+        }
+      }
     }
-    .like {
-      color: ${(props) => props.theme.pink_100};
-    }
-  }
-
-  .location {
-    width: 100%;
-    margin-top: 0.5rem;
-    font-size: ${FONT_SIZE.MICRO};
-    text-align: right;
-    color: ${(props) => props.theme.gray_300};
   }
 `;
 

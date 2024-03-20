@@ -3,16 +3,13 @@ import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import MoreListController from "./MoreList.controller";
 import SortTab from "./SortTab/SortTab";
 import { HEADER_TITLE } from "./MoreList.constants";
-import { KeywordType } from "./MoreList.types";
 
 interface MorePageProps {
-  searchParams: { keyword: KeywordType; order: string; userId?: number };
+  searchParams: { keyword: string; order: string };
 }
 
 const More = ({ searchParams }: MorePageProps) => {
-  const { keyword, order, userId } = searchParams;
-
-  const tabVisible = keyword === "my_post" || keyword === "my_like";
+  const { keyword, order } = searchParams;
 
   return (
     <>
@@ -20,21 +17,14 @@ const More = ({ searchParams }: MorePageProps) => {
         leftChildren={<GoBackButton />}
         title={HEADER_TITLE[keyword]}
       />
-      <div
-        style={{ paddingTop: "6rem", paddingBottom: "10rem" }}
-        className="w-full h-full"
-      >
-        {tabVisible && (
-          <SortTab
-            keyword={keyword}
-            order={order}
-            userId={userId}
-          />
-        )}
+      <div style={{ paddingTop: "6rem" }}>
+        <SortTab
+          keyword={keyword}
+          order={order}
+        />
         <MoreListController
           keyword={keyword}
           order={order}
-          userId={userId}
         />
       </div>
     </>
