@@ -10,7 +10,7 @@ const error = () => {
 
   useEffect(() => {
     setModalView("ANIMATION_ALERT_VIEW");
-    openModal({ message: "생성불가" });
+    openModal({ message: "메이트 모집하기를 시작할 수 없습니다." });
     router.push("/home");
   }, []);
 

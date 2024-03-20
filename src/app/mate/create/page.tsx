@@ -10,7 +10,7 @@ const MateCreate = ({ searchParams }: MateCreateProps) => {
   const { lat, lng, postId } = searchParams;
 
   if (!lat || !lng || !postId) {
-    throw Error("정상적이지못한 접근");
+    throw Error("정상적이지 않은 접근입니다");
   }
 
   return (

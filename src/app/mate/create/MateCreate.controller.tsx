@@ -129,7 +129,7 @@ const MateCreateController = ({ lat, lng, postId }: MateCreateControllerProps) =
       onError: () => {
         setModalView("ANIMATION_ALERT_VIEW");
         openModal({
-          message: "메이트 모집글 생성에 실패하였습니다.<br>잠시 후 다시 이용해주세요.",
+          message: "메이트 모집하기 생성에 실패하였습니다.<br>잠시 후 다시 이용해주세요.",
         });
       },
     });
