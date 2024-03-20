@@ -4,4 +4,4 @@ export const WalkListContainer = `flex gap-8 overflow-x-auto overflow-y-hidden s
 
 export const HomeWalkListArticle = `flex justify-between items-center mb-4`;
 
-export const NoWalkRecordMessage = `flex justify-center items-center mx-auto my-0 min-h-48`;
+export const NoWalkRecordMessage = `flex justify-center items-center mx-auto my-0 min-h-48 text-gray-300`;

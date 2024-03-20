@@ -30,7 +30,7 @@ export const UserInfoProfileImage = styled.div<UserInfoProfileImageProps>`
 `;
 
 export const IsMeBadge = styled.div`
-  padding: 0.5rem 0.7rem;
+  padding: 0.3rem 0.7rem;
   background-color: ${(props) => props.theme.green_500};
   color: white;
   border-radius: 3rem;
@@ -58,7 +58,7 @@ export const UserInfoProfileText = styled.div`
   justify-content: center;
   align-items: center;
   margin: 1.6rem 0 0;
-  gap: 1rem;
+  gap: 0.5rem;
 
   strong {
     display: inline-block;

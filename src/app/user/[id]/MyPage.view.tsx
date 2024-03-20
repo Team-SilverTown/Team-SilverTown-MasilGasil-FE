@@ -29,16 +29,17 @@ const MyPageView = ({ boardList, userInfo, userId, isMe, isPrivateUser }: MyPage
             profileName={userInfo.nickname}
             isMe={isMe}
           />
+
+          <S.HeaderContainer>
+            <h3>{isMe ? "내 통계" : `${userInfo.nickname}님의 통계`}</h3>
+            <Divider style={{ backgroundColor: "#EFEFEF" }} />
+          </S.HeaderContainer>
+          <UserWalkRecord userInfo={userInfo} />
+
           {isPrivateUser ? (
-            <S.AlertContainer> 비공개 계정입니다</S.AlertContainer>
+            <S.AlertContainer>기록이 존재하지 않습니다</S.AlertContainer>
           ) : (
             <>
-              <S.HeaderContainer>
-                <h3>{isMe ? "내 통계" : `${userInfo.nickname}님의 통계`}</h3>
-                <Divider style={{ backgroundColor: "#EFEFEF" }} />
-              </S.HeaderContainer>
-              <UserWalkRecord userInfo={userInfo} />
-
               <S.HeaderContainer>
                 <h3>{isMe ? "내 산책" : `${userInfo.nickname}님의 산책`}</h3>
                 <Divider style={{ backgroundColor: "#EFEFEF" }} />

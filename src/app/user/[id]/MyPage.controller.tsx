@@ -30,7 +30,7 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
   const boardLists: MyRecordListType[] = [
     {
       title: "최근에 다녀온 산책",
-      urlLink: "/diary/test",
+      urlLink: `/diary/${userId}`,
       recordList: recentMasils !== undefined ? recentMasils.masils : [],
       type: "Masils",
       isEmpty: recentMasils?.isEmpty,
@@ -44,14 +44,14 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
       isEmpty: recentPosts?.isEmpty,
       visible: "Public",
     },
-    {
-      title: "좋아하는 산책로",
-      urlLink: "/more?keyword=my_like&order=latest",
-      recordList: [],
-      type: "Posts",
-      isEmpty: true,
-      visible: "Private",
-    },
+    // {
+    //   title: "좋아하는 산책로",
+    //   urlLink: "/more?keyword=my_like&order=latest",
+    //   recordList: [],
+    //   type: "Posts",
+    //   isEmpty: true,
+    //   visible: "Private",
+    // },
   ];
 
   return (
