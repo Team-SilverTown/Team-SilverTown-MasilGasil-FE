@@ -11,4 +11,5 @@ export const PostPinContainer = styled.div`
 export const PostPinEmptyMessage = styled.div`
   padding: 3rem 0;
   text-align: center;
+  color: ${(props) => props.theme.gray_300};
 `;
