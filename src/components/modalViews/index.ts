@@ -6,3 +6,4 @@ export { default as ProfileEditModal } from "./ProfileEditModal/ProfileEditModal
 export { default as MateCreateMapModal } from "./MateMapModal/MateCreateMapModal/MateCreateMapModal";
 export { default as AnimationAlertModal } from "./AnimationAlertModal/AnimationAlertModal";
 export { default as DoneModal } from "./DoneModal/DoneModal";
+export { default as MateParticipantModal } from "./MateParticipantModal/MateParticipantModal";

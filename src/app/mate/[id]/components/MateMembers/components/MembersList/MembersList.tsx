@@ -31,7 +31,8 @@ const MembersList = ({
   };
 
   const handleClickMessage = (participant: Participant) => {
-    console.log(participant);
+    setModalView("MATE_PARTICIPANT_USER_VIEW");
+    openModal({ participant });
   };
 
   return (
