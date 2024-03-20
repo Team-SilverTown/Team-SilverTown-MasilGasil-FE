@@ -29,10 +29,6 @@ export const UserInfoProfileImage = styled.div<UserInfoProfileImageProps>`
   background-size: cover;
   background-repeat: no-repeat;
   cursor: pointer;
-<<<<<<< HEAD
-  margin: 0 auto;
-=======
->>>>>>> origin/deploy/#270
   border-radius: 50%;
 `;
 

@@ -15,14 +15,6 @@ export async function authenticate(data: AuthRequest) {
 }
 
 export async function getMe(serviceToken: string) {
-<<<<<<< HEAD
-  const response = await GET<MeResponse>({
-    endPoint: USER.ME,
-    options: { cache: "no-store", headers: { Authorization: `Bearer ${serviceToken}` } },
-  });
-
-  return response;
-=======
   try {
     const response = await GET<MeResponse>({
       endPoint: USER.ME,
@@ -32,7 +24,6 @@ export async function getMe(serviceToken: string) {
   } catch (error) {
     return undefined;
   }
->>>>>>> origin/deploy/#270
 }
 
 export async function getUserProfile(userId: string | number) {

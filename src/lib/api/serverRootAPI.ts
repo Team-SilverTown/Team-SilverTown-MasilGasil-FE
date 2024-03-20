@@ -7,11 +7,7 @@ export const request = async <T>(url: string, options: RequestInit): Promise<T |
     },
   }).then((response) => {
     if (!response.ok) {
-<<<<<<< HEAD
-      return;
-=======
       throw new Error("HTTP status " + response.status);
->>>>>>> origin/deploy/#270
     }
     return response.json();
   });
