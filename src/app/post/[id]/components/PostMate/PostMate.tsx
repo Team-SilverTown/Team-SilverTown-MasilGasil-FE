@@ -14,7 +14,7 @@ const PostMate = ({ mateData }: PostMateProps) => {
         <S.PostMateList>
           {mateData.map(
             ({ id, title, authorProfileUrl, authorNickname, gatheringAt, capacity, status }) => (
-              <li>
+              <li key={id}>
                 <Link
                   href={`/mate/${id}`}
                   title={title}
