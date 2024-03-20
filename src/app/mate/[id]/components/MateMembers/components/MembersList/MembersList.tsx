@@ -7,10 +7,17 @@ import { useUI } from "@/components/uiContext/UiContext";
 
 interface MembersListProps {
   participants: Participant[];
+  authorId: number;
+  isAuthor: boolean;
   isApplicantList?: boolean;
 }
 
-const MembersList = ({ participants, isApplicantList = false }: MembersListProps) => {
+const MembersList = ({
+  participants,
+  authorId,
+  isAuthor,
+  isApplicantList = false,
+}: MembersListProps) => {
   const { openModal, setModalView } = useUI();
 
   const handleAccept = () => {
@@ -23,7 +30,9 @@ const MembersList = ({ participants, isApplicantList = false }: MembersListProps
     openModal();
   };
 
-  const handleClickMessage = () => {};
+  const handleClickMessage = (participant: Participant) => {
+    console.log(participant);
+  };
 
   return (
     <S.MateMemberList>
@@ -31,7 +40,9 @@ const MembersList = ({ participants, isApplicantList = false }: MembersListProps
         participants.map((user) => (
           <MemberItem
             key={user.userId}
-            participants={user}
+            participant={user}
+            authorId={authorId}
+            isAuthor={isAuthor}
             isApplicantItem={isApplicantList}
             onAccept={handleAccept}
             onCancel={handleCancel}

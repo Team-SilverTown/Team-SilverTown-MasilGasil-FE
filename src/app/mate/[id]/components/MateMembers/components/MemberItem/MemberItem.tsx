@@ -8,22 +8,26 @@ import { Participant } from "@/types/OriginDataType";
 import { CSSProperties } from "react";
 
 interface MemberItemProps {
-  participants: Participant;
+  participant: Participant;
+  authorId: number;
   isApplicantItem?: boolean;
+  isAuthor: boolean;
   onAccept: () => void;
   onCancel: () => void;
-  onClickMessage: () => void;
+  onClickMessage: (participant: Participant) => void;
   key?: string | number;
 }
 
 const MemberItem = ({
-  participants,
+  participant,
+  authorId,
+  isAuthor,
   onAccept,
   onCancel,
   onClickMessage,
   isApplicantItem = false,
 }: MemberItemProps) => {
-  const { profileUrl, nickname, id } = participants;
+  const { profileUrl, nickname, id, userId } = participant;
 
   return (
     <S.MemberItemLayout>
@@ -34,28 +38,30 @@ const MemberItem = ({
 
       <S.MemberNickName>{nickname}</S.MemberNickName>
 
-      <S.MemberAction>
-        <MateButton
-          text={"참가신청 메세지"}
-          onClick={onClickMessage}
-          style={{
-            marginRight: "2rem",
-          }}
-        />
-
-        {isApplicantItem && (
+      {isAuthor && authorId !== userId && (
+        <S.MemberAction>
           <MateButton
-            text={"수락"}
-            onClick={onAccept}
+            text={"참가신청 메세지"}
+            onClick={() => onClickMessage(participant)}
+            style={{
+              marginRight: "2rem",
+            }}
           />
-        )}
 
-        <MateButton
-          text={isApplicantItem ? "거절" : "내보내기"}
-          isCancelButton={true}
-          onClick={onCancel}
-        />
-      </S.MemberAction>
+          {isApplicantItem && (
+            <MateButton
+              text={"수락"}
+              onClick={onAccept}
+            />
+          )}
+
+          <MateButton
+            text={isApplicantItem ? "거절" : "내보내기"}
+            isCancelButton={true}
+            onClick={onCancel}
+          />
+        </S.MemberAction>
+      )}
     </S.MemberItemLayout>
   );
 };

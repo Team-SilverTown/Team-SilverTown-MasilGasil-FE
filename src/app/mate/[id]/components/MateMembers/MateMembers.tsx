@@ -51,12 +51,20 @@ const MateMembers = ({ mateData, acceptedUserList, requestUserList }: MateMember
       />
 
       <S.MateTabContent>
-        {focusTab === 0 && <MembersList participants={acceptedUserList} />}
+        {focusTab === 0 && (
+          <MembersList
+            participants={acceptedUserList}
+            authorId={mateData.authorId}
+            isAuthor={isAuthor}
+          />
+        )}
 
         {focusTab === 1 && (
           <MembersList
             participants={requestUserList}
+            authorId={mateData.authorId}
             isApplicantList={true}
+            isAuthor={isAuthor}
           />
         )}
       </S.MateTabContent>
