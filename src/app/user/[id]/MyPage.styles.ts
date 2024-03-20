@@ -25,6 +25,16 @@ export const UserProfileLayout = styled.article`
   }
 `;
 
+export const AlertContainer = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: ${FONT_SIZE.MEDIUM};
+  color: ${(props) => props.theme.gray_300};
+`;
 export const HeaderContainer = styled.div`
   font-size: ${FONT_SIZE.H6};
   font-weight: ${FONT_WEIGHT.SEMIBOLD};

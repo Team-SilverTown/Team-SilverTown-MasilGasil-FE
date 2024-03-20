@@ -24,12 +24,14 @@ interface RecentMasilsType extends RecordType {
   type: "Masils";
   recordList: RecentMasil[];
   isEmpty?: boolean;
+  visible: "Private" | "Public";
 }
 
 interface RecordPostsType extends RecordType {
   type: "Posts";
   recordList: PostListItem[];
   isEmpty?: boolean;
+  visible: "Private" | "Public";
 }
 
 export type MyRecordListType = RecentMasilsType | RecordPostsType;
