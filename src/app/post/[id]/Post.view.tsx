@@ -3,7 +3,7 @@ import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import * as S from "./Post.styles";
 import { TAB_CONTENTS } from "./Post.constants";
 import { PostTabType } from "./Post.types";
-import { MateDetailResponse, UserInfoType } from "@/types/Response";
+import { MateDetailListResponse, UserInfoType } from "@/types/Response";
 import { GeoPosition } from "@/types/OriginDataType";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Button, Tab } from "@/components";
@@ -26,7 +26,7 @@ interface PostViewProps {
   handleCurrentPinIndex: (index: number) => void;
   handleClickCenter: () => void;
   handleClickTab: (index: number) => void;
-  mateData: MateDetailResponse;
+  mateData: MateDetailListResponse;
 }
 
 const PostView = ({
@@ -86,7 +86,7 @@ const PostView = ({
                 handlePinIndex={handleCurrentPinIndex}
               />
             )}
-            {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
+            {tabIndex === PostTabType.Mate && <PostMate mateData={mateData.contents} />}
 
             <Link
               href={

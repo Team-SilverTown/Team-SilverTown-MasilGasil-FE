@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getPostDetail } from "@/lib/api/Post/server";
 import PostController from "./Post.controller";
-import { getMateDetail } from "@/lib/api/Mate/server";
+import { getMateDetailList } from "@/lib/api/Mate/server";
 
 interface PostDetailProps {
   params: {
@@ -15,7 +15,7 @@ const PostDetail = async ({ params }: PostDetailProps) => {
 
   const session = await getServerSession(authOptions);
   const postData = await getPostDetail(session?.serviceToken!, id);
-  const mateData = await getMateDetail(id);
+  const mateData = await getMateDetailList({ postId: Number(id) });
 
   if (!postData || !mateData) {
     return;

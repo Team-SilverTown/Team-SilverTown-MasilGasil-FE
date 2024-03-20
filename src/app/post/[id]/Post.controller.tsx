@@ -5,12 +5,12 @@ import PostView from "./Post.view";
 import { PostTabType } from "./Post.types";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 import { PostDetailResponse } from "@/types/Response/Post";
-import { MateDetailResponse } from "@/types/Response";
+import { MateDetailListResponse } from "@/types/Response";
 
 interface PostControllerProps {
   postId: string;
   postData: PostDetailResponse;
-  mateData: MateDetailResponse;
+  mateData: MateDetailListResponse;
 }
 
 const PostController = ({ postId, postData, mateData }: PostControllerProps) => {
