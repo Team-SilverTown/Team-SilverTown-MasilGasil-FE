@@ -21,12 +21,12 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   const theme = useTheme();
 
   const userStatus = useMemo(() => {
-    if (mateData.authorId === userId) {
-      return "AUTHOR";
-    }
-
     if (mateData.status === "CLOSED") {
       return "CLOSE";
+    }
+
+    if (mateData.authorId === userId) {
+      return "AUTHOR";
     }
 
     const isAccept = acceptedUserList.find((acceptedUser) => acceptedUser.userId === userId);
@@ -67,9 +67,9 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
       onClick: handleClickCancel,
       isSecondButton: true,
     }),
-    // Chatting: createButton({ theme, text: "대화하기", onClick: handleClickChatting }),
     Accepted: createButton({ theme, text: "참여중 입니다.", disabled: true }),
     Completed: createButton({ theme, text: "종료된 메이트", disabled: true }),
+    Author: createButton({ theme, text: "메이트 모집중...", disabled: true }),
   };
 
   return (
@@ -105,6 +105,8 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
           </Button> */}
         </>
       )}
+
+      {userStatus === "AUTHOR" && ButtonList.Author}
     </S.MateActionsLayout>
   );
 };
