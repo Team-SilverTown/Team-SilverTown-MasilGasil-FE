@@ -9,6 +9,11 @@ import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
 import { useMemo } from "react";
 import useMeStore from "@/stores/useMeStore";
+import { useMutation } from "@tanstack/react-query";
+import { postMateParticipantRequest } from "@/lib/api/Mate/client";
+import { MATE_KEY } from "@/lib/api/queryKeys";
+import { useUI } from "@/components/uiContext/UiContext";
+import { useRouter } from "next/navigation";
 
 interface MateActionsProps {
   mateData: MateDetailResponse;
@@ -17,8 +22,33 @@ interface MateActionsProps {
 }
 
 const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActionsProps) => {
+  const { setModalView, openModal, closeModal } = useUI();
   const { userId } = useMeStore();
   const theme = useTheme();
+  const router = useRouter();
+
+  const postParticipantRequestMutation = useMutation({
+    mutationKey: [MATE_KEY.POST_MATE_PARTICIPANT_REQUEST],
+    mutationFn: async (param: { message: string; mateId: string | number }) =>
+      await postMateParticipantRequest(param),
+
+    onSuccess: () => {
+      setModalView("DONE_VIEW");
+      openModal({
+        message: "신청이 완료되었습니다!",
+      });
+
+      router.replace(`/mate/${mateData.id}`);
+    },
+
+    onError: () => {
+      setModalView("ANIMATION_ALERT_VIEW");
+      openModal({
+        message: "신청 과정에 문제가 발생하였습니다.",
+      });
+      router.replace(`/mate/${mateData.id}`);
+    },
+  });
 
   const userStatus = useMemo(() => {
     if (mateData.status === "CLOSED") {
@@ -42,15 +72,21 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
     }
 
     return "NO_ACTION";
-  }, [requestedUserList, acceptedUserList, mateData]);
+  }, [requestedUserList, acceptedUserList, mateData, userId]);
 
   if (!theme) {
     return;
   }
 
   const handleClickRequest = () => {
-    // 추후 요청하기에 대한 로직
-    console.log("click request button");
+    setModalView("MATE_REQUEST_VIEW");
+    openModal({
+      onAccept: (message: string) => {
+        postParticipantRequestMutation.mutate({ message, mateId: mateData.id });
+        closeModal();
+        router.refresh();
+      },
+    });
   };
 
   const handleClickCancel = () => {
@@ -71,6 +107,10 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
     Completed: createButton({ theme, text: "종료된 메이트", disabled: true }),
     Author: createButton({ theme, text: "메이트 모집중...", disabled: true }),
   };
+
+  if (!userId) {
+    return <></>;
+  }
 
   return (
     <S.MateActionsLayout>

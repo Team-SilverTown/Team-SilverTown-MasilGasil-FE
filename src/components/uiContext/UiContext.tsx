@@ -17,6 +17,7 @@ import {
   PinDetailModal,
   DoneModal,
   MateParticipantModal,
+  MateRequestModal,
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
 import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
@@ -90,6 +91,7 @@ const ModalView = ({
       {modalView === "DEPLOY_ALERT_VIEW" && <DeployAlertModal />}
       {modalView === "DONE_VIEW" && <DoneModal props={props} />}
       {modalView === "MATE_PARTICIPANT_USER_VIEW" && <MateParticipantModal props={props} />}
+      {modalView === "MATE_REQUEST_VIEW" && <MateRequestModal props={props} />}
     </Modal>
   );
 };
