@@ -5,6 +5,8 @@ export const LogContainer = styled.section`
   position: relative;
   height: 100%;
   min-height: 100vh;
+  transform: scale(1);
+  user-select: none;
 `;
 
 export const LogContentLayout = styled.section`

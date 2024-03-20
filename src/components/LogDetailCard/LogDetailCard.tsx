@@ -27,21 +27,16 @@ const LogDetailCard = ({
   content,
   thumbnailUrl,
   distance,
-  totalDistance,
   totalTime,
   likeCount,
   address,
   isLikeLayout = false,
   isSettingLayout = false,
-  userInfo,
   style,
   onDetailClick,
 }: LogDetailCardProps) => {
   const [isSettingToggle, setIsSetingToggle] = useState(false);
-  // const { isUserInfoCheck, calories } = calculateWalkingCalories({
-  //   userInfo,
-  //   distance: totalDistance,
-  // });
+
   const handleDetailViewClick = () => {
     if (isSettingToggle) {
       setIsSetingToggle(false);
@@ -95,7 +90,6 @@ const LogDetailCard = ({
           <ul className="walkInfo">
             <li>{totalTime}</li>
             <li>{distance}</li>
-            {/* {isUserInfoCheck && <li>{calories}kcal</li>} */}
           </ul>
           {isLikeLayout && (
             <div className={`likeInfo`}>

@@ -7,7 +7,6 @@ import calculatePathCenter from "@/lib/utils/calculatePathCenter";
 import { GeoPosition } from "@/types/OriginDataType";
 import { PostTabType } from "./Post.types";
 import useMeStore from "@/stores/useMeStore";
-import { MATE_DUMMY_DATA } from "./Post.constants";
 import { PostDetailResponse } from "@/types/Response/Post";
 
 interface usePostModelProp {
@@ -46,7 +45,6 @@ const usePostModel = ({ postData }: usePostModelProp) => {
     baseLocation,
     userInfo,
     userId,
-    mateData: MATE_DUMMY_DATA.contents,
   };
 };
 
