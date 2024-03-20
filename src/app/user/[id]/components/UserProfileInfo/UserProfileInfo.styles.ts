@@ -1,4 +1,4 @@
-import { FONT_SIZE } from "@/styles/theme";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
 interface UserInfoProfileImageProps {
@@ -36,6 +36,15 @@ export const UserInfoProfileImage = styled.div<UserInfoProfileImageProps>`
   border-radius: 50%;
 `;
 
+export const IsMeBadge = styled.div`
+  padding: 0.3rem 0.7rem;
+  background-color: ${(props) => props.theme.green_500};
+  color: white;
+  border-radius: 3rem;
+  font-size: ${FONT_SIZE.MINI};
+  font-weight: ${FONT_WEIGHT.BOLD};
+`;
+
 export const CameraIconLayout = styled.div`
   position: absolute;
   bottom: 0;
@@ -52,9 +61,14 @@ export const CameraIconLayout = styled.div`
 `;
 
 export const UserInfoProfileText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.6rem 0 0;
+  gap: 0.5rem;
+
   strong {
     display: inline-block;
-    margin: 1.6rem 0 0;
     font-size: ${FONT_SIZE.H4};
     color: ${(props) => props.theme.black};
   }

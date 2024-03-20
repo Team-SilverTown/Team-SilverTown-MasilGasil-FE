@@ -5,9 +5,7 @@ export const PostContainer = styled.section`
   position: relative;
   height: 100%;
   min-height: 100vh;
-  word-wrap: break-word;
   transform: scale(1);
-
   user-select: none;
 `;
 

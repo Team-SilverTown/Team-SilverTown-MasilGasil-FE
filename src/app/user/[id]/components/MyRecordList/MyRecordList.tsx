@@ -64,7 +64,7 @@ const MyRecordList = ({ title, urlLink, recordList, type }: MyRecordListProps) =
               ),
             )}
 
-          {recordList.length === 0 && <S.EmptyAlert>산책로가 비어있어요</S.EmptyAlert>}
+          {recordList.length === 0 && <S.EmptyAlert>산책로 목록이 비어있어요</S.EmptyAlert>}
         </S.BorderContentListWrapper>
       </S.BorderContentSection>
     </S.BorderContainer>

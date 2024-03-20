@@ -4,6 +4,7 @@ import { AuthRequest } from "@/types/Request/User";
 import { USER } from "../endPoints";
 import { GET, POST } from "../serverRootAPI";
 import { MeResponse, ProfileResponse } from "@/types/Response";
+import { redirect } from "next/navigation";
 
 export async function authenticate(data: AuthRequest) {
   const response = await POST<AuthRequest>({
@@ -35,9 +36,13 @@ export async function getMe(serviceToken: string) {
 }
 
 export async function getUserProfile(userId: string | number) {
-  const response = await GET<ProfileResponse>({
-    endPoint: `${USER.PROFILE}/${userId}`,
-  });
-
-  return response;
+  try {
+    const response = await GET<ProfileResponse>({
+      endPoint: `${USER.PROFILE}/${userId}`,
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+    return redirect(`/not-found`);
+  }
 }

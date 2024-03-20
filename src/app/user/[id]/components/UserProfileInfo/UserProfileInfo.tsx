@@ -18,6 +18,7 @@ interface UserInfoProfileProps {
   profileName: string;
   width?: number;
   height?: number;
+  isMe: boolean | undefined;
 }
 
 const UserInfoProfile = ({
@@ -25,6 +26,7 @@ const UserInfoProfile = ({
   profileName,
   width = 120,
   height = 120,
+  isMe,
 }: UserInfoProfileProps) => {
   const [profile, setProfile] = useState(profileImage);
   const { toast } = useToast();
@@ -37,15 +39,19 @@ const UserInfoProfile = ({
 
   return (
     <S.UserInfoProfile>
-      <S.UserInfoProfileImage
-        width={width}
-        height={height}
-      >
-        <S.UploadContainer>
-          <InputUpload
-            isPreview={false}
-            updateFile={(image: File | null) => {
-              if (image)
+      {isMe ? (
+        <S.UserInfoProfileImage
+          width={width}
+          height={height}
+        >
+          <S.UploadContainer>
+            <InputUpload
+              isPreview={false}
+              updateFile={(image: File | null) => {
+                if (!image) {
+                  return;
+                }
+
                 uploadImageMutation.mutate(
                   { image },
                   {
@@ -59,33 +65,64 @@ const UserInfoProfile = ({
                       const newMeData = await getMe();
                       setMe(newMeData);
                     },
+                    onError: ({ message }) => {
+                      setModalView("ANIMATION_ALERT_VIEW");
+                      openModal({
+                        message:
+                          message === "50016000"
+                            ? "지원하지 않는 파일 형식입니다."
+                            : "이미지 업로드에 실패했습니다. 다시 시도해주세요.",
+                      });
+                    },
                   },
                 );
-            }}
-          >
-            <Image
-              src={profile ? profile : userProfile}
-              alt={" "}
-              width={width}
-              height={height}
-              style={{
-                borderRadius: "50%",
-                width: "120px",
-                height: "120px",
-                backgroundColor: "white",
               }}
-              priority
-            />
-          </InputUpload>
-        </S.UploadContainer>
+            >
+              <Image
+                src={profile ? profile : userProfile}
+                alt={" "}
+                width={width}
+                height={height}
+                style={{
+                  borderRadius: "50%",
+                  width: "120px",
+                  height: "120px",
+                  backgroundColor: "white",
+                }}
+                priority
+              />
+            </InputUpload>
+          </S.UploadContainer>
 
-        <S.CameraIconLayout>
-          <Camera />
-        </S.CameraIconLayout>
-      </S.UserInfoProfileImage>
+          <S.CameraIconLayout>
+            <Camera />
+          </S.CameraIconLayout>
+        </S.UserInfoProfileImage>
+      ) : (
+        <S.UserInfoProfileImage
+          width={width}
+          height={height}
+        >
+          <Image
+            src={profile ? profile : userProfile}
+            alt={"user-profile"}
+            width={width}
+            height={height}
+            style={{
+              borderRadius: "50%",
+              width: "120px",
+              height: "120px",
+              backgroundColor: "white",
+              cursor: "default",
+            }}
+            priority
+          />
+        </S.UserInfoProfileImage>
+      )}
 
       <S.UserInfoProfileText>
-        <strong>{profileName}</strong>
+        <strong>{profileName ? profileName : "null"}</strong>
+        {isMe && <S.IsMeBadge>me</S.IsMeBadge>}
       </S.UserInfoProfileText>
     </S.UserInfoProfile>
   );

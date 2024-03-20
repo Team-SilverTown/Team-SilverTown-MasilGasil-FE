@@ -26,13 +26,16 @@ export const BorderTitleSection = styled.div`
 `;
 export const BorderContentSection = styled.div`
   margin-top: 1.2rem;
+  overflow-y: hidden;
 `;
 
 export const BorderContentListWrapper = styled.ul`
   display: flex;
   overflow-x: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  overflow-y: hidden;
+
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
 
   &::-webkit-scrollbar {
     display: none;

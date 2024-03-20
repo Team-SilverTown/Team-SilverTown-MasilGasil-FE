@@ -1,3 +1,5 @@
+"use server";
+
 import { WeatherType, PrecipitationType } from "../Home.types";
 import fetchWeatherForecast from "./fetchWeatherForecast";
 import fetchAirQuality from "./fetchAirQuality";
@@ -44,8 +46,8 @@ const fetchNearbyStation = async ({
     };
   }
 
-  const NEAR_BY_STATION_URL = process.env.NEXT_PUBLIC_NEAR_BY_STATION_URL;
-  const SERVICE_KEY = process.env.NEXT_PUBLIC_SERVICE_KEY;
+  const NEAR_BY_STATION_URL = process.env.NEAR_BY_STATION_URL;
+  const SERVICE_KEY = process.env.SERVICE_KEY;
 
   try {
     if (!SERVICE_KEY) {
