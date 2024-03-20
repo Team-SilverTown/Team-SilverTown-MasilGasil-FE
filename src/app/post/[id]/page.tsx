@@ -3,6 +3,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getPostDetail } from "@/lib/api/Post/server";
 import PostController from "./Post.controller";
 import { getMateDetailList } from "@/lib/api/Mate/server";
+import { redirect } from "next/navigation";
 
 interface PostDetailProps {
   params: {
@@ -18,7 +19,7 @@ const PostDetail = async ({ params }: PostDetailProps) => {
   const mateData = await getMateDetailList({ postId: Number(id) });
 
   if (!postData || !mateData) {
-    return;
+    return redirect("/not-found");
   }
 
   return (
