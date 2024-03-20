@@ -20,7 +20,6 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
   const recentMasils = await getRecentMasils(session?.serviceToken!);
   const recentPosts = await getRecentPostsById(session?.serviceToken!, userId);
 
-  console.log(userProfile);
   const isPrivateUser =
     !isMe &&
     userProfile?.totalCalories === null &&

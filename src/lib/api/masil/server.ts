@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { MASIL } from "../endPoints";
 import { GET } from "../serverRootAPI";
 import { MasilDetailResponse, RecentMasilsResponse } from "@/types/Response";
@@ -14,10 +15,14 @@ export async function getMasilDetail(serviceToken: string, id: string) {
 }
 
 export async function getRecentMasils(serviceToken: string, size?: number) {
-  const response = await GET<RecentMasilsResponse>({
-    endPoint: `${MASIL.GET_RECENT}?size=${size ? size : ""}`,
-    options: { headers: { Authorization: `Bearer ${serviceToken}` } },
-  });
-
-  return response;
+  try {
+    const response = await GET<RecentMasilsResponse>({
+      endPoint: `${MASIL.GET_RECENT}?size=${size ? size : ""}`,
+      options: { headers: { Authorization: `Bearer ${serviceToken}` } },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+    return redirect(`/not-found`);
+  }
 }
