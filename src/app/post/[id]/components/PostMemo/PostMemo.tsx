@@ -1,17 +1,21 @@
 import { useRouter } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { getUserInfo } from "@/lib/api/User/client";
+import { fetchPostLikedToggle } from "@/lib/api/Post/client";
+
+import { POST_KEY, USER_KEY } from "@/lib/api/queryKeys";
+import checkErrorCode from "@/lib/utils/checkErrorCode";
 
 import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/utils";
 import { PostDetailResponse } from "@/types/Response/Post";
 import { UserInfoType } from "@/types/Response";
 
+import { useUI } from "@/components/uiContext/UiContext";
 import Avatar from "@/components/Avatar/Avatar";
 import { Heart, Location, ViewIcon } from "@/components/icons";
 
 import * as S from "./PostMemo.styles";
-import { USER_KEY } from "@/lib/api/queryKeys";
 
 interface PostMemoProps {
   userInfo: UserInfoType;
@@ -20,6 +24,7 @@ interface PostMemoProps {
 
 const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
   const {
+    id,
     authorId,
     authorName,
     distance,
@@ -30,8 +35,10 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
     depth2,
     likeCount,
     viewCount,
+    liked = true,
   } = postData;
   const { isUserInfoCheck, calories } = calculateWalkingCalories({ userInfo, distance });
+  const { setModalView, openModal } = useUI();
   const router = useRouter();
 
   const { data: authorData } = useQuery({
@@ -39,7 +46,26 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
     queryFn: () => getUserInfo(String(authorId)),
   });
 
-  const handleClickLike = () => {};
+  const { mutate } = useMutation({
+    mutationKey: [POST_KEY.LIKED_STATUS],
+    mutationFn: fetchPostLikedToggle,
+    onSuccess: () => {
+      router.refresh();
+    },
+    onError: ({ message }) => {
+      setModalView("ANIMATION_ALERT_VIEW");
+      openModal({
+        message: checkErrorCode({
+          errorCode: message,
+          defaultMessage: "해당 요청에 문제가 발생하였습니다.<br>잠시 후 다시 시도해주세요!",
+        }),
+      });
+    },
+  });
+
+  const handleClickLike = () => {
+    mutate({ postId: String(id), data: { isLike: liked } });
+  };
 
   if (!authorData) {
     return;
@@ -78,7 +104,10 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
       </S.PostMemoWalkInfo>
       <S.PostMemoContent>{content}</S.PostMemoContent>
       <S.PostMemoBottomInfo>
-        <S.PostMemoLike onClick={handleClickLike}>
+        <S.PostMemoLike
+          onClick={handleClickLike}
+          $liked={liked}
+        >
           <Heart />
           {likeCount}
         </S.PostMemoLike>
