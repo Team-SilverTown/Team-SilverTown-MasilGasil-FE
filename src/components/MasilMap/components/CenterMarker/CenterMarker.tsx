@@ -16,6 +16,7 @@ const CenterMarker = ({ position, size = 44 }: CenterMarkerProps) => {
       <S.CenterMarkerLayout
         $width={size}
         $height={size}
+        style={{ pointerEvents: "none" }}
       >
         <Image
           sizes="100%"
