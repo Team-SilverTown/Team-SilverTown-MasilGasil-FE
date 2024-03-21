@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import userProfile from "@/assets/userProfile.svg";
-import Camera from "@/components/icons/Camera";
+import { Camera } from "@/components/icons";
 import InputUpload from "@/components/InputUpload/InputUpload";
 import { useMutation } from "@tanstack/react-query";
 import { changeProfileImage, getMe } from "@/lib/api/User/client";
