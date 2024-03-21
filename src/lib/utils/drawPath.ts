@@ -1,7 +1,7 @@
 import Theme from "@/styles/theme";
 import { GeoPosition } from "@/types/OriginDataType";
 
-export const drawPath = (path: GeoPosition[]) => {
+const drawPath = (path: GeoPosition[]) => {
   let [minLat, maxLat, minLng, maxLng] = [Infinity, -Infinity, Infinity, -Infinity];
   const CANVAS_SIZE = 480;
   const CANVAS_OFFSET = CANVAS_SIZE * 0.2;
@@ -79,3 +79,5 @@ export const drawPath = (path: GeoPosition[]) => {
 
   return pathCanvas;
 };
+
+export default drawPath;

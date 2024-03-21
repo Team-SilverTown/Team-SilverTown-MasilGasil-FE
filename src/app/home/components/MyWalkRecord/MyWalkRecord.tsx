@@ -1,5 +1,5 @@
 import { ProfileResponse } from "@/types/Response";
-import { convertMeter } from "@/utils";
+import { convertMeter } from "@/lib/utils";
 import S from "./MyWalkRecord.module.css";
 
 interface MyWalkRecordProps {

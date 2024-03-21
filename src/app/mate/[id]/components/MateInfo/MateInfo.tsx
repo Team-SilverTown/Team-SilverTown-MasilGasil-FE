@@ -5,7 +5,7 @@ import { MateActions, MateDropDownMenu } from "./components";
 import Divider from "@/components/Divider/Divider";
 import Avatar from "@/components/Avatar";
 import { MateDetailResponse } from "@/types/Response";
-import convertFormatDate from "@/utils/convertFormatDate";
+import { convertFormatDate } from "@/lib/utils";
 import { Participant } from "@/types/OriginDataType";
 
 interface MateInfoProps {

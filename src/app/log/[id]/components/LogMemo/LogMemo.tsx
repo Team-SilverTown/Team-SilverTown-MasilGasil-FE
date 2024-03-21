@@ -1,9 +1,13 @@
 import { Location } from "@/components/icons";
-import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/utils";
+import {
+  calculateWalkingCalories,
+  convertMeter,
+  convertSeconds,
+  convertFormatDate,
+} from "@/lib/utils";
 import { MasilDetailResponse, UserInfoType } from "@/types/Response";
 
 import * as S from "./LogMemo.styles";
-import convertFormatDate from "@/utils/convertFormatDate";
 
 interface LogMemoProps {
   masilData: MasilDetailResponse;

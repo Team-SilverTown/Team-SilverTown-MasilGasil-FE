@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
-import { pathAbleCheck } from "./utils/pathAbleCheck";
+import { pathAbleCheck } from "./lib/utils";
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)"],

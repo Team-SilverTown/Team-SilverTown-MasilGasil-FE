@@ -22,7 +22,7 @@ import {
 import { PostCreateRequest } from "@/types/Request";
 import { useUI } from "@/components/uiContext/UiContext";
 import { GeoPosition } from "@/types/OriginDataType";
-import calculatePathCenter from "@/lib/utils/calculatePathCenter";
+import { calculatePathCenter } from "@/lib/utils";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 import { useMutation } from "@tanstack/react-query";
 import { POST_KEY } from "@/lib/api/queryKeys";

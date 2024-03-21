@@ -8,13 +8,11 @@ import { useMutation } from "@tanstack/react-query";
 import { MASIL_KEY } from "@/lib/api/queryKeys";
 import { postMasil } from "@/lib/api/masil/client";
 import { MasilRecordRequest } from "@/types/Request";
-import { drawPath } from "@/utils/drawPath";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import useImageUpload from "@/lib/hooks/useImageUpload";
-import calculatePathCenter from "@/lib/utils/calculatePathCenter";
+import { calculateWalkingCalories, calculatePathCenter, drawPath } from "@/lib/utils";
 import useMeStore from "@/stores/useMeStore";
-import { calculateWalkingCalories } from "@/utils";
 import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 import checkMasilErrorCode from "../../utils/checkMasilError";
 

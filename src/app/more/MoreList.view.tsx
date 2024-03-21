@@ -6,7 +6,7 @@ import { ListCard } from "@/components";
 
 import { PostListItem } from "@/types/OriginDataType/Post";
 import { useRouter } from "next/navigation";
-import parseLocationObject from "@/utils/parseLocation";
+import { parseLocationObject } from "@/lib/utils";
 import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
 import { PostCardsSkeleton } from "@/components/skeletons";
 

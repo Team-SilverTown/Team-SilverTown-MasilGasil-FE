@@ -1,7 +1,7 @@
 "use client";
 import { CSSProperties, useState } from "react";
 import Image from "next/image";
-import { calculateWalkingCalories } from "@/utils";
+import { calculateWalkingCalories } from "@/lib/utils";
 import { MeResponse } from "@/types/Response";
 import { UserAddressType } from "@/types/OriginDataType/Location";
 import { Heart, KebabMenu } from "../icons";

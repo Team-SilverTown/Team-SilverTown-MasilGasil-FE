@@ -8,7 +8,7 @@ import useMeStore from "@/stores/useMeStore";
 import { MeResponse } from "@/types/Response";
 
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import { pathAbleCheck } from "@/utils/pathAbleCheck";
+import { pathAbleCheck } from "@/lib/utils";
 
 export const REDIRECT_INABLE_PATHS = ["/", "/signup*", "/auth*"];
 

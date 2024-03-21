@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import calculatePathCenter from "@/lib/utils/calculatePathCenter";
+import { calculatePathCenter } from "@/lib/utils";
 
 import { GeoPosition } from "@/types/OriginDataType";
 import { PostTabType } from "./Post.types";

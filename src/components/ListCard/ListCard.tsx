@@ -2,7 +2,7 @@
 
 import { CSSProperties } from "react";
 
-import { convertSeconds, convertMeter } from "@/utils";
+import { convertSeconds, convertMeter } from "@/lib/utils";
 
 import { Heart } from "../icons";
 import * as S from "./ListCard.styles";

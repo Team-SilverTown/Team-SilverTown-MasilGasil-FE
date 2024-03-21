@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { convertMeter, convertSeconds } from "@/utils";
+import { convertMeter, convertSeconds } from "@/lib/utils";
 
 import { PostListItemResponse } from "@/types/Response/Post";
 

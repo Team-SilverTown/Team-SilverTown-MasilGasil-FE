@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import userProfile from "@/assets/userProfile.svg";
 import { Avatar } from "@/components";
 import useMeStore from "@/stores/useMeStore";
-import { pathAbleCheck } from "@/utils/pathAbleCheck";
+import { pathAbleCheck } from "@/lib/utils";
 
 import * as S from "./BottomNavigator.styles";
 import { BOTTOM_NAV_INABLE } from "../navInablePath";

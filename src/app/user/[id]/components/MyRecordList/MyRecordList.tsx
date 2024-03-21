@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/utils";
+import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/lib/utils";
 import { LogDetailCard, LogSimpleCard } from "@/components";
 import { ProfileResponse, RecentMasil } from "@/types/Response";
 import * as S from "./MyRecordList.styles";

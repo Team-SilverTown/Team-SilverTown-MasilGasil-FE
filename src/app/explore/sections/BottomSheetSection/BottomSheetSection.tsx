@@ -10,7 +10,7 @@ import LoadingDots from "@/components/LoadingDots";
 
 import * as S from "./BottomSheetSection.styles";
 import { TabItem } from "../../components";
-import parseLocationObject from "@/utils/parseLocation";
+import { parseLocationObject } from "@/lib/utils";
 
 interface BottomSheetSectionProps {
   locationData: {

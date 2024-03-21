@@ -4,7 +4,7 @@
  * @param pathList - pathInable string array
  * @param currentPathName - 현재 경로
  **/
-export function pathAbleCheck(pathList: string[], currentPathName: string) {
+const pathAbleCheck = (pathList: string[], currentPathName: string) => {
   return pathList.some((path) => {
     // path 중 마지막에 * 접미사가 있는 경우 해당 경로로 시작하는 모든 경로에 대해 확인
     if (path.endsWith("*")) {
@@ -14,4 +14,6 @@ export function pathAbleCheck(pathList: string[], currentPathName: string) {
       return currentPathName === path;
     }
   });
-}
+};
+
+export default pathAbleCheck;

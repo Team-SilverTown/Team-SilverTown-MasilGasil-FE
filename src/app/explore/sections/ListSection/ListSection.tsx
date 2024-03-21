@@ -3,7 +3,7 @@ import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
 
 import { ListCard } from "@/components";
 import { PostListItem } from "@/types/OriginDataType/Post";
-import parseLocationObject from "@/utils/parseLocation";
+import { parseLocationObject } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { PostCardsSkeleton } from "@/components/skeletons";
 

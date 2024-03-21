@@ -7,7 +7,7 @@ import { FieldErrors, useForm } from "react-hook-form";
 import useEventQuery from "@/lib/hooks/useEventQuery";
 import { checkDuplicateNickname } from "@/lib/api/User/client";
 import { validation_user } from "@/lib/constants/userConstants";
-import { calculateAge } from "@/utils";
+import { calculateAge } from "@/lib/utils";
 import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
 import { SignUpRequest } from "@/types/Request/User";
 import { CheckNickNameResponse } from "@/types/Response";
