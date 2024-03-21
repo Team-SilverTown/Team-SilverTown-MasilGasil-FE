@@ -12,7 +12,7 @@ interface MemberItemProps {
   authorId: number;
   isApplicantItem?: boolean;
   isAuthor: boolean;
-  onAccept: () => void;
+  onAccept: (participantId: string | number) => void;
   onCancel: (participantId: string | number) => void;
   onClickMessage: (participant: Participant) => void;
   key?: string | number;
@@ -51,14 +51,18 @@ const MemberItem = ({
           {isApplicantItem && (
             <MateButton
               text={"수락"}
-              onClick={onAccept}
+              onClick={() => {
+                onAccept(participant.id);
+              }}
             />
           )}
 
           <MateButton
             text={isApplicantItem ? "거절" : "내보내기"}
             isCancelButton={true}
-            onClick={() => onCancel(participant.id)}
+            onClick={() => {
+              onCancel(participant.id);
+            }}
           />
         </S.MemberAction>
       )}

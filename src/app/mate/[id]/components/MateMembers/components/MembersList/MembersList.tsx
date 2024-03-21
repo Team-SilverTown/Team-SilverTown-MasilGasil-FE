@@ -5,6 +5,7 @@ import { MemberItem } from "..";
 import { Participant } from "@/types/OriginDataType";
 import { useUI } from "@/components/uiContext/UiContext";
 import useCancelParticipant from "@/app/mate/[id]/hooks/useCancelParticipant";
+import { useAcceptParticipant } from "@/app/mate/[id]/hooks";
 
 interface MembersListProps {
   participants: Participant[];
@@ -23,14 +24,14 @@ const MembersList = ({
 }: MembersListProps) => {
   const { openModal, setModalView } = useUI();
   const cancelParticipantMutation = useCancelParticipant();
+  const acceptParticipantMutation = useAcceptParticipant();
 
-  const handleAccept = () => {
+  const handleAccept = (participantId: string | number) => {
     setModalView("CONFIRM_VIEW");
     openModal({
-      message: "정말로 신청을 수락하시겠어요?",
-
+      message: "신청을 수락하시겠어요?",
       onClickAccept: () => {
-        // cancelParticipantMutation.mutate({ mateId, participantId });
+        acceptParticipantMutation.mutate({ mateId, participantId });
       },
     });
   };
