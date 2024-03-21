@@ -53,7 +53,7 @@ export async function getMe(serviceToken: string) {
     });
     return response;
   } catch (error) {
-    console.error(error);
+    console.error("me-error", error);
     return undefined;
   }
 }
