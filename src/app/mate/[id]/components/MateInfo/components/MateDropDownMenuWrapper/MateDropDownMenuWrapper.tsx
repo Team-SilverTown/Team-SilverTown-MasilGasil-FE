@@ -15,8 +15,6 @@ const MateDropDownMenuWrapper = ({ postId, authorId }: MateDropDownMenuWrapperPr
 
   const isAuthor = useMemo(() => authorId === userId, [authorId, userId]);
 
-  console.log(userId, authorId);
-
   const { setModalView, openModal } = useUI();
 
   const deployAlert = () => {
