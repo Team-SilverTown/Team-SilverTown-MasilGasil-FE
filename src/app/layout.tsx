@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import TanstackQueryProvider from "@/lib/TanstackQueryProvider";
 import AuthContext from "@/lib/AuthContext";
 import AuthLoader from "@/lib/AuthLoader";
-import { getMe, refreshToken } from "@/lib/api/User/server";
+import { getMe } from "@/lib/api/User/server";
 import StyledComponentsRegistry from "@/lib/registry";
 import { ManagedUIContext, ModalUI, WindowUI } from "@/components/uiContext/UiContext";
 import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
@@ -15,7 +15,6 @@ import { GlobalStyle } from "@/styles/GlobalStyle";
 import "src/styles/globals.css";
 import { authOptions } from "./api/auth/[...nextauth]/options";
 import { Toaster } from "@/components/ShadcnUi/ui/toaster";
-import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "마실가실",
