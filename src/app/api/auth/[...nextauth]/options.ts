@@ -6,9 +6,9 @@ import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
 export const parseJwt = (
   token: string,
 ): { iss: string; iat: number; exp: number; user_id: number; authorities: string } => {
-  var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  var jsonPayload = decodeURIComponent(
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  const jsonPayload = decodeURIComponent(
     atob(base64)
       .split("")
       .map(function (c) {
