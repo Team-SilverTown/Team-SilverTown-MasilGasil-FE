@@ -7,14 +7,14 @@ import {
 import { AuthRequest, SignUpRequest, UserEditRequest } from "@/types/Request/User";
 
 import { GET, PATCH, POST, PUT } from "../clientRootAPI";
-import { USER } from "../endPoints";
+import { AUTH, USER } from "../endPoints";
 
 export const getAuthToken = async () => {
-  return await GET<AuthResponse>({ endPoint: USER.AUTH });
+  return await GET<AuthResponse>({ endPoint: AUTH.AUTH });
 };
 
 export const authenticate = async (data: AuthRequest) => {
-  return await POST<AuthResponse>({ endPoint: USER.AUTH, data });
+  return await POST<AuthResponse>({ endPoint: AUTH.AUTH, data });
 };
 
 export const getMe = async () => {
