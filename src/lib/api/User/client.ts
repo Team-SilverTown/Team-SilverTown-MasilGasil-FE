@@ -9,10 +9,6 @@ import { AuthRequest, SignUpRequest, UserEditRequest } from "@/types/Request/Use
 import { GET, PATCH, POST, PUT } from "../clientRootAPI";
 import { AUTH, USER } from "../endPoints";
 
-export const getAuthToken = async () => {
-  return await GET<AuthResponse>({ endPoint: AUTH.AUTH });
-};
-
 export const authenticate = async (data: AuthRequest) => {
   return await POST<AuthResponse>({ endPoint: AUTH.AUTH, data });
 };
