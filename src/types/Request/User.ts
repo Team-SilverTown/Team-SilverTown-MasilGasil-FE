@@ -5,7 +5,7 @@ export interface MeRequest {
 }
 
 export interface AuthRequest {
-  token: string;
+  accessToken: string;
 }
 
 export interface SignUpRequest {

@@ -9,6 +9,8 @@ import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
 import { useMemo } from "react";
 import useMeStore from "@/stores/useMeStore";
+import { useUI } from "@/components/uiContext/UiContext";
+import { useCancelParticipant, useRequestParticipant } from "@/app/mate/[id]/hooks";
 
 interface MateActionsProps {
   mateData: MateDetailResponse;
@@ -17,16 +19,32 @@ interface MateActionsProps {
 }
 
 const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActionsProps) => {
+  const { setModalView, openModal, closeModal } = useUI();
   const { userId } = useMeStore();
   const theme = useTheme();
 
-  const userStatus = useMemo(() => {
-    if (mateData.authorId === userId) {
-      return "AUTHOR";
+  const cancelParticipantMutation = useCancelParticipant();
+  const postParticipantRequestMutation = useRequestParticipant();
+
+  const participantId = useMemo(() => {
+    const matchParticipant = mateData.participants.find(
+      (participant) => userId === participant.userId,
+    );
+
+    if (matchParticipant) {
+      return matchParticipant.id;
     }
 
+    return false;
+  }, [mateData, userId]);
+
+  const userStatus = useMemo(() => {
     if (mateData.status === "CLOSED") {
       return "CLOSE";
+    }
+
+    if (mateData.authorId === userId) {
+      return "AUTHOR";
     }
 
     const isAccept = acceptedUserList.find((acceptedUser) => acceptedUser.userId === userId);
@@ -42,15 +60,36 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
     }
 
     return "NO_ACTION";
-  }, [requestedUserList, acceptedUserList, mateData]);
+  }, [requestedUserList, acceptedUserList, mateData, userId]);
 
   if (!theme) {
     return;
   }
 
-  const handleClickRequest = () => {};
+  const handleClickRequest = () => {
+    setModalView("MATE_REQUEST_VIEW");
+    openModal({
+      onAccept: (message: string) => {
+        postParticipantRequestMutation.mutate({ message, mateId: mateData.id });
+        closeModal();
+      },
+    });
+  };
 
-  const handleClickCancel = () => {};
+  const handleClickCancel = () => {
+    if (!participantId) {
+      return;
+    }
+
+    setModalView("CONFIRM_VIEW");
+    openModal({
+      message: "정말로 신청을 거절하시겠어요?",
+      warningMessage: "거절하시면 되돌릴 수 없습니다.",
+      onClickAccept: () => {
+        cancelParticipantMutation.mutate({ mateId: mateData.id, participantId: participantId });
+      },
+    });
+  };
 
   const ButtonList = {
     Request: createButton({ theme, text: "메이트 신청하기", onClick: handleClickRequest }),
@@ -61,10 +100,14 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
       onClick: handleClickCancel,
       isSecondButton: true,
     }),
-
     Accepted: createButton({ theme, text: "참여중 입니다.", disabled: true }),
     Completed: createButton({ theme, text: "종료된 메이트", disabled: true }),
+    Author: createButton({ theme, text: "메이트 모집중...", disabled: true }),
   };
+
+  if (!userId) {
+    return <></>;
+  }
 
   return (
     <S.MateActionsLayout>
@@ -85,6 +128,8 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
       )}
 
       {userStatus === "CLOSE" && <>{ButtonList.Completed}</>}
+
+      {userStatus === "AUTHOR" && ButtonList.Author}
     </S.MateActionsLayout>
   );
 };

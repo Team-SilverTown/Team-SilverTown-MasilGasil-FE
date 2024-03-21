@@ -9,9 +9,9 @@ const error = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/home");
     setModalView("ANIMATION_ALERT_VIEW");
-    openModal({ message: "해당 메이트 페이지는 없는 페이지입니다." });
+    openModal({ message: "메이트 페이지를 불러올 수 없습니다.<br>잠시 후 다시 시도해주세요!" });
+    router.replace("/home");
   }, []);
   return <></>;
 };

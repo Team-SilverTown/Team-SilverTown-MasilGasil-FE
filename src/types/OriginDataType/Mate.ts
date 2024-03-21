@@ -13,4 +13,5 @@ export interface Participant {
   nickname: string;
   profileUrl: string | null;
   status: MateParticipantStatus;
+  message: string;
 }

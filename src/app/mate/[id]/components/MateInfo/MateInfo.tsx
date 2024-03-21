@@ -27,7 +27,10 @@ const MateInfo = ({ mateData, postId, acceptedUserList, requestedUserList }: Mat
           userId={authorId.toString()}
         />
         <p className="grow text-medium font-medium whitespace-nowrap">{authorNickname}</p>
-        <MateDropDownMenu postId={postId} />
+        <MateDropDownMenu
+          postId={postId}
+          authorId={authorId}
+        />
       </div>
 
       <p className="w-full text-medium font-medium leading-normal">{content}</p>

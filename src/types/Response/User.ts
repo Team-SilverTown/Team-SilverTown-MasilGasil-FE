@@ -1,7 +1,12 @@
 import { IntensityOption } from "../OriginDataType";
 
 export interface AuthResponse {
-  token?: string;
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface RefreshResponse {
+  accessToken: string;
 }
 
 export interface MeResponse {
