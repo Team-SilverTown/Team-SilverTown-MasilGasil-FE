@@ -11,13 +11,14 @@ const bypassPaths = [
   "/",
   "/manifest*",
   "/swe-worker*",
-  "/sw.js",
+  "/sw.js*",
   "/workbox-*",
   "/icons*",
   "/fonts*",
   "/favicon*",
+  "/call*",
 ];
-const protectedPaths = ["/setting*"]; // 로그인이 필요한 페이지 목록
+const protectedPaths = ["/setting*", "/log/record", "/diary"]; // 로그인이 필요한 페이지 목록
 const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 export async function middleware(request: NextRequest) {

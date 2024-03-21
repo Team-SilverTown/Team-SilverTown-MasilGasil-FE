@@ -7,8 +7,12 @@ export const TEST_ENDPOINT = {
   TEST_POST: "/data",
 };
 
+export const AUTH = {
+  AUTH: "/api/v1/auth/login",
+  REFRESH: "/api/v1/users/auth/refresh",
+};
+
 export const USER = {
-  AUTH: "/api/v1/users/login",
   ME: "/api/v1/users/me",
   CHECK_NICKNAME: "/api/v1/users/check-nickname",
   SIGNUP: "/api/v1/users/extra-info",
