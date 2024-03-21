@@ -40,7 +40,8 @@ type ActionsType =
 
 const MIN_INSERT_PIN_RANGE = 30; // M 단위
 
-const MIN_INSERT_PATH_RAGE = 25; // M 단위
+// 영상 제작 마무리 후 25M
+const MIN_INSERT_PATH_RAGE = 10; // M 단위
 const MAX_INSERT_PATH_RAGE = 80; // M 단위
 
 const logRecordReducer = (state: MasilRecordRequest, action: ActionsType) => {
