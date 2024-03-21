@@ -1,8 +1,7 @@
 "use client";
 
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
-import { postTest } from "@/lib/api/Test/test";
 import { TEST_KEY, USER_KEY } from "@/lib/api/queryKeys";
 import { getAuthToken } from "@/lib/api/User/client";
 import useEventQuery from "@/lib/hooks/useEventQuery";
@@ -11,20 +10,11 @@ const useMainModel = () => {
   const { data, isLoading, refetch } = useEventQuery({
     key: [USER_KEY.AUTH],
     queryFn: getAuthToken,
-    onSuccessFn: (data) => console.log(data, "ASDAS"),
     // staleTime: 5 * 1000,
     // suspense: true,
   });
 
-  const mutation = useMutation({
-    mutationKey: [TEST_KEY.POST],
-    mutationFn: async (data: string) => postTest({ data }),
-    onSuccess: (data) => {
-      console.log("POST SUCCESS:", data?.data);
-    },
-  });
-
-  return { data, isLoading, refetch, mutation };
+  return { data, isLoading, refetch };
 };
 
 export default useMainModel;
