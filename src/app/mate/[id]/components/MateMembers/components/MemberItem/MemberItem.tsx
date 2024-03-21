@@ -38,7 +38,7 @@ const MemberItem = ({
 
       <S.MemberNickName>{nickname}</S.MemberNickName>
 
-      {isAuthor && authorId == userId && (
+      {isAuthor && authorId !== userId && (
         <S.MemberAction>
           <MateButton
             text={"참가신청 메세지"}

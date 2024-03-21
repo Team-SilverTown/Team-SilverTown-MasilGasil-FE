@@ -104,8 +104,6 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
 
   return (
     <S.MateActionsLayout>
-      {ButtonList.Cancel}
-      {ButtonList.Request}
       {userStatus === "NO_ACTION" && ButtonList.Request}
 
       {userStatus === "REQUESTED" && (
