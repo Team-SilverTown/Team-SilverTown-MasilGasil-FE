@@ -9,13 +9,8 @@ import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
 import { useMemo } from "react";
 import useMeStore from "@/stores/useMeStore";
-import { useMutation } from "@tanstack/react-query";
-import { postMateParticipantRequest } from "@/lib/api/Mate/client";
-import { MATE_KEY } from "@/lib/api/queryKeys";
 import { useUI } from "@/components/uiContext/UiContext";
-
-import useCancelParticipant from "@/app/mate/[id]/hooks/useCancelParticipant";
-import { useRouter } from "next/navigation";
+import { useCancelParticipant, useRequestParticipant } from "@/app/mate/[id]/hooks";
 
 interface MateActionsProps {
   mateData: MateDetailResponse;
@@ -27,31 +22,9 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   const { setModalView, openModal, closeModal } = useUI();
   const { userId } = useMeStore();
   const theme = useTheme();
-  const router = useRouter();
 
   const cancelParticipantMutation = useCancelParticipant();
-
-  const postParticipantRequestMutation = useMutation({
-    mutationKey: [MATE_KEY.POST_MATE_PARTICIPANT_REQUEST],
-    mutationFn: async (param: { message: string; mateId: string | number }) =>
-      await postMateParticipantRequest(param),
-
-    onSuccess: () => {
-      setModalView("DONE_VIEW");
-      openModal({
-        message: "신청이 완료되었습니다!",
-      });
-
-      router.refresh();
-    },
-
-    onError: (error) => {
-      setModalView("ANIMATION_ALERT_VIEW");
-      openModal({
-        message: "신청 과정에 문제가 발생하였습니다.",
-      });
-    },
-  });
+  const postParticipantRequestMutation = useRequestParticipant();
 
   const participantId = useMemo(() => {
     const matchParticipant = mateData.participants.find(
@@ -149,21 +122,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
         </>
       )}
 
-      {userStatus === "CLOSE" && (
-        <>
-          {ButtonList.Completed}
-
-          {/* <Button
-            variant="naked"
-            onClickHandler={handleClickCompletedChatting}
-            style={{
-              padding: "1rem",
-            }}
-          >
-            지난 대화 확인하기
-          </Button> */}
-        </>
-      )}
+      {userStatus === "CLOSE" && <>{ButtonList.Completed}</>}
 
       {userStatus === "AUTHOR" && ButtonList.Author}
     </S.MateActionsLayout>
