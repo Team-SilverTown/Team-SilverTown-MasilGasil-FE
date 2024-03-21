@@ -81,7 +81,14 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
       return;
     }
 
-    cancelParticipantMutation.mutate({ mateId: mateData.id, participantId: participantId });
+    setModalView("CONFIRM_VIEW");
+    openModal({
+      message: "정말로 신청을 거절하시겠어요?",
+      warningMessage: "거절하시면 되돌릴 수 없습니다.",
+      onClickAccept: () => {
+        cancelParticipantMutation.mutate({ mateId: mateData.id, participantId: participantId });
+      },
+    });
   };
 
   const ButtonList = {
