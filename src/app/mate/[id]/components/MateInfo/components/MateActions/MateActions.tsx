@@ -13,6 +13,8 @@ import { useMutation } from "@tanstack/react-query";
 import { postMateParticipantRequest } from "@/lib/api/Mate/client";
 import { MATE_KEY } from "@/lib/api/queryKeys";
 import { useUI } from "@/components/uiContext/UiContext";
+
+import useCancelParticipant from "@/app/mate/[id]/hooks/useCancelParticipant";
 import { useRouter } from "next/navigation";
 
 interface MateActionsProps {
@@ -27,6 +29,8 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   const theme = useTheme();
   const router = useRouter();
 
+  const cancelParticipantMutation = useCancelParticipant();
+
   const postParticipantRequestMutation = useMutation({
     mutationKey: [MATE_KEY.POST_MATE_PARTICIPANT_REQUEST],
     mutationFn: async (param: { message: string; mateId: string | number }) =>
@@ -38,18 +42,28 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
         message: "신청이 완료되었습니다!",
       });
 
-      router.replace(`/mate/${mateData.id}`);
+      router.refresh();
     },
 
-    onError: ({ message }) => {
-      // 에러 메세지 추가
+    onError: (error) => {
       setModalView("ANIMATION_ALERT_VIEW");
       openModal({
         message: "신청 과정에 문제가 발생하였습니다.",
       });
-      router.replace(`/mate/${mateData.id}`);
     },
   });
+
+  const participantId = useMemo(() => {
+    const matchParticipant = mateData.participants.find(
+      (participant) => userId === participant.userId,
+    );
+
+    if (matchParticipant) {
+      return matchParticipant.id;
+    }
+
+    return false;
+  }, [mateData, userId]);
 
   const userStatus = useMemo(() => {
     if (mateData.status === "CLOSED") {
@@ -85,14 +99,16 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
       onAccept: (message: string) => {
         postParticipantRequestMutation.mutate({ message, mateId: mateData.id });
         closeModal();
-        router.refresh();
       },
     });
   };
 
   const handleClickCancel = () => {
-    // 추후 취소에대한 모달 추가 제공
-    console.log("click Cancel button");
+    if (!participantId) {
+      return;
+    }
+
+    cancelParticipantMutation.mutate({ mateId: mateData.id, participantId: participantId });
   };
 
   const ButtonList = {
@@ -115,6 +131,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
 
   return (
     <S.MateActionsLayout>
+      {ButtonList.Cancel}
       {ButtonList.Request}
       {userStatus === "NO_ACTION" && ButtonList.Request}
 

@@ -56,6 +56,7 @@ const MateMembers = ({ mateData, acceptedUserList, requestUserList }: MateMember
             participants={acceptedUserList}
             authorId={mateData.authorId}
             isAuthor={isAuthor}
+            mateId={mateData.id}
           />
         )}
 
@@ -65,6 +66,7 @@ const MateMembers = ({ mateData, acceptedUserList, requestUserList }: MateMember
             authorId={mateData.authorId}
             isApplicantList={true}
             isAuthor={isAuthor}
+            mateId={mateData.id}
           />
         )}
       </S.MateTabContent>

@@ -4,12 +4,14 @@ import * as S from "./MembersList.styles";
 import { MemberItem } from "..";
 import { Participant } from "@/types/OriginDataType";
 import { useUI } from "@/components/uiContext/UiContext";
+import useCancelParticipant from "@/app/mate/[id]/hooks/useCancelParticipant";
 
 interface MembersListProps {
   participants: Participant[];
   authorId: number;
   isAuthor: boolean;
   isApplicantList?: boolean;
+  mateId: string | number;
 }
 
 const MembersList = ({
@@ -17,17 +19,31 @@ const MembersList = ({
   authorId,
   isAuthor,
   isApplicantList = false,
+  mateId,
 }: MembersListProps) => {
   const { openModal, setModalView } = useUI();
+  const cancelParticipantMutation = useCancelParticipant();
 
   const handleAccept = () => {
-    setModalView("DEPLOY_ALERT_VIEW");
-    openModal();
+    setModalView("CONFIRM_VIEW");
+    openModal({
+      message: "정말로 신청을 수락하시겠어요?",
+
+      onClickAccept: () => {
+        // cancelParticipantMutation.mutate({ mateId, participantId });
+      },
+    });
   };
 
-  const handleCancel = () => {
-    setModalView("DEPLOY_ALERT_VIEW");
-    openModal();
+  const handleCancel = (participantId: string | number) => {
+    setModalView("CONFIRM_VIEW");
+    openModal({
+      message: "정말로 신청을 거절하시겠어요?",
+      warningMessage: "거절하시면 되돌릴 수 없습니다.",
+      onClickAccept: () => {
+        cancelParticipantMutation.mutate({ mateId, participantId });
+      },
+    });
   };
 
   const handleClickMessage = (participant: Participant) => {

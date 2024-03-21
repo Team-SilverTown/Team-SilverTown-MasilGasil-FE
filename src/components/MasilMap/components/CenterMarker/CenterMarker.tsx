@@ -1,4 +1,3 @@
-import Theme from "@/styles/theme";
 import * as S from "./CenterMarker.styles";
 
 import { CustomOverlayMap } from "react-kakao-maps-sdk";

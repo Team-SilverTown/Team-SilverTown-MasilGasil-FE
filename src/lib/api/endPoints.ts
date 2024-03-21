@@ -8,7 +8,7 @@ export const TEST_ENDPOINT = {
 };
 
 export const USER = {
-  AUTH: "/api/v1/users/login",
+  AUTH: "/api/v1/auth/login",
   ME: "/api/v1/users/me",
   CHECK_NICKNAME: "/api/v1/users/check-nickname",
   SIGNUP: "/api/v1/users/extra-info",
@@ -38,4 +38,18 @@ export const MATE = {
   GET_DETAIL: "/api/v1/mates",
   POST_MATE_PARTICIPANT_REQUEST: (mateId: string | number) =>
     `/api/v1/mates/${mateId}/participants`,
+  DELETE_CANCEL_PARTICIPANT: ({
+    mateId,
+    participantId,
+  }: {
+    mateId: string | number;
+    participantId: string | number;
+  }) => `/api/v1/mates/${mateId}/participants/${participantId}`,
+  ACCEPT_PARTICIPANT: ({
+    mateId,
+    participantId,
+  }: {
+    mateId: string | number;
+    participantId: string | number;
+  }) => `/api/v1/mates/${mateId}/participants/${participantId}`,
 };
