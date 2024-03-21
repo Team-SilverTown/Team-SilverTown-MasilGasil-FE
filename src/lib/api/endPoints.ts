@@ -37,6 +37,7 @@ export const POST = {
   GET_DETAIL: "/api/v1/posts",
   POST: "/api/v1/posts",
   GET_LIST: "/api/v1/posts",
+  LIKED_STATUS: "/api/v1/posts",
 };
 
 export const MATE = {
