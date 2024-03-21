@@ -40,3 +40,9 @@ export const WEATHER_KEY = {
 export const MAP_KEY = {
   GET_LOCATION_DATA: "get_location_data",
 };
+
+export const MATE_KEY = {
+  POST_MATE_PARTICIPANT_REQUEST: "post_mate_participant_request",
+  DELETE_MATE_PARTICIPANT: "delete_mate_participant",
+  ACCEPT_MATE_PARTICIPANT: "accept_mate_participant",
+};
