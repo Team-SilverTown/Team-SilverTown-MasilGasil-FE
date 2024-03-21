@@ -3,7 +3,7 @@ import KakaoProvider from "next-auth/providers/kakao";
 
 import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
 
-const parseJwt = (
+export const parseJwt = (
   token: string,
 ): { iss: string; iat: number; exp: number; user_id: number; authorities: string } => {
   var base64Url = token.split(".")[1];
@@ -20,8 +20,11 @@ const parseJwt = (
   return JSON.parse(jsonPayload);
 };
 
-async function refreshAccessToken(token: any) {
-  const refreshedToken = await refreshToken(token.serviceToken, token.refreshToken);
+export async function refreshAccessToken(token: any) {
+  const refreshedToken = await refreshToken({
+    serviceToken: token.serviceToken,
+    refreshToken: token.refreshToken,
+  });
 
   return {
     serviceToken: refreshedToken,

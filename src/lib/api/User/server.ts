@@ -15,7 +15,13 @@ export async function authenticate(data: AuthRequest) {
   return response;
 }
 
-export async function refreshToken(serviceToken: string, refreshToken: string) {
+export async function refreshToken({
+  serviceToken,
+  refreshToken,
+}: {
+  serviceToken: string;
+  refreshToken: string;
+}) {
   try {
     const response = await fetch(`${process.env.DB_BASE_URL}${AUTH.REFRESH}`, {
       headers: {
