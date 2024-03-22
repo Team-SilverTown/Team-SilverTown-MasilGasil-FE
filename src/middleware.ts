@@ -6,11 +6,11 @@ import { parseJwt } from "./app/api/auth/[...nextauth]/options";
 import { RequestCookies, ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|masil.ico|fonts|images).*)"],
 };
 
 const bypassPaths = [
-  "/",
+  // "/",
   "/manifest*",
   "/swe-worker*",
   "/sw.js*",
@@ -20,7 +20,7 @@ const bypassPaths = [
   "/favicon*",
   // "/call*",
 ];
-const protectedPaths = ["/setting*", "/log/record", "/diary"]; // 로그인이 필요한 페이지 목록
+const protectedPaths = ["/home", "/setting*", "/log/record", "/diary"]; // 로그인이 필요한 페이지 목록
 const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 const sessionCookie = process.env.NEXTAUTH_URL?.startsWith("https://")
@@ -82,6 +82,7 @@ function applySetCookie(req: NextRequest, res: NextResponse): void {
 
 export async function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname;
+  console.log("middleware catch", currentPath);
 
   // 미들웨어 인터셉트가 필요없는 경우 bypass
   const isBypassPaths = pathAbleCheck(bypassPaths, currentPath);
@@ -98,10 +99,6 @@ export async function middleware(request: NextRequest) {
         refreshToken: token.refreshToken as string,
       });
 
-      // console.log("old", token.serviceToken);
-      // console.log("new", newServiceToken);
-      // console.log("-------------------–");
-
       // nexauth 사양에 맞도록 쿠키 정보를 인코딩
       const newSessionToken = await encode({
         secret: process.env.NEXTAUTH_SECRET as string,
@@ -112,11 +109,11 @@ export async function middleware(request: NextRequest) {
         // maxAge: 30 * 24 * 60 * 60, // 30 days, or get the previous token's exp
       });
 
-      // console.log("after");
-      // console.log(
-      //   await decode({ secret: process.env.NEXTAUTH_SECRET as string, token: newSessionToken }),
-      // );
-      // console.log("------------------–");
+      console.log("after");
+      console.log(
+        await decode({ secret: process.env.NEXTAUTH_SECRET as string, token: newSessionToken }),
+      );
+      console.log("------------------–");
 
       // 갱신된 쿠키 정보를 브라우저측에서도 인지할 수 있도록 redirect
       const response = NextResponse.redirect(request.url);
@@ -136,10 +133,11 @@ export async function middleware(request: NextRequest) {
   // 미인증, 가인증 유저인 경우, 보호되는 경로로 접근할 수 없도록 함.
   const protectedPathsAccessInable = pathAbleCheck(protectedPaths, currentPath);
   if (!token || (!token.nickname && protectedPathsAccessInable)) {
+    console.log("가라", token);
     const url = request.nextUrl.clone();
     url.pathname = "/";
 
-    return NextResponse.redirect(url);
+    if (currentPath !== "/") return NextResponse.redirect(url);
   }
 
   // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등F)

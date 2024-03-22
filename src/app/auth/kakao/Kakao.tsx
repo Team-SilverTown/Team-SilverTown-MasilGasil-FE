@@ -12,11 +12,11 @@ const Kakao = () => {
 
   const { data: session } = useSession();
 
-  useEffect(() => {
-    if (session) {
-      console.log("kakao (session)", session);
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     console.log("kakao (session)", session);
+  //   }
+  // }, [session]);
 
   const {
     data: meData,
@@ -29,7 +29,7 @@ const Kakao = () => {
   });
 
   useEffect(() => {
-    console.log("kakao 분기처리 (meData)", meData);
+    console.log("kakao 분기처리 (meData)", meData, session);
 
     if (!meData) return;
 
@@ -40,7 +40,7 @@ const Kakao = () => {
       console.log("가입 유저->홈뷰");
       router.replace("/home");
     }
-  }, [meData]);
+  }, [meData, session]);
 
   if (isLoading)
     return (
