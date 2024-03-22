@@ -3,8 +3,8 @@
 import { useUI } from "@/components/uiContext/UiContext";
 import { getMe, patchIsPublic } from "@/lib/api/User/client";
 import { USER_KEY } from "@/lib/api/queryKeys";
-import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
-import useMeStore from "@/stores/useMeStore";
+import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
+import useMeStore from "@/lib/stores/useMeStore";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 

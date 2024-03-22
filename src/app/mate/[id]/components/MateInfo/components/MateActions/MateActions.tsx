@@ -8,7 +8,7 @@ import { DefaultTheme } from "styled-components";
 import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
 import { useMemo } from "react";
-import useMeStore from "@/stores/useMeStore";
+import useMeStore from "@/lib/stores/useMeStore";
 import { useUI } from "@/components/uiContext/UiContext";
 import { useCancelParticipant, useRequestParticipant } from "@/app/mate/[id]/hooks";
 

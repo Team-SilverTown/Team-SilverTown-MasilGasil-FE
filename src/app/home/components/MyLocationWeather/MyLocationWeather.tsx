@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 
 import fetchNearbyStation from "../../api/fetchNearbyStation";
 import { WEATHER_KEY } from "@/lib/api/queryKeys";

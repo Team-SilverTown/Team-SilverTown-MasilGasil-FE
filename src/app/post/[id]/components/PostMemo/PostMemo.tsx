@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getUserInfo } from "@/lib/api/User/client";
 
-import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/utils";
+import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/lib/utils";
 import { PostDetailResponse } from "@/types/Response/Post";
 import { UserInfoType } from "@/types/Response";
 

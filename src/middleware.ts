@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getToken, encode, decode } from "next-auth/jwt";
-import { pathAbleCheck } from "./utils/pathAbleCheck";
+import { pathAbleCheck } from "./lib/utils/pathAbleCheck";
 import { refreshToken } from "./lib/api/User/server";
 import { parseJwt } from "./app/api/auth/[...nextauth]/options";
 import { RequestCookies, ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";

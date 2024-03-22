@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import useMeStore from "@/stores/useMeStore";
+import useMeStore from "@/lib/stores/useMeStore";
 
 import calculatePathCenter from "@/lib/utils/calculatePathCenter";
 

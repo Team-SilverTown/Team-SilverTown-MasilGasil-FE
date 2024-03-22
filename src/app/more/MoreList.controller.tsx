@@ -5,7 +5,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { POST_KEY } from "@/lib/api/queryKeys";
 import { getPostList } from "@/lib/api/Post/client";
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 import { PostListRequest } from "@/types/Request";
 
 import MoreListView from "./MoreList.view";

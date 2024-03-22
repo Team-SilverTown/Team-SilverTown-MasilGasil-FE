@@ -5,7 +5,7 @@ import { MateDetailResponse } from "@/types/Response";
 import * as S from "./MateMembers.styles";
 import { Tab } from "@/components";
 import { useMemo, useState } from "react";
-import useMeStore from "@/stores/useMeStore";
+import useMeStore from "@/lib/stores/useMeStore";
 import { MembersList } from "./components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Participant } from "@/types/OriginDataType";

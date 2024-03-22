@@ -1,6 +1,6 @@
 "use client";
 
-import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
+import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
 import * as S from "./LoadingSpinner.styles";
 import Lottie from "react-lottie";
 import animationData from "./animationData.json";

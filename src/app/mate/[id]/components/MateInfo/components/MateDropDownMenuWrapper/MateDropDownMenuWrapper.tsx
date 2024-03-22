@@ -2,7 +2,7 @@
 
 import { DropDownMenu } from "@/components";
 import { useUI } from "@/components/uiContext/UiContext";
-import useMeStore from "@/stores/useMeStore";
+import useMeStore from "@/lib/stores/useMeStore";
 import { useMemo } from "react";
 
 interface MateDropDownMenuWrapperProps {

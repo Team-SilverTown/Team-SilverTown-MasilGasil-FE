@@ -3,7 +3,7 @@ import { Map } from "react-kakao-maps-sdk";
 import throttle from "lodash.throttle";
 import debounce from "lodash.debounce";
 
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 import { GeoPosition } from "@/types/OriginDataType";
 import { useUI } from "@/components/uiContext/UiContext";
 import { LOG_RECORD_MESSAGE } from "@/app/log/record/LogRecord.constants";

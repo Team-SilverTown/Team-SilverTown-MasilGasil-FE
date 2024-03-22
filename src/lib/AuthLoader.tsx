@@ -3,12 +3,12 @@
 import { PropsWithChildren, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
-import useAuthStore from "@/stores/useAuthStore";
-import useMeStore from "@/stores/useMeStore";
+import useAuthStore from "@/lib/stores/useAuthStore";
+import useMeStore from "@/lib/stores/useMeStore";
 import { MeResponse } from "@/types/Response";
 
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import { pathAbleCheck } from "@/utils/pathAbleCheck";
+import { pathAbleCheck } from "@/lib/utils/pathAbleCheck";
 
 export const REDIRECT_INABLE_PATHS = ["/", "/signup*", "/auth*"];
 

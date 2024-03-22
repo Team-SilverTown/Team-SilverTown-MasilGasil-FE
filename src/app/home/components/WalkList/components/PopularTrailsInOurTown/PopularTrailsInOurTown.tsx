@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect } from "react";
 
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 
 import getDetailedAddress from "@/app/home/utils/getDetailedAddress";
 

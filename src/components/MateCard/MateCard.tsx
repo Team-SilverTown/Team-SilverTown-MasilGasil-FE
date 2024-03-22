@@ -1,4 +1,4 @@
-import convertFormatDate from "@/utils/convertFormatDate";
+import convertFormatDate from "@/lib/utils/convertFormatDate";
 import Avatar from "@/components/Avatar/Avatar";
 import * as S from "./MateCard.styles";
 interface MateCardProps {

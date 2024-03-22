@@ -5,7 +5,7 @@ import { LOG_RECORD_MESSAGE } from "./LogRecord.constants";
 import useLogRecordContext from "./context/LogRecordContext";
 import { useUI } from "@/components/uiContext/UiContext";
 
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 import { useRouter } from "next/navigation";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
 
