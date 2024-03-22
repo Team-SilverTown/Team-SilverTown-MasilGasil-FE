@@ -39,6 +39,9 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     async jwt({ token, account, trigger, session }) {
       if (trigger === "update" && session.nickname) {
@@ -76,7 +79,8 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token, trigger, newSession }) {
       if (trigger === "update") {
-        session.serviceToken = newSession.serviceToken;
+        console.log("UPDATE", newSession);
+        newSession.serviceToken && (session.serviceToken = newSession.serviceToken);
         session.nickname = newSession.nickname;
       }
 

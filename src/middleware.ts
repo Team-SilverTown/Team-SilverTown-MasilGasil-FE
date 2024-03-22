@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { getToken, encode, decode } from "next-auth/jwt";
 import { pathAbleCheck } from "./lib/utils/pathAbleCheck";
 import { refreshToken } from "./lib/api/User/server";
-import { parseJwt } from "./app/api/auth/[...nextauth]/options";
+import { authOptions, parseJwt } from "./app/api/auth/[...nextauth]/options";
 import { RequestCookies, ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
+import { getServerSession } from "next-auth";
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|masil.ico|fonts|images).*)"],
@@ -132,17 +133,16 @@ export async function middleware(request: NextRequest) {
 
   // 미인증, 가인증 유저인 경우, 보호되는 경로로 접근할 수 없도록 함.
   const protectedPathsAccessInable = pathAbleCheck(protectedPaths, currentPath);
-  if (!token || (!token.nickname && protectedPathsAccessInable)) {
-    console.log("가라", token);
+  if (token && !token.serviceToken && protectedPathsAccessInable) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
 
     if (currentPath !== "/") return NextResponse.redirect(url);
   }
 
-  // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등F)
+  // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등)
   const publicPathsAccessInable = pathAbleCheck(publicPaths, currentPath);
-  if (token && token.nickname && publicPathsAccessInable) {
+  if (token && token.serviceToken && token.nickname && publicPathsAccessInable) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
 

@@ -25,7 +25,7 @@ const AuthLoader = ({
   const { setMe, initMe } = useMeStore();
   const [_, setToken] = useLocalStorage("serviceToken");
 
-  const { data: session, status, update } = useSession();
+  const { data: session, update } = useSession();
 
   const redirectInable = pathAbleCheck(REDIRECT_INABLE_PATHS, currentPathName);
 
