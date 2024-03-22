@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CustomInput = styled.button<{ $isSelected: boolean }>`
-  width: 32.9rem;
+  width: 100%;
   height: 5.2rem;
   background-color: ${(props) => props.theme.transparent_10};
   color: ${(props) =>
