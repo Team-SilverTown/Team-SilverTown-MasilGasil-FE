@@ -3,19 +3,14 @@
 import React, { useEffect, useMemo } from "react";
 import { signIn } from "next-auth/react";
 
-import useTheme from "@/lib/hooks/useTheme";
 import useAuthStore from "@/lib/stores/useAuthStore";
 import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
 import { Button } from "@/components";
-import kakao_login from "@/assets/kakao_login.png";
 
 import * as S from "./AuthButton.styles";
-import Image from "next/image";
 import { Message } from "@/components/icons";
 
 const AuthButton = () => {
-  const theme = useTheme();
-
   const { isLogIn } = useAuthStore();
   const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
 
