@@ -83,7 +83,6 @@ function applySetCookie(req: NextRequest, res: NextResponse): void {
 
 export async function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname;
-  console.log("middleware catch", currentPath);
 
   // 미들웨어 인터셉트가 필요없는 경우 bypass
   const isBypassPaths = pathAbleCheck(bypassPaths, currentPath);
@@ -110,11 +109,11 @@ export async function middleware(request: NextRequest) {
         // maxAge: 30 * 24 * 60 * 60, // 30 days, or get the previous token's exp
       });
 
-      console.log("after");
-      console.log(
-        await decode({ secret: process.env.NEXTAUTH_SECRET as string, token: newSessionToken }),
-      );
-      console.log("------------------–");
+      // console.log("after");
+      // console.log(
+      //   await decode({ secret: process.env.NEXTAUTH_SECRET as string, token: newSessionToken }),
+      // );
+      // console.log("------------------–");
 
       // 갱신된 쿠키 정보를 브라우저측에서도 인지할 수 있도록 redirect
       const response = NextResponse.redirect(request.url);
