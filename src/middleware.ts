@@ -27,15 +27,15 @@ const sessionCookie = process.env.NEXTAUTH_URL?.startsWith("https://")
   ? "__Secure-next-auth.session-token"
   : "next-auth.session-token";
 
-function signOut(request: NextRequest) {
-  const response = NextResponse.redirect("/");
+// function signOut(request: NextRequest) {
+//   const response = NextResponse.redirect("/");
 
-  request.cookies.getAll().forEach((cookie) => {
-    if (cookie.name.includes("next-auth")) response.cookies.delete(cookie.name);
-  });
+//   request.cookies.getAll().forEach((cookie) => {
+//     if (cookie.name.includes("next-auth")) response.cookies.delete(cookie.name);
+//   });
 
-  return response;
-}
+//   return response;
+// }
 
 /**
  * @param token
@@ -131,7 +131,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (!token) return signOut(request);
+  // if (!token) return signOut(request);
 
   // 미인증, 가인증 유저인 경우, 보호되는 경로로 접근할 수 없도록 함.
   const protectedPathsAccessInable = pathAbleCheck(protectedPaths, currentPath);
