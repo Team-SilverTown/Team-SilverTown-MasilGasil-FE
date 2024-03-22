@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getToken, encode, decode } from "next-auth/jwt";
-import { pathAbleCheck } from "./utils/pathAbleCheck";
 import { refreshToken } from "./lib/api/User/server";
+import { pathAbleCheck } from "./lib/utils";
 import { parseJwt } from "./app/api/auth/[...nextauth]/options";
 import { RequestCookies, ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)"],
 };
+
+pathAbleCheck;
 
 const bypassPaths = [
   "/",
