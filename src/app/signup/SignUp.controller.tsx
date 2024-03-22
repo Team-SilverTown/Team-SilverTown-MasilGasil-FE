@@ -54,11 +54,6 @@ const SignUpController = () => {
   const onValid = (data: SignUpFormProps) => {
     showLoadingSpinner();
     signUpMutation.mutate(data);
-    if (signUpMutation.isSuccess) {
-      const { update } = useSession();
-      update({ nickname: data.nickname });
-      router.replace("/home");
-    }
   };
 
   const onInvalid = (errors: FieldErrors) => {

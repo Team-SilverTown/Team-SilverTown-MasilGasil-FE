@@ -71,7 +71,6 @@ export const authOptions: NextAuthOptions = {
           }
 
           const me = await getMe(token.serviceToken as string);
-          console.log("auth", me);
           token.nickname = me?.nickname;
         }
       }

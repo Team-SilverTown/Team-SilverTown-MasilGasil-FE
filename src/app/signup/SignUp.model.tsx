@@ -32,6 +32,7 @@ const useSignUpModel = () => {
     onSuccess: () => {
       closeLoadingSpinner();
       setAuth({ isLogIn: true, serviceToken: token! });
+      router.replace("/home");
     },
     onError: (error) => {
       setModalView("ANIMATION_ALERT_VIEW");
