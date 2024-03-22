@@ -1,35 +1,42 @@
 import Link from "next/link";
-import { MateDummyContents } from "../../Post.types";
 import MateCard from "@/components/MateCard";
 import * as S from "./PostMate.styles";
+import { MateDetailResponse } from "@/types/Response";
 
 interface PostMateProps {
-  mateData: MateDummyContents[];
+  mateData: MateDetailResponse[];
 }
 
 const PostMate = ({ mateData }: PostMateProps) => {
   return (
-    <S.PostMateList>
-      {mateData.map(
-        ({ id, authorProfileUrl, authorNickname, title, gatheringAt, capacity, status }) => (
-          <li key={id}>
-            <Link
-              href={`/mate/${id}`}
-              title={title}
-            >
-              <MateCard
-                profileImage={authorProfileUrl}
-                nickName={authorNickname}
-                title={title}
-                date={gatheringAt}
-                capacity={capacity}
-                status={status}
-              />
-            </Link>
-          </li>
-        ),
+    <>
+      {mateData.length > 0 && (
+        <S.PostMateList>
+          {mateData.map(
+            ({ id, title, authorProfileUrl, authorNickname, gatheringAt, capacity, status }) => (
+              <li key={id}>
+                <Link
+                  href={`/mate/${id}`}
+                  title={title}
+                >
+                  <MateCard
+                    profileImage={authorProfileUrl}
+                    nickName={authorNickname}
+                    title={title}
+                    date={gatheringAt}
+                    capacity={capacity}
+                    status={status}
+                  />
+                </Link>
+              </li>
+            ),
+          )}
+        </S.PostMateList>
       )}
-    </S.PostMateList>
+      {mateData.length === 0 && (
+        <S.PostMateEmptyMessage>등록중인 메이트 모집 글이 없습니다.</S.PostMateEmptyMessage>
+      )}
+    </>
   );
 };
 

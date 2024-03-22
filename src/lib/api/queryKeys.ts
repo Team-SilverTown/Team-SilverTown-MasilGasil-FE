@@ -2,11 +2,6 @@
  * Next.js, TanstackQuery 에서 사용하는 query key 를 관리합니다.
  */
 
-export const TEST_KEY = {
-  GET: "test_get",
-  POST: "test_post",
-};
-
 export const USER_KEY = {
   AUTH: "user_auth",
   SIGN_UP: "user_signup",
@@ -39,4 +34,10 @@ export const WEATHER_KEY = {
 
 export const MAP_KEY = {
   GET_LOCATION_DATA: "get_location_data",
+};
+
+export const MATE_KEY = {
+  POST_MATE_PARTICIPANT_REQUEST: "post_mate_participant_request",
+  DELETE_MATE_PARTICIPANT: "delete_mate_participant",
+  ACCEPT_MATE_PARTICIPANT: "accept_mate_participant",
 };

@@ -18,7 +18,7 @@ const StepButton = ({ onClickHandler, isDisabled, buttonText }: StepButtonProps)
   };
 
   return (
-    <div className="absolute w-full bottom-5 left-0 box-border px-6">
+    <div className="absolute w-full bottom-12 left-0 box-border px-6">
       <Button
         type="button"
         onClick={clickHandler}

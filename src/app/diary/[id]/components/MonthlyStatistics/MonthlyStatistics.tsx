@@ -27,19 +27,19 @@ const MonthlyStatistics = ({ month, masils }: MonthlyStatisticsProps) => {
               <S.SectionItem>
                 <S.Text>총 거리</S.Text>
                 <S.AccentTitle>
-                  {masils?.totalDistance ? convertMeter(masils?.totalDistance) : "- m"}
+                  {masils?.totalDistance ? convertMeter(masils?.totalDistance) : "0 m"}
                 </S.AccentTitle>
               </S.SectionItem>
               <S.ColDivider />
               <S.SectionItem>
                 <S.Text>산책 횟수</S.Text>
-                <S.AccentTitle>{masils?.totalCounts ? masils?.totalCounts : "- "}회</S.AccentTitle>
+                <S.AccentTitle>{masils?.totalCounts ? masils?.totalCounts : "0 "}회</S.AccentTitle>
               </S.SectionItem>
               <S.ColDivider />
               <S.SectionItem>
                 <S.Text>소모 칼로리</S.Text>
                 <S.AccentTitle>
-                  {masils?.totalCalories ? masils?.totalCalories : "- "}kcal
+                  {masils?.totalCalories ? masils?.totalCalories : "0 "}kcal
                 </S.AccentTitle>
               </S.SectionItem>
             </S.Section>

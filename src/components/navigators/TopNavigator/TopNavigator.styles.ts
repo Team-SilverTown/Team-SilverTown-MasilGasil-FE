@@ -13,6 +13,7 @@ export const TopNavigatorContainer = styled.nav<any>`
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
+  user-select: none;
 
   background-color: ${(props) => props.theme.background_color};
 `;

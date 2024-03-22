@@ -1,3 +1,5 @@
+"use server";
+
 import { PrecipitationType, WeatherType } from "../Home.types";
 import convertLatLonToGrid from "../utils/convertLatLonToGrid";
 import getCurrentDateTime from "../utils/getCurrentDateTime";
@@ -29,8 +31,8 @@ const fetchWeatherForecast = async ({ lat, lng }: LocationType): Promise<APIResp
 
   const coords = convertLatLonToGrid("toXY", lat, lng);
 
-  const WEATHER_URL = process.env.NEXT_PUBLIC_WEATHER_URL;
-  const SERVICE_KEY = process.env.NEXT_PUBLIC_SERVICE_KEY;
+  const WEATHER_URL = process.env.WEATHER_URL;
+  const SERVICE_KEY = process.env.SERVICE_KEY;
 
   if (!WEATHER_URL) {
     throw new Error("기본 URL이 존재하지 않습니다.");

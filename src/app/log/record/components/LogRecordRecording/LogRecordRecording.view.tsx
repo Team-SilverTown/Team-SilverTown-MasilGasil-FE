@@ -5,6 +5,7 @@ import * as S from "./LogRecordRecording.styles";
 import { Button } from "@/components";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import useLogRecordRecordingController from "./LogRecordRecording.controller";
+import { useMemo } from "react";
 
 const LogRecordRecordingView = () => {
   const { logData, handleClickCompleteRecord } = useLogRecordRecordingController();
@@ -16,6 +17,9 @@ const LogRecordRecordingView = () => {
   const hour = calcHour > 9 ? calcHour : `0${calcHour}`;
   const min = calcMin > 9 ? calcMin : `0${calcMin}`;
   const sec = calcSec > 9 ? calcSec : `0${calcSec}`;
+
+  const kmCount = useMemo(() => Math.floor(logData.distance / 1000), [logData.distance]);
+  const mCount = useMemo(() => logData.distance % 1000, [logData.distance]);
 
   return (
     <S.LogRecordActionLayout>
@@ -41,7 +45,13 @@ const LogRecordRecordingView = () => {
           </S.LogRecordInfo>
 
           <S.LogRecordInfo>
-            {logData.distance}
+            {kmCount !== 0 && (
+              <>
+                {kmCount}
+                <S.LogRecordInfoUnit>km</S.LogRecordInfoUnit>
+              </>
+            )}
+            {mCount}
             <S.LogRecordInfoUnit>m</S.LogRecordInfoUnit>
           </S.LogRecordInfo>
         </S.LogRecordInfoContainer>

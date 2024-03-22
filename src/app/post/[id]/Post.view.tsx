@@ -2,8 +2,8 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import * as S from "./Post.styles";
 import { TAB_CONTENTS } from "./Post.constants";
-import { MateDummyContents, PostTabType } from "./Post.types";
-import { UserInfoType } from "@/types/Response";
+import { PostTabType } from "./Post.types";
+import { MateDetailListResponse, UserInfoType } from "@/types/Response";
 import { GeoPosition } from "@/types/OriginDataType";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { Button, Tab } from "@/components";
@@ -26,7 +26,7 @@ interface PostViewProps {
   handleCurrentPinIndex: (index: number) => void;
   handleClickCenter: () => void;
   handleClickTab: (index: number) => void;
-  mateData: MateDummyContents[];
+  mateData: MateDetailListResponse;
 }
 
 const PostView = ({
@@ -86,35 +86,31 @@ const PostView = ({
                 handlePinIndex={handleCurrentPinIndex}
               />
             )}
-            {tabIndex === PostTabType.Mate && <PostMate mateData={mateData} />}
+            {tabIndex === PostTabType.Mate && <PostMate mateData={mateData.contents} />}
 
-            {tabIndex !== PostTabType.Mate && (
-              <Link
-                href={`/log/record?postId=${postId}`}
-                // href={
-                //   tabIndex === PostTabType.Mate
-                //     ? `/mate/create?lat=${firstLat}&lng=${firstLng}`
-                //     : `/log/record?postId=${postId}`
-                // }
+            <Link
+              href={
+                tabIndex === PostTabType.Mate
+                  ? `/mate/create?postId=${postId}&lat=${firstLat}&lng=${firstLng}`
+                  : `/log/record?postId=${postId}`
+              }
+            >
+              <Button
+                width="calc(100% - 4rem)"
+                textColor={Theme.lightTheme.white}
+                buttonColor={Theme.lightTheme.green_500}
+                style={{
+                  position: "fixed",
+                  left: "50%",
+                  bottom: "9rem",
+                  transform: "translateX(-50%)",
+                  fontSize: `${FONT_SIZE.LARGE}`,
+                  fontWeight: `${FONT_WEIGHT.BOLD}`,
+                }}
               >
-                <Button
-                  width="calc(100% - 4rem)"
-                  textColor={Theme.lightTheme.white}
-                  buttonColor={Theme.lightTheme.green_500}
-                  style={{
-                    position: "fixed",
-                    left: "50%",
-                    bottom: "9rem",
-                    transform: "translateX(-50%)",
-                    fontSize: `${FONT_SIZE.LARGE}`,
-                    fontWeight: `${FONT_WEIGHT.BOLD}`,
-                  }}
-                >
-                  산책하기
-                  {/* {tabIndex === PostTabType.Mate ? "메이트 모집하기" : "산책하기"} */}
-                </Button>
-              </Link>
-            )}
+                {tabIndex === PostTabType.Mate ? "메이트 모집하기" : "현재 경로로 산책하기"}
+              </Button>
+            </Link>
           </S.PostContentSection>
         </S.PostContentLayout>
       </S.PostContainer>

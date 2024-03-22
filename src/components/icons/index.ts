@@ -13,7 +13,7 @@ export { default as Home } from "./Home";
 export { default as HomeFill } from "./HomeFill";
 export { default as KebabMenu } from "./KebabMenu";
 export { default as MapPin } from "./MapPin";
-export { default as Moon } from "./Moon";
+export { default as Message } from "./Message";
 export { default as Diary } from "./Diary";
 export { default as DiaryFill } from "./DiaryFill";
 export { default as Search } from "./Search";

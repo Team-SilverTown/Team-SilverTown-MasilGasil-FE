@@ -30,7 +30,7 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
         </Link>
       </article>
       {isEmpty ? (
-        <div className={S.NoWalkRecordMessage}>산책 기록이 존재하지 않습니다.</div>
+        <div className={S.NoWalkRecordMessage}>산책로 목록이 비어있어요</div>
       ) : (
         <ul className={S.WalkListContainer}>
           {walkList.map(({ id, title, content, thumbnailUrl, distance, totalTime, address }) => (

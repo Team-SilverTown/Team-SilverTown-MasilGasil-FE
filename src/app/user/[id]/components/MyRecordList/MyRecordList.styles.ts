@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const BorderContainer = styled.div`
   padding: 0rem 1.25rem;
   margin-bottom: 3rem;
-  overflow-y: hidden;
 `;
 export const BorderTitleSection = styled.div`
   display: flex;
@@ -33,6 +32,8 @@ export const BorderContentSection = styled.div`
 export const BorderContentListWrapper = styled.ul`
   display: flex;
   overflow-x: auto;
+  overflow-y: hidden;
+
   -ms-overflow-style: none; /* IE, Edge */
   scrollbar-width: none; /* Firefox */
 

@@ -11,6 +11,8 @@ import { useQuery } from "@tanstack/react-query";
 import { POST_KEY } from "@/lib/api/queryKeys";
 import { getPostDetail } from "@/lib/api/Post/client";
 import { useUI } from "@/components/uiContext/UiContext";
+import { MatePointPin } from "@/components/MasilMap/components";
+import useTheme from "@/lib/hooks/useTheme";
 
 interface MateMapProps {
   mateData: MateDetailResponse;
@@ -19,6 +21,7 @@ interface MateMapProps {
 const MateMap = ({ mateData }: MateMapProps) => {
   const { gatheringPlacePoint, gatheringPlaceDetail } = mateData;
   const { setModalView, openModal } = useUI();
+  const theme = useTheme();
 
   const { setIsOutCenter } = useMasilMapStore();
   const [mapCenter, setMapCenter] = useState(gatheringPlacePoint);
@@ -26,7 +29,7 @@ const MateMap = ({ mateData }: MateMapProps) => {
 
   const { data: postData } = useQuery({
     queryKey: [POST_KEY.GET_POST],
-    queryFn: async () => await getPostDetail({ id: "15" }),
+    queryFn: async () => await getPostDetail({ id: mateData.postId.toString() }),
   });
 
   useEffect(() => {
@@ -73,6 +76,13 @@ const MateMap = ({ mateData }: MateMapProps) => {
           path={postData?.path}
           pins={postData?.pins}
           onClickPin={handleClickPin}
+          isShowCenterMarker={false}
+          innerElement={
+            <MatePointPin
+              position={mateData.gatheringPlacePoint}
+              fill={theme?.red_500}
+            />
+          }
         />
         <Button
           style={{

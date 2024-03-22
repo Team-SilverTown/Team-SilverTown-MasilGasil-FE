@@ -1,5 +1,11 @@
 import { GeoPosition, Participant } from "../OriginDataType";
 
+export interface MateDetailListResponse {
+  isEmpty: boolean;
+  contents: MateDetailResponse[];
+  nextCursor: string | null;
+}
+
 export interface MateDetailResponse {
   id: number;
   postId: number;

@@ -99,6 +99,9 @@ const config = {
         gray: {
           300: "#B3B3B3",
         },
+        yellow: {
+          500: "#F7BC01",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
