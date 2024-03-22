@@ -40,7 +40,8 @@ export const Text = styled.span`
 
 export const AccentText = styled.span`
   font-weight: ${FONT_WEIGHT.BOLD};
-  font-size: ${FONT_SIZE.H6};
+  font-size: ${FONT_SIZE.LARGE};
+  color: ${({ theme }) => theme.green_300};
 `;
 
 export const Section = styled.section`
@@ -83,7 +84,7 @@ export const SectionItem = styled.div`
 
 export const ColDivider = styled.div`
   width: 1px;
-  height: 6rem;
+  height: 4rem;
   background-color: ${(props) => props.theme.gray_100};
 
   @media (max-width: 375px) {
