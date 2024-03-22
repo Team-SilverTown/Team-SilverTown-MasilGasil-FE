@@ -110,41 +110,43 @@ const MateCreateView = ({
               </S.OpenModal>
             )}
             {field.name === "date" && (
-              <CalendarDatePicker
-                startDate={startDate}
-                setStartDate={setStartDate}
-              />
+              <S.DatePickerWrapper>
+                <CalendarDatePicker
+                  startDate={startDate}
+                  setStartDate={setStartDate}
+                />
+              </S.DatePickerWrapper>
             )}
           </S.Section>
         ))}
-        <S.FlexContainer>
-          <S.Section>
-            <S.Title>희망 시간</S.Title>
+        <S.Section>
+          <S.Title>희망 시간</S.Title>
+          <S.DatePickerWrapper>
             <OptionTimePicker
               startTime={startTime}
               setStartTime={setStartTime}
             />
-          </S.Section>
-          <S.Section>
-            <S.Title>모집 인원</S.Title>
-            <S.PersonnelSelect
-              value={capacity}
-              onChange={handleCapacityChange}
-              $isSelected={capacity !== ""}
-            >
-              <option value="">인원을 선택해주세요.</option>
-              <option value="0">상관 없음</option>
-              {Array.from({ length: 10 }, (_, i) => (
-                <option
-                  key={i + 1}
-                  value={i + 1}
-                >
-                  {i + 1}명
-                </option>
-              ))}
-            </S.PersonnelSelect>
-          </S.Section>
-        </S.FlexContainer>
+          </S.DatePickerWrapper>
+        </S.Section>
+        <S.Section>
+          <S.Title>모집 인원</S.Title>
+          <S.PersonnelSelect
+            value={capacity}
+            onChange={handleCapacityChange}
+            $isSelected={capacity !== ""}
+          >
+            <option value="">인원을 선택해주세요.</option>
+            <option value="0">상관 없음</option>
+            {Array.from({ length: 10 }, (_, i) => (
+              <option
+                key={i + 1}
+                value={i + 1}
+              >
+                {i + 1}명
+              </option>
+            ))}
+          </S.PersonnelSelect>
+        </S.Section>
         <MateCreateButton
           onClickHandler={handleSubmit}
           isDisabled={!isFormFilled}

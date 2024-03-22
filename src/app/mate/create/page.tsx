@@ -1,5 +1,3 @@
-import React from "react";
-
 import MateCreateController from "./MateCreate.controller";
 
 interface MateCreateProps {
