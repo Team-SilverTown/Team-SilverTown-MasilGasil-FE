@@ -36,6 +36,7 @@ export const POST = {
 
 export const MATE = {
   GET_DETAIL: "/api/v1/mates",
+  MATE_CREATE: "/api/v1/mates",
   POST_MATE_PARTICIPANT_REQUEST: (mateId: string | number) =>
     `/api/v1/mates/${mateId}/participants`,
   DELETE_CANCEL_PARTICIPANT: ({

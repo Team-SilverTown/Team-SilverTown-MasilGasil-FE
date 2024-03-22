@@ -1,3 +1,4 @@
+import { MateCreateRequest } from "@/types/Request";
 import { DELETE, POST, PUT } from "../clientRootAPI";
 import { MATE } from "../endPoints";
 
@@ -37,6 +38,14 @@ export const acceptParticipant = async ({
 }) => {
   return await PUT({
     endPoint: MATE.ACCEPT_PARTICIPANT({ mateId, participantId }),
+    auth: true,
+  });
+};
+
+export const postMateCreate = async ({ mateData }: { mateData: MateCreateRequest }) => {
+  return await POST<{ id: string }>({
+    endPoint: MATE.MATE_CREATE,
+    data: mateData,
     auth: true,
   });
 };
