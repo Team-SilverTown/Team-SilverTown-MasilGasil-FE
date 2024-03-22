@@ -3,12 +3,12 @@ import KakaoProvider from "next-auth/providers/kakao";
 
 import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
 
-const parseJwt = (
+export const parseJwt = (
   token: string,
 ): { iss: string; iat: number; exp: number; user_id: number; authorities: string } => {
-  var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  var jsonPayload = decodeURIComponent(
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  const jsonPayload = decodeURIComponent(
     atob(base64)
       .split("")
       .map(function (c) {
@@ -20,8 +20,11 @@ const parseJwt = (
   return JSON.parse(jsonPayload);
 };
 
-async function refreshAccessToken(token: any) {
-  const refreshedToken = await refreshToken(token.serviceToken, token.refreshToken);
+export async function refreshAccessToken(token: any) {
+  const refreshedToken = await refreshToken({
+    serviceToken: token.serviceToken,
+    refreshToken: token.refreshToken,
+  });
 
   return {
     serviceToken: refreshedToken,

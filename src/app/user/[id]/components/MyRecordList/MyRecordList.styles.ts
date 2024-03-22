@@ -26,7 +26,6 @@ export const BorderTitleSection = styled.div`
 `;
 export const BorderContentSection = styled.div`
   margin-top: 1.2rem;
-  overflow-y: hidden;
 `;
 
 export const BorderContentListWrapper = styled.ul`

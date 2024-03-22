@@ -1,5 +1,5 @@
-import MainController from "./Main.controller";
+import MainView from "./(main)/Main.view";
 
 export default function Main() {
-  return <MainController />;
+  return <MainView />;
 }

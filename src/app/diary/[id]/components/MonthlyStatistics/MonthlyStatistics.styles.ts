@@ -83,7 +83,7 @@ export const SectionItem = styled.div`
 
 export const ColDivider = styled.div`
   width: 1px;
-  height: 3rem;
+  height: 4rem;
   background-color: ${(props) => props.theme.gray_100};
 
   @media (max-width: 375px) {
