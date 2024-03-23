@@ -28,7 +28,6 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
       <section className={CommonContainerTailwind}>
         <article className={S.MateDetailLayout}>
           <MateInfo
-            postId={postId}
             mateData={mateData}
             acceptedUserList={acceptedUserList}
             requestedUserList={requestedUserList}
@@ -39,11 +38,6 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
           <MateMap mateData={mateData} />
 
           <Divider />
-
-          {/* <MateEvaluation
-            authorEvaluation={authorEvaluation}
-            nickName={authorNickname}
-          /> */}
 
           <MateMembers
             mateData={mateData}

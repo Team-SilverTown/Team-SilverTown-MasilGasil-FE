@@ -9,13 +9,12 @@ import convertFormatDate from "@/lib/utils/convertFormatDate";
 import { Participant } from "@/types/OriginDataType";
 
 interface MateInfoProps {
-  postId: string;
   acceptedUserList: Participant[];
   requestedUserList: Participant[];
   mateData: MateDetailResponse;
 }
 
-const MateInfo = ({ mateData, postId, acceptedUserList, requestedUserList }: MateInfoProps) => {
+const MateInfo = ({ mateData, acceptedUserList, requestedUserList }: MateInfoProps) => {
   const { authorProfileUrl, authorNickname, content, gatheringAt, capacity, authorId } = mateData;
 
   return (
