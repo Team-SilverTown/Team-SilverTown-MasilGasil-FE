@@ -9,11 +9,10 @@ import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { MateDetailResponse } from "@/types/Response";
 
 interface MateDetailProps {
-  postId: string;
   mateData: MateDetailResponse;
 }
 
-const MateDetail = ({ postId, mateData }: MateDetailProps) => {
+const MateDetail = ({ mateData }: MateDetailProps) => {
   const { participants } = mateData;
 
   const acceptedUserList = participants.filter(({ status }) => status === "ACCEPTED");
