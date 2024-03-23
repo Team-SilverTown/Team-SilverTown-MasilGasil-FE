@@ -66,9 +66,3 @@ export const LOG_RECORD_MESSAGE = {
     PROPOSAL: "방금 다녀온 산책을 유저들과 공유해보세요.",
   },
 };
-
-export const LOG_RECORD_ERROR_MESSAGE = {
-  MIN_LENGTH: "산책하신 경로가 너무 적습니다.<br>100m 이상부터 산책을 기록하실 수 있습니다.",
-
-  DEFAULT: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
-};

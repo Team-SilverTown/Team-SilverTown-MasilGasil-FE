@@ -11,6 +11,7 @@ import { postMateCreate } from "@/lib/api/Mate/client";
 import { MATE_KEY } from "@/lib/api/queryKeys";
 import { useRouter } from "next/navigation";
 import { useUI } from "@/components/uiContext/UiContext";
+import checkErrorCode from "@/lib/utils/checkErrorCode";
 
 interface MateCreateControllerProps {
   lat: number;
@@ -121,10 +122,13 @@ const MateCreateController = ({ lat, lng, postId }: MateCreateControllerProps) =
         openModal({ message: "메이트 모집이<br>정상적으로 등록되었습니다!" });
         router.replace(`/mate/${id}`);
       },
-      onError: () => {
+      onError: ({ message }) => {
         setModalView("ANIMATION_ALERT_VIEW");
         openModal({
-          message: "메이트 모집하기 생성에 실패하였습니다.<br>잠시 후 다시 이용해주세요.",
+          message: checkErrorCode({
+            errorCode: message,
+            defaultMessage: "메이트 모집하기 생성에 실패하였습니다.<br>잠시 후 다시 이용해주세요.",
+          }),
         });
       },
     });

@@ -16,7 +16,7 @@ import calculatePathCenter from "@/lib/utils/calculatePathCenter";
 import useMeStore from "@/lib/stores/useMeStore";
 import { calculateWalkingCalories } from "@/lib/utils";
 import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
-import checkMasilErrorCode from "../../utils/checkMasilError";
+import checkErrorCode from "@/lib/utils/checkErrorCode";
 
 const useLogRecordEditController = () => {
   const { setModalView, openModal, closeModal } = useUI();
@@ -124,7 +124,10 @@ const useLogRecordEditController = () => {
               closeLoadingSpinner();
 
               openModal({
-                message: checkMasilErrorCode(message),
+                message: checkErrorCode({
+                  errorCode: message,
+                  defaultMessage: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
+                }),
               });
             },
           });
