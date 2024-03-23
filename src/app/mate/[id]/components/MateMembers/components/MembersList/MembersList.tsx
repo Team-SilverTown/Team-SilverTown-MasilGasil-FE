@@ -23,7 +23,9 @@ const MembersList = ({
   mateId,
 }: MembersListProps) => {
   const { openModal, setModalView } = useUI();
-  const cancelParticipantMutation = useCancelParticipant();
+  const cancelParticipantMutation = useCancelParticipant({
+    successMessage: "정상적으로 메이트를 내보냈습니다!",
+  });
   const acceptParticipantMutation = useAcceptParticipant();
 
   const handleAccept = (participantId: string | number) => {
