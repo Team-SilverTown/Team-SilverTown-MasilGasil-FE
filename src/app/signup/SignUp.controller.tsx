@@ -17,6 +17,7 @@ import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavigat
 import useSignUpModel from "./SignUp.model";
 import SignUpView from "./SignUp.view";
 import { SignUpStep1, SignUpStep2, SignUpStep3, SignUpStep4, SignUpStep5 } from "./sections";
+import { useSession } from "next-auth/react";
 
 export interface SignUpFormProps extends SignUpRequest {}
 
