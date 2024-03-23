@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useRef, useEffect, useCallback, ReactNode } from "react";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 import { ModalBackground, ModalContainer } from "./Modal.styles";
@@ -38,6 +40,17 @@ const Modal: FC<ModalProps> = ({ children, onClose }) => {
       window.removeEventListener("keydown", handleKey);
     };
   }, [handleKey]);
+
+  const handleEvent = useCallback(() => {
+    onClose();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("popstate", handleEvent);
+    return () => {
+      window.removeEventListener("popstate", handleEvent);
+    };
+  }, []);
 
   return (
     <ModalContainer>

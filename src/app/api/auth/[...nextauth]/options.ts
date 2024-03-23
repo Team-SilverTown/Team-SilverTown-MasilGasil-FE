@@ -52,6 +52,7 @@ export const authOptions: NextAuthOptions = {
       if (account && account.access_token) {
         // 카카오 인증 로그인 시
         // 서비스 서버로부터 새로운 accessToken, refreshToken 을 발급
+
         const tokenData = await authenticate({ accessToken: account.access_token });
 
         token.serviceToken = tokenData?.accessToken;
