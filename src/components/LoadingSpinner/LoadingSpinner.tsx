@@ -4,6 +4,7 @@ import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
 import * as S from "./LoadingSpinner.styles";
 import Lottie from "react-lottie";
 import animationData from "./animationData.json";
+import { useEffect } from "react";
 
 const defaultOptions = {
   loop: true,
@@ -15,7 +16,18 @@ const defaultOptions = {
 };
 
 const LoadingSpinner = () => {
-  const { isShow } = useLoadingSpinnerStore();
+  const { isShow, closeLoadingSpinner } = useLoadingSpinnerStore();
+
+  const handleEvent = () => {
+    closeLoadingSpinner();
+  };
+
+  useEffect(() => {
+    window.addEventListener("popstate", handleEvent);
+    return () => {
+      window.removeEventListener("popstate", handleEvent);
+    };
+  }, []);
 
   if (!isShow) {
     return;

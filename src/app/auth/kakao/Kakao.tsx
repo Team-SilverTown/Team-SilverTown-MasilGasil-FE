@@ -12,11 +12,11 @@ const Kakao = () => {
 
   const { data: session } = useSession();
 
-  useEffect(() => {
-    if (session) {
-      console.log("kakao (session)", session);
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     console.log("kakao (session)", session);
+  //   }
+  // }, [session]);
 
   const {
     data: meData,
@@ -29,7 +29,7 @@ const Kakao = () => {
   });
 
   useEffect(() => {
-    console.log("kakao 분기처리 (meData)", meData);
+    // console.log("kakao 분기처리 (meData)", meData);
 
     if (!meData) return;
 

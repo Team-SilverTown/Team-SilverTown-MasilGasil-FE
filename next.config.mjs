@@ -77,13 +77,13 @@ export default withPWA(
       images: {
         remotePatterns: [
           {
-            protocol: 'https',
-            hostname: 'masilgasil-s3.s3.amazonaws.com',
+            protocol: "https",
+            hostname: "masilgasil-s3.s3.amazonaws.com",
           },
           {
-            protocol: 'https',
-            hostname: "github.com"
-          }
+            protocol: "https",
+            hostname: "github.com",
+          },
         ],
       },
       compiler: { styledComponents: true },
