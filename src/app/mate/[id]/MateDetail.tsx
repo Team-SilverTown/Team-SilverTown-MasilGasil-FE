@@ -9,11 +9,10 @@ import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { MateDetailResponse } from "@/types/Response";
 
 interface MateDetailProps {
-  postId: string;
   mateData: MateDetailResponse;
 }
 
-const MateDetail = ({ postId, mateData }: MateDetailProps) => {
+const MateDetail = ({ mateData }: MateDetailProps) => {
   const { participants } = mateData;
 
   const acceptedUserList = participants.filter(({ status }) => status === "ACCEPTED");
@@ -28,7 +27,6 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
       <section className={CommonContainerTailwind}>
         <article className={S.MateDetailLayout}>
           <MateInfo
-            postId={postId}
             mateData={mateData}
             acceptedUserList={acceptedUserList}
             requestedUserList={requestedUserList}
@@ -39,11 +37,6 @@ const MateDetail = ({ postId, mateData }: MateDetailProps) => {
           <MateMap mateData={mateData} />
 
           <Divider />
-
-          {/* <MateEvaluation
-            authorEvaluation={authorEvaluation}
-            nickName={authorNickname}
-          /> */}
 
           <MateMembers
             mateData={mateData}

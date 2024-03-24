@@ -23,7 +23,9 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   const { userId } = useMeStore();
   const theme = useTheme();
 
-  const cancelParticipantMutation = useCancelParticipant();
+  const cancelParticipantMutation = useCancelParticipant({
+    successMessage: "정상적으로 메이트에서 탈퇴되었습니다.",
+  });
   const postParticipantRequestMutation = useRequestParticipant();
 
   const participantId = useMemo(() => {
@@ -83,8 +85,8 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
 
     setModalView("CONFIRM_VIEW");
     openModal({
-      message: "정말로 신청을 거절하시겠어요?",
-      warningMessage: "거절하시면 되돌릴 수 없습니다.",
+      message: "정말로 메이트에서 탈퇴하시겠어요?",
+      warningMessage: "나가시면 되돌리실 수 없습니다.",
       onClickAccept: () => {
         cancelParticipantMutation.mutate({ mateId: mateData.id, participantId: participantId });
       },
