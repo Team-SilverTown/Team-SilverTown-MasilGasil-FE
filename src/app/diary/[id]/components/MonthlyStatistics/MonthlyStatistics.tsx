@@ -1,6 +1,6 @@
 import { MasilsByPeriodResponse } from "@/types/Response";
 import * as S from "./MonthlyStatistics.styles";
-import { convertMeter } from "@/utils";
+import { convertMeter } from "@/lib/utils";
 
 interface MonthlyStatisticsProps {
   month: number | undefined;

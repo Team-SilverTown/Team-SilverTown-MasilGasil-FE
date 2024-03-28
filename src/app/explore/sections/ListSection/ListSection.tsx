@@ -1,9 +1,11 @@
+"use client";
+
 import React, { memo, useCallback } from "react";
 import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
 
 import { ListCard } from "@/components";
 import { PostListItem } from "@/types/OriginDataType/Post";
-import parseLocationObject from "@/utils/parseLocation";
+import parseLocationObject from "@/lib/utils/parseLocation";
 import { useRouter } from "next/navigation";
 import { PostCardsSkeleton } from "@/components/skeletons";
 
@@ -27,6 +29,44 @@ const ListSection = memo(function List({
   const cardClickHandler = (id: number) => {
     router.push(`/post/${id}`);
   };
+
+  const rowRenderer = useCallback(
+    ({ key, index, style }: any) => {
+      let content;
+
+      if (data) {
+        const item = data[index];
+
+        content = (
+          <ListCard
+            isRecruit={item.hasMate}
+            isLiked={item.liked}
+            likeCount={item.likeCount}
+            title={item.title}
+            content={item.content}
+            totalTime={item.totalTime}
+            distance={item.distance}
+            thumbnailUrl={item.thumbnailUrl}
+            address={parseLocationObject(item.address) ?? ""}
+            onCardClickHandler={() => cardClickHandler(item.id)}
+          />
+        );
+      } else {
+        content = <PostCardsSkeleton />;
+      }
+
+      return (
+        <div
+          key={key}
+          style={style}
+          className="p-4"
+        >
+          {content}
+        </div>
+      );
+    },
+    [data, cardClickHandler],
+  );
 
   if (id === "mate") {
     return (
@@ -60,40 +100,6 @@ const ListSection = memo(function List({
         fetchNextPage();
       }
     };
-
-    const rowRenderer = useCallback(
-      ({ key, index, style }: any) => {
-        const item = data[index];
-
-        let content;
-
-        content = (
-          <ListCard
-            isRecruit={item.hasMate}
-            isLiked={item.liked}
-            likeCount={item.likeCount}
-            title={item.title}
-            content={item.content}
-            totalTime={item.totalTime}
-            distance={item.distance}
-            thumbnailUrl={item.thumbnailUrl}
-            address={parseLocationObject(item.address) ?? ""}
-            onCardClickHandler={() => cardClickHandler(item.id)}
-          />
-        );
-
-        return (
-          <div
-            key={key}
-            style={style}
-            className="p-4"
-          >
-            {content}
-          </div>
-        );
-      },
-      [data, cardClickHandler],
-    );
 
     return (
       <div

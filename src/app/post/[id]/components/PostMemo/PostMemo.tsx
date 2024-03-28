@@ -7,7 +7,7 @@ import { fetchPostLikedToggle } from "@/lib/api/Post/client";
 import { POST_KEY, USER_KEY } from "@/lib/api/queryKeys";
 import checkErrorCode from "@/lib/utils/checkErrorCode";
 
-import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/utils";
+import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/lib/utils";
 import { PostDetailResponse } from "@/types/Response/Post";
 import { UserInfoType } from "@/types/Response";
 

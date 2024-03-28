@@ -11,7 +11,7 @@ import { SignUpFormProps } from "../SignUp.controller";
 import useSignUpModel from "../SignUp.model";
 import * as GS from "@/styles/GlobalStyle";
 import * as S from "../SignUp.styles";
-import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
+import { WINDOW_VIEWS } from "@/lib/stores/ui/types/windowType";
 import { useUI } from "@/components/uiContext/UiContext";
 
 interface SignUpStep5Props {

@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 export const request = async <T>(url: string, options: RequestInit): Promise<T | undefined> => {
   return fetch(`${process.env.DB_BASE_URL}${url}`, {
     ...options,

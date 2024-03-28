@@ -18,8 +18,12 @@ import { Toaster } from "@/components/ShadcnUi/ui/toaster";
 
 export const metadata: Metadata = {
   title: "마실가실",
-  description: "",
+  description:
+    "마실 가실은 잠깐의 여유와 운동이 필요한 현대인들에게 산책을 기록하고 산책로를 공유하며 색다른 마실 경험을 느낄 수 있게 도와주는 서비스입니다.",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/masil.ico",
+  },
 };
 
 export const viewport: Viewport = {

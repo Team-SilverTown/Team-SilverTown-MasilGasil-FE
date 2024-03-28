@@ -15,12 +15,7 @@ const Mate = async ({ params }: MateProps) => {
     return;
   }
 
-  return (
-    <MateDetail
-      postId={id}
-      mateData={data}
-    />
-  );
+  return <MateDetail mateData={data} />;
 };
 
 export default Mate;

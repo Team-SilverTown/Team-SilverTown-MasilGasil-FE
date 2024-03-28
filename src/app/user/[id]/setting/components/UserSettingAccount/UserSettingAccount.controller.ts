@@ -2,8 +2,8 @@
 
 import { useUI } from "@/components/uiContext/UiContext";
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
-import useAuthStore from "@/stores/useAuthStore";
-import useMeStore from "@/stores/useMeStore";
+import useAuthStore from "@/lib/stores/useAuthStore";
+import useMeStore from "@/lib/stores/useMeStore";
 import { signOut } from "next-auth/react";
 
 const useUserSettingAccountController = () => {

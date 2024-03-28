@@ -10,7 +10,7 @@ import { USER_KEY } from "@/lib/api/queryKeys";
 import { checkDuplicateNickname, postEditUser } from "@/lib/api/User/client";
 import { throttle } from "lodash";
 import { useUI } from "@/components/uiContext/UiContext";
-import useMeStore from "@/stores/useMeStore";
+import useMeStore from "@/lib/stores/useMeStore";
 import { useRouter } from "next/navigation";
 
 interface UserEditControllerProps {

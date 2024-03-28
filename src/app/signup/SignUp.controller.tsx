@@ -7,8 +7,8 @@ import { FieldErrors, useForm } from "react-hook-form";
 import useEventQuery from "@/lib/hooks/useEventQuery";
 import { checkDuplicateNickname } from "@/lib/api/User/client";
 import { validation_user } from "@/lib/constants/userConstants";
-import { calculateAge } from "@/utils";
-import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
+import { calculateAge } from "@/lib/utils";
+import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
 import { SignUpRequest } from "@/types/Request/User";
 import { CheckNickNameResponse } from "@/types/Response";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
@@ -17,6 +17,7 @@ import { GoBackButton, StepSkipButton } from "@/components/navigators/TopNavigat
 import useSignUpModel from "./SignUp.model";
 import SignUpView from "./SignUp.view";
 import { SignUpStep1, SignUpStep2, SignUpStep3, SignUpStep4, SignUpStep5 } from "./sections";
+import { useSession } from "next-auth/react";
 
 export interface SignUpFormProps extends SignUpRequest {}
 

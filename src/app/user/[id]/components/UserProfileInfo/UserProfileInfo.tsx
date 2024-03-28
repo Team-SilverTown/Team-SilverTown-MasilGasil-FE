@@ -11,7 +11,7 @@ import { useMutation } from "@tanstack/react-query";
 import { changeProfileImage, getMe } from "@/lib/api/User/client";
 import { USER_KEY } from "@/lib/api/queryKeys";
 import { useToast } from "@/components/ShadcnUi/ui/useToast";
-import useMeStore from "@/stores/useMeStore";
+import useMeStore from "@/lib/stores/useMeStore";
 import { useUI } from "@/components/uiContext/UiContext";
 
 interface UserInfoProfileProps {

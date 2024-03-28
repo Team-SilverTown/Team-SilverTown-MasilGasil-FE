@@ -3,7 +3,7 @@ import * as S from "./DiaryItem.styles";
 import { useRouter } from "next/navigation";
 import { MasilsByPeriod } from "@/types/Response";
 import useTheme from "@/lib/hooks/useTheme";
-import { convertMeter, convertSeconds } from "@/utils";
+import { convertMeter, convertSeconds } from "@/lib/utils";
 
 const DiaryItem = ({ masil }: { masil: MasilsByPeriod; key?: number | string }) => {
   const { id, address, content, thumbnailUrl, distance, totalTime, calories } = masil;

@@ -13,12 +13,6 @@ export const Section = styled.section`
   width: 100%;
 `;
 
-export const FlexContainer = styled.div`
-  display: flex;
-  margin-bottom: 3.5rem;
-  gap: 2rem;
-`;
-
 export const PersonnelSelect = styled.select<{ $isSelected: boolean }>`
   width: 100%;
   height: 5.2rem;
@@ -33,6 +27,7 @@ export const PersonnelSelect = styled.select<{ $isSelected: boolean }>`
   border-radius: 6px;
   box-sizing: border-box;
   font-size: 1.5rem;
+  margin-bottom: 3rem;
 
   &:focus {
     outline: 2px solid transparent;
@@ -73,5 +68,12 @@ export const OpenModal = styled.button<{ $isSelected: boolean }>`
     outline: 2px solid transparent;
     outline-offset: 2px;
     border-color: ${(props) => props.theme.green_500};
+  }
+`;
+
+export const DatePickerWrapper = styled.div`
+  width: 100%;
+  & > div {
+    display: block;
   }
 `;

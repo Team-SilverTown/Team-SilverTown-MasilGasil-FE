@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { ThemeProvider } from "styled-components";
 
 import { useLocalStorage } from "@lib/hooks/useLocalStorage";
-import useModalStore from "@/stores/ui/useModalStore";
+import useModalStore from "@/lib/stores/ui/useModalStore";
 import { Modal } from "@components/Modal";
 import Window from "@components/Window";
 import {
@@ -20,11 +20,11 @@ import {
   MateRequestModal,
 } from "@components/modalViews";
 import { darkTheme, lightTheme } from "@/styles/theme";
-import { MODAL_VIEWS } from "@/stores/ui/types/modalType";
+import { MODAL_VIEWS } from "@/lib/stores/ui/types/modalType";
 import LogRecordDoneModal from "../modalViews/LogRecordDoneModal/LogRecordDoneModal";
-import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
-import useWindowStore from "@/stores/ui/useWindowStore";
-import { WINDOW_VIEWS } from "@/stores/ui/types/windowType";
+import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
+import useWindowStore from "@/lib/stores/ui/useWindowStore";
+import { WINDOW_VIEWS } from "@/lib/stores/ui/types/windowType";
 
 import MateLocationMapModal from "../modalViews/MateMapModal/MateLocationMapModal/MapLocationMapModal";
 import DeployAlertModal from "../modalViews/DeployAlertModal/DeployAlertModal";

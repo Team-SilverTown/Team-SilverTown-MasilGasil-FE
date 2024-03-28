@@ -6,8 +6,8 @@ import { useMutation } from "@tanstack/react-query";
 
 import { signUp } from "@/lib/api/User/client";
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
-import useLoadingSpinnerStore from "@/stores/ui/useLoadingSpinnerStore";
-import useAuthStore from "@/stores/useAuthStore";
+import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
+import useAuthStore from "@/lib/stores/useAuthStore";
 import { useUI } from "@/components/uiContext/UiContext";
 
 const useSignUpModel = () => {

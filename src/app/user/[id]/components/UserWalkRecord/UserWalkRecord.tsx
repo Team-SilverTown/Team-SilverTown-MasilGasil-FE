@@ -1,4 +1,4 @@
-import { convertMeter } from "@/utils";
+import { convertMeter } from "@/lib/utils";
 import { ProfileResponse } from "@/types/Response";
 import * as S from "./UserWalkRecord.styles";
 

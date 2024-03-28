@@ -29,6 +29,7 @@ import { POST_KEY } from "@/lib/api/queryKeys";
 import { postPostCreate } from "@/lib/api/Post/client";
 import { useRouter } from "next/navigation";
 import useImageUpload from "@/lib/hooks/useImageUpload";
+import checkErrorCode from "@/lib/utils/checkErrorCode";
 
 interface PostCreateContextProviderProps {
   defaultData: PostCreateRequest;
@@ -204,10 +205,13 @@ export const PostCreateContextProvider = ({
             openModal({ message: "산책로가 등록되었습니다!" });
           },
 
-          onError: () => {
+          onError: ({ message }) => {
             setModalView("ANIMATION_ALERT_VIEW");
             openModal({
-              message: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
+              message: checkErrorCode({
+                errorCode: message,
+                defaultMessage: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
+              }),
             });
           },
         });

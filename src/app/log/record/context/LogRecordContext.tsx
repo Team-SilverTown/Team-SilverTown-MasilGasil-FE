@@ -22,7 +22,7 @@ import {
   LOG_RECORD_REDUCER_ACTIONS,
 } from "../LogRecord.constants";
 import logRecordReducer from "./reducer/LogRecordReducer";
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 import { useUI } from "@/components/uiContext/UiContext";
 import { throttle } from "lodash";
 

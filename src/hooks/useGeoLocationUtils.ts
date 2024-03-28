@@ -1,5 +1,5 @@
 import { useUI } from "@/components/uiContext/UiContext";
-import useUserLocationStore from "@/stores/useUserLocationStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 import { throttle } from "lodash";
 import { useRef } from "react";
 import { LOG_RECORD_MESSAGE } from "../app/log/record/LogRecord.constants";
