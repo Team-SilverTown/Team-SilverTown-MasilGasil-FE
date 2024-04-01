@@ -1,11 +1,12 @@
 "use client";
 
+import * as S from "./ListCard.styles";
+
 import { CSSProperties } from "react";
 
-import { convertSeconds, convertMeter } from "@/lib/utils";
+import { convertMeter, convertSeconds } from "@/lib/utils";
 
 import { Heart } from "../icons";
-import * as S from "./ListCard.styles";
 
 export interface ListCardProps {
   isRecruit: boolean;

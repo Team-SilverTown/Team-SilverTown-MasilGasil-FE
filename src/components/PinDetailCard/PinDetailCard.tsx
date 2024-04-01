@@ -1,15 +1,14 @@
 "use client";
 
-import Image from "next/image";
-
-import useTheme from "@/lib/hooks/useTheme";
-import { useUI } from "../uiContext/UiContext";
-
-import { Pin } from "@/types/OriginDataType";
+import * as S from "./PinDetailCard.styles";
 
 import { Image as ImageIcon } from "@/components/icons";
+import useTheme from "@/lib/hooks/useTheme";
+import { Pin } from "@/types/OriginDataType";
 
-import * as S from "./PinDetailCard.styles";
+import { useUI } from "../uiContext/UiContext";
+
+import Image from "next/image";
 
 export interface PinDetailCardProps {
   key?: number;

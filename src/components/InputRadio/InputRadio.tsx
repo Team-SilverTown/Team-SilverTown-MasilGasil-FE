@@ -1,6 +1,6 @@
-import { CSSProperties } from "react";
 import * as S from "./InputRadio.styles";
 
+import { CSSProperties } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 interface createInputRadioProps {

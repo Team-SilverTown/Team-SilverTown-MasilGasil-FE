@@ -1,13 +1,14 @@
 "use client";
 
-import { Button, Textarea } from "@/components";
 import * as S from "./MateRequestModal.styles";
-
-import { ModalLayout } from "@/components/Modal";
-import useTheme from "@/lib/hooks/useTheme";
-import { useUI } from "@/components/uiContext/UiContext";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
 import { useForm } from "react-hook-form";
+
+import { Button, Textarea } from "@/components";
+import { ModalLayout } from "@/components/Modal";
+import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
 
 interface MateParticipantModalProps {
   onAccept: (message: string) => void;

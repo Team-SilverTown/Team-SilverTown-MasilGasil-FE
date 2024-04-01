@@ -1,8 +1,8 @@
 "use client";
 
-import { forwardRef, useImperativeHandle, useRef, MouseEvent } from "react";
-
 import rippleStyle from "./RippleEffect.module.css";
+
+import { MouseEvent, forwardRef, useImperativeHandle, useRef } from "react";
 
 export interface RippleRef {
   createRipple(event: MouseEvent<HTMLButtonElement>): void;

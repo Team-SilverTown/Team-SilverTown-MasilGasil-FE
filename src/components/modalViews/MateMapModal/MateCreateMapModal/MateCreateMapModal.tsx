@@ -1,20 +1,22 @@
 "use client";
 
-import { Map } from "react-kakao-maps-sdk";
 import * as GS from "../MateMapModal.styles";
 import * as S from "./MateCreateMapModal.styles";
-
-import { ModalLayout } from "@/components/Modal";
-import { useEffect, useRef, useState } from "react";
-import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
-import { Button, Input, InputLabel } from "@/components";
-import { useForm } from "react-hook-form";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import useTheme from "@/lib/hooks/useTheme";
-import { Center, MapPin } from "@/components/icons";
-import { debounce } from "lodash";
-import { useUI } from "@/components/uiContext/UiContext";
+
+import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { Map } from "react-kakao-maps-sdk";
+
+import { Button, Input, InputLabel } from "@/components";
 import { CustomPin } from "@/components/MasilMap/components";
+import { ModalLayout } from "@/components/Modal";
+import { Center, MapPin } from "@/components/icons";
+import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
+import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
+
+import { debounce } from "lodash";
 
 interface MateMapModalProps {
   baseLocation: GeoPosition;

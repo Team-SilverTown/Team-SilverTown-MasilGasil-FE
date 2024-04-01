@@ -3,6 +3,7 @@
 import * as S from "./MatePointPin.styles";
 
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
+
 import { GeoPosition } from "@/types/OriginDataType";
 
 interface MatePointPinProps {

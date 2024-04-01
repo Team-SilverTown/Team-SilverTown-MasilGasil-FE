@@ -1,6 +1,8 @@
-import convertFormatDate from "@/lib/utils/convertFormatDate";
-import Avatar from "@/components/Avatar/Avatar";
 import * as S from "./MateCard.styles";
+
+import Avatar from "@/components/Avatar/Avatar";
+import convertFormatDate from "@/lib/utils/convertFormatDate";
+
 interface MateCardProps {
   profileImage: string | null;
   nickName: string;

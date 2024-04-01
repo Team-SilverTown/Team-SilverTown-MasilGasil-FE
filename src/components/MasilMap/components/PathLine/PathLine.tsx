@@ -1,8 +1,13 @@
-import { Polyline } from "react-kakao-maps-sdk";
-import { OnCreatePathLine, PathLineWeight } from "../../MasilMap.types";
-import { useCallback } from "react";
+"use client";
+
 import Theme from "@/styles/theme";
+
+import { useCallback } from "react";
+import { Polyline } from "react-kakao-maps-sdk";
+
 import { GeoPosition } from "@/types/OriginDataType";
+
+import { OnCreatePathLine, PathLineWeight } from "../../MasilMap.types";
 
 interface PathLineProps {
   path: GeoPosition[];

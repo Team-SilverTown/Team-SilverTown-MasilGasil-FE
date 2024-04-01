@@ -1,33 +1,34 @@
 "use client";
 
-import React, { useMemo } from "react";
+import { darkTheme, lightTheme } from "@/styles/theme";
 import { ThemeProvider } from "styled-components";
 
-import { useLocalStorage } from "@lib/hooks/useLocalStorage";
+import React, { useMemo } from "react";
+
+import { MODAL_VIEWS } from "@/lib/stores/ui/types/modalType";
+import { WINDOW_VIEWS } from "@/lib/stores/ui/types/windowType";
+import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
 import useModalStore from "@/lib/stores/ui/useModalStore";
+import useWindowStore from "@/lib/stores/ui/useWindowStore";
 import { Modal } from "@components/Modal";
 import Window from "@components/Window";
 import {
-  PinEditModal,
-  TestModal,
-  ProfileEditModal,
-  MateCreateMapModal,
-  ConfirmModal,
   AnimationAlertModal,
-  PinDetailModal,
+  ConfirmModal,
   DoneModal,
+  MateCreateMapModal,
   MateParticipantModal,
   MateRequestModal,
+  PinDetailModal,
+  PinEditModal,
+  ProfileEditModal,
+  TestModal,
 } from "@components/modalViews";
-import { darkTheme, lightTheme } from "@/styles/theme";
-import { MODAL_VIEWS } from "@/lib/stores/ui/types/modalType";
-import LogRecordDoneModal from "../modalViews/LogRecordDoneModal/LogRecordDoneModal";
-import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
-import useWindowStore from "@/lib/stores/ui/useWindowStore";
-import { WINDOW_VIEWS } from "@/lib/stores/ui/types/windowType";
+import { useLocalStorage } from "@lib/hooks/useLocalStorage";
 
-import MateLocationMapModal from "../modalViews/MateMapModal/MateLocationMapModal/MapLocationMapModal";
 import DeployAlertModal from "../modalViews/DeployAlertModal/DeployAlertModal";
+import LogRecordDoneModal from "../modalViews/LogRecordDoneModal/LogRecordDoneModal";
+import MateLocationMapModal from "../modalViews/MateMapModal/MateLocationMapModal/MapLocationMapModal";
 
 export const useUI = () => {
   const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();

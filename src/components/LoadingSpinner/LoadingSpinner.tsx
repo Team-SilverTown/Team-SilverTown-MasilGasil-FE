@@ -1,10 +1,13 @@
 "use client";
 
-import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
 import * as S from "./LoadingSpinner.styles";
-import Lottie from "react-lottie";
-import animationData from "./animationData.json";
+
 import { useEffect } from "react";
+import Lottie from "react-lottie";
+
+import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
+
+import animationData from "./animationData.json";
 
 const defaultOptions = {
   loop: true,

@@ -1,8 +1,8 @@
 "use client";
 
-import { Avatar } from "@/components";
 import * as S from "./MateParticipantModal.styles";
 
+import { Avatar } from "@/components";
 import { ModalLayout } from "@/components/Modal";
 import { Participant } from "@/types/OriginDataType";
 

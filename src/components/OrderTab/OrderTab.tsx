@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-
 import * as S from "./OrderTab.styles";
+
+import React, { useState } from "react";
 
 export type OrderType = "latest" | "popular";
 

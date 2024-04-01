@@ -1,14 +1,16 @@
 "use client";
 
-import Lottie from "react-lottie";
 import * as S from "./DeployAlertModal.styles";
-
-import { ModalLayout } from "@/components/Modal";
-import AnimationData from "./AnimationData.json";
-import { useUI } from "@/components/uiContext/UiContext";
-import { Button } from "@/components";
-import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
+import Lottie from "react-lottie";
+
+import { Button } from "@/components";
+import { ModalLayout } from "@/components/Modal";
+import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
+
+import AnimationData from "./AnimationData.json";
 
 const DeployAlertModal = () => {
   const { closeModal } = useUI();

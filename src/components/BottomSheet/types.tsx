@@ -2,11 +2,11 @@
 
 import {
   DragHandlers,
-  MotionValue,
-  MotionProps,
-  motion,
   EasingDefinition,
+  MotionProps,
+  MotionValue,
   Transition,
+  motion,
 } from "framer-motion";
 
 export type SheetEvents = {

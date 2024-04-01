@@ -1,15 +1,17 @@
 "use client";
 
-import Lottie from "react-lottie";
 import * as S from "./AnimationAlertModal.styles";
-
-import { ModalLayout } from "@/components/Modal";
-import AlertAnimationData from "./AlertAnimationData.json";
-import { CSSProperties, useEffect } from "react";
-import { Button } from "@/components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import useTheme from "@/lib/hooks/useTheme";
+
+import { CSSProperties, useEffect } from "react";
+import Lottie from "react-lottie";
+
+import { Button } from "@/components";
+import { ModalLayout } from "@/components/Modal";
 import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
+
+import AlertAnimationData from "./AlertAnimationData.json";
 
 interface AnimationAlertModalProps {
   message: string;

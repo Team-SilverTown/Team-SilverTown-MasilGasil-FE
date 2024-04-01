@@ -1,10 +1,11 @@
 "use client";
 
-import React, { CSSProperties } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
 import * as S from "./Tab.styles";
 import { NAV_HEIGHT } from "@/styles/theme";
+
+import React, { CSSProperties } from "react";
+
+import { AnimatePresence, motion } from "framer-motion";
 
 interface TabProps {
   tabContents: Array<string>;

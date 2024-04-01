@@ -1,12 +1,15 @@
-import { ModalLayout } from "@/components/Modal";
-import { MasilRecordRequest } from "@/types/Request";
 import * as S from "./LogRecordDoneModal.styles";
-import { Button } from "@/components";
-import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
-import TimeChecker from "@/components/icons/TimeChecker";
-import FootPrint from "@/components/icons/FootPrint";
-import { LOG_RECORD_MESSAGE } from "@/app/log/record/LogRecord.constants";
+import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
 import Lottie from "react-lottie";
+
+import { LOG_RECORD_MESSAGE } from "@/app/log/record/LogRecord.constants";
+import { Button } from "@/components";
+import { ModalLayout } from "@/components/Modal";
+import FootPrint from "@/components/icons/FootPrint";
+import TimeChecker from "@/components/icons/TimeChecker";
+import { MasilRecordRequest } from "@/types/Request";
+
 import animationData from "./animationData.json";
 
 interface LogRecordDoneModalProps {

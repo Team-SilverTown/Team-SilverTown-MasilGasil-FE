@@ -1,9 +1,10 @@
 "use client";
 
-import React, { CSSProperties, ReactNode, useEffect, useRef } from "react";
-import { PanInfo, useAnimate, useMotionValue, useTransform } from "framer-motion";
-
 import * as S from "./SlideButton.style";
+
+import React, { CSSProperties, ReactNode, useEffect, useRef } from "react";
+
+import { PanInfo, useAnimate, useMotionValue, useTransform } from "framer-motion";
 
 interface SlideButtonProps {
   buttonColor?: string;

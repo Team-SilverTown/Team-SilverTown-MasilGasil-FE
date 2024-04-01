@@ -1,4 +1,4 @@
-import { Home, HomeFill, Exploration, ExplorationFill, Diary, DiaryFill } from "@/components/icons";
+import { Diary, DiaryFill, Exploration, ExplorationFill, Home, HomeFill } from "@/components/icons";
 
 export interface BottomNavItemProps {
   path: string;

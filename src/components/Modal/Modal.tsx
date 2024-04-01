@@ -1,8 +1,10 @@
 "use client";
 
-import { FC, useRef, useEffect, useCallback, ReactNode } from "react";
-import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 import { ModalBackground, ModalContainer } from "./Modal.styles";
+
+import { FC, ReactNode, useCallback, useEffect, useRef } from "react";
+
+import { clearAllBodyScrollLocks, disableBodyScroll } from "body-scroll-lock";
 
 interface ModalProps {
   children: ReactNode;
