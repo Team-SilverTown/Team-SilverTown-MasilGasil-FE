@@ -1,9 +1,11 @@
 "use server";
 
-import { redirect } from "next/navigation";
+import { MasilDetailResponse, RecentMasilsResponse } from "@/types/Response";
+
 import { MASIL } from "../endPoints";
 import { GET } from "../serverRootAPI";
-import { MasilDetailResponse, RecentMasilsResponse } from "@/types/Response";
+
+import { redirect } from "next/navigation";
 
 export async function getMasilDetail(serviceToken: string, id: string) {
   const response = await GET<MasilDetailResponse>({

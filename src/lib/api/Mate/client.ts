@@ -1,4 +1,5 @@
 import { MateCreateRequest } from "@/types/Request";
+
 import { DELETE, POST, PUT } from "../clientRootAPI";
 import { MATE } from "../endPoints";
 

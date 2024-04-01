@@ -1,9 +1,11 @@
 "use server";
 
-import { redirect } from "next/navigation";
+import { PostDetailResponse, PostListResponse } from "@/types/Response/Post";
+
 import { POST } from "../endPoints";
 import { GET } from "../serverRootAPI";
-import { PostDetailResponse, PostListResponse } from "@/types/Response/Post";
+
+import { redirect } from "next/navigation";
 
 export async function getPostDetail(serviceToken: string, id: string) {
   const response = await GET<PostDetailResponse>({

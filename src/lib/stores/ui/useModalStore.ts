@@ -1,6 +1,6 @@
-import { create } from "zustand";
-
 import { MODAL_VIEWS } from "./types/modalType";
+
+import { create } from "zustand";
 
 interface UseModalStoreProps {
   displayModal: boolean;

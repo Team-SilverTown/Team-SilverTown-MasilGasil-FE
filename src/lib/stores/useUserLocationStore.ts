@@ -1,5 +1,6 @@
 import { GeoPosition } from "@/types/OriginDataType";
 import { UserAddressType } from "@/types/OriginDataType/Location";
+
 import { create } from "zustand";
 
 const DEFAULT_USER_LOCATION: GeoPosition = {

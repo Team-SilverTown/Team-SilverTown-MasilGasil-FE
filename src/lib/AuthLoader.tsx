@@ -1,15 +1,16 @@
 "use client";
 
 import { PropsWithChildren, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 import useAuthStore from "@/lib/stores/useAuthStore";
 import useMeStore from "@/lib/stores/useMeStore";
+import { pathAbleCheck } from "@/lib/utils/pathAbleCheck";
 import { MeResponse } from "@/types/Response";
 
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import { pathAbleCheck } from "@/lib/utils/pathAbleCheck";
+
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
 
 export const REDIRECT_INABLE_PATHS = ["/", "/signup*", "/auth*"];
 
