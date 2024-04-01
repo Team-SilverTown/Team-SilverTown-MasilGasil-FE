@@ -1,7 +1,9 @@
-import Link from "next/link";
-import MateCard from "@/components/MateCard";
 import * as S from "./PostMate.styles";
+
+import MateCard from "@/components/MateCard";
 import { MateDetailResponse } from "@/types/Response";
+
+import Link from "next/link";
 
 interface PostMateProps {
   mateData: MateDetailResponse[];

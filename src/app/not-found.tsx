@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 
 const NotFound = () => {
   const currentPathName = usePathname();

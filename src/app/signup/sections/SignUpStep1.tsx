@@ -1,11 +1,11 @@
 import React from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
+import { Button, Input, InputLabel } from "@/components";
+import { validation_user } from "@/lib/constants/userConstants";
 import useTheme from "@/lib/hooks/useTheme";
 
-import { Button, Input, InputLabel } from "@/components";
 import { SignUpFormProps } from "../SignUp.controller";
-import { validation_user } from "@/lib/constants/userConstants";
 
 interface SignUpStep1Props {
   register: UseFormRegister<SignUpFormProps>;

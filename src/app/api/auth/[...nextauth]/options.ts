@@ -1,7 +1,7 @@
+import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
+
 import { NextAuthOptions } from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
-
-import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
 
 export const parseJwt = (
   token: string,

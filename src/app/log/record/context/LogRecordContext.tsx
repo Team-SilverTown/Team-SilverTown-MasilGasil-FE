@@ -9,21 +9,24 @@ import React, {
   useRef,
   useState,
 } from "react";
+
+import { useUI } from "@/components/uiContext/UiContext";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
+import { MasilRecordRequest } from "@/types/Request";
+
+import {
+  DEFAULT_LOG_DATA,
+  LOG_RECORD_MESSAGE,
+  LOG_RECORD_REDUCER_ACTIONS,
+} from "../LogRecord.constants";
 import {
   LogPageStep,
   NavigationData,
   SetCurrentPinIndex,
   SetIsActiveExitAnimation,
 } from "../LogRecord.types";
-import { MasilRecordRequest } from "@/types/Request";
-import {
-  DEFAULT_LOG_DATA,
-  LOG_RECORD_MESSAGE,
-  LOG_RECORD_REDUCER_ACTIONS,
-} from "../LogRecord.constants";
 import logRecordReducer from "./reducer/LogRecordReducer";
-import useUserLocationStore from "@/lib/stores/useUserLocationStore";
-import { useUI } from "@/components/uiContext/UiContext";
+
 import { throttle } from "lodash";
 
 interface LogRecordContextValues {

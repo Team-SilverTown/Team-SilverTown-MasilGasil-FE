@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
 import { SubTitle, Title } from "./SignUpHelper.style";
+
+import React from "react";
 
 interface SignUpHelperProps {
   index: number;

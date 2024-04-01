@@ -2,20 +2,21 @@
 
 import React, { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import debounce from "lodash.debounce";
 
 import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { getPostList } from "@/lib/api/Post/client";
+import { POST_KEY } from "@/lib/api/queryKeys";
+import { LocationMap } from "@/types/OriginDataType";
+import { PostListItem } from "@/types/OriginDataType/Post";
+import { PostListRequest } from "@/types/Request";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import ExploreView from "./Explore.view";
-import { BottomSheetSection, MapSection } from "./sections";
 import { SearchBar } from "./components";
+import { BottomSheetSection, MapSection } from "./sections";
 import ListSection from "./sections/ListSection/ListSection";
-import { LocationMap } from "@/types/OriginDataType";
-import { PostListRequest } from "@/types/Request";
-import { getPostList } from "@/lib/api/Post/client";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { POST_KEY } from "@/lib/api/queryKeys";
-import { PostListItem } from "@/types/OriginDataType/Post";
+
+import debounce from "lodash.debounce";
 
 const TAKE = 8;
 

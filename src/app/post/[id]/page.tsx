@@ -1,8 +1,10 @@
-import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { getPostDetail } from "@/lib/api/Post/server";
-import PostController from "./Post.controller";
 import { getMateDetailList } from "@/lib/api/Mate/server";
+import { getPostDetail } from "@/lib/api/Post/server";
+
+import PostController from "./Post.controller";
+
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 interface PostDetailProps {

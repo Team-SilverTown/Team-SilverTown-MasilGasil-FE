@@ -1,7 +1,7 @@
 "use client";
 
-import styled from "styled-components";
 import { BORDER, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import styled from "styled-components";
 
 export const Layout = styled.div`
   width: 100%;

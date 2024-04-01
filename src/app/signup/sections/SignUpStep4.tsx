@@ -1,11 +1,12 @@
+import * as S from "../SignUp.styles";
+
 import React from "react";
 import { UseFormGetValues, UseFormRegister } from "react-hook-form";
 
 import { UserIntensityItem } from "@/components";
+import { INTENSITY_OPTIONS } from "@/lib/constants/variable";
 
 import { SignUpFormProps } from "../SignUp.controller";
-import * as S from "../SignUp.styles";
-import { INTENSITY_OPTIONS } from "@/lib/constants/variable";
 
 interface SignUpStep4Props {
   register: UseFormRegister<SignUpFormProps>;

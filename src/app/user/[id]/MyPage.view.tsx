@@ -1,10 +1,12 @@
-import { ProfileResponse } from "@/types/Response";
-import { MyRecordListType } from "./MyPage.types";
+import * as S from "./MyPage.styles";
+
+import Divider from "@/components/Divider/Divider";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import { UserProfileInfo, UserWalkRecord, MyRecordList, MyPageSetting } from "./components";
-import * as S from "./MyPage.styles";
-import Divider from "@/components/Divider/Divider";
+import { ProfileResponse } from "@/types/Response";
+
+import { MyRecordListType } from "./MyPage.types";
+import { MyPageSetting, MyRecordList, UserProfileInfo, UserWalkRecord } from "./components";
 
 interface MyPageViewProps {
   boardList: MyRecordListType[];

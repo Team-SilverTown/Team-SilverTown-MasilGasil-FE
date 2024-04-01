@@ -1,12 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { convertMeter, convertSeconds, convertDateToYearMonthDay } from "@/lib/utils";
-import { LogDetailCard, LogSimpleCard } from "@/components";
-import { ProfileResponse, RecentMasil } from "@/types/Response";
 import * as S from "./MyRecordList.styles";
+
+import { LogDetailCard, LogSimpleCard } from "@/components";
+import { convertDateToYearMonthDay, convertMeter, convertSeconds } from "@/lib/utils";
 import { PostListItem } from "@/types/OriginDataType/Post";
+import { ProfileResponse, RecentMasil } from "@/types/Response";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface MyRecordListProps {
   title: string;

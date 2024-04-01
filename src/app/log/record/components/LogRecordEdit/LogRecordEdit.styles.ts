@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import styled from "styled-components";
+
 import Sheet from "@/components/BottomSheet/sheet";
 
 export const LogEditLayout = styled.div`

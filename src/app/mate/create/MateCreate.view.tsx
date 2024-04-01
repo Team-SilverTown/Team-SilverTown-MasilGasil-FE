@@ -1,20 +1,23 @@
 "use client";
-import { Dispatch, SetStateAction, MouseEvent } from "react";
+
+import * as S from "./MateCreate.styles";
+import * as GS from "@/styles/GlobalStyle";
+import { DefaultTheme } from "styled-components";
+
+import { Dispatch, MouseEvent, SetStateAction } from "react";
 import { UseFormRegister } from "react-hook-form";
-import { Input, Textarea, Button } from "@/components";
+
+import { Button, Input, Textarea } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-
 import { useUI } from "@/components/uiContext/UiContext";
-import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
-
 import useTheme from "@/lib/hooks/useTheme";
-import * as GS from "@/styles/GlobalStyle";
-import * as S from "./MateCreate.styles";
+import { GeoPosition, MateGatheringPlace } from "@/types/OriginDataType";
+import { MateCreateRequest } from "@/types/Request";
+
 import { regularFields } from "./MateCreate.constants";
 import { CalendarDatePicker, OptionTimePicker } from "./components";
-import { DefaultTheme } from "styled-components";
-import { MateCreateRequest } from "@/types/Request";
+
 interface MateCreateViewProps {
   register: UseFormRegister<MateCreateRequest>;
   handleSubmit: () => void;

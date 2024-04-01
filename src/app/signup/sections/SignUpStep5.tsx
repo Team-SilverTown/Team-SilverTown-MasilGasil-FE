@@ -1,18 +1,19 @@
 "use client";
 
+import * as S from "../SignUp.styles";
+import * as GS from "@/styles/GlobalStyle";
+
 import React, { useEffect } from "react";
 import { UseFormGetValues, UseFormSetValue } from "react-hook-form";
 
 import { Button } from "@/components";
 import { Check } from "@/components/icons";
+import { useUI } from "@/components/uiContext/UiContext";
 import useTheme from "@/lib/hooks/useTheme";
+import { WINDOW_VIEWS } from "@/lib/stores/ui/types/windowType";
 
 import { SignUpFormProps } from "../SignUp.controller";
 import useSignUpModel from "../SignUp.model";
-import * as GS from "@/styles/GlobalStyle";
-import * as S from "../SignUp.styles";
-import { WINDOW_VIEWS } from "@/lib/stores/ui/types/windowType";
-import { useUI } from "@/components/uiContext/UiContext";
 
 interface SignUpStep5Props {
   getValues: UseFormGetValues<SignUpFormProps>;

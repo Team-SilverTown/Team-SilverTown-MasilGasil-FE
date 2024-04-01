@@ -1,17 +1,15 @@
-import { useRouter } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
-
-import { getUserInfo } from "@/lib/api/User/client";
-
-import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/lib/utils";
-import { PostDetailResponse } from "@/types/Response/Post";
-import { UserInfoType } from "@/types/Response";
+import * as S from "./PostMemo.styles";
 
 import Avatar from "@/components/Avatar/Avatar";
 import { Heart, Location, ViewIcon } from "@/components/icons";
-
-import * as S from "./PostMemo.styles";
+import { getUserInfo } from "@/lib/api/User/client";
 import { USER_KEY } from "@/lib/api/queryKeys";
+import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/lib/utils";
+import { UserInfoType } from "@/types/Response";
+import { PostDetailResponse } from "@/types/Response/Post";
+import { useQuery } from "@tanstack/react-query";
+
+import { useRouter } from "next/navigation";
 
 interface PostMemoProps {
   userInfo: UserInfoType;

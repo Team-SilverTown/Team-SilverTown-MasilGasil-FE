@@ -1,12 +1,12 @@
 import * as S from "./MateDetail.styles";
-
-import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { CommonContainerTailwind } from "@/styles/GlobalStyle";
-import Divider from "@/components/Divider/Divider";
-import { MateInfo, MateMap, MateMembers } from "./components";
-import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 
+import Divider from "@/components/Divider/Divider";
+import { TopNavigator } from "@/components/navigators/TopNavigator";
+import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { MateDetailResponse } from "@/types/Response";
+
+import { MateInfo, MateMap, MateMembers } from "./components";
 
 interface MateDetailProps {
   mateData: MateDetailResponse;

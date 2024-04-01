@@ -1,17 +1,17 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { FieldErrors, UseFormSetValue, UseFormRegister, UseFormGetValues } from "react-hook-form";
-
-import useTheme from "@/lib/hooks/useTheme";
-
-import { Button, UserEditInput } from "@/components";
-import { SignUpFormProps } from "../SignUp.controller";
-import useSignUpModel from "../SignUp.model";
 import * as S from "../SignUp.styles";
 
-import { SEX_OPTIONS } from "@/lib/constants/variable";
+import React, { useEffect } from "react";
+import { FieldErrors, UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+
+import { Button, UserEditInput } from "@/components";
 import { USER_INPUT_PLACEHOLDER, validation_user } from "@/lib/constants/userConstants";
+import { SEX_OPTIONS } from "@/lib/constants/variable";
+import useTheme from "@/lib/hooks/useTheme";
+
+import { SignUpFormProps } from "../SignUp.controller";
+import useSignUpModel from "../SignUp.model";
 
 interface SignUpStep3Props {
   getValues: UseFormGetValues<SignUpFormProps>;

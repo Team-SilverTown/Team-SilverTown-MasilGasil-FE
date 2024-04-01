@@ -1,20 +1,22 @@
-import type { Metadata, Viewport } from "next";
-import Script from "next/script";
-import { getServerSession } from "next-auth";
+import "src/styles/globals.css";
 
-import TanstackQueryProvider from "@/lib/TanstackQueryProvider";
-import AuthContext from "@/lib/AuthContext";
-import AuthLoader from "@/lib/AuthLoader";
-import { getMe } from "@/lib/api/User/server";
-import StyledComponentsRegistry from "@/lib/registry";
-import { ManagedUIContext, ModalUI, WindowUI } from "@/components/uiContext/UiContext";
-import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
-import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 
-import "src/styles/globals.css";
-import { authOptions } from "./api/auth/[...nextauth]/options";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { Toaster } from "@/components/ShadcnUi/ui/toaster";
+import BottomNavigator from "@/components/navigators/BottomNavigator/BottomNavigator";
+import { ManagedUIContext, ModalUI, WindowUI } from "@/components/uiContext/UiContext";
+import AuthContext from "@/lib/AuthContext";
+import AuthLoader from "@/lib/AuthLoader";
+import TanstackQueryProvider from "@/lib/TanstackQueryProvider";
+import { getMe } from "@/lib/api/User/server";
+import StyledComponentsRegistry from "@/lib/registry";
+
+import { authOptions } from "./api/auth/[...nextauth]/options";
+
+import type { Metadata, Viewport } from "next";
+import { getServerSession } from "next-auth";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "마실가실",

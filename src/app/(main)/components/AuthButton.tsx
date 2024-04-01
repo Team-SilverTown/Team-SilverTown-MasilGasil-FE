@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
-import { signIn } from "next-auth/react";
-
-import useAuthStore from "@/lib/stores/useAuthStore";
-import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
-import { Button } from "@/components";
-
 import * as S from "./AuthButton.styles";
+
+import React, { useEffect, useMemo } from "react";
+
+import { Button } from "@/components";
 import { Message } from "@/components/icons";
+import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
+import useAuthStore from "@/lib/stores/useAuthStore";
+
+import { signIn } from "next-auth/react";
 
 const AuthButton = () => {
   const { isLogIn } = useAuthStore();

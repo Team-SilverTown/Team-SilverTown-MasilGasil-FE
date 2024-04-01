@@ -1,11 +1,12 @@
 "use client";
 
 import * as S from "./LogRecordEdit.styles";
+import Theme, { FONT_SIZE, FONT_WEIGHT, Z_INDEX } from "@/styles/theme";
 
 import { Button, PinEditSlideButton, Textarea } from "@/components";
-import Theme, { FONT_WEIGHT, FONT_SIZE, Z_INDEX } from "@/styles/theme";
 import Sheet from "@/components/BottomSheet";
 import useTheme from "@/lib/hooks/useTheme";
+
 import useLogRecordEditController from "./LogRecordEdit.controller";
 
 const LogRecordEditView = () => {

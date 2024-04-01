@@ -1,19 +1,22 @@
+import * as S from "./Post.styles";
+import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
+import { Button, Tab } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import * as S from "./Post.styles";
+import { GeoPosition } from "@/types/OriginDataType";
+import { MateDetailListResponse, UserInfoType } from "@/types/Response";
+import { PostDetailResponse } from "@/types/Response/Post";
+
 import { TAB_CONTENTS } from "./Post.constants";
 import { PostTabType } from "./Post.types";
-import { MateDetailListResponse, UserInfoType } from "@/types/Response";
-import { GeoPosition } from "@/types/OriginDataType";
-import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { Button, Tab } from "@/components";
-import PostMapSection from "./sections/PostMapSection/PostMapSection";
-import PostPin from "./components/PostPin/PostPin";
-import PostMemo from "./components/PostMemo/PostMemo";
-import PostMate from "./components/PostMate/PostMate";
 import PostKebabMenu from "./components/PostKebabMenu/PostKebabMenu";
+import PostMate from "./components/PostMate/PostMate";
+import PostMemo from "./components/PostMemo/PostMemo";
+import PostPin from "./components/PostPin/PostPin";
+import PostMapSection from "./sections/PostMapSection/PostMapSection";
+
 import Link from "next/link";
-import { PostDetailResponse } from "@/types/Response/Post";
 
 interface PostViewProps {
   postId: string;

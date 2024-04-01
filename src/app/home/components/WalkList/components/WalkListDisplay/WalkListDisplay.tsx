@@ -1,13 +1,11 @@
-import Link from "next/link";
-
-import { convertMeter, convertSeconds } from "@/lib/utils";
-
-import { PostListItemResponse } from "@/types/Response/Post";
+import * as S from "./WalkListDisplay.styles";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 import { LogDetailCard } from "@/components";
+import { convertMeter, convertSeconds } from "@/lib/utils";
+import { PostListItemResponse } from "@/types/Response/Post";
 
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import * as S from "./WalkListDisplay.styles";
+import Link from "next/link";
 
 interface WalkListItemProps {
   isEmpty: boolean;

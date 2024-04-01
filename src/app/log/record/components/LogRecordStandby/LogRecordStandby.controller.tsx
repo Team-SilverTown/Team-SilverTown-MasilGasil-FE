@@ -1,8 +1,9 @@
 import { useEffect } from "react";
+
 import { useUI } from "@/components/uiContext/UiContext";
 
-import useLogRecordContext from "../../context/LogRecordContext";
 import useGeoLocationUtils from "../../../../../hooks/useGeoLocationUtils";
+import useLogRecordContext from "../../context/LogRecordContext";
 
 const useLogRecordStandbyController = () => {
   const { onErrorWatch, updateUserLocation } = useGeoLocationUtils();

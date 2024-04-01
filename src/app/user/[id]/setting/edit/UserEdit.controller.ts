@@ -1,16 +1,18 @@
 "use client";
 
+import { useEffect, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 
-import useUserEditModel from "./UserEdit.model";
-import { useEffect, useMemo, useRef } from "react";
+import { useUI } from "@/components/uiContext/UiContext";
+import { checkDuplicateNickname, postEditUser } from "@/lib/api/User/client";
+import { USER_KEY } from "@/lib/api/queryKeys";
+import useMeStore from "@/lib/stores/useMeStore";
 import { MeResponse } from "@/types/Response";
 import { useMutation } from "@tanstack/react-query";
-import { USER_KEY } from "@/lib/api/queryKeys";
-import { checkDuplicateNickname, postEditUser } from "@/lib/api/User/client";
+
+import useUserEditModel from "./UserEdit.model";
+
 import { throttle } from "lodash";
-import { useUI } from "@/components/uiContext/UiContext";
-import useMeStore from "@/lib/stores/useMeStore";
 import { useRouter } from "next/navigation";
 
 interface UserEditControllerProps {

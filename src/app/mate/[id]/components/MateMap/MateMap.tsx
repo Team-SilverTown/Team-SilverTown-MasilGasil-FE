@@ -1,18 +1,20 @@
 "use client";
 
-import MasilMap from "@/components/MasilMap/MasilMap";
 import * as S from "./MateMap.styles";
-import { MateDetailResponse } from "@/types/Response";
-import { Button } from "@/components";
-import { Center } from "@/components/icons";
-import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
+
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { POST_KEY } from "@/lib/api/queryKeys";
-import { getPostDetail } from "@/lib/api/Post/client";
-import { useUI } from "@/components/uiContext/UiContext";
+
+import { Button } from "@/components";
+import MasilMap from "@/components/MasilMap/MasilMap";
 import { MatePointPin } from "@/components/MasilMap/components";
+import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
+import { Center } from "@/components/icons";
+import { useUI } from "@/components/uiContext/UiContext";
+import { getPostDetail } from "@/lib/api/Post/client";
+import { POST_KEY } from "@/lib/api/queryKeys";
 import useTheme from "@/lib/hooks/useTheme";
+import { MateDetailResponse } from "@/types/Response";
+import { useQuery } from "@tanstack/react-query";
 
 interface MateMapProps {
   mateData: MateDetailResponse;

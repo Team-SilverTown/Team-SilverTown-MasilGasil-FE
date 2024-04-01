@@ -1,6 +1,7 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { motion } from "framer-motion";
 import styled from "styled-components";
+
+import { motion } from "framer-motion";
 
 export const UserSettingLayout = styled(motion.section)`
   width: 100%;

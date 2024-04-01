@@ -1,6 +1,7 @@
-import { MasilRecordRequest } from "@/types/Request";
-import { DEFAULT_LOG_DATA, LOG_RECORD_REDUCER_ACTIONS } from "../../LogRecord.constants";
 import { GeoPosition } from "@/types/OriginDataType";
+import { MasilRecordRequest } from "@/types/Request";
+
+import { DEFAULT_LOG_DATA, LOG_RECORD_REDUCER_ACTIONS } from "../../LogRecord.constants";
 import getTwoPointDistance from "../../utils/getTwoPointDistance";
 
 type ActionsType =

@@ -1,6 +1,6 @@
-import React from "react";
-
 import * as GS from "@/styles/GlobalStyle";
+
+import React from "react";
 
 interface ExploreViewProps {
   children: React.ReactNode;

@@ -1,14 +1,15 @@
 "use client";
 
-import * as GS from "@/styles/GlobalStyle";
 import * as S from "./UserEdit.styles";
+import * as GS from "@/styles/GlobalStyle";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
-import { EditSex, EditNickname, EditBirthDate, EditBodyInfo, EditIntensity } from "./components";
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { MeResponse } from "@/types/Response";
+
 import useUserEditController from "./UserEdit.controller";
+import { EditBirthDate, EditBodyInfo, EditIntensity, EditNickname, EditSex } from "./components";
 
 interface UserEditViewProps {
   userDefaultData: MeResponse;

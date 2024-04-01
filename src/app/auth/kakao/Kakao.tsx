@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { useQuery } from "@tanstack/react-query";
+
 import { getMe } from "@/lib/api/User/client";
 import { MeResponse } from "@/types/Response";
+import { useQuery } from "@tanstack/react-query";
+
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Kakao = () => {
   const router = useRouter();

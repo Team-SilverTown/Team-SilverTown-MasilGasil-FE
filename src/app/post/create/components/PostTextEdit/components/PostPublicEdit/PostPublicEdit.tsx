@@ -1,12 +1,14 @@
 "use client";
 
-import * as S from "./PostPublicEdit.styles";
-import * as GS from "../../PostTextEdit.styles";
 import * as TGS from "../../../../PostCreate.styles";
+import * as GS from "../../PostTextEdit.styles";
+import * as S from "./PostPublicEdit.styles";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
+import { Dispatch, SetStateAction } from "react";
+
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { Dispatch, SetStateAction } from "react";
 
 interface PostPublicEditProps {
   isPublic: boolean;

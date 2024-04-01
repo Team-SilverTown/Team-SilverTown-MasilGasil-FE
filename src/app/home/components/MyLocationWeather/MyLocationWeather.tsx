@@ -1,28 +1,26 @@
 "use client";
 
+import * as S from "./MyLocationWeather.styles";
+
 import { useCallback, useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-
-import useUserLocationStore from "@/lib/stores/useUserLocationStore";
-
-import fetchNearbyStation from "../../api/fetchNearbyStation";
-import { WEATHER_KEY } from "@/lib/api/queryKeys";
-
-import { getDetailedAddress, convertLatLonToTM, showErrorMessage } from "../../utils";
 
 import {
   ClearSky,
+  FineDust,
+  Location,
   Overcast,
   PartlyCloudy,
   Rainy,
   Sleet,
   Snowy,
-  FineDust,
-  Location,
 } from "@/components/icons";
 import { HomeWeatherSkeleton } from "@/components/skeletons";
+import { WEATHER_KEY } from "@/lib/api/queryKeys";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
+import { useQuery } from "@tanstack/react-query";
 
-import * as S from "./MyLocationWeather.styles";
+import fetchNearbyStation from "../../api/fetchNearbyStation";
+import { convertLatLonToTM, getDetailedAddress, showErrorMessage } from "../../utils";
 
 const WEATHER_ICON = {
   맑음: <ClearSky />,

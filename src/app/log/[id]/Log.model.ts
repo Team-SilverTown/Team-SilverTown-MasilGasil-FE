@@ -3,12 +3,11 @@
 import { useEffect, useMemo, useState } from "react";
 
 import useMeStore from "@/lib/stores/useMeStore";
-
 import calculatePathCenter from "@/lib/utils/calculatePathCenter";
-
 import { GeoPosition } from "@/types/OriginDataType";
-import { TabType } from "./Log.types";
 import { MasilDetailResponse } from "@/types/Response";
+
+import { TabType } from "./Log.types";
 
 interface useLogModelProps {
   masilData: MasilDetailResponse;
