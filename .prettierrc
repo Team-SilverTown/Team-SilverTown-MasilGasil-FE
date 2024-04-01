@@ -9,5 +9,22 @@
   "bracketSpacing": true,
   "arrowParens": "always",
   "proseWrap": "preserve",
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+
+  "importOrder": [
+    ".css$",
+    ".Styles",
+    "style",
+    "^react",
+    "^@",
+    "^[../]",
+    "^[./]",
+    "<THIRD_PARTY_MODULES>"
+  ],
+
+  "importOrderSeparation": true,
+
+  "importOrderSortSpecifiers": true
 }
