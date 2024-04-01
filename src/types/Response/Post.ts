@@ -20,7 +20,7 @@ export interface PostDetailResponse {
 
   viewCount: number;
   likeCount: number;
-  liked?: boolean;
+  isLiked: boolean;
   pins: Pin[];
 
   authorId: number;

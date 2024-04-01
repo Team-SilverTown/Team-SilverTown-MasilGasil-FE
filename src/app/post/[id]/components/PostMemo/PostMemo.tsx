@@ -35,8 +35,9 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
     depth2,
     likeCount,
     viewCount,
-    liked = true,
+    isLiked,
   } = postData;
+
   const { isUserInfoCheck, calories } = calculateWalkingCalories({ userInfo, distance });
   const { setModalView, openModal } = useUI();
   const router = useRouter();
@@ -63,13 +64,13 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
     },
   });
 
-  const handleClickLike = () => {
-    mutate({ postId: String(id), data: { isLike: liked } });
-  };
-
   if (!authorData) {
     return;
   }
+
+  const handleClickLike = () => {
+    mutate({ postId: String(id), data: { isLike: !isLiked } });
+  };
 
   return (
     <>
@@ -106,7 +107,7 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
       <S.PostMemoBottomInfo>
         <S.PostMemoLike
           onClick={handleClickLike}
-          $liked={liked}
+          $isLiked={isLiked}
         >
           <Heart />
           {likeCount}
