@@ -92,7 +92,7 @@ const LogDetailCard = ({
             <li>{distance}</li>
           </ul>
           {isLikeLayout && (
-            <div className={`likeInfo`}>
+            <div className="likeInfo">
               <Heart
                 width={11}
                 height={10}
