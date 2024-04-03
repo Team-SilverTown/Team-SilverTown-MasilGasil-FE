@@ -1,14 +1,16 @@
 "use client";
 
+import * as S from "./MateMembers.styles";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
+import { useMemo, useState } from "react";
+
+import { Tab } from "@/components";
+import useMeStore from "@/lib/stores/useMeStore";
+import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
 
-import * as S from "./MateMembers.styles";
-import { Tab } from "@/components";
-import { useMemo, useState } from "react";
-import useMeStore from "@/lib/stores/useMeStore";
 import { MembersList } from "./components";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { Participant } from "@/types/OriginDataType";
 
 interface MateMembersProps {
   mateData: MateDetailResponse;

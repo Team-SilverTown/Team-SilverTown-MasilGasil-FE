@@ -1,5 +1,6 @@
-import { GeoPosition, Pin } from "@/types/OriginDataType";
 import { Dispatch, SetStateAction } from "react";
+
+import { GeoPosition, Pin } from "@/types/OriginDataType";
 
 export type LogPageStep = "LOG_RECORD_STANDBY" | "LOG_RECORD_RECORDING" | "LOG_RECORD_EDITING";
 

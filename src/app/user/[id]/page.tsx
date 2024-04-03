@@ -1,5 +1,6 @@
-import dynamic from "next/dynamic";
 import { ProfileSkeleton } from "@/components/skeletons";
+
+import dynamic from "next/dynamic";
 
 interface MyPageProps {
   params: {

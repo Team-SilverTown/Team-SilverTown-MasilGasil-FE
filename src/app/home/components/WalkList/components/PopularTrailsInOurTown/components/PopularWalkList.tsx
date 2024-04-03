@@ -1,17 +1,14 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-
+import { WALK_LIST } from "@/app/home/Home.constants";
+import { HomeWalkListSkeleton } from "@/components/skeletons";
 import { getPopularTrailsInOurTown } from "@/lib/api/home/client";
 import { POST_KEY } from "@/lib/api/queryKeys";
-
-import { WALK_LIST } from "@/app/home/Home.constants";
 import { UserAddressType } from "@/types/OriginDataType/Location";
-
-import { HomeWalkListSkeleton } from "@/components/skeletons";
+import { PostMoreListResponse } from "@/types/Response/Post";
+import { useQuery } from "@tanstack/react-query";
 
 import WalkListDisplay from "../../WalkListDisplay/WalkListDisplay";
-import { PostMoreListResponse } from "@/types/Response/Post";
 
 interface PopularTrailsInOurTownListProps {
   userAddress: UserAddressType;

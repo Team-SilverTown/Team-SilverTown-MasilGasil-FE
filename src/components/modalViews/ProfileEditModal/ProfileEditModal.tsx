@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { ModalLayout } from "@/components/Modal";
-import Image from "@/components/icons/Image";
-import { Button } from "@/components";
-import InputUpload from "@/components/InputUpload/InputUpload";
 import * as S from "./ProfileEditModal.styles";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
+import { useState } from "react";
+
+import { Button } from "@/components";
+import InputUpload from "@/components/InputUpload/InputUpload";
+import { ModalLayout } from "@/components/Modal";
+import Image from "@/components/icons/Image";
 
 interface ProfileEditModalProps {
   onClickAccept: (ProfileImage: string | null) => void;

@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useCallback } from "react";
-import { useRouter } from "next/navigation";
 
 import { Button } from "@/components";
 import { ChevronLeft } from "@/components/icons";
+
+import { useRouter } from "next/navigation";
 
 interface GoBackButtonProps {
   onGoBackHandler?: () => void;

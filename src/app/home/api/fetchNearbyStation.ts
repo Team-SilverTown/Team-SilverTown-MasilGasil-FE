@@ -1,8 +1,8 @@
 "use server";
 
-import { WeatherType, PrecipitationType } from "../Home.types";
-import fetchWeatherForecast from "./fetchWeatherForecast";
+import { PrecipitationType, WeatherType } from "../Home.types";
 import fetchAirQuality from "./fetchAirQuality";
+import fetchWeatherForecast from "./fetchWeatherForecast";
 
 interface StationData {
   response: {

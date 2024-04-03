@@ -1,11 +1,13 @@
 "use client";
 
 import * as S from "./LogRecordRecording.styles";
+import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
+import { useMemo } from "react";
 
 import { Button } from "@/components";
-import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
 import useLogRecordRecordingController from "./LogRecordRecording.controller";
-import { useMemo } from "react";
 
 const LogRecordRecordingView = () => {
   const { logData, handleClickCompleteRecord } = useLogRecordRecordingController();

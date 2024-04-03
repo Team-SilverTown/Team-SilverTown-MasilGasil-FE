@@ -1,9 +1,11 @@
 "use client";
 
-import useTheme from "@/lib/hooks/useTheme";
 import * as S from "./PinEditSlideButton.styles";
-import { SlideButton } from "..";
+
+import useTheme from "@/lib/hooks/useTheme";
 import { Pin } from "@/types/OriginDataType";
+
+import { SlideButton } from "..";
 import EditPencil from "../icons/EditPencil";
 
 interface PinEditSlideButtonProps {

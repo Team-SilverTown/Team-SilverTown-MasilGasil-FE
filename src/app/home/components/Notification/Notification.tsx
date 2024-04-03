@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { NotificationActive, NotificationOff } from "@/components/icons";
 import { useUI } from "@/components/uiContext/UiContext";
+
+import Link from "next/link";
 
 interface NotificationProps {
   isNotification: boolean | null;

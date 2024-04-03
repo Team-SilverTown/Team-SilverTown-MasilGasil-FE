@@ -3,6 +3,7 @@ import { acceptParticipant } from "@/lib/api/Mate/client";
 import { MATE_KEY } from "@/lib/api/queryKeys";
 import checkErrorCode from "@/lib/utils/checkErrorCode";
 import { useMutation } from "@tanstack/react-query";
+
 import { useRouter } from "next/navigation";
 
 const useAcceptParticipant = () => {

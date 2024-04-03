@@ -1,8 +1,9 @@
 "use client";
 
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
 import { Button } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 interface PostCreateButtonProps {
   onClick: () => void;

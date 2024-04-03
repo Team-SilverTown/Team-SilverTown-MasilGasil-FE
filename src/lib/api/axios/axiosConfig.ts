@@ -23,7 +23,6 @@ export const onError = (error: AxiosError) => {
 export const onRequest = (config: InternalAxiosRequestConfig) => {
   const serviceToken = localStorage.getItem("serviceToken");
 
-
   config.headers.Authorization = `Bearer ${serviceToken}`;
 
   return config;

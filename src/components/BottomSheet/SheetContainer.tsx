@@ -1,15 +1,18 @@
 "use client";
 
-import * as React from "react";
-import { motion } from "framer-motion";
+import styles from "./styles";
 
-import { SheetContainerProps } from "./types";
+import * as React from "react";
+
+import useTheme from "@/lib/hooks/useTheme";
+
+import { MAX_HEIGHT } from "./constants";
 import { useSheetContext } from "./context";
 import { useEventCallbacks } from "./hooks";
-import { MAX_HEIGHT } from "./constants";
+import { SheetContainerProps } from "./types";
 import { mergeRefs } from "./utils";
-import styles from "./styles";
-import useTheme from "@/lib/hooks/useTheme";
+
+import { motion } from "framer-motion";
 
 const SheetContainer = React.forwardRef<any, SheetContainerProps>(
   ({ children, style = {}, className = "", ...rest }, ref) => {

@@ -4,9 +4,9 @@ import { useEffect } from "react";
 
 import { useUI } from "@/components/uiContext/UiContext";
 
+import useGeoLocationUtils from "../../../../../hooks/useGeoLocationUtils";
 import { LOG_RECORD_MESSAGE } from "../../LogRecord.constants";
 import useLogRecordContext from "../../context/LogRecordContext";
-import useGeoLocationUtils from "../../../../../hooks/useGeoLocationUtils";
 
 const useLogRecordRecordingController = () => {
   const { openModal, setModalView, closeModal } = useUI();

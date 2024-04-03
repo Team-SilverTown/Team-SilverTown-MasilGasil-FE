@@ -1,17 +1,18 @@
+import * as S from "./MapSection.styles";
+
 import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Map } from "react-kakao-maps-sdk";
-import throttle from "lodash.throttle";
-import debounce from "lodash.debounce";
 
-import useUserLocationStore from "@/lib/stores/useUserLocationStore";
-import { GeoPosition } from "@/types/OriginDataType";
-import { useUI } from "@/components/uiContext/UiContext";
 import { LOG_RECORD_MESSAGE } from "@/app/log/record/LogRecord.constants";
 import { Button } from "@/components";
-import { Center } from "@/components/icons";
-
-import * as S from "./MapSection.styles";
 import { CenterMarker } from "@/components/MasilMap/components";
+import { Center } from "@/components/icons";
+import { useUI } from "@/components/uiContext/UiContext";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
+import { GeoPosition } from "@/types/OriginDataType";
+
+import debounce from "lodash.debounce";
+import throttle from "lodash.throttle";
 
 declare global {
   interface Window {

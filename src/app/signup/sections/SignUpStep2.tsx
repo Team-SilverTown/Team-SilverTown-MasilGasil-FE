@@ -4,9 +4,9 @@ import React from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 import { UserEditInput } from "@/components";
-import { SignUpFormProps } from "../SignUp.controller";
-
 import { USER_INPUT_PLACEHOLDER } from "@/lib/constants/userConstants";
+
+import { SignUpFormProps } from "../SignUp.controller";
 
 interface SignUpStep2Props {
   register: UseFormRegister<SignUpFormProps>;

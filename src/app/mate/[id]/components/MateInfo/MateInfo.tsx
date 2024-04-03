@@ -1,12 +1,13 @@
 import * as GS from "../../MateDetail.styles";
 import * as S from "./MateInfo.styles";
 
-import { MateActions, MateDropDownMenu } from "./components";
-import Divider from "@/components/Divider/Divider";
 import Avatar from "@/components/Avatar";
-import { MateDetailResponse } from "@/types/Response";
+import Divider from "@/components/Divider/Divider";
 import convertFormatDate from "@/lib/utils/convertFormatDate";
 import { Participant } from "@/types/OriginDataType";
+import { MateDetailResponse } from "@/types/Response";
+
+import { MateActions, MateDropDownMenu } from "./components";
 
 interface MateInfoProps {
   acceptedUserList: Participant[];

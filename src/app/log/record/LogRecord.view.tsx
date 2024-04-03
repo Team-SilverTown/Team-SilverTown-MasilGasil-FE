@@ -2,15 +2,17 @@
 
 import * as S from "./LogRecord.styles";
 
-import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
-import MasilMap from "@/components/MasilMap/MasilMap";
 import { Button } from "@/components";
+import MasilMap from "@/components/MasilMap/MasilMap";
 import { Pin } from "@/components/icons";
 import Center from "@/components/icons/Center";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import { AnimatePresence } from "framer-motion";
+
 import useLogRecordController from "./LogRecord.controller";
+import { LogRecordEdit, LogRecordRecording, LogRecordStandby } from "./components";
+
+import { AnimatePresence } from "framer-motion";
 
 const LogRecordView = () => {
   const {

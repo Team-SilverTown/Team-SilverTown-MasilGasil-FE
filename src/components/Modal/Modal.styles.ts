@@ -1,6 +1,5 @@
-import styled from "styled-components";
-
 import { FONT_SIZE, FONT_WEIGHT, MODAL, Z_INDEX } from "@/styles/theme";
+import styled from "styled-components";
 
 export const ModalContainer = styled.div`
   position: fixed;

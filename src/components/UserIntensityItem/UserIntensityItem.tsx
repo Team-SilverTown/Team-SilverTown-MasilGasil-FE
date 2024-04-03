@@ -3,8 +3,10 @@
 import * as S from "./UserIntensityItem.styles";
 
 import { UseFormRegisterReturn } from "react-hook-form";
-import { Check } from "../icons";
+
 import useTheme from "@/lib/hooks/useTheme";
+
+import { Check } from "../icons";
 
 interface IntensityItemProps {
   key?: string | number;

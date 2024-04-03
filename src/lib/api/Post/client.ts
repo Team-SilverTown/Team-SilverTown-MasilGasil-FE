@@ -1,7 +1,8 @@
+import { PostCreateRequest, PostListRequest } from "@/types/Request";
 import { PostDetailResponse, PostListResponse } from "@/types/Response/Post";
+
 import { GET, POST, PUT } from "../clientRootAPI";
 import { POST as POST_ENDPOINT } from "../endPoints";
-import { PostCreateRequest, PostListRequest } from "@/types/Request";
 
 export const getPostDetail = async ({ id }: { id: string }) => {
   return await GET<PostDetailResponse>({

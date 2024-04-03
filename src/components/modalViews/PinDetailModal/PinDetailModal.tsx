@@ -1,15 +1,16 @@
 "use client";
 
 import * as S from "./PinDetailModal.styles";
-
-import { ModalLayout } from "@/components/Modal";
-import { Pin } from "@/types/OriginDataType";
-import Image from "next/image";
-import { Image as ImageIcon } from "@/components/icons";
-import useTheme from "@/lib/hooks/useTheme";
-import { Button } from "@/components";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
+import { Button } from "@/components";
+import { ModalLayout } from "@/components/Modal";
+import { Image as ImageIcon } from "@/components/icons";
 import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
+import { Pin } from "@/types/OriginDataType";
+
+import Image from "next/image";
 
 interface PinDetailModalProps {
   pin: Pin;

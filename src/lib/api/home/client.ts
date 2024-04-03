@@ -1,4 +1,5 @@
 import { PostMoreListResponse } from "@/types/Response/Post";
+
 import { GET } from "../clientRootAPI";
 import { POST } from "../endPoints";
 

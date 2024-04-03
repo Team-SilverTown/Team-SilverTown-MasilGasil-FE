@@ -1,16 +1,17 @@
 "use client";
 
+import * as S from "./BottomSheetSection.styles";
+import { CONTAINER, Z_INDEX } from "@/styles/theme";
+
 import React, { Dispatch, ReactNode, SetStateAction, useMemo, useRef, useState } from "react";
 
-import useTheme from "@/lib/hooks/useTheme";
-import { CONTAINER, Z_INDEX } from "@/styles/theme";
 import { OrderTab, StepLayout, Tab } from "@/components";
-import Sheet from "@components/BottomSheet";
 import LoadingDots from "@/components/LoadingDots";
-
-import * as S from "./BottomSheetSection.styles";
-import { TabItem } from "../../components";
+import useTheme from "@/lib/hooks/useTheme";
 import parseLocationObject from "@/lib/utils/parseLocation";
+import Sheet from "@components/BottomSheet";
+
+import { TabItem } from "../../components";
 
 interface BottomSheetSectionProps {
   locationData: {

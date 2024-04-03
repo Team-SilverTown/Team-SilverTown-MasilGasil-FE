@@ -1,7 +1,9 @@
-import Carousel from "nuka-carousel";
+import * as S from "./PostPin.styles";
+
 import { DotIndicator, PinDetailCard } from "@/components";
 import { Pin } from "@/types/OriginDataType";
-import * as S from "./PostPin.styles";
+
+import Carousel from "nuka-carousel";
 
 interface PostPinProps {
   pins: Pin[];

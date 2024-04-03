@@ -1,5 +1,6 @@
-import { Textarea } from "@/components";
 import { useForm } from "react-hook-form";
+
+import { Textarea } from "@/components";
 
 export default {
   title: "Component/Textarea",

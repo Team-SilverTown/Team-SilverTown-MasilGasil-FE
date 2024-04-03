@@ -1,18 +1,18 @@
 "use client";
 
-import MasilMap from "@/components/MasilMap/MasilMap";
 import * as GS from "../MateMapModal.styles";
 import * as S from "./MapLocationMapModal.styles";
-
-import { ModalLayout } from "@/components/Modal";
-import { MateGatheringPlace } from "@/types/OriginDataType";
-import { Button } from "@/components";
-import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { Center } from "@/components/icons";
-import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
-import { useUI } from "@/components/uiContext/UiContext";
+
+import { Button } from "@/components";
+import MasilMap from "@/components/MasilMap/MasilMap";
 import { CustomPin } from "@/components/MasilMap/components";
+import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
+import { ModalLayout } from "@/components/Modal";
+import { Center } from "@/components/icons";
+import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
+import { MateGatheringPlace } from "@/types/OriginDataType";
 
 interface MateLocationMapModalProps {
   gatherPlace: MateGatheringPlace;

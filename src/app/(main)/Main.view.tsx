@@ -1,6 +1,6 @@
-import AuthButton from "./components/AuthButton";
-
 import style from "./Main.module.css";
+
+import AuthButton from "./components/AuthButton";
 
 const MainView = () => {
   return (

@@ -1,16 +1,18 @@
 "use client";
 
-import { Button } from "@/components";
 import * as S from "./MateActions.styles";
-import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import { DefaultTheme } from "styled-components";
+
+import { useMemo } from "react";
+
+import { useCancelParticipant, useRequestParticipant } from "@/app/mate/[id]/hooks";
+import { Button } from "@/components";
+import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
+import useMeStore from "@/lib/stores/useMeStore";
 import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
-import { useMemo } from "react";
-import useMeStore from "@/lib/stores/useMeStore";
-import { useUI } from "@/components/uiContext/UiContext";
-import { useCancelParticipant, useRequestParticipant } from "@/app/mate/[id]/hooks";
 
 interface MateActionsProps {
   mateData: MateDetailResponse;

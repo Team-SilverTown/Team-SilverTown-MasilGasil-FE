@@ -1,6 +1,7 @@
+import * as S from "./UserWalkRecord.styles";
+
 import { convertMeter } from "@/lib/utils";
 import { ProfileResponse } from "@/types/Response";
-import * as S from "./UserWalkRecord.styles";
 
 interface UserWalkRecordProps {
   userInfo: ProfileResponse;

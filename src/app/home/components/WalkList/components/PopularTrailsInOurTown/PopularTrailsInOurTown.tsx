@@ -2,12 +2,11 @@
 
 import { useCallback, useEffect } from "react";
 
+import getDetailedAddress from "@/app/home/utils/getDetailedAddress";
+import useGeoLocationUtils from "@/hooks/useGeoLocationUtils";
 import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 
-import getDetailedAddress from "@/app/home/utils/getDetailedAddress";
-
 import PopularWalkList from "./components/PopularWalkList";
-import useGeoLocationUtils from "@/hooks/useGeoLocationUtils";
 
 const PopularTrailsInOurTown = () => {
   const { userLocation, userAddress, setUserAddress } = useUserLocationStore();

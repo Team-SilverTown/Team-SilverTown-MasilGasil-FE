@@ -1,6 +1,7 @@
-import { MASIL } from "../endPoints";
-import { GET } from "../clientRootAPI";
 import { MasilsByPeriodResponse } from "@/types/Response";
+
+import { GET } from "../clientRootAPI";
+import { MASIL } from "../endPoints";
 
 const getMasilsByPeriod = async ({
   startDate,

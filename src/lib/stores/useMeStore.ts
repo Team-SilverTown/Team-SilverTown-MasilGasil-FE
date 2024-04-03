@@ -1,4 +1,5 @@
 import { IntensityOption } from "@/types/OriginDataType";
+
 import { create } from "zustand";
 
 interface OriginProps {

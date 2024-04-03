@@ -1,6 +1,7 @@
 "use client";
 
 import React, { CSSProperties, ReactNode } from "react";
+
 import { AnimatePresence, motion } from "framer-motion";
 
 interface StepLayoutProps {

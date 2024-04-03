@@ -1,4 +1,5 @@
 import Setting from "@/components/icons/Setting";
+
 import Link from "next/link";
 
 interface MyPageSettingProps {

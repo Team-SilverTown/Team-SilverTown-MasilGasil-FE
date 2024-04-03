@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+
 import { OnClickPin } from "../MasilMap/MasilMap.types";
 
 interface MapPinProp {

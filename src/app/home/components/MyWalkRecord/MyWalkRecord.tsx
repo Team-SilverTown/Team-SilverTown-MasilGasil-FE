@@ -1,6 +1,7 @@
-import { ProfileResponse } from "@/types/Response";
-import { convertMeter } from "@/lib/utils";
 import S from "./MyWalkRecord.module.css";
+
+import { convertMeter } from "@/lib/utils";
+import { ProfileResponse } from "@/types/Response";
 
 interface MyWalkRecordProps {
   userInfo: ProfileResponse;

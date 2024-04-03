@@ -2,10 +2,12 @@
 
 import * as GS from "../../UserEdit.styles";
 import * as S from "./EditIntensity.styles";
+
 import { UseFormRegister } from "react-hook-form";
+
+import { UserIntensityItem } from "@/components";
 import { INTENSITY_OPTIONS } from "@/lib/constants/variable";
 import { IntensityOption } from "@/types/OriginDataType";
-import { UserIntensityItem } from "@/components";
 import { MeResponse } from "@/types/Response";
 
 interface EditIntensityProps {

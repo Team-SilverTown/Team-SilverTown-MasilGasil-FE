@@ -1,21 +1,18 @@
-import { useRouter } from "next/navigation";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import * as S from "./PostMemo.styles";
 
-import { getUserInfo } from "@/lib/api/User/client";
-import { fetchPostLikedToggle } from "@/lib/api/Post/client";
-
-import { POST_KEY, USER_KEY } from "@/lib/api/queryKeys";
-import checkErrorCode from "@/lib/utils/checkErrorCode";
-
-import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/lib/utils";
-import { PostDetailResponse } from "@/types/Response/Post";
-import { UserInfoType } from "@/types/Response";
-
-import { useUI } from "@/components/uiContext/UiContext";
 import Avatar from "@/components/Avatar/Avatar";
 import { Heart, Location, ViewIcon } from "@/components/icons";
+import { useUI } from "@/components/uiContext/UiContext";
+import { fetchPostLikedToggle } from "@/lib/api/Post/client";
+import { getUserInfo } from "@/lib/api/User/client";
+import { POST_KEY, USER_KEY } from "@/lib/api/queryKeys";
+import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/lib/utils";
+import checkErrorCode from "@/lib/utils/checkErrorCode";
+import { UserInfoType } from "@/types/Response";
+import { PostDetailResponse } from "@/types/Response/Post";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
-import * as S from "./PostMemo.styles";
+import { useRouter } from "next/navigation";
 
 interface PostMemoProps {
   userInfo: UserInfoType;

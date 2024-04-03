@@ -1,7 +1,7 @@
 "use client";
 
-import styled from "styled-components";
 import { CONTAINER, FONT_SIZE, FONT_WEIGHT, NAV_HEIGHT } from "@/styles/theme";
+import styled from "styled-components";
 
 export const UserProfileContainer = styled.section`
   height: 100%;

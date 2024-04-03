@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
+
 import { LogPageStep } from "./LogRecord.types";
+
 import { motion } from "framer-motion";
 
 interface LogRecordStyleProps {

@@ -1,12 +1,14 @@
 "use client";
 
-import * as S from "./PostThumbnailEdit.styles";
-import * as GS from "../../PostTextEdit.styles";
 import * as TGS from "../../../../PostCreate.styles";
+import * as GS from "../../PostTextEdit.styles";
+import * as S from "./PostThumbnailEdit.styles";
+
+import { useEffect, useState } from "react";
+
 import InputUpload from "@/components/InputUpload/InputUpload";
 import Image from "@/components/icons/Image";
 import useTheme from "@/lib/hooks/useTheme";
-import { useEffect, useState } from "react";
 
 interface PostThumbnailEditProps {
   image: File | string | null;

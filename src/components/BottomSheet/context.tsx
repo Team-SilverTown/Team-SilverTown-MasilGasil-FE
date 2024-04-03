@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { SheetScrollerContextType, SheetContextType } from "./types";
+
+import { SheetContextType, SheetScrollerContextType } from "./types";
 
 export const SheetContext = React.createContext<SheetContextType | undefined>(undefined);
 

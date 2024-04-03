@@ -1,22 +1,25 @@
 "use client";
 
 import { useEffect } from "react";
-import useUserLocationStore from "@/lib/stores/useUserLocationStore";
-import { useUI } from "@/components/uiContext/UiContext";
-import useLogRecordContext from "../../context/LogRecordContext";
-import { useMutation } from "@tanstack/react-query";
-import { MASIL_KEY } from "@/lib/api/queryKeys";
-import { postMasil } from "@/lib/api/masil/client";
-import { MasilRecordRequest } from "@/types/Request";
-import { drawPath } from "@/lib/utils/drawPath";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+
+import { useUI } from "@/components/uiContext/UiContext";
+import { postMasil } from "@/lib/api/masil/client";
+import { MASIL_KEY } from "@/lib/api/queryKeys";
 import useImageUpload from "@/lib/hooks/useImageUpload";
-import calculatePathCenter from "@/lib/utils/calculatePathCenter";
-import useMeStore from "@/lib/stores/useMeStore";
-import { calculateWalkingCalories } from "@/lib/utils";
 import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
+import useMeStore from "@/lib/stores/useMeStore";
+import useUserLocationStore from "@/lib/stores/useUserLocationStore";
+import { calculateWalkingCalories } from "@/lib/utils";
+import calculatePathCenter from "@/lib/utils/calculatePathCenter";
 import checkErrorCode from "@/lib/utils/checkErrorCode";
+import { drawPath } from "@/lib/utils/drawPath";
+import { MasilRecordRequest } from "@/types/Request";
+import { useMutation } from "@tanstack/react-query";
+
+import useLogRecordContext from "../../context/LogRecordContext";
+
+import { useRouter } from "next/navigation";
 
 const useLogRecordEditController = () => {
   const { setModalView, openModal, closeModal } = useUI();

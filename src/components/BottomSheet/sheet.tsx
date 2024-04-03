@@ -1,34 +1,33 @@
 "use client";
 
+import styles from "./styles";
+
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {
-  animate,
-  AnimatePresence,
-  motion,
-  PanInfo,
-  Transition,
-  useMotionValue,
-  useReducedMotion,
-  useTransform,
-} from "framer-motion";
-
-import { useModalEffect, useWindowHeight, useIsomorphicLayoutEffect, useEvent } from "./hooks";
-
-import {
-  REDUCED_MOTION_TWEEN_CONFIG,
   DEFAULT_TWEEN_CONFIG,
   DRAG_CLOSE_THRESHOLD,
   DRAG_VELOCITY_THRESHOLD,
   IS_SSR,
+  REDUCED_MOTION_TWEEN_CONFIG,
 } from "./constants";
-
+import { SheetContext, SheetScrollerContextProvider } from "./context";
+import { useEvent, useIsomorphicLayoutEffect, useModalEffect, useWindowHeight } from "./hooks";
 import { SheetContextType, SheetProps } from "./types";
-import { SheetScrollerContextProvider, SheetContext } from "./context";
-import { getClosest, inDescendingOrder, validateSnapTo } from "./utils";
 import { usePreventScroll } from "./use-prevent-scroll";
-import styles from "./styles";
+import { getClosest, inDescendingOrder, validateSnapTo } from "./utils";
+
+import {
+  AnimatePresence,
+  PanInfo,
+  Transition,
+  animate,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useTransform,
+} from "framer-motion";
 
 const Sheet = React.forwardRef<any, SheetProps>(
   (

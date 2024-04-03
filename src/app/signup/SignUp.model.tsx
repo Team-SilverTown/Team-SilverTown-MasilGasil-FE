@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
 
+import { useUI } from "@/components/uiContext/UiContext";
 import { signUp } from "@/lib/api/User/client";
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
 import useAuthStore from "@/lib/stores/useAuthStore";
-import { useUI } from "@/components/uiContext/UiContext";
+import { useMutation } from "@tanstack/react-query";
+
+import { useRouter } from "next/navigation";
 
 const useSignUpModel = () => {
   const router = useRouter();

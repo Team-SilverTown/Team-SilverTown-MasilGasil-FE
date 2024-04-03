@@ -3,6 +3,7 @@
 import * as GS from "../../UserSetting.styles";
 
 import { AccountDelete, LogOut } from "@/components/icons";
+
 import { SettingContent } from "..";
 import useUserSettingAccountController from "./UserSettingAccount.controller";
 

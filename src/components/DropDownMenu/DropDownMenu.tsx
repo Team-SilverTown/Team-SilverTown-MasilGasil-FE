@@ -1,13 +1,15 @@
 "use client";
 
 import * as S from "./DropDownMenu.styles";
+
 import { MouseEvent } from "react";
 
+import Divider from "@/components/Divider/Divider";
 import { DotMenu, Trash } from "@/components/icons";
 import EditPencil from "@/components/icons/EditPencil";
 import useToggle from "@/hooks/useToggle";
+
 import { AnimatePresence } from "framer-motion";
-import Divider from "@/components/Divider/Divider";
 
 interface DropDownMenuProps {
   isEdit?: boolean;

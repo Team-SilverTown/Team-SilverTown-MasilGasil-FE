@@ -1,10 +1,10 @@
-import { PostMoreListResponse } from "@/types/Response/Post";
-import { ProfileResponse } from "@/types/Response";
+import * as S from "./Home.styles";
 
 import { TopNavigator } from "@/components/navigators/TopNavigator";
-import { WalkList, WalkStartButton } from "./components";
+import { ProfileResponse } from "@/types/Response";
+import { PostMoreListResponse } from "@/types/Response/Post";
 
-import * as S from "./Home.styles";
+import { WalkList, WalkStartButton } from "./components";
 import MyInfo from "./components/MyInfo/MyInfo";
 
 interface HomeViewProps {

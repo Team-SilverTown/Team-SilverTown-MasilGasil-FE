@@ -1,10 +1,11 @@
 "use client";
 
-import useLogModel from "./Log.model";
-import LogView from "./Log.view";
 import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
-import { TabType } from "./Log.types";
 import { MasilDetailResponse } from "@/types/Response";
+
+import useLogModel from "./Log.model";
+import { TabType } from "./Log.types";
+import LogView from "./Log.view";
 
 interface LogControllerProps {
   masilData: MasilDetailResponse;

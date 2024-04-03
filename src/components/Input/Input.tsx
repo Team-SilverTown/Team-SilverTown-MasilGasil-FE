@@ -1,9 +1,9 @@
 "use client";
 
+import * as S from "./Input.styles";
+
 import React, { CSSProperties, InputHTMLAttributes } from "react";
 import type { UseFormRegisterReturn } from "react-hook-form";
-
-import * as S from "./Input.styles";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegisterReturn;

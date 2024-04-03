@@ -1,16 +1,18 @@
-import { FC, useRef, useEffect, useCallback, CSSProperties } from "react";
-import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
+import {
+  ModalContentWrapper,
+  ModalHeaderButton,
+  ModalHeaderTitle,
+  ModalLayoutContainer,
+  ModalLayoutHeader,
+} from "./Modal.styles";
+
+import { CSSProperties, FC, useCallback, useEffect, useRef } from "react";
 
 import { useUI } from "@components/uiContext/UiContext";
 
-import {
-  ModalLayoutHeader,
-  ModalLayoutContainer,
-  ModalHeaderTitle,
-  ModalHeaderButton,
-  ModalContentWrapper,
-} from "./Modal.styles";
 import { Cross } from "../icons";
+
+import { clearAllBodyScrollLocks, disableBodyScroll } from "body-scroll-lock";
 
 // import FocusTrap from "@lib/focus-trap";
 

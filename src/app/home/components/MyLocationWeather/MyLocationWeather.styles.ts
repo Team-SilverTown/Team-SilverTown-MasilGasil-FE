@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { FONT_WEIGHT } from "@/styles/theme";
+import styled from "styled-components";
 
 export const MyLocationWeatherLayout = styled.article`
   display: flex;

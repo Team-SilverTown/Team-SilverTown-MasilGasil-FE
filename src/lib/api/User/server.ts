@@ -1,9 +1,11 @@
 "use server";
 
 import { AuthRequest } from "@/types/Request/User";
+import { AuthResponse, MeResponse, ProfileResponse } from "@/types/Response";
+
 import { AUTH, USER } from "../endPoints";
 import { GET, POST } from "../serverRootAPI";
-import { AuthResponse, MeResponse, ProfileResponse } from "@/types/Response";
+
 import { redirect } from "next/navigation";
 
 export async function authenticate(data: AuthRequest) {

@@ -1,7 +1,8 @@
-import { useMutation } from "@tanstack/react-query";
-import { IMAGE_UPLOAD_KEY } from "../api/queryKeys";
-import { postImage } from "../api/image/client";
 import { useUI } from "@/components/uiContext/UiContext";
+import { useMutation } from "@tanstack/react-query";
+
+import { postImage } from "../api/image/client";
+import { IMAGE_UPLOAD_KEY } from "../api/queryKeys";
 import checkErrorCode from "../utils/checkErrorCode";
 
 const useImageUpload = () => {

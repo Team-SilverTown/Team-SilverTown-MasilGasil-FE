@@ -1,8 +1,9 @@
 import * as S from "./UserEditInput.styles";
+import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 import { UseFormRegisterReturn } from "react-hook-form";
+
 import { Input, InputLabel } from "@/components";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 interface UserEditInputProps {
   title: string;

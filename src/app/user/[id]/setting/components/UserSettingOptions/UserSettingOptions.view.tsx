@@ -1,7 +1,9 @@
 "use client";
 
-import { PersonOff, PersonSearch } from "@/components/icons";
 import * as GS from "../../UserSetting.styles";
+
+import { PersonOff, PersonSearch } from "@/components/icons";
+
 import { SettingContent } from "..";
 import useUserSettingOptionsController from "./UserSettingOptions.controller";
 

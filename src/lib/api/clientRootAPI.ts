@@ -1,6 +1,6 @@
-import { AxiosRequestConfig } from "axios";
-
 import { axiosClientAuthInstance, axiosClientInstance } from "./axios/axiosClientInstance";
+
+import { AxiosRequestConfig } from "axios";
 
 const getRootAPI = (auth?: boolean) => (auth ? axiosClientAuthInstance : axiosClientInstance);
 

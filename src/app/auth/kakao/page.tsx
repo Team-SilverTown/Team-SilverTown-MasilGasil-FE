@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { QueryErrorResetBoundary } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
+
+import { QueryErrorResetBoundary } from "@tanstack/react-query";
 
 import Kakao from "./Kakao";
 

@@ -1,5 +1,7 @@
 "use client";
 
+import * as S from "./SearchBar.styles";
+
 import React from "react";
 import { UseFormRegister, UseFormWatch } from "react-hook-form";
 
@@ -8,7 +10,6 @@ import { Cross, Search } from "@/components/icons";
 import useTheme from "@/lib/hooks/useTheme";
 
 import { SearchProps } from "../../Explore.controller";
-import * as S from "./SearchBar.styles";
 
 interface SearchBarProps {
   id?: string;

@@ -1,6 +1,7 @@
-import nextMdx from "@next/mdx";
-import withTwin from "./withTwin.mjs";
 import withPWAInit from "@ducanh2912/next-pwa";
+import nextMdx from "@next/mdx";
+
+import withTwin from "./withTwin.mjs";
 
 // /** @type {import('next').NextConfig} */
 // const nextConfig = {

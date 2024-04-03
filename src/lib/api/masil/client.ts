@@ -1,7 +1,8 @@
 import { MasilRecordRequest } from "@/types/Request";
+import { MasilDetailResponse } from "@/types/Response";
+
 import { GET, POST } from "../clientRootAPI";
 import { MASIL } from "../endPoints";
-import { MasilDetailResponse } from "@/types/Response";
 
 export const postMasil = async ({ data }: { data: MasilRecordRequest }) => {
   return await POST<{ id: string }>({ endPoint: MASIL.POST, data, auth: true });
