@@ -26,6 +26,7 @@ export const POST_KEY = {
   POST_LIST: "post_list",
   GET_POST: "get_post_detail",
   GET_MORE_LIST: "get_more_list",
+  LIKED_STATUS: "liked_status",
 };
 
 export const WEATHER_KEY = {
