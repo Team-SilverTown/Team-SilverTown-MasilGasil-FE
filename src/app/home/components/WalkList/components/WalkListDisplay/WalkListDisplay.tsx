@@ -33,21 +33,24 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
         <div className={S.NoWalkRecordMessage}>산책로 목록이 비어있어요</div>
       ) : (
         <ul className={S.WalkListContainer}>
-          {walkList.map(({ id, title, content, thumbnailUrl, distance, totalTime, address }) => (
-            <li key={id}>
-              <Link href={`/post/${id}`}>
-                <LogDetailCard
-                  title={title}
-                  content={content}
-                  thumbnailUrl={thumbnailUrl}
-                  distance={convertMeter(distance)}
-                  totalTime={convertSeconds(totalTime)}
-                  isLikeLayout={true}
-                  address={address}
-                />
-              </Link>
-            </li>
-          ))}
+          {walkList.map(
+            ({ id, title, content, thumbnailUrl, distance, totalTime, address, likeCount }) => (
+              <li key={id}>
+                <Link href={`/post/${id}`}>
+                  <LogDetailCard
+                    title={title}
+                    content={content}
+                    thumbnailUrl={thumbnailUrl}
+                    distance={convertMeter(distance)}
+                    totalTime={convertSeconds(totalTime)}
+                    isLikeLayout={true}
+                    address={address}
+                    likeCount={likeCount}
+                  />
+                </Link>
+              </li>
+            ),
+          )}
         </ul>
       )}
     </section>
