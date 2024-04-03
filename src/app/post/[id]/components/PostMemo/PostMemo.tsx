@@ -47,7 +47,7 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
     queryFn: () => getUserInfo(String(authorId)),
   });
 
-  const { mutate } = useMutation({
+  const likeMutation = useMutation({
     mutationKey: [POST_KEY.LIKED_STATUS],
     mutationFn: fetchPostLikedToggle,
     onSuccess: () => {
@@ -69,7 +69,7 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
   }
 
   const handleClickLike = () => {
-    mutate({ postId: String(id), data: { isLike: !isLiked } });
+    likeMutation.mutate({ postId: String(id), data: { isLike: !isLiked } });
   };
 
   return (
