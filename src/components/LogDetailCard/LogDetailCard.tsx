@@ -1,11 +1,16 @@
 "use client";
-import { CSSProperties, useState } from "react";
-import Image from "next/image";
-import { calculateWalkingCalories } from "@/lib/utils";
-import { MeResponse } from "@/types/Response";
-import { UserAddressType } from "@/types/OriginDataType/Location";
-import { Heart, KebabMenu } from "../icons";
+
 import * as S from "./LogDetailCard.style";
+
+import { CSSProperties, useState } from "react";
+
+import { calculateWalkingCalories } from "@/lib/utils";
+import { UserAddressType } from "@/types/OriginDataType/Location";
+import { MeResponse } from "@/types/Response";
+
+import { Heart, KebabMenu } from "../icons";
+
+import Image from "next/image";
 
 export interface LogDetailCardProps {
   title: string;
@@ -92,7 +97,7 @@ const LogDetailCard = ({
             <li>{distance}</li>
           </ul>
           {isLikeLayout && (
-            <div className={`likeInfo`}>
+            <div className="likeInfo">
               <Heart
                 width={11}
                 height={10}

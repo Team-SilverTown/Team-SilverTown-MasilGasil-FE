@@ -2,9 +2,11 @@
 
 import * as S from "./NavigationPin.styles";
 
-import { GeoPosition } from "@/types/OriginDataType";
-import { OnClickPin } from "../../MasilMap.types";
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
+
+import { GeoPosition } from "@/types/OriginDataType";
+
+import { OnClickPin } from "../../MasilMap.types";
 
 interface NavigationPinProps {
   position: GeoPosition;

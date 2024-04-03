@@ -1,10 +1,12 @@
 "use client";
 
+import styles from "./styles";
+
 import * as React from "react";
-import { motion } from "framer-motion";
 
 import { SheetBackdropProps } from "./types";
-import styles from "./styles";
+
+import { motion } from "framer-motion";
 
 const isClickable = (props: any) => !!props.onClick || !!props.onTap;
 

@@ -1,6 +1,8 @@
 import React from "react";
-import MateDetail from "./MateDetail";
+
 import { getMateDetail } from "@/lib/api/Mate/server";
+
+import MateDetail from "./MateDetail";
 
 interface MateProps {
   params: { id: string };
@@ -15,12 +17,7 @@ const Mate = async ({ params }: MateProps) => {
     return;
   }
 
-  return (
-    <MateDetail
-      postId={id}
-      mateData={data}
-    />
-  );
+  return <MateDetail mateData={data} />;
 };
 
 export default Mate;

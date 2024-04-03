@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 
 import * as S from "./OptionTimePicker.styles";
+
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
 
 interface OptionTimePickerProps {
   startTime: Date | null;

@@ -1,5 +1,6 @@
-import { styled } from "twin.macro";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
+import { styled } from "twin.macro";
 
 export const RecordDoneLayout = styled.div`
   width: 28rem;

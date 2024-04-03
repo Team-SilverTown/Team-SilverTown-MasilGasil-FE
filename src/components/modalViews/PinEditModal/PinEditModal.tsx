@@ -1,17 +1,20 @@
-import { ModalLayout } from "@/components/Modal";
-import { useUI } from "@/components/uiContext/UiContext";
-import { Pin } from "@/types/OriginDataType";
 import * as S from "./PinEditModal.styles";
-import Image from "@/components/icons/Image";
-import Theme, { FONT_WEIGHT, FONT_SIZE } from "@/styles/theme";
-import { Button, Textarea } from "@/components";
+import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
 import { useForm } from "react-hook-form";
-import { Trash } from "@/components/icons";
-import InputUpload from "@/components/InputUpload/InputUpload";
-import useImageUpload from "@/lib/hooks/useImageUpload";
-import LoadingAnimationData from "./LoadingAnimationData.json";
 import Lottie from "react-lottie";
+
+import { Button, Textarea } from "@/components";
+import InputUpload from "@/components/InputUpload/InputUpload";
+import { ModalLayout } from "@/components/Modal";
 import { useToast } from "@/components/ShadcnUi/ui/useToast";
+import { Trash } from "@/components/icons";
+import Image from "@/components/icons/Image";
+import { useUI } from "@/components/uiContext/UiContext";
+import useImageUpload from "@/lib/hooks/useImageUpload";
+import { Pin } from "@/types/OriginDataType";
+
+import LoadingAnimationData from "./LoadingAnimationData.json";
 
 interface PinEditModalProps {
   onClickAccept: (imageUrl: string | null, pinContent: string | null) => void;

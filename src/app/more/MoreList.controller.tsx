@@ -1,16 +1,16 @@
 "use client";
 
 import { useMemo } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { POST_KEY } from "@/lib/api/queryKeys";
 import { getPostList } from "@/lib/api/Post/client";
+import { POST_KEY } from "@/lib/api/queryKeys";
 import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 import { PostListRequest } from "@/types/Request";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
-import MoreListView from "./MoreList.view";
 import { TAKE } from "./MoreList.constants";
 import { KeywordType } from "./MoreList.types";
+import MoreListView from "./MoreList.view";
 
 interface MoreListControllerProps {
   keyword: KeywordType;

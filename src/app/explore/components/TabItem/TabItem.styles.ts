@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import styled from "styled-components";
+
+import { motion } from "framer-motion";
 
 export const Tab = styled.div`
   position: relative;

@@ -1,7 +1,11 @@
 "use client";
-import { useUI } from "@/components/uiContext/UiContext";
-import { useRouter } from "next/navigation";
+
 import { useEffect } from "react";
+
+import { useUI } from "@/components/uiContext/UiContext";
+
+import { useRouter } from "next/navigation";
+
 const error = () => {
   const { openModal, setModalView } = useUI();
   const router = useRouter();

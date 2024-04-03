@@ -1,16 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import * as S from "./BottomNavigator.styles";
 
 import userProfile from "@/assets/userProfile.svg";
 import { Avatar } from "@/components";
 import useMeStore from "@/lib/stores/useMeStore";
 import { pathAbleCheck } from "@/lib/utils/pathAbleCheck";
 
-import * as S from "./BottomNavigator.styles";
 import { BOTTOM_NAV_INABLE } from "../navInablePath";
 import { BOTTOM_NAV_ITEMS } from "./BottomNavigator.constants";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const BottomNavigator = () => {
   const currentPathName = usePathname();

@@ -1,7 +1,9 @@
-import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getMasilDetail } from "@/lib/api/masil/server";
+
 import LogController from "./Log.controller";
+
+import { getServerSession } from "next-auth";
 
 interface LogDetailProps {
   params: {

@@ -1,6 +1,6 @@
-import { create } from "zustand";
-
 import { WINDOW_VIEWS } from "./types/windowType";
+
+import { create } from "zustand";
 
 interface UseWindowStoreProps {
   displayWindow: boolean;

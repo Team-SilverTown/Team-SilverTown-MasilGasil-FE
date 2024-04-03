@@ -1,13 +1,14 @@
 "use client";
 
+import * as GS from "@/styles/GlobalStyle";
+
 import React, { ReactNode } from "react";
 import { FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 
-import * as GS from "@/styles/GlobalStyle";
 import { StepLayout } from "@/components";
 
-import { SignUpHelper, StepButton } from "./components";
 import { LAST_STEP_INDEX, SignUpFormProps } from "./SignUp.controller";
+import { SignUpHelper, StepButton } from "./components";
 
 interface SignUpViewProps {
   stepViews: ReactNode[];

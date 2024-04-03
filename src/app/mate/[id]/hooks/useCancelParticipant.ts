@@ -3,9 +3,14 @@ import { deleteCancelParticipant } from "@/lib/api/Mate/client";
 import { MATE_KEY } from "@/lib/api/queryKeys";
 import checkErrorCode from "@/lib/utils/checkErrorCode";
 import { useMutation } from "@tanstack/react-query";
+
 import { useRouter } from "next/navigation";
 
-const useCancelParticipant = () => {
+interface useCancelParticipantProps {
+  successMessage?: string;
+}
+
+const useCancelParticipant = ({ successMessage }: useCancelParticipantProps) => {
   const { setModalView, openModal } = useUI();
   const router = useRouter();
 
@@ -16,7 +21,7 @@ const useCancelParticipant = () => {
 
     onSuccess: () => {
       setModalView("DONE_VIEW");
-      openModal({ message: "참가자를 내보냈습니다!" });
+      openModal({ message: successMessage ? successMessage : "정상적으로 처리되었습니다!" });
 
       router.refresh();
     },

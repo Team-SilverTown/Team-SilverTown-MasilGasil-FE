@@ -1,7 +1,7 @@
+import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
+
 import { NextAuthOptions } from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
-
-import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
 
 export const parseJwt = (
   token: string,
@@ -39,11 +39,20 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
-    async jwt({ token, account }) {
+    async jwt({ token, account, trigger, session }) {
+      if (trigger === "update" && session.nickname) {
+        token.nickname = session.nickname;
+        token.serviceToken = session.serviceToken;
+      }
+
       if (account && account.access_token) {
         // 카카오 인증 로그인 시
         // 서비스 서버로부터 새로운 accessToken, refreshToken 을 발급
+
         const tokenData = await authenticate({ accessToken: account.access_token });
 
         token.serviceToken = tokenData?.accessToken;
@@ -68,7 +77,13 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token, trigger, newSession }) {
+      if (trigger === "update") {
+        console.log("UPDATE", newSession);
+        newSession.serviceToken && (session.serviceToken = newSession.serviceToken);
+        session.nickname = newSession.nickname;
+      }
+
       if (token.serviceToken) {
         session.serviceToken = token.serviceToken as string;
         session.nickname = token.nickname as string;

@@ -1,16 +1,17 @@
 "use client";
 
+import { useMemo } from "react";
+
 import { DropDownMenu } from "@/components";
 import { useUI } from "@/components/uiContext/UiContext";
 import useMeStore from "@/lib/stores/useMeStore";
-import { useMemo } from "react";
 
 interface MateDropDownMenuWrapperProps {
-  postId: string;
+  mateId: string | number;
   authorId: string | number;
 }
 
-const MateDropDownMenuWrapper = ({ postId, authorId }: MateDropDownMenuWrapperProps) => {
+const MateDropDownMenuWrapper = ({ mateId, authorId }: MateDropDownMenuWrapperProps) => {
   const { userId } = useMeStore();
 
   const isAuthor = useMemo(() => authorId === userId, [authorId, userId]);

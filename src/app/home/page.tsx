@@ -1,9 +1,11 @@
-import dynamic from "next/dynamic";
 import { HomeSkeleton } from "@/components/skeletons";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/options";
-import { getPopularWalkingTrails } from "@/lib/api/home/server";
 import { getMe, getUserProfile } from "@/lib/api/User/server";
+import { getPopularWalkingTrails } from "@/lib/api/home/server";
+
+import { authOptions } from "../api/auth/[...nextauth]/options";
+
+import { getServerSession } from "next-auth";
+import dynamic from "next/dynamic";
 
 const Home = async () => {
   const HomeView = dynamic(() => import("./Home.view"), {

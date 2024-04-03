@@ -1,10 +1,10 @@
+import { AuthRequest, SignUpRequest, UserEditRequest } from "@/types/Request/User";
 import {
   AuthResponse,
   CheckNickNameResponse,
   EditUserResponse,
   MeResponse,
 } from "@/types/Response";
-import { AuthRequest, SignUpRequest, UserEditRequest } from "@/types/Request/User";
 
 import { GET, PATCH, POST, PUT } from "../clientRootAPI";
 import { AUTH, USER } from "../endPoints";

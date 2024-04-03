@@ -1,8 +1,9 @@
 "use server";
 
-import { GET } from "../serverRootAPI";
-import { POST } from "../endPoints";
 import { PostMoreListResponse } from "@/types/Response/Post";
+
+import { POST } from "../endPoints";
+import { GET } from "../serverRootAPI";
 
 export const getPopularWalkingTrails = async (serviceToken: string) => {
   const response = await GET<PostMoreListResponse>({

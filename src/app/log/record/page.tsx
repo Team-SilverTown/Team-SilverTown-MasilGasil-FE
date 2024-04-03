@@ -1,12 +1,14 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import LogRecordView from "./LogRecord.view";
-import { LogRecordContextProvider } from "./context/LogRecordContext";
-import { useQuery } from "@tanstack/react-query";
 import { getPostDetail } from "@/lib/api/Post/client";
 import { POST_KEY } from "@/lib/api/queryKeys";
+import { useQuery } from "@tanstack/react-query";
+
 import { NavigationData } from "./LogRecord.types";
+import LogRecordView from "./LogRecord.view";
+import { LogRecordContextProvider } from "./context/LogRecordContext";
+
+import { useSearchParams } from "next/navigation";
 
 const LogRecord = () => {
   const searchParams = useSearchParams();

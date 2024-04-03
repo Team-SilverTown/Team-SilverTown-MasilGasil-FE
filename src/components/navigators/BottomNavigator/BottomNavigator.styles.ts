@@ -1,6 +1,5 @@
-import styled from "styled-components";
-
 import { BORDER, CONTAINER, FONT_SIZE, NAV_HEIGHT, Z_INDEX } from "@/styles/theme";
+import styled from "styled-components";
 
 export const BottomNavContainer = styled.nav`
   display: flex;

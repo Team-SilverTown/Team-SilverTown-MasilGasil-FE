@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+
+import React, { useEffect, useState } from "react";
 
 interface Indicator {
   ref: number;

@@ -1,13 +1,14 @@
 "use client";
 
 import React, { memo, useCallback } from "react";
-import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
+import { AutoSizer, InfiniteLoader, List as VList } from "react-virtualized";
 
 import { ListCard } from "@/components";
-import { PostListItem } from "@/types/OriginDataType/Post";
-import parseLocationObject from "@/lib/utils/parseLocation";
-import { useRouter } from "next/navigation";
 import { PostCardsSkeleton } from "@/components/skeletons";
+import parseLocationObject from "@/lib/utils/parseLocation";
+import { PostListItem } from "@/types/OriginDataType/Post";
+
+import { useRouter } from "next/navigation";
 
 interface ListSectionProps {
   id: "post" | "mate";

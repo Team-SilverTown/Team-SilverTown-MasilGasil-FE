@@ -110,7 +110,7 @@ export const LogDetailCardInfoContent = styled.div`
     align-items: center;
     font-size: 0.8rem;
     svg {
-      margin-right: 0.1rem;
+      margin-right: 0.2rem;
       stroke: ${(props) => props.theme.pink_100};
     }
     .like {

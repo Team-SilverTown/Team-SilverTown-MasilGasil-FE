@@ -1,8 +1,13 @@
-import { CustomOverlayMap } from "react-kakao-maps-sdk";
-import { OnClickPin } from "../../MasilMap.types";
-import { MapPin } from "@/components/icons";
+"use client";
+
 import Theme, { Z_INDEX } from "@/styles/theme";
+
+import { CustomOverlayMap } from "react-kakao-maps-sdk";
+
+import { MapPin } from "@/components/icons";
 import { GeoPosition } from "@/types/OriginDataType";
+
+import { OnClickPin } from "../../MasilMap.types";
 
 interface CustomPinProps {
   position: GeoPosition;

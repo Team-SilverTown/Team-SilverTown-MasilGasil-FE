@@ -1,9 +1,10 @@
 "use client";
 
 import * as S from "./LogRecordStandby.styles";
+import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 import { Button } from "@/components";
-import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+
 import useLogRecordStandbyController from "./LogRecordStandby.controller";
 
 const LogRecordStandbyView = () => {

@@ -1,9 +1,10 @@
 "use client";
 
+import * as S from "../TopNavigator.styles";
+
 import React from "react";
 
 import { Button } from "@/components";
-import * as S from "../TopNavigator.styles";
 
 interface StepSkipButtonProps {
   onSkipHandler?: () => void;

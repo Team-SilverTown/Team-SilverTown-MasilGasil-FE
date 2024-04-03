@@ -1,8 +1,10 @@
 "use client";
 
-import { CSSProperties } from "react";
-import Image from "next/image";
 import * as S from "./LogSimpleCard.style";
+
+import { CSSProperties } from "react";
+
+import Image from "next/image";
 
 export interface LogSimpleCardProps {
   width?: number | string;

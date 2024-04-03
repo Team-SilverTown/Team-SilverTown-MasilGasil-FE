@@ -2,6 +2,7 @@ import * as GS from "../../UserEdit.styles";
 import * as S from "./EditSex.styles";
 
 import { UseFormRegister } from "react-hook-form";
+
 import { InputRadio } from "@/components";
 import { SEX_OPTIONS } from "@/lib/constants/variable";
 import { MeResponse } from "@/types/Response";

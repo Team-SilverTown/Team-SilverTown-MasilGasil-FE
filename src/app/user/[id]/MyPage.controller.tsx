@@ -1,11 +1,13 @@
-import { USER_PROFILE_EXCEPTION } from "./MyPage.constants";
-import MypageView from "./MyPage.view";
-import { getMe, getUserProfile } from "@/lib/api/User/server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
-import { getRecentMasils } from "@/lib/api/masil/server";
 import { getRecentPostsById } from "@/lib/api/Post/server";
+import { getMe, getUserProfile } from "@/lib/api/User/server";
+import { getRecentMasils } from "@/lib/api/masil/server";
+
+import { USER_PROFILE_EXCEPTION } from "./MyPage.constants";
 import { MyRecordListType } from "./MyPage.types";
+import MypageView from "./MyPage.view";
+
+import { getServerSession } from "next-auth";
 
 interface MyPageControllerProps {
   userId: number;

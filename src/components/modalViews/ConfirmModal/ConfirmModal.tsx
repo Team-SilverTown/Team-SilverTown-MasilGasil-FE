@@ -1,12 +1,15 @@
-import { Button } from "@/components";
 import * as S from "./ConfirmModal.styles";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { useUI } from "@/components/uiContext/UiContext";
-import { ModalLayout } from "@/components/Modal";
-import useTheme from "@/lib/hooks/useTheme";
-import ConfirmAnimationData from "./ConfirmAnimationData.json";
-import Lottie from "react-lottie";
+
 import { useEffect } from "react";
+import Lottie from "react-lottie";
+
+import { Button } from "@/components";
+import { ModalLayout } from "@/components/Modal";
+import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
+
+import ConfirmAnimationData from "./ConfirmAnimationData.json";
 
 interface ConfirmModalProps {
   message: string;

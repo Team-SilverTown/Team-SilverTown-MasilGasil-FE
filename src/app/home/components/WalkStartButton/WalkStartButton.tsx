@@ -1,6 +1,8 @@
-import Link from "next/link";
-import { Button } from "@/components";
 import Theme, { CONTAINER, FONT_SIZE, FONT_WEIGHT, Z_INDEX } from "@/styles/theme";
+
+import { Button } from "@/components";
+
+import Link from "next/link";
 
 const WalkStartButton = () => {
   return (

@@ -1,14 +1,17 @@
 "use client";
 
-import Lottie from "react-lottie";
 import * as S from "./DoneModal.styles";
-import { ModalLayout } from "@/components/Modal";
-import animationData from "./animationData.json";
-import { Button } from "@/components";
-import useTheme from "@/lib/hooks/useTheme";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { useUI } from "@/components/uiContext/UiContext";
+
 import { CSSProperties, useEffect } from "react";
+import Lottie from "react-lottie";
+
+import { Button } from "@/components";
+import { ModalLayout } from "@/components/Modal";
+import { useUI } from "@/components/uiContext/UiContext";
+import useTheme from "@/lib/hooks/useTheme";
+
+import animationData from "./animationData.json";
 
 const defaultOptions = {
   loop: false,

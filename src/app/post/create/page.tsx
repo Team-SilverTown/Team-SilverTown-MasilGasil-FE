@@ -1,15 +1,18 @@
 "use client";
 
 import React from "react";
-import { PostCreateContextProvider } from "./context/PostCreateContext";
-import PostCreateView from "./PostCreate.view";
-import { useQuery } from "@tanstack/react-query";
-import { getPostDetail } from "@/lib/api/Post/client";
-import { POST_KEY } from "@/lib/api/queryKeys";
-import { useRouter, useSearchParams } from "next/navigation";
-import { PostCreateRequest } from "@/types/Request";
-import { getMasilDetail } from "@/lib/api/masil/client";
+
 import { useUI } from "@/components/uiContext/UiContext";
+import { getPostDetail } from "@/lib/api/Post/client";
+import { getMasilDetail } from "@/lib/api/masil/client";
+import { POST_KEY } from "@/lib/api/queryKeys";
+import { PostCreateRequest } from "@/types/Request";
+import { useQuery } from "@tanstack/react-query";
+
+import PostCreateView from "./PostCreate.view";
+import { PostCreateContextProvider } from "./context/PostCreateContext";
+
+import { useRouter, useSearchParams } from "next/navigation";
 
 const PostCreate = () => {
   const searchParams = useSearchParams();

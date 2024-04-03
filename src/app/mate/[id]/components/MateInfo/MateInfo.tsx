@@ -1,21 +1,21 @@
 import * as GS from "../../MateDetail.styles";
 import * as S from "./MateInfo.styles";
 
-import { MateActions, MateDropDownMenu } from "./components";
-import Divider from "@/components/Divider/Divider";
 import Avatar from "@/components/Avatar";
-import { MateDetailResponse } from "@/types/Response";
+import Divider from "@/components/Divider/Divider";
 import convertFormatDate from "@/lib/utils/convertFormatDate";
 import { Participant } from "@/types/OriginDataType";
+import { MateDetailResponse } from "@/types/Response";
+
+import { MateActions, MateDropDownMenu } from "./components";
 
 interface MateInfoProps {
-  postId: string;
   acceptedUserList: Participant[];
   requestedUserList: Participant[];
   mateData: MateDetailResponse;
 }
 
-const MateInfo = ({ mateData, postId, acceptedUserList, requestedUserList }: MateInfoProps) => {
+const MateInfo = ({ mateData, acceptedUserList, requestedUserList }: MateInfoProps) => {
   const { authorProfileUrl, authorNickname, content, gatheringAt, capacity, authorId } = mateData;
 
   return (
@@ -28,7 +28,7 @@ const MateInfo = ({ mateData, postId, acceptedUserList, requestedUserList }: Mat
         />
         <p className="grow text-medium font-medium whitespace-nowrap">{authorNickname}</p>
         <MateDropDownMenu
-          postId={postId}
+          mateId={mateData.id}
           authorId={authorId}
         />
       </div>

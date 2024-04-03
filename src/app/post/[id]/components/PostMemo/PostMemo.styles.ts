@@ -1,6 +1,10 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 import styled from "styled-components";
 
+interface PostMemoLikeProps {
+  $isLiked: boolean;
+}
+
 export const PostMemoTitle = styled.h3`
   font-size: ${FONT_SIZE.H5};
   font-weight: ${FONT_WEIGHT.BOLD};
@@ -84,13 +88,27 @@ export const PostMemoBottomInfo = styled.article`
   padding-bottom: 7rem;
 `;
 
-export const PostMemoLike = styled.div`
+export const PostMemoLike = styled.div<PostMemoLikeProps>`
   display: flex;
   align-items: center;
   margin-right: 1rem;
+  color: ${({ $isLiked, theme }) => ($isLiked ? theme.pink_100 : theme.black)};
+  cursor: pointer;
+  transition: all 0.2s;
 
   svg {
     height: 1.4rem;
+    fill: ${({ $isLiked, theme }) => ($isLiked ? theme.pink_100 : "trasparent")};
+    stroke: ${({ $isLiked, theme }) => ($isLiked ? theme.pink_100 : theme.black)};
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.pink_100};
+
+    svg {
+      fill: ${({ theme }) => theme.pink_100};
+      stroke: ${({ theme }) => theme.pink_100};
+    }
   }
 `;
 

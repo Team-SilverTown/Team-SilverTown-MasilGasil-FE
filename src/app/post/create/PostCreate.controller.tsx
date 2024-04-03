@@ -1,7 +1,10 @@
 import { useState } from "react";
-import usePostCreateContext from "./context/PostCreateContext";
-import { useRouter } from "next/navigation";
+
 import { useUI } from "@/components/uiContext/UiContext";
+
+import usePostCreateContext from "./context/PostCreateContext";
+
+import { useRouter } from "next/navigation";
 
 const usePostCreateController = () => {
   const [isOpenBottom, setIsOpenBottom] = useState(false);

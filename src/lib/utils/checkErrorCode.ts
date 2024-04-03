@@ -6,8 +6,71 @@ const checkErrorCode = ({
   defaultMessage?: string;
 }) => {
   switch (errorCode) {
+    // --------------  User  ----------
+
+    case "10030000":
+      return "현재 소셜로그인 과정에서<br>문제가 발생했습니다.";
+
+    case "10030001":
+      // 소셜로그인 vendor 사 매칭이 안될 경우
+      return "유효하지 않은 서비스 제공자입니다.";
+
+    case "10090400":
+      return "해당 유저의 권한을 찾을 수 없습니다.";
+
+    case "10030100":
+      // 토큰 인증 실패 시 나오는 메시지
+      return "현재 Token 인증에 문제가 발생했습니다.<br>Access Denied: Authentication token was either missing or invalid";
+
+    case "10020401":
+      return "해당 유저를 찾을 수 없습니다.";
+
+    // --------------  Map  ----------
+
+    case "20011000":
+      return "현재 주소가 정상적으로<br>입력되지 않았습니다.<br>Code : 20011000";
+
+    case "20011001":
+      return "현재 주소가 정상적으로<br>입력되지 않았습니다.<br>Code : 20011001";
+
+    case "20011002":
+      return "현재 주소가 정상적으로<br>입력되지 않았습니다.<br>Code : 20011002";
+
+    case "20016000":
+      // 입력된 포인트가 NULL이 될 수 없습니다
+      return "현재 위치 포인트에 문제가 발생하였습니다.";
+
+    case "20016001":
+      return "현재 입력된 경로가 존재하지않습니다.";
+
     case "20016002":
-      return " ";
+      return "산책하신 경로가 너무 적습니다.<br>100m 이상부터 산책을 기록하실 수 있습니다.";
+
+    // --------------  Masil  ----------
+
+    case "20111000":
+      return "제목을 입력해주세요.";
+
+    case "20111001":
+      return "제목 길이가 제한을 초과했습니다.";
+
+    case "20111002":
+      return "비정상적인 썸네일입니다.";
+
+    case "20112000":
+      return "현재 산책거리가 비정상적입니다.";
+
+    case "20112001":
+      return "현재 산책시간이 비정상적입니다.";
+
+    case "20130000":
+      return "특정 핀의 시록이 정상적이지 않습니다.";
+
+    case "20190000":
+      return "사용자를 확인할 수 없습니다.";
+
+    case "20190400":
+      return "해당 마실기록을 확인할 수 없습니다.";
 
     // --------------  Post  ----------
 
@@ -154,6 +217,11 @@ const checkErrorCode = ({
     case "30011000":
       // 메이트 제목 blank
       return "메이트 모집 제목이 입력되지 않았습니다.";
+
+    // --------------  Image  ----------
+
+    case "50016000":
+      return "지원되지 않는 파일 확장자입니다.";
 
     default:
       return defaultMessage ? defaultMessage : "오류가 발생했습니다.";

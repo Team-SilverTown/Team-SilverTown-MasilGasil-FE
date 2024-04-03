@@ -1,9 +1,10 @@
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import MoreListController from "./MoreList.controller";
-import SortTab from "./SortTab/SortTab";
+
 import { HEADER_TITLE } from "./MoreList.constants";
+import MoreListController from "./MoreList.controller";
 import { KeywordType } from "./MoreList.types";
+import SortTab from "./SortTab/SortTab";
 
 interface MorePageProps {
   searchParams: { keyword: KeywordType; order: string; userId?: number };

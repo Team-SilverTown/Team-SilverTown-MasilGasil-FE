@@ -1,6 +1,6 @@
-import React, { CSSProperties } from "react";
-
 import * as S from "./InputLabel.styles";
+
+import React, { CSSProperties } from "react";
 
 interface InputLabelProps {
   type?: "normal" | "safety" | "warn" | "danger";

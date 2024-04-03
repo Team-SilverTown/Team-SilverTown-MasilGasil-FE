@@ -1,16 +1,18 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getToken, encode, decode } from "next-auth/jwt";
-import { pathAbleCheck } from "./lib/utils/pathAbleCheck";
+import { authOptions, parseJwt } from "./app/api/auth/[...nextauth]/options";
 import { refreshToken } from "./lib/api/User/server";
-import { parseJwt } from "./app/api/auth/[...nextauth]/options";
+import { pathAbleCheck } from "./lib/utils/pathAbleCheck";
+
+import { getServerSession } from "next-auth";
+import { decode, encode, getToken } from "next-auth/jwt";
 import { RequestCookies, ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
+import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|masil.ico|fonts|images).*)"],
 };
 
 const bypassPaths = [
-  "/",
+  // "/",
   "/manifest*",
   "/swe-worker*",
   "/sw.js*",
@@ -20,7 +22,7 @@ const bypassPaths = [
   "/favicon*",
   // "/call*",
 ];
-const protectedPaths = ["/setting*", "/log/record", "/diary"]; // 로그인이 필요한 페이지 목록
+const protectedPaths = ["/home", "/setting*", "/log/record", "/diary"]; // 로그인이 필요한 페이지 목록
 const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 const sessionCookie = process.env.NEXTAUTH_URL?.startsWith("https://")
@@ -98,10 +100,6 @@ export async function middleware(request: NextRequest) {
         refreshToken: token.refreshToken as string,
       });
 
-      // console.log("old", token.serviceToken);
-      // console.log("new", newServiceToken);
-      // console.log("-------------------–");
-
       // nexauth 사양에 맞도록 쿠키 정보를 인코딩
       const newSessionToken = await encode({
         secret: process.env.NEXTAUTH_SECRET as string,
@@ -135,16 +133,16 @@ export async function middleware(request: NextRequest) {
 
   // 미인증, 가인증 유저인 경우, 보호되는 경로로 접근할 수 없도록 함.
   const protectedPathsAccessInable = pathAbleCheck(protectedPaths, currentPath);
-  if (!token || (!token.nickname && protectedPathsAccessInable)) {
+  if (token && !token.serviceToken && protectedPathsAccessInable) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
 
-    return NextResponse.redirect(url);
+    if (currentPath !== "/") return NextResponse.redirect(url);
   }
 
-  // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등F)
+  // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등)
   const publicPathsAccessInable = pathAbleCheck(publicPaths, currentPath);
-  if (token && token.nickname && publicPathsAccessInable) {
+  if (token && token.serviceToken && token.nickname && publicPathsAccessInable) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
 

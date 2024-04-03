@@ -1,22 +1,24 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { useQuery } from "@tanstack/react-query";
+
 import { getMe } from "@/lib/api/User/client";
 import { MeResponse } from "@/types/Response";
+import { useQuery } from "@tanstack/react-query";
+
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Kakao = () => {
   const router = useRouter();
 
   const { data: session } = useSession();
 
-  useEffect(() => {
-    if (session) {
-      console.log("kakao (session)", session);
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     console.log("kakao (session)", session);
+  //   }
+  // }, [session]);
 
   const {
     data: meData,
@@ -29,7 +31,7 @@ const Kakao = () => {
   });
 
   useEffect(() => {
-    console.log("kakao 분기처리 (meData)", meData);
+    console.log("kakao 분기처리 (meData)", meData, session);
 
     if (!meData) return;
 
@@ -40,7 +42,7 @@ const Kakao = () => {
       console.log("가입 유저->홈뷰");
       router.replace("/home");
     }
-  }, [meData]);
+  }, [meData, session]);
 
   if (isLoading)
     return (

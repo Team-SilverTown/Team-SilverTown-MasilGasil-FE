@@ -1,11 +1,13 @@
 "use client";
 
 import * as S from "./MembersList.styles";
-import { MemberItem } from "..";
-import { Participant } from "@/types/OriginDataType";
-import { useUI } from "@/components/uiContext/UiContext";
-import useCancelParticipant from "@/app/mate/[id]/hooks/useCancelParticipant";
+
 import { useAcceptParticipant } from "@/app/mate/[id]/hooks";
+import useCancelParticipant from "@/app/mate/[id]/hooks/useCancelParticipant";
+import { useUI } from "@/components/uiContext/UiContext";
+import { Participant } from "@/types/OriginDataType";
+
+import { MemberItem } from "..";
 
 interface MembersListProps {
   participants: Participant[];
@@ -23,7 +25,9 @@ const MembersList = ({
   mateId,
 }: MembersListProps) => {
   const { openModal, setModalView } = useUI();
-  const cancelParticipantMutation = useCancelParticipant();
+  const cancelParticipantMutation = useCancelParticipant({
+    successMessage: "정상적으로 메이트를 내보냈습니다!",
+  });
   const acceptParticipantMutation = useAcceptParticipant();
 
   const handleAccept = (participantId: string | number) => {

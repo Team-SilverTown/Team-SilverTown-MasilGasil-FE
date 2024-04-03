@@ -1,8 +1,8 @@
 "use client";
 
-import React, { CSSProperties, ReactNode } from "react";
-
 import * as S from "./TopNavigator.styles";
+
+import React, { CSSProperties, ReactNode } from "react";
 
 interface TopNavigatorProps {
   containerStyle?: CSSProperties;

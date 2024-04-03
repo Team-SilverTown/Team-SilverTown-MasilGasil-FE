@@ -2,9 +2,9 @@
 
 import * as GS from "../../PostCreate.styles";
 
+import { PostCreateButton } from "..";
 import usePostTextEditController from "./PostTextEdit.controller";
 import { PostContentEdit, PostPublicEdit, PostThumbnailEdit, PostTitleEdit } from "./components";
-import { PostCreateButton } from "..";
 
 const PostTextEditView = () => {
   const {

@@ -1,9 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { IMAGE_TYPES } from "./InputUpload.constants";
 import * as S from "./InputUpload.styles";
+
+import React, { useEffect, useRef, useState } from "react";
+
+import { IMAGE_TYPES } from "./InputUpload.constants";
+
+import Image from "next/image";
 
 interface InputUploadProps {
   position?: "relative" | "absolute";

@@ -1,15 +1,16 @@
-import * as S from "./EditNickname.styles";
 import * as GS from "../../UserEdit.styles";
-
-import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { Button, Input, InputLabel } from "@/components";
-import useTheme from "@/lib/hooks/useTheme";
+import * as S from "./EditNickname.styles";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
 
 import { MouseEvent } from "react";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+
+import { Button, Input, InputLabel } from "@/components";
 import { validation_user } from "@/lib/constants/userConstants";
+import useTheme from "@/lib/hooks/useTheme";
 import { MeResponse } from "@/types/Response";
+
+import { USER_EDIT_PLACEHOLDER } from "../../UserEdit.constants";
 
 interface EditNicknameProps {
   register: UseFormRegister<MeResponse>;

@@ -1,6 +1,7 @@
-import nextMdx from "@next/mdx";
-import withTwin from "./withTwin.mjs";
 import withPWAInit from "@ducanh2912/next-pwa";
+import nextMdx from "@next/mdx";
+
+import withTwin from "./withTwin.mjs";
 
 // /** @type {import('next').NextConfig} */
 // const nextConfig = {
@@ -77,13 +78,13 @@ export default withPWA(
       images: {
         remotePatterns: [
           {
-            protocol: 'https',
-            hostname: 'masilgasil-s3.s3.amazonaws.com',
+            protocol: "https",
+            hostname: "masilgasil-s3.s3.amazonaws.com",
           },
           {
-            protocol: 'https',
-            hostname: "github.com"
-          }
+            protocol: "https",
+            hostname: "github.com",
+          },
         ],
       },
       compiler: { styledComponents: true },

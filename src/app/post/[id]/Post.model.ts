@@ -2,12 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import calculatePathCenter from "@/lib/utils/calculatePathCenter";
-
-import { GeoPosition } from "@/types/OriginDataType";
-import { PostTabType } from "./Post.types";
 import useMeStore from "@/lib/stores/useMeStore";
+import calculatePathCenter from "@/lib/utils/calculatePathCenter";
+import { GeoPosition } from "@/types/OriginDataType";
 import { PostDetailResponse } from "@/types/Response/Post";
+
+import { PostTabType } from "./Post.types";
 
 interface usePostModelProp {
   postData: PostDetailResponse;

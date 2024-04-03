@@ -1,9 +1,12 @@
-import React, { MouseEvent } from "react";
 import * as S from "./SettingContent.styles";
-import { Switch } from "@/components/ShadcnUi/ui/switch";
-import { OnClickSettings, SwitchType } from "../../UserSetting.types";
+
+import React, { MouseEvent } from "react";
+
 import { Button } from "@/components";
+import { Switch } from "@/components/ShadcnUi/ui/switch";
 import { ChevronRight } from "@/components/icons";
+
+import { OnClickSettings, SwitchType } from "../../UserSetting.types";
 
 interface UserSettingContentProps {
   icon: React.ReactNode;

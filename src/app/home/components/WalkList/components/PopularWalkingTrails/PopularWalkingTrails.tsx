@@ -1,5 +1,6 @@
 import { WALK_LIST } from "@/app/home/Home.constants";
 import { PostListItemResponse } from "@/types/Response/Post";
+
 import WalkListDisplay from "../WalkListDisplay/WalkListDisplay";
 
 interface PopularWalkingTrailsProps {

@@ -1,6 +1,5 @@
-import styled from "styled-components";
-
 import { CONTAINER, NAV_HEIGHT, Z_INDEX } from "@/styles/theme";
+import styled from "styled-components";
 
 export const SearchBarContainer = styled.div`
   top: 0;

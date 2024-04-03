@@ -1,8 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { SORT_DATA } from "./SortTab.constants";
 import * as S from "./SortTab.styles";
+
+import React, { useState } from "react";
+
+import { SORT_DATA } from "./SortTab.constants";
+
 import { useRouter } from "next/navigation";
 
 interface SortTabProps {

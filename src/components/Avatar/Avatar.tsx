@@ -1,9 +1,12 @@
 "use client";
 
-import { CSSProperties, MouseEvent } from "react";
-import Image from "next/image";
-import userProfile from "@/assets/userProfile.svg";
 import * as S from "./Avatar.styles";
+
+import { CSSProperties, MouseEvent } from "react";
+
+import userProfile from "@/assets/userProfile.svg";
+
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface AvatarProps {

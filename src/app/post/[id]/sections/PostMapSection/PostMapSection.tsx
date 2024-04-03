@@ -1,11 +1,10 @@
-import { PostDetailResponse } from "@/types/Response/Post";
-import { GeoPosition } from "@/types/OriginDataType";
-
-import MasilMap from "@/components/MasilMap/MasilMap";
-import { Button } from "@/components";
-import { Center } from "@/components/icons";
-
 import * as S from "./PostMapSection.styles";
+
+import { Button } from "@/components";
+import MasilMap from "@/components/MasilMap/MasilMap";
+import { Center } from "@/components/icons";
+import { GeoPosition } from "@/types/OriginDataType";
+import { PostDetailResponse } from "@/types/Response/Post";
 
 interface PostMapSectionProps {
   postData: PostDetailResponse;

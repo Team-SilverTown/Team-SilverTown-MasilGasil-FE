@@ -8,6 +8,22 @@ import {
   useReducer,
   useState,
 } from "react";
+
+import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
+import { useUI } from "@/components/uiContext/UiContext";
+import { postPostCreate } from "@/lib/api/Post/client";
+import { POST_KEY } from "@/lib/api/queryKeys";
+import useImageUpload from "@/lib/hooks/useImageUpload";
+import calculatePathCenter from "@/lib/utils/calculatePathCenter";
+import checkErrorCode from "@/lib/utils/checkErrorCode";
+import { GeoPosition } from "@/types/OriginDataType";
+import { PostCreateRequest } from "@/types/Request";
+import { useMutation } from "@tanstack/react-query";
+
+import {
+  POST_CREATE_DEFAULT_REQUEST_VALUE,
+  POST_CREATE_REDUCER_ACTION,
+} from "../PostCreate.constants";
 import {
   HandleClickPin,
   HandleCompleteStepOne,
@@ -15,20 +31,8 @@ import {
   PostCreatePageStep,
 } from "../PostCreate.types";
 import postCreateReducer from "./reducer/PostCreateReducer";
-import {
-  POST_CREATE_DEFAULT_REQUEST_VALUE,
-  POST_CREATE_REDUCER_ACTION,
-} from "../PostCreate.constants";
-import { PostCreateRequest } from "@/types/Request";
-import { useUI } from "@/components/uiContext/UiContext";
-import { GeoPosition } from "@/types/OriginDataType";
-import calculatePathCenter from "@/lib/utils/calculatePathCenter";
-import useMasilMapStore from "@/components/MasilMap/store/useMasilMapStore";
-import { useMutation } from "@tanstack/react-query";
-import { POST_KEY } from "@/lib/api/queryKeys";
-import { postPostCreate } from "@/lib/api/Post/client";
+
 import { useRouter } from "next/navigation";
-import useImageUpload from "@/lib/hooks/useImageUpload";
 
 interface PostCreateContextProviderProps {
   defaultData: PostCreateRequest;
@@ -204,10 +208,13 @@ export const PostCreateContextProvider = ({
             openModal({ message: "산책로가 등록되었습니다!" });
           },
 
-          onError: () => {
+          onError: ({ message }) => {
             setModalView("ANIMATION_ALERT_VIEW");
             openModal({
-              message: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
+              message: checkErrorCode({
+                errorCode: message,
+                defaultMessage: `산책로 저장에 오류가 발생하였습니다.<br>잠시 후 다시 시도해주세요.`,
+              }),
             });
           },
         });

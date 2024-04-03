@@ -2,10 +2,11 @@
 
 import * as S from "./MemberItem.styles";
 
+import { CSSProperties } from "react";
+
 import { Avatar } from "@/components";
 import useTheme from "@/lib/hooks/useTheme";
 import { Participant } from "@/types/OriginDataType";
-import { CSSProperties } from "react";
 
 interface MemberItemProps {
   participant: Participant;

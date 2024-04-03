@@ -1,9 +1,9 @@
 "use client";
 
-import styled from "styled-components";
-import { motion } from "framer-motion";
-
 import { FONT_WEIGHT } from "@/styles/theme";
+import styled from "styled-components";
+
+import { motion } from "framer-motion";
 
 export const ButtonWrapper = styled(motion.div)<any>`
   position: relative;

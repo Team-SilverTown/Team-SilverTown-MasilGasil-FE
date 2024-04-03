@@ -1,5 +1,6 @@
-import { CSSProperties, TextareaHTMLAttributes } from "react";
 import * as S from "./Textarea.styles";
+
+import { CSSProperties, TextareaHTMLAttributes } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {

@@ -1,7 +1,7 @@
 import React from "react";
 
-import useTheme from "@/lib/hooks/useTheme";
 import { Button } from "@/components";
+import useTheme from "@/lib/hooks/useTheme";
 
 interface StepButtonProps {
   buttonText: string;

@@ -1,18 +1,20 @@
 "use client";
 
 import * as S from "./UserProfileInfo.styles";
-import Image from "next/image";
+
 import { useState } from "react";
 
 import userProfile from "@/assets/userProfile.svg";
-import Camera from "@/components/icons/Camera";
 import InputUpload from "@/components/InputUpload/InputUpload";
-import { useMutation } from "@tanstack/react-query";
+import { useToast } from "@/components/ShadcnUi/ui/useToast";
+import Camera from "@/components/icons/Camera";
+import { useUI } from "@/components/uiContext/UiContext";
 import { changeProfileImage, getMe } from "@/lib/api/User/client";
 import { USER_KEY } from "@/lib/api/queryKeys";
-import { useToast } from "@/components/ShadcnUi/ui/useToast";
 import useMeStore from "@/lib/stores/useMeStore";
-import { useUI } from "@/components/uiContext/UiContext";
+import { useMutation } from "@tanstack/react-query";
+
+import Image from "next/image";
 
 interface UserInfoProfileProps {
   profileImage: string | null;
