@@ -8,13 +8,12 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     "@storybook/addon-themes",
+    "@storybook/addon-mdx-gfm"
   ],
   framework: {
     name: "@storybook/nextjs",
     options: {
-      builder: {
-        useSWC: true, // Enables SWC support
-      },
+      builder: {},
     },
   },
   docs: {
