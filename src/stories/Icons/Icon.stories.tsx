@@ -4,6 +4,8 @@ import {
   AccountDelete,
   AccountManager,
   ArrowForward,
+  ArrowLeft,
+  ArrowRight,
   Bag,
   Camera,
   Center,
@@ -19,9 +21,11 @@ import {
   DiaryFill,
   DotMenu,
   DoubleChevron,
+  EditPencil,
   Exploration,
   ExplorationFill,
   FineDust,
+  FootPrint,
   Github,
   Heart,
   Home,
@@ -45,22 +49,18 @@ import {
   Pin,
   Plus,
   Rainy,
+  Return,
+  RunningMan,
   Search,
+  Setting,
   ShoppingBag,
   Sleet,
   Snowy,
+  TimeChecker,
   Trash,
   ViewIcon as ViewIconSVG,
 } from "@/components/icons";
-import EditPencil from "@/components/icons/EditPencil";
-import FootPrint from "@/components/icons/FootPrint";
-import Return from "@/components/icons/Return";
-import RunningMan from "@/components/icons/RunningMan";
-import Setting from "@/components/icons/Setting";
-import TimeChecker from "@/components/icons/TimeChecker";
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const IconBox = ({ children }: { children: React.ReactNode }) => {
   return <div style={{ width: "4rem", height: "4rem" }}>{children}</div>;
