@@ -51,3 +51,5 @@ export { default as FineDust } from "./FineDust";
 export { default as ArrowForward } from "./ArrowForward";
 export { default as Image } from "./Image";
 export { default as ViewIcon } from "./ViewIcon";
+
+export { default as Camera } from "./Camera";

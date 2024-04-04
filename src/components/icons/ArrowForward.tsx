@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 
 interface ArrowForwardProps {
-  size?: number;
+  size?: number | string;
   style?: CSSProperties;
   className?: string;
   fill?: string;
