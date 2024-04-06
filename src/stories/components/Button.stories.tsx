@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Button } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
