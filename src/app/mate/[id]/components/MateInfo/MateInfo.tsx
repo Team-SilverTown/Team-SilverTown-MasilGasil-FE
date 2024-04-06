@@ -2,7 +2,7 @@ import * as GS from "../../MateDetail.styles";
 import * as S from "./MateInfo.styles";
 
 import Avatar from "@/components/Avatar";
-import Divider from "@/components/Divider/Divider";
+import { Divider } from "@/components/Divider";
 import convertFormatDate from "@/lib/utils/convertFormatDate";
 import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
