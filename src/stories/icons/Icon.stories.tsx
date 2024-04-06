@@ -58,6 +58,7 @@ import {
   Snowy,
   TimeChecker,
   Trash,
+  UserProfile,
   ViewIcon as ViewIconSVG,
 } from "@/components/icons";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -642,5 +643,11 @@ export const ViewIcon: Story = {
         height={"100%"}
       />
     ),
+  },
+};
+
+export const UserProfileIcon: Story = {
+  args: {
+    children: <UserProfile size={40} />,
   },
 };
