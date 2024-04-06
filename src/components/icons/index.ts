@@ -59,3 +59,5 @@ export { default as Return } from "./Return";
 export { default as RunningMan } from "./RunningMan";
 export { default as Setting } from "./Setting";
 export { default as TimeChecker } from "./TimeChecker";
+
+export { default as UserProfile } from "./UserProfile";
