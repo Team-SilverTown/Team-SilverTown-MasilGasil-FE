@@ -4,7 +4,7 @@ import * as S from "./Avatar.styles";
 
 import { CSSProperties, MouseEvent } from "react";
 
-import userProfile from "@/assets/userProfile.svg";
+import { UserProfile } from "../icons";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -40,7 +40,7 @@ const AvatarSize = {
 const Avatar = ({
   size = "xs",
   name = "프로필 이미지",
-  src = userProfile,
+  src = "",
   style,
   imageStyle,
   userId,
@@ -62,14 +62,18 @@ const Avatar = ({
       style={{ ...style, cursor: userId ? "pointer" : "auto" }}
       onClick={handleClick}
     >
-      <Image
-        src={src ? src : userProfile}
-        sizes="100%"
-        fill
-        priority
-        alt={name}
-        style={imageStyle}
-      />
+      {src && (
+        <Image
+          src={src}
+          sizes="100%"
+          fill
+          priority
+          alt={name}
+          style={imageStyle}
+        />
+      )}
+
+      {!src && <UserProfile />}
     </S.AvatarLayout>
   );
 };
