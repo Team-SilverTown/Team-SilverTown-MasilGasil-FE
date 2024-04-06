@@ -67,6 +67,11 @@ const IconBox = ({ children }: { children: React.ReactNode }) => {
   return <div style={{ width: "4rem", height: "4rem" }}>{children}</div>;
 };
 
+/**
+ * **공통 Icon 컴포넌트 모음**
+ *
+ * 현재 Icon들을 한눈에 확인할 수 있습니다.
+ * */
 const meta = {
   title: "Components/Icons",
   component: IconBox,
