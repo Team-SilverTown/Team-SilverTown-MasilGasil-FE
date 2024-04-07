@@ -73,7 +73,7 @@ const IconBox = ({ children }: { children: React.ReactNode }) => {
  * 현재 Icon들을 한눈에 확인할 수 있습니다.
  * */
 const meta = {
-  title: "Components/Icons",
+  title: "Icons/Icons_List",
   component: IconBox,
   parameters: {
     layout: "centered",

@@ -26,9 +26,9 @@ const meta = {
   },
 
   decorators: [
-    (Story) => (
+    (DividerComponent) => (
       <section className="w-[60rem] h-[10rem] flex items-center justify-center">
-        <Story />
+        <DividerComponent />
       </section>
     ),
   ],
