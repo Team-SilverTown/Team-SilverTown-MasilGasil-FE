@@ -8,7 +8,6 @@ import DotIndicator_Storybook from "./DotIndicator_Storybook";
  * ### Props
  * - **current : ** DotIndicator의 현재 선택되어진 Index를 전달받습니다.
  * - **length : **DotIndicator의 생성할 Dot 갯수를 전달받습니다.
-
  */
 const meta = {
   title: "Components/DotIndicator",
@@ -24,8 +23,15 @@ const meta = {
   },
 
   argTypes: {
-    current: { control: "null" },
-    length: { control: "null" },
+    current: {
+      control: "null",
+      description: "DotIndicator의 현재 선택되어진 Index를 전달받습니다.",
+    },
+
+    length: {
+      control: "null",
+      description: "DotIndicator의 생성할 Dot 갯수를 전달받습니다.",
+    },
   },
 } satisfies Meta<typeof DotIndicator_Storybook>;
 

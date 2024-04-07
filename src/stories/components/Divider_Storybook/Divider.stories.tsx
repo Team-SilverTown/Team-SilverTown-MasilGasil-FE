@@ -20,8 +20,13 @@ const meta = {
   },
 
   argTypes: {
+    isColumn: {
+      description: "boolean 값을 통해 구분선의 세로 여부를 정의합니다.",
+    },
+
     style: {
       control: "null",
+      description: "기본 CSS 스타일",
     },
   },
 
