@@ -34,17 +34,59 @@ const meta = {
   },
 
   argTypes: {
+    children: {
+      description: "일반 children Props",
+    },
+
+    buttonColor: {
+      control: "color",
+      description: "버튼의 색상을 정의합니다.",
+    },
+
+    textColor: {
+      control: "color",
+      description: "버튼 내부 텍스트 색상을 정의합니다.",
+    },
+
+    width: {
+      description: "버튼의 너비를 정의합니다.",
+    },
+
+    onClickHandler: {
+      description: "버튼 클릭시 수행될 메서드를 전달받습니다.",
+    },
+
     variant: {
       control: "inline-radio",
       options: ["flat", "neumorp", "naked", "outline", "disabled"],
+      description: "버튼의 생김새를 지정합니다.",
     },
-    buttonColor: { control: "color" },
-    textColor: { control: "color" },
-    isLoading: { control: "boolean" },
-    disabled: { control: "boolean" },
-    useRipple: { control: "boolean" },
-    rippleColor: { control: "color" },
-    handlerDelay: { control: { type: "range", min: 100, max: 2000 } },
+
+    isLoading: {
+      control: "boolean",
+      type: "boolean",
+      description: "로딩 상테( boolean )값을 전달하여 로딩에 따른 버튼 디자인을 정의합니다.",
+    },
+
+    useRipple: {
+      control: "boolean",
+      description: "boolean 값에따라 버튼 클릭시 Ripple 디자인을 사용할지 정의합니다.",
+    },
+
+    handlerDelay: {
+      control: { type: "range", min: 100, max: 2000 },
+      description: "버튼 클릭시 전달받은 onClickHandler 메서드의 실행을 지연시킵니다. - ms",
+    },
+
+    disabled: {
+      control: "boolean",
+      description: "boolean 값을 전달하여 버튼의 바활성화 여부를 정의합니다.",
+    },
+
+    rippleColor: {
+      control: "color",
+      description: "ripple 동작시 색상을 정의합니다.",
+    },
   },
 } satisfies Meta<typeof Button>;
 

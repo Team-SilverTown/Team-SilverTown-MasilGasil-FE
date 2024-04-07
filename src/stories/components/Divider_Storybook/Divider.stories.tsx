@@ -28,6 +28,10 @@ const meta = {
       control: "null",
       description: "기본 CSS 스타일",
     },
+
+    className: {
+      description: "기본 className 속성",
+    },
   },
 
   decorators: [
