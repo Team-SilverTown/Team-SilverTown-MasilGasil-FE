@@ -1,5 +1,5 @@
 interface PinProps {
-  size?: number;
+  size?: number | string;
   fill?: string;
 }
 

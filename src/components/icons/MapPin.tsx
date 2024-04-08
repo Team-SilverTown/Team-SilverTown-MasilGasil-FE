@@ -4,7 +4,7 @@ import { OnClickPin } from "../MasilMap/MasilMap.types";
 
 interface MapPinProp {
   pinIndex?: number;
-  size?: number;
+  size?: number | string;
   fill?: string;
   fontColor?: string;
   onClickPin?: OnClickPin;

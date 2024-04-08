@@ -1,6 +1,12 @@
+interface UserProfileProps {
+  size?: number | string;
+}
+
+const UserProfile = ({ size = "120" }: UserProfileProps) => {
+  return (
     <svg
-      width="120"
-      height="120"
+      width={size}
+      height={size}
       viewBox="0 0 120 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -28,3 +34,7 @@
         </clipPath>
       </defs>
     </svg>
+  );
+};
+
+export default UserProfile;

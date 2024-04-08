@@ -1,6 +1,6 @@
 import * as S from "./MyPage.styles";
 
-import Divider from "@/components/Divider/Divider";
+import { Divider } from "@/components/Divider";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { ProfileResponse } from "@/types/Response";

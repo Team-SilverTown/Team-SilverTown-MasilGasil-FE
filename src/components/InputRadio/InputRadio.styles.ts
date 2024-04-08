@@ -1,8 +1,8 @@
 "use client";
 
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import styled from "styled-components";
 
-import { styled } from "twin.macro";
 
 export const InputRadioLabel = styled.label<{ $isSelected: boolean }>`
   padding: 1.5rem;

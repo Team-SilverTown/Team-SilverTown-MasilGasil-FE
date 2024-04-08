@@ -1,5 +1,5 @@
 interface CenterProps {
-  size?: number;
+  size?: number | string;
   fill?: string;
 }
 
