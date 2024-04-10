@@ -6,6 +6,7 @@ import { AuthResponse, MeResponse, ProfileResponse } from "@/types/Response";
 import { AUTH, USER } from "../endPoints";
 import { GET, POST } from "../serverRootAPI";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function authenticate(data: AuthRequest) {

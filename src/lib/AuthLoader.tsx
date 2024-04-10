@@ -52,8 +52,9 @@ const AuthLoader = ({
       // 인증 실패, 가인증 유저인 경우
       setAuth({ isLogIn: false, serviceToken: undefined });
       initMe();
+      // signOut();
       // setToken(null);
-      route.replace("/");
+      // route.replace("/");
     }
   }, [serviceToken, me]);
 

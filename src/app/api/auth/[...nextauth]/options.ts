@@ -1,4 +1,7 @@
-import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
+// import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
+import { refreshToken } from "@/lib/api/User/server";
+import { getMe, kakaoAuth } from "@/lib/api/User/test";
+import apiClient from "@/lib/api/apiClient";
 
 import { NextAuthOptions } from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
@@ -53,7 +56,10 @@ export const authOptions: NextAuthOptions = {
         // 카카오 인증 로그인 시
         // 서비스 서버로부터 새로운 accessToken, refreshToken 을 발급
 
-        const tokenData = await authenticate({ accessToken: account.access_token });
+        // const tokenData = await authenticate({ accessToken: account.access_token });
+        const tokenData = await kakaoAuth({ accessToken: account.access_token });
+
+        console.log("TEST TOKEN FROM KAKAO AUTH - ", tokenData);
 
         token.serviceToken = tokenData?.accessToken;
         token.refreshToken = tokenData?.refreshToken;
@@ -71,7 +77,11 @@ export const authOptions: NextAuthOptions = {
             token.serviceToken = await refreshAccessToken(token);
           }
 
-          const me = await getMe(token.serviceToken as string);
+          apiClient.setDefaultHeader('Authorization', `Bearer ${token.serviceToken}`)
+
+          const me = await getMe();
+          console.log("TEST ME - ", me);
+
           token.nickname = me?.nickname;
         }
       }
