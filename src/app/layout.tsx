@@ -10,6 +10,7 @@ import AuthContext from "@/lib/AuthContext";
 import AuthLoader from "@/lib/AuthLoader";
 import TanstackQueryProvider from "@/lib/TanstackQueryProvider";
 import { getMe } from "@/lib/api/User/server";
+import apiClient from "@/lib/client/apiClient";
 import StyledComponentsRegistry from "@/lib/registry";
 
 import { authOptions } from "./api/auth/[...nextauth]/options";
@@ -45,7 +46,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-  const me = session?.serviceToken ? await getMe(session.serviceToken) : undefined;
+  if (session && session.serviceToken)
+    apiClient.setDefaultHeader("Authorization", `Bearer ${session.serviceToken}`);
+
+  const me = session?.serviceToken ? await getMe() : undefined;
 
   return (
     <html lang="ko">

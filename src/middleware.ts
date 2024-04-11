@@ -1,8 +1,8 @@
-import { parseJwt } from "./app/api/auth/[...nextauth]/options";
-import { refreshAccessToken } from "./lib/api/User/test";
+import { refreshAccessToken } from "./lib/api/User/server";
+import { parseJwt } from "./lib/utils/parseJwt";
 import { pathAbleCheck } from "./lib/utils/pathAbleCheck";
 
-import { decode, encode, getToken } from "next-auth/jwt";
+import { encode, getToken } from "next-auth/jwt";
 import { RequestCookies, ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -44,14 +44,10 @@ function shouldUpdateToken(token: string) {
   const serviceTokenExp = parseJwt(token).exp * 1000;
 
   const nowTime = Date.now();
-  // const TEN_MINUTES_AGO_IN_MS = 60 * 10 * 1000; // 10분 전
-  const TEN_MINUTES_AGO_IN_MS = 60 * 59 * 1000;
+  const TEN_MINUTES_AGO_IN_MS = 60 * 10 * 1000; // 10분 전
+
   // 10분전에 토큰을 갱신해준다.
   const shouldRefreshTime = serviceTokenExp - nowTime - TEN_MINUTES_AGO_IN_MS;
-
-  console.log("middleware - check expire time");
-  console.log(shouldRefreshTime);
-  console.log("--------------------");
 
   if (shouldRefreshTime <= 0) {
     return true;
@@ -100,9 +96,9 @@ export async function middleware(request: NextRequest) {
         refreshToken: token.refreshToken as string,
       });
 
-      console.log("before");
-      console.log(newServiceToken);
-      console.log("------------------–");
+      // console.log("before");
+      // console.log(newServiceToken);
+      // console.log("------------------–");
 
       // nexauth 사양에 맞도록 쿠키 정보를 인코딩
       const newSessionToken = await encode({
@@ -114,27 +110,25 @@ export async function middleware(request: NextRequest) {
         // maxAge: 30 * 24 * 60 * 60, // 30 days, or get the previous token's exp
       });
 
-      console.log("after");
-      console.log(
-        await decode({ secret: process.env.NEXTAUTH_SECRET as string, token: newSessionToken }),
-      );
-      console.log("------------------–");
+      // console.log("after");
+      // console.log(
+      //   await decode({ secret: process.env.NEXTAUTH_SECRET as string, token: newSessionToken }),
+      // );
+      // console.log("------------------–");
 
       // 갱신된 쿠키 정보를 브라우저측에서도 인지할 수 있도록 redirect
       const response = NextResponse.redirect(request.url);
       // 쿠키 갱신
       response.cookies.set(sessionCookie, newSessionToken);
-      // response 뿐만이 아니라 request 에서도 갱신된 쿠키를 바라볼 수 있도록 함F
+      // response 뿐만이 아니라 request 에서도 갱신된 쿠키를 바라볼 수 있도록 함
       applySetCookie(request, response);
       return response;
     } catch (error) {
-      console.log("middleware - refresh error");
-      console.log(error);
-      console.log("----------------------–");
       // refreshedToken 발급에 실패한 경우 쿠키를 초기화하고 재로그인 할 수 있도록 redirect
-      // NextResponse.redirect("/").cookies.delete(sessionCookie);
+      const response = NextResponse.redirect(new URL("/", request.url));
       request.cookies.delete(sessionCookie);
-      if (currentPath !== "/") return NextResponse.redirect(new URL("/", request.url));
+      applySetCookie(request, response);
+      if (currentPath !== "/") return response;
     }
   }
 

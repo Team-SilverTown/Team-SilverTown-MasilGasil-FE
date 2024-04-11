@@ -1,4 +1,4 @@
-import { axiosClientAuthInstance, axiosClientInstance } from "./axios/axiosClientInstance";
+import { axiosClientAuthInstance, axiosClientInstance } from "../client/axios/axiosClientInstance";
 
 import { AxiosRequestConfig } from "axios";
 

@@ -1,24 +1,23 @@
 "use server";
 
+import apiClient from "@/lib/client/apiClient";
 import { AuthRequest } from "@/types/Request/User";
 import { AuthResponse, MeResponse, ProfileResponse } from "@/types/Response";
 
 import { AUTH, USER } from "../endPoints";
-import { GET, POST } from "../serverRootAPI";
+import { GET } from "../serverRootAPI";
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function authenticate(data: AuthRequest) {
-  const response = await POST<AuthResponse>({
-    endPoint: AUTH.AUTH,
-    options: { cache: "no-store", headers: { Authorization: `Bearer ${data.accessToken}` } },
+export async function kakaoAuth(data: AuthRequest) {
+  const response: AuthResponse = await apiClient.post({
+    endpoint: AUTH.AUTH,
+    customHeaders: { Authorization: `Bearer ${data.accessToken}` },
   });
-
   return response;
 }
 
-export async function refreshToken({
+export async function refreshAccessToken({
   serviceToken,
   refreshToken,
 }: {
@@ -39,26 +38,19 @@ export async function refreshToken({
     const refreshedToken = response.headers.get("authorization")?.split(" ")[1];
 
     if (!response.ok) {
-      throw refreshedToken;
+      throw {
+        message: "fail to get new access token",
+      };
     }
-
     return refreshedToken;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
-export async function getMe(serviceToken: string) {
-  try {
-    const response = await GET<MeResponse>({
-      endPoint: USER.ME,
-      options: { cache: "no-store", headers: { Authorization: `Bearer ${serviceToken}` } },
-    });
-    return response;
-  } catch (error) {
-    console.error(error);
-    return undefined;
-  }
+export async function getMe() {
+  const response: MeResponse = await apiClient.get({ endpoint: USER.ME });
+  return response;
 }
 
 export async function getUserProfile(userId: string | number) {
