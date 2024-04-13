@@ -33,8 +33,6 @@ const AuthLoader = ({
 
   const redirectInable = pathAbleCheck(REDIRECT_INABLE_PATHS, currentPathName);
 
-  // signOut();
-
   useEffect(() => {
     setToken(serviceToken);
 
