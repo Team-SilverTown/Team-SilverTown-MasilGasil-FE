@@ -49,7 +49,7 @@ export const authOptions: NextAuthOptions = {
             });
           }
 
-          apiClient.setDefaultHeader("Authorization", `Bearer ${token.serviceToken}`);
+          // apiClient.setDefaultHeader("Authorization", `Bearer ${token.serviceToken}`);
 
           const me = await getMe();
           token.nickname = me?.nickname;
@@ -66,6 +66,7 @@ export const authOptions: NextAuthOptions = {
       if (token.serviceToken) {
         session.serviceToken = token.serviceToken as string;
         session.nickname = token.nickname as string;
+        apiClient.setDefaultHeader("Authorization", `Bearer ${token.serviceToken}`);
       } else {
         session.serviceToken = undefined;
         session.nickname = undefined;

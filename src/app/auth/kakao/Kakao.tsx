@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 
 import { getMe } from "@/lib/api/User/client";
-import apiClient from "@/lib/client/apiClient";
 import { MeResponse } from "@/types/Response";
 import { useQuery } from "@tanstack/react-query";
 
@@ -41,7 +40,7 @@ const Kakao = () => {
       router.replace("/signup", { scroll: false });
     } else {
       // console.log("가입 유저->홈뷰");
-      apiClient.setDefaultHeader("Authorization", `Bearer ${session?.serviceToken}`);
+      // apiClient.setDefaultHeader("Authorization", `Bearer ${session?.serviceToken}`);
       router.replace("/home");
     }
   }, [meData, session]);
