@@ -120,9 +120,6 @@
     --container-padding-vertical: 1rem;
     --container-padding-horizontal: 1.5rem;
 
-    /* MOBILEABLE_HORIZONTAL_SPACE: "w-[100%] sm:max-w-[420px]",
-     MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen", */
-
     /* Nav */
 
     --nav-height: 6rem;
@@ -363,7 +360,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[--color-background] text-foreground;
 
     width: 100vw;
     height: 100%;
@@ -403,5 +400,22 @@
 
   main::-webkit-scrollbar {
     display: none;
+  }
+
+  .commonContainer {
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    padding: var(--nav-height) var(--container-padding-horizontal) calc(var(--nav-height) + 2rem);
+
+    box-sizing: border-box;
+  }
+
+  .mobileable-horizontal_space {
+    @apply w-[100%] sm:max-w-[420px];
+  }
+
+  .mobile-vertical_space {
+    @apply h-[100%] sm:h-screen;
   }
 }
