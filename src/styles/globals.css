@@ -74,6 +74,45 @@
 
 @layer base {
   :root {
+    /* Color */
+    --color-white: #ffffff;
+    --color-white-100: #fafafa;
+
+    --color-black: #232323;
+
+    --color-gray-100: #efefef;
+    --color-gray-200: #e3e3e3;
+    --color-gray-300: #b3b3b3;
+    --color-gray-500: #909090;
+
+    --color-transparent-10: #23232310;
+    --color-transparent-30: #23232330;
+    --color-transparent-50: #23232350;
+    --color-transparent-90: #23232390;
+
+    --color-red-100: #ff6878;
+    --color-red-500: #ff4141;
+
+    --color-pink-100: #feaf88;
+
+    --color-blue-300: #3897f0;
+
+    --color-yellow-500: #f7bc01;
+
+    --color-green-100: #f1f5eb;
+    --color-green-300: #b9db56;
+    --color-green-500: #81bb26;
+
+    --color-background: #fafafa;
+    --color-container: #fefefe;
+
+    --color-text-primary: #232323;
+    --color-text-second: #fefefe;
+
+    /* 
+      TODO  
+      미확인 스타일 코드 - 추후 검사 후 제거 필요 
+    */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -106,6 +145,46 @@
   }
 
   .dark {
+    /* Color */
+    --color-white: #ffffff;
+    --color-white-100: #fafafa;
+
+    --color-black: #232323;
+
+    --color-gray-100: #efefef;
+    --color-gray-200: #e3e3e3;
+    --color-gray-300: #b3b3b3;
+    --color-gray-500: #909090;
+
+    --color-transparent-10: #23232310;
+    --color-transparent-30: #23232330;
+    --color-transparent-50: #23232350;
+    --color-transparent-90: #23232390;
+
+    --color-red-100: #ff6878;
+    --color-red-500: #ff4141;
+
+    --color-pink-100: #feaf88;
+
+    --color-blue-300: #3897f0;
+
+    --color-yellow-500: #f7bc01;
+
+    --color-green-100: #f1f5eb;
+    --color-green-300: #b9db56;
+    --color-green-500: #81bb26;
+
+    --color-background: #fafafa;
+    --color-container: #fefefe;
+
+    --color-text-primary: #232323;
+    --color-text-second: #fefefe;
+
+    /* 
+      TODO  
+      미확인 스타일 코드 - 추후 검사 후 제거 필요 
+    */
+
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -140,6 +219,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
