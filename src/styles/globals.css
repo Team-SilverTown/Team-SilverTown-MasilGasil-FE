@@ -218,9 +218,67 @@
 @layer base {
   * {
     @apply border-border;
+    color: var(--color-text-primary);
+  }
+
+  html,
+  body {
+    width: 100%;
+    box-sizing: border-box;
+    touch-action: manipulation;
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    overscroll-behavior-x: none;
+  }
+
+  html {
+    font-size: 62.5%;
+    height: 100%;
   }
 
   body {
     @apply bg-background text-foreground;
+
+    width: 100vw;
+    height: 100%;
+    background-color: var(--color-background);
+
+    font-size: 1.4rem;
+    font-family:
+      "Pretendard Variable",
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      Roboto,
+      "Helvetica Neue",
+      "Segoe UI",
+      "Apple SD Gothic Neo",
+      "Noto Sans KR",
+      "Malgun Gothic",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      sans-serif;
+  }
+
+  main {
+    width: 100%;
+    height: 100%;
+    /* max-width: ${CONTAINER.MAX_WIDTH}rem; */
+    margin: 0 auto;
+
+    position: relative;
+
+    overflow-x: hidden;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+  }
+
+  main::-webkit-scrollbar {
+    display: none;
   }
 }
