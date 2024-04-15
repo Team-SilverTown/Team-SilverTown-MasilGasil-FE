@@ -42,8 +42,8 @@ const AuthButton = () => {
             signIn("kakao", { redirect: true, callbackUrl: "/auth/kakao" });
           }}
         >
-          <Message className="w-7 h-7 mr-2" />
-          <S.ButtonContent>카카오 로그인</S.ButtonContent>
+          <Message className="mr-2 h-7 w-7" />
+          <span className="text-large font-medium text-black">카카오 로그인</span>
         </Button>
       </S.AuthButtonWrapper>
     );
