@@ -85,10 +85,6 @@ export default Theme;
 
 // 3px 이상 rem
 
-export const APP_SYMBOL = {
-  SYMBOL_TEXT: "",
-};
-
 export const BORDER = {
   TINE_WIDTH: 1, // px
   BASE_WIDTH: 1.5, // px

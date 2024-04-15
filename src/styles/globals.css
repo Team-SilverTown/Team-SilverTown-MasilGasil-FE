@@ -109,6 +109,68 @@
     --color-text-primary: #232323;
     --color-text-second: #fefefe;
 
+    /* Border */
+
+    --border-width-tine: 1rem;
+    --border-width-base: 1.5rem;
+
+    /* Container */
+
+    --container-max-width: 60rem;
+    --container-padding-vertical: 1rem;
+    --container-padding-horizontal: 1.5rem;
+
+    /* MOBILEABLE_HORIZONTAL_SPACE: "w-[100%] sm:max-w-[420px]",
+     MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen", */
+
+    /* Nav */
+
+    --nav-height: 6rem;
+
+    /* Modal */
+
+    --modal-vertical-padding: 3rem;
+    --modal-horizontal-padding: 2.5rem;
+    --modal-header-margin: 1.5rem;
+
+    /* Z-Index */
+
+    --z-index-custom-pin: 5;
+    --z-index-search-bar: 30;
+    --z-index-bottom-sheet: 40;
+    --z-index-navigator: 50;
+    --z-index-mate-toggle-menu: 100;
+    --z-index-modal: 800;
+    --z-index-modal-background: 800;
+    --z-index-modal-layout: 850;
+    --z-index-spinner: 999;
+
+    /* Font Weight */
+
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extra-bold: 800;
+    --font-weight-black: 900;
+
+    /* Font Size */
+
+    --font-size-h1: 5rem;
+    --font-size-h2: 2.8rem;
+    --font-size-h3: 2.5rem;
+    --font-size-h4: 2.4rem;
+    --font-size-h5: 2rem;
+    --font-size-h6: 1.8rem;
+
+    --font-size-large: 1.6rem;
+    --font-size-medium: 1.5rem;
+    --font-size-basic: 1.4rem;
+    --font-size-small: 1.3rem;
+    --font-size-mini: 1.2rem;
+    --font-size-micro: 1rem;
+
     /* 
       TODO  
       미확인 스타일 코드 - 추후 검사 후 제거 필요 
@@ -180,11 +242,72 @@
     --color-text-primary: #232323;
     --color-text-second: #fefefe;
 
+    /* Border */
+
+    --border-width-tine: 1rem;
+    --border-width-base: 1.5rem;
+
+    /* Container */
+
+    --container-max-width: 60rem;
+    --container-padding-vertical: 1rem;
+    --container-padding-horizontal: 1.5rem;
+
+    /* MOBILEABLE_HORIZONTAL_SPACE: "w-[100%] sm:max-w-[420px]",
+    MOBILEABLE_VERTICAL_SPACE: "h-[100%] sm:h-screen", */
+
+    /* Nav */
+
+    --nav-height: 6rem;
+
+    /* Modal */
+
+    --modal-vertical-padding: 3rem;
+    --modal-horizontal-padding: 2.5rem;
+    --modal-header-margin: 1.5rem;
+
+    /* Z-Index */
+
+    --z-index-custom-pin: 5;
+    --z-index-search-bar: 30;
+    --z-index-bottom-sheet: 40;
+    --z-index-navigator: 50;
+    --z-index-mate-toggle-menu: 100;
+    --z-index-modal: 800;
+    --z-index-modal-background: 800;
+    --z-index-modal-layout: 850;
+    --z-index-spinner: 999;
+
+    /* Font Weight */
+
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extra-bold: 800;
+    --font-weight-black: 900;
+
+    /* Font Size */
+
+    --font-size-h1: 5rem;
+    --font-size-h2: 2.8rem;
+    --font-size-h3: 2.5rem;
+    --font-size-h4: 2.4rem;
+    --font-size-h5: 2rem;
+    --font-size-h6: 1.8rem;
+
+    --font-size-large: 1.6rem;
+    --font-size-medium: 1.5rem;
+    --font-size-basic: 1.4rem;
+    --font-size-small: 1.3rem;
+    --font-size-mini: 1.2rem;
+    --font-size-micro: 1rem;
+
     /* 
       TODO  
       미확인 스타일 코드 - 추후 검사 후 제거 필요 
     */
-
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -268,14 +391,14 @@
   main {
     width: 100%;
     height: 100%;
-    /* max-width: ${CONTAINER.MAX_WIDTH}rem; */
+    max-width: var(--container-max-width);
     margin: 0 auto;
 
     position: relative;
 
     overflow-x: hidden;
-    -ms-overflow-style: none; /* 인터넷 익스플로러 */
-    scrollbar-width: none; /* 파이어폭스 */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   main::-webkit-scrollbar {
