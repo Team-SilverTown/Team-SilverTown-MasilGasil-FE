@@ -1,0 +1,43 @@
+@storybook/cli v8.0.6
+
+info => Cleaning outputDir: ../../../var/folders/2b/yxbhgn2s0lsc7bwp2jj82r100000gn/T/chromatic--98723-Uz50qJYBqFzg
+info => Loading presets
+WARN The "@storybook/addon-mdx-gfm" addon is meant as a migration assistant for Storybook 8.0; and will likely be removed in a future version.
+WARN It's recommended you read this document:
+WARN https://storybook.js.org/docs/react/writing-docs/mdx#lack-of-github-flavored-markdown-gfm
+WARN 
+WARN Once you've made the necessary changes, you can remove the addon from your package.json and storybook config.
+info => Building manager..
+info => Manager built (128 ms)
+info => Building preview..
+info Addon-docs: using MDX3
+info => Using implicit CSS loaders
+info => Using SWC as compiler
+info => Using default Webpack5 setup
+info Using tsconfig paths for react-docgen
+WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+WARN This can impact web performance.
+WARN Assets: 
+WARN   static/media/Maplestory_Light.9d949758.ttf (1.29 MiB)
+WARN   static/media/Pretendard-Black.6ffb4c12.ttf (2.54 MiB)
+WARN   static/media/Pretendard-Bold.be4e300c.ttf (2.54 MiB)
+WARN   static/media/Pretendard-ExtraBold.cffbbae6.ttf (2.55 MiB)
+WARN   static/media/Pretendard-ExtraLight.3a1f8545.ttf (2.71 MiB)
+WARN   static/media/Pretendard-Light.be916151.ttf (2.68 MiB)
+WARN   static/media/Pretendard-Medium.07e5324d.ttf (2.58 MiB)
+WARN   static/media/Pretendard-Regular.fbe5b096.ttf (2.6 MiB)
+WARN   static/media/Pretendard-SemiBold.8ae7df0e.ttf (2.55 MiB)
+WARN   static/media/Pretendard-Thin.23965237.ttf (2.74 MiB)
+WARN   930.18f3dd63.iframe.bundle.js (247 KiB)
+WARN   664.8060e2ba.iframe.bundle.js (622 KiB)
+WARN   898.4e51cdbe.iframe.bundle.js (1.68 MiB)
+WARN   589.49d6c4a8.iframe.bundle.js (628 KiB)
+WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+WARN Entrypoints:
+WARN   main (1.76 MiB)
+WARN       runtime~main.411d4294.iframe.bundle.js
+WARN       898.4e51cdbe.iframe.bundle.js
+WARN       main.e58a6988.iframe.bundle.js
+WARN 
+info => Preview built (11 s)
+info => Output directory: /var/folders/2b/yxbhgn2s0lsc7bwp2jj82r100000gn/T/chromatic--98723-Uz50qJYBqFzg
