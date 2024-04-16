@@ -1,14 +1,20 @@
-import { authOptions, parseJwt } from "./app/api/auth/[...nextauth]/options";
-import { refreshToken } from "./lib/api/User/server";
+import { refreshAccessToken } from "./lib/api/User/server";
+import { parseJwt } from "./lib/utils/parseJwt";
 import { pathAbleCheck } from "./lib/utils/pathAbleCheck";
 
-import { getServerSession } from "next-auth";
-import { decode, encode, getToken } from "next-auth/jwt";
+import { encode, getToken } from "next-auth/jwt";
 import { RequestCookies, ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|masil.ico|fonts|images).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|masil.ico|fonts|images).*)",
+    // "/home",
+    // "/setting/:path*",
+    // "/log/record",
+    // "/diary",
+    // "/diary/:path*",
+  ],
 };
 
 const bypassPaths = [
@@ -22,22 +28,12 @@ const bypassPaths = [
   "/favicon*",
   // "/call*",
 ];
-const protectedPaths = ["/home", "/setting*", "/log/record", "/diary"]; // 로그인이 필요한 페이지 목록
+const protectedPaths = ["/home", "/setting*", "/log/record", "/diary*"]; // 로그인이 필요한 페이지 목록
 const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 const sessionCookie = process.env.NEXTAUTH_URL?.startsWith("https://")
   ? "__Secure-next-auth.session-token"
   : "next-auth.session-token";
-
-// function signOut(request: NextRequest) {
-//   const response = NextResponse.redirect("/");
-
-//   request.cookies.getAll().forEach((cookie) => {
-//     if (cookie.name.includes("next-auth")) response.cookies.delete(cookie.name);
-//   });
-
-//   return response;
-// }
 
 /**
  * @param token
@@ -95,10 +91,14 @@ export async function middleware(request: NextRequest) {
   // 토큰이 존재하고, 토큰 내부의 serviceToken 에 대한 갱신이 필요한 경우
   if (token && shouldUpdateToken(token.serviceToken as string)) {
     try {
-      const newServiceToken = await refreshToken({
+      const newServiceToken = await refreshAccessToken({
         serviceToken: token.serviceToken as string,
         refreshToken: token.refreshToken as string,
       });
+
+      // console.log("before");
+      // console.log(newServiceToken);
+      // console.log("------------------–");
 
       // nexauth 사양에 맞도록 쿠키 정보를 인코딩
       const newSessionToken = await encode({
@@ -120,12 +120,15 @@ export async function middleware(request: NextRequest) {
       const response = NextResponse.redirect(request.url);
       // 쿠키 갱신
       response.cookies.set(sessionCookie, newSessionToken);
-      // response 뿐만이 아니라 request 에서도 갱신된 쿠키를 바라볼 수 있도록 함F
+      // response 뿐만이 아니라 request 에서도 갱신된 쿠키를 바라볼 수 있도록 함
       applySetCookie(request, response);
       return response;
-    } catch (erorr) {
-      // 모종의 이유로 refreshedToken 발급에 실패한 경우 쿠키를 초기화하고 재로그인 할 수 있도록 redirect
-      NextResponse.redirect("/").cookies.set(sessionCookie, "");
+    } catch (error) {
+      // refreshedToken 발급에 실패한 경우 쿠키를 초기화하고 재로그인 할 수 있도록 redirect
+      const response = NextResponse.redirect(new URL("/", request.url));
+      request.cookies.delete(sessionCookie);
+      applySetCookie(request, response);
+      if (currentPath !== "/") return response;
     }
   }
 
@@ -133,7 +136,7 @@ export async function middleware(request: NextRequest) {
 
   // 미인증, 가인증 유저인 경우, 보호되는 경로로 접근할 수 없도록 함.
   const protectedPathsAccessInable = pathAbleCheck(protectedPaths, currentPath);
-  if (token && !token.serviceToken && protectedPathsAccessInable) {
+  if (protectedPathsAccessInable && ((token && !token.serviceToken) || !token)) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
 
@@ -142,7 +145,7 @@ export async function middleware(request: NextRequest) {
 
   // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등)
   const publicPathsAccessInable = pathAbleCheck(publicPaths, currentPath);
-  if (token && token.serviceToken && token.nickname && publicPathsAccessInable) {
+  if (publicPathsAccessInable && token && token.serviceToken && token.nickname) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
 

@@ -31,15 +31,16 @@ const Kakao = () => {
   });
 
   useEffect(() => {
-    console.log("kakao 분기처리 (meData)", meData, session);
+    // console.log("kakao 분기처리 (meData)", meData, session);
 
     if (!meData) return;
 
     if (meData && !meData.nickname) {
-      console.log("가가입 유저->회훤가입뷰");
+      // console.log("가가입 유저->회훤가입뷰");
       router.replace("/signup", { scroll: false });
     } else {
-      console.log("가입 유저->홈뷰");
+      // console.log("가입 유저->홈뷰");
+      // apiClient.setDefaultHeader("Authorization", `Bearer ${session?.serviceToken}`);
       router.replace("/home");
     }
   }, [meData, session]);
