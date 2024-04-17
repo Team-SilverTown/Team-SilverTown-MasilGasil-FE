@@ -106,8 +106,9 @@ class FetchAPI {
     // console.log(await clone.json())
     if (!response.ok) {
       switch (response.status) {
-        case 401:
+        case 401: {
           throw new UnauthorizedError(response);
+        }
         case 403:
           throw new ForbiddenError(response);
         case 404:

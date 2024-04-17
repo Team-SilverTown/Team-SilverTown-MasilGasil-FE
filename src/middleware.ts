@@ -1,4 +1,5 @@
 import { refreshAccessToken } from "./lib/api/User/server";
+import apiClient from "./lib/client/apiClient";
 import { parseJwt } from "./lib/utils/parseJwt";
 import { pathAbleCheck } from "./lib/utils/pathAbleCheck";
 
@@ -9,11 +10,12 @@ import { NextRequest, NextResponse } from "next/server";
 export const config = {
   matcher: [
     "/((?!api|_next/static|_next/image|favicon.ico|masil.ico|fonts|images).*)",
-    // "/home",
-    // "/setting/:path*",
-    // "/log/record",
-    // "/diary",
-    // "/diary/:path*",
+    "/home",
+    "/setting/:path*",
+    "/log/record",
+    "/diary",
+    "/diary/:path*",
+    "/users/:path*",
   ],
 };
 
@@ -28,8 +30,8 @@ const bypassPaths = [
   "/favicon*",
   // "/call*",
 ];
-const protectedPaths = ["/home", "/setting*", "/log/record", "/diary*"]; // 로그인이 필요한 페이지 목록
-const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
+// const protectedPaths = ["/home", "/setting*", "/log/record", "/diary*"]; // 로그인이 필요한 페이지 목록
+// const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 const sessionCookie = process.env.NEXTAUTH_URL?.startsWith("https://")
   ? "__Secure-next-auth.session-token"
@@ -119,6 +121,7 @@ export async function middleware(request: NextRequest) {
       // 갱신된 쿠키 정보를 브라우저측에서도 인지할 수 있도록 redirect
       const response = NextResponse.redirect(request.url);
       // 쿠키 갱신
+      apiClient.setDefaultHeader("Authorization", `Bearer ${newServiceToken}`);
       response.cookies.set(sessionCookie, newSessionToken);
       // response 뿐만이 아니라 request 에서도 갱신된 쿠키를 바라볼 수 있도록 함
       applySetCookie(request, response);
@@ -132,25 +135,30 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  if (!token) {
+    const response = NextResponse.redirect(new URL("/", request.url));
+    if (currentPath !== "/") return response;
+  }
+
   // if (!token) return signOut(request);
 
   // 미인증, 가인증 유저인 경우, 보호되는 경로로 접근할 수 없도록 함.
-  const protectedPathsAccessInable = pathAbleCheck(protectedPaths, currentPath);
-  if (protectedPathsAccessInable && ((token && !token.serviceToken) || !token)) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
+  // const protectedPathsAccessInable = pathAbleCheck(protectedPaths, currentPath);
+  // if (protectedPathsAccessInable && ((token && !token.serviceToken) || !token)) {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/";
 
-    if (currentPath !== "/") return NextResponse.redirect(url);
-  }
+  //   if (currentPath !== "/") return NextResponse.redirect(url);
+  // }
 
-  // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등)
-  const publicPathsAccessInable = pathAbleCheck(publicPaths, currentPath);
-  if (publicPathsAccessInable && token && token.serviceToken && token.nickname) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
+  // // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등)
+  // const publicPathsAccessInable = pathAbleCheck(publicPaths, currentPath);
+  // if (publicPathsAccessInable && token && token.serviceToken && token.nickname) {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/";
 
-    return NextResponse.redirect(url);
-  }
+  //   return NextResponse.redirect(url);
+  // }
 
   return NextResponse.next();
 }
