@@ -15,7 +15,7 @@ export const config = {
     "/log/record",
     "/diary",
     "/diary/:path*",
-    "/users/:path*",
+   
   ],
 };
 
