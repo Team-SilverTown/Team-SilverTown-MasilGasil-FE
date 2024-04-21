@@ -10,50 +10,51 @@ const config = {
   ],
   prefix: "",
   theme: {
-    fontSize: {
-      h1: "5rem",
-      h2: "2.8rem",
-      h3: "2.5rem",
-      h4: "2.4rem",
-      h5: "2rem",
-      h6: "1.8rem",
-      large: "1.6rem",
-      medium: "1.5rem",
-      basic: "1.4rem",
-      small: "1.3rem",
-      mini: "1.2rem",
-      micro: "1rem",
-    },
-
-    fontWeight: {
-      light: "300",
-      regular: "400",
-      medium: "500",
-      semibold: "600",
-      bold: "700",
-      extrabold: "800",
-      black: "900",
-    },
-
-    fontFamily: {
-      maplestory: [
-        "Maplestory",
-        "Pretendard Variable",
-        "Pretendard",
-        "-apple-system",
-        "BlinkMacSystemFont",
-      ],
-    },
-
-    // Shadcn UI style --
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
+      fontSize: {
+        h1: "5rem",
+        h2: "2.8rem",
+        h3: "2.5rem",
+        h4: "2.4rem",
+        h5: "2rem",
+        h6: "1.8rem",
+        large: "1.6rem",
+        medium: "1.5rem",
+        basic: "1.4rem",
+        small: "1.3rem",
+        mini: "1.2rem",
+        micro: "1rem",
+      },
+
+      fontWeight: {
+        light: "300",
+        regular: "400",
+        medium: "500",
+        semibold: "600",
+        bold: "700",
+        extrabold: "800",
+        black: "900",
+      },
+
+      fontFamily: {
+        maplestory: [
+          "Maplestory",
+          "Pretendard Variable",
+          "Pretendard",
+          "-apple-system",
+          "BlinkMacSystemFont",
+        ],
+      },
+
+      // Shadcn UI style --
+      container: {
+        center: true,
+        padding: "2rem",
+        screens: {
+          "2xl": "1400px",
+        },
+      },
+
       boxShadow: {
         sheet: "0px -2px 16px rgba(0, 0, 0, 0.3)",
       },
