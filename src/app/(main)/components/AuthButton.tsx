@@ -1,6 +1,6 @@
 "use client";
 
-import * as S from "./AuthButton.styles";
+import style from "./AuthButtonAnimation.module.css";
 
 import React, { useEffect, useMemo } from "react";
 
@@ -31,7 +31,7 @@ const AuthButton = () => {
 
   if (show) {
     return (
-      <S.AuthButtonWrapper>
+      <div className={`${style.fadeAnimation} absolute bottom-[15%] left-0 w-full opacity-0`}>
         <Button
           buttonColor={"#FEE500"}
           width={"calc(100% -   30px)"}
@@ -42,10 +42,10 @@ const AuthButton = () => {
             signIn("kakao", { redirect: true, callbackUrl: "/auth/kakao" });
           }}
         >
-          <Message className="w-7 h-7 mr-2" />
-          <S.ButtonContent>카카오 로그인</S.ButtonContent>
+          <Message className="mr-2 h-7 w-7" />
+          <span className="text-large font-medium ">카카오 로그인</span>
         </Button>
-      </S.AuthButtonWrapper>
+      </div>
     );
   }
 

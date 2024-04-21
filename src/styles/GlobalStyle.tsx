@@ -55,6 +55,7 @@ export const GlobalStyle = createGlobalStyle<any>`
     main::-webkit-scrollbar {
       display: none;
     }
+
 `;
 
 export const CommonContainer = styled.div`

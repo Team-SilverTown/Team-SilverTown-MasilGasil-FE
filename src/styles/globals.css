@@ -74,6 +74,26 @@
 
 @layer base {
   :root {
+    /* Container */
+
+    --container-max-width: 60rem;
+    --container-padding-vertical: 1rem;
+    --container-padding-horizontal: 1.5rem;
+
+    /* Nav */
+
+    --nav-height: 6rem;
+
+    /* Modal */
+
+    --modal-vertical-padding: 3rem;
+    --modal-horizontal-padding: 2.5rem;
+    --modal-header-margin: 1.5rem;
+
+    /* 
+      TODO  
+      미확인 스타일 코드 - 추후 검사 후 제거 필요 
+    */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -105,42 +125,86 @@
     --radius: 0.5rem;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
+    color: var(--color-text-primary);
   }
+
+  html,
   body {
-    @apply bg-background text-foreground;
+    width: 100%;
+    box-sizing: border-box;
+    touch-action: manipulation;
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    overscroll-behavior-x: none;
+  }
+
+  html {
+    font-size: 62.5%;
+    height: 100%;
+  }
+
+  body {
+    @apply bg-[--color-background] text-foreground;
+
+    width: 100vw;
+    height: 100%;
+    background-color: var(--color-background);
+
+    font-size: 1.4rem;
+    font-family:
+      "Pretendard Variable",
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      Roboto,
+      "Helvetica Neue",
+      "Segoe UI",
+      "Apple SD Gothic Neo",
+      "Noto Sans KR",
+      "Malgun Gothic",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      sans-serif;
+  }
+
+  main {
+    width: 100%;
+    height: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+
+    position: relative;
+
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  main::-webkit-scrollbar {
+    display: none;
+  }
+
+  .commonContainer {
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    padding: var(--nav-height) var(--container-padding-horizontal) calc(var(--nav-height) + 2rem);
+
+    box-sizing: border-box;
+  }
+
+  .mobileable-horizontal_space {
+    @apply w-[100%] sm:max-w-[420px];
+  }
+
+  .mobile-vertical_space {
+    @apply h-[100%] sm:h-screen;
   }
 }
