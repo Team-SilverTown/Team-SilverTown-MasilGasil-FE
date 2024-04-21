@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_27f3b4fb19773c2"
   },
   "dependencies": {
     "@babel/core": "^7.23.9",
@@ -92,6 +93,7 @@
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "autoprefixer": "^10.0.1",
     "babel-plugin-styled-components": "^2.1.4",
+    "chromatic": "^11.3.0",
     "eslint": "^8.0.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",

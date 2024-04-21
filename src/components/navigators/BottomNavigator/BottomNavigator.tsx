@@ -2,6 +2,8 @@
 
 import * as S from "./BottomNavigator.styles";
 
+import { useEffect } from "react";
+
 import userProfile from "@/assets/userProfile.svg";
 import { Avatar } from "@/components";
 import useMeStore from "@/lib/stores/useMeStore";
