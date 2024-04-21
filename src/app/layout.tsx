@@ -45,7 +45,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-  const me = session?.serviceToken ? await getMe(session.serviceToken) : undefined;
+  // if (session && session.serviceToken)
+  //   apiClient.setDefaultHeader("Authorization", `Bearer ${session.serviceToken}`);
+
+  const me = session?.serviceToken ? await getMe() : undefined;
 
   return (
     <html lang="ko">

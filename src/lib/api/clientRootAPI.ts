@@ -1,4 +1,4 @@
-import { axiosClientAuthInstance, axiosClientInstance } from "./axios/axiosClientInstance";
+import { axiosClientAuthInstance, axiosClientInstance } from "../client/axios/axiosClientInstance";
 
 import { AxiosRequestConfig } from "axios";
 
@@ -58,7 +58,6 @@ export const PUT = async <T>({
   return await API.put<T>(`/call${endPoint}`, data, config)
     .then((response) => response)
     .catch((error) => {
-      console.log("error", error.response);
       throw Error(error);
     });
 };
