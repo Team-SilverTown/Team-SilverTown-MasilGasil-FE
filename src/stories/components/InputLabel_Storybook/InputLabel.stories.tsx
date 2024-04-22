@@ -53,7 +53,6 @@ const meta = {
     },
 
     style: {
-      control: "null",
       description: "기본 CSS 스타일",
     },
   },
@@ -61,7 +60,7 @@ const meta = {
   decorators: [
     (InputLabelComponents) => {
       return (
-        <section className="w-[60rem] h-[4rem] flex items-center">
+        <section className="flex h-[4rem] w-[60rem] items-center">
           <InputLabelComponents />
         </section>
       );

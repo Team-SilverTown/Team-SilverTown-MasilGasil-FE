@@ -24,12 +24,10 @@ const meta = {
 
   argTypes: {
     current: {
-      control: "null",
       description: "DotIndicator의 현재 선택되어진 Index를 전달받습니다.",
     },
 
     length: {
-      control: "null",
       description: "DotIndicator의 생성할 Dot 갯수를 전달받습니다.",
     },
   },

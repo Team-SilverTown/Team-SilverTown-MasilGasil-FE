@@ -22,7 +22,6 @@ const meta = {
 
   argTypes: {
     register: {
-      control: "null",
       description: "React-Hook-Form의 register 전달",
     },
 
@@ -39,12 +38,7 @@ const meta = {
       description: "현재 Input의 넓이를 전달합니다.",
     },
 
-    kind: {
-      control: "null",
-    },
-
     style: {
-      control: "null",
       description: "기본 CSS 스타일",
     },
   },

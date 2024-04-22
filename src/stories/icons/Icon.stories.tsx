@@ -79,10 +79,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-
-  argTypes: {
-    children: { control: "null" },
-  },
 } satisfies Meta<typeof IconBox>;
 
 export default meta;

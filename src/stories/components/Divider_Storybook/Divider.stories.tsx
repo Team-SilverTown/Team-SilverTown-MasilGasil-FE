@@ -25,7 +25,6 @@ const meta = {
     },
 
     style: {
-      control: "null",
       description: "기본 CSS 스타일",
     },
 
@@ -36,7 +35,7 @@ const meta = {
 
   decorators: [
     (DividerComponent) => (
-      <section className="w-[60rem] h-[10rem] flex items-center justify-center">
+      <section className="flex h-[10rem] w-[60rem] items-center justify-center">
         <DividerComponent />
       </section>
     ),

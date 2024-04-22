@@ -33,7 +33,6 @@ const meta = {
 
   argTypes: {
     name: {
-      control: "string",
       description: "name은 Image 태그의 alt 속성에 추가되는 설명입니다.",
     },
 
@@ -45,14 +44,12 @@ const meta = {
     },
 
     src: {
-      control: "string",
       description:
         "src는 Avatar 이미지가 되는 주소입니다. (아무 값도 전달하지 않을 경우 기본 프로필이 정의됩니다.)",
       defaultValue: null,
     },
 
     style: {
-      control: "null",
       description: "기본 CSS 속성",
     },
 
