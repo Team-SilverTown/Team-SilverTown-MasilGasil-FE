@@ -121,7 +121,12 @@ export async function middleware(request: NextRequest) {
       const response = NextResponse.redirect(request.url);
       // 쿠키 갱신
       apiClient.setDefaultHeader("Authorization", `Bearer ${newServiceToken}`);
-      response.cookies.set(sessionCookie, newSessionToken);
+      response.cookies.set(sessionCookie, newSessionToken, {
+        httpOnly: true,
+        secure: process.env.NEXTAUTH_URL?.startsWith("https://"),
+        sameSite: "lax",
+      });
+
       // response 뿐만이 아니라 request 에서도 갱신된 쿠키를 바라볼 수 있도록 함
       applySetCookie(request, response);
       return response;
