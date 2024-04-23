@@ -2,8 +2,7 @@ import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { ProfileResponse } from "@/types/Response";
 import { PostMoreListResponse } from "@/types/Response/Post";
 
-import { WalkList, WalkStartButton } from "./components";
-import MyInfo from "./components/MyInfo/MyInfo";
+import { MyInfo, WalkList, WalkStartButton } from "./components";
 
 interface HomeViewProps {
   MyLikeWalkingTrailsList: PostMoreListResponse;
