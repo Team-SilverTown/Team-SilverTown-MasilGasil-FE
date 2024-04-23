@@ -1,7 +1,5 @@
 "use client";
 
-import * as S from "./MyLocationWeather.styles";
-
 import { useCallback, useEffect, useState } from "react";
 
 import {
@@ -21,14 +19,15 @@ import { useQuery } from "@tanstack/react-query";
 
 import fetchNearbyStation from "../../api/fetchNearbyStation";
 import { convertLatLonToTM, getDetailedAddress, showErrorMessage } from "../../utils";
+import findDust from "./utils/findDust";
 
 const WEATHER_ICON = {
-  맑음: <ClearSky />,
-  구름조금: <PartlyCloudy />,
-  흐림: <Overcast />,
-  비: <Rainy />,
-  진눈개비: <Sleet />,
-  눈: <Snowy />,
+  맑음: <ClearSky className="mr-[0.5rem] stroke-gray_200" />,
+  구름조금: <PartlyCloudy className="mr-[0.5rem] stroke-gray_200" />,
+  흐림: <Overcast className="mr-[0.5rem] stroke-gray_200" />,
+  비: <Rainy className="mr-[0.5rem] stroke-gray_200" />,
+  진눈개비: <Sleet className="mr-[0.5rem] stroke-gray_200" />,
+  눈: <Snowy className="mr-[0.5rem] stroke-gray_200" />,
   없음: null,
 };
 
@@ -100,19 +99,19 @@ const MyLocationWeather = () => {
   const pm10Value = findDust(pm10);
 
   return (
-    <S.MyLocationWeatherLayout>
-      <S.MyLocation>
+    <article className="mb-[1rem] flex items-center justify-between">
+      <div className="flex">
         {userAddress && (
           <>
-            <Location style={{ marginRight: "0.5rem" }} />
+            <Location className="mr-[0.5rem]" />
             <span>
               {userAddress.depth1} {userAddress.depth2} {userAddress.depth3}
             </span>
           </>
         )}
-      </S.MyLocation>
-      <S.MyWeather>
-        <li className="temperatures">
+      </div>
+      <ul className="flex font-bold">
+        <li className="mr-[0.7rem] flex items-center text-yellow_500">
           {weather && (
             <>
               {weatherIcon} {weather}
@@ -120,16 +119,17 @@ const MyLocationWeather = () => {
           )}
           {temperature && `${temperature}˚`}
         </li>
-        <li className="fineDust">
+
+        <li className="flex items-center text-green_500 ">
           {pm10Value && (
             <>
-              <FineDust />
+              <FineDust className="mr-[0.5rem] stroke-gray_200" />
               미세먼지 {pm10Value}
             </>
           )}
         </li>
-      </S.MyWeather>
-    </S.MyLocationWeatherLayout>
+      </ul>
+    </article>
   );
 };
 
