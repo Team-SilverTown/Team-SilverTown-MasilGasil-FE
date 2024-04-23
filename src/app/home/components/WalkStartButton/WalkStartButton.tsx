@@ -20,7 +20,7 @@ const WalkStartButton = () => {
           left: "50%",
           bottom: "9.5rem",
           transform: "translateX(-50%)",
-          maxWidth: `${+theme.width["max_width"] - 3}rem`,
+          maxWidth: `57rem`,
           height: "6rem",
           fontSize: `${theme.fontSize["h6"]}`,
           fontWeight: `${theme.fontWeight["bold"]}`,
