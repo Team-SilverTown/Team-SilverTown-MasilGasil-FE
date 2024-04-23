@@ -1,6 +1,7 @@
+"use client";
+
 import * as S from "./DiaryItem.styles";
 
-import useTheme from "@/lib/hooks/useTheme";
 import { convertMeter, convertSeconds } from "@/lib/utils";
 import { MasilsByPeriod } from "@/types/Response";
 
@@ -13,14 +14,18 @@ const DiaryItem = ({ masil }: { masil: MasilsByPeriod; key?: number | string }) 
   const formattedStatistics = `${convertMeter(distance)} ∙ ${convertSeconds(totalTime)} ∙ ${calories}kcal`;
 
   const route = useRouter();
-  const theme = useTheme();
 
   const handleClickItem = () => {
     route.push(`/log/${id}`);
   };
 
+  const subTextStyle = "overflow-hidden text-ellipsis whitespace-nowrap text-gray_500";
+
   return (
-    <S.Layout onClick={handleClickItem}>
+    <div
+      className="mb-[0.5rem] flex h-[10rem] w-full rounded-[1rem] border-tine border-transparent_10 bg-white"
+      onClick={handleClickItem}
+    >
       <Image
         src={thumbnailUrl}
         alt="masilThumbnail"
@@ -28,14 +33,16 @@ const DiaryItem = ({ masil }: { masil: MasilsByPeriod; key?: number | string }) 
         height={100}
         style={{ borderRadius: "1rem 0rem 0rem 1rem" }}
       />
-      <S.ContentContainer>
-        <S.Title>{content ? content : "내 산책기록"}</S.Title>
+      <div className="flex h-full w-[75%] flex-col justify-center gap-[1rem] px-[1.5rem] py-[1rem] text-start">
+        <h6 className=" overflow-hidden text-ellipsis whitespace-nowrap text-h6 font-bold">
+          {content ? content : "내 산책기록"}
+        </h6>
         <S.TextContainer>
-          <S.SubText>{formattedAddress}</S.SubText>
-          <S.SubText>{formattedStatistics}</S.SubText>
+          <p className={subTextStyle}>{formattedAddress}</p>
+          <p className={subTextStyle}>{formattedStatistics}</p>
         </S.TextContainer>
-      </S.ContentContainer>
-    </S.Layout>
+      </div>
+    </div>
   );
 };
 
