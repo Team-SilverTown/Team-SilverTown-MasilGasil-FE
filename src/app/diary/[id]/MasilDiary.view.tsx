@@ -1,8 +1,5 @@
 "use client";
 
-import * as GS from "@/styles/GlobalStyle";
-import Theme from "@/styles/theme";
-
 import React from "react";
 
 import { Tab } from "@/components";
@@ -12,11 +9,14 @@ import Return from "@/components/icons/Return";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 
+import tailwindConfig from "../../../../tailwind.config";
 import useMasilDiaryController from "./MasilDiary.controller";
 import { TabIndex } from "./MasilDiary.type";
 import DiaryItem from "./components/DiaryItem/DiaryItem";
 import MasilDiarySheet from "./components/MasilDiarySheet/MasilDiarySheet";
 import MonthlyStatistics from "./components/MonthlyStatistics/MonthlyStatistics";
+
+import resolveConfig from "tailwindcss/resolveConfig";
 
 const MasilDiaryView = () => {
   const {
@@ -34,6 +34,8 @@ const MasilDiaryView = () => {
     handleClickToday,
   } = useMasilDiaryController();
 
+  const { theme } = resolveConfig(tailwindConfig);
+
   const sectionStyle = "w-full pt-[4rem] text-center text-gray_300";
   const wrapperStyle = "flex w-full justify-end gap-[0.3rem] pb-[2rem] pl-[2rem] pr-[2rem]";
   const subTextStyle = "text-gray_300 hover:cursor-pointer hover:underline";
@@ -45,10 +47,12 @@ const MasilDiaryView = () => {
         leftChildren={<GoBackButton />}
         title="나의 산책일지"
       />
-      <GS.CommonContainer
+      <main
+        className="commonContainer"
         style={{ paddingTop: "6rem", paddingBottom: "18rem", userSelect: "none" }}
       >
         <Tab
+          className=""
           tabContents={["캘린더", "리스트"]}
           tabClickHandler={(index) => {
             setCurrentTabIdx(index);
@@ -74,7 +78,7 @@ const MasilDiaryView = () => {
             <div className={wrapperStyle}>
               <Return
                 width={13}
-                fill={Theme.lightTheme.gray_300}
+                fill={theme.colors["gray_300"]}
               />
               <span
                 className={subTextStyle}
@@ -110,7 +114,7 @@ const MasilDiaryView = () => {
             <div className={wrapperStyle}>
               <Return
                 width={13}
-                fill={Theme.lightTheme.gray_300}
+                fill={theme.colors["gray_300"]}
               />
 
               <span
@@ -134,7 +138,7 @@ const MasilDiaryView = () => {
             )}
           </>
         )}
-      </GS.CommonContainer>
+      </main>
     </>
   );
 };
