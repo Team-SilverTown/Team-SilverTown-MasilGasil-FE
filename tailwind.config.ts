@@ -14,35 +14,35 @@ const config = {
       colors: {
         white: "#FFFFFF",
         white_100: "#FAFAFA",
-  
+
         black: "#232323",
-  
+
         gray_500: "#909090",
         gray_300: "#B3B3B3",
         gray_200: "#E3E3E3",
         gray_100: "#EFEFEF",
-  
+
         transparent_10: "#23232310",
         transparent_30: "#23232330",
         transparent_50: "#23232350",
         transparent_90: "#23232390",
-  
+
         red_100: "#FF6878",
         red_500: "#FF4141",
-  
+
         pink_100: "#FEAF88",
-  
+
         blue_300: "#3897F0",
-  
+
         yellow_500: "#F7BC01",
-  
+
         green_100: "#f1f5eb",
         green_300: "#B9DB56",
         green_500: "#81BB26",
-  
+
         background_color: " #FAFAFA",
         container_color: "#FEFEFE",
-  
+
         text_primary_color: "#232323",
         text_secondary_color: "#FEFEFE",
 
@@ -92,12 +92,12 @@ const config = {
           500: "#F7BC01",
         },
       },
-  
+
       borderWidth: {
         tine: "1rem",
         base: "1.5rem",
       },
-  
+
       fontSize: {
         h1: "5rem",
         h2: "2.8rem",
@@ -112,7 +112,7 @@ const config = {
         mini: "1.2rem",
         micro: "1rem",
       },
-  
+
       fontWeight: {
         light: "300",
         regular: "400",
@@ -122,7 +122,7 @@ const config = {
         extrabold: "800",
         black: "900",
       },
-  
+
       zIndex: {
         custom_pin: "5",
         search_bar: "30",
@@ -134,7 +134,7 @@ const config = {
         modal_layout: "850",
         spinner: "999",
       },
-  
+
       fontFamily: {
         maplestory: [
           "Maplestory",
@@ -144,7 +144,11 @@ const config = {
           "BlinkMacSystemFont",
         ],
       },
-  
+
+      width: {
+        max_width: "60rem",
+      },
+
       // Shadcn UI style --
       container: {
         center: true,
