@@ -37,7 +37,7 @@ const MasilDiaryView = () => {
   const { theme } = resolveConfig(tailwindConfig);
 
   const sectionStyle = "w-full pt-[4rem] text-center text-gray_300";
-  const wrapperStyle = "flex w-full justify-end gap-[0.3rem] pb-[2rem] pl-[2rem] pr-[2rem]";
+  const wrapperStyle = "flex w-full justify-end gap-[0.3rem] pb-[2rem] pl-[2.5rem] pr-[2.5rem]";
   const subTextStyle = "text-gray_300 hover:cursor-pointer hover:underline";
   const monthlyMasilsStyle = { backgroundColor: "#B9DB56", color: "white", borderRadius: "50%" };
 
@@ -63,7 +63,7 @@ const MasilDiaryView = () => {
         />
         {currentTabIdx === TabIndex.Calendar && (
           <>
-            <div className="h-[28rem] w-full">
+            <div className="w-full">
               <Calendar
                 mode="single"
                 onMonthChange={handleChangeMonth}
