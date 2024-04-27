@@ -1,0 +1,9 @@
+@media (max-width: 380px) {
+  .log_tab {
+    font-size: 1.6rem;
+  }
+}
+
+.calc_height {
+  height: calc(100% - 14rem);
+}

@@ -1,12 +1,11 @@
 "use client";
 
-import * as S from "./Log.styles";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import style from "./Log.styles.module.css";
 
+import tailwindConfig from "@/../tailwind.config";
 import { Button, Tab } from "@/components";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
-import useTheme from "@/lib/hooks/useTheme";
 import { GeoPosition } from "@/types/OriginDataType";
 import { MasilDetailResponse, UserInfoType } from "@/types/Response";
 
@@ -16,6 +15,7 @@ import { LogKebabMenu, LogMemo, LogPin } from "./components";
 import { LogMapSection } from "./sections";
 
 import Link from "next/link";
+import resolveConfig from "tailwindcss/resolveConfig";
 
 interface LogViewProps {
   masilData: MasilDetailResponse;
@@ -41,7 +41,7 @@ const LogView = ({
   handleClickCenter,
   handleClickTab,
 }: LogViewProps) => {
-  const theme = useTheme();
+  const { theme } = resolveConfig(tailwindConfig);
 
   return (
     <>
@@ -50,7 +50,7 @@ const LogView = ({
         rightChildren={<LogKebabMenu />}
         containerStyle={{ backgroundColor: "transparent" }}
       />
-      <S.LogContainer>
+      <section className="relative h-full min-h-dvh scale-100 select-none">
         <LogMapSection
           masilData={masilData}
           currentPinIndex={currentPinIndex}
@@ -58,17 +58,17 @@ const LogView = ({
           handlePinIndex={handleCurrentPinIndex}
           handleClickCenter={handleClickCenter}
         />
-        <S.LogContentLayout>
+        <article className={`h-[55%] px-[2rem] ${style.log_tab}`}>
           <Tab
-            className="logTab"
+            className={"text-h6 font-bold"}
             tabContents={TAB_CONTENTS}
             tabClickHandler={handleClickTab}
             focusedTab={tabIndex}
             layoutId="log-underline"
           />
 
-          <S.LogContentSection
-            className="scrollbar-hide"
+          <div
+            className={`px-[0.5rem] py-[1rem] scrollbar-hide ${style.calc_height}`}
             style={{
               overflowY: tabIndex === TabType.Pin ? "visible" : "auto",
             }}
@@ -90,23 +90,23 @@ const LogView = ({
             <Link href={`/post/create?logId=${logId}`}>
               <Button
                 width="calc(100% - 4rem)"
-                textColor={theme?.white}
-                buttonColor={theme?.green_500}
+                textColor={theme.colors["white"]}
+                buttonColor={theme.colors["green_500"]}
                 style={{
                   position: "fixed",
                   left: "50%",
                   bottom: "9rem",
                   transform: "translateX(-50%)",
-                  fontSize: `${FONT_SIZE.LARGE}`,
-                  fontWeight: `${FONT_WEIGHT.BOLD}`,
+                  fontSize: `${theme.fontSize["large"]}`,
+                  fontWeight: `${theme.fontWeight["bold"]}`,
                 }}
               >
                 산책 공유하기
               </Button>
             </Link>
-          </S.LogContentSection>
-        </S.LogContentLayout>
-      </S.LogContainer>
+          </div>
+        </article>
+      </section>
     </>
   );
 };
