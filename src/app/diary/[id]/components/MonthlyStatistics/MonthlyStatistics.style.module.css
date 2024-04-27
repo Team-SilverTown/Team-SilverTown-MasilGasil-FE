@@ -1,0 +1,19 @@
+.header_component {
+  @media (max-width: 375px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.section_component {
+  @media (max-width: 375px) {
+    flex-direction: column;
+  }
+}
+
+.col_divider_component {
+  @media (max-width: 375px) {
+    width: 3rem;
+    height: 1px;
+  }
+}

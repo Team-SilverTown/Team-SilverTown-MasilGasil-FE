@@ -1,18 +1,25 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useUI } from "@/components/uiContext/UiContext";
 import { getMe, patchIsPublic } from "@/lib/api/User/client";
 import { USER_KEY } from "@/lib/api/queryKeys";
-import useLoadingSpinnerStore from "@/lib/stores/ui/useLoadingSpinnerStore";
 import useMeStore from "@/lib/stores/useMeStore";
+import { MeResponse } from "@/types/Response";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-const useUserSettingOptionsController = () => {
-  const { isPublic, setMe } = useMeStore();
-  const { showLoadingSpinner, closeLoadingSpinner } = useLoadingSpinnerStore();
+import { debounce } from "lodash";
+
+interface UseUserSettingOptionsControllerProps {
+  meData: MeResponse;
+}
+
+const useUserSettingOptionsController = ({ meData }: UseUserSettingOptionsControllerProps) => {
+  const { setMe } = useMeStore();
   const { setModalView, openModal } = useUI();
+
+  const [currentPublic, setCurrentPublic] = useState(meData.isPublic);
 
   const publicMutation = useMutation({
     mutationKey: [USER_KEY.TOGGLE_PUBLIC],
@@ -30,24 +37,34 @@ const useUserSettingOptionsController = () => {
     }
 
     setMe(data);
-    closeLoadingSpinner();
   }, [isRefetching]);
 
-  const handleTogglePublic = () => {
-    showLoadingSpinner();
+  const handleTogglePublic = useRef(
+    debounce((state: boolean) => {
+      if (state === meData.isPublic) {
+        return;
+      }
 
-    publicMutation.mutate(undefined, {
-      onSuccess: () => {
-        refetch();
-      },
-      onError: () => {
-        setModalView("ANIMATION_ALERT_VIEW");
-        openModal({ message: "문제가 발생했습니다.<br>잠시 후 다시 시도해주세요!" });
-      },
+      publicMutation.mutate(undefined, {
+        onSuccess: () => {
+          refetch();
+        },
+        onError: () => {
+          setModalView("ANIMATION_ALERT_VIEW");
+          openModal({ message: "문제가 발생했습니다.<br>잠시 후 다시 시도해주세요!" });
+        },
+      });
+    }, 1000),
+  ).current;
+
+  const handleClickButton = () => {
+    setCurrentPublic((state) => {
+      handleTogglePublic(!state);
+      return !state;
     });
   };
 
-  return { isPublic, handleTogglePublic };
+  return { currentPublic, handleClickButton };
 };
 
 export default useUserSettingOptionsController;

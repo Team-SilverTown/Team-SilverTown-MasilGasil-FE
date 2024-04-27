@@ -94,8 +94,8 @@ const config = {
       },
 
       borderWidth: {
-        tine: "1rem",
-        base: "1.5rem",
+        tine: "1px",
+        base: "1.5px",
       },
 
       fontSize: {

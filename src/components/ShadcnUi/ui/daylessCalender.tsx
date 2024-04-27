@@ -18,7 +18,7 @@ function DaylessCalendar({ className, classNames, ...props }: CalendarProps) {
         months: "flex flex-col space-y-4 ",
         month: "space-y-4",
         caption: "flex justify-center pt-1 relative items-center",
-        caption_label: "text-sm font-medium",
+        caption_label: "text-sm font-medium text-[1.3rem]",
         nav: "space-x-1 flex items-center py-10",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
