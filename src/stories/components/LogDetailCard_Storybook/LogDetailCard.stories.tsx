@@ -1,8 +1,8 @@
-import { ListCard, LogDetailCard } from "@/components";
+import { LogDetailCard } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
 
 /**
- * ** ListCard 컴포넌트**
+ * ** Log Detail Card 컴포넌트**
  *
  * ### Props
  * - **title : **현재 Log의 제목을 전달받습니다.
