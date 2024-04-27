@@ -1,5 +1,3 @@
-import * as S from "./LogMapSection.styles";
-
 import { Button } from "@/components";
 import MasilMap from "@/components/MasilMap/MasilMap";
 import { Center } from "@/components/icons";
@@ -22,7 +20,7 @@ const LogMapSection = ({
   handleClickCenter,
 }: LogMapSectionProps) => {
   return (
-    <S.MapContainer>
+    <section className="relative h-[45%] w-full">
       <MasilMap
         center={mapCenter}
         path={masilData.path}
@@ -31,7 +29,7 @@ const LogMapSection = ({
         selectedPinIndex={currentPinIndex}
         isShowCenterMarker={false}
       />
-      <S.ButtonWrapper>
+      <div className="absolute bottom-[1rem] right-[1rem] z-[1]">
         <Button
           variant="neumorp"
           useRipple={true}
@@ -40,8 +38,8 @@ const LogMapSection = ({
         >
           <Center />
         </Button>
-      </S.ButtonWrapper>
-    </S.MapContainer>
+      </div>
+    </section>
   );
 };
 
