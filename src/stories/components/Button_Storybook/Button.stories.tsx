@@ -35,6 +35,7 @@ const meta = {
 
   argTypes: {
     children: {
+      control: "text",
       description: "일반 children Props",
     },
 
@@ -49,10 +50,14 @@ const meta = {
     },
 
     width: {
+      control: "number",
       description: "버튼의 너비를 정의합니다.",
     },
 
     onClickHandler: {
+      control: {
+        disable: true,
+      },
       description: "버튼 클릭시 수행될 메서드를 전달받습니다.",
     },
 

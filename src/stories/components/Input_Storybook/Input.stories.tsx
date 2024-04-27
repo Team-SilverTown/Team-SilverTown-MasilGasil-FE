@@ -22,14 +22,19 @@ const meta = {
 
   argTypes: {
     register: {
+      control: {
+        disable: true,
+      },
       description: "React-Hook-Form의 register 전달",
     },
 
     isInvalid: {
+      control: "boolean",
       description: "boolean값을 통해 Input의 Invalid상태를 전달 받습니다.",
     },
 
     required: {
+      control: "boolean",
       description: "boolean값을 통해 현재 Input의 필수 여부를 전달받습니다.",
     },
 
@@ -39,6 +44,9 @@ const meta = {
     },
 
     style: {
+      control: {
+        disable: true,
+      },
       description: "기본 CSS 스타일",
     },
   },

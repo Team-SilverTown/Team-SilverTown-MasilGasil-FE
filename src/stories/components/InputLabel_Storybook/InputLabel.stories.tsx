@@ -53,6 +53,9 @@ const meta = {
     },
 
     style: {
+      control: {
+        disable: true,
+      },
       description: "기본 CSS 스타일",
     },
   },
