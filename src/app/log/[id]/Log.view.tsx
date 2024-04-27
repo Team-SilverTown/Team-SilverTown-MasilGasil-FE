@@ -60,11 +60,14 @@ const LogView = ({
         />
         <article className={`h-[55%] px-[2rem] ${style.log_tab}`}>
           <Tab
-            className={"text-h6 font-bold"}
             tabContents={TAB_CONTENTS}
             tabClickHandler={handleClickTab}
             focusedTab={tabIndex}
             layoutId="log-underline"
+            style={{
+              fontSize: theme.fontSize["h6"],
+              fontWeight: theme.fontWeight["bold"],
+            }}
           />
 
           <div
