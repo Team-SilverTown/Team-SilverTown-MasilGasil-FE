@@ -1,9 +1,5 @@
 "use client";
 
-import * as S from "./MasilDiary.styles";
-import * as GS from "@/styles/GlobalStyle";
-import Theme from "@/styles/theme";
-
 import React from "react";
 
 import { Tab } from "@/components";
@@ -13,11 +9,14 @@ import Return from "@/components/icons/Return";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 
+import tailwindConfig from "../../../../tailwind.config";
 import useMasilDiaryController from "./MasilDiary.controller";
 import { TabIndex } from "./MasilDiary.type";
 import DiaryItem from "./components/DiaryItem/DiaryItem";
 import MasilDiarySheet from "./components/MasilDiarySheet/MasilDiarySheet";
 import MonthlyStatistics from "./components/MonthlyStatistics/MonthlyStatistics";
+
+import resolveConfig from "tailwindcss/resolveConfig";
 
 const MasilDiaryView = () => {
   const {
@@ -35,16 +34,25 @@ const MasilDiaryView = () => {
     handleClickToday,
   } = useMasilDiaryController();
 
+  const { theme } = resolveConfig(tailwindConfig);
+
+  const sectionStyle = "w-full pt-[4rem] text-center text-gray_300";
+  const wrapperStyle = "flex w-full justify-end gap-[0.3rem] pb-[2rem] pl-[2.5rem] pr-[2.5rem]";
+  const subTextStyle = "text-gray_300 hover:cursor-pointer hover:underline";
+  const monthlyMasilsStyle = { backgroundColor: "#B9DB56", color: "white", borderRadius: "50%" };
+
   return (
     <>
       <TopNavigator
         leftChildren={<GoBackButton />}
         title="나의 산책일지"
       />
-      <GS.CommonContainer
+      <main
+        className="commonContainer"
         style={{ paddingTop: "6rem", paddingBottom: "18rem", userSelect: "none" }}
       >
         <Tab
+          className=""
           tabContents={["캘린더", "리스트"]}
           tabClickHandler={(index) => {
             setCurrentTabIdx(index);
@@ -55,7 +63,7 @@ const MasilDiaryView = () => {
         />
         {currentTabIdx === TabIndex.Calendar && (
           <>
-            <S.CalenderWrapper>
+            <div className="w-full">
               <Calendar
                 mode="single"
                 onMonthChange={handleChangeMonth}
@@ -64,23 +72,28 @@ const MasilDiaryView = () => {
                 className="rounded-md"
                 month={date}
                 modifiers={{ booked: monthlyMasilsDate ? monthlyMasilsDate : [] }}
-                modifiersStyles={{ booked: S.MonthlyMasils }}
+                modifiersStyles={{ booked: monthlyMasilsStyle }}
               />
-            </S.CalenderWrapper>
-            <S.Wrapper>
+            </div>
+            <div className={wrapperStyle}>
               <Return
                 width={13}
-                fill={Theme.lightTheme.gray_300}
+                fill={theme.colors["gray_300"]}
               />
-              <S.SubText onClick={handleClickToday}>Today</S.SubText>
-            </S.Wrapper>
+              <span
+                className={subTextStyle}
+                onClick={handleClickToday}
+              >
+                Today
+              </span>
+            </div>
 
             <MonthlyStatistics
               month={date?.getMonth()}
               masils={masilData}
             />
 
-            <S.Section>조회를 원하는 날짜를 선택해주세요</S.Section>
+            <div className={sectionStyle}>조회를 원하는 날짜를 선택해주세요</div>
 
             <MasilDiarySheet
               date={date}
@@ -97,13 +110,20 @@ const MasilDiaryView = () => {
               month={date}
               onMonthChange={handleChangeMonth}
             />
-            <S.Wrapper>
+
+            <div className={wrapperStyle}>
               <Return
                 width={13}
-                fill={Theme.lightTheme.gray_300}
+                fill={theme.colors["gray_300"]}
               />
-              <S.SubText onClick={handleClickToday}>Today</S.SubText>
-            </S.Wrapper>
+
+              <span
+                className={subTextStyle}
+                onClick={handleClickToday}
+              >
+                Today
+              </span>
+            </div>
             {monthlyMasils && monthlyMasils.length > 0 ? (
               monthlyMasils.map((masil) => {
                 return (
@@ -114,11 +134,11 @@ const MasilDiaryView = () => {
                 );
               })
             ) : (
-              <S.Section>기록이 존재하지 않습니다</S.Section>
+              <p className={sectionStyle}>기록이 존재하지 않습니다</p>
             )}
           </>
         )}
-      </GS.CommonContainer>
+      </main>
     </>
   );
 };
