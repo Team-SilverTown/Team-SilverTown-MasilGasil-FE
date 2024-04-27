@@ -19,3 +19,5 @@ export { default as InputRadio } from "./InputRadio/InputRadio";
 export { default as PinEditSlideButton } from "./PinEditSlideButton/PinEditSlideButton";
 export { default as UserEditInput } from "./UserEditInput/UserEditInput";
 export { default as UserIntensityItem } from "./UserIntensityItem/UserIntensityItem";
+
+export { default as InputUpload } from "./InputUpload/InputUpload";
