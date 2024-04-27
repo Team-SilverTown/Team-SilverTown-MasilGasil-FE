@@ -1,5 +1,3 @@
-import * as S from "./MyInfo.styles";
-
 import { ProfileResponse } from "@/types/Response";
 
 import { MyLocationWeather, MyWalkRecord } from "..";
@@ -10,7 +8,7 @@ interface myInfoProps {
 
 const MyInfo = ({ userInfo }: myInfoProps) => {
   return (
-    <section className={S.MyInfoSection}>
+    <section className="sticky top-24 z-10 w-full bg-background px-6 pt-8">
       <MyLocationWeather />
       <MyWalkRecord userInfo={userInfo} />
     </section>

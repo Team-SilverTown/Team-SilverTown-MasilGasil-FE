@@ -1,4 +1,3 @@
-import * as S from "./WalkListDisplay.styles";
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 import { LogDetailCard } from "@/components";
@@ -16,8 +15,8 @@ interface WalkListItemProps {
 
 const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) => {
   return (
-    <section className={S.WalkListSection}>
-      <article className={S.HomeWalkListArticle}>
+    <section className="mt-8 select-none px-6">
+      <article className="mb-4 flex items-center justify-between">
         <h3 style={{ fontSize: FONT_SIZE.LARGE, fontWeight: FONT_WEIGHT.BOLD }}>{title}</h3>
         <Link
           href={url}
@@ -28,9 +27,11 @@ const WalkListDisplay = ({ isEmpty, title, walkList, url }: WalkListItemProps) =
         </Link>
       </article>
       {isEmpty ? (
-        <div className={S.NoWalkRecordMessage}>산책로 목록이 비어있어요</div>
+        <div className="mx-auto my-0 flex min-h-48 items-center justify-center text-gray-300">
+          산책로 목록이 비어있어요
+        </div>
       ) : (
-        <ul className={S.WalkListContainer}>
+        <ul className="flex gap-8 overflow-x-auto overflow-y-hidden scrollbar-hide">
           {walkList.map(
             ({ id, title, content, thumbnailUrl, distance, totalTime, address, likeCount }) => (
               <li key={id}>

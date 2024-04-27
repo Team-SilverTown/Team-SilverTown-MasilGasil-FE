@@ -145,6 +145,10 @@ const config = {
         ],
       },
 
+      width: {
+        max_width: "60rem",
+      },
+
       // Shadcn UI style --
       container: {
         center: true,
