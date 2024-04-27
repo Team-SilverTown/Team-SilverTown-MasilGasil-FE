@@ -21,3 +21,5 @@ export { default as Input } from "./Input";
 export { default as InputLabel } from "./InputLabel";
 export { default as InputRadio } from "./InputRadio/InputRadio";
 export { default as InputUpload } from "./InputUpload/InputUpload";
+
+export { default as MateCard } from "./MateCard/MateCard";
