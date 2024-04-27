@@ -61,10 +61,10 @@ const meta = {
   },
 
   decorators: [
-    (InputLabelComponents) => {
+    (InputLabelComponents, { args }) => {
       return (
         <section className="flex h-[4rem] w-[60rem] items-center">
-          <InputLabelComponents />
+          <InputLabelComponents args={args} />
         </section>
       );
     },

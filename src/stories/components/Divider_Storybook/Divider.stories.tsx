@@ -39,9 +39,9 @@ const meta = {
   },
 
   decorators: [
-    (DividerComponent) => (
+    (DividerComponent, { args }) => (
       <section className="flex h-[10rem] w-[60rem] items-center justify-center">
-        <DividerComponent />
+        <DividerComponent args={args} />
       </section>
     ),
   ],

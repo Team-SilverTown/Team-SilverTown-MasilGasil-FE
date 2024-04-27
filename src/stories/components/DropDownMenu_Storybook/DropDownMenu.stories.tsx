@@ -46,10 +46,10 @@ const meta = {
   },
 
   decorators: [
-    (DropDownMenuComponent) => {
+    (DropDownMenuComponent, { args }) => {
       return (
         <section className="flex h-[20rem] w-[40rem] justify-center">
-          <DropDownMenuComponent />
+          <DropDownMenuComponent args={args} />
         </section>
       );
     },
