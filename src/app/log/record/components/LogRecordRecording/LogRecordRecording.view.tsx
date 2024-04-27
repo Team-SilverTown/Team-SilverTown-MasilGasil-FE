@@ -1,6 +1,7 @@
 "use client";
 
-import * as S from "./LogRecordRecording.styles";
+import style from "./LogRecordRecording.style.module.css";
+
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 import { useMemo } from "react";
@@ -23,40 +24,43 @@ const LogRecordRecordingView = () => {
   const kmCount = useMemo(() => Math.floor(logData.distance / 1000), [logData.distance]);
   const mCount = useMemo(() => logData.distance % 1000, [logData.distance]);
 
+  const unitStyle = "text-medium font-bold text-gray_500";
+  const infoStyle = `flex h-[5rem] items-center justify-center gap-[0.3rem] rounded-[0.8rem] bg-green_100 text-large font-bold ${style.calc_width}`;
+
   return (
-    <S.LogRecordActionLayout>
-      <S.LogRecordActionContainer>
-        <S.LogRecordInfoContainer>
-          <S.LogRecordInfo>
+    <div className="flex w-full min-w-[24rem] max-w-[36rem] select-none flex-col items-end pb-[3.2rem] opacity-90">
+      <div className="w-full rounded-[0.8rem] border-tine border-transparent_10 bg-white p-[1.6rem] shadow-[0_0.2rem_0.8rem_0_#23232310]">
+        <div className="mb-[1.6rem] flex w-full items-center gap-[1.6rem]">
+          <p className={infoStyle}>
             {hour !== "00" && (
               <>
                 {hour}
-                <S.LogRecordInfoUnit>시</S.LogRecordInfoUnit>
+                <span className={unitStyle}>시</span>
               </>
             )}
 
             {min !== "00" && (
               <>
                 {min}
-                <S.LogRecordInfoUnit>분</S.LogRecordInfoUnit>
+                <span className={unitStyle}>분</span>
               </>
             )}
 
             {sec}
-            <S.LogRecordInfoUnit>초</S.LogRecordInfoUnit>
-          </S.LogRecordInfo>
+            <span className={unitStyle}>초</span>
+          </p>
 
-          <S.LogRecordInfo>
+          <p className={infoStyle}>
             {kmCount !== 0 && (
               <>
                 {kmCount}
-                <S.LogRecordInfoUnit>km</S.LogRecordInfoUnit>
+                <span className={unitStyle}>km</span>
               </>
             )}
             {mCount}
-            <S.LogRecordInfoUnit>m</S.LogRecordInfoUnit>
-          </S.LogRecordInfo>
-        </S.LogRecordInfoContainer>
+            <span className={unitStyle}>m</span>
+          </p>
+        </div>
 
         <Button
           buttonColor={Theme.lightTheme.green_500}
@@ -68,8 +72,8 @@ const LogRecordRecordingView = () => {
         >
           산책 끝내기
         </Button>
-      </S.LogRecordActionContainer>
-    </S.LogRecordActionLayout>
+      </div>
+    </div>
   );
 };
 

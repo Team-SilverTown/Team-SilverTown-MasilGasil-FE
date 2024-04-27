@@ -1,0 +1,3 @@
+.calc_width {
+  width: calc(50% - 0.8rem);
+}
