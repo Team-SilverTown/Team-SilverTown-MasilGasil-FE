@@ -14,7 +14,7 @@ const Setting = async () => {
     return;
   }
 
-  const meData = await getMe(session.serviceToken);
+  const meData = await getMe();
 
   if (!meData) {
     return;
