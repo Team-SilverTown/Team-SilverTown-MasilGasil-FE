@@ -1,5 +1,3 @@
-import style from "./LogPin.style.module.css";
-
 import { DotIndicator, PinDetailCard } from "@/components";
 import { Pin } from "@/types/OriginDataType";
 
@@ -24,7 +22,7 @@ const LogPin = ({ pins, currentPinIndex, handlePinIndex }: LogPinProps) => {
           >
             {pins.map((pin, index) => (
               <PinDetailCard
-                className={style.pinDetailCard}
+                className="log_detail_pin:max-h-[13rem]"
                 key={index}
                 content={pin.content}
                 thumbnailUrl={pin.thumbnailUrl}

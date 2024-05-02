@@ -58,7 +58,7 @@ const LogView = ({
           handlePinIndex={handleCurrentPinIndex}
           handleClickCenter={handleClickCenter}
         />
-        <article className={`h-[55%] px-[2rem] ${style.log_tab}`}>
+        <article className={`log_detail_tab:text-[1.6rem] h-[55%] px-[2rem]`}>
           <Tab
             tabContents={TAB_CONTENTS}
             tabClickHandler={handleClickTab}
