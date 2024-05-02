@@ -1,4 +1,3 @@
-// import { authenticate, getMe, refreshToken } from "@/lib/api/User/server";
 import { getMe, kakaoAuth, refreshAccessToken } from "@/lib/api/User/server";
 import apiClient from "@/lib/client/apiClient";
 import { parseJwt } from "@/lib/utils/parseJwt";
@@ -25,8 +24,10 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (account && account.access_token) {
-        // 카카오 인증 로그인 시
-        // 서비스 서버로부터 새로운 accessToken, refreshToken 을 발급
+        /* 
+          카카오 인증 로그인 시
+          서비스 서버로부터 새로운 accessToken, refreshToken 을 발급
+        */
 
         const tokenData = await kakaoAuth({ accessToken: account.access_token });
 
@@ -37,7 +38,7 @@ export const authOptions: NextAuthOptions = {
           const serviceTokenExp = parseJwt(tokenData.accessToken).exp * 1000;
 
           const nowTime = Date.now();
-          const TEN_MINUTES_AGO_IN_MS = 60 * 10 * 1000; // 10분 전
+          const TEN_MINUTES_AGO_IN_MS = 60 * 10 * 1000;
 
           // 10분전에 토큰을 갱신해준다.
           const shouldRefreshTime = serviceTokenExp - nowTime - TEN_MINUTES_AGO_IN_MS;

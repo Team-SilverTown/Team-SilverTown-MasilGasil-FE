@@ -1,5 +1,3 @@
-import style from "./MonthlyStatistics.style.module.css";
-
 import { convertMeter } from "@/lib/utils";
 import { MasilsByPeriodResponse } from "@/types/Response";
 
@@ -13,16 +11,14 @@ const MonthlyStatistics = ({ month, masils }: MonthlyStatisticsProps) => {
     "flex w-full min-w-[5rem] flex-col items-center justify-center gap-[0.5rem] py-[1rem] font-bold";
   const accentTitleStyle = "text-large font-bold text-green_300";
   const textStyle = "flex-wrap";
-  const colDividerStyle = `h-[4rem] w-[1px] bg-gray_100 ${style.col_divider_component}`;
+  const colDividerStyle = `h-[4rem] w-[1px] bg-gray_100 diary_max:w-[3rem] diary_max:h-[0.1rem]`;
 
   return (
     <article className="w-full p-[1.25rem]">
       <div className="w-full rounded-[0.8rem] border-tine border-transparent_10 bg-white p-[2rem] shadow-[0_2px_7.8px_0_rgba(0,0,0,0.02)]">
         {month !== undefined && (
           <>
-            <header
-              className={`mb-[1.4rem] flex w-full items-end justify-between px-[0.5rem] ${style.header_component}`}
-            >
+            <header className="diary_max:flex-col diary_max:items-center mb-[1.4rem] flex w-full items-end justify-between px-[0.5rem]">
               <h6 className="text-large font-bold">{month + 1}월의 산책 기록</h6>
               <span className={textStyle}>
                 총
@@ -32,9 +28,7 @@ const MonthlyStatistics = ({ month, masils }: MonthlyStatisticsProps) => {
                 산책했어요
               </span>
             </header>
-            <section
-              className={`flex w-full flex-row items-center justify-around gap-[2rem] px-[1rem] ${style.section_component}`}
-            >
+            <section className="diary_max:flex-col flex w-full flex-row items-center justify-around gap-[2rem] px-[1rem]">
               <div className={sectionItemStyle}>
                 <>총 거리</>
                 <span className={accentTitleStyle}>

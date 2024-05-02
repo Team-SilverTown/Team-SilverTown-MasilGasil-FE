@@ -31,17 +31,13 @@ const Kakao = () => {
   });
 
   useEffect(() => {
-    // console.log("kakao 분기처리 (meData)", meData, session);
-
     if (!meData) return;
 
     if (meData && !meData.nickname) {
-      // console.log("가가입 유저->회훤가입뷰");
       setAuth({ isLogIn: false, serviceToken: undefined });
       initMe();
       router.replace("/signup", { scroll: false });
     } else {
-      // console.log("가입 유저->홈뷰");
       setAuth({ isLogIn: true, serviceToken: session?.serviceToken });
       setMe({ ...meData });
       apiClient.setDefaultHeader("Authorization", `Bearer ${session?.serviceToken}`);
@@ -51,8 +47,8 @@ const Kakao = () => {
 
   if (isLoading)
     return (
-      <div className="w-full h-full flex justify-center items-center">
-        <span className="font-semibold text-h3">사용자 인증 중입니다...</span>
+      <div className="flex h-full w-full items-center justify-center">
+        <span className="text-h3 font-semibold">사용자 인증 중입니다...</span>
       </div>
     );
 

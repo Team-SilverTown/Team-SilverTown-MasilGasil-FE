@@ -1,7 +1,5 @@
 "use client";
 
-import * as S from "./DiaryItem.styles";
-
 import { convertMeter, convertSeconds } from "@/lib/utils";
 import { MasilsByPeriod } from "@/types/Response";
 
@@ -37,10 +35,10 @@ const DiaryItem = ({ masil }: { masil: MasilsByPeriod; key?: number | string }) 
         <h6 className=" overflow-hidden text-ellipsis whitespace-nowrap text-h6 font-bold">
           {content ? content : "내 산책기록"}
         </h6>
-        <S.TextContainer>
+        <div className="flex flex-col gap-[0.4rem]">
           <p className={subTextStyle}>{formattedAddress}</p>
           <p className={subTextStyle}>{formattedStatistics}</p>
-        </S.TextContainer>
+        </div>
       </div>
     </div>
   );
