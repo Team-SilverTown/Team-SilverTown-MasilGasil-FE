@@ -31,8 +31,6 @@ const AuthLoader = ({
   const [_, setToken] = useLocalStorage("serviceToken");
   const { toast } = useToast();
 
-  const { data: session, update } = useSession();
-
   const redirectInable = pathAbleCheck(REDIRECT_INABLE_PATHS, currentPathName);
 
   useEffect(() => {

@@ -1,5 +1,3 @@
-import * as S from "./LogMemo.styles";
-
 import { Location } from "@/components/icons";
 import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/lib/utils";
 import convertFormatDate from "@/lib/utils/convertFormatDate";

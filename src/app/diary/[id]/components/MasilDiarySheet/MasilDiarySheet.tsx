@@ -1,6 +1,3 @@
-import * as S from "./MasilDiarySheet.styles";
-import { Z_INDEX } from "@/styles/theme";
-
 import Sheet from "@/components/BottomSheet";
 import { MasilsByPeriod } from "@/types/Response";
 
