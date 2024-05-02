@@ -1,6 +1,5 @@
 "use client";
 
-import * as S from "./LogRecordStandby.styles";
 import Theme, { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 import { Button } from "@/components";
@@ -11,7 +10,7 @@ const LogRecordStandbyView = () => {
   const { handleStartRecord } = useLogRecordStandbyController();
 
   return (
-    <S.LogRecordStandbyLayout>
+    <article className="mb-[3.6rem] flex w-full min-w-[24rem] max-w-[36rem] select-none items-center justify-center px-[1.6rem] py-0 opacity-90">
       <Button
         buttonColor={Theme.lightTheme.green_500}
         variant="neumorp"
@@ -22,7 +21,7 @@ const LogRecordStandbyView = () => {
       >
         산책 시작하기
       </Button>
-    </S.LogRecordStandbyLayout>
+    </article>
   );
 };
 

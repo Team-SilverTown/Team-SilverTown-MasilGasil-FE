@@ -13,12 +13,10 @@ interface UseModalStoreProps {
 }
 
 const useModalStore = create<UseModalStoreProps>((set) => ({
-  // initial state
   displayModal: false,
   modalView: "INIT_VIEW",
   modalProps: null,
 
-  // action reducers
   openModal: (props) => {
     set((state) => ({
       ...state,

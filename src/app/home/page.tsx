@@ -14,7 +14,7 @@ const Home = async () => {
 
   const session = await getServerSession(authOptions);
   const popularWalkingTrails = await getPopularWalkingTrails(session?.serviceToken!);
-  const userInfo = await getMe(session?.serviceToken!).then((user) => {
+  const userInfo = await getMe().then((user) => {
     if (!user) {
       return;
     }

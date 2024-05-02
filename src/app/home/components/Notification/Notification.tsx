@@ -1,9 +1,7 @@
 "use client";
 
-import { NotificationActive, NotificationOff } from "@/components/icons";
+import { NotificationOff } from "@/components/icons";
 import { useUI } from "@/components/uiContext/UiContext";
-
-import Link from "next/link";
 
 interface NotificationProps {
   isNotification: boolean | null;
@@ -24,12 +22,17 @@ const Notification = ({ isNotification }: NotificationProps) => {
     >
       <NotificationOff />
     </a>
-    // <Link
-    //   href="/notification"
-    //   style={{ marginRight: "1.5rem" }}
-    // >
-    //   {isNotification ? <NotificationActive /> : <NotificationOff />}
-    // </Link>
+
+    /*
+    TODO 추후 기능 추가
+
+      <Link
+        href="/notification"
+        style={{ marginRight: "1.5rem" }}
+      >
+        {isNotification ? <NotificationActive /> : <NotificationOff />}
+      </Link>
+    */
   );
 };
 

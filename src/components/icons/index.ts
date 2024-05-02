@@ -51,3 +51,13 @@ export { default as FineDust } from "./FineDust";
 export { default as ArrowForward } from "./ArrowForward";
 export { default as Image } from "./Image";
 export { default as ViewIcon } from "./ViewIcon";
+
+export { default as Camera } from "./Camera";
+export { default as EditPencil } from "./EditPencil";
+export { default as FootPrint } from "./FootPrint";
+export { default as Return } from "./Return";
+export { default as RunningMan } from "./RunningMan";
+export { default as Setting } from "./Setting";
+export { default as TimeChecker } from "./TimeChecker";
+
+export { default as UserProfile } from "./UserProfile";

@@ -97,11 +97,9 @@ const SignUpController = () => {
       if (userAge >= 13 && userAge <= 100) return true;
 
       if (userAge < 13) {
-        // errors.birthDate?.message !== validation_user.birthDate.min.message &&
         setError("birthDate", { type: "custom", message: validation_user.birthDate.min.message });
       }
       if (userAge > 100) {
-        // errors.birthDate?.message !== validation_user.birthDate.max.message &&
         setError("birthDate", { type: "custom", message: validation_user.birthDate.max.message });
       }
 

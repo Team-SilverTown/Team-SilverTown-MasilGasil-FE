@@ -1,23 +1,24 @@
 "use client";
 
-import * as S from "./LogRecordEdit.styles";
-import Theme, { FONT_SIZE, FONT_WEIGHT, Z_INDEX } from "@/styles/theme";
-
+import tailwindConfig from "@/../tailwind.config";
 import { Button, PinEditSlideButton, Textarea } from "@/components";
 import Sheet from "@/components/BottomSheet";
-import useTheme from "@/lib/hooks/useTheme";
 
 import useLogRecordEditController from "./LogRecordEdit.controller";
+
+import resolveConfig from "tailwindcss/resolveConfig";
 
 const LogRecordEditView = () => {
   const { logData, register, handleClickPin, handleRemovePin, handleSubmit } =
     useLogRecordEditController();
 
-  const theme = useTheme();
+  const { theme } = resolveConfig(tailwindConfig);
+
+  const headerStyle = "text-h6 font-bold";
 
   return (
     <>
-      <S.MotionSheet
+      <Sheet
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         exit={{ y: "100%" }}
@@ -27,7 +28,7 @@ const LogRecordEditView = () => {
         initialSnap={1}
         snapPoints={[0.9, 0.552]}
         style={{
-          zIndex: Z_INDEX.BOTTOM_SHEET,
+          zIndex: theme.zIndex["bottom_sheet"],
         }}
       >
         <Sheet.Container
@@ -35,7 +36,7 @@ const LogRecordEditView = () => {
             maxWidth: 600,
             left: "50%",
             translateX: "-50%",
-            backgroundColor: theme?.background_color,
+            backgroundColor: theme.colors["background_color"],
             boxShadow: "0 2px 7.8px 0 rgba(0, 0, 0, 0.2)",
           }}
         >
@@ -54,17 +55,17 @@ const LogRecordEditView = () => {
               userSelect: "none",
             }}
           >
-            <S.LogEditContainer>
-              <S.Header>메모</S.Header>
+            <div className="w-full">
+              <h1 className={headerStyle}>메모</h1>
               <Textarea
                 register={register("logMemo")}
                 style={{ height: "17rem" }}
                 placeholder="완료한 산책에 대한 간단한 메모를 작성해주세요."
               />
-            </S.LogEditContainer>
-            <S.LogEditContainer>
-              <S.Header>핀</S.Header>
-              <S.LogEditPinList>
+            </div>
+            <div className="flex h-[3rem] w-full items-center justify-center bg-background_color">
+              <h1 className={headerStyle}>핀</h1>
+              <div className="flex w-full flex-col items-center justify-center gap-[1.5rem] text-gray_300">
                 {logData.pins.length > 0 &&
                   logData.pins.map((pin, index) => (
                     <PinEditSlideButton
@@ -77,23 +78,23 @@ const LogRecordEditView = () => {
                   ))}
 
                 {logData.pins.length === 0 && "저장한 핀이 존재하지 않습니다."}
-              </S.LogEditPinList>
-            </S.LogEditContainer>
+              </div>
+            </div>
           </Sheet.Content>
         </Sheet.Container>
-      </S.MotionSheet>
+      </Sheet>
 
       <Button
-        buttonColor={Theme.lightTheme.green_500}
+        buttonColor={theme.colors["green_500"]}
         variant="neumorp"
-        textColor={Theme.lightTheme.white}
+        textColor={theme.colors["white"]}
         style={{
-          fontWeight: FONT_WEIGHT.BOLD,
+          fontWeight: theme.fontWeight["bold"],
           opacity: 0.9,
-          fontSize: FONT_SIZE.LARGE,
+          fontSize: theme.fontSize["large"],
           position: "fixed",
           bottom: "3.2rem",
-          zIndex: Z_INDEX.BOTTOM_SHEET + 1,
+          zIndex: +theme.zIndex["bottom_sheet"] + 1,
           maxWidth: "56rem",
           left: "50%",
           transform: "translateX(-50%)",

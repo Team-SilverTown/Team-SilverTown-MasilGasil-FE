@@ -1,6 +1,5 @@
 import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-
-import { styled } from "twin.macro";
+import styled from "styled-components";
 
 export const RecordDoneLayout = styled.div`
   width: 28rem;
@@ -69,8 +68,6 @@ export const RecordSummaryUnit = styled.div`
 
   font-size: ${FONT_SIZE.H5};
   font-weight: ${FONT_WEIGHT.BOLD};
-
-  /* color: ${(props) => props.theme.gray_300}; */
 `;
 
 export const ButtonContainer = styled.div`

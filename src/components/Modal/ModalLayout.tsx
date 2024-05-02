@@ -14,15 +14,12 @@ import { Cross } from "../icons";
 
 import { clearAllBodyScrollLocks, disableBodyScroll } from "body-scroll-lock";
 
-// import FocusTrap from "@lib/focus-trap";
-
 interface ModalLayoutProps {
   className?: string;
   children?: any;
   modalTitle?: string;
   onHandleClose?: () => void | null;
   style?: CSSProperties;
-  // onEnter?: () => void | null;
 }
 
 const ModalLayout: FC<ModalLayoutProps> = ({

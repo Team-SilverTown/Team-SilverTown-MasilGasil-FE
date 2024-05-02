@@ -27,7 +27,7 @@ export const UserEditInputActions = styled.div`
 
   position: relative;
 
-  /* input의 기본 업다운 버튼 제거 */
+  // input의 기본 업다운 버튼 제거 */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;

@@ -1,9 +1,10 @@
-import { ThemeProvider } from "styled-components";
-import { withThemeFromJSXProvider } from "@storybook/addon-themes";
-
 import "../src/styles/globals.css";
-import { lightTheme, darkTheme } from "../src/styles/theme";
+
 import { GlobalStyle } from "../src/styles/GlobalStyle";
+import { darkTheme, lightTheme } from "../src/styles/theme";
+import { ThemeProvider } from "styled-components";
+
+import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 
 export const decorators = [
   withThemeFromJSXProvider({

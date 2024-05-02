@@ -55,12 +55,10 @@ const LogDetailCard = ({
   };
   const handleLogDetailCardEdit = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    console.log("Log Detail 수정 !!");
     setIsSetingToggle(false);
   };
   const handleLogDetailCardDelete = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    console.log("Log Detail 삭제 !!");
     setIsSetingToggle(false);
   };
   return (

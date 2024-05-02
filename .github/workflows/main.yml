@@ -20,7 +20,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.TEST }}
         with:
-          source-directory: 'output'
+          source-directory: "output"
           destination-github-username: OhWonJu
           destination-repository-name: Team-SilverTown-MasilGasil-FE
           user-email: ${{ secrets.TEST_EMAIL }}

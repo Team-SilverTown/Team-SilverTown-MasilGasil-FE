@@ -1,11 +1,8 @@
-import * as S from "./Home.styles";
-
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { ProfileResponse } from "@/types/Response";
 import { PostMoreListResponse } from "@/types/Response/Post";
 
-import { WalkList, WalkStartButton } from "./components";
-import MyInfo from "./components/MyInfo/MyInfo";
+import { MyInfo, WalkList, WalkStartButton } from "./components";
 
 interface HomeViewProps {
   MyLikeWalkingTrailsList: PostMoreListResponse;
@@ -23,14 +20,14 @@ const HomeView = ({
       <TopNavigator
         leftChildren={
           <h1
-            className={S.HomeLogo}
+            className="ml-6 font-maplestory font-bold text-green-500"
             style={{ fontSize: "2.2rem" }}
           >
             마실가실
           </h1>
         }
       />
-      <div className={S.HomePageContainer}>
+      <div className="box-border w-full select-none pb-80 pt-24">
         <MyInfo userInfo={userInfo} />
         <WalkList
           MyLikeWalkingTrailsList={MyLikeWalkingTrailsList}

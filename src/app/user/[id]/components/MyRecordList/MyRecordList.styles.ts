@@ -34,11 +34,11 @@ export const BorderContentListWrapper = styled.ul`
   overflow-x: auto;
   overflow-y: hidden;
 
-  -ms-overflow-style: none; /* IE, Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
   }
   & > li:not(:last-child) {
     margin-right: 1.5rem;

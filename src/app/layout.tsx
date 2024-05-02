@@ -45,7 +45,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-  const me = session?.serviceToken ? await getMe(session.serviceToken) : undefined;
+
+  const me = session?.serviceToken ? await getMe() : undefined;
 
   return (
     <html lang="ko">

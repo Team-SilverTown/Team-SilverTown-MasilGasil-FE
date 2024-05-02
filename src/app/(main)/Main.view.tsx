@@ -25,7 +25,9 @@ const MainView = () => {
         }}
       />
       <div className="absolute bottom-[40%] left-1/2 -translate-x-1/2">
-        <h1 className={`${style.showup} opacity-0 font-bold text-h1 text-white`}>마실가실</h1>
+        <h1 className={`${style.showup} opacity-0 font-bold text-[--font-size-h1] text-white`}>
+          마실가실
+        </h1>
       </div>
       <AuthButton />
     </div>

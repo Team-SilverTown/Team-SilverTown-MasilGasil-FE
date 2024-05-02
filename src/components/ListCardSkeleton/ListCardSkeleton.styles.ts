@@ -53,6 +53,7 @@ export const ListCardContent = styled.article`
 export const ListCardContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
 `;
 
 export const ListCardInfo = styled.div`

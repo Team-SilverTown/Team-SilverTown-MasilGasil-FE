@@ -15,7 +15,7 @@ interface MyPageControllerProps {
 
 const MyPageController = async ({ userId }: MyPageControllerProps) => {
   const session = await getServerSession(authOptions);
-  const me = session?.serviceToken ? await getMe(session.serviceToken) : undefined;
+  const me = session?.serviceToken ? await getMe() : undefined;
   const isMe = me && me.userId == userId;
 
   const userProfile = await getUserProfile(userId);
@@ -45,14 +45,6 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
       isEmpty: recentPosts?.isEmpty,
       visible: "Public",
     },
-    // {
-    //   title: "좋아하는 산책로",
-    //   urlLink: "/more?keyword=my_like&order=latest",
-    //   recordList: [],
-    //   type: "Posts",
-    //   isEmpty: true,
-    //   visible: "Private",
-    // },
   ];
 
   return (

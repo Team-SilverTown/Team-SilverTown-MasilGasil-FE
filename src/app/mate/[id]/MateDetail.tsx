@@ -1,7 +1,7 @@
 import * as S from "./MateDetail.styles";
 import { CommonContainerTailwind } from "@/styles/GlobalStyle";
 
-import Divider from "@/components/Divider/Divider";
+import { Divider } from "@/components/Divider";
 import { TopNavigator } from "@/components/navigators/TopNavigator";
 import { GoBackButton } from "@/components/navigators/TopNavigator/components";
 import { MateDetailResponse } from "@/types/Response";

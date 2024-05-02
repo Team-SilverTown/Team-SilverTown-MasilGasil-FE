@@ -16,9 +16,6 @@ interface SearchBarProps {
   register: UseFormRegister<SearchProps>;
   watch: UseFormWatch<SearchProps>;
   clearHandler: Function;
-  // handleSubmit: UseFormHandleSubmit<SearchProps>;
-  // onValid: (data: SearchProps) => void;
-  // onInvalid: (data: FieldErrors) => void;
   onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -27,9 +24,6 @@ const SearchBar = ({
   register,
   watch,
   clearHandler,
-  // handleSubmit,
-  // onValid,
-  // onInvalid,
   onChangeHandler,
 }: SearchBarProps) => {
   const theme = useTheme();
@@ -48,9 +42,6 @@ const SearchBar = ({
           }}
           placeholder="지도 범위 내 검색 결과 키워드로 찾기"
           onChange={onChangeHandler}
-          // required={false}
-          // onFocus={(e) => handleFocus(e)}
-          // onBlur={(e) => handleBlur(e)}
         />
         <S.SearchIconWrapper>
           <label htmlFor={id}>
