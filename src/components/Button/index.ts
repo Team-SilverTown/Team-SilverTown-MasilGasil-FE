@@ -1,1 +1,2 @@
-export { default as Button } from "./Button";
+/* eslint-disable no-restricted-exports */
+export { default } from "./Button";

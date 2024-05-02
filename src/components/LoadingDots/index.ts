@@ -1,1 +1,2 @@
-export { default as LoadingDots } from "./LoadingDots";
+/* eslint-disable no-restricted-exports */
+export { default } from "./LoadingDots";
