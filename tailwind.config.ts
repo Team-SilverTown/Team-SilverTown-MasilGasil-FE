@@ -151,6 +151,9 @@ const config = {
 
       screens: {
         diary_max: { max: "375px" },
+
+        log_detail_pin: { max: "380px" },
+        log_detail_tab: { max: "380px" },
       },
 
       // Shadcn UI style --
