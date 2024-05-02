@@ -24,10 +24,8 @@ const styles: { [key: string]: CSS.Properties } = {
   container: {
     zIndex: 2,
     position: "absolute",
-    // left: 0,
     bottom: 0,
     width: "100%",
-    // backgroundColor: '#fff',
     borderTopRightRadius: "8px",
     borderTopLeftRadius: "8px",
     boxShadow: "0px -2px 16px rgba(0, 0, 0, 0.3)",

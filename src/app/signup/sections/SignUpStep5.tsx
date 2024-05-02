@@ -22,7 +22,6 @@ interface SignUpStep5Props {
 
 const POLICY_CONTENT_LIST: Array<{
   content: string;
-  // policyView: WINDOW_VIEWS;
   required: boolean;
   formKey: "isPersonalInfoConsented" | "isLocationInfoConsented" | "isUnderAgeConsentConfirmed";
   policyView: WINDOW_VIEWS;
@@ -108,7 +107,7 @@ const SignUpStep5 = ({ getValues, setValue }: SignUpStep5Props) => {
 
   return (
     <div className="h-full">
-      <GS.Row className="flex flex-row items-center mb-12">
+      <GS.Row className="mb-12 flex flex-row items-center">
         <Button
           id="checkAll"
           variant="neumorp"
@@ -125,7 +124,7 @@ const SignUpStep5 = ({ getValues, setValue }: SignUpStep5Props) => {
           }}
         >
           <Check
-            className={`w-6 h-6 mx-auto my-auto transition-colors`}
+            className={`mx-auto my-auto h-6 w-6 transition-colors`}
             stroke={checkAllPolicy ? theme?.white_100 : theme?.gray_300}
             strokeWidth={3.5}
           />
@@ -134,7 +133,7 @@ const SignUpStep5 = ({ getValues, setValue }: SignUpStep5Props) => {
           <S.PolicyH2>모든 약관 동의하기</S.PolicyH2>
         </S.PolicyLabel>
       </GS.Row>
-      <GS.Col className="flex flex-col mt-4 mb-5 ml-[3px]">
+      <GS.Col className="mb-5 ml-[3px] mt-4 flex flex-col">
         <ul className="space-y-8">
           {POLICY_CONTENT_LIST.map((policy, index) => (
             <li key={index}>
@@ -143,7 +142,7 @@ const SignUpStep5 = ({ getValues, setValue }: SignUpStep5Props) => {
                 <button onClick={() => togglePolicyAccept(index)}>
                   <GS.Row className="space-x-4">
                     <Check
-                      className={`w-6 h-6 mx-auto my-auto transition-colors`}
+                      className={`mx-auto my-auto h-6 w-6 transition-colors`}
                       stroke={policyCheck[index] ? theme?.green_500 : theme?.gray_200}
                       strokeWidth={3.5}
                     />

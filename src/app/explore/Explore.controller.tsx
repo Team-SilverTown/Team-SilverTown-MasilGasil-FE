@@ -73,11 +73,15 @@ const ExploreController = () => {
     mode: "onChange",
   });
 
-  // 추후 키워드를 통한 서버 검색을 위한 코드
-  // const onValid = (data: SearchProps) => {
-  // };
-  // const onInvalid = (errors: FieldErrors) => {
-  // };
+  /*
+    추후 키워드를 통한 서버 검색을 위한 코드
+
+    const onValid = (data: SearchProps) => {
+    };
+
+    const onInvalid = (errors: FieldErrors) => {
+    };
+  */
 
   const debouncedOnChange = debounce((event: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = event.target.value.trim();
@@ -119,9 +123,11 @@ const ExploreController = () => {
             register={register}
             watch={watch}
             clearHandler={searchClearHandler}
-            // handleSubmit={handleSubmit}
-            // onValid={onValid}
-            // onInvalid={onInvalid}
+            /*
+              handleSubmit={handleSubmit}
+              onValid={onValid}
+              onInvalid={onInvalid}
+            */
             onChangeHandler={debouncedOnChange}
           />
         }

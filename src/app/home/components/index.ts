@@ -4,4 +4,3 @@ export { default as WalkList } from "./WalkList";
 export { default as WalkStartButton } from "./WalkStartButton";
 
 export { default as MyInfo } from "./MyInfo";
-// export { default as Notification } from "./Notification";

@@ -49,6 +49,8 @@ export const InputWrapper = styled.div`
   position: relative;
   align-items: center;
   width: 100%;
+
+  //Input type=number의 기본 우측 화살표 제거
   input[type="number"] {
     -webkit-appearance: none;
     margin: 0;
@@ -57,7 +59,7 @@ export const InputWrapper = styled.div`
       -webkit-appearance: none;
       margin: 0;
     }
-  } //Input type=number의 기본 우측 화살표 제거
+  }
 `;
 
 export const UnitLabel = styled.span`

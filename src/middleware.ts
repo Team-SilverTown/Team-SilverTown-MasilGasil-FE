@@ -19,7 +19,6 @@ export const config = {
 };
 
 const bypassPaths = [
-  // "/",
   "/manifest*",
   "/swe-worker*",
   "/sw.js*",
@@ -27,7 +26,6 @@ const bypassPaths = [
   "/icons*",
   "/fonts*",
   "/favicon*",
-  // "/call*",
 ];
 // const protectedPaths = ["/home", "/setting*", "/log/record", "/diary*"]; // 로그인이 필요한 페이지 목록
 // const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
@@ -97,10 +95,6 @@ export async function middleware(request: NextRequest) {
         refreshToken: token.refreshToken as string,
       });
 
-      // console.log("before");
-      // console.log(newServiceToken);
-      // console.log("------------------–");
-
       // nexauth 사양에 맞도록 쿠키 정보를 인코딩
       const newSessionToken = await encode({
         secret: process.env.NEXTAUTH_SECRET as string,
@@ -108,14 +102,7 @@ export async function middleware(request: NextRequest) {
           ...token,
           serviceToken: newServiceToken,
         },
-        // maxAge: 30 * 24 * 60 * 60, // 30 days, or get the previous token's exp
       });
-
-      // console.log("after");
-      // console.log(
-      //   await decode({ secret: process.env.NEXTAUTH_SECRET as string, token: newSessionToken }),
-      // );
-      // console.log("------------------–");
 
       // 갱신된 쿠키 정보를 브라우저측에서도 인지할 수 있도록 redirect
       const response = NextResponse.redirect(request.url);
@@ -143,26 +130,6 @@ export async function middleware(request: NextRequest) {
     const response = NextResponse.redirect(new URL("/", request.url));
     if (currentPath !== "/") return response;
   }
-
-  // if (!token) return signOut(request);
-
-  // 미인증, 가인증 유저인 경우, 보호되는 경로로 접근할 수 없도록 함.
-  // const protectedPathsAccessInable = pathAbleCheck(protectedPaths, currentPath);
-  // if (protectedPathsAccessInable && ((token && !token.serviceToken) || !token)) {
-  //   const url = request.nextUrl.clone();
-  //   url.pathname = "/";
-
-  //   if (currentPath !== "/") return NextResponse.redirect(url);
-  // }
-
-  // // 인증된 유저인 경우, 인증 유저는 접근할 수 없는 경로에 대한 블로킹 (유저인증 관련 등)
-  // const publicPathsAccessInable = pathAbleCheck(publicPaths, currentPath);
-  // if (publicPathsAccessInable && token && token.serviceToken && token.nickname) {
-  //   const url = request.nextUrl.clone();
-  //   url.pathname = "/";
-
-  //   return NextResponse.redirect(url);
-  // }
 
   return NextResponse.next();
 }

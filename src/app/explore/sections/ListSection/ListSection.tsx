@@ -73,10 +73,10 @@ const ListSection = memo(function List({
     return (
       <div
         id={id}
-        className="w-full h-full"
+        className="h-full w-full"
       >
         <div className="flex justify-center">
-          <span className="font-medium text-medium">준비중입니다.</span>
+          <span className="text-medium font-medium">준비중입니다.</span>
         </div>
       </div>
     );
@@ -86,9 +86,9 @@ const ListSection = memo(function List({
     return (
       <div
         id={id}
-        className="w-full h-full overflow-hidden"
+        className="h-full w-full overflow-hidden"
       >
-        <div className="p-4 space-y-8">
+        <div className="space-y-8 p-4">
           <PostCardsSkeleton />
         </div>
       </div>
@@ -105,7 +105,7 @@ const ListSection = memo(function List({
     return (
       <div
         id={id}
-        className="w-full h-full"
+        className="h-full w-full"
       >
         {data && data.length > 0 && (
           <>
@@ -139,7 +139,7 @@ const ListSection = memo(function List({
 
         {data.length <= 0 && (
           <div className="flex justify-center">
-            <span className="font-medium text-medium text-gray-300">
+            <span className="text-medium font-medium text-gray-300">
               해당 지역에 대한 검색 결과가 없어요
             </span>
           </div>

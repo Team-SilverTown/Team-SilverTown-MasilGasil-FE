@@ -178,7 +178,6 @@ export const LogRecordContextProvider = ({
       dispatch({
         type: LOG_RECORD_REDUCER_ACTIONS.UPDATE_ADDRESS,
         payload: {
-          // location: { lat: latitude, lng: longitude },
           region: result[0],
         },
       });

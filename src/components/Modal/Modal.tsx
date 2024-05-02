@@ -9,7 +9,6 @@ import { clearAllBodyScrollLocks, disableBodyScroll } from "body-scroll-lock";
 interface ModalProps {
   children: ReactNode;
   onClose: () => void;
-  // onEnter?: () => void | null;
 }
 
 const Modal: FC<ModalProps> = ({ children, onClose }) => {
