@@ -26,23 +26,30 @@ const meta = {
 
   argTypes: {
     isEdit: {
+      control: "boolean",
       description: "boolean값을 통해 메뉴 리스트중 수정 버튼의 존재 여부를 전달받습니다.",
     },
 
     onEdit: {
+      control: {
+        disable: true,
+      },
       description: "수정 버튼 클릭시 수행될 메서드를 전달받습니다.",
     },
 
     onDelete: {
+      control: {
+        disable: true,
+      },
       description: "삭제 버튼 클릭시 수행될 메서드를 전달받습니다.",
     },
   },
 
   decorators: [
-    (DropDownMenuComponent) => {
+    (DropDownMenuComponent, { args }) => {
       return (
-        <section className="w-[40rem] h-[20rem] flex justify-center">
-          <DropDownMenuComponent />
+        <section className="flex h-[20rem] w-[40rem] justify-center">
+          <DropDownMenuComponent args={args} />
         </section>
       );
     },

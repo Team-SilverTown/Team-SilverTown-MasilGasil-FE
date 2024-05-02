@@ -5,7 +5,7 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 interface createInputRadioProps {
   key?: string | number;
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
   value: string | number;
   text: string;
   isSelected: boolean;
