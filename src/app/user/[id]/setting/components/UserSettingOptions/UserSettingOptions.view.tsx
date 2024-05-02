@@ -30,15 +30,16 @@ const UserSettingOptionsView = ({ meData }: UserSettingOptionsViewProps) => {
         switchType="ACCOUNT"
       />
 
-      {/* TODO - 상태에따라 아이콘 변경 예정 */}
-      {/* <NotificationOff /> */}
-      {/* <SettingContent
-        icon={<NotificationActive />}
-        text={"알림 설정"}
-        onClick={() => {}}
-        isSwitch={true}
-        switchType="NOTIFICATION"
-      /> */}
+      {/* TODO - 상태에따라 아이콘 변경 예정 
+          <NotificationOff /> 
+          <SettingContent
+            icon={<NotificationActive />}
+            text={"알림 설정"}
+            onClick={() => {}}
+            isSwitch={true}
+            switchType="NOTIFICATION"
+          /> 
+      */}
     </GS.UserSettingInnerLayout>
   );
 };
