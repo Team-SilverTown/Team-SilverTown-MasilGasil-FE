@@ -149,6 +149,10 @@ const config = {
         max_width: "60rem",
       },
 
+      screens: {
+        diary_max: { max: "375px" },
+      },
+
       // Shadcn UI style --
       container: {
         center: true,
