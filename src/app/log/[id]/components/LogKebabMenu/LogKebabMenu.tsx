@@ -10,7 +10,7 @@ const LogKebabMenu = () => {
   };
 
   return (
-    <div style={{ marginRight: "1.5rem", cursor: "pointer" }}>
+    <div className=" mr-[1.5rem] cursor-pointer">
       <DropDownMenu
         onDelete={handleClickAlert}
         onEdit={handleClickAlert}

@@ -1,4 +1,4 @@
-import * as S from "./LogPin.styles";
+import style from "./LogPin.style.module.css";
 
 import { DotIndicator, PinDetailCard } from "@/components";
 import { Pin } from "@/types/OriginDataType";
@@ -13,7 +13,7 @@ interface LogPinProps {
 
 const LogPin = ({ pins, currentPinIndex, handlePinIndex }: LogPinProps) => {
   return (
-    <S.LogPinContainer>
+    <div>
       {pins.length > 0 && (
         <>
           <Carousel
@@ -24,13 +24,13 @@ const LogPin = ({ pins, currentPinIndex, handlePinIndex }: LogPinProps) => {
           >
             {pins.map((pin, index) => (
               <PinDetailCard
+                className={style.pinDetailCard}
                 key={index}
                 content={pin.content}
                 thumbnailUrl={pin.thumbnailUrl}
                 currentPinindex={currentPinIndex + 1}
                 totalPinIndex={pins.length}
                 pin={pin}
-                className="pinDetailCard"
               />
             ))}
           </Carousel>
@@ -41,8 +41,8 @@ const LogPin = ({ pins, currentPinIndex, handlePinIndex }: LogPinProps) => {
         </>
       )}
 
-      {pins.length === 0 && <S.LogPinEmptyMessage>등록된 핀이 없습니다.</S.LogPinEmptyMessage>}
-    </S.LogPinContainer>
+      {pins.length === 0 && <div className="px-0 py-[3rem] text-center">등록된 핀이 없습니다.</div>}
+    </div>
   );
 };
 
