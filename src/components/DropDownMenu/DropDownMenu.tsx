@@ -4,6 +4,7 @@ import * as S from "./DropDownMenu.styles";
 
 import { MouseEvent } from "react";
 
+import Divider from "@/components/Divider/Divider";
 import { DotMenu, Trash } from "@/components/icons";
 import EditPencil from "@/components/icons/EditPencil";
 import useToggle from "@/hooks/useToggle";

@@ -1,5 +1,7 @@
 "use client";
 
+import * as S from "./MyLocationWeather.styles";
+
 import { useCallback, useEffect, useState } from "react";
 
 import {

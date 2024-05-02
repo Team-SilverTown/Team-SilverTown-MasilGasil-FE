@@ -6,6 +6,9 @@ import { MasilsByPeriod } from "@/types/Response";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 const DiaryItem = ({ masil }: { masil: MasilsByPeriod; key?: number | string }) => {
   const { id, address, content, thumbnailUrl, distance, totalTime, calories } = masil;
   const formattedAddress = `${address.depth1} ${address.depth2} ${address.depth3} ${address.depth4}`;
