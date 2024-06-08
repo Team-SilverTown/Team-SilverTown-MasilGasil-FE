@@ -8,3 +8,4 @@ export { default as AnimationAlertModal } from "./AnimationAlertModal/AnimationA
 export { default as DoneModal } from "./DoneModal/DoneModal";
 export { default as MateParticipantModal } from "./MateParticipantModal/MateParticipantModal";
 export { default as MateRequestModal } from "./MateRequestModal/MateRequestModal";
+export { default as AccessLoginModal } from "./AccessLoginModal/AccessLoginModal";
