@@ -1,3 +1,6 @@
+"use client";
+
+// TODO - 추후 모든 Tailwind 마이그레이션 작업후 use client 제거
 import { Button } from "@/components";
 
 import tailwindConfig from "../../../../../tailwind.config";
