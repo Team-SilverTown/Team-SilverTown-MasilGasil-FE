@@ -94,7 +94,7 @@ const ModalView = ({
       {modalView === "DONE_VIEW" && <DoneModal props={props} />}
       {modalView === "MATE_PARTICIPANT_USER_VIEW" && <MateParticipantModal props={props} />}
       {modalView === "MATE_REQUEST_VIEW" && <MateRequestModal props={props} />}
-      {modalView === "ACCESS_LOGIN_VIEW" && <AccessLoginModal props={props} />}
+      {modalView === "ACCESS_LOGIN_VIEW" && <AccessLoginModal />}
     </Modal>
   );
 };
