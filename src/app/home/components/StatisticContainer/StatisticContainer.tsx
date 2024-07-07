@@ -1,30 +1,35 @@
 import { convertMeter } from "@/lib/utils";
 import { ProfileResponse } from "@/types/Response";
 
+import NonAuthContainer from "../NonAuthContainer/NonAuthContainer";
 import StatisticItem from "../StatisticItem/StatisticItem";
+import VariableMessage from "../VariableMessage/VariableMessage";
 
 interface StatisticContainerProps {
   userData: ProfileResponse;
 }
 const StatisticContainer = ({ userData }: StatisticContainerProps) => {
   const { totalDistance, totalCount, totalCalories } = userData;
-  console.log(totalDistance, totalCount, totalCalories);
 
   const statisticData = [
     { icon: "👟", label: "산책했어요", value: `${totalDistance}회` },
-    { icon: "👣", label: "걸었어요", value: convertMeter(totalDistance) },
-    { icon: "🎽", label: "소모했어요", value: `${totalDistance}kcal` },
+    { icon: "👣", label: "걸었어요", value: convertMeter(totalCount) },
+    { icon: "🎽", label: "소모했어요", value: `${totalCalories}kcal` },
   ];
 
+  if (!userData) {
+    return <NonAuthContainer />;
+  }
+
   return (
-    <div className="inset-1 flex flex-col gap-[2rem] rounded-[3rem] bg-[#A4D24D] px-12 py-8 shadow-[inset_0px_0px_0px_4px_rgba(255,255,255,0.1)]">
-      <div className="text-3xl ">
+    <section className="inset-1 flex flex-col gap-[2rem] rounded-[3rem] bg-[#A4D24D] px-12 py-10 shadow-[inset_0px_0px_0px_4px_rgba(255,255,255,0.1)]">
+      <header className="text-3xl">
         <p className="text-white">
-          반가워요 <b className="text-white">{userData.nickname}</b>님,
+          반가워요 <strong className="text-white">{userData.nickname}</strong>님,
         </p>
-        <p className="text-white">나른한 오후 마실 한 바퀴 어떠신가요?</p>
-      </div>
-      <div className="flex gap-4 overflow-x-auto scrollbar-hide">
+        <VariableMessage />
+      </header>
+      <section className="flex gap-4 overflow-x-auto scrollbar-hide">
         {statisticData.map(({ icon, label, value }, i) => (
           <StatisticItem
             key={i}
@@ -33,8 +38,8 @@ const StatisticContainer = ({ userData }: StatisticContainerProps) => {
             value={value}
           />
         ))}
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 
