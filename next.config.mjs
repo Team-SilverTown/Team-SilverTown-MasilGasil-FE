@@ -38,7 +38,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "masilgasil-s3.s3.amazonaws.com",
+        hostname: "masilgasil-image.s3.amazonaws.com",
       },
       {
         protocol: "https",
@@ -72,8 +72,4 @@ const withMDX = nextMdx({
 /**
  * @type {import('next').NextConfig}
  */
-export default withPWA(
-  withMDX(
-    nextConfig
-  ),
-);
+export default withPWA(withMDX(nextConfig));
