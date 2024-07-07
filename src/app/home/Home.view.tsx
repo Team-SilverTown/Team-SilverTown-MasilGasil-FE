@@ -4,6 +4,7 @@ import { ProfileResponse } from "@/types/Response";
 import { PostMoreListResponse } from "@/types/Response/Post";
 
 import { MyInfo, WalkList, WalkStartButton } from "./components";
+import StatisticContainer from "./components/StatisticContainer/StatisticContainer";
 
 interface HomeViewProps {
   MyLikeWalkingTrailsList: PostMoreListResponse;
@@ -16,11 +17,16 @@ const HomeView = ({
   PopularWalkingTrailsList,
   userInfo,
 }: HomeViewProps) => {
+  console.log(userInfo);
   return (
     <>
-      <TopNavigator leftChildren={<LogoM />} />
-      <div className="box-border w-full select-none pb-80 pt-24">
-        <MyInfo userInfo={userInfo} />
+      <header className="sticky top-7 my-7 flex w-full flex-col items-center justify-start bg-background">
+        <LogoM />
+      </header>
+      <div className="sticky top-0 z-10 p-7">
+        <StatisticContainer userData={userInfo} />
+      </div>
+      <div className="box-border h-[1400px] w-full select-none pb-80">
         <WalkList
           MyLikeWalkingTrailsList={MyLikeWalkingTrailsList}
           PopularWalkingTrailsList={PopularWalkingTrailsList}
