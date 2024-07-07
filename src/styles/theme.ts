@@ -43,7 +43,7 @@ export const darkTheme = {
   white: "#FFFFFF",
   white_100: "#FAFAFA",
 
-  black: "#232323",
+  black: "#464646",
 
   gray_500: "#909090",
   gray_300: "#B3B3B3",

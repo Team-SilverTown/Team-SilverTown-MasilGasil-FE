@@ -2,8 +2,8 @@ import { convertMeter } from "@/lib/utils";
 import { ProfileResponse } from "@/types/Response";
 
 import NonAuthContainer from "../NonAuthContainer/NonAuthContainer";
-import StatisticItem from "../StatisticItem/StatisticItem";
-import VariableMessage from "../VariableMessage/VariableMessage";
+import StatisticItem from "./components/StatisticItem/StatisticItem";
+import VariableMessage from "./components/VariableMessage/VariableMessage";
 
 interface StatisticContainerProps {
   userData: ProfileResponse;

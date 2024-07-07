@@ -1,4 +1,4 @@
-import VariableMessage from "../VariableMessage/VariableMessage";
+import VariableMessage from "../StatisticContainer/components/VariableMessage/VariableMessage";
 import SignInButton from "./components/SignInButton/SignInButton";
 
 const NonAuthContainer = () => {

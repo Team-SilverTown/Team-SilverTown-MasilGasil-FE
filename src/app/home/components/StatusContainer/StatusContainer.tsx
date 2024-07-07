@@ -2,16 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import {
-  ClearSky,
-  FineDust,
-  Location,
-  Overcast,
-  PartlyCloudy,
-  Rainy,
-  Sleet,
-  Snowy,
-} from "@/components/icons";
 import { HomeWeatherSkeleton } from "@/components/skeletons";
 import { WEATHER_KEY } from "@/lib/api/queryKeys";
 import useUserLocationStore from "@/lib/stores/useUserLocationStore";
@@ -19,15 +9,16 @@ import { useQuery } from "@tanstack/react-query";
 
 import fetchNearbyStation from "../../api/fetchNearbyStation";
 import { convertLatLonToTM, getDetailedAddress, showErrorMessage } from "../../utils";
+import StatusItem from "./components/StatusItem/StatusItem";
 import findDust from "./utils/findDust";
 
 const WEATHER_ICON = {
-  맑음: <ClearSky className="mr-[0.5rem] stroke-gray_200" />,
-  구름조금: <PartlyCloudy className="mr-[0.5rem] stroke-gray_200" />,
-  흐림: <Overcast className="mr-[0.5rem] stroke-gray_200" />,
-  비: <Rainy className="mr-[0.5rem] stroke-gray_200" />,
-  진눈개비: <Sleet className="mr-[0.5rem] stroke-gray_200" />,
-  눈: <Snowy className="mr-[0.5rem] stroke-gray_200" />,
+  맑음: "☀️",
+  구름조금: "🌤️",
+  흐림: "☁️",
+  비: "🌧️",
+  진눈개비: "🌨️",
+  눈: "☃️",
   없음: null,
 };
 
@@ -38,7 +29,7 @@ interface LocationType {
   tmY: number | null;
 }
 
-const MyLocationWeather = () => {
+const StatusContainer = () => {
   const [location, setLocation] = useState<LocationType>({
     lat: null,
     lng: null,
@@ -99,38 +90,32 @@ const MyLocationWeather = () => {
   const pm10Value = findDust(pm10);
 
   return (
-    <article className="mb-[1rem] flex items-center justify-between">
-      <div className="flex">
-        {userAddress && (
-          <>
-            <Location className="mr-[0.5rem]" />
-            <span>
-              {userAddress.depth1} {userAddress.depth2} {userAddress.depth3}
-            </span>
-          </>
-        )}
-      </div>
-      <ul className="flex font-bold">
-        <li className="mr-[0.7rem] flex items-center text-yellow_500">
-          {weather && (
-            <>
-              {weatherIcon} {weather}
-            </>
-          )}
-          {temperature && `${temperature}˚`}
-        </li>
+    <article className="flex items-center justify-between px-4">
+      <section>
+        <StatusItem
+          icon="📍"
+          label={`${userAddress.depth2} ${userAddress.depth3}`}
+        />
+      </section>
 
-        <li className="flex items-center text-green_500 ">
-          {pm10Value && (
-            <>
-              <FineDust className="mr-[0.5rem] stroke-gray_200" />
-              미세먼지 {pm10Value}
-            </>
-          )}
-        </li>
-      </ul>
+      <section className="flex items-center gap-3">
+        <StatusItem
+          icon="🌡️"
+          label={temperature}
+        />
+        <div className="h-2 w-2 rounded-full bg-gray-200" />
+        <StatusItem
+          icon={weatherIcon}
+          label={weather?.toString()}
+        />
+        <div className="h-2 w-2 rounded-full bg-gray-200" />
+        <StatusItem
+          icon="😷"
+          label={pm10Value}
+        />
+      </section>
     </article>
   );
 };
 
-export default MyLocationWeather;
+export default StatusContainer;
