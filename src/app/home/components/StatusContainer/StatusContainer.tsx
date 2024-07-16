@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import fetchNearbyStation from "../../api/fetchNearbyStation";
 import { convertLatLonToTM, getDetailedAddress, showErrorMessage } from "../../utils";
 import StatusItem from "./components/StatusItem/StatusItem";
-import findDust from "./utils/findDust";
+import { evaluatePineDust } from "./utils";
 
 const WEATHER_ICON = {
   맑음: "☀️",
@@ -87,7 +87,7 @@ const StatusContainer = () => {
 
   const weatherIcon =
     precipitation && weather ? WEATHER_ICON[precipitation] || WEATHER_ICON[weather] : null;
-  const pm10Value = findDust(pm10);
+  const fineDustValue = evaluatePineDust(pm10);
 
   return (
     <article className="flex items-center justify-between px-4">
@@ -111,7 +111,7 @@ const StatusContainer = () => {
         <div className="h-2 w-2 rounded-full bg-gray-200" />
         <StatusItem
           icon="😷"
-          label={pm10Value}
+          label={fineDustValue}
         />
       </section>
     </article>

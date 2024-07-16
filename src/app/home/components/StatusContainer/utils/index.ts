@@ -1,1 +1,1 @@
-export { default as findDist } from "./findDust";
+export { default as evaluatePineDust } from "./evaluatePineDust";

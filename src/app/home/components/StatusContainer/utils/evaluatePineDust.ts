@@ -1,4 +1,4 @@
-const findDust = (pm10: number | null) => {
+const evaluatePineDust = (pm10: number | null) => {
   if (!pm10) {
     return;
   }
@@ -14,4 +14,4 @@ const findDust = (pm10: number | null) => {
   }
 };
 
-export default findDust;
+export default evaluatePineDust;
