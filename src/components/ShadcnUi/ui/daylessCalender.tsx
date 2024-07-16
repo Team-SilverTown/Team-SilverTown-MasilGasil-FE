@@ -1,10 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { DayPicker } from "react-day-picker";
+import { CaptionProps, DayPicker } from "react-day-picker";
 
 import { buttonVariants } from "@/components/ShadcnUi/ui/button";
 import { cn } from "@/lib/utils/ShadcnUi";
+
+import CalenderHeader from "./calendarHeader";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -41,8 +43,7 @@ function DaylessCalendar({ className, classNames, ...props }: CalendarProps) {
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-6 w-6" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-6 w-6" />,
+        Caption: (props: CaptionProps) => CalenderHeader(props),
       }}
       {...props}
     />
