@@ -42,6 +42,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "masilgasil-image.s3.amazonaws.com",
+      },
+      {
+        protocol: "https",
         hostname: "github.com",
       },
     ],
@@ -72,8 +76,4 @@ const withMDX = nextMdx({
 /**
  * @type {import('next').NextConfig}
  */
-export default withPWA(
-  withMDX(
-    nextConfig
-  ),
-);
+export default withPWA(withMDX(nextConfig));
