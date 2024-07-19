@@ -139,10 +139,6 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (!token) {
-    const response = NextResponse.redirect(new URL("/", request.url));
-    if (currentPath !== "/") return response;
-  }
 
   // if (!token) return signOut(request);
 

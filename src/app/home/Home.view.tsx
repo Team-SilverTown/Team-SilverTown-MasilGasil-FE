@@ -31,12 +31,6 @@ const HomeView = ({ PopularWalkingTrailsList, userInfo }: HomeViewProps) => {
       </article>
       {userInfo && (
         <article className="box-border flex w-full select-none justify-between gap-7 p-7 pt-0">
-          {/* <WalkList
-          MyLikeWalkingTrailsList={MyLikeWalkingTrailsList}
-          PopularWalkingTrailsList={PopularWalkingTrailsList}
-        />
-        <WalkStartButton /> */}
-
           <LogButton
             label={
               <p className="text-[2rem] font-semibold text-gray-700">
