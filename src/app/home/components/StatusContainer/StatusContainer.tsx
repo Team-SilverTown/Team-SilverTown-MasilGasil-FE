@@ -90,8 +90,8 @@ const StatusContainer = () => {
   const fineDustValue = evaluatePineDust(pm10);
 
   return (
-    <article className="flex items-center justify-between px-4">
-      <section>
+    <article className="flex grow-0 flex-nowrap items-center justify-between overflow-hidden text-ellipsis bg-background px-4">
+      <section className="flex-1 flex-nowrap truncate">
         <StatusItem
           icon="📍"
           label={`${userAddress.depth2} ${userAddress.depth3}`}
@@ -101,7 +101,7 @@ const StatusContainer = () => {
       <section className="flex items-center gap-3">
         <StatusItem
           icon="🌡️"
-          label={temperature}
+          label={`${temperature}°C`}
         />
         <div className="h-2 w-2 rounded-full bg-gray-200" />
         <StatusItem

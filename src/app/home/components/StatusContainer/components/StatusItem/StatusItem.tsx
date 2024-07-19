@@ -5,9 +5,9 @@ interface StatusItemProp {
 
 const StatusItem = ({ icon, label }: StatusItemProp) => {
   return (
-    <section className="flex select-none gap-2">
+    <section className="flex select-none gap-2 ">
       <span>{icon}</span>
-      <span className="text-medium font-bold text-[#464646]">{label}</span>
+      <span className="max-w-60 truncate text-medium font-bold text-[#464646]">{label}</span>
     </section>
   );
 };

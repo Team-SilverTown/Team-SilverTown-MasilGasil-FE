@@ -10,6 +10,7 @@ import LogButton from "./components/LogButton/LogButton";
 import PostContainer from "./components/PostContainer/PostContainer";
 import StatisticContainer from "./components/StatisticContainer/StatisticContainer";
 import StatusContainer from "./components/StatusContainer";
+import PopularTrailsInOurTown from "./components/WalkList/components/PopularTrailsInOurTown/PopularTrailsInOurTown";
 
 interface HomeViewProps {
   MyLikeWalkingTrailsList: PostMoreListResponse;
@@ -17,12 +18,7 @@ interface HomeViewProps {
   userInfo: ProfileResponse;
 }
 
-const HomeView = ({
-  MyLikeWalkingTrailsList,
-  PopularWalkingTrailsList,
-  userInfo,
-}: HomeViewProps) => {
-  console.log(userInfo);
+const HomeView = ({ PopularWalkingTrailsList, userInfo }: HomeViewProps) => {
   return (
     <>
       <header className=" top-7 mb-2 mt-7 flex w-full flex-col items-center justify-start bg-background">
@@ -67,12 +63,7 @@ const HomeView = ({
           url="/more?keyword=total_popular&order=popular"
           data={PopularWalkingTrailsList}
         />
-        <PostContainer
-          label="근처 인기산책로"
-          icon={<Forest size={52} />}
-          url="/more?keyword=area_popular&order=popular"
-          data={PopularWalkingTrailsList}
-        />
+        <PopularTrailsInOurTown />
       </article>
     </>
   );

@@ -22,11 +22,10 @@ interface PostContainerProps {
 
 const PostContainer = ({ label, icon, url, data }: PostContainerProps) => {
   const router = useRouter();
-  console.log(data);
-  const { isEmpty, contents, nextCursor } = data;
+  const { isEmpty, contents } = data;
 
   return (
-    <section className="inset-1 flex w-full flex-col justify-between gap-[1.5rem] rounded-[3rem] bg-white p-6 py-4 shadow-[inset_0px_0px_0px_4px_#fafafa] drop-shadow">
+    <section className="inset-1 flex w-full flex-col justify-between gap-[0.5rem] rounded-[3rem] bg-white p-6 pb-6 pt-3 shadow-[inset_0px_0px_0px_4px_#fafafa] drop-shadow">
       <div
         className="flex w-full cursor-pointer items-center justify-between "
         onClick={() => router.push(`${url}`)}
