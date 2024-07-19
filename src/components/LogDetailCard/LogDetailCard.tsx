@@ -10,6 +10,7 @@ import { MeResponse } from "@/types/Response";
 
 import { Heart, KebabMenu } from "../icons";
 
+import { RulerIcon, TimerIcon } from "lucide-react";
 import Image from "next/image";
 
 export interface LogDetailCardProps {
@@ -80,7 +81,7 @@ const LogDetailCard = ({
         )}
       </S.LogDetailCardThumbnail>
       <S.LogDetailCardInfo $isSettingLayout={isSettingLayout}>
-        <div className="infoTopSection">
+        <div className="flex flex-col gap-3">
           <div className="infoTitle">
             <h3>{title}</h3>
             {isSettingLayout && (
@@ -89,25 +90,37 @@ const LogDetailCard = ({
               </button>
             )}
           </div>
-          <p>{content}</p>
-        </div>
-        <S.LogDetailCardInfoContent>
-          <ul className="walkInfo">
-            <li>{totalTime}</li>
-            <li>{distance}</li>
-          </ul>
-          {isLikeLayout && (
-            <div className="likeInfo">
-              <Heart
-                width={11}
-                height={10}
-              />
-              <div className="like">{likeCount && likeCount < 999 ? likeCount : "+999"}</div>
-            </div>
-          )}
           {address && (
-            <div className="location">
+            <span className="text-small font-semibold text-gray-300">
               {address.depth1} {address.depth2}
+            </span>
+          )}
+        </div>
+
+        <S.LogDetailCardInfoContent>
+          <div className="flex flex-col gap-1">
+            <div className="flex gap-4">
+              <span className="flex items-center gap-1">
+                <TimerIcon size={15} />
+                {totalTime}
+              </span>
+              <span className="flex items-center gap-1">
+                <RulerIcon size={15} />
+                {distance}
+              </span>
+            </div>
+          </div>
+          {isLikeLayout && (
+            <div className="z-10 flex items-center gap-1">
+              <Heart
+                width={15}
+                height={15}
+                fill={"#be185d"}
+                stroke={"white"}
+              />
+              <div className="font-black text-pink-700">
+                {likeCount && likeCount < 999 ? likeCount : "+999"}
+              </div>
             </div>
           )}
         </S.LogDetailCardInfoContent>

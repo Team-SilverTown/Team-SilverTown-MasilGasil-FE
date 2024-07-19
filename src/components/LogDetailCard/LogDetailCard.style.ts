@@ -11,11 +11,11 @@ export const LogDetailCardContainer = styled.div`
   display: flex;
   width: 30rem;
   height: 12rem;
-  border-radius: 0.8rem;
+  border-radius: 2rem;
   background-color: ${(props) => props.theme.white};
   cursor: pointer;
 
-  border-width: ${BORDER.TINE_WIDTH}px;
+  border-width: 1px;
   border-color: ${(props) => props.theme.transparent_10};
 `;
 
@@ -23,8 +23,8 @@ export const LogDetailCardThumbnail = styled.div`
   position: relative;
   width: 12rem;
   height: 12rem;
-  border-top-left-radius: 0.8rem;
-  border-bottom-left-radius: 0.8rem;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
   overflow: hidden;
 
   img {
@@ -78,53 +78,7 @@ export const LogDetailCardInfo = styled.div<LogDetailCardInfoProps>`
 export const LogDetailCardInfoContent = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-
-  ul.walkInfo {
-    display: flex;
-    align-items: center;
-    li {
-      font-size: ${FONT_SIZE.MICRO};
-      color: ${(props) => props.theme.gray_300};
-    }
-    li:not(:first-child) {
-      position: relative;
-      margin-left: 0.5rem;
-      &::before {
-        position: absolute;
-        left: -0.35rem;
-        top: 50%;
-        transform: translateY(-50%);
-        content: "";
-        display: inline-block;
-        width: 0.2rem;
-        height: 0.2rem;
-        border-radius: 50%;
-        background-color: ${(props) => props.theme.gray_500};
-      }
-    }
-  }
-
-  .likeInfo {
-    display: flex;
-    align-items: center;
-    font-size: 0.8rem;
-    svg {
-      margin-right: 0.2rem;
-      stroke: ${(props) => props.theme.pink_100};
-    }
-    .like {
-      color: ${(props) => props.theme.pink_100};
-    }
-  }
-
-  .location {
-    width: 100%;
-    margin-top: 0.5rem;
-    font-size: ${FONT_SIZE.MICRO};
-    text-align: right;
-    color: ${(props) => props.theme.gray_300};
-  }
+  align-items: end;
 `;
 
 export const LogDetailCardSettingModal = styled.div`
