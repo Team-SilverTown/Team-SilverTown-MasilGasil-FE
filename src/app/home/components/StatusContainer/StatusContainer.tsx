@@ -90,7 +90,9 @@ const StatusContainer = () => {
   const fineDustValue = evaluatePineDust(pm10);
 
   return (
-    <article className="flex grow-0 flex-nowrap items-center justify-between overflow-hidden text-ellipsis bg-background px-4">
+    <article
+      className={`z-10 flex grow-0 flex-nowrap items-center justify-between overflow-hidden text-ellipsis px-4`}
+    >
       <section className="flex-1 flex-nowrap truncate">
         <StatusItem
           icon="📍"

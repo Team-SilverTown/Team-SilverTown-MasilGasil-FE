@@ -27,6 +27,7 @@ const HomeView = ({ PopularWalkingTrailsList, userInfo }: HomeViewProps) => {
       <article className="sticky top-0 z-10 flex flex-col gap-5 p-7">
         <StatusContainer />
         <StatisticContainer userData={userInfo} />
+        <div className="absolute left-4 top-0 z-0 h-[10rem] w-full bg-background" />
       </article>
       {userInfo && (
         <article className="box-border flex w-full select-none justify-between gap-7 p-7 pt-0">
