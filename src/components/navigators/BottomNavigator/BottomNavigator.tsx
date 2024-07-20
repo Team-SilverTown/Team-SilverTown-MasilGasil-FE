@@ -25,15 +25,6 @@ const BottomNavigator = () => {
   const { isLogIn } = useAuthStore();
   const { openModal, setModalView } = useUI();
 
-  /**
-   * @description BOTTOM_NAV_INDABLE 에 포함된 path 인 경우 BottomNav 를 렌더링 하지 않습니다.
-   */
-  const navInAble = pathAbleCheck(BOTTOM_NAV_INABLE, currentPathName);
-
-  if (navInAble) return null;
-
-  const isPathActive = (path: string) => currentPathName.includes(path);
-
   const handleAccessLogin = useCallback((path: string) => {
     if (isLogIn) {
       return;
@@ -46,6 +37,15 @@ const BottomNavigator = () => {
     setModalView("ACCESS_LOGIN_VIEW");
     openModal();
   }, []);
+
+  /**
+   * @description BOTTOM_NAV_INDABLE 에 포함된 path 인 경우 BottomNav 를 렌더링 하지 않습니다.
+   */
+  const navInAble = pathAbleCheck(BOTTOM_NAV_INABLE, currentPathName);
+
+  if (navInAble) return null;
+
+  const isPathActive = (path: string) => currentPathName.includes(path);
 
   return (
     <nav
