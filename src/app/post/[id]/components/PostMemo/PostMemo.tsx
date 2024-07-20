@@ -6,6 +6,7 @@ import { useUI } from "@/components/uiContext/UiContext";
 import { fetchPostLikedToggle } from "@/lib/api/Post/client";
 import { getUserInfo } from "@/lib/api/User/client";
 import { POST_KEY, USER_KEY } from "@/lib/api/queryKeys";
+import useAuthStore from "@/lib/stores/useAuthStore";
 import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/lib/utils";
 import checkErrorCode from "@/lib/utils/checkErrorCode";
 import { UserInfoType } from "@/types/Response";
@@ -38,6 +39,7 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
   const { isUserInfoCheck, calories } = calculateWalkingCalories({ userInfo, distance });
   const { setModalView, openModal } = useUI();
   const router = useRouter();
+  const { isLogIn } = useAuthStore();
 
   const { data: authorData } = useQuery({
     queryKey: [USER_KEY.USER_INFO, authorId],
@@ -66,6 +68,12 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
   }
 
   const handleClickLike = () => {
+    if (!isLogIn) {
+      setModalView("ACCESS_LOGIN_VIEW");
+      openModal();
+      return;
+    }
+
     likeMutation.mutate({ postId: String(id), data: { isLike: !isLiked } });
   };
 
