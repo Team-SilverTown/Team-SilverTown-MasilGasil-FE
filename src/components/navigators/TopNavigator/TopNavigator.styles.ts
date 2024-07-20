@@ -6,7 +6,7 @@ export const TopNavigatorContainer = styled.nav<any>`
   max-width: ${CONTAINER.MAX_WIDTH}rem;
   height: ${NAV_HEIGHT}rem;
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 0;
   padding: 1rem ${CONTAINER.PADDING_HORIZONTAL}rem;
   z-index: ${Z_INDEX.NAVIGATOR};
