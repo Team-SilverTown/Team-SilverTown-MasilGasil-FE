@@ -73,7 +73,7 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
     <>
       <S.PostMemoTitle>{title}</S.PostMemoTitle>
       <S.PostMemoInfo>
-        <S.PostMemoProfile onClick={() => router.push(`/user/${authorId}`)}>
+        <S.PostMemoProfile>
           <Avatar
             src={authorData.profileImg}
             userId={String(authorId)}
