@@ -2,8 +2,12 @@
 
 import { CONTAINER, NAV_HEIGHT } from "@/styles/theme";
 
+import { useCallback } from "react";
+
 import userProfile from "@/assets/userProfile.svg";
 import { Avatar } from "@/components";
+import { useUI } from "@/components/uiContext/UiContext";
+import useAuthStore from "@/lib/stores/useAuthStore";
 import useMeStore from "@/lib/stores/useMeStore";
 import { pathAbleCheck } from "@/lib/utils/pathAbleCheck";
 
@@ -18,6 +22,9 @@ const BottomNavigator = () => {
   const currentPathName = usePathname();
   const { userId, profileImg } = useMeStore();
 
+  const { isLogIn } = useAuthStore();
+  const { openModal, setModalView } = useUI();
+
   /**
    * @description BOTTOM_NAV_INDABLE 에 포함된 path 인 경우 BottomNav 를 렌더링 하지 않습니다.
    */
@@ -26,6 +33,19 @@ const BottomNavigator = () => {
   if (navInAble) return null;
 
   const isPathActive = (path: string) => currentPathName.includes(path);
+
+  const handleAccessLogin = useCallback((path: string) => {
+    if (isLogIn) {
+      return;
+    }
+
+    if (path !== "/diary" && path !== "/user") {
+      return;
+    }
+
+    setModalView("ACCESS_LOGIN_VIEW");
+    openModal();
+  }, []);
 
   return (
     <nav
@@ -42,10 +62,16 @@ const BottomNavigator = () => {
           className="flex flex-1 items-center justify-center"
         >
           <Link
-            href={`${path}${isIdRequired && userId ? `/${userId}` : ""}`}
+            href={
+              // 비 로그인 상태에서의 다이어리 페이지 or 유저 페이지 접근시 접근 차단 - ( TODO : 추후 개선 필요 )
+              !isLogIn && (path === "/diary" || path === "/user")
+                ? ""
+                : `${path}${isIdRequired && userId ? `/${userId}` : ""}`
+            }
             title={label}
             className="px-5"
             scroll={false}
+            onClick={() => handleAccessLogin(path)}
           >
             <div
               className={twJoin(
