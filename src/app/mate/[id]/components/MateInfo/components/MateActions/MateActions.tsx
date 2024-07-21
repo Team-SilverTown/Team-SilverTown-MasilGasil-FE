@@ -1,7 +1,5 @@
 "use client";
 
-import * as S from "./MateActions.styles";
-
 import { useMemo } from "react";
 
 import useAuthStore from "@/lib/stores/useAuthStore";
@@ -71,7 +69,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   }, [requestedUserList, acceptedUserList, mateData, userId]);
 
   return (
-    <S.MateActionsLayout>
+    <div className="mb-[1.2rem] flex w-full flex-col items-center gap-[2rem]">
       {userStatus === "NOT_LOGIN" && MateButtons.Login}
       {userStatus === "NO_ACTION" && MateButtons.Request}
       {userStatus === "REQUESTED" && (
@@ -88,7 +86,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
       )}
       {userStatus === "CLOSE" && <>{MateButtons.Completed}</>}
       {userStatus === "AUTHOR" && MateButtons.Author}
-    </S.MateActionsLayout>
+    </div>
   );
 };
 
