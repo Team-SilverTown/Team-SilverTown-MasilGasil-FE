@@ -14,6 +14,8 @@ import useMeStore from "@/lib/stores/useMeStore";
 import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
 
+import { useRouter } from "next/navigation";
+
 interface MateActionsProps {
   mateData: MateDetailResponse;
   acceptedUserList: Participant[];
@@ -24,13 +26,19 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   const { setModalView, openModal, closeModal } = useUI();
   const { userId } = useMeStore();
   const theme = useTheme();
+  const route = useRouter();
 
   const cancelParticipantMutation = useCancelParticipant({
     successMessage: "정상적으로 메이트에서 탈퇴되었습니다.",
   });
+
   const postParticipantRequestMutation = useRequestParticipant();
 
   const participantId = useMemo(() => {
+    if (!userId) {
+      return false;
+    }
+
     const matchParticipant = mateData.participants.find(
       (participant) => userId === participant.userId,
     );
@@ -43,6 +51,10 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   }, [mateData, userId]);
 
   const userStatus = useMemo(() => {
+    if (!userId) {
+      return "NOT_LOGIN";
+    }
+
     if (mateData.status === "CLOSED") {
       return "CLOSE";
     }
@@ -96,6 +108,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   };
 
   const ButtonList = {
+    Login: createButton({ theme, text: "로그인", onClick: () => route.push("/") }),
     Request: createButton({ theme, text: "메이트 신청하기", onClick: handleClickRequest }),
     Pending: createButton({ theme, text: "요청중", disabled: true }),
     Cancel: createButton({
@@ -115,24 +128,21 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
 
   return (
     <S.MateActionsLayout>
+      {userStatus === "NOT_LOGIN" && ButtonList.Login}
       {userStatus === "NO_ACTION" && ButtonList.Request}
-
       {userStatus === "REQUESTED" && (
         <>
           {ButtonList.Pending}
           {ButtonList.Cancel}
         </>
       )}
-
       {userStatus === "ACCEPTED" && (
         <>
           {ButtonList.Accepted}
           {ButtonList.Cancel}
         </>
       )}
-
       {userStatus === "CLOSE" && <>{ButtonList.Completed}</>}
-
       {userStatus === "AUTHOR" && ButtonList.Author}
     </S.MateActionsLayout>
   );
