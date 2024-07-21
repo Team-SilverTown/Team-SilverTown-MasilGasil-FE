@@ -1,20 +1,13 @@
 "use client";
 
-import * as S from "./MateActions.styles";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { DefaultTheme } from "styled-components";
-
 import { useMemo } from "react";
 
-import { useCancelParticipant, useRequestParticipant } from "@/app/mate/[id]/hooks";
-import { Button } from "@/components";
-import { useUI } from "@/components/uiContext/UiContext";
-import useTheme from "@/lib/hooks/useTheme";
+import useAuthStore from "@/lib/stores/useAuthStore";
 import useMeStore from "@/lib/stores/useMeStore";
 import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
 
-import { useRouter } from "next/navigation";
+import { useMateButtonList } from "./hooks";
 
 interface MateActionsProps {
   mateData: MateDetailResponse;
@@ -23,19 +16,11 @@ interface MateActionsProps {
 }
 
 const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActionsProps) => {
-  const { setModalView, openModal, closeModal } = useUI();
   const { userId } = useMeStore();
-  const theme = useTheme();
-  const route = useRouter();
-
-  const cancelParticipantMutation = useCancelParticipant({
-    successMessage: "정상적으로 메이트에서 탈퇴되었습니다.",
-  });
-
-  const postParticipantRequestMutation = useRequestParticipant();
+  const { isLogIn } = useAuthStore();
 
   const participantId = useMemo(() => {
-    if (!userId) {
+    if (!isLogIn) {
       return false;
     }
 
@@ -50,8 +35,23 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
     return false;
   }, [mateData, userId]);
 
+  /**
+   * @hooks useMateButtonList
+   *
+   * @summary
+   *
+   * 해당 메이트의 모든 액션 로직과 버튼을 만들어 제공함
+   */
+  const MateButtons = useMateButtonList({
+    participantId: participantId,
+    mateId: mateData.id,
+  });
+
+  /**
+   * 현재 사용자의 메이트에대한 상태 파악
+   */
   const userStatus = useMemo(() => {
-    if (!userId) {
+    if (!isLogIn) {
       return "NOT_LOGIN";
     }
 
@@ -78,105 +78,26 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
     return "NO_ACTION";
   }, [requestedUserList, acceptedUserList, mateData, userId]);
 
-  if (!theme) {
-    return;
-  }
-
-  const handleClickRequest = () => {
-    setModalView("MATE_REQUEST_VIEW");
-    openModal({
-      onAccept: (message: string) => {
-        postParticipantRequestMutation.mutate({ message, mateId: mateData.id });
-        closeModal();
-      },
-    });
-  };
-
-  const handleClickCancel = () => {
-    if (!participantId) {
-      return;
-    }
-
-    setModalView("CONFIRM_VIEW");
-    openModal({
-      message: "정말로 메이트에서 탈퇴하시겠어요?",
-      warningMessage: "나가시면 되돌리실 수 없습니다.",
-      onClickAccept: () => {
-        cancelParticipantMutation.mutate({ mateId: mateData.id, participantId: participantId });
-      },
-    });
-  };
-
-  const ButtonList = {
-    Login: createButton({ theme, text: "로그인", onClick: () => route.push("/") }),
-    Request: createButton({ theme, text: "메이트 신청하기", onClick: handleClickRequest }),
-    Pending: createButton({ theme, text: "요청중", disabled: true }),
-    Cancel: createButton({
-      theme,
-      text: "취소하기",
-      onClick: handleClickCancel,
-      isSecondButton: true,
-    }),
-    Accepted: createButton({ theme, text: "참여중 입니다.", disabled: true }),
-    Completed: createButton({ theme, text: "종료된 메이트", disabled: true }),
-    Author: createButton({ theme, text: "메이트 모집중...", disabled: true }),
-  };
-
-  if (!userId) {
-    return <></>;
-  }
-
   return (
-    <S.MateActionsLayout>
-      {userStatus === "NOT_LOGIN" && ButtonList.Login}
-      {userStatus === "NO_ACTION" && ButtonList.Request}
+    <div className="mb-[1.2rem] flex w-full flex-col items-center gap-[2rem]">
+      {userStatus === "NOT_LOGIN" && MateButtons.Login}
+      {userStatus === "NO_ACTION" && MateButtons.Request}
       {userStatus === "REQUESTED" && (
         <>
-          {ButtonList.Pending}
-          {ButtonList.Cancel}
+          {MateButtons.Pending}
+          {MateButtons.Cancel}
         </>
       )}
       {userStatus === "ACCEPTED" && (
         <>
-          {ButtonList.Accepted}
-          {ButtonList.Cancel}
+          {MateButtons.Accepted}
+          {MateButtons.Cancel}
         </>
       )}
-      {userStatus === "CLOSE" && <>{ButtonList.Completed}</>}
-      {userStatus === "AUTHOR" && ButtonList.Author}
-    </S.MateActionsLayout>
+      {userStatus === "CLOSE" && <>{MateButtons.Completed}</>}
+      {userStatus === "AUTHOR" && MateButtons.Author}
+    </div>
   );
 };
 
 export default MateActions;
-
-interface CreateButtonProps {
-  text: string;
-  theme: DefaultTheme;
-  onClick?: () => void;
-
-  disabled?: boolean;
-  isSecondButton?: boolean;
-}
-
-const createButton = ({ theme, text, onClick, disabled, isSecondButton }: CreateButtonProps) => {
-  return (
-    <Button
-      width={"100%"}
-      useRipple
-      buttonColor={isSecondButton ? theme.gray_300 : theme.green_500}
-      textColor={theme.text_secondary_color}
-      rippleColor={theme.text_secondary_color + 50}
-      style={{
-        whiteSpace: "nowrap",
-        fontSize: FONT_SIZE.H6,
-        fontWeight: FONT_WEIGHT.SEMIBOLD,
-        userSelect: "none",
-      }}
-      onClickHandler={onClick}
-      disabled={disabled}
-    >
-      {text}
-    </Button>
-  );
-};
