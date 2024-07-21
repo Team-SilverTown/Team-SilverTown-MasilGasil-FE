@@ -1,20 +1,17 @@
 "use client";
 
 import * as S from "./MateActions.styles";
-import { FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
-import { DefaultTheme } from "styled-components";
 
 import { useMemo } from "react";
 
 import { useCancelParticipant, useRequestParticipant } from "@/app/mate/[id]/hooks";
-import { Button } from "@/components";
 import { useUI } from "@/components/uiContext/UiContext";
-import useTheme from "@/lib/hooks/useTheme";
+import useAuthStore from "@/lib/stores/useAuthStore";
 import useMeStore from "@/lib/stores/useMeStore";
 import { Participant } from "@/types/OriginDataType";
 import { MateDetailResponse } from "@/types/Response";
 
-import { useRouter } from "next/navigation";
+import { MateButton } from "./components";
 
 interface MateActionsProps {
   mateData: MateDetailResponse;
@@ -25,8 +22,7 @@ interface MateActionsProps {
 const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActionsProps) => {
   const { setModalView, openModal, closeModal } = useUI();
   const { userId } = useMeStore();
-  const theme = useTheme();
-  const route = useRouter();
+  const { isLogIn } = useAuthStore();
 
   const cancelParticipantMutation = useCancelParticipant({
     successMessage: "정상적으로 메이트에서 탈퇴되었습니다.",
@@ -51,7 +47,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   }, [mateData, userId]);
 
   const userStatus = useMemo(() => {
-    if (!userId) {
+    if (!isLogIn) {
       return "NOT_LOGIN";
     }
 
@@ -78,10 +74,6 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
     return "NO_ACTION";
   }, [requestedUserList, acceptedUserList, mateData, userId]);
 
-  if (!theme) {
-    return;
-  }
-
   const handleClickRequest = () => {
     setModalView("MATE_REQUEST_VIEW");
     openModal({
@@ -107,24 +99,62 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
     });
   };
 
-  const ButtonList = {
-    Login: createButton({ theme, text: "로그인", onClick: () => route.push("/") }),
-    Request: createButton({ theme, text: "메이트 신청하기", onClick: handleClickRequest }),
-    Pending: createButton({ theme, text: "요청중", disabled: true }),
-    Cancel: createButton({
-      theme,
-      text: "취소하기",
-      onClick: handleClickCancel,
-      isSecondButton: true,
-    }),
-    Accepted: createButton({ theme, text: "참여중 입니다.", disabled: true }),
-    Completed: createButton({ theme, text: "종료된 메이트", disabled: true }),
-    Author: createButton({ theme, text: "메이트 모집중...", disabled: true }),
+  const handleClickAccessLogin = () => {
+    setModalView("ACCESS_LOGIN_VIEW");
+    openModal();
   };
 
-  if (!userId) {
-    return <></>;
-  }
+  const ButtonList = {
+    Login: (
+      <MateButton
+        text="로그인 후 이용하실 수 있습니다."
+        onClick={handleClickAccessLogin}
+      />
+    ),
+
+    Request: (
+      <MateButton
+        text="메이트 신청하기"
+        onClick={handleClickRequest}
+      />
+    ),
+
+    Pending: (
+      <MateButton
+        text="요청중"
+        disabled
+      />
+    ),
+
+    Cancel: (
+      <MateButton
+        text="취소하기"
+        onClick={handleClickCancel}
+        isSecondButton
+      />
+    ),
+
+    Accepted: (
+      <MateButton
+        text="현재 참여중 입니다."
+        disabled
+      />
+    ),
+
+    Completed: (
+      <MateButton
+        text="종료된 메이트입니다."
+        disabled
+      />
+    ),
+
+    Author: (
+      <MateButton
+        text="메이트 모집중..."
+        disabled
+      />
+    ),
+  };
 
   return (
     <S.MateActionsLayout>
@@ -149,34 +179,3 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
 };
 
 export default MateActions;
-
-interface CreateButtonProps {
-  text: string;
-  theme: DefaultTheme;
-  onClick?: () => void;
-
-  disabled?: boolean;
-  isSecondButton?: boolean;
-}
-
-const createButton = ({ theme, text, onClick, disabled, isSecondButton }: CreateButtonProps) => {
-  return (
-    <Button
-      width={"100%"}
-      useRipple
-      buttonColor={isSecondButton ? theme.gray_300 : theme.green_500}
-      textColor={theme.text_secondary_color}
-      rippleColor={theme.text_secondary_color + 50}
-      style={{
-        whiteSpace: "nowrap",
-        fontSize: FONT_SIZE.H6,
-        fontWeight: FONT_WEIGHT.SEMIBOLD,
-        userSelect: "none",
-      }}
-      onClickHandler={onClick}
-      disabled={disabled}
-    >
-      {text}
-    </Button>
-  );
-};
