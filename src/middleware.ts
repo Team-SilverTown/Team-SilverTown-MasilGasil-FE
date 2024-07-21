@@ -24,6 +24,7 @@ const bypassPaths = [
   "/explore*",
   "/post*",
   "/more*",
+  "/mate*",
   "/manifest*",
   "/swe-worker*",
   "/sw.js*",
