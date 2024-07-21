@@ -20,7 +20,7 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
   const { isLogIn } = useAuthStore();
 
   const participantId = useMemo(() => {
-    if (!userId) {
+    if (!isLogIn) {
       return false;
     }
 
@@ -35,11 +35,21 @@ const MateActions = ({ mateData, acceptedUserList, requestedUserList }: MateActi
     return false;
   }, [mateData, userId]);
 
+  /**
+   * @hooks useMateButtonList
+   *
+   * @summary
+   *
+   * 해당 메이트의 모든 액션 로직과 버튼을 만들어 제공함
+   */
   const MateButtons = useMateButtonList({
     participantId: participantId,
     mateId: mateData.id,
   });
 
+  /**
+   * 현재 사용자의 메이트에대한 상태 파악
+   */
   const userStatus = useMemo(() => {
     if (!isLogIn) {
       return "NOT_LOGIN";
