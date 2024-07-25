@@ -13,17 +13,20 @@ const Home = async () => {
   });
 
   const session = await getServerSession(authOptions);
-  const popularWalkingTrails = await getPopularWalkingTrails(session?.serviceToken!);
 
-  const userInfo = session
-    ? await getMe().then((user) => {
-        if (!user) {
-          return;
-        }
+  let userInfo = undefined;
+  let popularWalkingTrails = undefined;
 
-        return getUserProfile(user.userId);
-      })
-    : undefined;
+  if (session) {
+    popularWalkingTrails = await getPopularWalkingTrails(session.serviceToken!);
+    userInfo = await getMe().then((user) => {
+      if (!user) {
+        return;
+      }
+
+      return getUserProfile(user.userId);
+    });
+  }
 
   return (
     <HomeView
