@@ -20,16 +20,14 @@ const AuthButton = () => {
   const show = useMemo(() => {
     if (typeof isLogIn === "boolean" && !isLogIn) {
       return true;
-    } else {
-      return false;
     }
+
+    return false;
   }, [isLogIn]);
 
   useEffect(() => {
     return () => closeLoadingSpinner();
   }, []);
-
-  useEffect(() => {}, [isLogIn]);
 
   if (show) {
     return (
