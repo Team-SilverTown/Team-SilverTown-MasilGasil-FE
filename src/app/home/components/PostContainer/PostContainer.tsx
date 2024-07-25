@@ -17,12 +17,11 @@ interface PostContainerProps {
   label: string;
   icon?: React.ReactElement<IconProps>;
   url: string;
-  data: PostMoreListResponse;
+  data?: PostMoreListResponse;
 }
 
 const PostContainer = ({ label, icon, url, data }: PostContainerProps) => {
   const router = useRouter();
-  const { isEmpty, contents } = data;
 
   return (
     <section className="inset-1 flex w-full flex-col justify-between gap-[0.5rem] rounded-[3rem] bg-white p-6 pb-6 pt-3 shadow-[inset_0px_0px_0px_4px_#fafafa] drop-shadow">
@@ -38,13 +37,13 @@ const PostContainer = ({ label, icon, url, data }: PostContainerProps) => {
         <MoveArrow />
       </div>
       <div>
-        {isEmpty ? (
+        {!data || data.isEmpty ? (
           <div className="flex h-[12rem] w-full items-center justify-center rounded-[2rem] bg-gray-100">
             <p className="text-2xl font-semibold text-gray-400">데이터가 존재하지 않습니다</p>
           </div>
         ) : (
           <ul className="flex gap-8 overflow-x-auto overflow-y-hidden scrollbar-hide">
-            {contents.map((post) => (
+            {data.contents.map((post) => (
               <li key={post.id}>
                 <Link href={`/post/${post.id}`}>
                   <LogDetailCard

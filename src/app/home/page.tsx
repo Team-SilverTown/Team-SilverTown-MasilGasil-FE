@@ -14,21 +14,19 @@ const Home = async () => {
 
   const session = await getServerSession(authOptions);
   const popularWalkingTrails = await getPopularWalkingTrails(session?.serviceToken!);
-  const userInfo = await getMe().then((user) => {
-    if (!user) {
-      return;
-    }
 
-    return getUserProfile(user.userId);
-  });
+  const userInfo = session
+    ? await getMe().then((user) => {
+        if (!user) {
+          return;
+        }
 
-  if (!userInfo || !popularWalkingTrails) {
-    return;
-  }
+        return getUserProfile(user.userId);
+      })
+    : undefined;
 
   return (
     <HomeView
-      MyLikeWalkingTrailsList={popularWalkingTrails}
       PopularWalkingTrailsList={popularWalkingTrails}
       userInfo={userInfo}
     />

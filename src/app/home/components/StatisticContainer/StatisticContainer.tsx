@@ -6,9 +6,13 @@ import StatisticItem from "./components/StatisticItem/StatisticItem";
 import VariableMessage from "./components/VariableMessage/VariableMessage";
 
 interface StatisticContainerProps {
-  userData: ProfileResponse;
+  userData?: ProfileResponse;
 }
 const StatisticContainer = ({ userData }: StatisticContainerProps) => {
+  if (!userData) {
+    return <NonAuthContainer />;
+  }
+
   const { totalDistance, totalCount, totalCalories } = userData;
 
   const statisticData = [
@@ -16,10 +20,6 @@ const StatisticContainer = ({ userData }: StatisticContainerProps) => {
     { icon: "👣", label: "걸었어요", value: convertMeter(totalCount) },
     { icon: "🎽", label: "소모했어요", value: `${totalCalories}kcal` },
   ];
-
-  if (!userData) {
-    return <NonAuthContainer />;
-  }
 
   return (
     <section className="inset-1 z-10 flex flex-col gap-[2rem] rounded-[3rem] bg-[#A4D24D] px-12 py-10 shadow-[inset_0px_0px_0px_4px_rgba(255,255,255,0.1)]">

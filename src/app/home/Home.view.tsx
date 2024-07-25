@@ -13,22 +13,23 @@ import StatusContainer from "./components/StatusContainer";
 import PopularTrailsInOurTown from "./components/WalkList/components/PopularTrailsInOurTown/PopularTrailsInOurTown";
 
 interface HomeViewProps {
-  MyLikeWalkingTrailsList: PostMoreListResponse;
-  PopularWalkingTrailsList: PostMoreListResponse;
-  userInfo: ProfileResponse;
+  PopularWalkingTrailsList?: PostMoreListResponse;
+  userInfo?: ProfileResponse;
 }
 
 const HomeView = ({ PopularWalkingTrailsList, userInfo }: HomeViewProps) => {
   return (
     <>
-      <header className=" top-7 mb-2 mt-7 flex w-full flex-col items-center justify-start bg-background">
+      <header className="top-7 mb-2 mt-7 flex w-full flex-col items-center justify-start bg-background">
         <LogoM />
       </header>
+
       <article className="sticky top-0 z-10 flex flex-col gap-5 p-7">
         <StatusContainer />
         <StatisticContainer userData={userInfo} />
         <div className="absolute left-4 top-0 z-0 h-[10rem] w-full bg-background" />
       </article>
+
       {userInfo && (
         <article className="box-border flex w-full select-none justify-between gap-7 p-7 pt-0">
           <LogButton
@@ -51,6 +52,7 @@ const HomeView = ({ PopularWalkingTrailsList, userInfo }: HomeViewProps) => {
           />
         </article>
       )}
+
       <article className="mb-[10rem] box-border flex w-full select-none flex-col justify-between gap-7 p-7 py-0">
         <PostContainer
           label="전국 인기산책로"
