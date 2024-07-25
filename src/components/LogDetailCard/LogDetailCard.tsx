@@ -4,7 +4,6 @@ import * as S from "./LogDetailCard.style";
 
 import { CSSProperties, useState } from "react";
 
-import { calculateWalkingCalories } from "@/lib/utils";
 import { UserAddressType } from "@/types/OriginDataType/Location";
 import { MeResponse } from "@/types/Response";
 
@@ -41,28 +40,28 @@ const LogDetailCard = ({
   style,
   onDetailClick,
 }: LogDetailCardProps) => {
-  const [isSettingToggle, setIsSetingToggle] = useState(false);
+  const [isSettingToggle, setIsSettingToggle] = useState(false);
 
   const handleDetailViewClick = () => {
     if (isSettingToggle) {
-      setIsSetingToggle(false);
+      setIsSettingToggle(false);
       return;
     }
     onDetailClick && onDetailClick();
   };
   const handleSettingToggle = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    setIsSetingToggle(true);
+    setIsSettingToggle(true);
   };
   const handleLogDetailCardEdit = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    console.log("Log Detail 수정 !!");
-    setIsSetingToggle(false);
+    // console.log("Log Detail 수정 !!");
+    setIsSettingToggle(false);
   };
   const handleLogDetailCardDelete = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    console.log("Log Detail 삭제 !!");
-    setIsSetingToggle(false);
+    // console.log("Log Detail 삭제 !!");
+    setIsSettingToggle(false);
   };
   return (
     <S.LogDetailCardContainer
@@ -119,7 +118,7 @@ const LogDetailCard = ({
                 stroke={"white"}
               />
               <div className="font-black text-pink-700">
-                {likeCount && likeCount < 999 ? likeCount : "+999"}
+                {!likeCount ? 0 : likeCount > 999 ? "+999" : likeCount}
               </div>
             </div>
           )}
