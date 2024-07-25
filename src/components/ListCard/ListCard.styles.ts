@@ -53,7 +53,7 @@ export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
       cursor: pointer;
 
       svg {
-        stroke: ${(props) => (props.$isLiked ? props.theme.pink_100 : props.theme.black)};
+        stroke: ${(props) => props.theme.pink_100};
         fill: ${(props) => props.$isLiked && props.theme.pink_100};
         transition: all 0.1s;
       }
@@ -65,7 +65,8 @@ export const ListCardThumbnail = styled.div<ListCardThumbnailProps>`
         transform: translateX(-50%);
         display: inline-block;
         font-size: ${FONT_SIZE.MICRO};
-        color: ${(props) => (props.$isLiked ? props.theme.pink_100 : props.theme.black)};
+        font-weight: ${FONT_WEIGHT.SEMIBOLD};
+        color: ${(props) => props.theme.pink_100};
         transition: all 0.1s;
       }
 
@@ -127,6 +128,8 @@ export const ListCardContent = styled.div`
       font-size: ${FONT_SIZE.BASIC};
       font-weight: ${FONT_WEIGHT.MEDIUM};
       text-align: right;
+
+      white-space: nowrap;
     }
 
     ul {

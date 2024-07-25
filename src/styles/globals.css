@@ -208,3 +208,26 @@
     @apply h-[100%] sm:h-screen;
   }
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.float {
+  @apply animate-float;
+  animation-delay: 2s; /* 2초 후에 애니메이션 시작 */
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite; /* 애니메이션 지속 시간 및 반복 설정 */
+  }
+}

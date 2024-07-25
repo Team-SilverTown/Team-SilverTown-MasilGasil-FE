@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useCallback } from "react";
+import { AutoSizer, InfiniteLoader, List as VList } from "react-virtualized";
 
 import { ListCard } from "@/components";
-
-import { PostListItem } from "@/types/OriginDataType/Post";
-import { useRouter } from "next/navigation";
-import parseLocationObject from "@/lib/utils/parseLocation";
-import { List as VList, AutoSizer, InfiniteLoader } from "react-virtualized";
 import { PostCardsSkeleton } from "@/components/skeletons";
+import parseLocationObject from "@/lib/utils/parseLocation";
+import { PostListItem } from "@/types/OriginDataType/Post";
+
+import { useRouter } from "next/navigation";
 
 interface MoreListViewProps {
   keyword: string;
@@ -71,61 +71,57 @@ const MoreListView = ({
 
   if (!listData) {
     return (
-      <div className="w-full h-full overflow-hidden">
-        <div className="p-4 space-y-8">
+      <div className="h-full w-full overflow-hidden">
+        <div className="space-y-8 p-4">
           <PostCardsSkeleton />
         </div>
       </div>
     );
   }
 
-  if (listData) {
-    const loadNextPage = () => {
-      if (!isFetchingNextPage && hasNextPage && fetchNextPage) {
-        fetchNextPage();
-      }
-    };
+  const loadNextPage = () => {
+    if (!isFetchingNextPage && hasNextPage && fetchNextPage) {
+      fetchNextPage();
+    }
+  };
 
-    return (
-      <div className="w-full h-full">
-        {listData && listData.length > 0 && (
-          <>
-            <AutoSizer>
-              {({ height, width }) => (
-                <InfiniteLoader
-                  isRowLoaded={({ index }) => !!listData[index]}
-                  // @ts-ignore
-                  loadMoreRows={loadNextPage}
-                  rowCount={listData ? listData.length + 1 : 0}
-                  threshold={1}
-                >
-                  {({ onRowsRendered, registerChild }) => (
-                    <VList
-                      ref={registerChild}
-                      onRowsRendered={onRowsRendered}
-                      width={width}
-                      height={height}
-                      rowCount={listData.length}
-                      rowHeight={250 + 20} // card height + padding vertical 20
-                      rowRenderer={rowRenderer}
-                      className="scrollbar-hide"
-                      style={{ paddingBottom: "2rem" }}
-                    />
-                  )}
-                </InfiniteLoader>
+  return (
+    <div className="h-full w-full">
+      {listData && listData.length > 0 && (
+        <AutoSizer>
+          {({ height, width }) => (
+            <InfiniteLoader
+              isRowLoaded={({ index }) => !!listData[index]}
+              // @ts-ignore
+              loadMoreRows={loadNextPage}
+              rowCount={listData ? listData.length + 1 : 0}
+              threshold={1}
+            >
+              {({ onRowsRendered, registerChild }) => (
+                <VList
+                  ref={registerChild}
+                  onRowsRendered={onRowsRendered}
+                  width={width}
+                  height={height}
+                  rowCount={listData.length}
+                  rowHeight={250 + 20} // card height + padding vertical 20
+                  rowRenderer={rowRenderer}
+                  className="scrollbar-hide"
+                  style={{ paddingBottom: "2rem" }}
+                />
               )}
-            </AutoSizer>
-          </>
-        )}
+            </InfiniteLoader>
+          )}
+        </AutoSizer>
+      )}
 
-        {listData.length <= 0 && (
-          <div className="flex justify-center">
-            <span className="font-medium text-medium text-gray-300">산책로 목록이 비어있어요</span>
-          </div>
-        )}
-      </div>
-    );
-  }
+      {listData.length <= 0 && (
+        <div className="flex h-full w-full select-none items-center justify-center">
+          <span className="text-medium font-medium text-gray-300">산책로 목록이 비어있어요</span>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default MoreListView;

@@ -1,40 +1,67 @@
-import { TopNavigator } from "@/components/navigators/TopNavigator";
+import LogoM from "@/components/icons/LogoM";
+import Earth from "@/components/icons/home/Earth";
+import Flag from "@/components/icons/home/Flag";
+import Forest from "@/components/icons/home/Forest";
+import Heart from "@/components/icons/home/Heart";
 import { ProfileResponse } from "@/types/Response";
 import { PostMoreListResponse } from "@/types/Response/Post";
 
-import { MyInfo, WalkList, WalkStartButton } from "./components";
+import LogButton from "./components/LogButton/LogButton";
+import PostContainer from "./components/PostContainer/PostContainer";
+import StatisticContainer from "./components/StatisticContainer/StatisticContainer";
+import StatusContainer from "./components/StatusContainer";
+import PopularTrailsInOurTown from "./components/WalkList/components/PopularTrailsInOurTown/PopularTrailsInOurTown";
 
 interface HomeViewProps {
-  MyLikeWalkingTrailsList: PostMoreListResponse;
-  PopularWalkingTrailsList: PostMoreListResponse;
-  userInfo: ProfileResponse;
+  PopularWalkingTrailsList?: PostMoreListResponse;
+  userInfo?: ProfileResponse;
 }
 
-const HomeView = ({
-  MyLikeWalkingTrailsList,
-  PopularWalkingTrailsList,
-  userInfo,
-}: HomeViewProps) => {
+const HomeView = ({ PopularWalkingTrailsList, userInfo }: HomeViewProps) => {
   return (
     <>
-      <TopNavigator
-        leftChildren={
-          <h1
-            className="ml-6 font-maplestory font-bold text-green-500"
-            style={{ fontSize: "2.2rem" }}
-          >
-            마실가실
-          </h1>
-        }
-      />
-      <div className="box-border w-full select-none pb-80 pt-24">
-        <MyInfo userInfo={userInfo} />
-        <WalkList
-          MyLikeWalkingTrailsList={MyLikeWalkingTrailsList}
-          PopularWalkingTrailsList={PopularWalkingTrailsList}
+      <header className="top-7 mb-2 mt-7 flex w-full flex-col items-center justify-start bg-background">
+        <LogoM />
+      </header>
+
+      <article className="sticky top-0 z-10 flex flex-col gap-5 p-7">
+        <StatusContainer />
+        <StatisticContainer userData={userInfo} />
+        <div className="absolute left-4 top-0 z-0 h-[10rem] w-full bg-background" />
+      </article>
+
+      {userInfo && (
+        <article className="box-border flex w-full select-none justify-between gap-7 p-7 pt-0">
+          <LogButton
+            label={
+              <p className="text-[2rem] font-semibold text-gray-700">
+                내가 좋아하는 <br /> 산책로
+              </p>
+            }
+            icon={<Heart size={42} />}
+            url="/more?keyword=my_like&order=latest"
+          />
+          <LogButton
+            label={
+              <p className="text-[2rem] font-semibold text-gray-700">
+                최근에 다녀온 <br /> 산책
+              </p>
+            }
+            icon={<Flag size={42} />}
+            url="/diary/0"
+          />
+        </article>
+      )}
+
+      <article className="mb-[10rem] box-border flex w-full select-none flex-col justify-between gap-7 p-7 py-0">
+        <PostContainer
+          label="전국 인기산책로"
+          icon={<Earth size={52} />}
+          url="/more?keyword=total_popular&order=popular"
+          data={PopularWalkingTrailsList}
         />
-        <WalkStartButton />
-      </div>
+        <PopularTrailsInOurTown />
+      </article>
     </>
   );
 };

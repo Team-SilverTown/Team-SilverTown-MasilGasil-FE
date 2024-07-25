@@ -42,6 +42,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "masilgasil-image.s3.amazonaws.com",
+      },
+      {
+        protocol: "https",
         hostname: "github.com",
       },
     ],

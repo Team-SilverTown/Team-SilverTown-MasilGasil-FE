@@ -18,7 +18,7 @@ const MyWalkRecord = ({ userInfo }: MyWalkRecordProps) => {
   const spanStyle = "text-large font-bold text-green_300";
 
   return (
-    <article className="mb-[3rem] rounded-[0.8rem] border-[1px] border-transparent_10 bg-white px-[1rem] py-[2.3rem] shadow-[0_2px_7.8px_0_rgba(0,0,0,0.02)]">
+    <article className="rounded-[0.8rem] border-[1px] border-transparent_10 bg-white px-[1rem] py-[2.3rem] shadow-[0_2px_7.8px_0_rgba(0,0,0,0.02)]">
       <h3 className="mb-[2.3rem] flex items-center justify-center text-center text-medium font-bold">
         {nickname}님, 산책을 시작해 보세요!
       </h3>

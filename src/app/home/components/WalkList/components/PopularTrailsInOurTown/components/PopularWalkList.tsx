@@ -1,6 +1,8 @@
 "use client";
 
 import { WALK_LIST } from "@/app/home/Home.constants";
+import PostContainer from "@/app/home/components/PostContainer/PostContainer";
+import Forest from "@/components/icons/home/Forest";
 import { HomeWalkListSkeleton } from "@/components/skeletons";
 import { getPopularTrailsInOurTown } from "@/lib/api/home/client";
 import { POST_KEY } from "@/lib/api/queryKeys";
@@ -24,16 +26,13 @@ const PopularWalkList = ({ userAddress }: PopularTrailsInOurTownListProps) => {
   if (!PopularTrailsInOurTown) {
     return <HomeWalkListSkeleton />;
   }
-
-  const { isEmpty, contents } = PopularTrailsInOurTown;
-
   return (
     <>
-      <WalkListDisplay
-        walkList={contents}
-        title={WALK_LIST.POPULAR_IN_TOWN}
-        isEmpty={isEmpty}
+      <PostContainer
+        label="근처 인기산책로"
+        icon={<Forest size={52} />}
         url="/more?keyword=area_popular&order=popular"
+        data={PopularTrailsInOurTown}
       />
     </>
   );
