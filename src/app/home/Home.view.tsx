@@ -1,7 +1,7 @@
+import { Button } from "@/components";
 import LogoM from "@/components/icons/LogoM";
 import Earth from "@/components/icons/home/Earth";
 import Flag from "@/components/icons/home/Flag";
-import Forest from "@/components/icons/home/Forest";
 import Heart from "@/components/icons/home/Heart";
 import { ProfileResponse } from "@/types/Response";
 import { PostMoreListResponse } from "@/types/Response/Post";
@@ -62,6 +62,8 @@ const HomeView = ({ PopularWalkingTrailsList, userInfo }: HomeViewProps) => {
         />
         <PopularTrailsInOurTown />
       </article>
+
+      <button className="absolute left-[50%] w-[95%]">ddsddss</button>
     </>
   );
 };

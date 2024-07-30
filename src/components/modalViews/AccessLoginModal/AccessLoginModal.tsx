@@ -20,7 +20,7 @@ const AccessLoginModal = () => {
 
   return (
     <ModalLayout>
-      <section className="flex w-[30rem] select-none flex-col gap-[2rem]  pt-[2rem]">
+      <section className="flex w-[30rem] select-none flex-col gap-[1rem]  pt-[2rem]">
         <Lottie
           options={{
             loop: false,
@@ -35,8 +35,8 @@ const AccessLoginModal = () => {
           isClickToPauseDisabled={true}
         />
 
-        <p className="w-full  whitespace-pre-line text-center text-h6 font-bold leading-[2.6rem]">
-          {"현재 서비스는 로그인하신 후 \n 이용하실 수 있습니다."}
+        <p className="mb-6 w-full whitespace-pre-line text-center text-h6 font-bold leading-[2.6rem]">
+          {"해당 서비스는 로그인하신 후 \n 이용하실 수 있습니다."}
         </p>
 
         <Button
