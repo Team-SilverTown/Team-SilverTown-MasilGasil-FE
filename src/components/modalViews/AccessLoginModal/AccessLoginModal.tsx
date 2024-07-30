@@ -54,8 +54,8 @@ const AccessLoginModal = () => {
         </Button>
 
         <Button
-          buttonColor={theme.colors.gray_300}
-          textColor={theme.colors.text_secondary_color}
+          buttonColor="#eeeeee"
+          // textColor={theme.colors.text_secondary_color}
           width="100%"
           style={{ margin: "auto", borderRadius: 12, padding: "1.5rem 1.5rem" }}
           useRipple
