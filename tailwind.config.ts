@@ -39,6 +39,7 @@ const config = {
 
         green_100: "#f1f5eb",
         green_300: "#B9DB56",
+        green_400: "#A4D24D",
         green_500: "#81BB26",
 
         background_color: " #FAFAFA",
