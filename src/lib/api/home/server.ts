@@ -12,14 +12,3 @@ export const getPopularWalkingTrails = async () => {
 
   return response;
 };
-
-// export const getMyLikeWalkingTrails = async (serviceToken: string) => {
-//   const response = await GET<PostMoreListResponse>({
-//     endPoint: `${POST.GET_DETAIL}?order=POPULAR`,
-//     options: {
-//       headers: { Authorization: `Bearer ${serviceToken}` },
-//     },
-//   })
-
-//   return response;
-// }

@@ -24,12 +24,17 @@ const Notification = ({ isNotification }: NotificationProps) => {
     >
       <NotificationOff />
     </a>
-    // <Link
-    //   href="/notification"
-    //   style={{ marginRight: "1.5rem" }}
-    // >
-    //   {isNotification ? <NotificationActive /> : <NotificationOff />}
-    // </Link>
+
+    /*
+    TODO 추후 기능 추가
+
+      <Link
+        href="/notification"
+        style={{ marginRight: "1.5rem" }}
+      >
+        {isNotification ? <NotificationActive /> : <NotificationOff />}
+      </Link>
+    */
   );
 };
 

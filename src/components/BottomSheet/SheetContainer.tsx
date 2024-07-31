@@ -33,7 +33,6 @@ const SheetContainer = React.forwardRef<any, SheetContainerProps>(
     const theme = useTheme();
 
     const { handleAnimationComplete } = useEventCallbacks(isOpen, callbacks);
-    // const initialY = snapPoints ? snapPoints[0] - snapPoints[initialSnap] : 0;
     const initialY = fixedHeight
       ? fixedHeight
       : snapPoints

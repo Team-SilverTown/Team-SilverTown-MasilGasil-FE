@@ -19,10 +19,15 @@ const WalkList = ({ MyLikeWalkingTrailsList, PopularWalkingTrailsList }: WalkLis
         isEmpty={PopularWalkingTrailsList.isEmpty}
       />
 
-      {/* <MyLikeWalkingTrails
+      {/* 
+      추후 기능 추가
+
+      <MyLikeWalkingTrails
         MyLikeWalkingTrailsList={MyLikeWalkingTrailsList.contents}
         isEmpty={MyLikeWalkingTrailsList.isEmpty}
-      /> */}
+      /> 
+      
+      */}
     </>
   );
 };

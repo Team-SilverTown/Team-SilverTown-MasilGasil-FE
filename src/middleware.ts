@@ -32,7 +32,6 @@ const bypassPaths = [
   "/icons*",
   "/fonts*",
   "/favicon*",
-  // "/call*",
 ];
 // const protectedPaths = ["/home", "/setting*", "/log/record", "/diary*"]; // 로그인이 필요한 페이지 목록
 // const publicPaths = ["/signup*", "/auth*"]; // 로그인이 되면 접근할 수 없는 페이지 목록
@@ -113,14 +112,7 @@ export async function middleware(request: NextRequest) {
           ...token,
           serviceToken: newServiceToken,
         },
-        // maxAge: 30 * 24 * 60 * 60, // 30 days, or get the previous token's exp
       });
-
-      // console.log("after");
-      // console.log(
-      //   await decode({ secret: process.env.NEXTAUTH_SECRET as string, token: newSessionToken }),
-      // );
-      // console.log("------------------–");
 
       // 갱신된 쿠키 정보를 브라우저측에서도 인지할 수 있도록 redirect
       const response = NextResponse.redirect(request.url);

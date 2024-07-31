@@ -45,14 +45,6 @@ const MyPageController = async ({ userId }: MyPageControllerProps) => {
       isEmpty: recentPosts?.isEmpty,
       visible: "Public",
     },
-    // {
-    //   title: "좋아하는 산책로",
-    //   urlLink: "/more?keyword=my_like&order=latest",
-    //   recordList: [],
-    //   type: "Posts",
-    //   isEmpty: true,
-    //   visible: "Private",
-    // },
   ];
 
   return (

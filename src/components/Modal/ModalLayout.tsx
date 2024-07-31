@@ -22,7 +22,6 @@ interface ModalLayoutProps {
   modalTitle?: string;
   onHandleClose?: () => void | null;
   style?: CSSProperties;
-  // onEnter?: () => void | null;
 }
 
 const ModalLayout: FC<ModalLayoutProps> = ({
