@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const config = {
   matcher: [
     "/((?!api|_next/static|_next/image|favicon.ico|masil.ico|fonts|images).*)",
-    "/home",
+    // "/home",
     "/setting/:path*",
     "/log/record",
     "/diary",
@@ -20,6 +20,11 @@ export const config = {
 
 const bypassPaths = [
   // "/",
+  "/home",
+  "/explore*",
+  "/post*",
+  "/more*",
+  "/mate*",
   "/manifest*",
   "/swe-worker*",
   "/sw.js*",

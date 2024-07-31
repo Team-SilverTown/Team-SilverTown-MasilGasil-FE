@@ -4,7 +4,10 @@ import * as S from "./Avatar.styles";
 
 import { CSSProperties, MouseEvent } from "react";
 
+import useAuthStore from "@/lib/stores/useAuthStore";
+
 import { UserProfile } from "../icons";
+import { useUI } from "../uiContext/UiContext";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -46,11 +49,19 @@ const Avatar = ({
   userId,
 }: AvatarProps) => {
   const router = useRouter();
+  const { isLogIn } = useAuthStore();
+  const { setModalView, openModal } = useUI();
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
 
     if (!userId) {
+      return;
+    }
+
+    if (!isLogIn) {
+      setModalView("ACCESS_LOGIN_VIEW");
+      openModal();
       return;
     }
 

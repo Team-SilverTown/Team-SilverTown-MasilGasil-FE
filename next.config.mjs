@@ -38,7 +38,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "masilgasil-s3.s3.amazonaws.com",
+        hostname: "masilgasil-image.s3.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "masilgasil-image.s3.amazonaws.com",
       },
       {
         protocol: "https",

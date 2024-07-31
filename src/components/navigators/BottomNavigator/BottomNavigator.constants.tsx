@@ -10,18 +10,30 @@ export interface BottomNavItemProps {
 }
 
 export const BOTTOM_NAV_ITEMS: BottomNavItemProps[] = [
-  { path: "/home", icon: <Home />, activeIcon: <HomeFill />, label: "홈", isIdRequired: false },
+  {
+    path: "/home",
+    icon: (
+      <Home className="mb-[0.4rem] h-[2.2rem] w-[2.2rem] stroke-gray_300 group-hover:stroke-green_500" />
+    ),
+    activeIcon: <HomeFill className="mb-[0.4rem] h-[2.2rem] w-[2.2rem] fill-green_500" />,
+    label: "홈",
+    isIdRequired: false,
+  },
   {
     path: "/explore",
-    icon: <Exploration />,
-    activeIcon: <ExplorationFill />,
+    icon: (
+      <Exploration className="mb-[0.4rem] h-[2.2rem] w-[2.2rem] stroke-gray_300 group-hover:stroke-green_500" />
+    ),
+    activeIcon: <ExplorationFill className="mb-[0.4rem] h-[2.2rem] w-[2.2rem] fill-green_500" />,
     label: "탐색",
     isIdRequired: false,
   },
   {
     path: "/diary",
-    icon: <Diary />,
-    activeIcon: <DiaryFill />,
+    icon: (
+      <Diary className="mb-[0.4rem] h-[2.2rem] w-[2.2rem] stroke-gray_300 group-hover:stroke-green_500" />
+    ),
+    activeIcon: <DiaryFill className="mb-[0.4rem] h-[2.2rem] w-[2.2rem] fill-green_500" />,
     label: "산책일지",
     isIdRequired: true,
   },
