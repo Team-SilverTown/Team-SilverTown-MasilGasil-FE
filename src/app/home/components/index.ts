@@ -5,3 +5,5 @@ export { default as WalkStartButton } from "./WalkStartButton";
 
 export { default as MyInfo } from "./MyInfo";
 // export { default as Notification } from "./Notification";
+
+export { default as LogStartButton } from "./LogStartButton/LogStartButton";

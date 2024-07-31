@@ -1,11 +1,11 @@
 import LogoM from "@/components/icons/LogoM";
 import Earth from "@/components/icons/home/Earth";
 import Flag from "@/components/icons/home/Flag";
-import Forest from "@/components/icons/home/Forest";
 import Heart from "@/components/icons/home/Heart";
 import { ProfileResponse } from "@/types/Response";
 import { PostMoreListResponse } from "@/types/Response/Post";
 
+import { LogStartButton } from "./components";
 import LogButton from "./components/LogButton/LogButton";
 import PostContainer from "./components/PostContainer/PostContainer";
 import StatisticContainer from "./components/StatisticContainer/StatisticContainer";
@@ -62,6 +62,8 @@ const HomeView = ({ PopularWalkingTrailsList, userInfo }: HomeViewProps) => {
         />
         <PopularTrailsInOurTown />
       </article>
+
+      <LogStartButton />
     </>
   );
 };

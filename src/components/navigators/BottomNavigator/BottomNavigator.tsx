@@ -71,7 +71,7 @@ const BottomNavigator = () => {
             title={label}
             className="px-5"
             scroll={false}
-            onClick={() => handleAccessLogin(path)}
+            onClick={() => !isLogIn && handleAccessLogin(path)}
           >
             <div
               className={twJoin(
