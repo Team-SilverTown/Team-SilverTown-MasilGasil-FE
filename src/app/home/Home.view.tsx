@@ -5,6 +5,7 @@ import Heart from "@/components/icons/home/Heart";
 import { ProfileResponse } from "@/types/Response";
 import { PostMoreListResponse } from "@/types/Response/Post";
 
+import { LogStartButton } from "./components";
 import LogButton from "./components/LogButton/LogButton";
 import PostContainer from "./components/PostContainer/PostContainer";
 import StatisticContainer from "./components/StatisticContainer/StatisticContainer";
@@ -62,7 +63,7 @@ const HomeView = ({ PopularWalkingTrailsList, userInfo }: HomeViewProps) => {
         <PopularTrailsInOurTown />
       </article>
 
-      <button className="absolute left-[50%] w-[95%]">ddsddss</button>
+      <LogStartButton />
     </>
   );
 };
