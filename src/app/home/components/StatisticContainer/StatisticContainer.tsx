@@ -16,8 +16,8 @@ const StatisticContainer = ({ userData }: StatisticContainerProps) => {
   const { totalDistance, totalCount, totalCalories } = userData;
 
   const statisticData = [
-    { icon: "👟", label: "산책했어요", value: `${totalDistance}회` },
-    { icon: "👣", label: "걸었어요", value: convertMeter(totalCount) },
+    { icon: "👟", label: "산책했어요", value: `${totalCount}회` },
+    { icon: "👣", label: "걸었어요", value: convertMeter(totalDistance) },
     { icon: "🎽", label: "소모했어요", value: `${totalCalories}kcal` },
   ];
 
