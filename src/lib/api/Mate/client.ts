@@ -1,7 +1,7 @@
 import { MateCreateRequest } from "@/types/Request";
 
 import { DELETE, POST, PUT } from "../clientRootAPI";
-import { MATE } from "../endPoints";
+import { END_POINT } from "../endPoints";
 
 export const postMateParticipantRequest = async ({
   message,
@@ -11,7 +11,7 @@ export const postMateParticipantRequest = async ({
   mateId: string | number;
 }) => {
   return await POST<{ id: string }>({
-    endPoint: MATE.POST_MATE_PARTICIPANT_REQUEST(mateId),
+    endPoint: END_POINT.MATE.POST_MATE_PARTICIPANT_REQUEST(mateId),
     data: { message },
     auth: true,
   });
@@ -25,7 +25,7 @@ export const deleteCancelParticipant = async ({
   participantId: string | number;
 }) => {
   return await DELETE({
-    endPoint: MATE.DELETE_CANCEL_PARTICIPANT({ mateId, participantId }),
+    endPoint: END_POINT.MATE.DELETE_CANCEL_PARTICIPANT({ mateId, participantId }),
     auth: true,
   });
 };
@@ -38,14 +38,14 @@ export const acceptParticipant = async ({
   participantId: string | number;
 }) => {
   return await PUT({
-    endPoint: MATE.ACCEPT_PARTICIPANT({ mateId, participantId }),
+    endPoint: END_POINT.MATE.ACCEPT_PARTICIPANT({ mateId, participantId }),
     auth: true,
   });
 };
 
 export const postMateCreate = async ({ mateData }: { mateData: MateCreateRequest }) => {
   return await POST<{ id: string }>({
-    endPoint: MATE.MATE_CREATE,
+    endPoint: END_POINT.MATE.CREATE,
     data: mateData,
     auth: true,
   });

@@ -73,25 +73,31 @@ export const END_POINT = {
 
     DELETE: (id: string) => `/api/v1/posts/${id}`,
   },
-};
 
-export const MATE = {
-  GET_DETAIL: "/api/v1/mates",
-  MATE_CREATE: "/api/v1/mates",
-  POST_MATE_PARTICIPANT_REQUEST: (mateId: string | number) =>
-    `/api/v1/mates/${mateId}/participants`,
-  DELETE_CANCEL_PARTICIPANT: ({
-    mateId,
-    participantId,
-  }: {
-    mateId: string | number;
-    participantId: string | number;
-  }) => `/api/v1/mates/${mateId}/participants/${participantId}`,
-  ACCEPT_PARTICIPANT: ({
-    mateId,
-    participantId,
-  }: {
-    mateId: string | number;
-    participantId: string | number;
-  }) => `/api/v1/mates/${mateId}/participants/${participantId}`,
+  MATE: {
+    GET_DETAIL: (id: string) => `/api/v1/mates/${id}`,
+
+    GET_DETAIL_LIST: "/api/v1/mates",
+
+    CREATE: "/api/v1/mates",
+
+    POST_MATE_PARTICIPANT_REQUEST: (mateId: string | number) =>
+      `/api/v1/mates/${mateId}/participants`,
+
+    DELETE_CANCEL_PARTICIPANT: ({
+      mateId,
+      participantId,
+    }: {
+      mateId: string | number;
+      participantId: string | number;
+    }) => `/api/v1/mates/${mateId}/participants/${participantId}`,
+
+    ACCEPT_PARTICIPANT: ({
+      mateId,
+      participantId,
+    }: {
+      mateId: string | number;
+      participantId: string | number;
+    }) => `/api/v1/mates/${mateId}/participants/${participantId}`,
+  },
 };
