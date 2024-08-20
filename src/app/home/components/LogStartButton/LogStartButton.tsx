@@ -31,6 +31,7 @@ const LogStartButton = () => {
 
   return (
     <>
+      <div className="h-[6rem]" />
       <Button
         width="100%"
         textColor={theme.colors.white}
