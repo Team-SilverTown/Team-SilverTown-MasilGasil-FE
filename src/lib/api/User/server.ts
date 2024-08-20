@@ -4,14 +4,14 @@ import apiClient from "@/lib/client/apiClient";
 import { AuthRequest } from "@/types/Request/User";
 import { AuthResponse, MeResponse, ProfileResponse } from "@/types/Response";
 
-import { AUTH, USER } from "../endPoints";
+import { END_POINT } from "../endPoints";
 import { GET } from "../serverRootAPI";
 
 import { redirect } from "next/navigation";
 
 export async function kakaoAuth(data: AuthRequest) {
   const response: AuthResponse = await apiClient.post({
-    endpoint: AUTH.AUTH,
+    endpoint: END_POINT.AUTH.LOGIN,
     customHeaders: { Authorization: `Bearer ${data.accessToken}` },
   });
   return response;
@@ -25,7 +25,7 @@ export async function refreshAccessToken({
   refreshToken: string;
 }) {
   try {
-    const response = await fetch(`${process.env.DB_BASE_URL}${AUTH.REFRESH}`, {
+    const response = await fetch(`${process.env.DB_BASE_URL}${END_POINT.AUTH.REFRESH}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${serviceToken}`,
@@ -49,14 +49,14 @@ export async function refreshAccessToken({
 }
 
 export async function getMe() {
-  const response: MeResponse = await apiClient.get({ endpoint: USER.ME });
+  const response: MeResponse = await apiClient.get({ endpoint: END_POINT.USER.ME });
   return response;
 }
 
 export async function getUserProfile(userId: string | number) {
   try {
     const response = await GET<ProfileResponse>({
-      endPoint: `${USER.PROFILE}/${userId}`,
+      endPoint: END_POINT.USER.PROFILE(userId),
     });
     return response;
   } catch (error) {

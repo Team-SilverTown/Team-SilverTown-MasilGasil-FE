@@ -1,7 +1,7 @@
 import { MasilsByPeriodResponse } from "@/types/Response";
 
 import { GET } from "../clientRootAPI";
-import { MASIL } from "../endPoints";
+import { END_POINT } from "../endPoints";
 
 const getMasilsByPeriod = async ({
   startDate,
@@ -11,7 +11,7 @@ const getMasilsByPeriod = async ({
   endDate: string | null;
 }) => {
   return await GET<MasilsByPeriodResponse>({
-    endPoint: `${MASIL.GET_PERIOD}?startDate=${startDate ? startDate : ""}&endDate=${endDate ? endDate : ""}`,
+    endPoint: END_POINT.MASIL.GET_PERIOD({ startDate, endDate }),
     auth: true,
   });
 };

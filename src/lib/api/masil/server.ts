@@ -2,14 +2,14 @@
 
 import { MasilDetailResponse, RecentMasilsResponse } from "@/types/Response";
 
-import { MASIL } from "../endPoints";
+import { END_POINT } from "../endPoints";
 import { GET } from "../serverRootAPI";
 
 import { redirect } from "next/navigation";
 
 export async function getMasilDetail(serviceToken: string, id: string) {
   const response = await GET<MasilDetailResponse>({
-    endPoint: `${MASIL.GET_DETAIL}/${id}`,
+    endPoint: END_POINT.MASIL.GET_DETAIL(id),
     options: {
       headers: { Authorization: `Bearer ${serviceToken}` },
       next: { revalidate: 1000 * 60 * 60 },
@@ -22,7 +22,7 @@ export async function getMasilDetail(serviceToken: string, id: string) {
 export async function getRecentMasils(serviceToken: string, size?: number) {
   try {
     const response = await GET<RecentMasilsResponse>({
-      endPoint: `${MASIL.GET_RECENT}?size=${size ? size : ""}`,
+      endPoint: END_POINT.MASIL.GET_RESENT_LIST({ size }),
       options: { headers: { Authorization: `Bearer ${serviceToken}` } },
     });
     return response;
