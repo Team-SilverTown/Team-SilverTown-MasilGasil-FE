@@ -1,7 +1,7 @@
 import { PostMoreListResponse } from "@/types/Response/Post";
 
 import { GET } from "../clientRootAPI";
-import { POST } from "../endPoints";
+import { END_POINT } from "../endPoints";
 
 interface getPopularTrailsInOurTownProps {
   depth1: string;
@@ -15,7 +15,7 @@ export const getPopularTrailsInOurTown = async ({
   depth3,
 }: getPopularTrailsInOurTownProps) => {
   return await GET<PostMoreListResponse>({
-    endPoint: `${POST.GET_DETAIL}?depth1=${depth1}&depth2=${depth2}&depth3=${depth3}&order=MOST_POPULAR&size=10`,
+    endPoint: END_POINT.POST.GET_POPULAR_PLACE({ depth1, depth2, depth3 }),
     auth: true,
   });
 };

@@ -5,24 +5,34 @@
 export const END_POINT = {
   AUTH: {
     LOGIN: "/api/v1/auth/login",
+
     REFRESH: "/api/v1/users/auth/refresh",
+
     SIGNUP: "/api/v1/users/extra-info",
   },
 
   USER: {
     ME: "/api/v1/users/me",
+
     CHECK_NICKNAME: (nickname: string) => `/api/v1/users/check-nickname?nickname=${nickname}`,
+
     EDIT_USER: "/api/v1/users",
+
     TOGGLE_PUBLIC: "/api/v1/users/is-public",
+
     PROFILE: (userId: string | number) => `/api/v1/users/${userId}`,
+
     UPLOAD_IMAGE: "/api/v1/users/profiles",
   },
 
   MASIL: {
     POST: "/api/v1/masils",
+
     GET_DETAIL: (id: string) => `/api/v1/masils/${id}`,
+
     GET_RESENT_LIST: ({ size = "" }: { size?: number | string }) =>
       `/api/v1/masils/recent?size=${size}`,
+
     GET_PERIOD: ({
       startDate = "",
       endDate = "",
@@ -31,24 +41,38 @@ export const END_POINT = {
       endDate?: string | null;
     }) => `/api/v1/masils/period?startDate=${startDate}&endDate=${endDate}`,
   },
-};
 
-// export const MASIL = {
-//   POST: "/api/v1/masils",
-//   GET_DETAIL: "/api/v1/masils",
-//   GET_LIST: "/api/v1/masils/recent",
-//   GET_PERIOD: "/api/v1/masils/period",
-//   GET_RECENT: "/api/v1/masils/recent",
-// };
+  IMAGE: "/api/v1/images",
 
-export const IMAGE = "/api/v1/images";
+  POST: {
+    POST: "/api/v1/posts",
 
-export const POST = {
-  GET_DETAIL: "/api/v1/posts",
-  POST: "/api/v1/posts",
-  GET_LIST: "/api/v1/posts",
-  LIKED_STATUS: "/api/v1/posts",
-  DELETE: (id: string) => `/api/v1/posts/${id}`,
+    GET_LIST: "/api/v1/posts",
+
+    GET_DETAIL: (postId: string) => `/api/v1/posts/${postId}`,
+
+    GET_POPULAR_PLACE: ({
+      depth1,
+      depth2,
+      depth3,
+      size = 10,
+    }: {
+      depth1: string;
+      depth2: string;
+      depth3: string;
+      size?: number;
+    }) =>
+      `/api/v1/posts?depth1=${depth1}&depth2=${depth2}&depth3=${depth3}&order=MOST_POPULAR&size=${size}`,
+
+    GET_POPULAR: "/api/v1/posts?order=MOST_POPULAR&size=10",
+
+    GET_RECENT_BY_ID: ({ userId, size = 10 }: { userId: number | string; size?: number }) =>
+      `/api/v1/posts?authorId=${userId}&size=${size ? size : 10}`,
+
+    LIKED_STATUS: (postId: string) => `/api/v1/posts/${postId}/likes`,
+
+    DELETE: (id: string) => `/api/v1/posts/${id}`,
+  },
 };
 
 export const MATE = {

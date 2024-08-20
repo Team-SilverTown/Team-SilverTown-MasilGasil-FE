@@ -11,7 +11,7 @@ const getMasilsByPeriod = async ({
   endDate: string | null;
 }) => {
   return await GET<MasilsByPeriodResponse>({
-    endPoint: END_POINT.MASIL.GET_PERIOD({ startDate, endDate }),
+    endPoint: END_POINT.MASIL.GET_PERIOD({ startDate: startDate ?? "", endDate: endDate ?? "" }),
     auth: true,
   });
 };
