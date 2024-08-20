@@ -7,7 +7,9 @@ import { useUI } from "@/components/uiContext/UiContext";
 import { deletePost } from "@/lib/api/Post/client";
 import { POST_KEY } from "@/lib/api/queryKeys";
 import checkErrorCode from "@/lib/utils/checkErrorCode";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { useRouter } from "next/navigation";
 
 interface PostKebabMenuProps {
   postId: string;
@@ -15,11 +17,20 @@ interface PostKebabMenuProps {
 
 const PostKebabMenu = ({ postId }: PostKebabMenuProps) => {
   const { openModal, setModalView } = useUI();
+  const router = useRouter();
+  const queryClient = useQueryClient();
 
   const deleteMutation = useMutation({
     mutationKey: [POST_KEY.DELETE_POST],
     mutationFn: deletePost,
-    onSuccess: () => {},
+    onSuccess: () => {
+      router.replace("/home");
+      queryClient.clear();
+      setModalView("DONE_VIEW");
+      openModal({
+        message: "게시물이 삭제되었습니다.",
+      });
+    },
     onError: ({ message }) => {
       setModalView("ANIMATION_ALERT_VIEW");
       openModal({
@@ -37,7 +48,12 @@ const PostKebabMenu = ({ postId }: PostKebabMenuProps) => {
   };
 
   const handleClickDelete = useCallback(() => {
-    deleteMutation.mutate({ id: postId });
+    setModalView("CONFIRM_VIEW");
+    openModal({
+      message: "게시물을 삭제하시겠어요?",
+      warningMessage: "삭제후 되돌릴 수 없습니다.",
+      onClickAccept: () => deleteMutation.mutate({ id: postId }),
+    });
   }, []);
 
   return (
