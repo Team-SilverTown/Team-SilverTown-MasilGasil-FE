@@ -10,7 +10,10 @@ import { redirect } from "next/navigation";
 export async function getMasilDetail(serviceToken: string, id: string) {
   const response = await GET<MasilDetailResponse>({
     endPoint: `${MASIL.GET_DETAIL}/${id}`,
-    options: { headers: { Authorization: `Bearer ${serviceToken}` } },
+    options: {
+      headers: { Authorization: `Bearer ${serviceToken}` },
+      next: { revalidate: 1000 * 60 * 60 },
+    },
   });
 
   return response;
