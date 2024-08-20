@@ -33,6 +33,7 @@ export const POST = {
   POST: "/api/v1/posts",
   GET_LIST: "/api/v1/posts",
   LIKED_STATUS: "/api/v1/posts",
+  DELETE: (id: string) => `/api/v1/posts/${id}`,
 };
 
 export const MATE = {

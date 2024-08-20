@@ -1,7 +1,7 @@
 import { PostCreateRequest, PostListRequest } from "@/types/Request";
 import { PostDetailResponse, PostListResponse } from "@/types/Response/Post";
 
-import { GET, POST, PUT } from "../clientRootAPI";
+import { DELETE, GET, POST, PUT } from "../clientRootAPI";
 import { POST as POST_ENDPOINT } from "../endPoints";
 
 export const getPostDetail = async ({ id }: { id: string }) => {
@@ -45,6 +45,17 @@ export const fetchPostLikedToggle = async ({ postId, data }: fetchPostLikeToggle
   return await PUT({
     endPoint: `${POST_ENDPOINT.LIKED_STATUS}/${postId}/likes`,
     data,
+    auth: true,
+  });
+};
+
+interface DeletePostProps {
+  id: string;
+}
+
+export const deletePost = async ({ id }: DeletePostProps) => {
+  return await DELETE({
+    endPoint: POST_ENDPOINT.DELETE(id),
     auth: true,
   });
 };
