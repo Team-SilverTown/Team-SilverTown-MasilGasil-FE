@@ -49,7 +49,7 @@ const PostView = ({
     <>
       <TopNavigator
         leftChildren={<GoBackButton />}
-        rightChildren={userId === postData.authorId && <PostKebabMenu />}
+        rightChildren={userId === postData.authorId && <PostKebabMenu postId={postId} />}
         containerStyle={{ backgroundColor: "transparent" }}
       />
       <S.PostContainer>
