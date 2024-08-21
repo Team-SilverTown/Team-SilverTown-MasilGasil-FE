@@ -40,6 +40,8 @@ export const END_POINT = {
       startDate?: string | null;
       endDate?: string | null;
     }) => `/api/v1/masils/period?startDate=${startDate}&endDate=${endDate}`,
+
+    DELETE: (id: string) => `/api/v1/masils/${id}`,
   },
 
   IMAGE: "/api/v1/images",

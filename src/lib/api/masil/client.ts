@@ -1,7 +1,7 @@
 import { MasilRecordRequest } from "@/types/Request";
 import { MasilDetailResponse } from "@/types/Response";
 
-import { GET, POST } from "../clientRootAPI";
+import { DELETE, GET, POST } from "../clientRootAPI";
 import { END_POINT } from "../endPoints";
 
 export const postMasil = async ({ data }: { data: MasilRecordRequest }) => {
@@ -11,6 +11,13 @@ export const postMasil = async ({ data }: { data: MasilRecordRequest }) => {
 export const getMasilDetail = async ({ id }: { id: string }) => {
   return await GET<MasilDetailResponse>({
     endPoint: END_POINT.MASIL.GET_DETAIL(id),
+    auth: true,
+  });
+};
+
+export const deleteMasil = async ({ id }: { id: string }) => {
+  return await DELETE({
+    endPoint: END_POINT.MASIL.DELETE(id),
     auth: true,
   });
 };
