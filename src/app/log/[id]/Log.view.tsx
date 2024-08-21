@@ -47,7 +47,7 @@ const LogView = ({
     <>
       <TopNavigator
         leftChildren={<GoBackButton />}
-        rightChildren={<LogKebabMenu />}
+        rightChildren={<LogKebabMenu masilId={logId} />}
         containerStyle={{ backgroundColor: "transparent" }}
       />
       <section className="relative h-full min-h-dvh scale-100 select-none">
