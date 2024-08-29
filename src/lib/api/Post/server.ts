@@ -2,14 +2,14 @@
 
 import { PostDetailResponse, PostListResponse } from "@/types/Response/Post";
 
-import { POST } from "../endPoints";
+import { END_POINT } from "../endPoints";
 import { GET } from "../serverRootAPI";
 
 import { redirect } from "next/navigation";
 
 export async function getPostDetail(serviceToken: string, id: string) {
   const response = await GET<PostDetailResponse>({
-    endPoint: `${POST.GET_DETAIL}/${id}`,
+    endPoint: END_POINT.POST.GET_DETAIL(id),
     options: { headers: { Authorization: `Bearer ${serviceToken}` } },
   });
 
@@ -19,7 +19,7 @@ export async function getPostDetail(serviceToken: string, id: string) {
 export async function getRecentPostsById(serviceToken: string, userId: number, size?: number) {
   try {
     const response = await GET<PostListResponse>({
-      endPoint: `${POST.GET_DETAIL}?authorId=${userId}&size=${size ? size : 10}`,
+      endPoint: END_POINT.POST.GET_RECENT_BY_ID({ userId, size }),
       options: { headers: { Authorization: `Bearer ${serviceToken}` } },
     });
 

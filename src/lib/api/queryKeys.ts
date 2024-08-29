@@ -16,6 +16,7 @@ export const USER_KEY = {
 export const MASIL_KEY = {
   RECORD_SUBMIT: "masil_log_record_submit",
   MASILS_PERIOD_GET: "masils_period_get",
+  DELETE_MASIL: "delete_masil",
 };
 
 export const IMAGE_UPLOAD_KEY = "image_upload_key_0221";
@@ -27,6 +28,7 @@ export const POST_KEY = {
   GET_POST: "get_post_detail",
   GET_MORE_LIST: "get_more_list",
   LIKED_STATUS: "liked_status",
+  DELETE_POST: "delete_post",
 };
 
 export const WEATHER_KEY = {

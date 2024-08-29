@@ -197,7 +197,7 @@ export const PostCreateContextProvider = ({
     setModalView("CONFIRM_VIEW");
 
     openModal({
-      message: "포스트를 등록하시겠나요?",
+      message: "산책로를 공유하시겠나요?",
       acceptButtonText: "등록",
       onClickAccept: () => {
         postMutation.mutate(newPost, {

@@ -1,11 +1,11 @@
 import { MateDetailListResponse, MateDetailResponse } from "@/types/Response";
 
-import { MATE } from "../endPoints";
+import { END_POINT } from "../endPoints";
 import { GET } from "../serverRootAPI";
 
 export async function getMateDetail(id: string) {
   const response = await GET<MateDetailResponse>({
-    endPoint: `${MATE.GET_DETAIL}/${id}`,
+    endPoint: END_POINT.MATE.GET_DETAIL(id),
     options: { cache: "no-store" },
   });
 
@@ -24,7 +24,7 @@ interface getMateDetailListProps {
 export async function getMateDetailList(params: getMateDetailListProps) {
   const { postId, depth1, depth2, depth3, cursor, size } = params;
 
-  let endPoint = `${MATE.GET_DETAIL}?`;
+  let endPoint = `${END_POINT.MATE.GET_DETAIL_LIST}?`;
 
   if (postId) endPoint += `postId=${postId}&`;
   if (depth1) endPoint += `depth1=${depth1}&depth2=${depth2}&depth3=${depth3}&`;

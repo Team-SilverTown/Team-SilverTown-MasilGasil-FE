@@ -7,30 +7,30 @@ import {
 } from "@/types/Response";
 
 import { GET, PATCH, POST, PUT } from "../clientRootAPI";
-import { AUTH, USER } from "../endPoints";
+import { END_POINT } from "../endPoints";
 
 export const authenticate = async (data: AuthRequest) => {
-  return await POST<AuthResponse>({ endPoint: AUTH.AUTH, data });
+  return await POST<AuthResponse>({ endPoint: END_POINT.AUTH.LOGIN, data });
 };
 
 export const getMe = async () => {
-  return await GET<MeResponse>({ endPoint: USER.ME, auth: true });
+  return await GET<MeResponse>({ endPoint: END_POINT.USER.ME, auth: true });
 };
 
 export const checkDuplicateNickname = async (nickname: string) => {
   return await GET<CheckNickNameResponse>({
-    endPoint: `${USER.CHECK_NICKNAME}?nickname=${nickname}`,
+    endPoint: END_POINT.USER.CHECK_NICKNAME(nickname),
     auth: true,
   });
 };
 
 export const getUserInfo = async (userId: string) => {
-  return await GET<MeResponse>({ endPoint: `${USER.PROFILE}/${userId}` });
+  return await GET<MeResponse>({ endPoint: END_POINT.USER.PROFILE(userId) });
 };
 
 export const signUp = async (data: SignUpRequest) => {
   return await PUT({
-    endPoint: USER.SIGNUP,
+    endPoint: END_POINT.AUTH.SIGNUP,
     data,
     auth: true,
   });
@@ -47,16 +47,20 @@ export const postEditUser = async (newUserData: MeResponse) => {
     exerciseIntensity,
   };
 
-  return await PUT<EditUserResponse>({ endPoint: USER.EDIT_USER, data: newData, auth: true });
+  return await PUT<EditUserResponse>({
+    endPoint: END_POINT.USER.EDIT_USER,
+    data: newData,
+    auth: true,
+  });
 };
 
 export const patchIsPublic = async () => {
-  return PATCH({ endPoint: USER.TOGGLE_PUBLIC, auth: true });
+  return PATCH({ endPoint: END_POINT.USER.TOGGLE_PUBLIC, auth: true });
 };
 
 export const changeProfileImage = async ({ image }: { image: File }) => {
   const formData = new FormData();
   formData.append("profileImg", image);
 
-  return await PUT({ endPoint: USER.UPLOAD_IMAGE, data: formData, auth: true });
+  return await PUT({ endPoint: END_POINT.USER.UPLOAD_IMAGE, data: formData, auth: true });
 };
