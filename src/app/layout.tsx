@@ -9,14 +9,11 @@ import { ManagedUIContext, ModalUI, WindowUI } from "@/components/uiContext/UiCo
 import AuthContext from "@/lib/AuthContext";
 import AuthLoader from "@/lib/AuthLoader";
 import TanstackQueryProvider from "@/lib/TanstackQueryProvider";
-import { getMe } from "@/lib/api/User/server";
 import StyledComponentsRegistry from "@/lib/registry";
 
 import getCurrentUser from "./actions/getCurrentUser";
-import { authOptions } from "./api/auth/[...nextauth]/options";
 
 import type { Metadata, Viewport } from "next";
-import { getServerSession } from "next-auth";
 import Script from "next/script";
 
 export const metadata: Metadata = {
