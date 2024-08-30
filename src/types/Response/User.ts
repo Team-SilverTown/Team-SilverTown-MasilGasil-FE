@@ -10,7 +10,7 @@ export interface RefreshResponse {
 }
 
 export interface MeResponse {
-  userId: 1;
+  userId: number; 
   nickname: string;
   profileImg?: string;
   sex?: "MALE" | "FEMALE";

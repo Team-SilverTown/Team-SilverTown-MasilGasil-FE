@@ -20,7 +20,7 @@ const AuthLoader = ({
   children,
   serviceToken,
   me,
-}: PropsWithChildren<{ serviceToken?: string; me?: MeResponse }>) => {
+}: PropsWithChildren<{ serviceToken?: string; me?: MeResponse | null }>) => {
   const route = useRouter();
   const currentPathName = usePathname();
 
@@ -58,12 +58,15 @@ const AuthLoader = ({
         update({ serviceToken: serviceToken, nickname: me.nickname });
       setAuth({ isLogIn: true, serviceToken });
       setMe({ ...me });
+
       apiClient.setDefaultHeader("Authorization", `Bearer ${serviceToken}`);
+      
+      // 인증된 사용자가 갈 수 없는 경로 가입, 로그인 관련
       if (redirectInable) {
         currentPathName === "/"
           ? setTimeout(() => {
               route.replace("/home");
-            }, 2000)
+            }, 1000)
           : route.replace("/home");
       }
     }

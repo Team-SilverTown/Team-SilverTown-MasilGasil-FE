@@ -16,14 +16,10 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
+    maxAge: 60 * 60 * 6, 
   },
   callbacks: {
-    async jwt({ token, account, trigger, session }) {
-      if (trigger === "update" && session.nickname) {
-        token.nickname = session.nickname;
-        token.serviceToken = session.serviceToken;
-      }
-
+    async jwt({ token, account }) {
       if (account && account.access_token) {
         // 카카오 인증 로그인 시
         // 서비스 서버로부터 새로운 accessToken, refreshToken 을 발급
@@ -57,12 +53,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token, trigger, newSession }) {
-      if (trigger === "update") {
-        newSession.serviceToken && (session.serviceToken = newSession.serviceToken);
-        session.nickname = newSession.nickname;
-      }
-
+    async session({ session, token }) {
       if (token.serviceToken) {
         session.serviceToken = token.serviceToken as string;
         session.nickname = token.nickname as string;
@@ -78,4 +69,5 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/",
   },
+  debug: process.env.NODE_ENV === "development",
 };
