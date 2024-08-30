@@ -11,7 +11,7 @@ import { MeResponse } from "@/types/Response";
 import apiClient from "./client/apiClient";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
 export const REDIRECT_INABLE_PATHS = ["/", "/signup*", "/auth*"];
@@ -23,8 +23,6 @@ const AuthLoader = ({
 }: PropsWithChildren<{ serviceToken?: string; me?: MeResponse | null }>) => {
   const route = useRouter();
   const currentPathName = usePathname();
-
-  const { data: session, update } = useSession();
 
   const { setAuth } = useAuthStore();
   const { setMe, initMe } = useMeStore();
@@ -54,13 +52,11 @@ const AuthLoader = ({
 
     if (me.nickname) {
       // 인증된 유저인 경우
-      session?.nickname !== me.nickname &&
-        update({ serviceToken: serviceToken, nickname: me.nickname });
       setAuth({ isLogIn: true, serviceToken });
       setMe({ ...me });
 
       apiClient.setDefaultHeader("Authorization", `Bearer ${serviceToken}`);
-      
+
       // 인증된 사용자가 갈 수 없는 경로 가입, 로그인 관련
       if (redirectInable) {
         currentPathName === "/"
