@@ -1,4 +1,5 @@
 import { PostCreateRequest, PostListRequest } from "@/types/Request";
+import { LikesResponse } from "@/types/Response";
 import { PostDetailResponse, PostListResponse } from "@/types/Response/Post";
 
 import { DELETE, GET, POST, PUT } from "../clientRootAPI";
@@ -41,7 +42,10 @@ interface fetchPostLikeToggleProps {
   data: { isLike: boolean };
 }
 
-export const fetchPostLikedToggle = async ({ postId, data }: fetchPostLikeToggleProps) => {
+export const fetchPostLikedToggle = async ({
+  postId,
+  data,
+}: fetchPostLikeToggleProps): Promise<LikesResponse> => {
   return await PUT({
     endPoint: END_POINT.POST.LIKED_STATUS(postId),
     data,
