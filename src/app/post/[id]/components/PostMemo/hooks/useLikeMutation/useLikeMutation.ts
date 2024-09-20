@@ -65,7 +65,7 @@ const useLikeMutation = ({ id, isLiked, likeCount }: UseLikeMutationProps) => {
     setLikes((likes) => (isLike ? likes - 1 : likes + 1));
     setIsLike((prevIsLike) => {
       const newIsLike = !prevIsLike;
-      handleLikeMutation(id, newIsLike); // state 업데이트 후 호출
+      handleLikeMutation(id, newIsLike);
       return newIsLike;
     });
   };
