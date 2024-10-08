@@ -2,18 +2,14 @@ import * as S from "./PostMemo.styles";
 
 import Avatar from "@/components/Avatar/Avatar";
 import { Heart, Location, ViewIcon } from "@/components/icons";
-import { useUI } from "@/components/uiContext/UiContext";
-import { fetchPostLikedToggle } from "@/lib/api/Post/client";
 import { getUserInfo } from "@/lib/api/User/client";
-import { POST_KEY, USER_KEY } from "@/lib/api/queryKeys";
-import useAuthStore from "@/lib/stores/useAuthStore";
+import { USER_KEY } from "@/lib/api/queryKeys";
 import { calculateWalkingCalories, convertMeter, convertSeconds } from "@/lib/utils";
-import checkErrorCode from "@/lib/utils/checkErrorCode";
 import { UserInfoType } from "@/types/Response";
 import { PostDetailResponse } from "@/types/Response/Post";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
-import { useRouter } from "next/navigation";
+import { useLikeMutation } from "./hooks";
 
 interface PostMemoProps {
   userInfo: UserInfoType;
@@ -37,45 +33,17 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
   } = postData;
 
   const { isUserInfoCheck, calories } = calculateWalkingCalories({ userInfo, distance });
-  const { setModalView, openModal } = useUI();
-  const router = useRouter();
-  const { isLogIn } = useAuthStore();
 
   const { data: authorData } = useQuery({
     queryKey: [USER_KEY.USER_INFO, authorId],
     queryFn: () => getUserInfo(String(authorId)),
   });
 
-  const likeMutation = useMutation({
-    mutationKey: [POST_KEY.LIKED_STATUS],
-    mutationFn: fetchPostLikedToggle,
-    onSuccess: () => {
-      router.refresh();
-    },
-    onError: ({ message }) => {
-      setModalView("ANIMATION_ALERT_VIEW");
-      openModal({
-        message: checkErrorCode({
-          errorCode: message,
-          defaultMessage: "해당 요청에 문제가 발생하였습니다.<br>잠시 후 다시 시도해주세요!",
-        }),
-      });
-    },
-  });
+  const { isLike, likes, handleClickLike } = useLikeMutation({ id, isLiked, likeCount });
 
   if (!authorData) {
     return;
   }
-
-  const handleClickLike = () => {
-    if (!isLogIn) {
-      setModalView("ACCESS_LOGIN_VIEW");
-      openModal();
-      return;
-    }
-
-    likeMutation.mutate({ postId: String(id), data: { isLike: !isLiked } });
-  };
 
   return (
     <>
@@ -112,10 +80,10 @@ const PostMemo = ({ userInfo, postData }: PostMemoProps) => {
       <S.PostMemoBottomInfo>
         <S.PostMemoLike
           onClick={handleClickLike}
-          $isLiked={isLiked}
+          $isLiked={isLike}
         >
           <Heart />
-          {likeCount}
+          {likes}
         </S.PostMemoLike>
         <S.PostMemoViewCount>
           <ViewIcon />
