@@ -16,13 +16,13 @@ const StatisticContainer = ({ userData }: StatisticContainerProps) => {
   const { totalDistance, totalCount, totalCalories } = userData;
 
   const statisticData = [
-    { icon: "👟", label: "산책했어요", value: `${totalCount}회` },
+    { icon: "👟", label: "산책했어요", value: `${totalCount || 0}회` },
     { icon: "👣", label: "걸었어요", value: convertMeter(totalDistance) },
-    { icon: "🎽", label: "소모했어요", value: `${totalCalories}kcal` },
+    { icon: "🎽", label: "소모했어요", value: `${totalCalories || 0}kcal` },
   ];
 
   return (
-    <section className="bg-green_400 inset-1 z-10 flex flex-col gap-[2rem] rounded-[3rem] px-12 py-10 shadow-[inset_0px_0px_0px_4px_rgba(255,255,255,0.1)]">
+    <section className="inset-1 z-10 flex flex-col gap-[2rem] rounded-[3rem] bg-green_400 px-12 py-10 shadow-[inset_0px_0px_0px_4px_rgba(255,255,255,0.1)]">
       <header className="text-3xl">
         <p className="text-white">
           반가워요 <strong className="text-white">{userData.nickname}</strong>님,
