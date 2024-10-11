@@ -51,7 +51,7 @@ const useStatusContainer = () => {
       const { x: tmX, y: tmY } = convertLatLonToTM(lat, lng);
 
       const isLocationCompare = locationCompare(location, { lat, lng, tmX, tmY });
-      const isTimeCompare = timeCompare(time, 1);
+      const isTimeCompare = timeCompare(time, 30);
 
       if (isLocationCompare || isTimeCompare) {
         setIsFetchRequired(true);
