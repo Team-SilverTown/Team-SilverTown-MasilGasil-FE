@@ -42,30 +42,32 @@ const StatusContainer = () => {
 
       <section className="flex items-center gap-3">
         {temperature && (
-          <>
-            <StatusItem
-              icon="🌡️"
-              label={`${temperature}°C`}
-            />
-            <div className="h-2 w-2 rounded-full bg-gray-200" />
-          </>
+          <StatusItem
+            icon="🌡️"
+            label={`${temperature}°C`}
+          />
         )}
 
         {weather && (
           <>
+            {temperature && <div className="h-2 w-2 rounded-full bg-gray-200" />}
             <StatusItem
               icon={weatherIcon}
               label={weather?.toString()}
             />
-            <div className="h-2 w-2 rounded-full bg-gray-200" />
           </>
         )}
 
         {fineDustValue && (
-          <StatusItem
-            icon="😷"
-            label={fineDustValue}
-          />
+          <>
+            {((!weather && temperature) || weather) && (
+              <div className="h-2 w-2 rounded-full bg-gray-200" />
+            )}
+            <StatusItem
+              icon="😷"
+              label={fineDustValue}
+            />
+          </>
         )}
       </section>
     </article>
