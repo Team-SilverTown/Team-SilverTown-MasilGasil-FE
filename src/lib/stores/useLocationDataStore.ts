@@ -10,7 +10,7 @@ export interface LocationType {
   tmY: number | null;
 }
 
-interface UseLocationStoreProps {
+interface UseGeoLocationStoreProps {
   location: LocationType;
   setLocation: (newLocation: LocationType) => void;
 }
@@ -20,13 +20,13 @@ interface UseWeatherStoreProps {
   setWeatherData: (newWeatherData: APIResponse) => void;
 }
 
-interface UseSaveTimeStoreProps {
+interface UseVisitCheckTimeStoreProps {
   time: Date;
   setTime: (newTime: Date) => void;
 }
 
-export const useLocationStore = create(
-  persist<UseLocationStoreProps>(
+export const useGeoLocationStore = create(
+  persist<UseGeoLocationStoreProps>(
     (set) => ({
       location: { lat: null, lng: null, tmX: null, tmY: null },
       setLocation: (newLocation) => set({ location: { ...newLocation } }),
@@ -53,8 +53,8 @@ export const useWeatherStore = create(
   ),
 );
 
-export const useSaveTimeStore = create(
-  persist<UseSaveTimeStoreProps>(
+export const useVisitCheckTimeStore = create(
+  persist<UseVisitCheckTimeStoreProps>(
     (set) => ({
       time: new Date(),
       setTime: (newTime) => set({ time: newTime }),
