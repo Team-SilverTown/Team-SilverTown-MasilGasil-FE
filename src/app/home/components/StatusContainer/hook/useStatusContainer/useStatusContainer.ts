@@ -3,11 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import fetchNearbyStation from "@/app/home/api/fetchNearbyStation";
 import { convertLatLonToTM, getDetailedAddress, showErrorMessage } from "@/app/home/utils";
 import { WEATHER_KEY } from "@/lib/api/queryKeys";
-import {
-  useGeoLocationStore,
-  useVisitCheckTimeStore,
-  useWeatherStore,
-} from "@/lib/stores/useLocationDataStore";
+import { useLocationTimeStore, useWeatherStore } from "@/lib/stores/useLocationDataStore";
 import useUserLocationStore from "@/lib/stores/useUserLocationStore";
 import { useQuery } from "@tanstack/react-query";
 
@@ -17,10 +13,9 @@ import timeCompare from "../../utils/timeCompare";
 const useStatusContainer = () => {
   const [isClient, setIsClient] = useState(false);
   const [isFetchRequired, setIsFetchRequired] = useState(false);
-  const { location, setLocation } = useGeoLocationStore();
-  const { weatherData, setWeatherData } = useWeatherStore();
-  const { time, setTime } = useVisitCheckTimeStore();
 
+  const { location, time, setLocation, setTime } = useLocationTimeStore();
+  const { weatherData, setWeatherData } = useWeatherStore();
   const { userAddress, setUserLocation, setUserAddress } = useUserLocationStore();
 
   const { data: weatherInfo, isLoading } = useQuery({

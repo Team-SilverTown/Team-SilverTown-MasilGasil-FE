@@ -10,9 +10,11 @@ export interface LocationType {
   tmY: number | null;
 }
 
-interface UseGeoLocationStoreProps {
+interface UseLocationTimeStoreProps {
   location: LocationType;
+  time: Date;
   setLocation: (newLocation: LocationType) => void;
+  setTime: (newTime: Date) => void;
 }
 
 interface UseWeatherStoreProps {
@@ -20,19 +22,16 @@ interface UseWeatherStoreProps {
   setWeatherData: (newWeatherData: APIResponse) => void;
 }
 
-interface UseVisitCheckTimeStoreProps {
-  time: Date;
-  setTime: (newTime: Date) => void;
-}
-
-export const useGeoLocationStore = create(
-  persist<UseGeoLocationStoreProps>(
+export const useLocationTimeStore = create(
+  persist<UseLocationTimeStoreProps>(
     (set) => ({
       location: { lat: null, lng: null, tmX: null, tmY: null },
+      time: new Date(),
       setLocation: (newLocation) => set({ location: { ...newLocation } }),
+      setTime: (newTime) => set({ time: newTime }),
     }),
     {
-      name: "location-storage",
+      name: "locationTime-storage",
       storage: createJSONStorage(() => localStorage),
     },
   ),
@@ -50,18 +49,5 @@ export const useWeatherStore = create(
       setWeatherData: (newWeatherData) => set({ weatherData: { ...newWeatherData } }),
     }),
     { name: "weather-storage" },
-  ),
-);
-
-export const useVisitCheckTimeStore = create(
-  persist<UseVisitCheckTimeStoreProps>(
-    (set) => ({
-      time: new Date(),
-      setTime: (newTime) => set({ time: newTime }),
-    }),
-    {
-      name: "time-storage",
-      storage: createJSONStorage(() => localStorage),
-    },
   ),
 );
