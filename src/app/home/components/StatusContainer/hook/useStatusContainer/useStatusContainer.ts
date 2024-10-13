@@ -45,10 +45,10 @@ const useStatusContainer = () => {
       const lng = coords.longitude;
       const { x: tmX, y: tmY } = convertLatLonToTM(lat, lng);
 
-      const isLocationCompare = locationCompare(location, { lat, lng, tmX, tmY });
-      const isTimeCompare = timeCompare(time, 30);
+      const isLocationChanged = locationCompare(location, { lat, lng, tmX, tmY });
+      const isTimeChanged = timeCompare(time, 30);
 
-      if (isLocationCompare || isTimeCompare) {
+      if (isLocationChanged || isTimeChanged) {
         setIsFetchRequired(true);
         setTime(new Date());
         setLocation({ lat, lng, tmX, tmY });
