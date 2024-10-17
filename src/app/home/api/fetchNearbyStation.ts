@@ -17,7 +17,7 @@ interface StationData {
 
 type PromiseResult<T> = { status: "fulfilled"; value: T } | { status: "rejected"; reason: any };
 
-interface APIResponse {
+export interface APIResponse {
   pm10: number | null;
   precipitation: PrecipitationType | null;
   temperature: string | null;
