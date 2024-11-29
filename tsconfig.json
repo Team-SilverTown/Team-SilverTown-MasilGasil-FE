@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,14 +23,35 @@
       }
     ],
     "paths": {
-      "@/*": ["src/*"],
-      "@lib/*": ["src/lib/*"],
-      "@utils/*": ["src/lib/utils/*"],
-      "@components/*": ["src/components/*"],
-      "@screens/*": ["src/screens/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "@utils/*": [
+        "src/lib/utils/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@screens/*": [
+        "src/screens/*"
+      ]
     },
-    "types": ["kakao.maps.d.ts"]
+    "types": [
+      "kakao.maps.d.ts"
+    ],
+    "target": "ES2017"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "d.types"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "d.types"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
